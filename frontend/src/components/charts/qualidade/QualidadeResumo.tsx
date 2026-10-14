@@ -1,14 +1,12 @@
-import { Info } from "lucide-react";
-import { useState, type ReactNode } from "react";
+import { useState } from "react";
 
-import { Card } from "@/components/cards/Card";
+import { ItemLegenda, Tile } from "@/components/cards/Tile";
 import { TextoAjustado } from "@/components/charts/TextoAjustado";
 import { DeltaPill } from "@/components/charts/qualidade/DeltaPill";
 import { useChartTheme } from "@/hooks/useChartTheme";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { formatDecimal, formatPercent, formatPoints } from "@/lib/format";
 import { comCpc, media, type AvaliacaoCurso } from "@/lib/qualidade";
-import { cn } from "@/lib/utils";
 import type { DistribuicaoCpcFaixaNacionalItem } from "@/types/dashboard";
 
 /** Quatro indicadores do campus no topo da Visão do campus: CPC médio,
@@ -127,72 +125,6 @@ export function QualidadeResumo({
                 }
             />
         </div>
-    );
-}
-
-function Tile({
-    label,
-    info,
-    value,
-    badge,
-    footer,
-    lateral,
-    children,
-}: {
-    label: string;
-    info: string;
-    /** Número grande; sem ele, o tile desenha ``children`` no lugar. */
-    value?: string;
-    badge?: ReactNode;
-    footer?: ReactNode;
-    /** Visual pequeno no canto inferior direito, ao lado do número e do
-     * rodapé (ex.: a rosca do Sem CPC). */
-    lateral?: ReactNode;
-    children?: ReactNode;
-}) {
-    return (
-        <Card className="relative overflow-hidden">
-            {/* enfeite: pontinhos à direita, sumindo pra esquerda */}
-            <span
-                aria-hidden
-                className="pontilhado pointer-events-none absolute inset-y-0 right-0 w-3/5"
-            />
-            <div className="relative flex items-center justify-between gap-2">
-                <p className="text-[14px] font-medium">{label}</p>
-                <span
-                    title={info}
-                    aria-label={info}
-                    className="text-text-muted -mr-1 flex h-6 w-6 items-center justify-center"
-                >
-                    <Info size={15} strokeWidth={2} aria-hidden />
-                </span>
-            </div>
-            {value !== undefined ? (
-                <div className="relative mt-2.5 flex items-center gap-3">
-                    <p className="text-[26px] leading-none font-semibold tracking-[-0.02em] tabular-nums">
-                        {value}
-                    </p>
-                    {badge}
-                </div>
-            ) : (
-                <div className="relative mt-auto pt-1">{children}</div>
-            )}
-            {footer !== undefined && (
-                <div
-                    className={cn(
-                        "text-text-secondary relative mt-auto pt-3 text-[12px] leading-snug",
-                        lateral !== undefined && "pr-[84px] sm:max-lg:pr-[64px]"
-                    )}
-                >
-                    {footer}
-                </div>
-            )}
-            {lateral !== undefined && (
-                <div className="absolute right-5 bottom-5 lg:right-6 lg:bottom-6">
-                    {lateral}
-                </div>
-            )}
-        </Card>
     );
 }
 
@@ -336,19 +268,6 @@ function FaixasGauge({ porFaixa, total }: { porFaixa: number[]; total: number })
                       : "cursos"}
             </text>
         </svg>
-    );
-}
-
-function ItemLegenda({ cor, children }: { cor: string; children: ReactNode }) {
-    return (
-        <span className="flex items-center gap-1.5 whitespace-nowrap">
-            <span
-                aria-hidden
-                className="h-2 w-2 shrink-0 rounded-[3px]"
-                style={{ background: cor }}
-            />
-            {children}
-        </span>
     );
 }
 

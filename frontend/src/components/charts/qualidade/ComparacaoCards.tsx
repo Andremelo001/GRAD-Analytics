@@ -56,6 +56,7 @@ export function LadoALadoCard({
     lados,
     linhas,
     rodape,
+    action,
     className,
 }: {
     titulo: string;
@@ -63,11 +64,13 @@ export function LadoALadoCard({
     lados: Lados;
     linhas: LinhaLadoALado[];
     rodape?: ReactNode;
+    /** À direita do título (ex.: o seletor do lado B). */
+    action?: ReactNode;
     className?: string;
 }) {
     const CHART = useChartTheme();
     return (
-        <Card title={titulo} subtitle={subtitulo} className={className}>
+        <Card title={titulo} subtitle={subtitulo} action={action} className={className}>
             {/* legenda na mesma grade das linhas: cada nome em cima da coluna
                 dos seus valores */}
             <div className="text-text-secondary mt-4 grid grid-cols-[1fr_auto_1fr] items-center gap-3 text-[12px]">
@@ -121,7 +124,7 @@ export function LadoALadoCard({
                         return (
                             <span
                                 className={cn(
-                                    "inline-flex items-center gap-1.5 rounded-lg px-2 py-1 text-[15px] font-semibold tabular-nums",
+                                    "inline-flex items-center gap-1.5 rounded-lg px-2 py-1 text-[15px] font-semibold whitespace-nowrap tabular-nums",
                                     !vence && "text-text-secondary font-medium"
                                 )}
                                 style={
@@ -171,9 +174,7 @@ export function LadoALadoCard({
     );
 }
 
-/** As 9 notas (0 a 5) em barras espelhadas: A cresce pra esquerda, B pra
- * direita, a partir do nome do componente no meio. O valor maior vai em
- * negrito. */
+/** As 9 notas (0 a 5) em barras espelhadas (``EspelhoCard``). */
 export function ComponentesEspelhoCard({
     titulo,
     subtitulo,
@@ -187,6 +188,63 @@ export function ComponentesEspelhoCard({
     lados: Lados;
     a: Notas;
     b: Notas;
+    className?: string;
+}) {
+    return (
+        <EspelhoCard
+            titulo={titulo}
+            subtitulo={subtitulo}
+            lados={lados}
+            className={className}
+            coluna="Componente"
+            linhas={COMPONENTES.map((c) => ({
+                key: c.key,
+                nome: c.nome,
+                curto: c.curto,
+                a: a[c.key],
+                b: b[c.key],
+            }))}
+            maximo={5}
+            formato={(v) => formatDecimal(v)}
+            rodape="Notas padronizadas de 0 a 5: medem a posição de cada curso entre os cursos da mesma área no país."
+        />
+    );
+}
+
+export interface LinhaEspelho {
+    key: string;
+    nome: string;
+    /** Nome curto, no celular (padrão: o nome). */
+    curto?: string;
+    a: number | null;
+    b: number | null;
+}
+
+/** Barras espelhadas: A cresce pra esquerda, B pra direita, a partir do nome
+ * da linha no meio (escala de 0 a ``maximo``). O lado à frente vai em
+ * negrito — o maior, ou o menor com ``maiorMelhor={false}``. */
+export function EspelhoCard({
+    titulo,
+    subtitulo,
+    lados,
+    linhas,
+    maximo,
+    formato,
+    maiorMelhor = true,
+    coluna,
+    rodape,
+    className,
+}: {
+    titulo: string;
+    subtitulo?: string;
+    lados: Lados;
+    linhas: LinhaEspelho[];
+    maximo: number;
+    formato: (v: number) => string;
+    maiorMelhor?: boolean;
+    /** Cabeçalho da coluna dos nomes na tabela pra leitores de tela. */
+    coluna: string;
+    rodape: ReactNode;
     className?: string;
 }) {
     const CHART = useChartTheme();
@@ -205,7 +263,7 @@ export function ComponentesEspelhoCard({
                             lado === "a" ? "right-0" : "left-0"
                         )}
                         style={{
-                            width: `${(v / 5) * 100}%`,
+                            width: `${Math.min((v / maximo) * 100, 100)}%`,
                             background: CHART.comparacao[lado],
                         }}
                     />
@@ -228,18 +286,18 @@ export function ComponentesEspelhoCard({
             {/* as linhas dividem a altura do card (esticado à do vizinho): sem
                 espaço vazio antes da nota do rodapé */}
             <ul className="mt-4 flex flex-1 flex-col gap-2">
-                {COMPONENTES.map((c) => {
-                    const va = a[c.key];
-                    const vb = b[c.key];
+                {linhas.map((l) => {
+                    const va = l.a;
+                    const vb = l.b;
                     const ganha =
                         va !== null && vb !== null && Math.abs(va - vb) >= 0.005
-                            ? va > vb
+                            ? va > vb === maiorMelhor
                                 ? "a"
                                 : "b"
                             : null;
                     return (
                         <li
-                            key={c.key}
+                            key={l.key}
                             className="grid min-h-5 flex-1 grid-cols-[40px_minmax(0,1fr)_minmax(0,120px)_minmax(0,1fr)_40px] items-center gap-2 text-[12px] sm:grid-cols-[44px_minmax(0,1fr)_minmax(0,200px)_minmax(0,1fr)_44px]"
                         >
                             <span
@@ -250,16 +308,16 @@ export function ComponentesEspelhoCard({
                                         : "text-text-secondary"
                                 )}
                             >
-                                {va === null ? "—" : formatDecimal(va)}
+                                {va === null ? "—" : formato(va)}
                             </span>
                             {barra(va, "a")}
                             <span
                                 className="truncate text-center font-medium"
-                                title={c.nome}
+                                title={l.nome}
                             >
                                 {/* no celular, o nome curto (FG, CE, IDD…) */}
-                                <span className="sm:hidden">{c.curto}</span>
-                                <span className="hidden sm:inline">{c.nome}</span>
+                                <span className="sm:hidden">{l.curto ?? l.nome}</span>
+                                <span className="hidden sm:inline">{l.nome}</span>
                             </span>
                             {barra(vb, "b")}
                             <span
@@ -270,7 +328,7 @@ export function ComponentesEspelhoCard({
                                         : "text-text-secondary"
                                 )}
                             >
-                                {vb === null ? "—" : formatDecimal(vb)}
+                                {vb === null ? "—" : formato(vb)}
                             </span>
                         </li>
                     );
@@ -283,18 +341,15 @@ export function ComponentesEspelhoCard({
                     aria-hidden
                     className="mt-px shrink-0"
                 />
-                <span>
-                    Notas padronizadas de 0 a 5: medem a posição de cada curso entre os
-                    cursos da mesma área no país.
-                </span>
+                <span>{rodape}</span>
             </p>
             <div className="sr-only">
                 <DataTable
-                    columns={["Componente", lados.a, lados.b]}
-                    rows={COMPONENTES.map((c) => [
-                        c.nome,
-                        a[c.key] === null ? "—" : formatDecimal(a[c.key]!),
-                        b[c.key] === null ? "—" : formatDecimal(b[c.key]!),
+                    columns={[coluna, lados.a, lados.b]}
+                    rows={linhas.map((l) => [
+                        l.nome,
+                        l.a === null ? "—" : formato(l.a),
+                        l.b === null ? "—" : formato(l.b),
                     ])}
                 />
             </div>

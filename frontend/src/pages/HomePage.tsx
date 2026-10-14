@@ -1,4 +1,6 @@
-import { StatTile, type StatTilePoint } from "@/components/cards/StatTile";
+import { useMemo } from "react";
+
+import { StatTile } from "@/components/cards/StatTile";
 import { BrasilMapaCard } from "@/components/charts/BrasilMapaCard";
 import { CpcComparativoCard } from "@/components/charts/CpcComparativoCard";
 import { EvasaoHeatmapCard } from "@/components/charts/EvasaoHeatmapCard";
@@ -7,7 +9,8 @@ import { CampusSelect } from "@/components/layout/CampusSelect";
 import { DataState } from "@/components/layout/DataState";
 import { InicioEsqueleto } from "@/components/layout/Esqueleto";
 import { PageHeader } from "@/components/layout/PageHeader";
-import type { CurvaSobrevivenciaPonto, DashboardData } from "@/types/dashboard";
+import { buildTrajetorias, indicadoresMaduros, serieMaduras } from "@/lib/trajetoria";
+import type { DashboardData } from "@/types/dashboard";
 
 export function HomePage() {
     return (
@@ -25,39 +28,22 @@ export function HomePage() {
     );
 }
 
-/** Histórico de uma taxa na mesma "idade" de turma (``anos`` desde o
- * ingresso), por ano de ingresso, na média dos cursos — assim cada ponto é
- * comparável e o último é exatamente o KPI do campus. */
-function historicoTaxa(
-    curva: CurvaSobrevivenciaPonto[],
-    anos: number,
-    campo: "taxa_conclusao_acumulada" | "taxa_desistencia_acumulada"
-): StatTilePoint[] {
-    const porAno = new Map<number, number[]>();
-    for (const p of curva) {
-        const v = p[campo];
-        if (p.anos_desde_ingresso !== anos || v === null) continue;
-        porAno.set(p.ano_ingresso, [...(porAno.get(p.ano_ingresso) ?? []), v]);
-    }
-    return [...porAno.entries()]
-        .map(([ano, vs]) => ({ ano, valor: vs.reduce((a, b) => a + b, 0) / vs.length }))
-        .sort((a, b) => a.ano - b.ano);
-}
-
 function Home({ data }: { data: DashboardData }) {
     const { campus, cursos, curso_perfil: perfil } = data;
-    const nacional = data.medias_nacionais.campus.kpis;
 
-    // os KPIs do campus são da turma mais recente, nesta "idade" de curso
-    const ref = perfil.kpis.find(
-        (k) => k.ano_ingresso_referencia !== null && k.ano_referencia !== null
+    // conclusão e evasão das turmas maduras (a mais recente de cada curso que
+    // já teve o prazo e mais dois anos): a comparação justa — a turma mais
+    // recente ainda não teve tempo de se formar. Mesma conta do Panorama da
+    // Trajetória.
+    const trajetorias = useMemo(() => buildTrajetorias(data), [data]);
+    const maduros = useMemo(
+        () => indicadoresMaduros(data, trajetorias),
+        [data, trajetorias]
     );
-    const anos = ref ? ref.ano_referencia! - ref.ano_ingresso_referencia! : null;
-    const serie = (campo: Parameters<typeof historicoTaxa>[2]) =>
-        anos === null ? [] : historicoTaxa(perfil.curva_sobrevivencia, anos, campo);
-    const infoTurma = ref
-        ? `Média dos cursos para a turma de ${ref.ano_ingresso_referencia}, ${anos} anos após o ingresso. A linha mostra a mesma taxa nas turmas anteriores.`
-        : "Média dos cursos, turma mais recente.";
+    const turmas = maduros?.anos ?? [];
+    const infoTurma = maduros
+        ? `Turma madura mais recente de cada curso (${turmas.length > 1 ? `ingressos de ${turmas[0]} a ${turmas.at(-1)}` : `ingresso em ${turmas[0]}`}), dois anos depois do prazo do curso, contra os mesmos cursos no Brasil no mesmo ponto. A linha mostra a mesma taxa nas turmas maduras anteriores.`
+        : "Ainda não há turma madura (todas em andamento).";
 
     return (
         <>
@@ -75,19 +61,19 @@ function Home({ data }: { data: DashboardData }) {
                     <StatTile
                         label="Taxa de conclusão"
                         info={infoTurma}
-                        value={campus.kpis.taxa_conclusao_media}
-                        nationalValue={nacional.taxa_conclusao_media_nacional}
+                        value={maduros?.concluiu ?? null}
+                        nationalValue={maduros?.concluiuBrasil ?? null}
                         higherIsBetter
-                        serie={serie("taxa_conclusao_acumulada")}
+                        serie={serieMaduras(trajetorias, "concluiu")}
                         serieLabel="Conclusão por turma de ingresso"
                     />
                     <StatTile
                         label="Taxa de evasão"
                         info={infoTurma}
-                        value={campus.kpis.taxa_desistencia_media}
-                        nationalValue={nacional.taxa_desistencia_media_nacional}
+                        value={maduros?.desistiu ?? null}
+                        nationalValue={maduros?.desistiuBrasil ?? null}
                         higherIsBetter={false}
-                        serie={serie("taxa_desistencia_acumulada")}
+                        serie={serieMaduras(trajetorias, "desistiu")}
                         serieLabel="Evasão por turma de ingresso"
                     />
                 </div>

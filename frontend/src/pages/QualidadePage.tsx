@@ -27,7 +27,7 @@ export function QualidadePage() {
 
     // lembra onde está, pra reabrir aqui ao voltar de outra aba
     useEffect(() => {
-        if (subAba) lembrarSubaba(pathname + search);
+        if (subAba) lembrarSubaba("qualidade", pathname + search);
     }, [subAba, pathname, search]);
 
     // baixa o código do Mapa quando o navegador ficar ocioso
@@ -59,5 +59,5 @@ export function QualidadePage() {
 
 /** ``/qualidade`` sozinho (o link do menu): reabre a última sub-aba. */
 export function VoltarSubaba() {
-    return <Navigate to={ultimaSubaba()} replace />;
+    return <Navigate to={ultimaSubaba("qualidade")} replace />;
 }

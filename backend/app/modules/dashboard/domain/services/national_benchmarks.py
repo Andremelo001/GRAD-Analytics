@@ -45,7 +45,66 @@ def build(
             qualidade_nacional, trajetoria_nacional, data
         ),
         "ingressantes": _ingressantes_nacional(trajetoria_nacional, data),
+        "trajetoria_pares": _trajetoria_pares(trajetoria_nacional, data),
     }
+
+
+def _trajetoria_pares(
+    trajetoria_nacional: pd.DataFrame, data: ScopedData
+) -> list[dict[str, object]]:
+    """Evasão e conclusão dos cursos-pares no Brasil, na turma madura.
+
+    Um item por curso do campus: a turma madura mais recente dele
+    (``course_profile.turma_madura``) e, para os pares do Brasil (mesma área
+    CINE — o curso em si —, modalidade e grau) com turma no mesmo ano de
+    ingresso, a evasão e a conclusão acumuladas no mesmo ponto — ``prazo + 1``
+    anos depois do ingresso (dois anos de folga além do prazo). O front põe o
+    curso entre os pares (percentil).
+    """
+    if data.trajetoria.empty or trajetoria_nacional.empty:
+        return []
+    # o curso em si (ex.: "Ciência da computação"); o ``nome_cine_rotulo`` do
+    # INEP é o grupo largo ("Computação e TIC"), que mistura cursos diferentes
+    coluna = "nome_cine_area_geral"
+    itens: list[dict[str, object]] = []
+    for codigo in data.cursos["codigo_curso"]:
+        local = _rows_of(data.trajetoria, int(codigo))
+        madura = course_profile.turma_madura(local)
+        rotulo = _first(local, coluna)
+        if madura is None or rotulo is None:
+            continue
+        ano, prazo = madura
+        anos = prazo + course_profile.ANOS_ALEM_DO_PRAZO - 1
+        pares = trajetoria_nacional[
+            (trajetoria_nacional[coluna] == rotulo)
+            & (trajetoria_nacional["ano_ingresso"] == ano)
+            & (
+                trajetoria_nacional["ano_referencia"]
+                - trajetoria_nacional["ano_ingresso"]
+                == anos
+            )
+        ]
+        pares = _same_value(pares, local, "tp_modalidade_ensino_desc")
+        pares = _same_value(pares, local, "tp_grau_academico_desc")
+        pares = pares.drop_duplicates("codigo_curso").dropna(
+            subset=["taxa_desistencia_acumulada", "taxa_conclusao_acumulada"]
+        )
+        if pares.empty:
+            continue
+        itens.append(
+            {
+                "codigo_curso": int(codigo),
+                "ano_ingresso": ano,
+                "anos_desde_ingresso": anos,
+                "evasao": [
+                    round(float(v), 1) for v in pares["taxa_desistencia_acumulada"]
+                ],
+                "conclusao": [
+                    round(float(v), 1) for v in pares["taxa_conclusao_acumulada"]
+                ],
+            }
+        )
+    return itens
 
 
 def _ingressantes_nacional(
@@ -54,18 +113,15 @@ def _ingressantes_nacional(
     """Ingressantes médios por curso-par, por ano de ingresso.
 
     Um item por (curso do campus, ano): a média de ingressantes dos cursos do
-    Brasil com o mesmo rótulo CINE (o curso em si, ex.: "Ciência da
-    computação" — a área geral juntaria cursos de tamanhos muito diferentes),
-    modalidade e grau acadêmico. Sem o rótulo na base, cai pra área geral.
+    Brasil com a mesma área CINE (o curso em si, ex.: "Ciência da
+    computação" — o rótulo do INEP é um grupo largo, que juntaria cursos de
+    tamanhos muito diferentes), modalidade e grau acadêmico.
     """
     if data.trajetoria.empty or trajetoria_nacional.empty:
         return []
-    coluna = (
-        "nome_cine_rotulo"
-        if "nome_cine_rotulo" in trajetoria_nacional.columns
-        and "nome_cine_rotulo" in data.trajetoria.columns
-        else "nome_cine_area_geral"
-    )
+    # o curso em si (ex.: "Ciência da computação"); o ``nome_cine_rotulo`` do
+    # INEP é o grupo largo ("Computação e TIC"), que mistura cursos diferentes
+    coluna = "nome_cine_area_geral"
     # ingressantes de cada turma: uma linha por (curso, ano de ingresso)
     turmas = trajetoria_nacional.drop_duplicates(["codigo_curso", "ano_ingresso"])
     itens: list[dict[str, object]] = []

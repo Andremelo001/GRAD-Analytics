@@ -1,4 +1,4 @@
-import { createHashRouter } from "react-router-dom";
+import { createHashRouter, Navigate } from "react-router-dom";
 
 import { AppLayout } from "@/components/layout/AppLayout";
 import { CampusPage } from "@/pages/CampusPage";
@@ -10,7 +10,10 @@ import { ComparacoesPage } from "@/pages/qualidade/ComparacoesPage";
 import { MapaPageLazy } from "@/pages/qualidade/MapaPageLazy";
 import { PorCursoPage } from "@/pages/qualidade/PorCursoPage";
 import { VisaoCampusPage } from "@/pages/qualidade/VisaoCampusPage";
-import { TrajetoriaPage } from "@/pages/TrajetoriaPage";
+import { TrajetoriaPage, VoltarSubabaTrajetoria } from "@/pages/TrajetoriaPage";
+import { ComparacoesTrajetoriaPage } from "@/pages/trajetoria/ComparacoesTrajetoriaPage";
+import { PanoramaPage } from "@/pages/trajetoria/PanoramaPage";
+import { PorCursoTrajetoriaPage } from "@/pages/trajetoria/PorCursoTrajetoriaPage";
 
 // HashRouter (não BrowserRouter) de propósito: GitHub Pages é hospedagem
 // estática pura — um refresh em /PROGRAD-Analytics/qualidade daria 404
@@ -37,7 +40,23 @@ export const router = createHashRouter([
                     { path: "comparacoes", element: <ComparacoesPage /> },
                 ],
             },
-            { path: "trajetoria", element: <TrajetoriaPage /> },
+            {
+                path: "trajetoria",
+                element: <TrajetoriaPage />,
+                children: [
+                    // /trajetoria sozinho (o link do menu) reabre a última sub-aba
+                    { index: true, element: <VoltarSubabaTrajetoria /> },
+                    { path: "panorama", element: <PanoramaPage /> },
+                    { path: "curso/:codigo?", element: <PorCursoTrajetoriaPage /> },
+                    { path: "comparacoes", element: <ComparacoesTrajetoriaPage /> },
+                    // sub-aba que não existe mais (ex.: /trajetoria/turmas, removida):
+                    // abre o Panorama em vez de uma tela vazia
+                    {
+                        path: "*",
+                        element: <Navigate to="/trajetoria/panorama" replace />,
+                    },
+                ],
+            },
             { path: "campus", element: <CampusPage /> },
             { path: "cursos/:codigoCurso", element: <CursoDetalhePage /> },
             { path: "configuracoes", element: <ConfiguracoesPage /> },

@@ -1,6 +1,6 @@
 // Copia os JSONs do painel (gerados pelo pipeline Python em
 // backend/app/data/processed/dashboard/: index.json + <slug>.json de cada
-// campus, resumo_campi.json e areas/, um por área de avaliação) pra
+// campus, resumo_campi.json e areas_qualidade/, um por área de avaliação) pra
 // frontend/public/data/dashboard/, de onde o Vite serve como
 // asset estático — tanto em dev quanto no build de produção (GitHub Pages não
 // roda servidor nenhum, só serve arquivo). O front lê o index.json pra montar

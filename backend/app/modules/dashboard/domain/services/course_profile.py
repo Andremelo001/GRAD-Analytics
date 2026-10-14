@@ -150,8 +150,46 @@ def build_funil_por_coorte(data: ScopedData) -> list[dict[str, object]]:
         "qt_desistencia",
         "qt_falecido",
     ]
+    # prazo previsto da turma (anos): diz se ela ainda está em andamento e
+    # quanto atrasou quem concluiu — pode mudar entre turmas do mesmo curso
+    if "prazo_integralizacao" in latest_per_cohort.columns:
+        cols.append("prazo_integralizacao")
     frame = latest_per_cohort[cols].sort_values(["codigo_curso", "ano_ingresso"])
     return records(frame)
+
+
+# Anos de folga além do prazo pra uma turma contar como "madura" (já teve
+# tempo de se formar, inclusive com atraso): só elas entram nas comparações.
+ANOS_ALEM_DO_PRAZO = 2
+
+
+def turma_madura(curso_trajetoria: pd.DataFrame) -> tuple[int, int] | None:
+    """A turma madura mais recente de um curso: ``(ano_ingresso, prazo)``.
+
+    Madura = acompanhada até ``prazo + ANOS_ALEM_DO_PRAZO`` anos depois do
+    ingresso (``anos_desde_ingresso`` chega a ``prazo + 1``). ``None`` sem
+    turma assim (curso novo) ou sem a coluna de prazo.
+    """
+    if curso_trajetoria.empty or "prazo_integralizacao" not in curso_trajetoria:
+        return None
+    frame = curso_trajetoria.dropna(subset=["prazo_integralizacao"])
+    if frame.empty:
+        return None
+    anos = (
+        (frame["ano_referencia"] - frame["ano_ingresso"])
+        .groupby(frame["ano_ingresso"])
+        .max()
+    )
+    prazos = frame.groupby("ano_ingresso")["prazo_integralizacao"].first()
+    maduras = [
+        int(ano)
+        for ano in anos.index
+        if anos[ano] >= int(prazos[ano]) + ANOS_ALEM_DO_PRAZO - 1
+    ]
+    if not maduras:
+        return None
+    ano = max(maduras)
+    return ano, int(prazos[ano])
 
 
 def build_curva_sobrevivencia(data: ScopedData) -> list[dict[str, object]]:

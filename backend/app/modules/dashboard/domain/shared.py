@@ -5,7 +5,13 @@ from dataclasses import dataclass
 
 import pandas as pd
 
-_CATALOG_COLUMNS = ["codigo_curso", "nome_curso", "grau_academico", "modalidade_ensino"]
+_CATALOG_COLUMNS = [
+    "codigo_curso",
+    "nome_curso",
+    "grau_academico",
+    "modalidade_ensino",
+    "prazo_integralizacao",
+]
 _LOWERCASE_WORDS = {"de", "da", "do", "das", "dos", "e"}
 
 
@@ -153,6 +159,9 @@ def _course_catalog(trajetoria: pd.DataFrame, qualidade: pd.DataFrame) -> pd.Dat
                 }
             )
         )
+        from_trajetoria["prazo_integralizacao"] = from_trajetoria["codigo_curso"].map(
+            _prazo_mais_recente(trajetoria)
+        )
 
     known = set(from_trajetoria["codigo_curso"]) if not from_trajetoria.empty else set()
     extra = pd.DataFrame(columns=_CATALOG_COLUMNS)
@@ -165,10 +174,31 @@ def _course_catalog(trajetoria: pd.DataFrame, qualidade: pd.DataFrame) -> pd.Dat
         )
         only_qualidade["grau_academico"] = None
         only_qualidade["modalidade_ensino"] = None
+        only_qualidade["prazo_integralizacao"] = None
         extra = only_qualidade[_CATALOG_COLUMNS]
 
     catalog = pd.concat([from_trajetoria, extra], ignore_index=True)
     return catalog.sort_values("codigo_curso").reset_index(drop=True)
+
+
+def _prazo_mais_recente(trajetoria: pd.DataFrame) -> dict[object, int | None]:
+    """Duração prevista (anos) de cada curso, na turma mais recente.
+
+    O prazo pode mudar entre turmas (mudança de currículo); vale o da última.
+    Sem a coluna (dados antigos), ``None``.
+    """
+    if "prazo_integralizacao" not in trajetoria.columns:
+        return {}
+    validos = trajetoria.dropna(subset=["prazo_integralizacao"])
+    if validos.empty:
+        return {}
+    ultima = validos.sort_values("ano_ingresso").groupby("codigo_curso").tail(1)
+    return {
+        codigo: int(prazo)
+        for codigo, prazo in zip(
+            ultima["codigo_curso"], ultima["prazo_integralizacao"], strict=True
+        )
+    }
 
 
 def with_course_name(frame: pd.DataFrame, cursos: pd.DataFrame) -> pd.DataFrame:

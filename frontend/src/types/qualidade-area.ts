@@ -1,4 +1,4 @@
-// Espelha backend/app/data/processed/dashboard/areas/*.json (gerado por
+// Espelha backend/app/data/processed/dashboard/areas_qualidade/*.json (gerado por
 // backend/app/modules/dashboard/domain/services/quality_areas.py): todos os
 // cursos do Brasil na edição mais recente de uma área de avaliação.
 

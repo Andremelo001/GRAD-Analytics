@@ -90,18 +90,18 @@ def test_build_area_unknown_area_returns_none() -> None:
 
 
 def test_publica_handles_inep_spellings() -> None:
-    assert quality_areas._publica("Federal") is True
-    assert quality_areas._publica("Pessoa Jurídica de Direito Público - Estadual")
-    assert quality_areas._publica("Especial") is True
+    assert quality_areas.rede_publica("Federal") is True
+    assert quality_areas.rede_publica("Pessoa Jurídica de Direito Público - Estadual")
+    assert quality_areas.rede_publica("Especial") is True
     assert (
-        quality_areas._publica(
+        quality_areas.rede_publica(
             "Pessoa Jurídica de Direito Privado - Sem fins lucrativos - "
             "Associação de Utilidade Pública"
         )
         is False
     )
-    assert quality_areas._publica("Comunitária/Confessional") is False
-    assert quality_areas._publica(None) is None
+    assert quality_areas.rede_publica("Comunitária/Confessional") is False
+    assert quality_areas.rede_publica(None) is None
 
 
 def test_areas_dos_campi_uses_latest_evaluation_of_each_course(

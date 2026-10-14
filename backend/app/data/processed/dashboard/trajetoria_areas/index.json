@@ -1,0 +1,539 @@
+{
+  "gerado_em": "2026-10-14T21:28:57+00:00",
+  "areas": [
+    {
+      "slug": "administracao",
+      "area": "Administração",
+      "total_cursos": 2773,
+      "arquivo": "administracao.json"
+    },
+    {
+      "slug": "agronomia",
+      "area": "Agronomia",
+      "total_cursos": 363,
+      "arquivo": "agronomia.json"
+    },
+    {
+      "slug": "arquitetura-e-urbanismo",
+      "area": "Arquitetura e urbanismo",
+      "total_cursos": 578,
+      "arquivo": "arquitetura-e-urbanismo.json"
+    },
+    {
+      "slug": "biblioteconomia",
+      "area": "Biblioteconomia",
+      "total_cursos": 48,
+      "arquivo": "biblioteconomia.json"
+    },
+    {
+      "slug": "biologia",
+      "area": "Biologia",
+      "total_cursos": 370,
+      "arquivo": "biologia.json"
+    },
+    {
+      "slug": "biologia-formacao-de-professor",
+      "area": "Biologia formação de professor",
+      "total_cursos": 813,
+      "arquivo": "biologia-formacao-de-professor.json"
+    },
+    {
+      "slug": "biotecnologia",
+      "area": "Biotecnologia",
+      "total_cursos": 40,
+      "arquivo": "biotecnologia.json"
+    },
+    {
+      "slug": "cinema-e-audiovisual",
+      "area": "Cinema e audiovisual",
+      "total_cursos": 43,
+      "arquivo": "cinema-e-audiovisual.json"
+    },
+    {
+      "slug": "ciencia-da-computacao",
+      "area": "Ciência da computação",
+      "total_cursos": 428,
+      "arquivo": "ciencia-da-computacao.json"
+    },
+    {
+      "slug": "ciencia-de-dados",
+      "area": "Ciência de dados",
+      "total_cursos": 38,
+      "arquivo": "ciencia-de-dados.json"
+    },
+    {
+      "slug": "ciencias-ambientais",
+      "area": "Ciências ambientais",
+      "total_cursos": 9,
+      "arquivo": "ciencias-ambientais.json"
+    },
+    {
+      "slug": "ciencias-atuariais",
+      "area": "Ciências atuariais",
+      "total_cursos": 17,
+      "arquivo": "ciencias-atuariais.json"
+    },
+    {
+      "slug": "ciencias-sociais",
+      "area": "Ciências sociais",
+      "total_cursos": 96,
+      "arquivo": "ciencias-sociais.json"
+    },
+    {
+      "slug": "ciencias-sociais-formacao-de-professor",
+      "area": "Ciências sociais formação de professor",
+      "total_cursos": 168,
+      "arquivo": "ciencias-sociais-formacao-de-professor.json"
+    },
+    {
+      "slug": "contabilidade",
+      "area": "Contabilidade",
+      "total_cursos": 1606,
+      "arquivo": "contabilidade.json"
+    },
+    {
+      "slug": "criacao-digital",
+      "area": "Criação digital",
+      "total_cursos": 6,
+      "arquivo": "criacao-digital.json"
+    },
+    {
+      "slug": "danca",
+      "area": "Dança",
+      "total_cursos": 15,
+      "arquivo": "danca.json"
+    },
+    {
+      "slug": "danca-formacao-de-professor",
+      "area": "Dança formação de professor",
+      "total_cursos": 35,
+      "arquivo": "danca-formacao-de-professor.json"
+    },
+    {
+      "slug": "design",
+      "area": "Design",
+      "total_cursos": 178,
+      "arquivo": "design.json"
+    },
+    {
+      "slug": "direito",
+      "area": "Direito",
+      "total_cursos": 1265,
+      "arquivo": "direito.json"
+    },
+    {
+      "slug": "economia",
+      "area": "Economia",
+      "total_cursos": 287,
+      "arquivo": "economia.json"
+    },
+    {
+      "slug": "economia-domestica",
+      "area": "Economia doméstica",
+      "total_cursos": 5,
+      "arquivo": "economia-domestica.json"
+    },
+    {
+      "slug": "educacao-fisica",
+      "area": "Educação física",
+      "total_cursos": 726,
+      "arquivo": "educacao-fisica.json"
+    },
+    {
+      "slug": "educacao-fisica-formacao-de-professor",
+      "area": "Educação física formação de professor",
+      "total_cursos": 831,
+      "arquivo": "educacao-fisica-formacao-de-professor.json"
+    },
+    {
+      "slug": "educacao-indigena-formacao-de-professor",
+      "area": "Educação indígena formação de professor",
+      "total_cursos": 75,
+      "arquivo": "educacao-indigena-formacao-de-professor.json"
+    },
+    {
+      "slug": "enfermagem",
+      "area": "Enfermagem",
+      "total_cursos": 1064,
+      "arquivo": "enfermagem.json"
+    },
+    {
+      "slug": "engenharia-ambiental",
+      "area": "Engenharia ambiental",
+      "total_cursos": 180,
+      "arquivo": "engenharia-ambiental.json"
+    },
+    {
+      "slug": "engenharia-ambiental-e-sanitaria",
+      "area": "Engenharia ambiental e sanitária",
+      "total_cursos": 179,
+      "arquivo": "engenharia-ambiental-e-sanitaria.json"
+    },
+    {
+      "slug": "engenharia-civil",
+      "area": "Engenharia civil",
+      "total_cursos": 1002,
+      "arquivo": "engenharia-civil.json"
+    },
+    {
+      "slug": "engenharia-de-alimentos",
+      "area": "Engenharia de alimentos",
+      "total_cursos": 99,
+      "arquivo": "engenharia-de-alimentos.json"
+    },
+    {
+      "slug": "engenharia-de-computacao",
+      "area": "Engenharia de computação",
+      "total_cursos": 217,
+      "arquivo": "engenharia-de-computacao.json"
+    },
+    {
+      "slug": "engenharia-de-computacao-dcn-engenharia",
+      "area": "Engenharia de computação (DCN Engenharia)",
+      "total_cursos": 128,
+      "arquivo": "engenharia-de-computacao-dcn-engenharia.json"
+    },
+    {
+      "slug": "engenharia-de-energia",
+      "area": "Engenharia de energia",
+      "total_cursos": 27,
+      "arquivo": "engenharia-de-energia.json"
+    },
+    {
+      "slug": "engenharia-de-minas",
+      "area": "Engenharia de minas",
+      "total_cursos": 30,
+      "arquivo": "engenharia-de-minas.json"
+    },
+    {
+      "slug": "engenharia-de-pesca",
+      "area": "Engenharia de pesca",
+      "total_cursos": 25,
+      "arquivo": "engenharia-de-pesca.json"
+    },
+    {
+      "slug": "engenharia-de-petroleo",
+      "area": "Engenharia de petróleo",
+      "total_cursos": 68,
+      "arquivo": "engenharia-de-petroleo.json"
+    },
+    {
+      "slug": "engenharia-de-producao",
+      "area": "Engenharia de produção",
+      "total_cursos": 833,
+      "arquivo": "engenharia-de-producao.json"
+    },
+    {
+      "slug": "engenharia-de-software",
+      "area": "Engenharia de software",
+      "total_cursos": 48,
+      "arquivo": "engenharia-de-software.json"
+    },
+    {
+      "slug": "engenharia-de-telecomunicacoes",
+      "area": "Engenharia de telecomunicações",
+      "total_cursos": 37,
+      "arquivo": "engenharia-de-telecomunicacoes.json"
+    },
+    {
+      "slug": "engenharia-eletrica",
+      "area": "Engenharia elétrica",
+      "total_cursos": 540,
+      "arquivo": "engenharia-eletrica.json"
+    },
+    {
+      "slug": "engenharia-mecanica",
+      "area": "Engenharia mecânica",
+      "total_cursos": 524,
+      "arquivo": "engenharia-mecanica.json"
+    },
+    {
+      "slug": "engenharia-metalurgica",
+      "area": "Engenharia metalúrgica",
+      "total_cursos": 22,
+      "arquivo": "engenharia-metalurgica.json"
+    },
+    {
+      "slug": "engenharia-quimica",
+      "area": "Engenharia química",
+      "total_cursos": 215,
+      "arquivo": "engenharia-quimica.json"
+    },
+    {
+      "slug": "estatistica",
+      "area": "Estatística",
+      "total_cursos": 36,
+      "arquivo": "estatistica.json"
+    },
+    {
+      "slug": "farmacia",
+      "area": "Farmácia",
+      "total_cursos": 615,
+      "arquivo": "farmacia.json"
+    },
+    {
+      "slug": "filosofia",
+      "area": "Filosofia",
+      "total_cursos": 92,
+      "arquivo": "filosofia.json"
+    },
+    {
+      "slug": "filosofia-formacao-de-professor",
+      "area": "Filosofia formação de professor",
+      "total_cursos": 205,
+      "arquivo": "filosofia-formacao-de-professor.json"
+    },
+    {
+      "slug": "fisioterapia",
+      "area": "Fisioterapia",
+      "total_cursos": 706,
+      "arquivo": "fisioterapia.json"
+    },
+    {
+      "slug": "fisica",
+      "area": "Física",
+      "total_cursos": 61,
+      "arquivo": "fisica.json"
+    },
+    {
+      "slug": "fisica-formacao-de-professor",
+      "area": "Física formação de professor",
+      "total_cursos": 350,
+      "arquivo": "fisica-formacao-de-professor.json"
+    },
+    {
+      "slug": "gastronomia",
+      "area": "Gastronomia",
+      "total_cursos": 296,
+      "arquivo": "gastronomia.json"
+    },
+    {
+      "slug": "geografia",
+      "area": "Geografia",
+      "total_cursos": 113,
+      "arquivo": "geografia.json"
+    },
+    {
+      "slug": "geografia-formacao-de-professor",
+      "area": "Geografia formação de professor",
+      "total_cursos": 420,
+      "arquivo": "geografia-formacao-de-professor.json"
+    },
+    {
+      "slug": "geologia",
+      "area": "Geologia",
+      "total_cursos": 36,
+      "arquivo": "geologia.json"
+    },
+    {
+      "slug": "gestao-da-qualidade",
+      "area": "Gestão da qualidade",
+      "total_cursos": 192,
+      "arquivo": "gestao-da-qualidade.json"
+    },
+    {
+      "slug": "gestao-financeira",
+      "area": "Gestão financeira",
+      "total_cursos": 513,
+      "arquivo": "gestao-financeira.json"
+    },
+    {
+      "slug": "gestao-publica",
+      "area": "Gestão pública",
+      "total_cursos": 313,
+      "arquivo": "gestao-publica.json"
+    },
+    {
+      "slug": "historia",
+      "area": "História",
+      "total_cursos": 78,
+      "arquivo": "historia.json"
+    },
+    {
+      "slug": "historia-formacao-de-professor",
+      "area": "História formação de professor",
+      "total_cursos": 630,
+      "arquivo": "historia-formacao-de-professor.json"
+    },
+    {
+      "slug": "jornalismo",
+      "area": "Jornalismo",
+      "total_cursos": 393,
+      "arquivo": "jornalismo.json"
+    },
+    {
+      "slug": "letras-espanhol-formacao-de-professor",
+      "area": "Letras espanhol formação de professor",
+      "total_cursos": 124,
+      "arquivo": "letras-espanhol-formacao-de-professor.json"
+    },
+    {
+      "slug": "letras-ingles-formacao-de-professor",
+      "area": "Letras inglês formação de professor",
+      "total_cursos": 256,
+      "arquivo": "letras-ingles-formacao-de-professor.json"
+    },
+    {
+      "slug": "letras-lingua-brasileira-de-sinais-formacao-de-professor",
+      "area": "Letras língua brasileira de sinais formação de professor",
+      "total_cursos": 30,
+      "arquivo": "letras-lingua-brasileira-de-sinais-formacao-de-professor.json"
+    },
+    {
+      "slug": "letras-portugues-alemao-formacao-de-professor",
+      "area": "Letras português alemão formação de professor",
+      "total_cursos": 9,
+      "arquivo": "letras-portugues-alemao-formacao-de-professor.json"
+    },
+    {
+      "slug": "letras-portugues-espanhol-formacao-de-professor",
+      "area": "Letras português espanhol formação de professor",
+      "total_cursos": 146,
+      "arquivo": "letras-portugues-espanhol-formacao-de-professor.json"
+    },
+    {
+      "slug": "letras-portugues-formacao-de-professor",
+      "area": "Letras português formação de professor",
+      "total_cursos": 648,
+      "arquivo": "letras-portugues-formacao-de-professor.json"
+    },
+    {
+      "slug": "letras-portugues-frances-formacao-de-professor",
+      "area": "Letras português francês formação de professor",
+      "total_cursos": 28,
+      "arquivo": "letras-portugues-frances-formacao-de-professor.json"
+    },
+    {
+      "slug": "letras-portugues-ingles-formacao-de-professor",
+      "area": "Letras português inglês formação de professor",
+      "total_cursos": 434,
+      "arquivo": "letras-portugues-ingles-formacao-de-professor.json"
+    },
+    {
+      "slug": "letras-portugues-italiano-formacao-de-professor",
+      "area": "Letras português italiano formação de professor",
+      "total_cursos": 6,
+      "arquivo": "letras-portugues-italiano-formacao-de-professor.json"
+    },
+    {
+      "slug": "matematica",
+      "area": "Matemática",
+      "total_cursos": 65,
+      "arquivo": "matematica.json"
+    },
+    {
+      "slug": "matematica-aplicada-e-computacional",
+      "area": "Matemática aplicada e computacional",
+      "total_cursos": 32,
+      "arquivo": "matematica-aplicada-e-computacional.json"
+    },
+    {
+      "slug": "matematica-formacao-de-professor",
+      "area": "Matemática formação de professor",
+      "total_cursos": 822,
+      "arquivo": "matematica-formacao-de-professor.json"
+    },
+    {
+      "slug": "medicina",
+      "area": "Medicina",
+      "total_cursos": 278,
+      "arquivo": "medicina.json"
+    },
+    {
+      "slug": "moda",
+      "area": "Moda",
+      "total_cursos": 210,
+      "arquivo": "moda.json"
+    },
+    {
+      "slug": "musica-formacao-de-professor",
+      "area": "Música formação de professor",
+      "total_cursos": 141,
+      "arquivo": "musica-formacao-de-professor.json"
+    },
+    {
+      "slug": "oceanografia",
+      "area": "Oceanografia",
+      "total_cursos": 13,
+      "arquivo": "oceanografia.json"
+    },
+    {
+      "slug": "odontologia",
+      "area": "Odontologia",
+      "total_cursos": 340,
+      "arquivo": "odontologia.json"
+    },
+    {
+      "slug": "pedagogia",
+      "area": "Pedagogia",
+      "total_cursos": 2185,
+      "arquivo": "pedagogia.json"
+    },
+    {
+      "slug": "programas-interdisciplinares-abrangendo-ciencias-sociais-comunicacao-e-informacao",
+      "area": "Programas interdisciplinares abrangendo ciências sociais, comunicação e informação",
+      "total_cursos": 20,
+      "arquivo": "programas-interdisciplinares-abrangendo-ciencias-sociais-comunicacao-e-informacao.json"
+    },
+    {
+      "slug": "programas-interdisciplinares-abrangendo-computacao-e-tecnologias-da-informacao-e-comunicacao-tic",
+      "area": "Programas interdisciplinares abrangendo computação e Tecnologias da Informação e Comunicação (TIC)",
+      "total_cursos": 13,
+      "arquivo": "programas-interdisciplinares-abrangendo-computacao-e-tecnologias-da-informacao-e-comunicacao-tic.json"
+    },
+    {
+      "slug": "psicologia",
+      "area": "Psicologia",
+      "total_cursos": 743,
+      "arquivo": "psicologia.json"
+    },
+    {
+      "slug": "publicidade-e-propaganda",
+      "area": "Publicidade e propaganda",
+      "total_cursos": 522,
+      "arquivo": "publicidade-e-propaganda.json"
+    },
+    {
+      "slug": "quimica",
+      "area": "Química",
+      "total_cursos": 127,
+      "arquivo": "quimica.json"
+    },
+    {
+      "slug": "quimica-formacao-de-professor",
+      "area": "Química formação de professor",
+      "total_cursos": 433,
+      "arquivo": "quimica-formacao-de-professor.json"
+    },
+    {
+      "slug": "redes-de-computadores",
+      "area": "Redes de computadores",
+      "total_cursos": 372,
+      "arquivo": "redes-de-computadores.json"
+    },
+    {
+      "slug": "secretariado",
+      "area": "Secretariado",
+      "total_cursos": 162,
+      "arquivo": "secretariado.json"
+    },
+    {
+      "slug": "sistemas-de-informacao",
+      "area": "Sistemas de informação",
+      "total_cursos": 1515,
+      "arquivo": "sistemas-de-informacao.json"
+    },
+    {
+      "slug": "teatro-formacao-de-professor",
+      "area": "Teatro formação de professor",
+      "total_cursos": 56,
+      "arquivo": "teatro-formacao-de-professor.json"
+    },
+    {
+      "slug": "zootecnia",
+      "area": "Zootecnia",
+      "total_cursos": 117,
+      "arquivo": "zootecnia.json"
+    }
+  ]
+}

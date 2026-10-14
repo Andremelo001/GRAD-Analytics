@@ -81,7 +81,7 @@ def test_removes_json_of_campus_no_longer_present(
 def test_writes_one_json_per_quality_area_plus_index(
     source: _FakeSource, tmp_path: Path
 ) -> None:
-    areas_dir = tmp_path / "areas"
+    areas_dir = tmp_path / "areas_qualidade"
     areas_dir.mkdir()
     (areas_dir / "area-extinta.json").write_text("{}", encoding="utf-8")
     build_dashboard(source=source, out_dir=tmp_path)

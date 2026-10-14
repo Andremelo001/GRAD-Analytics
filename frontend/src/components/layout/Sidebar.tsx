@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
 import { useActiveIndicator } from "@/hooks/useActiveIndicator";
-import { ultimaSubaba } from "@/lib/ultima-subaba";
+import { ABAS_COM_SUBABAS, ultimaSubaba } from "@/lib/ultima-subaba";
 import { cn } from "@/lib/utils";
 
 interface NavItem {
@@ -55,14 +55,15 @@ export function Sidebar() {
                         <NavLink
                             to={to}
                             end={end}
-                            // Qualidade vai direto pra última sub-aba aberta: sem
-                            // passar por /qualidade (que redireciona), as abas não
-                            // desenham um quadro sem nenhuma ativa — nada pisca
+                            // abas com sub-abas (Qualidade, Trajetória) vão direto pra
+                            // última sub-aba aberta: sem passar por /qualidade (que
+                            // redireciona), as abas não desenham um quadro sem
+                            // nenhuma ativa — nada pisca
                             onClick={
-                                to === "/qualidade"
+                                ABAS_COM_SUBABAS.includes(to.slice(1))
                                     ? (e) => {
                                           e.preventDefault();
-                                          navigate(ultimaSubaba());
+                                          navigate(ultimaSubaba(to.slice(1)));
                                       }
                                     : undefined
                             }

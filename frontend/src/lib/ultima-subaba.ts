@@ -1,14 +1,24 @@
-/** Última sub-aba aberta na Qualidade (caminho com a busca, ex.:
- * ``/qualidade/curso/123`` ou ``/qualidade/comparacoes?modo=cursos``): ao
- * voltar pra aba (o link do menu aponta pra ``/qualidade``), o painel reabre
- * onde estava em vez de cair sempre na Visão do campus. Só na memória da
- * página: recarregar começa de novo pela Visão do campus. */
-let ultima: string | null = null;
+/** Última sub-aba aberta em cada aba com sub-abas (Qualidade, Trajetória):
+ * o caminho com a busca, ex.: ``/qualidade/curso/123`` ou
+ * ``/qualidade/comparacoes?modo=cursos``. Ao voltar pra aba (o link do menu
+ * aponta pra ``/qualidade``), o painel reabre onde estava em vez de cair
+ * sempre na primeira sub-aba. Só na memória da página: recarregar começa de
+ * novo pela primeira. */
+const ultimas = new Map<string, string>();
 
-export function lembrarSubaba(caminho: string) {
-    ultima = caminho;
+/** Primeira sub-aba de cada aba (pra quando ainda não há memória). */
+const PADRAO: Record<string, string> = {
+    qualidade: "/qualidade/campus",
+    trajetoria: "/trajetoria/panorama",
+};
+
+/** As abas que têm sub-abas (o link do menu vai direto pra última). */
+export const ABAS_COM_SUBABAS = Object.keys(PADRAO);
+
+export function lembrarSubaba(aba: string, caminho: string) {
+    ultimas.set(aba, caminho);
 }
 
-export function ultimaSubaba(): string {
-    return ultima ?? "/qualidade/campus";
+export function ultimaSubaba(aba: string): string {
+    return ultimas.get(aba) ?? PADRAO[aba] ?? `/${aba}`;
 }

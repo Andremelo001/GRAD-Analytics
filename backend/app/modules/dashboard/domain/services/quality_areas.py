@@ -80,14 +80,17 @@ def build_area(
 
     ies = {
         str(int(codigo)): [
-            _texto(grupo, "nome_ies"),
-            _texto(grupo, "sigla_ies"),
-            _publica(_texto(grupo, "categoria_administrativa")),
+            texto_mais_comum(grupo, "nome_ies"),
+            texto_mais_comum(grupo, "sigla_ies"),
+            rede_publica(texto_mais_comum(grupo, "categoria_administrativa")),
         ]
         for codigo, grupo in edicao.groupby("codigo_ies")
     }
     municipios = {
-        str(int(codigo)): [_texto(grupo, "municipio_curso"), _texto(grupo, "sigla_uf")]
+        str(int(codigo)): [
+            texto_mais_comum(grupo, "municipio_curso"),
+            texto_mais_comum(grupo, "sigla_uf"),
+        ]
         for codigo, grupo in edicao.groupby("codigo_municipio")
     }
     # todas as edições desses cursos — pelo código, não pelo nome da área, que
@@ -166,7 +169,7 @@ def _faixa(value: object) -> int | None:
     return faixa if 1 <= faixa <= 5 else None
 
 
-def _publica(categoria: str | None) -> bool | None:
+def rede_publica(categoria: str | None) -> bool | None:
     """Rede (pública/privada) pela categoria administrativa do INEP.
 
     A grafia mudou entre edições ("Pública Federal", "Federal", "Pessoa
@@ -183,7 +186,7 @@ def _publica(categoria: str | None) -> bool | None:
     return None
 
 
-def _texto(frame: pd.DataFrame, column: str) -> str | None:
+def texto_mais_comum(frame: pd.DataFrame, column: str) -> str | None:
     if column not in frame.columns:
         return None
     values = frame[column].dropna().astype(str).str.strip()

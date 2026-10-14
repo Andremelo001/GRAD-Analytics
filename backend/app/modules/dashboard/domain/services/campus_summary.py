@@ -45,6 +45,52 @@ def build_resumo_cursos(data: ScopedData) -> list[dict[str, object]]:
                 ),
                 "historico": historicos.get(kpi["codigo_curso"], []),
                 **{campo: kpi[campo] for campo in _KPIS},
+                "trajetoria": _trajetoria_madura(data, kpi["codigo_curso"]),
             }
         )
     return rows
+
+
+def _trajetoria_madura(
+    data: ScopedData, codigo_curso: object
+) -> dict[str, object] | None:
+    """A turma madura do curso, pra comparar o mesmo curso entre campi.
+
+    Área CINE (o curso em si) e grau — pra achar o mesmo curso noutro
+    campus —, prazo, ano de ingresso, ingressantes (o peso do curso nas
+    médias do campus) e a curva ano a ano: ``[anos desde o ingresso,
+    % cursando, % concluiu, % desistiu]``. ``None`` sem turma madura.
+    """
+    local = data.trajetoria[data.trajetoria["codigo_curso"] == codigo_curso]
+    madura = course_profile.turma_madura(local)
+    if madura is None:
+        return None
+    ano, prazo = madura
+    turma = local[local["ano_ingresso"] == ano].sort_values("ano_referencia")
+
+    def _texto(coluna: str) -> str | None:
+        if coluna not in turma.columns or turma[coluna].dropna().empty:
+            return None
+        return str(turma[coluna].dropna().iloc[0])
+
+    return {
+        "nome_cine_area_geral": _texto("nome_cine_area_geral"),
+        "grau_academico": _texto("tp_grau_academico_desc"),
+        "prazo_integralizacao": prazo,
+        "ano_ingresso": ano,
+        "ingressantes": (
+            int(turma["qt_ingressante"].dropna().iloc[0])
+            if "qt_ingressante" in turma.columns
+            and not turma["qt_ingressante"].dropna().empty
+            else None
+        ),
+        "curva": [
+            [
+                int(linha["ano_referencia"] - linha["ano_ingresso"]),
+                round(float(linha["taxa_permanencia"]), 1),
+                round(float(linha["taxa_conclusao_acumulada"]), 1),
+                round(float(linha["taxa_desistencia_acumulada"]), 1),
+            ]
+            for _, linha in turma.iterrows()
+        ],
+    }

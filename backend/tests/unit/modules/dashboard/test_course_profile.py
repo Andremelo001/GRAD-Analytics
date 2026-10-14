@@ -1,3 +1,5 @@
+import pandas as pd
+
 from app.modules.dashboard.domain.section import DashboardContext
 from app.modules.dashboard.domain.services import course_profile
 from app.modules.dashboard.domain.services.course_profile import CourseProfileSection
@@ -115,3 +117,41 @@ def test_section_build_assembles_full_payload(
         "funil_coortes",
         "curva_sobrevivencia",
     }
+
+
+def _turmas(prazo: int, anos_por_turma: dict[int, int]) -> pd.DataFrame:
+    """Linhas de trajetória: cada turma acompanhada por N anos (0..N)."""
+    linhas = [
+        {
+            "codigo_curso": 1,
+            "ano_ingresso": ingresso,
+            "ano_referencia": ingresso + k,
+            "prazo_integralizacao": prazo,
+        }
+        for ingresso, n in anos_por_turma.items()
+        for k in range(n + 1)
+    ]
+    return pd.DataFrame(linhas)
+
+
+def test_turma_madura_is_latest_cohort_tracked_two_years_past_deadline() -> None:
+    # prazo 4: madura precisa de anos_desde_ingresso >= 5 (prazo + 1)
+    frame = _turmas(4, {2015: 9, 2018: 6, 2019: 5, 2020: 4})
+    assert course_profile.turma_madura(frame) == (2019, 4)
+
+
+def test_turma_madura_none_without_mature_cohort_or_prazo() -> None:
+    assert course_profile.turma_madura(_turmas(5, {2020: 4})) is None
+    sem_prazo = _turmas(5, {2010: 9}).drop(columns=["prazo_integralizacao"])
+    assert course_profile.turma_madura(sem_prazo) is None
+
+
+def test_funil_por_coorte_carries_cohort_deadline(scoped_data: ScopedData) -> None:
+    trajetoria = scoped_data.trajetoria.assign(prazo_integralizacao=4)
+    data = ScopedData(
+        qualidade=scoped_data.qualidade,
+        trajetoria=trajetoria,
+        cursos=scoped_data.cursos,
+    )
+    funil = course_profile.build_funil_por_coorte(data)
+    assert funil and all(item["prazo_integralizacao"] == 4 for item in funil)

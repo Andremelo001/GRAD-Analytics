@@ -11,11 +11,15 @@ export function DeltaPill({
     size = "md",
     limiar = 0.005,
     format = (v) => formatDecimal(v),
+    maiorMelhor = true,
 }: {
     diff: number;
     size?: "sm" | "md";
     limiar?: number;
     format?: (absoluto: number) => string;
+    /** ``false`` pra medidas em que subir é ruim (ex.: desistência): o sinal
+     * e a seta seguem a diferença, mas a cor boa vai pra quando cai. */
+    maiorMelhor?: boolean;
 }) {
     const same = Math.abs(diff) < limiar;
     const Icon = same ? Minus : diff > 0 ? ArrowUp : ArrowDown;
@@ -28,7 +32,7 @@ export function DeltaPill({
                     : "rounded-lg px-2.5 py-1.5 text-[12px]",
                 same
                     ? "bg-page text-text-secondary"
-                    : diff > 0
+                    : diff > 0 === maiorMelhor
                       ? "bg-good text-on-good"
                       : "bg-status-critical text-white"
             )}

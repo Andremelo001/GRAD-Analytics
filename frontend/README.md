@@ -81,7 +81,7 @@ frontend/
 │   ├── build-brazil-dots.mjs # gera src/assets/brazil-dots.json (roda uma vez, ver 6)
 │   └── build-brazil-geo.mjs  # gera src/assets/brazil-geo.json (roda uma vez, ver 6)
 ├── public/
-│   └── data/dashboard/      # index.json, JSON de cada campus, resumo_campi.json e areas/ (gitignored, gerado pelo sync-data)
+│   └── data/dashboard/      # index.json, JSON de cada campus, resumo_campi.json e areas_qualidade/ (gitignored, gerado pelo sync-data)
 ├── designs_pages/           # imagem do design de referência (gitignored)
 └── src/
     ├── main.tsx             # entrada: fonte + CSS + <App />
@@ -91,10 +91,10 @@ frontend/
     ├── assets/              # brasao.png (logo) · brazil-dots.json (mapa em pontos) · brazil-geo.json (contornos das UFs + centroides dos municípios)
     ├── types/
     │   ├── dashboard.ts     # tipos que espelham o JSON de cada campus (e o resumo_campi.json)
-    │   └── qualidade-area.ts # tipos dos JSONs de areas/ (todos os cursos do Brasil numa área)
+    │   └── qualidade-area.ts # tipos dos JSONs de areas_qualidade/ (todos os cursos do Brasil numa área)
     ├── context/             # DashboardDataProvider (índice + campus escolhido) · ThemeProvider (claro/escuro) · slot do PageHeader
     ├── hooks/               # useDashboardData · useTheme · useChartTheme (paleta dos gráficos do tema) · useMediaQuery · usePresentationMode
-    │                        # useElementWidth · useQualidadeArea (areas/<área>.json sob demanda) · useResumoCampi
+    │                        # useElementWidth · useQualidadeArea (areas_qualidade/<área>.json sob demanda) · useResumoCampi
     ├── lib/
     │   ├── utils.ts         # cn()
     │   ├── format.ts        # formatPercent, formatPoints, formatDecimal, formatInteger, toTitleCase, normalizeForSearch
@@ -127,9 +127,9 @@ JSONs dos campi ficam em `public/data/dashboard/`.
    Junto vai um `index.json` com a lista de campi (`slug`, `nome`,
    `total_cursos`, `arquivo`).
    Na mesma pasta: `resumo_campi.json` (resumo de todos os cursos de todos
-   os campi, com notas e edições do CPC, pra comparar campi e cursos) e `areas/` — um JSON por
+   os campi, com notas e edições do CPC, pra comparar campi e cursos) e `areas_qualidade/` — um JSON por
    área de avaliação dos cursos da UFC, com todos os cursos do Brasil na
-   edição mais recente da área (o Mapa da Qualidade), mais o `areas/index.json`.
+   edição mais recente da área (o Mapa da Qualidade), mais o `areas_qualidade/index.json`.
 2. `scripts/sync-data.mjs` copia a pasta inteira para
    `frontend/public/data/dashboard/` — roda sozinho antes de `dev` e `build`
    (`predev`/`prebuild`).
@@ -152,7 +152,7 @@ seção 4.4). Se o backend mudar uma chave, esse arquivo muda junto.
 
 Não há backend em runtime: o site é só HTML/JS/CSS + JSONs estáticos. O de
 Fortaleza (~100 cursos) passa de 7 MB — é baixado só quando escolhido. Os de
-`areas/` (até ~270 KB, ~80 KB comprimidos) só quando o Mapa abre, um por
+`areas_qualidade/` (até ~270 KB, ~80 KB comprimidos) só quando o Mapa abre, um por
 área, e ficam em cache na sessão (`useQualidadeArea`); o `resumo_campi.json`,
 em Comparações e no card de outros campi de Por curso.
 

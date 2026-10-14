@@ -74,6 +74,7 @@ def test_build_returns_all_sections(
         "campus",
         "distribuicao_uf",
         "ingressantes",
+        "trajetoria_pares",
     }
 
 
@@ -263,3 +264,38 @@ def test_ingressantes_nacional_averages_peer_cohorts(
         float(pares["qt_ingressante"].mean()), 1
     )
     assert len(pares) == 2  # o curso do campus e o par de outra IES
+
+
+def test_trajetoria_pares_compares_mature_cohort_with_national_peers(
+    qualidade_raw: pd.DataFrame, trajetoria_raw: pd.DataFrame, scoped_data: ScopedData
+) -> None:
+    def turma(codigo: int, ies: int, evasao: float) -> list[dict[str, object]]:
+        return [
+            {
+                "codigo_ies": ies,
+                "codigo_municipio": 500,
+                "codigo_curso": codigo,
+                "nome_curso": "Ciência da Computação",
+                "tp_grau_academico_desc": "Bacharelado",
+                "tp_modalidade_ensino_desc": "Presencial",
+                "nome_cine_area_geral": "Ciência da computação",
+                "ano_ingresso": 2010,
+                "ano_referencia": 2010 + k,
+                "prazo_integralizacao": 4,
+                "taxa_desistencia_acumulada": evasao,
+                "taxa_conclusao_acumulada": 100 - evasao,
+            }
+            for k in range(6)
+        ]
+
+    local = pd.DataFrame(turma(10, 1, 40.0))
+    nacional = pd.DataFrame(turma(10, 1, 40.0) + turma(700, 7, 60.0))
+    data = ScopedData(
+        qualidade=scoped_data.qualidade, trajetoria=local, cursos=scoped_data.cursos
+    )
+    itens = national_benchmarks._trajetoria_pares(nacional, data)
+    assert isinstance(itens, list)
+    item = next(i for i in itens if i["codigo_curso"] == 10)
+    assert item["ano_ingresso"] == 2010
+    assert item["anos_desde_ingresso"] == 5
+    assert sorted(item["evasao"]) == [40.0, 60.0]

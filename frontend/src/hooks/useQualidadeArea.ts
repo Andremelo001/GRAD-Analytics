@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { parseArea, type CursoArea } from "@/lib/area";
 import type { AreaArquivo, AreaIndex } from "@/types/qualidade-area";
 
-const AREAS_DIR = `${import.meta.env.BASE_URL}data/dashboard/areas/`;
+const AREAS_DIR = `${import.meta.env.BASE_URL}data/dashboard/areas_qualidade/`;
 
 export interface AreaCarregada {
     area: string;
@@ -41,7 +41,7 @@ function carregar(area: string): Promise<AreaCarregada> {
     return promise;
 }
 
-/** Todos os cursos do Brasil numa área de avaliação (``dashboard/areas/``),
+/** Todos os cursos do Brasil numa área de avaliação (``dashboard/areas_qualidade/``),
  * baixados sob demanda. Enquanto a nova área chega, segue com a anterior. */
 export function useQualidadeArea(area: string | null): {
     dados: AreaCarregada | null;

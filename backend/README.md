@@ -266,7 +266,7 @@ Saída esperada num run com tudo novo:
 app/data/processed/
 ├── qualidade.csv        (~26 MB,  ~68 mil linhas, 8 anos: 2015-2019, 2021-2023)
 ├── trajetoria.csv.gz    (~68 MB, ~2,7 milhões de linhas, 11 faixas: 2010-2024)
-├── dashboard/           (um JSON por campus da UFC + index.json, resumo_campi.json e areas/, ver 4.4)
+├── dashboard/           (um JSON por campus da UFC + index.json, resumo_campi.json e areas_qualidade/, ver 4.4)
 └── _meta.json           (fonte, data de geração, nº de linhas, colunas — por módulo)
 ```
 
@@ -315,9 +315,12 @@ app/data/processed/dashboard/
 ├── russas.json      # ~270 KB
 ├── sobral.json      # ~700 KB
 ├── resumo_campi.json # ~125 KB: os cursos de todos os campi, resumidos (comparações entre campi e cursos)
-└── areas/           # um JSON por área de avaliação dos cursos da UFC (~56): todos os cursos do Brasil na edição mais recente
-    ├── index.json   # slug, area_avaliacao, ano, total_cursos, arquivo
-    └── sistemas-de-informacao.json …   # 10-400 KB cada, gravados compactos
+├── areas_qualidade/ # um JSON por área de avaliação dos cursos da UFC (~56): todos os cursos do Brasil na edição mais recente
+│   ├── index.json   # slug, area_avaliacao, ano, total_cursos, arquivo
+│   └── sistemas-de-informacao.json …   # 10-400 KB cada, gravados compactos
+└── trajetoria_areas/ # um JSON por área CINE dos cursos da UFC (~90): a turma madura de cada curso do Brasil
+    ├── index.json   # slug, area, total_cursos, arquivo
+    └── direito.json …   # até ~600 KB cada, gravados compactos
 ```
 
 Todos os arquivos de campus têm **exatamente a mesma estrutura** (as seções da
@@ -402,7 +405,7 @@ Enade de cada edição (`n_concluintes_inscritos`,
 `n_concluintes_participantes`, `taxa_participacao` em %), e `perfil_radar`
 traz o `ano` e o CPC/faixa/Enade da mesma avaliação das notas.
 
-**Áreas de avaliação (`areas/`)**: `domain/services/quality_areas.py` grava,
+**Áreas de avaliação (`areas_qualidade/`)**: `domain/services/quality_areas.py` grava,
 para cada área de avaliação em que algum curso da UFC foi avaliado por último,
 **todos os cursos do Brasil** da edição mais recente da área — CPC, faixa,
 as 9 notas padronizadas, modalidade, IES e município, e a coluna `historico` com todas as edições de cada curso (ano, CPC, faixa, concluintes inscritos e participantes; ordem em `colunas_edicao`). É o Mapa da aba

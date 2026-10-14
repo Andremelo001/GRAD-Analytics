@@ -16,6 +16,8 @@ export interface Curso {
     nome_curso: string;
     grau_academico: string | null;
     modalidade_ensino: string | null;
+    /** Duração prevista do curso (anos), na turma mais recente. */
+    prazo_integralizacao: number | null;
 }
 
 export interface FonteInfo {
@@ -92,6 +94,8 @@ export interface FunilCoorte {
     qt_concluinte: number;
     qt_desistencia: number;
     qt_falecido: number;
+    /** Duração prevista desta turma (anos; pode mudar entre turmas). */
+    prazo_integralizacao?: number | null;
 }
 
 export interface CurvaSobrevivenciaPonto {
@@ -282,6 +286,17 @@ export interface DistribuicaoUfCurso {
 
 /** Ingressantes médios dos cursos-pares no Brasil (mesmo rótulo CINE,
  * modalidade e grau) de um curso do campus, por ano de ingresso. */
+/** Evasão e conclusão acumuladas dos cursos-pares do Brasil na turma madura
+ * de um curso do campus (mesmo ano de ingresso, ``anos_desde_ingresso`` anos
+ * depois), pra pôr o curso entre eles (percentil). */
+export interface TrajetoriaPares {
+    codigo_curso: number;
+    ano_ingresso: number;
+    anos_desde_ingresso: number;
+    evasao: number[];
+    conclusao: number[];
+}
+
 export interface IngressantesNacionalPonto {
     codigo_curso: number;
     ano_ingresso: number;
@@ -299,6 +314,7 @@ export interface MediasNacionais {
     campus: CampusNacional;
     distribuicao_uf: DistribuicaoUfCurso[];
     ingressantes: IngressantesNacionalPonto[];
+    trajetoria_pares?: TrajetoriaPares[];
 }
 
 // --- F. alertas ----------------------------------------------------------------
@@ -364,6 +380,20 @@ export interface ResumoCurso {
     ano_referencia: number | null;
     taxa_conclusao_acumulada: number | null;
     taxa_desistencia_acumulada: number | null;
+    /** Turma madura do curso (pra comparar o mesmo curso entre campi). */
+    trajetoria?: TrajetoriaResumo | null;
+}
+
+/** Turma madura no resumo dos campi: área CINE e grau (o mesmo curso noutro
+ * campus), prazo, ingresso, ingressantes (o peso nas médias do campus) e a
+ * curva ``[anos, % cursando, % concluiu, % desistiu]``. */
+export interface TrajetoriaResumo {
+    nome_cine_area_geral: string | null;
+    grau_academico: string | null;
+    prazo_integralizacao: number;
+    ano_ingresso: number;
+    ingressantes?: number | null;
+    curva: [number, number, number, number][];
 }
 
 export interface ResumoCampi {
