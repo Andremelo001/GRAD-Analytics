@@ -2,6 +2,7 @@ import { Search } from "lucide-react";
 import { useId, useMemo, useState, type FormEvent, type KeyboardEvent } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { detalheCurso } from "@/lib/curso";
 import { normalizeForSearch, toTitleCase } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import type { Curso } from "@/types/dashboard";
@@ -21,7 +22,11 @@ export function CourseSearch({ cursos }: { cursos: Curso[] }) {
         const needle = normalizeForSearch(query);
         if (!needle) return [];
         return cursos
-            .filter((curso) => normalizeForSearch(curso.nome_curso).includes(needle))
+            .filter((curso) =>
+                normalizeForSearch(
+                    `${curso.nome_curso} ${detalheCurso({ codigo: curso.codigo_curso, grau: curso.grau_academico })}`
+                ).includes(needle)
+            )
             .slice(0, MAX_RESULTS);
     }, [cursos, query]);
 
@@ -111,16 +116,21 @@ export function CourseSearch({ cursos }: { cursos: Curso[] }) {
                                 }}
                                 onMouseEnter={() => setActive(index)}
                                 className={cn(
-                                    "flex cursor-pointer items-center justify-between gap-3 rounded-xl px-3 py-2 text-[13px]",
+                                    "cursor-pointer rounded-xl px-3 py-2",
                                     index === active && "bg-page"
                                 )}
                             >
-                                {toTitleCase(curso.nome_curso)}
-                                {curso.grau_academico && (
-                                    <span className="text-text-muted text-[11px]">
-                                        {curso.grau_academico}
-                                    </span>
-                                )}
+                                {/* o mesmo formato dos seletores de curso: nome em
+                                    cima; código, grau e turno embaixo */}
+                                <span className="block truncate text-[13px]">
+                                    {toTitleCase(curso.nome_curso)}
+                                </span>
+                                <span className="text-text-muted block truncate text-[11px]">
+                                    {detalheCurso({
+                                        codigo: curso.codigo_curso,
+                                        grau: curso.grau_academico,
+                                    })}
+                                </span>
                             </li>
                         ))
                     )}

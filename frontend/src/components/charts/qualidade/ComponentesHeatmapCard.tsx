@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { AMPLIADO_FLEX, AMPLIADO_ROLA } from "@/components/cards/ampliado";
 import { Card } from "@/components/cards/Card";
 import { rampColor } from "@/components/charts/chart-theme";
 import { DataTable } from "@/components/charts/DataTable";
@@ -118,6 +119,7 @@ export function ComponentesHeatmapCard({
 
     return (
         <Card
+            expansivel
             title="Componentes do CPC por curso"
             subtitle={`Nota de cada componente comparada à média nacional da área no mesmo ano: ${coresAcessiveis ? "azul acima, laranja abaixo" : "verde acima, vermelho abaixo"}`}
             className={className}
@@ -151,12 +153,18 @@ export function ComponentesHeatmapCard({
                 <ScaleLegend abaixoMax={abaixoMax} acimaMax={acimaMax} />
             </div>
 
-            <div className="relative mt-4" onMouseLeave={() => setHover(null)}>
+            <div
+                className={cn("relative mt-4", AMPLIADO_FLEX)}
+                onMouseLeave={() => setHover(null)}
+            >
                 <div
                     className={cn(
                         // até 6 linhas + cabeçalho, depois rola: campus com
                         // poucos cursos não fica com espaço vazio
-                        "-m-1 max-h-[240px] overflow-x-auto p-1",
+                        "-m-1 overflow-x-auto p-1",
+                        // ampliado: a grade ocupa a altura do card
+                        "max-h-[240px]",
+                        AMPLIADO_ROLA,
                         linhas.length > LINHAS_VISIVEIS
                             ? "[scrollbar-width:thin] overflow-y-auto"
                             : "[scrollbar-width:none]"

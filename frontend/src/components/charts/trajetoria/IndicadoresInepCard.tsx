@@ -66,6 +66,7 @@ export function IndicadoresInepCard({
 
     return (
         <Card
+            expansivel="tela"
             title="Indicadores do INEP"
             subtitle={`Turma de ${turma.ano}, ${foco ? `${foco.anos + 1}º ano de curso` : ""} · tracejado: média nacional`}
             className={className}

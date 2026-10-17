@@ -199,6 +199,8 @@ export function BrasilQualidadeMapa({
                         className="absolute inset-0 h-full w-full"
                         role="group"
                         aria-label="Mapa do Brasil por estado"
+                        // clicar no fundo tira a seleção do estado (não amplia o card)
+                        data-sem-expandir
                         onClick={() => onSelect(null)}
                     >
                         {GEO.estados.map((e) => {

@@ -2,6 +2,7 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+import { AMPLIADO_ROLA } from "@/components/cards/ampliado";
 import { Card } from "@/components/cards/Card";
 import { DeltaPill } from "@/components/charts/qualidade/DeltaPill";
 import { FaixaPill } from "@/components/charts/qualidade/FaixaPill";
@@ -88,6 +89,7 @@ export function CpcRankingCard({
 
     return (
         <Card
+            expansivel
             title="Ranking dos cursos"
             subtitle="Avaliação mais recente de cada curso · clique para ver os detalhes"
             className={className}
@@ -108,7 +110,14 @@ export function CpcRankingCard({
                 </span>
             </div>
 
-            <div className="relative mt-3 max-h-[392px] [scrollbar-width:thin] overflow-auto">
+            <div
+                className={cn(
+                    "relative mt-3 [scrollbar-width:thin] overflow-auto",
+                    // ampliado: a tabela ocupa a altura do card
+                    "max-h-[392px]",
+                    AMPLIADO_ROLA
+                )}
+            >
                 <table className="w-full min-w-[560px] table-fixed border-separate border-spacing-0 text-[13px]">
                     <colgroup>
                         <col />

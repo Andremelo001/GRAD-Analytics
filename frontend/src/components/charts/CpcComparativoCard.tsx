@@ -23,6 +23,7 @@ import type {
     EvolucaoCpcPonto,
 } from "@/types/dashboard";
 import { useChartTheme } from "@/hooks/useChartTheme";
+import { opcaoCurso } from "@/lib/curso";
 
 interface Row {
     ano: number;
@@ -135,6 +136,7 @@ export function CpcComparativoCard({
 
     return (
         <Card
+            expansivel="tela"
             title="CPC: curso x média nacional"
             subtitle={
                 area
@@ -149,10 +151,13 @@ export function CpcComparativoCard({
                         placeholder="Buscar curso…"
                         label="Curso comparado"
                         value={String(codigo ?? "")}
-                        options={opcoes.map((c) => ({
-                            value: String(c.codigo_curso),
-                            label: toTitleCase(c.nome_curso),
-                        }))}
+                        options={opcoes.map((c) =>
+                            opcaoCurso({
+                                codigo: c.codigo_curso,
+                                nome: toTitleCase(c.nome_curso),
+                                grau: c.grau_academico,
+                            })
+                        )}
                         onChange={(value) => {
                             setCodigo(Number(value));
                             setHover(null);
@@ -214,7 +219,9 @@ export function CpcComparativoCard({
                         </ul>
                     </div>
 
-                    <div className="mt-2 min-h-[250px] flex-1">
+                    {/* no desktop o card fica na altura dos dois tiles ao lado
+                        (o gráfico cresce com ele); empilhado, 250px */}
+                    <div className="mt-2 min-h-[250px] flex-1 lg:min-h-[160px]">
                         <ResponsiveContainer width="100%" height="100%">
                             <LineChart
                                 data={rows}

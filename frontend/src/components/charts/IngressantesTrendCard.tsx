@@ -5,6 +5,7 @@ import { CursoBusca } from "@/components/charts/qualidade/CursoBusca";
 import { yearTickFilter } from "@/components/charts/chart-theme";
 import { DataTable } from "@/components/charts/DataTable";
 import { useChartTheme } from "@/hooks/useChartTheme";
+import { opcaoCurso } from "@/lib/curso";
 import { useElementSize } from "@/hooks/useElementSize";
 import { formatInteger, toTitleCase } from "@/lib/format";
 import type {
@@ -334,6 +335,7 @@ export function IngressantesTrendCard({
 
     return (
         <Card
+            expansivel="tela"
             title="Ingressantes"
             subtitle={subtitulo}
             action={
@@ -345,10 +347,13 @@ export function IngressantesTrendCard({
                     value={escolha}
                     options={[
                         { value: CAMPUS, label: "Campus" },
-                        ...cursos.map((c) => ({
-                            value: String(c.codigo_curso),
-                            label: toTitleCase(c.nome_curso),
-                        })),
+                        ...cursos.map((c) =>
+                            opcaoCurso({
+                                codigo: c.codigo_curso,
+                                nome: toTitleCase(c.nome_curso),
+                                grau: c.grau_academico,
+                            })
+                        ),
                     ]}
                     onChange={(value) => {
                         setEscolha(value);

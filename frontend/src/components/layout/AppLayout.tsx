@@ -12,6 +12,7 @@ import {
     PageHeaderSlotContext,
     PresentationTabsSlotContext,
 } from "@/context/page-header-slot";
+import { PresentationContext } from "@/context/presentation-context";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { usePresentationMode } from "@/hooks/usePresentationMode";
@@ -217,17 +218,19 @@ export function AppLayout() {
                             />
                         </div>
                     </div>
-                    <PresentationTabsSlotContext.Provider value={tabsSlot}>
-                        <PageHeaderSlotContext.Provider
-                            value={isLg ? stickySlot : flowSlot}
-                        >
-                            {/* reanima só ao trocar de aba principal; as sub-abas
+                    <PresentationContext.Provider value={presenting}>
+                        <PresentationTabsSlotContext.Provider value={tabsSlot}>
+                            <PageHeaderSlotContext.Provider
+                                value={isLg ? stickySlot : flowSlot}
+                            >
+                                {/* reanima só ao trocar de aba principal; as sub-abas
                             têm a própria animação (QualidadePage) */}
-                            <div key={aba} className="entrada">
-                                <Outlet />
-                            </div>
-                        </PageHeaderSlotContext.Provider>
-                    </PresentationTabsSlotContext.Provider>
+                                <div key={aba} className="entrada">
+                                    <Outlet />
+                                </div>
+                            </PageHeaderSlotContext.Provider>
+                        </PresentationTabsSlotContext.Provider>
+                    </PresentationContext.Provider>
                 </main>
             </div>
 

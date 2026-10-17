@@ -19,6 +19,7 @@ import { useChartTheme } from "@/hooks/useChartTheme";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { useResumoCampi } from "@/hooks/useResumoCampi";
 import { useTrajetoriaArea, type CursoTrajetoriaArea } from "@/hooks/useTrajetoriaArea";
+import { detalheCurso } from "@/lib/curso";
 import { nomeCampus } from "@/lib/comparacao";
 import { formatPercent, toTitleCase } from "@/lib/format";
 import {
@@ -282,12 +283,12 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
                 .map((u) => ({
                     value: String(u.curso.codigo_curso),
                     label: `${toTitleCase(u.curso.nome_curso)} — ${u.campus}`,
-                    detalhe: [
-                        u.curso.trajetoria.nome_cine_area_geral,
-                        u.curso.trajetoria.grau_academico,
-                    ]
-                        .filter(Boolean)
-                        .join(" · "),
+                    detalhe: detalheCurso({
+                        codigo: u.curso.codigo_curso,
+                        grau:
+                            u.curso.grau_academico ?? u.curso.trajetoria.grau_academico,
+                    }),
+                    busca: u.curso.trajetoria.nome_cine_area_geral ?? undefined,
                 })),
         [ufc]
     );
@@ -313,8 +314,10 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
                 .sort((x, y) => conclusao(y) - conclusao(x))
                 .map((c) => ({
                     value: String(c.codigo),
+                    // o curso é o mesmo (a área): o que muda é a instituição
                     label: `${c.siglaIes ?? c.nomeIes} — ${c.nomeMunicipio}${c.uf ? `/${c.uf}` : ""}`,
-                    detalhe: `${c.nomeIes} · conclusão ${formatPercent(conclusao(c), 0)}${c.publica === true ? " · pública" : c.publica === false ? " · privada" : ""}`,
+                    detalhe: detalheCurso({ codigo: c.codigo, grau: c.grau }),
+                    busca: c.nomeIes,
                 })),
         [pares]
     );
@@ -485,6 +488,8 @@ function ComparacaoBrasil({
     const lados = { a: nome, b: "Brasil" };
     const a = pares.map((p) => p.campus);
     const b = pares.map((p) => p.brasil);
+    const anos = a.map((t) => t.ano);
+    const [de, ate] = [Math.min(...anos), Math.max(...anos)];
     return (
         <div className="grid grid-cols-1 items-start gap-5 lg:grid-cols-12 lg:gap-6">
             <Card className="lg:col-span-12">
@@ -500,6 +505,12 @@ function ComparacaoBrasil({
                     </p>
                 ) : (
                     <>
+                        {/* a mesma frase de contexto dos outros modos */}
+                        <p className="text-text-muted -mt-1 text-[12px] lg:col-span-12">
+                            {nome} × Brasil · turmas maduras de{" "}
+                            {de === ate ? de : `${de} a ${ate}`} · {pares.length}{" "}
+                            {pares.length === 1 ? "curso" : "cursos"} com média nacional
+                        </p>
                         <IndicadoresTrajetoriaCards
                             titulo="Indicadores do campus"
                             lados={lados}

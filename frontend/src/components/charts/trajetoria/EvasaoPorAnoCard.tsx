@@ -1,10 +1,12 @@
 import { useRef, useState, type Ref } from "react";
 
+import { AMPLIADO_ROLA } from "@/components/cards/ampliado";
 import { Card } from "@/components/cards/Card";
 import { NotaRodape } from "@/components/cards/NotaRodape";
 import { DataTable } from "@/components/charts/DataTable";
 import { CursoBusca } from "@/components/charts/qualidade/CursoBusca";
 import { useChartTheme } from "@/hooks/useChartTheme";
+import { opcaoCurso } from "@/lib/curso";
 import { useElementSize } from "@/hooks/useElementSize";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { formatPercent } from "@/lib/format";
@@ -72,6 +74,7 @@ export function EvasaoPorAnoCard({
 
     return (
         <Card
+            expansivel
             title="Em que ano do curso a evasão acontece"
             subtitle="Taxa de Desistência Anual (TADA) de cada ano de curso, em parte de toda a evasão das turmas maduras"
             className={className}
@@ -89,15 +92,17 @@ export function EvasaoPorAnoCard({
                             },
                             ...paineis.map((p) => {
                                 const c = porCodigo.get(p.chave);
-                                return {
-                                    value: p.chave,
-                                    label: c ? p.nome : "Campus",
-                                    detalhe: c
-                                        ? [c.grau, c.modalidade]
-                                              .filter(Boolean)
-                                              .join(" · ") || undefined
-                                        : "Todos os cursos somados",
-                                };
+                                return c
+                                    ? opcaoCurso({
+                                          codigo: c.codigo,
+                                          nome: c.nomeCurso,
+                                          grau: c.grau,
+                                      })
+                                    : {
+                                          value: p.chave,
+                                          label: "Campus",
+                                          detalhe: "Todos os cursos somados",
+                                      };
                             }),
                         ]}
                         onChange={setEscolha}
@@ -115,7 +120,9 @@ export function EvasaoPorAnoCard({
                 <div
                     className={cn(
                         "mt-5 grid grid-cols-2 gap-x-5 gap-y-6 lg:grid-cols-4 lg:gap-x-6",
-                        rola && "-mr-2 [scrollbar-width:thin] overflow-y-auto pr-2"
+                        rola && "-mr-2 [scrollbar-width:thin] overflow-y-auto pr-2",
+                        // ampliado: a grade ocupa a altura do card
+                        rola && AMPLIADO_ROLA
                     )}
                     style={rola ? { maxHeight: alturaMax } : undefined}
                 >

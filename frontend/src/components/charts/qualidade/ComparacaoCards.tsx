@@ -70,7 +70,13 @@ export function LadoALadoCard({
 }) {
     const CHART = useChartTheme();
     return (
-        <Card title={titulo} subtitle={subtitulo} action={action} className={className}>
+        <Card
+            expansivel
+            title={titulo}
+            subtitle={subtitulo}
+            action={action}
+            className={className}
+        >
             {/* legenda na mesma grade das linhas: cada nome em cima da coluna
                 dos seus valores */}
             <div className="text-text-secondary mt-4 grid grid-cols-[1fr_auto_1fr] items-center gap-3 text-[12px]">
@@ -273,6 +279,7 @@ export function EspelhoCard({
     );
     return (
         <Card
+            expansivel
             title={titulo}
             subtitle={subtitulo}
             className={className}
@@ -387,6 +394,7 @@ export function CursosEmComumCard({
     for (let v = Math.ceil(lo * 2) / 2; v <= hi + 1e-9; v += 0.5) ticks.push(v);
     return (
         <Card
+            expansivel
             title="Cursos em comum"
             subtitle="Áreas que os dois campi oferecem: o melhor CPC de cada um na área"
             className={className}
@@ -575,6 +583,7 @@ export function ParticipacaoComparadaCard({
 
     return (
         <Card
+            expansivel
             title="Participação no Enade"
             subtitle="Concluintes inscritos em cada edição: a parte escura fez a prova, a clara não"
             className={className}

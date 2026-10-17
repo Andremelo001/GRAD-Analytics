@@ -20,7 +20,12 @@ export interface Ciclo {
  * ciclo anterior. ``ano === null`` = curso nunca avaliado. */
 export interface AvaliacaoCurso {
     codigo: number;
+    /** Nome de exibição (sem repetição: ver ``rotulosCursos``). */
     nome: string;
+    /** O nome do curso como o INEP registra (nos seletores, com o código e
+     * o grau embaixo). */
+    nomeCurso: string;
+    grau: string | null;
     area: string | null;
     ano: number | null;
     cpc: number | null;
@@ -81,10 +86,14 @@ export function buildAvaliacoes(data: DashboardData): AvaliacaoCurso[] {
             .filter((e) => e.codigo_curso === curso.codigo_curso)
             .sort((a, b) => a.ano - b.ano);
         const nome = rotulos.get(curso.codigo_curso) ?? toTitleCase(curso.nome_curso);
+        const nomeCurso = toTitleCase(curso.nome_curso);
+        const grau = curso.grau_academico;
         if (!perfil) {
             return {
                 codigo: curso.codigo_curso,
                 nome,
+                nomeCurso,
+                grau,
                 area: null,
                 ano: null,
                 cpc: null,
@@ -105,6 +114,8 @@ export function buildAvaliacoes(data: DashboardData): AvaliacaoCurso[] {
         return {
             codigo: curso.codigo_curso,
             nome,
+            nomeCurso,
+            grau,
             area: perfil.area_avaliacao,
             ano: perfil.ano,
             cpc: perfil.cpc_continuo,
@@ -139,3 +150,68 @@ export function comCpc(
 
 export const media = (values: number[]): number | null =>
     values.length === 0 ? null : values.reduce((a, b) => a + b, 0) / values.length;
+
+/** Os indicadores-resumo de qualidade do campus (os mesmos da Visão do
+ * campus e dos cards do Início): CPC médio da avaliação mais recente de cada
+ * curso e a média nacional das mesmas áreas nos mesmos anos (pareada: só
+ * cursos com as duas pontas), e o % de cursos nas faixas 4 e 5 contra o
+ * Brasil. As séries são o mesmo número "visto em cada ano": a avaliação mais
+ * recente de cada curso até aquele ano. */
+export interface ResumoQualidade {
+    cpcMedio: number | null;
+    cpcPareado: number | null;
+    cpcNacional: number | null;
+    pctAltas: number | null;
+    pctAltasNacional: number | null;
+    serieCpc: { ano: number; valor: number }[];
+    serieAltas: { ano: number; valor: number }[];
+}
+
+export function resumoQualidade(
+    avaliacoes: AvaliacaoCurso[],
+    faixasNacional: { cpc_faixa: string; percentual_nacional: number }[]
+): ResumoQualidade {
+    const avaliados = comCpc(avaliacoes);
+    const pareados = avaliados.filter((a) => a.cpcNacional !== null);
+    const faixas = avaliacoes.map((a) => a.faixa).filter((f) => f !== null);
+    const pct = (fs: number[]) =>
+        fs.length > 0 ? (100 * fs.filter((f) => f >= 4).length) / fs.length : null;
+
+    const anos = [
+        ...new Set(avaliacoes.flatMap((a) => a.historico.map((h) => h.ano))),
+    ].sort((x, y) => x - y);
+    const serieCpc: { ano: number; valor: number }[] = [];
+    const serieAltas: { ano: number; valor: number }[] = [];
+    for (const ano of anos) {
+        const ultimas = avaliacoes.flatMap((a) => {
+            const h = a.historico.filter((e) => e.ano <= ano).at(-1);
+            return h ? [h] : [];
+        });
+        const cpc = media(
+            ultimas.flatMap((h) => (h.cpc_continuo === null ? [] : [h.cpc_continuo]))
+        );
+        const altas = pct(
+            ultimas.flatMap((h) => {
+                const f = faixaNumero(h.cpc_faixa);
+                return f === null ? [] : [f];
+            })
+        );
+        if (cpc !== null) serieCpc.push({ ano, valor: cpc });
+        if (altas !== null) serieAltas.push({ ano, valor: altas });
+    }
+
+    return {
+        cpcMedio: media(avaliados.map((a) => a.cpc)),
+        cpcPareado: media(pareados.map((a) => a.cpc)),
+        cpcNacional: media(pareados.map((a) => a.cpcNacional!)),
+        pctAltas: pct(faixas),
+        pctAltasNacional:
+            faixasNacional.length > 0
+                ? faixasNacional
+                      .filter((f) => f.cpc_faixa === "4" || f.cpc_faixa === "5")
+                      .reduce((total, f) => total + f.percentual_nacional, 0)
+                : null,
+        serieCpc,
+        serieAltas,
+    };
+}

@@ -20,8 +20,10 @@ export function DataTable({ columns, rows }: { columns: string[]; rows: string[]
                 </tr>
             </thead>
             <tbody>
-                {rows.map(([label, ...values]) => (
-                    <tr key={label}>
+                {/* a posição entra na chave: cursos diferentes podem ter o
+                    mesmo nome (ex.: Educação Física bacharelado e licenciatura) */}
+                {rows.map(([label, ...values], i) => (
+                    <tr key={`${i}-${label}`}>
                         <td>{label}</td>
                         {values.map((value, index) => (
                             <td key={index} className="text-right">

@@ -1,6 +1,7 @@
 import { ArrowDown, ArrowUp, Minus } from "lucide-react";
 import { useMemo, useState, type CSSProperties } from "react";
 
+import { AMPLIADO_FLEX, AMPLIADO_ROLA } from "@/components/cards/ampliado";
 import { Card } from "@/components/cards/Card";
 import { rampColor } from "@/components/charts/chart-theme";
 import { DataTable } from "@/components/charts/DataTable";
@@ -147,12 +148,16 @@ export function EvasaoHeatmapCard({
 
     return (
         <Card
+            expansivel
             title="Evasão anual por curso"
             subtitle={`Evasão de cada ano comparada à média nacional da área: ${coresAcessiveis ? "azul abaixo, laranja acima" : "verde abaixo, vermelho acima"}`}
             className={className}
         >
-            <div className="mt-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-3 sm:flex-nowrap">
-                <div className="flex min-w-0 basis-full items-center gap-3 sm:flex-1 sm:basis-auto">
+            {/* o destaque no tamanho do texto: se não couber ao lado da escala,
+                a escala desce pra linha de baixo (o texto só corta se não
+                couber nem sozinho, no celular) */}
+            <div className="mt-3 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+                <div className="flex max-w-full min-w-0 items-center gap-3">
                     {destaque.taxa === null ? (
                         // traço desenhado (não o caractere "—", que num corpo de
                         // 26px fica abaixo do centro da linha do texto ao lado),
@@ -187,7 +192,10 @@ export function EvasaoHeatmapCard({
                 <ScaleLegend abaixoMax={abaixoMax} acimaMax={acimaMax} />
             </div>
 
-            <div className="relative mt-4" onMouseLeave={() => setHover(null)}>
+            <div
+                className={cn("relative mt-4", AMPLIADO_FLEX)}
+                onMouseLeave={() => setHover(null)}
+            >
                 {/* folga de 4px em volta (compensada na margem): um container com
                     rolagem também corta nas bordas, e o contorno da célula sob o
                     mouse passa 3px pra fora da grade. Com mais de 6 cursos
@@ -197,7 +205,10 @@ export function EvasaoHeatmapCard({
                     className={cn(
                         // até 6 linhas, depois rola: campus com poucos cursos
                         // não fica com espaço vazio, e Fortaleza não estica o card
-                        "-m-1 max-h-[201.5px] overflow-x-auto p-1",
+                        "-m-1 overflow-x-auto p-1",
+                        // ampliado: a grade ocupa a altura do card
+                        "max-h-[201.5px]",
+                        AMPLIADO_ROLA,
                         linhas.length > LINHAS_VISIVEIS
                             ? "[scrollbar-width:thin] overflow-y-auto"
                             : "[scrollbar-width:none]"
@@ -205,8 +216,9 @@ export function EvasaoHeatmapCard({
                 >
                     <div
                         // coluna dos nomes: 112px no celular (a grade rola dentro
-                        // do card), até 200px a partir de sm
-                        className="grid min-w-[660px] grid-cols-[112px_repeat(var(--anos),minmax(0,1fr))] items-center gap-[3px] sm:grid-cols-[minmax(112px,200px)_repeat(var(--anos),minmax(0,1fr))]"
+                        // do card), até 200px a partir de sm; no desktop a grade
+                        // cabe na largura do card (sem rolar pro lado)
+                        className="grid min-w-[660px] grid-cols-[112px_repeat(var(--anos),minmax(0,1fr))] items-center gap-[3px] sm:grid-cols-[minmax(112px,200px)_repeat(var(--anos),minmax(0,1fr))] lg:min-w-0"
                         style={{ "--anos": anos.length } as CSSProperties}
                         role="img"
                         aria-label={`Mapa de calor da evasão anual de ${linhas.length} cursos, de ${anos[0]} a ${ultimo}.`}
@@ -251,7 +263,12 @@ export function EvasaoHeatmapCard({
                                             : "text-text-muted"
                                     )}
                                 >
-                                    {ano}
+                                    {/* desktop estreito (card ao lado dos tiles):
+                                        o ano com dois dígitos, pra não encostar */}
+                                    <span className="lg:max-xl:hidden">{ano}</span>
+                                    <span className="hidden lg:max-xl:inline">
+                                        ’{String(ano).slice(2)}
+                                    </span>
                                 </span>
                             </span>
                         ))}

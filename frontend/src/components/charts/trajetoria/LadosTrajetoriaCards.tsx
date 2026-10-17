@@ -52,7 +52,12 @@ export function SituacaoLadosCard({
     });
 
     return (
-        <Card title="Situação final" subtitle={subtitulo} className={className}>
+        <Card
+            expansivel
+            title="Situação final"
+            subtitle={subtitulo}
+            className={className}
+        >
             <ul
                 className="mt-4 flex gap-x-4 gap-y-1 text-[12px]"
                 onMouseLeave={() => setFoco(null)}
@@ -200,6 +205,7 @@ export function PermanenciaLadosCard({
 
     return (
         <Card
+            expansivel="tela"
             title="Permanência ano a ano"
             subtitle={subtitulo}
             className={className}

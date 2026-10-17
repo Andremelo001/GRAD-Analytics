@@ -25,16 +25,32 @@ const PARTES: {
  * e ainda cursam — de todas as turmas somadas ou de uma turma (filtro pelo
  * ano de ingresso), na situação do último ano acompanhado. Uma barra 100%
  * embaixo divide os que entraram; passar o mouse num número ou na barra
- * destaca a parte. */
+ * destaca a parte. A turma é a da página (``turmaAno``, a do seletor do
+ * cabeçalho): trocar lá troca aqui, e escolher um ano aqui troca na página;
+ * "Todas as turmas" vale só pra este card, até a turma da página mudar. */
 export function AlunosCursoCard({
     curso,
+    turmaAno,
+    onTurma,
     className,
 }: {
     curso: CursoTrajetoria;
+    turmaAno: number;
+    onTurma: (ano: number) => void;
     className?: string;
 }) {
     const CHART = useChartTheme();
-    const [ano, setAno] = useState<string>(TODAS);
+    // "todas" fica valendo enquanto a turma da página for a mesma de quando
+    // foi escolhido (começa assim): trocar a turma em qualquer lugar mostra ela
+    const [todasEm, setTodasEm] = useState<number | null>(turmaAno);
+    const ano = todasEm === turmaAno ? TODAS : String(turmaAno);
+    const setAno = (v: string) => {
+        if (v === TODAS) setTodasEm(turmaAno);
+        else {
+            setTodasEm(null);
+            onTurma(Number(v));
+        }
+    };
     const [foco, setFoco] = useState<Situacao | null>(null);
 
     const turmas =
@@ -48,6 +64,7 @@ export function AlunosCursoCard({
 
     return (
         <Card
+            expansivel
             title="Alunos do curso"
             subtitle={
                 turma

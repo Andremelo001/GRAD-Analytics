@@ -95,7 +95,9 @@ export function ChartSelect({
     function openList() {
         const botao = rootRef.current?.getBoundingClientRect();
         if (botao) {
-            const fixo = !!rootRef.current?.closest("[data-topo-fixo]");
+            const fixo = !!rootRef.current?.closest(
+                "[data-topo-fixo], [data-card-expandido]"
+            );
             setNaFaixa(fixo);
             setCaixa(posicao(botao, fixo));
             const lista = Math.min(LISTA_MAX, window.innerWidth - 2 * MARGEM_TELA);
@@ -147,7 +149,12 @@ export function ChartSelect({
             const botao = rootRef.current?.getBoundingClientRect();
             if (botao)
                 setCaixa(
-                    posicao(botao, !!rootRef.current?.closest("[data-topo-fixo]"))
+                    posicao(
+                        botao,
+                        !!rootRef.current?.closest(
+                            "[data-topo-fixo], [data-card-expandido]"
+                        )
+                    )
                 );
         };
         document.addEventListener("pointerdown", onPointerDown);
@@ -275,7 +282,7 @@ export function ChartSelect({
                             // largura até 280px, mas nunca maior que a tela (16px
                             // de margem de cada lado)
                             "text-ink bg-popover max-h-72 w-max max-w-[min(280px,calc(100vw-32px))] overflow-y-auto rounded-xl p-1.5 text-left font-normal shadow-[0_16px_40px_rgb(0_0_0/0.18)] outline-none",
-                            naFaixa ? "fixed z-50" : "absolute z-20"
+                            naFaixa ? "fixed z-[60]" : "absolute z-20"
                         )}
                         style={{
                             top: caixa.top,

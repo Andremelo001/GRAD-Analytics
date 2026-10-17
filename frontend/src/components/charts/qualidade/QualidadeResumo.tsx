@@ -6,7 +6,7 @@ import { DeltaPill } from "@/components/charts/qualidade/DeltaPill";
 import { useChartTheme } from "@/hooks/useChartTheme";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { formatDecimal, formatPercent, formatPoints } from "@/lib/format";
-import { comCpc, media, type AvaliacaoCurso } from "@/lib/qualidade";
+import { resumoQualidade, type AvaliacaoCurso } from "@/lib/qualidade";
 import type { DistribuicaoCpcFaixaNacionalItem } from "@/types/dashboard";
 
 /** Quatro indicadores do campus no topo da Visão do campus: CPC médio,
@@ -19,14 +19,10 @@ export function QualidadeResumo({
     faixasNacional: DistribuicaoCpcFaixaNacionalItem[];
 }) {
     const CHART = useChartTheme();
-    const avaliados = comCpc(avaliacoes);
-
-    // CPC médio × média nacional das mesmas áreas, nos mesmos anos (pareado:
-    // só cursos que têm as duas pontas)
-    const pareados = avaliados.filter((a) => a.cpcNacional !== null);
-    const cpcMedio = media(avaliados.map((a) => a.cpc));
-    const cpcNacional = media(pareados.map((a) => a.cpcNacional!));
-    const cpcPareado = media(pareados.map((a) => a.cpc));
+    // CPC médio e % nas faixas 4 e 5 contra o Brasil: a mesma conta dos
+    // cards do Início
+    const { cpcMedio, cpcPareado, cpcNacional, pctAltas, pctAltasNacional } =
+        resumoQualidade(avaliacoes, faixasNacional);
 
     const porFaixa = [1, 2, 3, 4, 5].map(
         (f) => avaliacoes.filter((a) => a.faixa === f).length
@@ -34,12 +30,6 @@ export function QualidadeResumo({
     const comFaixa = porFaixa.reduce((a, b) => a + b, 0);
     // tablet: tiles em 2 colunas (mais baixos) — rótulos e rosca menores
     const duasColunas = useMediaQuery("(min-width: 640px) and (max-width: 1023.98px)");
-    const altas = porFaixa[3] + porFaixa[4];
-    const pctAltas = comFaixa > 0 ? (100 * altas) / comFaixa : null;
-    const pctAltasNacional = faixasNacional
-        .filter((f) => f.cpc_faixa === "4" || f.cpc_faixa === "5")
-        .reduce((total, f) => total + f.percentual_nacional, 0);
-    const temNacional = faixasNacional.length > 0;
 
     const semCpc = avaliacoes.filter((a) => a.cpc === null);
     const nuncaAvaliados = semCpc.filter((a) => a.ano === null).length;
@@ -77,7 +67,7 @@ export function QualidadeResumo({
                 info="Percentual dos cursos com faixa 4 ou 5. No Brasil, entre os cursos das mesmas áreas (avaliação mais recente de cada um)."
                 value={pctAltas === null ? "—" : formatPercent(pctAltas, 0)}
                 badge={
-                    pctAltas !== null && temNacional ? (
+                    pctAltas !== null && pctAltasNacional !== null ? (
                         <DeltaPill
                             diff={pctAltas - pctAltasNacional}
                             limiar={0.5}
@@ -86,7 +76,7 @@ export function QualidadeResumo({
                     ) : null
                 }
                 footer={
-                    temNacional
+                    pctAltasNacional !== null
                         ? `No Brasil, nas mesmas áreas: ${formatPercent(pctAltasNacional, 0)}`
                         : "Sem dado nacional para comparar"
                 }

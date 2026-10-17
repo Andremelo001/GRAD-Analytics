@@ -107,6 +107,7 @@ export function PermanenciaCard({
 
     return (
         <Card
+            expansivel="tela"
             title="Permanência × Brasil"
             subtitle={`Taxa de Permanência (TAP) da turma de ${turma.ano}, contra a média nacional dos mesmos cursos`}
             className={className}

@@ -104,25 +104,32 @@ export function PaginaEsqueleto() {
 export function InicioEsqueleto() {
     return (
         <Pagina rotulo="Carregando o Início">
+            {/* ingressantes + presença no Brasil */}
             <CardEsqueleto className="lg:col-span-8" acao>
                 <Barra className="mt-5 h-[260px]" />
                 <Barra className="mt-4 h-3 w-44" />
+            </CardEsqueleto>
+            <CardEsqueleto className="lg:col-span-4" acao>
+                <Barra className="mt-4 h-7 w-20" />
+                <Barra className="mt-5 aspect-square w-full rounded-2xl" />
+            </CardEsqueleto>
+            {/* tiles de qualidade + CPC */}
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:col-span-4 lg:grid-cols-1 lg:gap-6">
+                <TileEsqueleto />
+                <TileEsqueleto />
+            </div>
+            <CardEsqueleto className="lg:col-span-8" acao>
+                <Barra className="mt-4 h-7 w-24" />
+                <Barra className="mt-5 h-[300px]" />
+            </CardEsqueleto>
+            {/* evasão anual + tiles de trajetória */}
+            <CardEsqueleto className="lg:col-span-8">
+                <Linhas n={6} />
             </CardEsqueleto>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:col-span-4 lg:grid-cols-1 lg:gap-6">
                 <TileEsqueleto />
                 <TileEsqueleto />
             </div>
-            <CardEsqueleto className="lg:col-span-4" acao>
-                <Barra className="mt-4 h-7 w-20" />
-                <Barra className="mt-5 aspect-square w-full rounded-2xl" />
-            </CardEsqueleto>
-            <CardEsqueleto className="lg:col-span-8" acao>
-                <Barra className="mt-4 h-7 w-24" />
-                <Barra className="mt-5 h-[300px]" />
-            </CardEsqueleto>
-            <CardEsqueleto className="lg:col-span-12">
-                <Linhas n={6} />
-            </CardEsqueleto>
         </Pagina>
     );
 }

@@ -185,7 +185,7 @@ function Mapa({ data }: { data: DashboardData }) {
             className="grid grid-cols-1 gap-5 lg:h-[var(--mapa-h)] lg:grid-cols-12 lg:gap-6"
             style={{ "--mapa-h": `${alturaDisponivel}px` } as CSSProperties}
         >
-            <Card className="lg:col-span-7">
+            <Card expansivel="tela" className="lg:col-span-7">
                 {/* título com o ano do Enade ao lado (no estilo da frase de
                     filtros), e a frase de filtros embaixo */}
                 <h2 className="text-[17px] leading-tight font-semibold tracking-[-0.01em]">
@@ -272,6 +272,7 @@ function Mapa({ data }: { data: DashboardData }) {
             {/* em lg o painel tem a altura do mapa e rola por dentro */}
             <div className="lg:relative lg:col-span-5">
                 <Card
+                    expansivel="tela"
                     title={titulo}
                     subtitle={
                         visao

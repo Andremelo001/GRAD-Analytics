@@ -4,6 +4,7 @@ import { Card } from "@/components/cards/Card";
 import { DataTable } from "@/components/charts/DataTable";
 import { CursoBusca } from "@/components/charts/qualidade/CursoBusca";
 import { useChartTheme } from "@/hooks/useChartTheme";
+import { opcaoCurso } from "@/lib/curso";
 import { useElementSize } from "@/hooks/useElementSize";
 import { FAIXA_LIMITES } from "@/lib/cpc";
 import { formatDecimal } from "@/lib/format";
@@ -25,9 +26,10 @@ const direcao = (diff: number): Direcao =>
  * quem caiu e quem trocou de faixa. Cada curso tem os próprios anos (as
  * áreas são avaliadas em anos diferentes), então as colunas são "ciclo
  * anterior" e "mais recente". Curso com um só ciclo vira um ponto vazado.
- * O seletor (canto superior direito) destaca um curso — com muitos cursos,
- * como em Fortaleza, achar um pelo mouse é difícil; o hover mostra outro por
- * cima enquanto o mouse está nele. */
+ * O seletor (canto superior direito) mostra só a linha de um curso (com
+ * muitos cursos, como em Fortaleza, achar um pelo mouse é difícil); sem
+ * seleção, passar o mouse destaca um curso e apaga os outros. Com um curso em
+ * foco, o subtítulo vira "nome | CPC anterior – CPC atual". */
 export function CpcSlopeCard({
     avaliacoes,
     className,
@@ -45,11 +47,17 @@ export function CpcSlopeCard({
     const foco = hover ?? selecionado;
 
     const avaliados = useMemo(() => comCpc(avaliacoes), [avaliacoes]);
+    // escolhido no seletor: só a linha dele (a escala continua a de todos,
+    // pra não pular ao trocar de curso)
+    const visiveis =
+        selecionado === null
+            ? avaliados
+            : avaliados.filter((a) => a.codigo === selecionado);
     // o curso em destaque desenhado por último, por cima das outras linhas
-    const pares = avaliados
+    const pares = visiveis
         .filter((a) => a.anterior !== null)
         .sort((a, b) => Number(a.codigo === foco) - Number(b.codigo === foco));
-    const unicos = avaliados.filter((a) => a.anterior === null);
+    const unicos = visiveis.filter((a) => a.anterior === null);
 
     const valores = avaliados.flatMap((a) =>
         a.anterior ? [a.cpc, a.anterior.cpc] : [a.cpc]
@@ -76,25 +84,31 @@ export function CpcSlopeCard({
     const cor = (d: Direcao) =>
         d === "subiu" ? CHART.brand : d === "caiu" ? CHART.critical : CHART.reference;
     const contagem = { subiu: 0, caiu: 0, estavel: 0 };
-    for (const a of pares) contagem[direcao(a.cpc - a.anterior!.cpc)]++;
+    for (const a of avaliados)
+        if (a.anterior) contagem[direcao(a.cpc - a.anterior.cpc)]++;
     const ativo = foco === null ? undefined : avaliados.find((a) => a.codigo === foco);
     const opcoes = [
         { value: "todos", label: "Todos os cursos", detalhe: "Visão geral do campus" },
         ...[...avaliados]
             .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"))
-            .map((a) => ({
-                value: String(a.codigo),
-                label: a.nome,
-                detalhe: a.anterior
-                    ? `${a.anterior.ano}: ${formatDecimal(a.anterior.cpc)} → ${a.ano}: ${formatDecimal(a.cpc)}`
-                    : `1º ciclo, ${a.ano}: ${formatDecimal(a.cpc)}`,
-            })),
+            .map((a) =>
+                opcaoCurso({ codigo: a.codigo, nome: a.nomeCurso, grau: a.grau })
+            ),
     ];
 
     return (
         <Card
+            expansivel="tela"
             title="Evolução entre ciclos"
-            subtitle="CPC no ciclo anterior e no mais recente, sobre as faixas"
+            subtitle={
+                ativo
+                    ? `${ativo.nome} | ${
+                          ativo.anterior
+                              ? `${formatDecimal(ativo.anterior.cpc)} – ${formatDecimal(ativo.cpc)}`
+                              : `1º ciclo: ${formatDecimal(ativo.cpc)}`
+                      }`
+                    : "CPC no ciclo anterior e no mais recente, sobre as faixas"
+            }
             className={className}
             action={
                 // mesmo seletor com busca de Por curso e Comparações, no
@@ -121,7 +135,7 @@ export function CpcSlopeCard({
                         height={H}
                         className="absolute inset-0"
                         role="img"
-                        aria-label={`CPC de ${pares.length} cursos entre o ciclo anterior e o mais recente: ${contagem.subiu} subiram, ${contagem.caiu} caíram e ${contagem.estavel} ficaram estáveis.`}
+                        aria-label={`CPC de ${contagem.subiu + contagem.caiu + contagem.estavel} cursos entre o ciclo anterior e o mais recente: ${contagem.subiu} subiram, ${contagem.caiu} caíram e ${contagem.estavel} ficaram estáveis.`}
                     >
                         {/* grade horizontal leve, como nos outros gráficos */}
                         {ticks.map((t) => (

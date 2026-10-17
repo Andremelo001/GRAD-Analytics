@@ -78,6 +78,7 @@ export function ContribuicaoCard({
 
     return (
         <Card
+            expansivel="tela"
             title="De onde vem a nota"
             subtitle="Pontos de CPC que cada componente trouxe (nota × peso), do máximo possível"
             className={className}

@@ -81,6 +81,7 @@ export function CaminhoTurmaCard({
 
     return (
         <Card
+            expansivel="tela"
             title="O caminho de uma turma"
             subtitle={`Turma de ${turma.ano}${turma.prazo ? ` · prazo de ${turma.prazo} anos` : ""}${turma.madura ? "" : " · em andamento"}`}
             className={className}

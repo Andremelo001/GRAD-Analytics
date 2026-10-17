@@ -1,9 +1,11 @@
 import type { ReactNode } from "react";
 
 import { Card } from "@/components/cards/Card";
+import { ChartSelect } from "@/components/charts/ChartSelect";
 import { CursoBusca } from "@/components/charts/qualidade/CursoBusca";
 import { DeltaPill } from "@/components/charts/qualidade/DeltaPill";
 import { useChartTheme } from "@/hooks/useChartTheme";
+import { opcaoCurso } from "@/lib/curso";
 import { formatInteger, formatPercent, formatPoints } from "@/lib/format";
 import {
     anosFinal,
@@ -11,36 +13,44 @@ import {
     evasaoPorAnoDoCurso,
     maduras,
     situacaoFinal,
-    turmaMadura,
     type CursoTrajetoria,
+    type Turma,
 } from "@/lib/trajetoria";
 import { cn } from "@/lib/utils";
 import type { DashboardData } from "@/types/dashboard";
 
 /** Cabeçalho da sub-aba Por curso da Trajetória: o curso (com o seletor com
- * busca) e os números principais — prazo, ingressantes por turma, conclusão
- * da turma madura contra o Brasil e quanto da evasão é no 1º ano. Mesmo
- * formato do cabeçalho de Qualidade → Por curso. */
+ * busca), a turma (ano de ingresso — a mesma dos cards da página) e os
+ * números principais — prazo, ingressantes por turma, conclusão da turma
+ * contra o Brasil e quanto da evasão é no 1º ano. Mesmo formato do cabeçalho
+ * de Qualidade → Por curso. */
 export function CursoTrajetoriaCard({
     data,
     curso,
     cursos,
+    turma,
     onChange,
+    onTurma,
     className,
 }: {
     data: DashboardData;
     curso: CursoTrajetoria;
     cursos: CursoTrajetoria[];
+    turma: Turma;
     onChange: (codigo: number) => void;
+    onTurma: (ano: number) => void;
     className?: string;
 }) {
     const CHART = useChartTheme();
-    const madura = turmaMadura(curso);
-    const final = madura ? situacaoFinal(madura) : undefined;
-    const nacional =
-        madura && madura.prazo !== null
-            ? curvaNacional(data, curso.area).get(anosFinal(madura.prazo))
-            : undefined;
+    // conclusão da turma escolhida: madura, no ponto final (prazo + 2 anos);
+    // em andamento, no último ano acompanhado — e o Brasil no mesmo ponto
+    const ponto = turma.madura ? situacaoFinal(turma) : turma.pontos.at(-1);
+    const final = ponto;
+    const nacional = ponto
+        ? curvaNacional(data, curso.area).get(
+              turma.madura && turma.prazo !== null ? anosFinal(turma.prazo) : ponto.anos
+          )
+        : undefined;
     const mediaIngressantes =
         curso.turmas.length > 0
             ? curso.turmas.reduce((t, x) => t + x.ingressantes, 0) / curso.turmas.length
@@ -78,16 +88,34 @@ export function CursoTrajetoriaCard({
                         {curso.nome}
                     </h2>
                 </div>
+                {/* a turma, como frase (o seletor "inline" do Mapa da
+                    Qualidade), ao lado do seletor de curso */}
+                <p className="text-text-secondary flex h-10 items-center gap-1.5 self-start text-[13px] whitespace-nowrap sm:ml-auto">
+                    Turma de
+                    <ChartSelect
+                        variant="inline"
+                        tone="surface"
+                        label="Turma (ano de ingresso)"
+                        value={String(turma.ano)}
+                        options={[...curso.turmas].reverse().map((t) => ({
+                            value: String(t.ano),
+                            label: t.madura ? String(t.ano) : `${t.ano} · em andamento`,
+                        }))}
+                        onChange={(v) => onTurma(Number(v))}
+                    />
+                </p>
                 <div className="w-full sm:w-80">
                     <CursoBusca
                         label="Curso"
                         cor={CHART.brand}
                         value={String(curso.codigo)}
-                        options={cursos.map((c) => ({
-                            value: String(c.codigo),
-                            label: c.nome,
-                            detalhe: `${c.turmas.length} turmas · prazo ${c.prazo ?? "—"} anos`,
-                        }))}
+                        options={cursos.map((c) =>
+                            opcaoCurso({
+                                codigo: c.codigo,
+                                nome: c.nomeCurso,
+                                grau: c.grau,
+                            })
+                        )}
                         onChange={(v) => onChange(Number(v))}
                         placeholder="Buscar curso…"
                     />
@@ -103,7 +131,9 @@ export function CursoTrajetoriaCard({
                         ? "—"
                         : formatInteger(Math.round(mediaIngressantes))}
                 </Item>
-                <Item label={madura ? `Conclusão · turma ${madura.ano}` : "Conclusão"}>
+                <Item
+                    label={`Conclusão · turma ${turma.ano}${turma.madura ? "" : " (em andamento)"}`}
+                >
                     <span className="flex items-center gap-2">
                         {final ? formatPercent(final.concluiu, 0) : "—"}
                         {final && nacional && (

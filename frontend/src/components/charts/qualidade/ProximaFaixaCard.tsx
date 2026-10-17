@@ -61,6 +61,7 @@ export function ProximaFaixaCard({
 
     return (
         <Card
+            expansivel
             title="Quanto falta para a próxima faixa"
             subtitle="CPC contínuo do curso na régua das faixas"
             className={className}

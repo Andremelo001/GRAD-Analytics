@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import { AMPLIADO_ROLA } from "@/components/cards/ampliado";
 import { Card } from "@/components/cards/Card";
 import { NotaRodape } from "@/components/cards/NotaRodape";
 import { DataTable } from "@/components/charts/DataTable";
@@ -13,6 +14,7 @@ import {
 } from "@/components/charts/trajetoria/situacao";
 import { SiglaInep } from "@/components/charts/trajetoria/SiglaInep";
 import { useChartTheme } from "@/hooks/useChartTheme";
+import { opcaoCurso } from "@/lib/curso";
 import { formatPercent } from "@/lib/format";
 import { situacaoFinal, turmaMadura, type CursoTrajetoria } from "@/lib/trajetoria";
 import { cn } from "@/lib/utils";
@@ -69,6 +71,7 @@ export function SituacaoFinalCard({
 
     return (
         <Card
+            expansivel
             title="Situação final por curso"
             subtitle="Turma madura de cada curso, dois anos depois do prazo"
             className={className}
@@ -88,14 +91,13 @@ export function SituacaoFinalCard({
                                 .sort((a, b) =>
                                     a.curso.nome.localeCompare(b.curso.nome, "pt-BR")
                                 )
-                                .map((l) => ({
-                                    value: String(l.curso.codigo),
-                                    label: l.curso.nome,
-                                    detalhe:
-                                        [l.curso.grau, l.curso.modalidade]
-                                            .filter(Boolean)
-                                            .join(" · ") || undefined,
-                                })),
+                                .map((l) =>
+                                    opcaoCurso({
+                                        codigo: l.curso.codigo,
+                                        nome: l.curso.nomeCurso,
+                                        grau: l.curso.grau,
+                                    })
+                                ),
                         ]}
                         onChange={setEscolha}
                         placeholder="Buscar curso…"
@@ -132,7 +134,12 @@ export function SituacaoFinalCard({
                 className={cn(
                     "mt-4 flex flex-1 flex-col gap-3",
                     rola
-                        ? "-mr-2 max-h-[420px] [scrollbar-width:thin] overflow-y-auto pr-2"
+                        ? cn(
+                              "-mr-2 [scrollbar-width:thin] overflow-y-auto pr-2",
+                              // ampliado: a lista ocupa a altura do card
+                              "max-h-[420px]",
+                              AMPLIADO_ROLA
+                          )
                         : "justify-around"
                 )}
                 onMouseLeave={() => setFoco(null)}

@@ -8,8 +8,12 @@ import { cn } from "@/lib/utils";
 export interface OpcaoCurso {
     value: string;
     label: string;
-    /** Segunda linha (instituição, cidade, CPC…). */
+    /** Segunda linha, menor e mais clara (nos cursos: código, grau e turno —
+     * ``opcaoCurso``). */
     detalhe?: string;
+    /** Termos que a busca também encontra, sem aparecer (ex.: o nome inteiro
+     * da instituição quando o rótulo mostra só a sigla). */
+    busca?: string;
 }
 
 /** Quantas opções a lista mostra de uma vez (com 1.800 cursos numa área, a
@@ -72,7 +76,9 @@ export function CursoBusca({
         const termo = normalizeForSearch(busca);
         return termo
             ? options.filter((o) =>
-                  normalizeForSearch(`${o.label} ${o.detalhe ?? ""}`).includes(termo)
+                  normalizeForSearch(
+                      `${o.label} ${o.detalhe ?? ""} ${o.busca ?? ""}`
+                  ).includes(termo)
               )
             : options;
     }, [options, busca]);
@@ -124,7 +130,7 @@ export function CursoBusca({
                     className={cn(
                         "bg-page ring-lime/60 flex items-center gap-2 ring-2",
                         compacto
-                            ? "h-8 w-[150px] rounded-lg px-2.5"
+                            ? "h-8 w-[150px] max-w-full rounded-lg px-2.5"
                             : "h-10 rounded-xl px-3"
                     )}
                 >
@@ -166,7 +172,7 @@ export function CursoBusca({
                     className={cn(
                         "bg-page hover:bg-page/70 focus-visible:ring-lime/60 flex min-w-0 items-center text-left outline-none focus-visible:ring-2",
                         compacto
-                            ? "h-8 w-[150px] gap-1.5 rounded-lg pr-2 pl-2.5"
+                            ? "h-8 w-[150px] max-w-full gap-1.5 rounded-lg pr-2 pl-2.5"
                             : "h-10 w-full gap-2.5 rounded-xl px-3"
                     )}
                 >

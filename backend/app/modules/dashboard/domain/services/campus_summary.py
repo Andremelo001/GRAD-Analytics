@@ -1,3 +1,5 @@
+import pandas as pd
+
 from app.modules.dashboard.domain.services import course_profile
 from app.modules.dashboard.domain.shared import ScopedData
 
@@ -12,9 +14,9 @@ _KPIS = (
 def build_resumo_cursos(data: ScopedData) -> list[dict[str, object]]:
     """Resumo de cada curso de um campus, pra comparar entre campi e cursos.
 
-    Avaliação mais recente (área, ano, CPC, faixa, Enade, IDD e as 9 notas
-    padronizadas em ``notas``), as edições do CPC (``historico``) e a evasão e
-    a conclusão da turma mais recente — os mesmos números de
+    Grau acadêmico, avaliação mais recente (área, ano, CPC, faixa, Enade, IDD
+    e as 9 notas padronizadas em ``notas``), as edições do CPC (``historico``)
+    e a evasão e a conclusão da turma mais recente — os mesmos números de
     ``curso_perfil.perfil_radar``, ``evolucao_cpc`` e ``kpis``, num arquivo
     pequeno (``resumo_campi.json``): o front compara cursos e campi sem baixar
     o JSON de cada campus (o de Fortaleza tem ~8 MB).
@@ -25,6 +27,13 @@ def build_resumo_cursos(data: ScopedData) -> list[dict[str, object]]:
         historicos.setdefault(ponto["codigo_curso"], []).append(
             {campo: ponto[campo] for campo in ("ano", "cpc_continuo", "cpc_faixa")}
         )
+    graus = (
+        dict(
+            zip(data.cursos["codigo_curso"], data.cursos["grau_academico"], strict=True)
+        )
+        if "grau_academico" in data.cursos.columns
+        else {}
+    )
     rows: list[dict[str, object]] = []
     for kpi in course_profile.build_kpis_por_curso(data):
         perfil = perfis.get(kpi["codigo_curso"], {})
@@ -32,6 +41,7 @@ def build_resumo_cursos(data: ScopedData) -> list[dict[str, object]]:
             {
                 "codigo_curso": kpi["codigo_curso"],
                 "nome_curso": kpi["nome_curso"],
+                "grau_academico": _ou_none(graus.get(kpi["codigo_curso"])),
                 "area_avaliacao": perfil.get("area_avaliacao"),
                 "ano": perfil.get("ano"),
                 "cpc_continuo": perfil.get("cpc_continuo"),
@@ -49,6 +59,11 @@ def build_resumo_cursos(data: ScopedData) -> list[dict[str, object]]:
             }
         )
     return rows
+
+
+def _ou_none(value: object) -> object:
+    """``NaN`` do pandas -> ``None`` (vira ``null`` no JSON)."""
+    return None if value is None or pd.isna(value) else value  # type: ignore[call-overload]
 
 
 def _trajetoria_madura(

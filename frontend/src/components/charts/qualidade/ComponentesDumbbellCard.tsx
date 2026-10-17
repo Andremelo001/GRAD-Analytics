@@ -29,6 +29,7 @@ export function ComponentesDumbbellCard({
 
     return (
         <Card
+            expansivel
             title="Curso × média nacional"
             subtitle={`Nota de cada componente e a média dos cursos da área em ${curso.ano}`}
             className={className}

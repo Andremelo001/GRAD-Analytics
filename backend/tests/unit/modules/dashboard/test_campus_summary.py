@@ -14,3 +14,10 @@ def test_trajetoria_madura_carries_cohort_size(scoped_data: ScopedData) -> None:
     assert isinstance(trajetoria, dict)
     assert trajetoria["ano_ingresso"] == 2018
     assert trajetoria["ingressantes"] == 50
+
+
+def test_resumo_carries_grau_academico(scoped_data: ScopedData) -> None:
+    cursos = {
+        c["codigo_curso"]: c for c in campus_summary.build_resumo_cursos(scoped_data)
+    }
+    assert cursos[10]["grau_academico"] == "Bacharelado"

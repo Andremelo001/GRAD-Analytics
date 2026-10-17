@@ -5,6 +5,7 @@ import { CursoBusca } from "@/components/charts/qualidade/CursoBusca";
 import { DeltaPill } from "@/components/charts/qualidade/DeltaPill";
 import { FaixaPill } from "@/components/charts/qualidade/FaixaPill";
 import { useChartTheme } from "@/hooks/useChartTheme";
+import { opcaoCurso } from "@/lib/curso";
 import { formatDecimal, formatInteger, toTitleCase } from "@/lib/format";
 import type { AvaliacaoCurso } from "@/lib/qualidade";
 import { cn } from "@/lib/utils";
@@ -23,15 +24,12 @@ export function CursoResumoCard({
     className?: string;
 }) {
     const CHART = useChartTheme();
-    // a busca filtra por nome e pelo detalhe (área e CPC)
+    // a busca filtra por nome, código e grau (e, sem aparecer, pela área)
     const options = [...cursos]
         .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"))
         .map((c) => ({
-            value: String(c.codigo),
-            label: c.nome,
-            detalhe: c.area
-                ? `${toTitleCase(c.area)} · ${c.cpc === null ? "sem CPC" : `CPC ${formatDecimal(c.cpc)}`}`
-                : "Ainda não avaliado",
+            ...opcaoCurso({ codigo: c.codigo, nome: c.nomeCurso, grau: c.grau }),
+            busca: c.area ?? undefined,
         }));
 
     return (

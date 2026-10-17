@@ -1,3 +1,4 @@
+import { toTitleCase } from "@/lib/format";
 import { rotulosCursos } from "@/lib/qualidade";
 import type { DashboardData, TrajetoriaResumo } from "@/types/dashboard";
 
@@ -33,7 +34,10 @@ export interface Turma {
 
 export interface CursoTrajetoria {
     codigo: number;
+    /** Nome de exibição (sem repetição: ver ``rotulosCursos``). */
     nome: string;
+    /** O nome do curso como o INEP registra (nos seletores). */
+    nomeCurso: string;
     /** Área CINE (o curso em si), a chave da média nacional. */
     area: string | null;
     /** Grau acadêmico (Bacharelado, Licenciatura, Tecnológico) e modalidade
@@ -112,6 +116,7 @@ export function buildTrajetorias(data: DashboardData): CursoTrajetoria[] {
             return {
                 codigo: c.codigo_curso,
                 nome: rotulos.get(c.codigo_curso) ?? c.nome_curso,
+                nomeCurso: toTitleCase(c.nome_curso),
                 area: areas.get(c.codigo_curso) ?? null,
                 grau: c.grau_academico,
                 modalidade: c.modalidade_ensino,

@@ -13,6 +13,7 @@ import type {
     DistribuicaoUfEstado,
 } from "@/types/dashboard";
 import { useChartTheme } from "@/hooks/useChartTheme";
+import { opcaoCurso } from "@/lib/curso";
 
 // Matriz de pontos gerada por scripts/build-brazil-dots.mjs (malha do IBGE):
 // [coluna, linha, sigla da UF] numa grade de ``columns`` x ``rows``.
@@ -143,7 +144,7 @@ export function BrasilMapaCard({
     }
 
     return (
-        <Card className={className}>
+        <Card expansivel className={className}>
             <div className="flex items-center justify-between gap-2">
                 <p className="flex shrink-0 items-center gap-1.5 text-[14px] font-medium whitespace-nowrap">
                     Presença no Brasil
@@ -164,10 +165,13 @@ export function BrasilMapaCard({
                     placeholder="Buscar curso…"
                     label="Curso exibido no mapa"
                     value={String(codigo ?? "")}
-                    options={opcoes.map((c) => ({
-                        value: String(c.codigo_curso),
-                        label: toTitleCase(c.nome_curso),
-                    }))}
+                    options={opcoes.map((c) =>
+                        opcaoCurso({
+                            codigo: c.codigo_curso,
+                            nome: toTitleCase(c.nome_curso),
+                            grau: c.grau_academico,
+                        })
+                    )}
                     onChange={(value) => {
                         setCodigo(Number(value));
                         setHover(null);

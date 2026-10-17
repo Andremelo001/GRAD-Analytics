@@ -22,6 +22,7 @@ import { useChartTheme } from "@/hooks/useChartTheme";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { useQualidadeArea } from "@/hooks/useQualidadeArea";
 import { useResumoCampi } from "@/hooks/useResumoCampi";
+import { detalheCurso } from "@/lib/curso";
 import type { CursoArea } from "@/lib/area";
 import {
     areasEmComum,
@@ -298,7 +299,11 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
                 .map((u) => ({
                     value: String(u.curso.codigo_curso),
                     label: `${toTitleCase(u.curso.nome_curso)} — ${u.campus}`,
-                    detalhe: `${toTitleCase(u.curso.area_avaliacao)} · CPC ${formatDecimal(u.curso.cpc_continuo)}`,
+                    detalhe: detalheCurso({
+                        codigo: u.curso.codigo_curso,
+                        grau: u.curso.grau_academico,
+                    }),
+                    busca: u.curso.area_avaliacao,
                 })),
         [ufc]
     );
@@ -322,8 +327,10 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
                 .sort((x, y) => (y.cpc ?? 0) - (x.cpc ?? 0))
                 .map((c) => ({
                     value: String(c.codigo),
+                    // o curso é o mesmo (a área): o que muda é a instituição
                     label: `${c.siglaIes ?? c.nomeIes} — ${c.nomeMunicipio}/${c.uf}`,
-                    detalhe: `${c.nomeIes} · CPC ${formatDecimal(c.cpc!)}${c.publica === true ? " · pública" : c.publica === false ? " · privada" : ""}`,
+                    detalhe: detalheCurso({ codigo: c.codigo }),
+                    busca: c.nomeIes,
                 })),
         [pares, cursoA]
     );

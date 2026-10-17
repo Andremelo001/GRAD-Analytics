@@ -355,6 +355,7 @@ export interface CampusIndex {
 export interface ResumoCurso {
     codigo_curso: number;
     nome_curso: string;
+    grau_academico?: string | null;
     area_avaliacao: string | null;
     ano: number | null;
     cpc_continuo: number | null;

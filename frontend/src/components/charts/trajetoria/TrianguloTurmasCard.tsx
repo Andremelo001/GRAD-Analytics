@@ -50,6 +50,7 @@ export function TrianguloTurmasCard({
 
     return (
         <Card
+            expansivel
             title="Triângulo das turmas"
             subtitle="Taxa de Desistência Acumulada (TDA) de cada turma, ano a ano · clique numa turma para vê-la nos outros gráficos"
             className={className}

@@ -97,6 +97,7 @@ export function OutrosCampiCard({
 
     return (
         <Card
+            expansivel
             title="Este curso nos outros campi da UFC"
             subtitle={`${toTitleCase(area)} · CPC da avaliação mais recente de cada campus`}
             className={className}

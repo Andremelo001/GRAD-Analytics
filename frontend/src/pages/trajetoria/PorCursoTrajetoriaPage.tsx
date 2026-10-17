@@ -100,11 +100,18 @@ function CursoDetalhe({
                 data={data}
                 curso={curso}
                 cursos={cursos}
+                turma={turma}
                 onChange={onCurso}
+                onTurma={setTurmaAno}
             />
             {/* os alunos em números, na largura toda, logo abaixo do cabeçalho */}
             <div ref={alunosRef} className="flex flex-col lg:col-span-12">
-                <AlunosCursoCard className="flex-1" curso={curso} />
+                <AlunosCursoCard
+                    className="flex-1"
+                    curso={curso}
+                    turmaAno={turma.ano}
+                    onTurma={setTurmaAno}
+                />
             </div>
             {/* lado a lado com a mesma altura */}
             <div className="grid grid-cols-1 gap-5 lg:col-span-12 lg:grid-cols-12 lg:gap-6">

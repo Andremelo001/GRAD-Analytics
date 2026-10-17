@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-10-14T21:28:57+00:00",
+  "gerado_em": "2026-10-17T17:30:47+00:00",
   "campi": [
     {
       "slug": "crateus",
@@ -8,6 +8,7 @@
         {
           "codigo_curso": 1272079,
           "nome_curso": "CIÊNCIA DA COMPUTAÇÃO",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "CIÊNCIA DA COMPUTAÇÃO (BACHARELADO)",
           "ano": 2021,
           "cpc_continuo": 3.587,
@@ -91,6 +92,7 @@
         {
           "codigo_curso": 1300426,
           "nome_curso": "ENGENHARIA AMBIENTAL E SANITÁRIA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ENGENHARIA AMBIENTAL",
           "ano": 2023,
           "cpc_continuo": 3.751,
@@ -180,6 +182,7 @@
         {
           "codigo_curso": 1300427,
           "nome_curso": "ENGENHARIA CIVIL",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ENGENHARIA CIVIL",
           "ano": 2023,
           "cpc_continuo": 3.944,
@@ -274,6 +277,7 @@
         {
           "codigo_curso": 1300428,
           "nome_curso": "ENGENHARIA DE MINAS",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -347,6 +351,7 @@
         {
           "codigo_curso": 1300429,
           "nome_curso": "SISTEMAS DE INFORMAÇÃO",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "SISTEMAS DE INFORMAÇÃO",
           "ano": 2021,
           "cpc_continuo": 3.228,
@@ -436,6 +441,7 @@
         {
           "codigo_curso": 13965,
           "nome_curso": "AGRONOMIA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "AGRONOMIA",
           "ano": 2023,
           "cpc_continuo": 3.583,
@@ -535,6 +541,7 @@
         {
           "codigo_curso": 13966,
           "nome_curso": "ECONOMIA DOMÉSTICA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -620,6 +627,7 @@
         {
           "codigo_curso": 13967,
           "nome_curso": "PEDAGOGIA",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": "PEDAGOGIA (LICENCIATURA)",
           "ano": 2021,
           "cpc_continuo": 3.412,
@@ -708,6 +716,7 @@
         {
           "codigo_curso": 13968,
           "nome_curso": "DIREITO",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "DIREITO",
           "ano": 2022,
           "cpc_continuo": 3.062669272,
@@ -807,6 +816,7 @@
         {
           "codigo_curso": 13969,
           "nome_curso": "CIÊNCIAS CONTÁBEIS",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "CIÊNCIAS CONTÁBEIS",
           "ano": 2022,
           "cpc_continuo": 3.759851342,
@@ -900,6 +910,7 @@
         {
           "codigo_curso": 13970,
           "nome_curso": "CIÊNCIAS ECONÔMICAS",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "CIÊNCIAS ECONÔMICAS",
           "ano": 2022,
           "cpc_continuo": 3.354583457,
@@ -993,6 +1004,7 @@
         {
           "codigo_curso": 13971,
           "nome_curso": "ESTATÍSTICA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -1060,6 +1072,7 @@
         {
           "codigo_curso": 13972,
           "nome_curso": "FÍSICA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "FÍSICA (BACHARELADO)",
           "ano": 2017,
           "cpc_continuo": 3.597482807,
@@ -1143,6 +1156,7 @@
         {
           "codigo_curso": 13974,
           "nome_curso": "CIÊNCIAS BIOLÓGICAS",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": "CIÊNCIAS BIOLÓGICAS (LICENCIATURA)",
           "ano": 2021,
           "cpc_continuo": 3.235,
@@ -1231,6 +1245,7 @@
         {
           "codigo_curso": 13975,
           "nome_curso": "GEOLOGIA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -1304,6 +1319,7 @@
         {
           "codigo_curso": 13976,
           "nome_curso": "GEOGRAFIA",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": "GEOGRAFIA (LICENCIATURA)",
           "ano": 2021,
           "cpc_continuo": 3.301,
@@ -1392,6 +1408,7 @@
         {
           "codigo_curso": 13977,
           "nome_curso": "MATEMÁTICA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "MATEMÁTICA (BACHARELADO)",
           "ano": 2017,
           "cpc_continuo": 3.011760876,
@@ -1475,6 +1492,7 @@
         {
           "codigo_curso": 13980,
           "nome_curso": "CIÊNCIA DA COMPUTAÇÃO",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "CIÊNCIA DA COMPUTAÇÃO (BACHARELADO)",
           "ano": 2021,
           "cpc_continuo": 3.398,
@@ -1563,6 +1581,7 @@
         {
           "codigo_curso": 13981,
           "nome_curso": "BIBLIOTECONOMIA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -1630,6 +1649,7 @@
         {
           "codigo_curso": 13982,
           "nome_curso": "CIÊNCIAS SOCIAIS",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": "CIÊNCIAS SOCIAIS (LICENCIATURA)",
           "ano": 2021,
           "cpc_continuo": 2.987,
@@ -1718,6 +1738,7 @@
         {
           "codigo_curso": 13984,
           "nome_curso": "HISTÓRIA",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": "HISTÓRIA (LICENCIATURA)",
           "ano": 2021,
           "cpc_continuo": 3.423,
@@ -1806,6 +1827,7 @@
         {
           "codigo_curso": 13985,
           "nome_curso": "LETRAS",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -1891,6 +1913,7 @@
         {
           "codigo_curso": 13986,
           "nome_curso": "PSICOLOGIA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "PSICOLOGIA",
           "ano": 2022,
           "cpc_continuo": 2.904505235,
@@ -1990,6 +2013,7 @@
         {
           "codigo_curso": 13987,
           "nome_curso": "ARQUITETURA E URBANISMO",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ARQUITETURA E URBANISMO",
           "ano": 2023,
           "cpc_continuo": 3.863,
@@ -2089,6 +2113,7 @@
         {
           "codigo_curso": 13988,
           "nome_curso": "ENGENHARIA CIVIL",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ENGENHARIA CIVIL",
           "ano": 2023,
           "cpc_continuo": 3.968,
@@ -2188,6 +2213,7 @@
         {
           "codigo_curso": 13989,
           "nome_curso": "ENGENHARIA ELÉTRICA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ENGENHARIA ELÉTRICA",
           "ano": 2023,
           "cpc_continuo": 2.755,
@@ -2287,6 +2313,7 @@
         {
           "codigo_curso": 13990,
           "nome_curso": "ENGENHARIA MECÂNICA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ENGENHARIA MECÂNICA",
           "ano": 2023,
           "cpc_continuo": 3.647,
@@ -2386,6 +2413,7 @@
         {
           "codigo_curso": 13991,
           "nome_curso": "ENGENHARIA QUÍMICA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ENGENHARIA QUÍMICA",
           "ano": 2023,
           "cpc_continuo": 2.616,
@@ -2485,6 +2513,7 @@
         {
           "codigo_curso": 13992,
           "nome_curso": "ENGENHARIA DE PESCA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -2558,6 +2587,7 @@
         {
           "codigo_curso": 13993,
           "nome_curso": "ENGENHARIA DE ALIMENTOS",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ENGENHARIA DE ALIMENTOS",
           "ano": 2023,
           "cpc_continuo": 2.566,
@@ -2657,6 +2687,7 @@
         {
           "codigo_curso": 13994,
           "nome_curso": "ENFERMAGEM",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ENFERMAGEM",
           "ano": 2023,
           "cpc_continuo": 3.742,
@@ -2750,6 +2781,7 @@
         {
           "codigo_curso": 13995,
           "nome_curso": "FARMÁCIA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "FARMÁCIA",
           "ano": 2023,
           "cpc_continuo": 4.026,
@@ -2849,6 +2881,7 @@
         {
           "codigo_curso": 13996,
           "nome_curso": "MEDICINA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "MEDICINA",
           "ano": 2023,
           "cpc_continuo": 3.418,
@@ -2954,6 +2987,7 @@
         {
           "codigo_curso": 13997,
           "nome_curso": "ODONTOLOGIA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ODONTOLOGIA",
           "ano": 2023,
           "cpc_continuo": 3.765,
@@ -3053,6 +3087,7 @@
         {
           "codigo_curso": 13998,
           "nome_curso": "ADMINISTRAÇÃO",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ADMINISTRAÇÃO",
           "ano": 2022,
           "cpc_continuo": 3.552624955,
@@ -3146,6 +3181,7 @@
         {
           "codigo_curso": 13999,
           "nome_curso": "CIÊNCIAS ATUARIAIS",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -3213,6 +3249,7 @@
         {
           "codigo_curso": 14000,
           "nome_curso": "EDUCAÇÃO FÍSICA",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": "EDUCAÇÃO FÍSICA (LICENCIATURA)",
           "ano": 2021,
           "cpc_continuo": 3.652,
@@ -3301,6 +3338,7 @@
         {
           "codigo_curso": 14001,
           "nome_curso": "DESIGN - MODA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -3368,6 +3406,7 @@
         {
           "codigo_curso": 14002,
           "nome_curso": "SECRETARIADO EXECUTIVO",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "SECRETARIADO EXECUTIVO",
           "ano": 2022,
           "cpc_continuo": 2.765572529,
@@ -3467,6 +3506,7 @@
         {
           "codigo_curso": 23947,
           "nome_curso": "JORNALISMO",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "JORNALISMO",
           "ano": 2022,
           "cpc_continuo": 3.57193598,
@@ -3560,6 +3600,7 @@
         {
           "codigo_curso": 25821,
           "nome_curso": "LETRAS - PORTUGUÊS E ITALIANO",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -3633,6 +3674,7 @@
         {
           "codigo_curso": 25822,
           "nome_curso": "LETRAS - PORTUGUÊS E ALEMÃO",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -3706,6 +3748,7 @@
         {
           "codigo_curso": 27263,
           "nome_curso": "LETRAS - PORTUGUÊS E ESPANHOL",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": "LETRAS-PORTUGUÊS E ESPANHOL (LICENCIATURA)",
           "ano": 2021,
           "cpc_continuo": 3.389,
@@ -3800,6 +3843,7 @@
         {
           "codigo_curso": 29489,
           "nome_curso": "LETRAS - LÍNGUA PORTUGUESA",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": "LETRAS-PORTUGUÊS (LICENCIATURA)",
           "ano": 2021,
           "cpc_continuo": 3.327,
@@ -3888,6 +3932,7 @@
         {
           "codigo_curso": 33013,
           "nome_curso": "LETRAS - PORTUGUÊS E INGLÊS",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": "LETRAS-PORTUGUÊS E INGLÊS (LICENCIATURA)",
           "ano": 2021,
           "cpc_continuo": 3.551,
@@ -3982,6 +4027,7 @@
         {
           "codigo_curso": 34433,
           "nome_curso": "LETRAS - PORTUGUÊS E FRANCÊS",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -4055,6 +4101,7 @@
         {
           "codigo_curso": 37265,
           "nome_curso": "ENGENHARIA DE PRODUÇÃO",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ENGENHARIA DE PRODUÇÃO",
           "ano": 2023,
           "cpc_continuo": 3.365,
@@ -4149,6 +4196,7 @@
         {
           "codigo_curso": 37267,
           "nome_curso": "COMUNICAÇÃO SOCIAL - PUBLICIDADE E PROPAGANDA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "PUBLICIDADE E PROPAGANDA",
           "ano": 2022,
           "cpc_continuo": 3.468110352,
@@ -4242,6 +4290,7 @@
         {
           "codigo_curso": 37274,
           "nome_curso": "FILOSOFIA",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": "FILOSOFIA (LICENCIATURA)",
           "ano": 2021,
           "cpc_continuo": 2.968,
@@ -4330,6 +4379,7 @@
         {
           "codigo_curso": 38202,
           "nome_curso": "ADMINISTRAÇÃO",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ADMINISTRAÇÃO",
           "ano": 2022,
           "cpc_continuo": 4.061334326,
@@ -4429,6 +4479,7 @@
         {
           "codigo_curso": 38204,
           "nome_curso": "CIÊNCIAS CONTÁBEIS",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "CIÊNCIAS CONTÁBEIS",
           "ano": 2022,
           "cpc_continuo": 3.56195353,
@@ -4522,6 +4573,7 @@
         {
           "codigo_curso": 38206,
           "nome_curso": "CIÊNCIAS ECONÔMICAS",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "CIÊNCIAS ECONÔMICAS",
           "ano": 2022,
           "cpc_continuo": 3.460819073,
@@ -4615,6 +4667,7 @@
         {
           "codigo_curso": 38208,
           "nome_curso": "DIREITO",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "DIREITO",
           "ano": 2022,
           "cpc_continuo": 3.328060778,
@@ -4714,6 +4767,7 @@
         {
           "codigo_curso": 38217,
           "nome_curso": "QUÍMICA",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": "QUÍMICA (LICENCIATURA)",
           "ano": 2021,
           "cpc_continuo": 3.28,
@@ -4802,6 +4856,7 @@
         {
           "codigo_curso": 38239,
           "nome_curso": "FÍSICA",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": "FÍSICA (LICENCIATURA)",
           "ano": 2021,
           "cpc_continuo": 3.194,
@@ -4890,6 +4945,7 @@
         {
           "codigo_curso": 38246,
           "nome_curso": "MATEMÁTICA",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": "MATEMÁTICA (LICENCIATURA)",
           "ano": 2021,
           "cpc_continuo": 2.74,
@@ -4978,6 +5034,7 @@
         {
           "codigo_curso": 38273,
           "nome_curso": "PEDAGOGIA",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": "PEDAGOGIA (LICENCIATURA)",
           "ano": 2021,
           "cpc_continuo": 3.149,
@@ -5072,6 +5129,7 @@
         {
           "codigo_curso": 50392,
           "nome_curso": "ZOOTECNIA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ZOOTECNIA",
           "ano": 2023,
           "cpc_continuo": 3.966,
@@ -5171,6 +5229,7 @@
         {
           "codigo_curso": 69190,
           "nome_curso": "ENGENHARIA DE TELEINFORMÁTICA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ENGENHARIA DA COMPUTAÇÃO",
           "ano": 2017,
           "cpc_continuo": 2.733822821,
@@ -5272,6 +5331,7 @@
         {
           "codigo_curso": 99252,
           "nome_curso": "ADMINISTRAÇÃO",
+          "grau_academico": null,
           "area_avaliacao": "ADMINISTRAÇÃO",
           "ano": 2015,
           "cpc_continuo": null,
@@ -5305,6 +5365,7 @@
         {
           "codigo_curso": 99567,
           "nome_curso": "QUÍMICA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "QUÍMICA (BACHARELADO)",
           "ano": 2021,
           "cpc_continuo": 3.212,
@@ -5393,6 +5454,7 @@
         {
           "codigo_curso": 99572,
           "nome_curso": "ENGENHARIA METALÚRGICA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -5466,6 +5528,7 @@
         {
           "codigo_curso": 100021,
           "nome_curso": "MÚSICA",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": "MÚSICA (LICENCIATURA)",
           "ano": 2021,
           "cpc_continuo": 3.193,
@@ -5554,6 +5617,7 @@
         {
           "codigo_curso": 100256,
           "nome_curso": "EDUCAÇÃO FÍSICA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "EDUCAÇÃO FÍSICA (BACHARELADO)",
           "ano": 2021,
           "cpc_continuo": 3.458,
@@ -5647,6 +5711,7 @@
         {
           "codigo_curso": 100367,
           "nome_curso": "QUÍMICA (LICENCIATURA)",
+          "grau_academico": null,
           "area_avaliacao": "QUÍMICA (LICENCIATURA)",
           "ano": 2021,
           "cpc_continuo": 2.723,
@@ -5685,6 +5750,7 @@
         {
           "codigo_curso": 100369,
           "nome_curso": "MATEMÁTICA (LICENCIATURA)",
+          "grau_academico": null,
           "area_avaliacao": "MATEMÁTICA (LICENCIATURA)",
           "ano": 2017,
           "cpc_continuo": 2.889696649,
@@ -5718,6 +5784,7 @@
         {
           "codigo_curso": 100375,
           "nome_curso": "LETRAS-PORTUGUÊS (LICENCIATURA)",
+          "grau_academico": null,
           "area_avaliacao": "LETRAS-PORTUGUÊS (LICENCIATURA)",
           "ano": 2017,
           "cpc_continuo": 3.222447097,
@@ -5751,6 +5818,7 @@
         {
           "codigo_curso": 100376,
           "nome_curso": "Letras - Inglês",
+          "grau_academico": null,
           "area_avaliacao": "Letras - Inglês",
           "ano": 2017,
           "cpc_continuo": 3.051453911,
@@ -5784,6 +5852,7 @@
         {
           "codigo_curso": 111294,
           "nome_curso": "OCEANOGRAFIA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -5851,6 +5920,7 @@
         {
           "codigo_curso": 113757,
           "nome_curso": "FÍSICA (LICENCIATURA)",
+          "grau_academico": null,
           "area_avaliacao": "FÍSICA (LICENCIATURA)",
           "ano": 2021,
           "cpc_continuo": 3.256,
@@ -5889,6 +5959,7 @@
         {
           "codigo_curso": 116834,
           "nome_curso": "CIÊNCIAS SOCIAIS",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": "CIÊNCIAS SOCIAIS (LICENCIATURA)",
           "ano": 2021,
           "cpc_continuo": 2.455,
@@ -5977,6 +6048,7 @@
         {
           "codigo_curso": 122364,
           "nome_curso": "ENGENHARIA DE TELEINFORMÁTICA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -6062,6 +6134,7 @@
         {
           "codigo_curso": 150090,
           "nome_curso": "TEATRO",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -6129,6 +6202,7 @@
         {
           "codigo_curso": 150091,
           "nome_curso": "DANÇA",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -6196,6 +6270,7 @@
         {
           "codigo_curso": 150092,
           "nome_curso": "DANÇA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -6263,6 +6338,7 @@
         {
           "codigo_curso": 150093,
           "nome_curso": "CINEMA E AUDIOVISUAL",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -6330,6 +6406,7 @@
         {
           "codigo_curso": 150111,
           "nome_curso": "JORNALISMO",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -6415,6 +6492,7 @@
         {
           "codigo_curso": 150112,
           "nome_curso": "ENGENHARIA AMBIENTAL E SANITÁRIA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ENGENHARIA AMBIENTAL",
           "ano": 2023,
           "cpc_continuo": 2.897,
@@ -6514,6 +6592,7 @@
         {
           "codigo_curso": 150113,
           "nome_curso": "ENGENHARIA DE PETRÓLEO",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ENGENHARIA",
           "ano": 2017,
           "cpc_continuo": 3.159097167,
@@ -6603,6 +6682,7 @@
         {
           "codigo_curso": 150114,
           "nome_curso": "BIOTECNOLOGIA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -6670,6 +6750,7 @@
         {
           "codigo_curso": 150115,
           "nome_curso": "CIÊNCIAS AMBIENTAIS",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -6737,6 +6818,7 @@
         {
           "codigo_curso": 150116,
           "nome_curso": "ENGENHARIA DE ENERGIAS RENOVÁVEIS",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ENGENHARIA",
           "ano": 2017,
           "cpc_continuo": 3.574669008,
@@ -6826,6 +6908,7 @@
         {
           "codigo_curso": 150123,
           "nome_curso": "GASTRONOMIA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -6899,6 +6982,7 @@
         {
           "codigo_curso": 313974,
           "nome_curso": "CIÊNCIAS BIOLÓGICAS",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "CIÊNCIAS BIOLÓGICAS (BACHARELADO)",
           "ano": 2021,
           "cpc_continuo": 2.913,
@@ -6987,6 +7071,7 @@
         {
           "codigo_curso": 313976,
           "nome_curso": "GEOGRAFIA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "GEOGRAFIA (BACHARELADO)",
           "ano": 2021,
           "cpc_continuo": 3.234,
@@ -7075,6 +7160,7 @@
         {
           "codigo_curso": 313982,
           "nome_curso": "CIÊNCIAS SOCIAIS",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "CIÊNCIAS SOCIAIS (BACHARELADO)",
           "ano": 2021,
           "cpc_continuo": 2.67,
@@ -7163,6 +7249,7 @@
         {
           "codigo_curso": 313984,
           "nome_curso": "HISTÓRIA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "HISTÓRIA (BACHARELADO)",
           "ano": 2021,
           "cpc_continuo": null,
@@ -7269,6 +7356,7 @@
         {
           "codigo_curso": 337274,
           "nome_curso": "FILOSOFIA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "FILOSOFIA (BACHARELADO)",
           "ano": 2021,
           "cpc_continuo": 2.901,
@@ -7357,6 +7445,7 @@
         {
           "codigo_curso": 416834,
           "nome_curso": "CIÊNCIAS SOCIAIS",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "CIÊNCIAS SOCIAIS (BACHARELADO)",
           "ano": 2021,
           "cpc_continuo": 2.507,
@@ -7445,6 +7534,7 @@
         {
           "codigo_curso": 1122966,
           "nome_curso": "FISIOTERAPIA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "FISIOTERAPIA",
           "ano": 2023,
           "cpc_continuo": 4.322,
@@ -7544,6 +7634,7 @@
         {
           "codigo_curso": 1127861,
           "nome_curso": "CIÊNCIA DE DADOS",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -7611,6 +7702,7 @@
         {
           "codigo_curso": 1128911,
           "nome_curso": "LETRAS - INGLÊS",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": "Letras - Inglês",
           "ano": 2021,
           "cpc_continuo": 3.29,
@@ -7699,6 +7791,7 @@
         {
           "codigo_curso": 1128914,
           "nome_curso": "LETRAS - ESPANHOL",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -7766,6 +7859,7 @@
         {
           "codigo_curso": 1167971,
           "nome_curso": "DESIGN",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "DESIGN",
           "ano": 2021,
           "cpc_continuo": 3.133,
@@ -7859,6 +7953,7 @@
         {
           "codigo_curso": 1168345,
           "nome_curso": "FINANÇAS",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -7926,6 +8021,7 @@
         {
           "codigo_curso": 1186730,
           "nome_curso": "GESTÃO DA QUALIDADE",
+          "grau_academico": "Tecnológico",
           "area_avaliacao": "TECNOLOGIA EM GESTÃO DA QUALIDADE",
           "ano": 2018,
           "cpc_continuo": 2.801809915,
@@ -8003,6 +8099,7 @@
         {
           "codigo_curso": 1191425,
           "nome_curso": "LETRAS - LIBRAS",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -8070,6 +8167,7 @@
         {
           "codigo_curso": 1191427,
           "nome_curso": "EDUCAÇÃO FÍSICA",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": "EDUCAÇÃO FÍSICA (LICENCIATURA)",
           "ano": 2021,
           "cpc_continuo": 3.562,
@@ -8158,6 +8256,7 @@
         {
           "codigo_curso": 1191555,
           "nome_curso": "EDUCAÇÃO FÍSICA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "EDUCAÇÃO FÍSICA (BACHARELADO)",
           "ano": 2021,
           "cpc_continuo": 3.769,
@@ -8251,6 +8350,7 @@
         {
           "codigo_curso": 1216500,
           "nome_curso": "ADMINISTRAÇÃO PÚBLICA",
+          "grau_academico": null,
           "area_avaliacao": "ADMINISTRAÇÃO PÚBLICA",
           "ano": 2022,
           "cpc_continuo": 2.152751369,
@@ -8284,6 +8384,7 @@
         {
           "codigo_curso": 1259004,
           "nome_curso": "LICENCIATURA INTERCULTURAL INDÍGENA",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -8357,6 +8458,7 @@
         {
           "codigo_curso": 1313213,
           "nome_curso": "ENGENHARIA DE COMPUTAÇÃO",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ENGENHARIA DE COMPUTAÇÃO I",
           "ano": 2023,
           "cpc_continuo": 3.074,
@@ -8456,6 +8558,7 @@
         {
           "codigo_curso": 1313214,
           "nome_curso": "ENGENHARIA DE TELECOMUNICAÇÕES",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -8529,6 +8632,7 @@
         {
           "codigo_curso": 1314354,
           "nome_curso": "ECONOMIA ECOLóGICA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -8596,6 +8700,7 @@
         {
           "codigo_curso": 1314356,
           "nome_curso": "GESTÃO DE POLÍTICAS PÚBLICAS",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -8663,6 +8768,7 @@
         {
           "codigo_curso": 1330754,
           "nome_curso": "SISTEMAS E MÍDIAS DIGITAIS",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -8730,6 +8836,7 @@
         {
           "codigo_curso": 1398030,
           "nome_curso": "LICENCIATURA INTERCULTURAL INDÍGENA",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -8803,6 +8910,7 @@
         {
           "codigo_curso": 5000499,
           "nome_curso": "SISTEMAS E MÍDIAS DIGITAIS",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -8876,6 +8984,7 @@
         {
           "codigo_curso": 106167,
           "nome_curso": "SISTEMAS DE INFORMAÇÃO",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "SISTEMAS DE INFORMAÇÃO",
           "ano": 2021,
           "cpc_continuo": 3.011,
@@ -8964,6 +9073,7 @@
         {
           "codigo_curso": 150117,
           "nome_curso": "ENGENHARIA DE SOFTWARE",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -9031,6 +9141,7 @@
         {
           "codigo_curso": 1127191,
           "nome_curso": "REDES DE COMPUTADORES",
+          "grau_academico": "Tecnológico",
           "area_avaliacao": "TECNOLOGIA EM REDES DE COMPUTADORES",
           "ano": 2021,
           "cpc_continuo": 3.582,
@@ -9113,6 +9224,7 @@
         {
           "codigo_curso": 1270596,
           "nome_curso": "CIÊNCIA DA COMPUTAÇÃO",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "CIÊNCIA DA COMPUTAÇÃO (BACHARELADO)",
           "ano": 2021,
           "cpc_continuo": 3.304,
@@ -9201,6 +9313,7 @@
         {
           "codigo_curso": 1299933,
           "nome_curso": "ENGENHARIA DE COMPUTAÇÃO",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ENGENHARIA DA COMPUTAÇÃO",
           "ano": 2019,
           "cpc_continuo": 3.513,
@@ -9290,6 +9403,7 @@
         {
           "codigo_curso": 1304876,
           "nome_curso": "DESIGN DIGITAL",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -9363,6 +9477,7 @@
         {
           "codigo_curso": 1272130,
           "nome_curso": "ENGENHARIA DE SOFTWARE",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
@@ -9430,6 +9545,7 @@
         {
           "codigo_curso": 1299927,
           "nome_curso": "CIÊNCIA DA COMPUTAÇÃO",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "CIÊNCIA DA COMPUTAÇÃO (BACHARELADO)",
           "ano": 2021,
           "cpc_continuo": 3.353,
@@ -9513,6 +9629,7 @@
         {
           "codigo_curso": 1299931,
           "nome_curso": "ENGENHARIA CIVIL",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ENGENHARIA CIVIL",
           "ano": 2023,
           "cpc_continuo": 3.172,
@@ -9607,6 +9724,7 @@
         {
           "codigo_curso": 1299935,
           "nome_curso": "ENGENHARIA DE PRODUÇÃO",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ENGENHARIA DE PRODUÇÃO",
           "ano": 2023,
           "cpc_continuo": 3.196,
@@ -9701,6 +9819,7 @@
         {
           "codigo_curso": 1299936,
           "nome_curso": "ENGENHARIA MECÂNICA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ENGENHARIA MECÂNICA",
           "ano": 2023,
           "cpc_continuo": 2.768,
@@ -9801,6 +9920,7 @@
         {
           "codigo_curso": 54490,
           "nome_curso": "MEDICINA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "MEDICINA",
           "ano": 2023,
           "cpc_continuo": 3.173,
@@ -9906,6 +10026,7 @@
         {
           "codigo_curso": 99300,
           "nome_curso": "ENGENHARIA DE COMPUTAÇÃO",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ENGENHARIA DE COMPUTAÇÃO I",
           "ano": 2023,
           "cpc_continuo": 3.052,
@@ -10005,6 +10126,7 @@
         {
           "codigo_curso": 99302,
           "nome_curso": "ENGENHARIA ELÉTRICA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ENGENHARIA ELÉTRICA",
           "ano": 2023,
           "cpc_continuo": 3.138,
@@ -10104,6 +10226,7 @@
         {
           "codigo_curso": 99306,
           "nome_curso": "CIÊNCIAS ECONÔMICAS",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "CIÊNCIAS ECONÔMICAS",
           "ano": 2022,
           "cpc_continuo": 2.760215304,
@@ -10197,6 +10320,7 @@
         {
           "codigo_curso": 99308,
           "nome_curso": "ODONTOLOGIA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "ODONTOLOGIA",
           "ano": 2023,
           "cpc_continuo": 4.171,
@@ -10296,6 +10420,7 @@
         {
           "codigo_curso": 99310,
           "nome_curso": "PSICOLOGIA",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": "PSICOLOGIA",
           "ano": 2022,
           "cpc_continuo": 3.740574854,
@@ -10395,6 +10520,7 @@
         {
           "codigo_curso": 150099,
           "nome_curso": "MÚSICA",
+          "grau_academico": "Licenciatura",
           "area_avaliacao": "MÚSICA (LICENCIATURA)",
           "ano": 2021,
           "cpc_continuo": 2.809,
@@ -10483,6 +10609,7 @@
         {
           "codigo_curso": 150118,
           "nome_curso": "FINANÇAS",
+          "grau_academico": "Bacharelado",
           "area_avaliacao": null,
           "ano": null,
           "cpc_continuo": null,
