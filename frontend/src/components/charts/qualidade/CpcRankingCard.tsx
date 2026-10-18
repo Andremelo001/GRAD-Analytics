@@ -91,6 +91,7 @@ export function CpcRankingCard({
         <Card
             expansivel
             title="Ranking dos cursos"
+            info="Os cursos do campus em ordem de CPC da avaliação mais recente, com a faixa, o Conceito Enade, o IDD e a variação em relação à média nacional da área. Clique numa coluna para reordenar e num curso para abrir os detalhes."
             subtitle="Avaliação mais recente de cada curso · clique para ver os detalhes"
             className={className}
         >

@@ -138,6 +138,7 @@ export function CpcComparativoCard({
         <Card
             expansivel="tela"
             title="CPC: curso x média nacional"
+            info="O CPC contínuo do curso escolhido em cada edição do Enade, contra a média nacional dos cursos da mesma área de avaliação na mesma edição."
             subtitle={
                 area
                     ? `Média dos cursos de ${toTitleCase(area)} no Brasil`

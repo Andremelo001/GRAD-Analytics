@@ -1,4 +1,3 @@
-import { Info } from "lucide-react";
 import { useMemo, useRef, useState, type MouseEvent } from "react";
 
 import brazilDots from "@/assets/brazil-dots.json";
@@ -144,20 +143,14 @@ export function BrasilMapaCard({
     }
 
     return (
-        <Card expansivel className={className}>
+        <Card
+            expansivel
+            className={className}
+            info={`Onde o curso escolhido é oferecido no Brasil: cada estado pintado pela quantidade de cursos presenciais da mesma área${item ? ` (${item.nome_cine_area_geral ?? "—"}) com turma em ${item.ano_ingresso ?? "—"}` : ""}. O ponto marca o campus.${item ? ` CPC: avaliação de ${item.ano_cpc ?? "—"}.` : ""}`}
+        >
             <div className="flex items-center justify-between gap-2">
                 <p className="flex shrink-0 items-center gap-1.5 text-[14px] font-medium whitespace-nowrap">
                     Presença no Brasil
-                    <span
-                        title={
-                            item
-                                ? `Cursos presenciais da mesma área (${item.nome_cine_area_geral ?? "—"}) com turma em ${item.ano_ingresso ?? "—"}, por estado. CPC: avaliação de ${item.ano_cpc ?? "—"}.`
-                                : undefined
-                        }
-                        className="text-text-muted flex h-5 w-5 items-center justify-center"
-                    >
-                        <Info size={14} strokeWidth={2} aria-hidden />
-                    </span>
                 </p>
                 <CursoBusca
                     compacto

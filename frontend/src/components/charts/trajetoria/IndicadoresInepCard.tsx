@@ -68,6 +68,7 @@ export function IndicadoresInepCard({
         <Card
             expansivel="tela"
             title="Indicadores do INEP"
+            info="As três taxas acumuladas do INEP para a turma (permanência TAP, conclusão TCA e desistência TDA), ano a ano, com a média nacional tracejada."
             subtitle={`Turma de ${turma.ano}, ${foco ? `${foco.anos + 1}º ano de curso` : ""} · tracejado: média nacional`}
             className={className}
         >

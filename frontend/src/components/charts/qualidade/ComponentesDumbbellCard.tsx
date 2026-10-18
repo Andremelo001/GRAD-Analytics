@@ -31,6 +31,7 @@ export function ComponentesDumbbellCard({
         <Card
             expansivel
             title="Curso × média nacional"
+            info="As notas padronizadas (0 a 5) de cada componente do CPC do curso, contra a média dos cursos da mesma área na mesma edição do Enade."
             subtitle={`Nota de cada componente e a média dos cursos da área em ${curso.ano}`}
             className={className}
         >

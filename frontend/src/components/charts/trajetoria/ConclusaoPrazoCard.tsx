@@ -46,6 +46,7 @@ export function ConclusaoPrazoCard({
         <Card
             expansivel
             title="Conclusão no prazo"
+            info="Nas turmas maduras, quantos concluíram dentro do prazo, com um ou dois anos de atraso, ou não concluíram até dois anos depois do prazo."
             subtitle={`Taxa de Conclusão Acumulada (TCA) das ${qtdMaduras} turmas maduras, por ano de atraso`}
             className={className}
         >

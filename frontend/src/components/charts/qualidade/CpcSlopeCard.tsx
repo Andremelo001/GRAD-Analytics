@@ -100,6 +100,7 @@ export function CpcSlopeCard({
         <Card
             expansivel="tela"
             title="Evolução entre ciclos"
+            info="O CPC de cada curso no ciclo anterior do Enade e no mais recente, sobre as faixas: mostra quais cursos subiram, caíram ou mudaram de faixa. Escolha um curso no seletor para ver só a linha dele."
             subtitle={
                 ativo
                     ? `${ativo.nome} | ${

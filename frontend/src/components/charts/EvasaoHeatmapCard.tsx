@@ -150,6 +150,7 @@ export function EvasaoHeatmapCard({
         <Card
             expansivel
             title="Evasão anual por curso"
+            info="A taxa de desistência de cada curso em cada ano, comparada à média nacional da área no mesmo ano. O número em destaque é a média dos cursos no ano mais recente (ou a célula sob o mouse)."
             subtitle={`Evasão de cada ano comparada à média nacional da área: ${coresAcessiveis ? "azul abaixo, laranja acima" : "verde abaixo, vermelho acima"}`}
             className={className}
         >

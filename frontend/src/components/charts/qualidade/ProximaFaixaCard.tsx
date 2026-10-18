@@ -63,6 +63,7 @@ export function ProximaFaixaCard({
         <Card
             expansivel
             title="Quanto falta para a próxima faixa"
+            info="Onde o CPC contínuo do curso está na régua das faixas, quanto falta para a próxima e quais componentes ainda têm mais pontos a render."
             subtitle="CPC contínuo do curso na régua das faixas"
             className={className}
         >

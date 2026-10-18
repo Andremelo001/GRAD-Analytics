@@ -99,6 +99,7 @@ export function OutrosCampiCard({
         <Card
             expansivel
             title="Este curso nos outros campi da UFC"
+            info="O CPC do mesmo curso (mesma área de avaliação) nos outros campi da UFC, na avaliação mais recente de cada um, e a posição deste campus entre eles."
             subtitle={`${toTitleCase(area)} · CPC da avaliação mais recente de cada campus`}
             className={className}
         >

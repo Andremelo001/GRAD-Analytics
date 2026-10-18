@@ -25,6 +25,7 @@ export function ParticipacaoEnadeCard({
         <Card
             expansivel
             title="Participação no Enade"
+            info="Em cada edição do Enade, quantos concluintes inscritos no curso fizeram a prova."
             subtitle="Concluintes inscritos que fizeram a prova, em cada edição"
             className={className}
         >

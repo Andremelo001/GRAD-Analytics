@@ -55,6 +55,7 @@ export function SituacaoLadosCard({
         <Card
             expansivel
             title="Situação final"
+            info="Como terminaram as turmas maduras de cada lado, dois anos depois do prazo: quantos concluíram, desistiram ou ainda estão cursando."
             subtitle={subtitulo}
             className={className}
         >
@@ -207,6 +208,7 @@ export function PermanenciaLadosCard({
         <Card
             expansivel="tela"
             title="Permanência ano a ano"
+            info="A Taxa de Permanência (TAP) de cada lado, ano a ano: a parte dos ingressantes que continua no curso."
             subtitle={subtitulo}
             className={className}
             action={

@@ -184,6 +184,7 @@ function ComparacaoCampi({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
                     <LadoALadoCard
                         className="lg:col-span-5"
                         titulo="Indicadores do campus"
+                        info="As médias dos indicadores de qualidade dos cursos de cada campus, na avaliação mais recente de cada curso. O ✓ marca o campus à frente em cada linha."
                         subtitulo="Média dos cursos, na avaliação mais recente de cada um"
                         lados={lados}
                         linhas={[
@@ -225,6 +226,7 @@ function ComparacaoCampi({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
                         className="lg:col-span-7"
                         titulo="Componentes do CPC"
                         subtitulo="Nota média dos cursos de cada campus em cada componente"
+                        info="A nota média dos cursos de cada campus em cada componente do CPC (0 a 5), lado a lado."
                         lados={lados}
                         a={ra.notas}
                         b={rb.notas}
@@ -468,6 +470,7 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
                             <LadoALadoCard
                                 className="lg:col-span-5"
                                 titulo="Indicadores do curso"
+                                info="CPC, faixa, IDD, componente específico do Enade e docentes doutores dos dois cursos, na mesma edição do Enade. O ✓ marca o curso à frente em cada linha."
                                 subtitulo={`Avaliação do Enade ${daArea.ano}`}
                                 lados={ladosInstituicao}
                                 linhas={[
@@ -507,6 +510,7 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
                                 className="lg:col-span-7"
                                 titulo="Componentes do CPC"
                                 subtitulo="Nota de cada curso em cada componente"
+                                info="As notas dos dois cursos em cada componente do CPC (0 a 5), lado a lado."
                                 lados={lados}
                                 a={linhaA.notas}
                                 b={cursoB.notas}

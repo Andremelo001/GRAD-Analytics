@@ -157,7 +157,7 @@ function Home({ data }: { data: DashboardData }) {
 function CabecalhoInicio() {
     return (
         <PageHeader
-            title="Olá, bem-vindo ao PROGRAD Analytics!"
+            title="Olá, bem-vindo ao GRAD Analytics!"
             subtitle={
                 <>
                     Acompanhe os indicadores da graduação do UFC Campus <CampusSelect />

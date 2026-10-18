@@ -80,6 +80,7 @@ export function ContribuicaoCard({
         <Card
             expansivel="tela"
             title="De onde vem a nota"
+            info="Quanto cada componente do CPC somou à nota do curso (nota padronizada × peso), comparado ao máximo que ele poderia somar."
             subtitle="Pontos de CPC que cada componente trouxe (nota × peso), do máximo possível"
             className={className}
         >

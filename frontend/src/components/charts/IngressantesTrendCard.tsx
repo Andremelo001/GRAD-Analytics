@@ -337,6 +337,7 @@ export function IngressantesTrendCard({
         <Card
             expansivel="tela"
             title="Ingressantes"
+            info="Quantos alunos entraram em cada ano: o total do campus, ou do curso escolhido no seletor, contra a média nacional dos mesmos cursos no mesmo ano de ingresso."
             subtitle={subtitulo}
             action={
                 <CursoBusca

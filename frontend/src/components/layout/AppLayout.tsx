@@ -13,7 +13,6 @@ import {
     PresentationTabsSlotContext,
 } from "@/context/page-header-slot";
 import { PresentationContext } from "@/context/presentation-context";
-import { useDashboardData } from "@/hooks/useDashboardData";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { usePresentationMode } from "@/hooks/usePresentationMode";
 import { cn } from "@/lib/utils";
@@ -37,7 +36,6 @@ const BAND_HEIGHT = "h-[325px] md:h-[291px] lg:h-[261px]";
 const TRANSICAO = "duration-500 ease-in-out motion-reduce:transition-none";
 
 export function AppLayout() {
-    const { data } = useDashboardData();
     const [stickySlot, setStickySlot] = useState<HTMLDivElement | null>(null);
     const [flowSlot, setFlowSlot] = useState<HTMLDivElement | null>(null);
     const [tabsSlot, setTabsSlot] = useState<HTMLDivElement | null>(null);
@@ -147,7 +145,7 @@ export function AppLayout() {
                                 )}
                             </span>
                         </div>
-                        <CourseSearch cursos={data?.cursos ?? []} />
+                        <CourseSearch />
                     </header>
 
                     <div className="relative text-white">
@@ -242,7 +240,10 @@ export function AppLayout() {
                 aria-label="Sair do modo apresentação"
                 title="Sair do modo apresentação (Esc ou Ctrl+K)"
                 className={cn(
-                    "bg-pill text-pill-fg focus-visible:ring-lime/60 fixed top-5 left-5 z-40 flex h-[34px] w-[34px] items-center justify-center rounded-full shadow-[0_8px_24px_rgb(0_0_0/0.2)] transition-[opacity,transform] outline-none focus-visible:ring-2",
+                    // o mesmo X dos cards ampliados (cinza, ícone em tinta
+                    // apagada); sobre o plano cinza, um contorno e uma sombra
+                    // leves o destacam
+                    "bg-page text-text-secondary hover:text-ink ring-card-ring focus-visible:ring-lime/60 fixed top-5 left-5 z-40 flex h-8 w-8 items-center justify-center rounded-full shadow-[0_4px_16px_rgb(0_0_0/0.12)] ring-1 transition-[opacity,transform,color] outline-none focus-visible:ring-2",
                     TRANSICAO,
                     presenting
                         ? "scale-100 opacity-100"

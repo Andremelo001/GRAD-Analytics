@@ -69,6 +69,7 @@ export function IndicadoresTrajetoriaCards({
             <LadoALadoCard
                 titulo={titulo}
                 subtitulo="Turma madura mais recente de cada curso"
+                info="Situação final das turmas maduras (conclusão TCA, desistência TDA, permanência TAP), conclusão no prazo, desistência no 1º ano e tempo até concluir, lado a lado. O ✓ marca o lado à frente em cada linha."
                 lados={lados}
                 linhas={[
                     {
@@ -127,6 +128,7 @@ export function IndicadoresTrajetoriaCards({
             />
             <EspelhoCard
                 titulo="Desistência a cada ano do curso"
+                info="A Taxa de Desistência Anual (TADA) em cada ano do curso, lado a lado: em que anos cada lado perde mais alunos."
                 subtitulo="% dos ingressantes que desistiram em cada ano (TADA)"
                 lados={lados}
                 coluna="Ano do curso"

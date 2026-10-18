@@ -83,6 +83,7 @@ export function CaminhoTurmaCard({
         <Card
             expansivel="tela"
             title="O caminho de uma turma"
+            info="Ano a ano desde o ingresso, a parte da turma que concluiu, desistiu e ainda está cursando. A linha tracejada marca o fim do prazo do curso."
             subtitle={`Turma de ${turma.ano}${turma.prazo ? ` · prazo de ${turma.prazo} anos` : ""}${turma.madura ? "" : " · em andamento"}`}
             className={className}
         >

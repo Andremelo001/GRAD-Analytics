@@ -121,6 +121,7 @@ export function ComponentesHeatmapCard({
         <Card
             expansivel
             title="Componentes do CPC por curso"
+            info="As notas dos componentes do CPC de cada curso na avaliação mais recente, coloridas pela diferença para a média nacional da área no mesmo ano."
             subtitle={`Nota de cada componente comparada à média nacional da área no mesmo ano: ${coresAcessiveis ? "azul acima, laranja abaixo" : "verde acima, vermelho abaixo"}`}
             className={className}
         >

@@ -1,6 +1,6 @@
-import { Info } from "lucide-react";
 import type { ReactNode } from "react";
 
+import { IconeInfo } from "@/components/cards/IconeInfo";
 import { Card } from "@/components/cards/Card";
 import { cn } from "@/lib/utils";
 
@@ -37,13 +37,7 @@ export function Tile({
             />
             <div className="relative flex items-center justify-between gap-2">
                 <p className="text-[14px] font-medium">{label}</p>
-                <span
-                    title={info}
-                    aria-label={info}
-                    className="text-text-muted -mr-1 flex h-6 w-6 items-center justify-center"
-                >
-                    <Info size={15} strokeWidth={2} aria-hidden />
-                </span>
+                <IconeInfo texto={info} className="-mr-1" />
             </div>
             {value !== undefined ? (
                 <div className="relative mt-2.5 flex items-center gap-3">

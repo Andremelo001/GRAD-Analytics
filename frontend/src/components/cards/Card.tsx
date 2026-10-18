@@ -10,6 +10,7 @@ import {
 } from "react";
 import { createPortal, flushSync } from "react-dom";
 
+import { IconeInfo } from "@/components/cards/IconeInfo";
 import { PresentationContext } from "@/context/presentation-context";
 import { cn } from "@/lib/utils";
 
@@ -147,6 +148,7 @@ export function Card({
     action,
     className,
     expansivel = false,
+    info,
     children,
 }: {
     title?: string;
@@ -154,6 +156,9 @@ export function Card({
     action?: ReactNode;
     className?: string;
     expansivel?: boolean | "tela";
+    /** O que o card mostra: o ícone de informação no canto superior direito
+     * (texto no hover). Notas sobre as métricas ficam no rodapé do card. */
+    info?: string;
     children: ReactNode;
 }) {
     const ref = useRef<HTMLElement>(null);
@@ -335,7 +340,11 @@ export function Card({
                     className,
                     ampliado && AMPLIADO,
                     // sem ``title``: o 1º bloco (depois do X) abre espaço pro X
-                    ampliado && !title && "[&>:nth-child(2)]:pr-11",
+                    // sem ``title``: o 1º bloco (depois do canto) abre espaço
+                    // pro ícone de informação e pro X
+                    !title && info && !ampliado && "[&>:nth-child(2)]:pr-8",
+                    !title && !info && ampliado && "[&>:nth-child(2)]:pr-11",
+                    !title && info && ampliado && "[&>:nth-child(2)]:pr-20",
                     ampliado && expansivel === "tela" && AMPLIADO_TELA,
                     ampliado && apresentando && AMPLIADO_APRESENTACAO,
                     ampliado &&
@@ -344,25 +353,30 @@ export function Card({
                         AMPLIADO_APRESENTACAO_TELA
                 )}
             >
-                {/* sem ``title`` (cabeçalho próprio, ex.: Presença no Brasil): o X
-                    no canto, na altura da 1ª linha (o padding do card), e o
-                    primeiro bloco do conteúdo abre espaço pra ele */}
-                {ampliado && !title && (
-                    <div className="absolute top-5 right-5 z-10 lg:top-6 lg:right-6">
-                        {botaoFechar}
+                {/* sem ``title`` (cabeçalho próprio, ex.: Presença no Brasil): o
+                    ícone de informação e o X no canto, na altura da 1ª linha (o
+                    padding do card), e o primeiro bloco do conteúdo abre espaço
+                    pra eles */}
+                {!title && (info || ampliado) && (
+                    <div className="absolute top-5 right-5 z-10 flex h-8 items-center gap-2 lg:top-6 lg:right-6">
+                        {info && <IconeInfo texto={info} />}
+                        {ampliado && botaoFechar}
                     </div>
                 )}
                 {title && (
-                    // ampliado: o X na mesma linha, centrado com a ação (seletor)
+                    // o ícone de informação (e, ampliado, o X) no canto direito
+                    // da linha do título, centrado com a ação (seletor), que
+                    // fica à esquerda deles
                     <div
                         className={cn(
-                            ampliado && "flex items-start gap-3 sm:items-center"
+                            (info || ampliado) &&
+                                "flex items-start gap-2 sm:items-center"
                         )}
                     >
                         <div
                             className={cn(
                                 "flex flex-wrap items-center justify-between gap-3",
-                                ampliado && "min-w-0 flex-1"
+                                (info || ampliado) && "min-w-0 flex-1"
                             )}
                         >
                             {/* flex-1 + basis-0: o título ocupa o que sobra
@@ -387,6 +401,7 @@ export function Card({
                             </div>
                             {action}
                         </div>
+                        {info && <IconeInfo texto={info} />}
                         {ampliado && botaoFechar}
                     </div>
                 )}

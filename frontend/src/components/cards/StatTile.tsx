@@ -1,6 +1,7 @@
-import { ArrowDown, ArrowUp, Info, Minus } from "lucide-react";
+import { ArrowDown, ArrowUp, Minus } from "lucide-react";
 import { useId } from "react";
 
+import { IconeInfo } from "@/components/cards/IconeInfo";
 import { Card } from "@/components/cards/Card";
 import { formatPercent, formatPoints } from "@/lib/format";
 import { cn } from "@/lib/utils";
@@ -67,13 +68,7 @@ export function StatTile({
         <Card className={cn("relative overflow-hidden", className)}>
             <div className="flex items-center justify-between gap-2">
                 <p className="text-[14px] font-medium">{label}</p>
-                <span
-                    title={info}
-                    aria-label={info}
-                    className="text-text-muted -mr-1 flex h-6 w-6 items-center justify-center"
-                >
-                    <Info size={15} strokeWidth={2} aria-hidden />
-                </span>
+                <IconeInfo texto={info} className="-mr-1" />
             </div>
 
             <div className="mt-2.5 flex items-center gap-3">

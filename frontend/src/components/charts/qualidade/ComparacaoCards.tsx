@@ -57,6 +57,7 @@ export function LadoALadoCard({
     linhas,
     rodape,
     action,
+    info,
     className,
 }: {
     titulo: string;
@@ -64,6 +65,8 @@ export function LadoALadoCard({
     lados: Lados;
     linhas: LinhaLadoALado[];
     rodape?: ReactNode;
+    /** O que o card mostra (o "i" do canto). */
+    info?: string;
     /** À direita do título (ex.: o seletor do lado B). */
     action?: ReactNode;
     className?: string;
@@ -75,6 +78,7 @@ export function LadoALadoCard({
             title={titulo}
             subtitle={subtitulo}
             action={action}
+            info={info}
             className={className}
         >
             {/* legenda na mesma grade das linhas: cada nome em cima da coluna
@@ -187,6 +191,7 @@ export function ComponentesEspelhoCard({
     lados,
     a,
     b,
+    info,
     className,
 }: {
     titulo: string;
@@ -194,10 +199,12 @@ export function ComponentesEspelhoCard({
     lados: Lados;
     a: Notas;
     b: Notas;
+    info?: string;
     className?: string;
 }) {
     return (
         <EspelhoCard
+            info={info}
             titulo={titulo}
             subtitulo={subtitulo}
             lados={lados}
@@ -239,6 +246,7 @@ export function EspelhoCard({
     maiorMelhor = true,
     coluna,
     rodape,
+    info,
     className,
 }: {
     titulo: string;
@@ -251,6 +259,7 @@ export function EspelhoCard({
     /** Cabeçalho da coluna dos nomes na tabela pra leitores de tela. */
     coluna: string;
     rodape: ReactNode;
+    info?: string;
     className?: string;
 }) {
     const CHART = useChartTheme();
@@ -282,6 +291,7 @@ export function EspelhoCard({
             expansivel
             title={titulo}
             subtitle={subtitulo}
+            info={info}
             className={className}
             // legenda à direita, na linha do subtítulo
             action={
@@ -396,6 +406,7 @@ export function CursosEmComumCard({
         <Card
             expansivel
             title="Cursos em comum"
+            info="As áreas de avaliação que os dois campi oferecem, com o melhor CPC de cada campus em cada área."
             subtitle="Áreas que os dois campi oferecem: o melhor CPC de cada um na área"
             className={className}
             // legenda à direita, na linha do subtítulo
@@ -585,6 +596,7 @@ export function ParticipacaoComparadaCard({
         <Card
             expansivel
             title="Participação no Enade"
+            info="Em cada edição do Enade, quantos concluintes inscritos em cada um dos dois cursos fizeram a prova."
             subtitle="Concluintes inscritos em cada edição: a parte escura fez a prova, a clara não"
             className={className}
             action={

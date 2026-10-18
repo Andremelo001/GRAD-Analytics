@@ -73,6 +73,7 @@ export function SituacaoFinalCard({
         <Card
             expansivel
             title="Situação final por curso"
+            info="Como terminou a turma madura mais recente de cada curso, dois anos depois do prazo: quantos concluíram, desistiram e ainda estão cursando."
             subtitle="Turma madura de cada curso, dois anos depois do prazo"
             className={className}
             action={

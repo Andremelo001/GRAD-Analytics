@@ -185,7 +185,11 @@ function Mapa({ data }: { data: DashboardData }) {
             className="grid grid-cols-1 gap-5 lg:h-[var(--mapa-h)] lg:grid-cols-12 lg:gap-6"
             style={{ "--mapa-h": `${alturaDisponivel}px` } as CSSProperties}
         >
-            <Card expansivel="tela" className="lg:col-span-7">
+            <Card
+                expansivel="tela"
+                className="lg:col-span-7"
+                info="Os cursos da mesma área de avaliação no Brasil, por estado, na edição mais recente do Enade, pintados pelo indicador escolhido. Clique num estado para ver os detalhes dele ao lado."
+            >
                 {/* título com o ano do Enade ao lado (no estilo da frase de
                     filtros), e a frase de filtros embaixo */}
                 <h2 className="text-[17px] leading-tight font-semibold tracking-[-0.01em]">
@@ -274,6 +278,7 @@ function Mapa({ data }: { data: DashboardData }) {
                 <Card
                     expansivel="tela"
                     title={titulo}
+                    info="Os números do Brasil, ou do estado escolhido no mapa: cursos por faixa, a posição do curso do campus e os cursos da área com os melhores CPCs."
                     subtitle={
                         visao
                             ? `${visao.cursoCampus ? "" : "Seu curso não tem CPC nesta edição · "}${uf ? "Clique fora do estado para voltar ao Brasil" : "Clique num estado para ver os detalhes"}`

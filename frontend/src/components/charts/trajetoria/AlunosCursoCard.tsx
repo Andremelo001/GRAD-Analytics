@@ -66,6 +66,7 @@ export function AlunosCursoCard({
         <Card
             expansivel
             title="Alunos do curso"
+            info="Quantos alunos entraram no curso e quantos concluíram, desistiram e ainda cursam: de todas as turmas somadas ou de uma turma, na situação do último ano acompanhado."
             subtitle={
                 turma
                     ? `Turma de ${turma.ano}, situação em ${turma.ultimoAno ?? ultimoAno}${turma.madura ? "" : " · em andamento"}`

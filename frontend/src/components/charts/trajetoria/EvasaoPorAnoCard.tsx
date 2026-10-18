@@ -76,6 +76,7 @@ export function EvasaoPorAnoCard({
         <Card
             expansivel
             title="Em que ano do curso a evasão acontece"
+            info="Em que ano do curso acontece a evasão das turmas maduras: a parte de toda a desistência que ocorreu no 1º, 2º, 3º ano… Mostra onde agir para reduzir a evasão."
             subtitle="Taxa de Desistência Anual (TADA) de cada ano de curso, em parte de toda a evasão das turmas maduras"
             className={className}
             action={
