@@ -110,7 +110,7 @@ export function PermanenciaCard({
             expansivel="tela"
             title="Permanência × Brasil"
             info="A Taxa de Permanência (TAP) da turma, a parte que ainda está no curso, ano a ano, contra a média nacional dos mesmos cursos no mesmo ano de curso."
-            subtitle={`Taxa de Permanência (TAP) da turma de ${turma.ano}, contra a média nacional dos mesmos cursos`}
+            subtitle={`Taxa de Permanência (TAP) da turma de ${turma.ano}`}
             className={className}
         >
             {foco && focoBrasil && (

@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, type KeyboardEvent } from "react";
 
 import { Card } from "@/components/cards/Card";
 import { DataTable } from "@/components/charts/DataTable";
+import { useAbrirNoCampus } from "@/hooks/useAbrirNoCampus";
 import { useChartTheme } from "@/hooks/useChartTheme";
 import { useResumoCampi } from "@/hooks/useResumoCampi";
 import { nomeCampus } from "@/lib/comparacao";
@@ -37,6 +38,11 @@ export function OutrosCampiCard({
     const CHART = useChartTheme();
     const { resumo } = useResumoCampi();
     const [hover, setHover] = useState<string | null>(null);
+    const abrirNoCampus = useAbrirNoCampus();
+    const abrir = (p: Ponto) =>
+        abrirNoCampus(p.slug, `/qualidade/curso/${p.curso.codigo_curso}`, {
+            topo: true,
+        });
 
     const curso = resumo?.campi
         .find((c) => c.slug === campusAtual)
@@ -182,7 +188,15 @@ export function OutrosCampiCard({
                     {outros.map((p, i) => (
                         <span
                             key={`r-${chave(p)}`}
-                            className="text-text-secondary pointer-events-none absolute -translate-x-1/2 text-[11px] whitespace-nowrap"
+                            className={cn(
+                                "pointer-events-none absolute -translate-x-1/2 text-[11px] whitespace-nowrap transition-[color,opacity] duration-200",
+                                // o nome do campus em foco destaca; os outros apagam
+                                hover === null
+                                    ? "text-text-secondary"
+                                    : hover === chave(p)
+                                      ? "text-ink font-semibold"
+                                      : "text-text-secondary opacity-50"
+                            )}
                             style={{
                                 left: `${pct(p.curso.cpc_continuo)}%`,
                                 top: niveis[i] === 0 ? 58 : 78,
@@ -200,22 +214,51 @@ export function OutrosCampiCard({
                             <span
                                 key={chave(p)}
                                 onMouseEnter={() => setHover(chave(p))}
-                                className="absolute top-[44px] flex -translate-x-1/2 -translate-y-1/2 p-1.5"
+                                // outro campus: clicar abre o curso dele (o
+                                // painel troca de campus e sobe pro topo)
+                                {...(atual
+                                    ? {}
+                                    : {
+                                          role: "button",
+                                          tabIndex: 0,
+                                          title: `Abrir ${toTitleCase(p.curso.nome_curso)} em ${p.campus}`,
+                                          onFocus: () => setHover(chave(p)),
+                                          onClick: () => abrir(p),
+                                          onKeyDown: (e: KeyboardEvent) => {
+                                              if (e.key === "Enter" || e.key === " ") {
+                                                  e.preventDefault();
+                                                  abrir(p);
+                                              }
+                                          },
+                                      })}
+                                className={cn(
+                                    "absolute top-[44px] flex -translate-x-1/2 -translate-y-1/2 rounded-full p-1.5 outline-none",
+                                    !atual &&
+                                        "focus-visible:ring-lime/60 cursor-pointer focus-visible:ring-2"
+                                )}
                                 style={{ left: `${pct(p.curso.cpc_continuo)}%` }}
                             >
                                 <span
                                     className={cn(
-                                        "block rounded-full",
+                                        "block rounded-full transition-[scale,box-shadow,background-color] duration-200 ease-out motion-reduce:transition-none",
                                         atual ? "h-4 w-4 border-2" : "h-3 w-3",
-                                        hover === chave(p) &&
-                                            "ring-ink ring-2 ring-offset-1"
+                                        // em foco: cresce um pouco, com um anel
+                                        hover === chave(p) && "scale-125"
                                     )}
                                     style={{
                                         background: atual
                                             ? CHART.lime
-                                            : CHART.reference,
+                                            : hover === chave(p)
+                                              ? CHART.ink
+                                              : CHART.reference,
                                         borderColor: atual ? CHART.onLime : undefined,
-                                        boxShadow: `0 0 0 2px ${CHART.surface}`,
+                                        // o contorno da cor do card e, em foco, o
+                                        // anel por fora (os dois no box-shadow: um
+                                        // ``ring`` do Tailwind seria sobrescrito)
+                                        boxShadow:
+                                            hover === chave(p)
+                                                ? `0 0 0 2px ${CHART.surface}, 0 0 0 3.5px ${CHART.ink}`
+                                                : `0 0 0 2px ${CHART.surface}`,
                                     }}
                                 />
                             </span>

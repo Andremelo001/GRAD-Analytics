@@ -53,7 +53,7 @@ export function TrianguloTurmasCard({
             expansivel
             title="Triângulo das turmas"
             info="A desistência acumulada (TDA) de todas as turmas do curso: cada linha é uma turma, cada coluna um ano de curso. Clique numa turma para vê-la nos outros gráficos."
-            subtitle="Taxa de Desistência Acumulada (TDA) de cada turma, ano a ano · clique numa turma para vê-la nos outros gráficos"
+            subtitle="Taxa de Desistência Acumulada (TDA) de cada turma, ano a ano"
             className={className}
         >
             <div className="mt-4 flex min-h-[22px] flex-wrap items-center justify-between gap-3 text-[12px]">

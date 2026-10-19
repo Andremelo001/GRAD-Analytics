@@ -64,12 +64,41 @@ export function IndicadoresInepCard({
     const maxAnos = Math.max(pontos.at(-1)?.anos ?? 0, 1);
     const foco = pontos.find((p) => p.anos === hover) ?? pontos.at(-1);
 
+    const CHART = useChartTheme();
     return (
         <Card
             expansivel="tela"
             title="Indicadores do INEP"
             info="As três taxas acumuladas do INEP para a turma (permanência TAP, conclusão TCA e desistência TDA), ano a ano, com a média nacional tracejada."
-            subtitle={`Turma de ${turma.ano}, ${foco ? `${foco.anos + 1}º ano de curso` : ""} · tracejado: média nacional`}
+            subtitle={
+                <>
+                    Turma de {turma.ano}
+                    {foco && `, ${foco.anos + 1}º ano de curso`}
+                    <span className="mx-1.5">|</span>
+                    {/* legenda das linhas, como no Permanência × Brasil */}
+                    {ORDEM.map((ind) => (
+                        <span
+                            key={ind}
+                            className="mr-3 inline-flex items-center gap-1.5 align-middle whitespace-nowrap"
+                        >
+                            <span
+                                aria-hidden
+                                className="h-[3px] w-4 rounded-full"
+                                style={{ background: corIndicador(CHART, ind) }}
+                            />
+                            {ind}
+                        </span>
+                    ))}
+                    <span className="inline-flex items-center gap-1.5 align-middle whitespace-nowrap">
+                        <span
+                            aria-hidden
+                            className="w-4 border-t-2 border-dashed"
+                            style={{ borderColor: CHART.textMuted }}
+                        />
+                        média nacional
+                    </span>
+                </>
+            }
             className={className}
         >
             <div

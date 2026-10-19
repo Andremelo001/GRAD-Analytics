@@ -1,6 +1,6 @@
-# PROGRAD Analytics
+# GRAD Analytics
 
-O **PROGRAD Analytics** é um painel on-line que reúne, em um só lugar, os
+O **GRAD Analytics** é um painel on-line que reúne, em um só lugar, os
 principais indicadores dos cursos de graduação da **UFC**.
 
 A ideia é simples: dados que hoje estão espalhados em planilhas enormes do

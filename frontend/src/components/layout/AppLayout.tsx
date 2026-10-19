@@ -13,6 +13,7 @@ import {
     PresentationTabsSlotContext,
 } from "@/context/page-header-slot";
 import { PresentationContext } from "@/context/presentation-context";
+import { useNavegacaoPendente } from "@/hooks/useAbrirNoCampus";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { usePresentationMode } from "@/hooks/usePresentationMode";
 import { cn } from "@/lib/utils";
@@ -45,6 +46,9 @@ export function AppLayout() {
     // Configurações não tem cards pra apresentar: sem o botão nem o atalho
     const apresentavel = !pathname.startsWith("/configuracoes");
     const { presenting, toggle, exit } = usePresentationMode(apresentavel);
+    // cursos de outro campus (busca, "nos outros campi"): navega quando o
+    // campus novo carrega
+    useNavegacaoPendente();
     const topoRef = useRef<HTMLDivElement>(null);
     const topoAltura = useAltura(topoRef);
     // a faixa de trás é mais alta que o topo fixo: os dois sobem a altura

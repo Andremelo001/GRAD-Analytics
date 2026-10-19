@@ -152,7 +152,9 @@ export function Card({
     children,
 }: {
     title?: string;
-    subtitle?: string;
+    /** Texto (inteiro no hover, se for cortado) ou um conteúdo próprio
+     * numa linha só (ex.: texto + legenda). */
+    subtitle?: ReactNode;
     action?: ReactNode;
     className?: string;
     expansivel?: boolean | "tela";
@@ -388,12 +390,21 @@ export function Card({
                                     {title}
                                 </h2>
                                 {subtitle && (
-                                    // uma linha só (texto inteiro no hover):
+                                    // texto: uma linha só (inteiro no hover) —
                                     // subtítulo que muda com a série escolhida
-                                    // não pode mudar a altura
+                                    // não pode mudar a altura. Conteúdo próprio
+                                    // (texto + legenda): quebra de linha se não
+                                    // couber (celular)
                                     <p
-                                        className="text-text-muted mt-1 truncate text-[12px]"
-                                        title={subtitle}
+                                        className={cn(
+                                            "text-text-muted mt-1 text-[12px]",
+                                            typeof subtitle === "string" && "truncate"
+                                        )}
+                                        title={
+                                            typeof subtitle === "string"
+                                                ? subtitle
+                                                : undefined
+                                        }
                                     >
                                         {subtitle}
                                     </p>

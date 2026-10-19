@@ -1,15 +1,7 @@
 import { Search } from "lucide-react";
-import {
-    useEffect,
-    useId,
-    useMemo,
-    useRef,
-    useState,
-    type FormEvent,
-    type KeyboardEvent,
-} from "react";
-import { useNavigate } from "react-router-dom";
+import { useId, useMemo, useState, type FormEvent, type KeyboardEvent } from "react";
 
+import { useAbrirNoCampus } from "@/hooks/useAbrirNoCampus";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { useResumoCampi } from "@/hooks/useResumoCampi";
 import { nomeCampus } from "@/lib/comparacao";
@@ -48,21 +40,17 @@ interface Resultado {
  * nome, código, grau ou campus). Cada resultado mostra o campus e, no curso
  * em destaque (mouse ou setas), duas opções: abrir em Qualidade (com o CPC)
  * ou em Trajetória (com a TCA). A escolhida abre na sub-aba Por curso — se o
- * curso é de outro campus, o painel troca pra ele antes — e a outra aba
+ * curso é de outro campus, o painel troca pra ele antes (``useAbrirNoCampus``) — e a outra aba
  * também já fica nesse curso, pra quando o usuário for até ela. */
 export function CourseSearch() {
-    const navigate = useNavigate();
     const listId = useId();
-    const { campus, setCampus, switching, data } = useDashboardData();
+    const { campus } = useDashboardData();
     const { resumo } = useResumoCampi();
     const [query, setQuery] = useState("");
     const [open, setOpen] = useState(false);
     const [active, setActive] = useState(0);
     const [aba, setAba] = useState<Aba>("qualidade");
-    // destino escolhido num curso de outro campus: só navega quando os dados
-    // desse campus chegam (senão a página abriria com o campus anterior e
-    // trocaria de curso)
-    const pendente = useRef<{ slug: string; rota: string } | null>(null);
+    const abrirNoCampus = useAbrirNoCampus();
 
     const todos = useMemo<Resultado[]>(
         () =>
@@ -108,17 +96,6 @@ export function CourseSearch() {
         );
     }, [todos, query, campus]);
 
-    useEffect(() => {
-        const destino = pendente.current;
-        if (!destino || campus !== destino.slug || switching || !data) return;
-        pendente.current = null;
-        // depois dos efeitos da página: se a sub-aba Por curso já estava
-        // aberta, ela troca sozinha pra um curso do campus novo (o da URL
-        // antiga não existe nele) — a navegação da busca vem por último e vale
-        const t = window.setTimeout(() => navigate(destino.rota), 0);
-        return () => window.clearTimeout(t);
-    }, [campus, switching, data, navigate]);
-
     const showList = open && query.trim().length > 0;
 
     function go(r: Resultado | undefined, destino: Aba) {
@@ -133,11 +110,8 @@ export function CourseSearch() {
         // a outra aba também abre nesse curso quando o usuário for até ela
         lembrarSubaba("qualidade", rotas.qualidade);
         if (r.temTrajetoria) lembrarSubaba("trajetoria", rotas.trajetoria);
-        if (r.slug === campus) navigate(rotas[destino]);
-        else {
-            pendente.current = { slug: r.slug, rota: rotas[destino] };
-            setCampus(r.slug);
-        }
+        // curso de outro campus: o painel troca pra ele antes de abrir
+        abrirNoCampus(r.slug, rotas[destino]);
     }
 
     function onSubmit(event: FormEvent) {
