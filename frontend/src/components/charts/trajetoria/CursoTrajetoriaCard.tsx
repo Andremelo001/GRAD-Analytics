@@ -1,8 +1,8 @@
 import type { ReactNode } from "react";
 
 import { Card } from "@/components/cards/Card";
-import { ChartSelect } from "@/components/charts/ChartSelect";
 import { CursoBusca } from "@/components/charts/qualidade/CursoBusca";
+import { TurmaInline } from "@/components/charts/trajetoria/TurmaInline";
 import { DeltaPill } from "@/components/charts/qualidade/DeltaPill";
 import { useChartTheme } from "@/hooks/useChartTheme";
 import { opcaoCurso } from "@/lib/curso";
@@ -90,20 +90,14 @@ export function CursoTrajetoriaCard({
                 </div>
                 {/* a turma, como frase (o seletor "inline" do Mapa da
                     Qualidade), ao lado do seletor de curso */}
-                <p className="text-text-secondary flex h-10 items-center gap-1.5 self-start text-[13px] whitespace-nowrap sm:ml-auto">
+                <div className="text-text-secondary flex h-10 items-center gap-1.5 self-start text-[13px] whitespace-nowrap sm:ml-auto">
                     Turma de
-                    <ChartSelect
-                        variant="inline"
-                        tone="surface"
-                        label="Turma (ano de ingresso)"
-                        value={String(turma.ano)}
-                        options={[...curso.turmas].reverse().map((t) => ({
-                            value: String(t.ano),
-                            label: t.madura ? String(t.ano) : `${t.ano} · em andamento`,
-                        }))}
-                        onChange={(v) => onTurma(Number(v))}
+                    <TurmaInline
+                        turmas={curso.turmas}
+                        valor={turma.ano}
+                        onChange={(a) => typeof a === "number" && onTurma(a)}
                     />
-                </p>
+                </div>
                 <div className="w-full sm:w-80">
                     <CursoBusca
                         label="Curso"

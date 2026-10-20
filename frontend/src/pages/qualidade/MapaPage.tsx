@@ -141,7 +141,7 @@ function Mapa({ data }: { data: DashboardData }) {
     // na saudação): "CPC médio ▾ em Redes de Computadores ▾ | todas as
     // redes ▾" (o ano do Enade fica ao lado do título) — os três continuam à mão, sem pílulas escuras
     const filtros = (
-        <p className="text-text-secondary mt-1.5 text-[13px] leading-relaxed">
+        <div className="text-text-secondary mt-1.5 text-[13px] leading-relaxed">
             <ChartSelect
                 variant="inline"
                 tone="surface"
@@ -176,7 +176,7 @@ function Mapa({ data }: { data: DashboardData }) {
                 }))}
                 onChange={(v) => atualizar({ rede: v === "todas" ? null : v })}
             />
-        </p>
+        </div>
     );
 
     return (

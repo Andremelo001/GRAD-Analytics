@@ -4,12 +4,14 @@ import { Card } from "@/components/cards/Card";
 import { NotaRodape } from "@/components/cards/NotaRodape";
 import { DataTable } from "@/components/charts/DataTable";
 import { corSituacao, type Situacao } from "@/components/charts/trajetoria/situacao";
+import {
+    TODAS_AS_TURMAS,
+    TurmaInline,
+} from "@/components/charts/trajetoria/TurmaInline";
 import { useChartTheme } from "@/hooks/useChartTheme";
 import { formatInteger, formatPercent } from "@/lib/format";
 import { somarContagens, type CursoTrajetoria } from "@/lib/trajetoria";
 import { cn } from "@/lib/utils";
-
-const TODAS = "todas";
 
 const PARTES: {
     chave: Situacao;
@@ -22,12 +24,13 @@ const PARTES: {
 ];
 
 /** Os alunos do curso em números: quantos entraram, concluíram, desistiram
- * e ainda cursam — de todas as turmas somadas ou de uma turma (filtro pelo
- * ano de ingresso), na situação do último ano acompanhado. Uma barra 100%
- * embaixo divide os que entraram; passar o mouse num número ou na barra
- * destaca a parte. A turma é a da página (``turmaAno``, a do seletor do
- * cabeçalho): trocar lá troca aqui, e escolher um ano aqui troca na página;
- * "Todas as turmas" vale só pra este card, até a turma da página mudar. */
+ * e ainda cursam — de todas as turmas somadas ou de uma turma, na situação do
+ * último ano acompanhado. Uma barra 100% embaixo divide os que entraram;
+ * passar o mouse num número ou na barra destaca a parte. A turma é a da
+ * página (``turmaAno``, a dos seletores de turma do topo e dos outros cards):
+ * trocar lá troca aqui, e escolher um ano no seletor do subtítulo troca na
+ * página; "Todas as turmas" vale só pra este card, até a turma da página
+ * mudar. */
 export function AlunosCursoCard({
     curso,
     turmaAno,
@@ -43,76 +46,45 @@ export function AlunosCursoCard({
     // "todas" fica valendo enquanto a turma da página for a mesma de quando
     // foi escolhido (começa assim): trocar a turma em qualquer lugar mostra ela
     const [todasEm, setTodasEm] = useState<number | null>(turmaAno);
-    const ano = todasEm === turmaAno ? TODAS : String(turmaAno);
-    const setAno = (v: string) => {
-        if (v === TODAS) setTodasEm(turmaAno);
-        else {
-            setTodasEm(null);
-            onTurma(Number(v));
-        }
-    };
+    const todas = todasEm === turmaAno;
     const [foco, setFoco] = useState<Situacao | null>(null);
 
-    const turmas =
-        ano === TODAS
-            ? curso.turmas
-            : curso.turmas.filter((t) => String(t.ano) === ano);
-    const turma = ano === TODAS ? undefined : turmas[0];
+    const turmas = todas
+        ? curso.turmas
+        : curso.turmas.filter((t) => t.ano === turmaAno);
+    const turma = todas ? undefined : turmas[0];
     const n = somarContagens(turmas);
     const ultimoAno = Math.max(...curso.turmas.map((t) => t.ultimoAno ?? 0));
     const pct = (v: number) => (n.entraram > 0 ? (100 * v) / n.entraram : 0);
 
     return (
         <Card
-            expansivel
             title="Alunos do curso"
             info="Quantos alunos entraram no curso e quantos concluíram, desistiram e ainda cursam: de todas as turmas somadas ou de uma turma, na situação do último ano acompanhado."
             subtitle={
-                turma
-                    ? `Turma de ${turma.ano}, situação em ${turma.ultimoAno ?? ultimoAno}${turma.madura ? "" : " · em andamento"}`
-                    : `Todas as ${curso.turmas.length} turmas somadas, situação em ${ultimoAno}`
+                <>
+                    {turma ? "Turma de " : ""}
+                    <TurmaInline
+                        comTodas
+                        turmas={curso.turmas}
+                        valor={todas ? TODAS_AS_TURMAS : turmaAno}
+                        onChange={(a) => {
+                            if (a === TODAS_AS_TURMAS) setTodasEm(turmaAno);
+                            else {
+                                setTodasEm(null);
+                                onTurma(a);
+                            }
+                        }}
+                    />
+                    {turma
+                        ? `, situação em ${turma.ultimoAno ?? ultimoAno}`
+                        : ` | ${curso.turmas.length} turmas somadas, situação em ${ultimoAno}`}
+                </>
             }
             className={className}
         >
-            {/* filtro de ano: todas as turmas ou uma (as em andamento tracejadas) */}
-            <div
-                role="radiogroup"
-                aria-label="Turma"
-                className="mt-4 flex flex-wrap gap-1"
-            >
-                {[
-                    { ano: TODAS, madura: true },
-                    ...curso.turmas.map((t) => ({
-                        ano: String(t.ano),
-                        madura: t.madura,
-                    })),
-                ].map((o) => {
-                    const ativa = o.ano === ano;
-                    return (
-                        <button
-                            key={o.ano}
-                            type="button"
-                            role="radio"
-                            aria-checked={ativa}
-                            onClick={() => setAno(o.ano)}
-                            className={cn(
-                                "focus-visible:ring-lime/60 rounded-full px-2.5 py-1 text-[11.5px] tabular-nums transition-colors duration-200 outline-none focus-visible:ring-2",
-                                ativa
-                                    ? "bg-ink text-surface font-semibold"
-                                    : "text-text-secondary hover:text-ink hover:bg-page",
-                                !o.madura &&
-                                    !ativa &&
-                                    "border-text-muted/60 border border-dashed"
-                            )}
-                        >
-                            {o.ano === TODAS ? "Todas as turmas" : o.ano}
-                        </button>
-                    );
-                })}
-            </div>
-
             <dl
-                className="mt-5 grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-4"
+                className="mt-4 grid grid-cols-2 gap-x-6 gap-y-5 sm:grid-cols-4"
                 onMouseLeave={() => setFoco(null)}
             >
                 <div>
@@ -177,7 +149,7 @@ export function AlunosCursoCard({
                 )}
             </div>
             <NotaRodape>
-                {ano === TODAS
+                {todas
                     ? 'Somadas, as turmas recentes (em andamento) ainda puxam o "ainda cursando" pra cima. '
                     : ""}
                 Concluíram e desistiram: acumulado até o último ano acompanhado.

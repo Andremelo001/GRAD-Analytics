@@ -124,6 +124,8 @@ function CursoDetalhe({
                 <PermanenciaCard
                     className="lg:col-span-5"
                     turma={turma}
+                    turmas={curso.turmas}
+                    onTurma={setTurmaAno}
                     nacional={nacional}
                 />
             </div>
@@ -138,6 +140,8 @@ function CursoDetalhe({
                 <IndicadoresInepCard
                     className="flex-1"
                     turma={turma}
+                    turmas={curso.turmas}
+                    onTurma={setTurmaAno}
                     nacional={nacional}
                 />
             </div>

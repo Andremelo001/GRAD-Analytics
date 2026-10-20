@@ -2,6 +2,7 @@ import { useRef, useState, type PointerEvent } from "react";
 
 import { Card } from "@/components/cards/Card";
 import { NotaRodape } from "@/components/cards/NotaRodape";
+import { TurmaInline } from "@/components/charts/trajetoria/TurmaInline";
 import type { ChartPalette } from "@/components/charts/chart-theme";
 import { DataTable } from "@/components/charts/DataTable";
 import { DeltaPill } from "@/components/charts/qualidade/DeltaPill";
@@ -51,10 +52,15 @@ const PAD = { top: 6, right: 6, bottom: 6, left: 6 };
  * e mostra os valores (sem mouse, o último ano acompanhado). */
 export function IndicadoresInepCard({
     turma,
+    turmas,
+    onTurma,
     nacional,
     className,
 }: {
     turma: Turma;
+    /** As turmas do curso, pro seletor do subtítulo. */
+    turmas: Turma[];
+    onTurma: (ano: number) => void;
     nacional: Map<number, PontoTurma>;
     className?: string;
 }) {
@@ -72,7 +78,12 @@ export function IndicadoresInepCard({
             info="As três taxas acumuladas do INEP para a turma (permanência TAP, conclusão TCA e desistência TDA), ano a ano, com a média nacional tracejada."
             subtitle={
                 <>
-                    Turma de {turma.ano}
+                    Turma de{" "}
+                    <TurmaInline
+                        turmas={turmas}
+                        valor={turma.ano}
+                        onChange={(a) => typeof a === "number" && onTurma(a)}
+                    />
                     {foco && `, ${foco.anos + 1}º ano de curso`}
                     <span className="mx-1.5">|</span>
                     {/* legenda das linhas, como no Permanência × Brasil */}

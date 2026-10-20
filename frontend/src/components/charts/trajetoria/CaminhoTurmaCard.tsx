@@ -3,7 +3,7 @@ import { useRef, useState, type PointerEvent } from "react";
 import { Card } from "@/components/cards/Card";
 import { NotaRodape } from "@/components/cards/NotaRodape";
 import { DataTable } from "@/components/charts/DataTable";
-import { SeletorTurma } from "@/components/charts/trajetoria/SeletorTurma";
+import { TurmaInline } from "@/components/charts/trajetoria/TurmaInline";
 import {
     corSituacao,
     ROTULO_SITUACAO,
@@ -84,16 +84,19 @@ export function CaminhoTurmaCard({
             expansivel="tela"
             title="O caminho de uma turma"
             info="Ano a ano desde o ingresso, a parte da turma que concluiu, desistiu e ainda está cursando. A linha tracejada marca o fim do prazo do curso."
-            subtitle={`Turma de ${turma.ano}${turma.prazo ? ` · prazo de ${turma.prazo} anos` : ""}${turma.madura ? "" : " · em andamento"}`}
+            subtitle={
+                <>
+                    Turma de{" "}
+                    <TurmaInline
+                        turmas={curso.turmas}
+                        valor={turma.ano}
+                        onChange={(a) => typeof a === "number" && onTurma(a)}
+                    />
+                    {turma.prazo ? ` | prazo de ${turma.prazo} anos` : ""}
+                </>
+            }
             className={className}
         >
-            <div className="mt-4">
-                <SeletorTurma
-                    turmas={curso.turmas}
-                    valor={turma.ano}
-                    onChange={onTurma}
-                />
-            </div>
             {/* os valores do ano em foco (o último, sem mouse) */}
             {foco && (
                 <p className="text-text-secondary mt-4 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-[12px]">
@@ -220,7 +223,7 @@ export function CaminhoTurmaCard({
             <NotaRodape className={cn(!turma.madura && "text-ink")}>
                 {turma.madura
                     ? "Desistência inclui transferência para outro curso, inclusive dentro da UFC."
-                    : `Turma em andamento: ainda pode concluir ou desistir. Compare com as turmas maduras (sem tracejado).`}
+                    : `Turma em andamento: ainda pode concluir ou desistir. Compare com as turmas maduras (as sem "em andamento" no seletor).`}
             </NotaRodape>
             <div className="sr-only">
                 <DataTable

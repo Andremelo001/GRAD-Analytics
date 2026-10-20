@@ -2,6 +2,7 @@ import { useRef, useState, type PointerEvent } from "react";
 
 import { Card } from "@/components/cards/Card";
 import { NotaRodape } from "@/components/cards/NotaRodape";
+import { TurmaInline } from "@/components/charts/trajetoria/TurmaInline";
 import { DataTable } from "@/components/charts/DataTable";
 import { DeltaPill } from "@/components/charts/qualidade/DeltaPill";
 import { useChartTheme } from "@/hooks/useChartTheme";
@@ -68,10 +69,15 @@ function faixas(curso: Pt[], brasil: Pt[]): { acima: boolean; d: string }[] {
  * mouse num ano mostra os dois valores e a diferença. */
 export function PermanenciaCard({
     turma,
+    turmas,
+    onTurma,
     nacional,
     className,
 }: {
     turma: Turma;
+    /** As turmas do curso, pro seletor do subtítulo. */
+    turmas: Turma[];
+    onTurma: (ano: number) => void;
     nacional: Map<number, PontoTurma>;
     className?: string;
 }) {
@@ -110,7 +116,16 @@ export function PermanenciaCard({
             expansivel="tela"
             title="Permanência × Brasil"
             info="A Taxa de Permanência (TAP) da turma, a parte que ainda está no curso, ano a ano, contra a média nacional dos mesmos cursos no mesmo ano de curso."
-            subtitle={`Taxa de Permanência (TAP) da turma de ${turma.ano}`}
+            subtitle={
+                <>
+                    Taxa de Permanência (TAP) da turma de{" "}
+                    <TurmaInline
+                        turmas={turmas}
+                        valor={turma.ano}
+                        onChange={(a) => typeof a === "number" && onTurma(a)}
+                    />
+                </>
+            }
             className={className}
         >
             {foco && focoBrasil && (

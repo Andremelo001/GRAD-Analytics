@@ -395,7 +395,7 @@ export function Card({
                                     // não pode mudar a altura. Conteúdo próprio
                                     // (texto + legenda): quebra de linha se não
                                     // couber (celular)
-                                    <p
+                                    <div
                                         className={cn(
                                             "text-text-muted mt-1 text-[12px]",
                                             typeof subtitle === "string" && "truncate"
@@ -407,7 +407,7 @@ export function Card({
                                         }
                                     >
                                         {subtitle}
-                                    </p>
+                                    </div>
                                 )}
                             </div>
                             {action}
