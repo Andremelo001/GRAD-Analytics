@@ -12,7 +12,7 @@ interface NavItem {
 }
 
 const NAV_ITEMS: NavItem[] = [
-    { to: "/", label: "Início", end: true },
+    { to: "/inicio", label: "Início" },
     { to: "/qualidade", label: "Qualidade" },
     { to: "/trajetoria", label: "Trajetória" },
     { to: "/configuracoes", label: "Configurações" },
@@ -55,7 +55,7 @@ export function Sidebar() {
                         <NavLink
                             to={to}
                             end={end}
-                            // abas com sub-abas (Qualidade, Trajetória) vão direto pra
+                            // abas com sub-abas (Início, Qualidade, Trajetória) vão direto pra
                             // última sub-aba aberta: sem passar por /qualidade (que
                             // redireciona), as abas não desenham um quadro sem
                             // nenhuma ativa — nada pisca

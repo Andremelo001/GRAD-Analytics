@@ -74,6 +74,7 @@ def test_build_returns_all_sections(
         "campus",
         "distribuicao_uf",
         "ingressantes",
+        "concluintes",
         "trajetoria_pares",
     }
 

@@ -1,21 +1,24 @@
-import { useId, useMemo, useRef, useState, type PointerEvent } from "react";
+import {
+    useId,
+    useMemo,
+    useRef,
+    useState,
+    type PointerEvent,
+    type ReactNode,
+} from "react";
 
 import { Card } from "@/components/cards/Card";
-import { CursoBusca } from "@/components/charts/qualidade/CursoBusca";
+import { NotaRodape } from "@/components/cards/NotaRodape";
 import { yearTickFilter } from "@/components/charts/chart-theme";
 import { DataTable } from "@/components/charts/DataTable";
 import { useChartTheme } from "@/hooks/useChartTheme";
-import { opcaoCurso } from "@/lib/curso";
 import { useElementSize } from "@/hooks/useElementSize";
 import { formatInteger, toTitleCase } from "@/lib/format";
-import type {
-    Curso,
-    DemandaIngressantesPonto,
-    IngressantesNacionalPonto,
-    TendenciaIngressantesPonto,
-} from "@/types/dashboard";
+import type { Curso, DashboardData } from "@/types/dashboard";
 
-const CAMPUS = "campus";
+/** ``escolha`` da série do campus inteiro. */
+export const SERIE_CAMPUS = "campus";
+const CAMPUS = SERIE_CAMPUS;
 
 interface Point {
     ano: number;
@@ -24,44 +27,48 @@ interface Point {
     nacional: number | null;
 }
 
-/** Série escolhida: o total do campus (``campus.tendencia_ingressantes``)
- * ou um curso (``trajetoria_comparada.demanda_ingressantes``), cada ano com
- * a média nacional. No curso, é a média de ingressantes dos cursos-pares; no
- * campus, a soma dessas médias pelos cursos que tiveram turma no ano — o
- * total que o campus teria se cada curso recebesse a média do Brasil. */
+/** Um valor por ano: do campus inteiro ou de um curso. */
+export interface ValorAno {
+    ano: number;
+    valor: number;
+}
+
+export interface ValorCursoAno extends ValorAno {
+    codigo: number;
+}
+
+/** Série escolhida: o total do campus (``campus``) ou um curso
+ * (``porCurso``), cada ano com a média nacional (``nacional``, por curso e
+ * ano). No curso, é a média dos cursos-pares; no campus, a soma dessas médias
+ * pelos cursos que tiveram dado no ano — o total que o campus teria se cada
+ * curso ficasse na média do Brasil. */
 function buildSeries(
     escolha: string,
-    tendencia: TendenciaIngressantesPonto[],
-    demanda: DemandaIngressantesPonto[],
-    nacional: IngressantesNacionalPonto[]
+    campus: ValorAno[],
+    porCurso: ValorCursoAno[],
+    nacional: ValorCursoAno[]
 ): Point[] {
-    const media = new Map(
-        nacional.map((p) => [
-            `${p.codigo_curso}-${p.ano_ingresso}`,
-            p.qt_ingressante_media_nacional,
-        ])
-    );
+    const media = new Map(nacional.map((p) => [`${p.codigo}-${p.ano}`, p.valor]));
     if (escolha !== CAMPUS) {
-        return demanda
-            .filter((p) => String(p.codigo_curso) === escolha)
+        return porCurso
+            .filter((p) => String(p.codigo) === escolha)
             .map((p) => ({
-                ano: p.ano_ingresso,
-                valor: p.qt_ingressante,
-                nacional: media.get(`${p.codigo_curso}-${p.ano_ingresso}`) ?? null,
+                ano: p.ano,
+                valor: p.valor,
+                nacional: media.get(`${p.codigo}-${p.ano}`) ?? null,
             }))
             .sort((a, b) => a.ano - b.ano);
     }
     const esperado = new Map<number, number>();
-    for (const p of demanda) {
-        const m = media.get(`${p.codigo_curso}-${p.ano_ingresso}`);
-        if (m !== undefined)
-            esperado.set(p.ano_ingresso, (esperado.get(p.ano_ingresso) ?? 0) + m);
+    for (const p of porCurso) {
+        const m = media.get(`${p.codigo}-${p.ano}`);
+        if (m !== undefined) esperado.set(p.ano, (esperado.get(p.ano) ?? 0) + m);
     }
-    return tendencia
+    return campus
         .map((p) => ({
-            ano: p.ano_ingresso,
-            valor: p.qt_ingressante,
-            nacional: esperado.get(p.ano_ingresso) ?? null,
+            ano: p.ano,
+            valor: p.valor,
+            nacional: esperado.get(p.ano) ?? null,
         }))
         .sort((a, b) => a.ano - b.ano);
 }
@@ -212,35 +219,55 @@ function trechos(pts: (Pt | null)[]): Pt[][] {
 
 const PAD = { top: 14, right: 12, bottom: 32, left: 44 };
 
-/** Ingressantes por ano, em duas linhas suaves: o campus (ou o curso), em
- * oliva com uma área esmaecida embaixo, e a média nacional, em violeta. No
+/** Uma contagem por ano (ingressantes, concluintes…), em duas linhas suaves:
+ * o campus (ou o curso escolhido no seletor), em oliva com uma área
+ * esmaecida embaixo, e a média nacional dos mesmos cursos, em violeta. No
  * ano em foco, cada linha ganha uma pílula com o valor: a do campus/curso (limão) embaixo do ponto, a da média nacional
  * (violeta) em cima — trocadas no ano em que o campus passa da média, pra
  * uma não cobrir o ponto da outra. Passar o mouse (ou o dedo) muda
  * o foco; ao sair, volta pro último ano. */
-export function IngressantesTrendCard({
-    tendencia,
-    demanda,
+export function SerieAnualCard({
+    titulo,
+    info,
+    subtituloCampus,
+    rotuloAno,
+    vazio,
+    nota,
+    campus,
+    porCurso,
     nacional,
     cursos,
+    escolha,
     className,
 }: {
-    tendencia: TendenciaIngressantesPonto[];
-    demanda: DemandaIngressantesPonto[];
-    nacional: IngressantesNacionalPonto[];
+    titulo: string;
+    info: string;
+    /** Subtítulo da série do campus (o do curso diz o nome dele). */
+    subtituloCampus: string;
+    /** Cabeçalho da coluna de anos na tabela pra leitores de tela. */
+    rotuloAno: string;
+    /** Sem dado na série escolhida. */
+    vazio: string;
+    /** Nota de rodapé (ex.: de onde vêm os anos). */
+    nota?: ReactNode;
+    campus: ValorAno[];
+    porCurso: ValorCursoAno[];
+    nacional: ValorCursoAno[];
     cursos: Curso[];
+    /** A série: ``"campus"`` (o total) ou o código de um curso — a do seletor
+     * de curso do Início (no cabeçalho). */
+    escolha: string;
     className?: string;
 }) {
     const CHART = useChartTheme();
     const gradId = useId();
-    const [escolha, setEscolha] = useState(CAMPUS);
     const [hover, setHover] = useState<number | null>(null);
     const boxRef = useRef<HTMLDivElement>(null);
     const { width: W, height: H } = useElementSize(boxRef);
 
     const serie = useMemo(
-        () => buildSeries(escolha, tendencia, demanda, nacional),
-        [escolha, tendencia, demanda, nacional]
+        () => buildSeries(escolha, campus, porCurso, nacional),
+        [escolha, campus, porCurso, nacional]
     );
     const sel = hover !== null && hover < serie.length ? hover : serie.length - 1;
     const foco = serie.at(sel);
@@ -253,7 +280,7 @@ export function IngressantesTrendCard({
     const nomeSerie = escolha === CAMPUS ? "Campus" : "Curso";
     const subtitulo =
         escolha === CAMPUS
-            ? "Total do campus × média nacional dos mesmos cursos, por ano de ingresso"
+            ? subtituloCampus
             : `${toTitleCase(curso?.nome_curso ?? "")} × média dos mesmos cursos no Brasil`;
 
     // escalas
@@ -336,38 +363,15 @@ export function IngressantesTrendCard({
     return (
         <Card
             expansivel="tela"
-            title="Ingressantes"
-            info="Quantos alunos entraram em cada ano: o total do campus, ou do curso escolhido no seletor, contra a média nacional dos mesmos cursos no mesmo ano de ingresso."
+            title={titulo}
+            info={info}
             subtitle={subtitulo}
-            action={
-                <CursoBusca
-                    compacto
-                    cor={CHART.comparacao.a}
-                    placeholder="Buscar curso…"
-                    label="Série exibida"
-                    value={escolha}
-                    options={[
-                        { value: CAMPUS, label: "Campus" },
-                        ...cursos.map((c) =>
-                            opcaoCurso({
-                                codigo: c.codigo_curso,
-                                nome: toTitleCase(c.nome_curso),
-                                grau: c.grau_academico,
-                            })
-                        ),
-                    ]}
-                    onChange={(value) => {
-                        setEscolha(value);
-                        setHover(null);
-                    }}
-                />
-            }
             className={className}
         >
             {/* só gráfico na tela; os valores seguem legíveis por leitor de tela */}
             <div className="sr-only">
                 <DataTable
-                    columns={["Ano de ingresso", nomeSerie, "Média nacional"]}
+                    columns={[rotuloAno, nomeSerie, "Média nacional"]}
                     rows={serie.map((p) => [
                         String(p.ano),
                         formatInteger(p.valor),
@@ -376,9 +380,7 @@ export function IngressantesTrendCard({
                 />
             </div>
             {serie.length === 0 ? (
-                <p className="text-text-secondary mt-6 text-[13px]">
-                    Sem dado de ingressantes para esta série.
-                </p>
+                <p className="text-text-secondary mt-6 text-[13px]">{vazio}</p>
             ) : (
                 <>
                     <div ref={boxRef} className="relative mt-4 min-h-[240px] flex-1">
@@ -529,6 +531,7 @@ export function IngressantesTrendCard({
                     </div>
                 </>
             )}
+            {nota && <NotaRodape>{nota}</NotaRodape>}
         </Card>
     );
 }
@@ -589,5 +592,98 @@ function Ponto({
                 {texto}
             </text>
         </g>
+    );
+}
+
+/** Ingressantes por ano de ingresso: o campus ou um curso, contra a média
+ * nacional dos mesmos cursos. */
+export function IngressantesCard({
+    data,
+    escolha,
+    className,
+}: {
+    data: DashboardData;
+    escolha: string;
+    className?: string;
+}) {
+    const valores = useMemo(
+        () => ({
+            campus: data.campus.tendencia_ingressantes.map((p) => ({
+                ano: p.ano_ingresso,
+                valor: p.qt_ingressante,
+            })),
+            porCurso: data.trajetoria_comparada.demanda_ingressantes.map((p) => ({
+                codigo: p.codigo_curso,
+                ano: p.ano_ingresso,
+                valor: p.qt_ingressante,
+            })),
+            nacional: data.medias_nacionais.ingressantes.map((p) => ({
+                codigo: p.codigo_curso,
+                ano: p.ano_ingresso,
+                valor: p.qt_ingressante_media_nacional,
+            })),
+        }),
+        [data]
+    );
+    return (
+        <SerieAnualCard
+            className={className}
+            titulo="Ingressantes"
+            info="Quantos alunos entraram em cada ano: o total do campus, ou do curso escolhido no seletor, contra a média nacional dos mesmos cursos no mesmo ano de ingresso."
+            subtituloCampus="Campus × média nacional, por ano de ingresso"
+            rotuloAno="Ano de ingresso"
+            vazio="Sem dado de ingressantes para esta série."
+            cursos={data.cursos}
+            escolha={escolha}
+            {...valores}
+        />
+    );
+}
+
+/** Concluintes por ano: o campus ou um curso, contra a média nacional dos
+ * mesmos cursos — só nos anos em que o INEP acompanha todas as turmas que se
+ * formam (o backend corta as pontas). */
+export function ConcluintesCard({
+    data,
+    escolha,
+    className,
+}: {
+    data: DashboardData;
+    escolha: string;
+    className?: string;
+}) {
+    const valores = useMemo(
+        () => ({
+            campus: (data.campus.tendencia_concluintes ?? []).map((p) => ({
+                ano: p.ano_referencia,
+                valor: p.qt_concluinte,
+            })),
+            porCurso: (data.trajetoria_comparada.demanda_concluintes ?? []).map(
+                (p) => ({
+                    codigo: p.codigo_curso,
+                    ano: p.ano_referencia,
+                    valor: p.qt_concluinte,
+                })
+            ),
+            nacional: (data.medias_nacionais.concluintes ?? []).map((p) => ({
+                codigo: p.codigo_curso,
+                ano: p.ano_referencia,
+                valor: p.qt_concluinte_media_nacional,
+            })),
+        }),
+        [data]
+    );
+    return (
+        <SerieAnualCard
+            className={className}
+            titulo="Concluintes"
+            info="Quantos alunos se formaram em cada ano: o total do campus, ou do curso escolhido no seletor, contra a média nacional dos mesmos cursos no mesmo ano. Só aparecem os anos em que os dados do INEP cobrem todas as turmas que se formam (o INEP acompanha as turmas que entraram de 2010 a 2020)."
+            subtituloCampus="Campus × média nacional, por ano de conclusão"
+            rotuloAno="Ano de conclusão"
+            vazio="Sem dado de concluintes para esta série."
+            cursos={data.cursos}
+            escolha={escolha}
+            {...valores}
+        />
     );
 }

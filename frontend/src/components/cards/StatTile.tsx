@@ -91,7 +91,7 @@ export function StatTile({
             </div>
 
             {diff !== null && nationalValue !== null && (
-                <p className="relative z-[1] mt-3 max-w-[56%] text-[13px] leading-snug">
+                <p className="relative z-[1] mt-3 max-w-[56%] text-[13px] leading-snug lg:max-w-none">
                     <span
                         className={cn(
                             "font-semibold",
@@ -117,10 +117,11 @@ export function StatTile({
     );
 }
 
-/** Sparkline encostada no canto inferior direito do card (sai pela borda,
- * como no design): linha de 2px com a área esmaecida embaixo (o mesmo
- * degradê do gráfico de Ingressantes). Sem eixos: é contexto, não leitura
- * exata. */
+/** Sparkline do tile: no celular e no tablet, encostada no canto inferior
+ * direito (sai pela borda, como no design); no desktop, embaixo e centrada,
+ * na maior parte da largura. Linha de 2px com a área esmaecida embaixo (o
+ * mesmo degradê do gráfico de Ingressantes). Sem eixos: é contexto, não
+ * leitura exata. */
 function Sparkline({
     serie,
     label,
@@ -154,7 +155,10 @@ function Sparkline({
         <svg
             viewBox={`0 0 ${W} ${H}`}
             preserveAspectRatio="none"
-            className="absolute right-0 bottom-0 h-[72px] w-[44%]"
+            // no canto inferior direito (saindo pela borda); no desktop, onde
+            // o tile tem a altura da tela (Início → Evasão), embaixo e
+            // centrada, mais larga e mais alta, sem encostar nas laterais
+            className="absolute right-0 bottom-0 h-[72px] w-[44%] lg:right-auto lg:bottom-5 lg:left-1/2 lg:h-[min(120px,38%)] lg:w-[84%] lg:-translate-x-1/2"
             role="img"
             aria-label={`${label}: de ${format(first.valor)} em ${first.ano} a ${format(last.valor)} em ${last.ano}`}
         >

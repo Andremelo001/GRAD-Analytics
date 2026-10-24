@@ -13,7 +13,6 @@ import {
 
 import { Card } from "@/components/cards/Card";
 import { FocusMarker, YearTick } from "@/components/charts/ChartMarks";
-import { CursoBusca } from "@/components/charts/qualidade/CursoBusca";
 import { DataTable } from "@/components/charts/DataTable";
 import { formatDecimal, formatInteger, toTitleCase } from "@/lib/format";
 import { cn } from "@/lib/utils";
@@ -23,7 +22,6 @@ import type {
     EvolucaoCpcPonto,
 } from "@/types/dashboard";
 import { useChartTheme } from "@/hooks/useChartTheme";
-import { opcaoCurso } from "@/lib/curso";
 
 interface Row {
     ano: number;
@@ -87,11 +85,14 @@ export function CpcComparativoCard({
     evolucao,
     nacional,
     cursos,
+    codigo,
     className,
 }: {
     evolucao: EvolucaoCpcPonto[];
     nacional: EvolucaoCpcNacionalPonto[];
     cursos: Curso[];
+    /** O curso exibido — o do seletor de curso do Início (no cabeçalho). */
+    codigo: number | null;
     className?: string;
 }) {
     const CHART = useChartTheme();
@@ -101,7 +102,6 @@ export function CpcComparativoCard({
         )
     );
     const semCpc = cursos.length - opcoes.length;
-    const [codigo, setCodigo] = useState(opcoes[0]?.codigo_curso ?? null);
     const [hover, setHover] = useState<number | null>(null);
 
     const { area, rows } = useMemo(
@@ -144,33 +144,13 @@ export function CpcComparativoCard({
                     ? `Média dos cursos de ${toTitleCase(area)} no Brasil`
                     : "Média dos cursos da mesma área no Brasil"
             }
-            action={
-                opcoes.length > 0 && (
-                    <CursoBusca
-                        compacto
-                        cor={CHART.brand}
-                        placeholder="Buscar curso…"
-                        label="Curso comparado"
-                        value={String(codigo ?? "")}
-                        options={opcoes.map((c) =>
-                            opcaoCurso({
-                                codigo: c.codigo_curso,
-                                nome: toTitleCase(c.nome_curso),
-                                grau: c.grau_academico,
-                            })
-                        )}
-                        onChange={(value) => {
-                            setCodigo(Number(value));
-                            setHover(null);
-                        }}
-                    />
-                )
-            }
             className={className}
         >
             {opcoes.length === 0 || !foco ? (
                 <p className="text-text-secondary mt-6 text-[13px]">
-                    Nenhum curso do campus com CPC avaliado.
+                    {opcoes.length === 0
+                        ? "Nenhum curso do campus com CPC avaliado."
+                        : `${toTitleCase(cursos.find((c) => c.codigo_curso === codigo)?.nome_curso ?? "Este curso")} ainda não tem CPC avaliado (sem ciclo do Enade). Escolha outro curso no seletor acima.`}
                 </p>
             ) : (
                 <>

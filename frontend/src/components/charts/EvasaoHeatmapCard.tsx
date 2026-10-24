@@ -77,11 +77,15 @@ export function EvasaoHeatmapCard({
     cursos,
     local,
     nacional,
+    preencher = false,
     className,
 }: {
     cursos: Curso[];
     local: HeatmapEvasaoAnualCelula[];
     nacional: HeatmapEvasaoNacionalCelula[];
+    /** O card tem a altura da tela (Início → Evasão): a grade ocupa o card —
+     * com poucos cursos as linhas crescem; com muitos, rola. */
+    preencher?: boolean;
     className?: string;
 }) {
     const CHART = useChartTheme();
@@ -194,7 +198,11 @@ export function EvasaoHeatmapCard({
             </div>
 
             <div
-                className={cn("relative mt-4", AMPLIADO_FLEX)}
+                className={cn(
+                    "relative mt-4",
+                    AMPLIADO_FLEX,
+                    preencher && "flex min-h-0 flex-1 flex-col"
+                )}
                 onMouseLeave={() => setHover(null)}
             >
                 {/* folga de 4px em volta (compensada na margem): um container com
@@ -208,19 +216,35 @@ export function EvasaoHeatmapCard({
                         // não fica com espaço vazio, e Fortaleza não estica o card
                         "-m-1 overflow-x-auto p-1",
                         // ampliado: a grade ocupa a altura do card
-                        "max-h-[201.5px]",
+                        preencher
+                            ? "min-h-0 flex-1 [scrollbar-width:thin] overflow-y-auto"
+                            : "max-h-[201.5px]",
                         AMPLIADO_ROLA,
-                        linhas.length > LINHAS_VISIVEIS
-                            ? "[scrollbar-width:thin] overflow-y-auto"
-                            : "[scrollbar-width:none]"
+                        !preencher &&
+                            (linhas.length > LINHAS_VISIVEIS
+                                ? "[scrollbar-width:thin] overflow-y-auto"
+                                : "[scrollbar-width:none]")
                     )}
                 >
                     <div
                         // coluna dos nomes: 112px no celular (a grade rola dentro
                         // do card), até 200px a partir de sm; no desktop a grade
                         // cabe na largura do card (sem rolar pro lado)
-                        className="grid min-w-[660px] grid-cols-[112px_repeat(var(--anos),minmax(0,1fr))] items-center gap-[3px] sm:grid-cols-[minmax(112px,200px)_repeat(var(--anos),minmax(0,1fr))] lg:min-w-0"
-                        style={{ "--anos": anos.length } as CSSProperties}
+                        className={cn(
+                            "grid min-w-[660px] grid-cols-[112px_repeat(var(--anos),minmax(0,1fr))] items-center gap-[3px] sm:grid-cols-[minmax(112px,200px)_repeat(var(--anos),minmax(0,1fr))] lg:min-w-0",
+                            // preenchendo: as linhas dividem a altura (mínimo
+                            // de 25px; além disso, rola) e o eixo dos anos fica
+                            // embaixo
+                            preencher && "min-h-full"
+                        )}
+                        style={
+                            {
+                                "--anos": anos.length,
+                                ...(preencher && {
+                                    gridTemplateRows: `repeat(${linhas.length}, minmax(25px, 1fr)) auto`,
+                                }),
+                            } as CSSProperties
+                        }
                         role="img"
                         aria-label={`Mapa de calor da evasão anual de ${linhas.length} cursos, de ${anos[0]} a ${ultimo}.`}
                     >
@@ -230,6 +254,7 @@ export function EvasaoHeatmapCard({
                                 linha={linha}
                                 anos={anos}
                                 ativo={hover?.codigo === linha.codigo}
+                                alta={preencher}
                                 hoverAno={
                                     hover?.codigo === linha.codigo ? hover.ano : null
                                 }
@@ -300,7 +325,9 @@ function Row({
     hoverAno,
     colorOf,
     onHover,
+    alta = false,
 }: {
+    alta?: boolean;
     linha: Linha;
     anos: number[];
     ativo: boolean;
@@ -328,7 +355,8 @@ function Row({
                         key={ano}
                         onMouseEnter={() => onHover(ano)}
                         className={cn(
-                            "h-[25px] rounded-[5px]",
+                            alta ? "h-full min-h-[25px]" : "h-[25px]",
+                            "rounded-[5px]",
                             cor === null && "border-empty border border-dashed",
                             // por cima do eixo fixo (mesmo motivo do mapa de calor dos
                             // componentes: o contorno passa 3px da célula)

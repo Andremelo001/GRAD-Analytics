@@ -155,3 +155,29 @@ def test_funil_por_coorte_carries_cohort_deadline(scoped_data: ScopedData) -> No
     )
     funil = course_profile.build_funil_por_coorte(data)
     assert funil and all(item["prazo_integralizacao"] == 4 for item in funil)
+
+
+def test_janela_concluintes_covers_only_complete_years() -> None:
+    # turmas de 2010 a 2020, prazo 4: de 2010+4+1 até 2020+4-1
+    anos = pd.Series([2010, 2015, 2020])
+    assert course_profile.janela_concluintes(anos, pd.Series([4])) == (2015, 2023)
+    # prazos diferentes: o maior no começo, o menor no fim
+    assert course_profile.janela_concluintes(anos, pd.Series([4, 6])) == (2017, 2023)
+    assert course_profile.janela_concluintes(anos, pd.Series([None])) is None
+    assert course_profile.janela_concluintes(pd.Series([2020]), pd.Series([6])) is None
+
+
+def test_concluintes_por_ano_sums_cohorts_inside_window() -> None:
+    frame = pd.DataFrame(
+        {
+            "codigo_curso": [1, 1, 1, 1],
+            "ano_ingresso": [2010, 2011, 2010, 2011],
+            "ano_referencia": [2015, 2015, 2016, 2014],
+            "qt_concluinte": [3, 4, 5, 9],
+        }
+    )
+    rows = course_profile.concluintes_por_ano(frame, (2015, 2016))
+    assert rows.to_dict("records") == [
+        {"codigo_curso": 1, "ano_referencia": 2015, "qt_concluinte": 7},
+        {"codigo_curso": 1, "ano_referencia": 2016, "qt_concluinte": 5},
+    ]

@@ -326,14 +326,14 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
         () =>
             [...pares]
                 .filter((c) => c.codigo !== cursoA?.curso.codigo_curso)
-                .sort((x, y) => (y.cpc ?? 0) - (x.cpc ?? 0))
                 .map((c) => ({
                     value: String(c.codigo),
                     // o curso é o mesmo (a área): o que muda é a instituição
                     label: `${c.siglaIes ?? c.nomeIes} — ${c.nomeMunicipio}/${c.uf}`,
                     detalhe: detalheCurso({ codigo: c.codigo }),
                     busca: c.nomeIes,
-                })),
+                }))
+                .sort((x, y) => x.label.localeCompare(y.label, "pt-BR")),
         [pares, cursoA]
     );
     // padrão de B: o maior CPC da área no Brasil (fora o próprio A)

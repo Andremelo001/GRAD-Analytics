@@ -310,15 +310,15 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
     );
     const opcoesB: OpcaoCurso[] = useMemo(
         () =>
-            [...pares]
-                .sort((x, y) => conclusao(y) - conclusao(x))
+            pares
                 .map((c) => ({
                     value: String(c.codigo),
                     // o curso é o mesmo (a área): o que muda é a instituição
                     label: `${c.siglaIes ?? c.nomeIes} — ${c.nomeMunicipio}${c.uf ? `/${c.uf}` : ""}`,
                     detalhe: detalheCurso({ codigo: c.codigo, grau: c.grau }),
                     busca: c.nomeIes,
-                })),
+                }))
+                .sort((x, y) => x.label.localeCompare(y.label, "pt-BR")),
         [pares]
     );
     // padrão de B: outro curso da UFC na área, se houver; senão a maior

@@ -1,15 +1,15 @@
 import { useState } from "react";
 
 import brasao from "@/assets/brasao.png";
-import { CampusSelect } from "@/components/layout/CampusSelect";
+import { CampusAtual } from "@/components/layout/CampusSelect";
 import { cn } from "@/lib/utils";
 
 const TRANSICAO = "duration-500 ease-in-out motion-reduce:transition-none";
 
 /** Barra do modo apresentação: no lugar da saudação (que sobe com o topo),
- * um card baixo da largura da grade com a frase + seletor de campus à
- * esquerda e o logo à direita — o campus continua trocável durante a
- * apresentação. Entra descendo até o lugar (enquanto abre o próprio espaço e
+ * um card baixo da largura da grade com a frase (o campus em destaque) à
+ * esquerda e o logo à direita — o campus continua trocável no seletor ao lado
+ * das sub-abas. Entra descendo até o lugar (enquanto abre o próprio espaço e
  * empurra os cards) e sai subindo — o mesmo movimento vertical do topo. */
 export function PresentationBar({ presenting }: { presenting: boolean }) {
     // terminou de abrir: libera o conteúdo pra fora da barra (a lista do
@@ -56,7 +56,7 @@ export function PresentationBar({ presenting }: { presenting: boolean }) {
                             <span className="hidden sm:inline">
                                 Acompanhe os indicadores da graduação do{" "}
                             </span>
-                            UFC Campus <CampusSelect tone="surface" />
+                            UFC Campus <CampusAtual tom="surface" />
                         </div>
                         <div className="flex shrink-0 items-center gap-2.5">
                             <img

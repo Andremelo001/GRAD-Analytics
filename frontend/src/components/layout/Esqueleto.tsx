@@ -100,29 +100,41 @@ export function PaginaEsqueleto() {
     );
 }
 
-/** Início: Ingressantes + 2 tiles; Presença + CPC; mapa de calor. */
-export function InicioEsqueleto() {
+/** Início → Ingresso e conclusão: os gráficos de ingressantes e de
+ * concluintes. */
+export function InicioIngressantesEsqueleto() {
     return (
-        <Pagina rotulo="Carregando o Início">
-            {/* ingressantes + presença no Brasil */}
-            <CardEsqueleto className="lg:col-span-8" acao>
-                <Barra className="mt-5 h-[260px]" />
-                <Barra className="mt-4 h-3 w-44" />
-            </CardEsqueleto>
+        <Pagina rotulo="Carregando ingressantes e concluintes">
+            {[0, 1].map((i) => (
+                <CardEsqueleto key={i} className="lg:col-span-6" acao>
+                    <Barra className="mt-5 h-[300px]" />
+                    <Barra className="mt-4 h-3 w-44" />
+                </CardEsqueleto>
+            ))}
+        </Pagina>
+    );
+}
+
+/** Início → CPC: a presença no Brasil e o CPC do curso × Brasil. */
+export function InicioCpcEsqueleto() {
+    return (
+        <Pagina rotulo="Carregando o CPC">
             <CardEsqueleto className="lg:col-span-4" acao>
                 <Barra className="mt-4 h-7 w-20" />
                 <Barra className="mt-5 aspect-square w-full rounded-2xl" />
             </CardEsqueleto>
-            {/* tiles de qualidade + CPC */}
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:col-span-4 lg:grid-cols-1 lg:gap-6">
-                <TileEsqueleto />
-                <TileEsqueleto />
-            </div>
             <CardEsqueleto className="lg:col-span-8" acao>
                 <Barra className="mt-4 h-7 w-24" />
                 <Barra className="mt-5 h-[300px]" />
             </CardEsqueleto>
-            {/* evasão anual + tiles de trajetória */}
+        </Pagina>
+    );
+}
+
+/** Início → Evasão: o mapa de calor e os 2 tiles de trajetória. */
+export function InicioEvasaoEsqueleto() {
+    return (
+        <Pagina rotulo="Carregando a evasão">
             <CardEsqueleto className="lg:col-span-8">
                 <Linhas n={6} />
             </CardEsqueleto>

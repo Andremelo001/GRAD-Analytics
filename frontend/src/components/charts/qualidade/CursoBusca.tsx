@@ -32,7 +32,10 @@ const MARGEM_TELA = 16;
  * ``compacto``: o mesmo desenho no tamanho do seletor pequeno dos cards
  * (``ChartSelect`` sm, 150px × 32px), pra caber no cabeçalho sem mudar a
  * altura do card; a lista fica mais larga que ele e abre pro lado que couber
- * na tela. */
+ * na tela.
+ *
+ * ``faixa``: a versão em pílula da faixa escura, ao lado do seletor de campus
+ * (Início) — mesma altura e desenho da barra de sub-abas. */
 export function CursoBusca({
     label,
     cor,
@@ -41,6 +44,7 @@ export function CursoBusca({
     onChange,
     placeholder = "Buscar…",
     compacto = false,
+    faixa = false,
 }: {
     label: string;
     cor: string;
@@ -49,6 +53,7 @@ export function CursoBusca({
     onChange: (value: string) => void;
     placeholder?: string;
     compacto?: boolean;
+    faixa?: boolean;
 }) {
     const id = useId();
     const rootRef = useRef<HTMLDivElement>(null);
@@ -128,10 +133,12 @@ export function CursoBusca({
             {open ? (
                 <div
                     className={cn(
-                        "bg-page ring-lime/60 flex items-center gap-2 ring-2",
-                        compacto
-                            ? "h-8 w-[150px] max-w-full rounded-lg px-2.5"
-                            : "h-10 rounded-xl px-3"
+                        "ring-lime/60 flex items-center gap-2 ring-2",
+                        faixa
+                            ? "h-[33px] w-full rounded-full bg-white/[0.07] px-4 sm:h-9 sm:w-[240px]"
+                            : compacto
+                              ? "bg-page h-8 w-[150px] max-w-full rounded-lg px-2.5"
+                              : "bg-page h-10 rounded-xl px-3"
                     )}
                 >
                     <Search
@@ -158,8 +165,11 @@ export function CursoBusca({
                         // 16px no celular: com letra menor, o navegador (Safari
                         // no iPhone) aproxima a tela ao focar o campo
                         className={cn(
-                            "placeholder:text-text-muted min-w-0 flex-1 bg-transparent text-[16px] outline-none",
-                            compacto ? "sm:text-[12px]" : "sm:text-[13px]"
+                            "min-w-0 flex-1 bg-transparent text-[16px] outline-none",
+                            faixa
+                                ? "text-white placeholder:text-white/45 sm:text-[13px]"
+                                : "placeholder:text-text-muted",
+                            !faixa && (compacto ? "sm:text-[12px]" : "sm:text-[13px]")
                         )}
                     />
                 </div>
@@ -170,10 +180,12 @@ export function CursoBusca({
                     aria-label={`${label}: ${selecionado?.label ?? "nenhum"}`}
                     onClick={abrir}
                     className={cn(
-                        "bg-page hover:bg-page/70 focus-visible:ring-lime/60 flex min-w-0 items-center text-left outline-none focus-visible:ring-2",
-                        compacto
-                            ? "h-8 w-[150px] max-w-full gap-1.5 rounded-lg pr-2 pl-2.5"
-                            : "h-10 w-full gap-2.5 rounded-xl px-3"
+                        "focus-visible:ring-lime/60 flex min-w-0 items-center text-left outline-none focus-visible:ring-2",
+                        faixa
+                            ? "h-[33px] w-full gap-2 rounded-full bg-white/[0.07] px-4 text-white ring-1 ring-white/10 hover:bg-white/[0.12] sm:h-9 sm:w-[240px]"
+                            : compacto
+                              ? "bg-page hover:bg-page/70 h-8 w-[150px] max-w-full gap-1.5 rounded-lg pr-2 pl-2.5"
+                              : "bg-page hover:bg-page/70 h-10 w-full gap-2.5 rounded-xl px-3"
                     )}
                 >
                     <span
@@ -188,17 +200,22 @@ export function CursoBusca({
                         <span
                             className={cn(
                                 "block truncate",
-                                compacto
-                                    ? "text-[12px] font-medium"
-                                    : "text-[13px] font-semibold"
+                                faixa
+                                    ? "text-[12px] font-semibold sm:text-[13px]"
+                                    : compacto
+                                      ? "text-[12px] font-medium"
+                                      : "text-[13px] font-semibold"
                             )}
                         >
                             {selecionado?.label ?? placeholder}
                         </span>
                     </span>
                     <ChevronDown
-                        size={compacto ? 14 : 15}
-                        className="text-text-muted shrink-0"
+                        size={compacto || faixa ? 14 : 15}
+                        className={cn(
+                            "shrink-0",
+                            faixa ? "text-white/60" : "text-text-muted"
+                        )}
                         aria-hidden
                     />
                 </button>
@@ -212,12 +229,14 @@ export function CursoBusca({
                     aria-label={label}
                     className={cn(
                         "bg-popover text-ink absolute top-[calc(100%+6px)] z-20 max-h-80 overflow-y-auto rounded-xl p-1.5 shadow-[0_16px_40px_rgb(0_0_0/0.18)]",
-                        compacto
-                            ? cn(
-                                  "w-[min(280px,calc(100vw-32px))]",
-                                  lado === "right" ? "right-0" : "left-0"
-                              )
-                            : "right-0 left-0"
+                        faixa
+                            ? "right-0 w-[min(320px,calc(100vw-32px))]"
+                            : compacto
+                              ? cn(
+                                    "w-[min(280px,calc(100vw-32px))]",
+                                    lado === "right" ? "right-0" : "left-0"
+                                )
+                              : "right-0 left-0"
                     )}
                 >
                     {filtradas.length === 0 && (

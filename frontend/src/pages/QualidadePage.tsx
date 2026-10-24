@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 
-import { CampusSelect } from "@/components/layout/CampusSelect";
+import { CampusAtual } from "@/components/layout/CampusSelect";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { SubTabs } from "@/components/layout/SubTabs";
 import { lembrarSubaba, ultimaSubaba } from "@/lib/ultima-subaba";
@@ -43,7 +43,7 @@ export function QualidadePage() {
                 title="Qualidade dos cursos"
                 subtitle={
                     <>
-                        Conceitos do MEC (CPC) dos cursos do UFC Campus <CampusSelect />
+                        Conceitos do MEC (CPC) dos cursos do UFC Campus <CampusAtual />
                     </>
                 }
                 tabs={(tom) => (

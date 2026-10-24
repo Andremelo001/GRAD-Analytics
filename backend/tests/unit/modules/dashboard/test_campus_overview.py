@@ -5,7 +5,12 @@ from app.modules.dashboard.domain.shared import ScopedData
 def test_build_returns_kpis_and_distribuicao(scoped_data: ScopedData) -> None:
     kpis_por_curso = course_profile.build_kpis_por_curso(scoped_data)
     result = campus_overview.build(scoped_data, kpis_por_curso)
-    assert set(result) == {"kpis", "distribuicao_cpc_faixa", "tendencia_ingressantes"}
+    assert set(result) == {
+        "kpis",
+        "distribuicao_cpc_faixa",
+        "tendencia_ingressantes",
+        "tendencia_concluintes",
+    }
 
 
 def test_kpis_campus_totals(scoped_data: ScopedData) -> None:

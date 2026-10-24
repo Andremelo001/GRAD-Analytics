@@ -4,7 +4,13 @@ import { AppLayout } from "@/components/layout/AppLayout";
 import { CampusPage } from "@/pages/CampusPage";
 import { ConfiguracoesPage } from "@/pages/ConfiguracoesPage";
 import { CursoDetalhePage } from "@/pages/CursoDetalhePage";
-import { HomePage } from "@/pages/HomePage";
+import {
+    HomePage,
+    InicioCpcPage,
+    InicioEvasaoPage,
+    InicioIngressoPage,
+    VoltarSubabaInicio,
+} from "@/pages/HomePage";
 import { QualidadePage, VoltarSubaba } from "@/pages/QualidadePage";
 import { ComparacoesPage } from "@/pages/qualidade/ComparacoesPage";
 import { MapaPageLazy } from "@/pages/qualidade/MapaPageLazy";
@@ -24,7 +30,22 @@ export const router = createHashRouter([
         path: "/",
         element: <AppLayout />,
         children: [
-            { index: true, element: <HomePage /> },
+            // / sozinho (a entrada do painel) reabre a última sub-aba do Início
+            { index: true, element: <VoltarSubabaInicio /> },
+            {
+                path: "inicio",
+                element: <HomePage />,
+                children: [
+                    { index: true, element: <VoltarSubabaInicio /> },
+                    { path: "ingresso", element: <InicioIngressoPage /> },
+                    { path: "cpc", element: <InicioCpcPage /> },
+                    { path: "evasao", element: <InicioEvasaoPage /> },
+                    {
+                        path: "*",
+                        element: <Navigate to="/inicio/ingresso" replace />,
+                    },
+                ],
+            },
             {
                 path: "qualidade",
                 element: <QualidadePage />,

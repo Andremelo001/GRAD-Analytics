@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 
-import { CampusSelect } from "@/components/layout/CampusSelect";
+import { CampusAtual } from "@/components/layout/CampusSelect";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { SubTabs } from "@/components/layout/SubTabs";
 import { lembrarSubaba, ultimaSubaba } from "@/lib/ultima-subaba";
@@ -31,7 +31,7 @@ export function TrajetoriaPage() {
                 title="Trajetória dos estudantes"
                 subtitle={
                     <>
-                        Conclusão e evasão das turmas do UFC Campus <CampusSelect />
+                        Conclusão e evasão das turmas do UFC Campus <CampusAtual />
                     </>
                 }
                 tabs={(tom) => (

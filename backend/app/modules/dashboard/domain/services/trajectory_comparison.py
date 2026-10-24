@@ -1,4 +1,7 @@
+import pandas as pd
+
 from app.modules.dashboard.domain.section import DashboardContext
+from app.modules.dashboard.domain.services import course_profile
 from app.modules.dashboard.domain.shared import ScopedData, records
 
 
@@ -8,6 +11,7 @@ def build(data: ScopedData) -> dict[str, object]:
         "evasao_por_curso": _evasao_por_curso(data),
         "heatmap_evasao_anual": _heatmap_evasao_anual(data),
         "demanda_ingressantes": _demanda_ingressantes(data),
+        "demanda_concluintes": _demanda_concluintes(data),
     }
 
 
@@ -63,6 +67,40 @@ def _demanda_ingressantes(data: ScopedData) -> list[dict[str, object]]:
     cols = ["codigo_curso", "nome_curso", "ano_ingresso", "qt_ingressante"]
     frame = primeira_linha[cols].sort_values(["codigo_curso", "ano_ingresso"])
     return records(frame)
+
+
+def _demanda_concluintes(data: ScopedData) -> list[dict[str, object]]:
+    """Concluintes por curso, por ano de referência.
+
+    Só nos anos em que os dados do curso estão completos
+    (``course_profile.janela_concluintes``, com o prazo do curso).
+    """
+    if data.trajetoria.empty or "prazo_integralizacao" not in data.cursos:
+        return []
+    prazos = dict(
+        zip(
+            data.cursos["codigo_curso"],
+            data.cursos["prazo_integralizacao"],
+            strict=True,
+        )
+    )
+    partes: list[pd.DataFrame] = []
+    for codigo, local in data.trajetoria.groupby("codigo_curso"):
+        janela = course_profile.janela_concluintes(
+            local["ano_ingresso"], pd.Series([prazos.get(codigo)])
+        )
+        if janela is not None:
+            partes.append(course_profile.concluintes_por_ano(local, janela))
+    if not partes:
+        return []
+    frame = pd.concat(partes)
+    nomes = data.trajetoria.drop_duplicates("codigo_curso").set_index("codigo_curso")[
+        "nome_curso"
+    ]
+    frame["nome_curso"] = frame["codigo_curso"].map(nomes)
+    return records(
+        frame[["codigo_curso", "nome_curso", "ano_referencia", "qt_concluinte"]]
+    )
 
 
 class TrajectoryComparisonSection:

@@ -192,6 +192,48 @@ def turma_madura(curso_trajetoria: pd.DataFrame) -> tuple[int, int] | None:
     return ano, int(prazos[ano])
 
 
+def janela_concluintes(
+    anos_ingresso: pd.Series, prazos: pd.Series
+) -> tuple[int, int] | None:
+    """Anos de referência em que os concluintes do INEP estão completos.
+
+    Os concluintes de um ano são a soma das turmas acompanhadas — só as que
+    entraram entre o primeiro e o último ano de ingresso dos dados (hoje,
+    2010 a 2020). Antes de ``primeiro + prazo + 1`` faltam os formados das
+    turmas anteriores (só os com até dois anos de atraso ficam de fora
+    depois disso); depois de ``último + prazo - 1`` faltariam os das turmas
+    seguintes, que se formam no prazo. Com prazos diferentes (vários cursos),
+    vale o maior no começo e o menor no fim. ``None`` sem prazo ou sem anos.
+    """
+    prazos = prazos.dropna()
+    anos = anos_ingresso.dropna()
+    if prazos.empty or anos.empty:
+        return None
+    inicio = int(anos.min()) + int(prazos.max()) + ANOS_ALEM_DO_PRAZO - 1
+    fim = int(anos.max()) + int(prazos.min()) - 1
+    return (inicio, fim) if inicio <= fim else None
+
+
+def concluintes_por_ano(
+    trajetoria: pd.DataFrame, janela: tuple[int, int]
+) -> pd.DataFrame:
+    """Concluintes por (curso, ano de referência) dentro da ``janela``.
+
+    A soma do ``qt_concluinte`` (do ano) de todas as turmas.
+    """
+    inicio, fim = janela
+    frame = trajetoria[
+        (trajetoria["ano_referencia"] >= inicio) & (trajetoria["ano_referencia"] <= fim)
+    ]
+    return (
+        frame.groupby(["codigo_curso", "ano_referencia"], as_index=False)[
+            "qt_concluinte"
+        ]
+        .sum()
+        .sort_values(["codigo_curso", "ano_referencia"])
+    )
+
+
 def build_curva_sobrevivencia(data: ScopedData) -> list[dict[str, object]]:
     """Série completa, todas as coortes e anos de acompanhamento.
 

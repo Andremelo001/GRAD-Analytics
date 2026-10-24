@@ -2,7 +2,6 @@ import { useMemo, useRef, useState, type MouseEvent } from "react";
 
 import brazilDots from "@/assets/brazil-dots.json";
 import { Card } from "@/components/cards/Card";
-import { CursoBusca } from "@/components/charts/qualidade/CursoBusca";
 import { DataTable } from "@/components/charts/DataTable";
 import { formatDecimal, formatInteger, formatPercent, toTitleCase } from "@/lib/format";
 import { UF_NOMES } from "@/lib/uf";
@@ -12,7 +11,8 @@ import type {
     DistribuicaoUfEstado,
 } from "@/types/dashboard";
 import { useChartTheme } from "@/hooks/useChartTheme";
-import { opcaoCurso } from "@/lib/curso";
+import { useElementSize } from "@/hooks/useElementSize";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 // Matriz de pontos gerada por scripts/build-brazil-dots.mjs (malha do IBGE):
 // [coluna, linha, sigla da UF] numa grade de ``columns`` x ``rows``.
@@ -72,17 +72,16 @@ function buildBins(counts: number[], ramp: readonly string[]): Bin[] {
 export function BrasilMapaCard({
     distribuicao,
     cursos,
+    codigo,
     className,
 }: {
     distribuicao: DistribuicaoUfCurso[];
     cursos: Curso[];
+    /** O curso exibido — o do seletor de curso do Início (no cabeçalho). */
+    codigo: number | null;
     className?: string;
 }) {
     const CHART = useChartTheme();
-    const opcoes = cursos.filter((c) =>
-        distribuicao.some((d) => d.codigo_curso === c.codigo_curso)
-    );
-    const [codigo, setCodigo] = useState(opcoes[0]?.codigo_curso ?? null);
     const [hover, setHover] = useState<{
         uf: string;
         x: number;
@@ -90,6 +89,16 @@ export function BrasilMapaCard({
         width: number;
     } | null>(null);
     const boxRef = useRef<HTMLDivElement>(null);
+    // no desktop o card tem a altura da tela (Início → CPC) ou do card
+    // ampliado: o mapa cabe no espaço entre o cabeçalho e a legenda — limitado
+    // pela altura, não só pela largura (senão, em tela baixa, sai do card)
+    const areaRef = useRef<HTMLDivElement>(null);
+    const area = useElementSize(areaRef);
+    const lg = useMediaQuery("(min-width: 1024px)");
+    const larguraMapa =
+        lg && area.height > 0
+            ? Math.min(330, area.width, (area.height * MAPA.columns) / MAPA.rows)
+            : undefined;
 
     const item = distribuicao.find((d) => d.codigo_curso === codigo);
     const estados = useMemo(
@@ -144,7 +153,7 @@ export function BrasilMapaCard({
 
     return (
         <Card
-            expansivel
+            expansivel="tela"
             className={className}
             info={`Onde o curso escolhido é oferecido no Brasil: cada estado pintado pela quantidade de cursos presenciais da mesma área${item ? ` (${item.nome_cine_area_geral ?? "—"}) com turma em ${item.ano_ingresso ?? "—"}` : ""}. O ponto marca o campus.${item ? ` CPC: avaliação de ${item.ano_cpc ?? "—"}.` : ""}`}
         >
@@ -152,24 +161,6 @@ export function BrasilMapaCard({
                 <p className="flex shrink-0 items-center gap-1.5 text-[14px] font-medium whitespace-nowrap">
                     Presença no Brasil
                 </p>
-                <CursoBusca
-                    compacto
-                    cor={CHART.brand}
-                    placeholder="Buscar curso…"
-                    label="Curso exibido no mapa"
-                    value={String(codigo ?? "")}
-                    options={opcoes.map((c) =>
-                        opcaoCurso({
-                            codigo: c.codigo_curso,
-                            nome: toTitleCase(c.nome_curso),
-                            grau: c.grau_academico,
-                        })
-                    )}
-                    onChange={(value) => {
-                        setCodigo(Number(value));
-                        setHover(null);
-                    }}
-                />
             </div>
 
             <div className="mt-2.5 flex items-center gap-3">
@@ -197,59 +188,70 @@ export function BrasilMapaCard({
                 )}
             </p>
 
-            <div ref={boxRef} className="relative mx-auto mt-4 w-full max-w-[330px]">
-                <svg
-                    viewBox={`0 0 ${MAPA.columns} ${MAPA.rows}`}
-                    className="block h-auto w-full"
-                    role="img"
-                    aria-label={`Mapa do Brasil: ${nomeCurso} em ${comOferta.length} estados, ${formatInteger(total)} cursos.`}
-                    onMouseMove={onMove}
-                    onMouseLeave={() => setHover(null)}
+            <div
+                ref={areaRef}
+                className="mt-4 flex justify-center lg:min-h-0 lg:flex-1 lg:items-center"
+            >
+                <div
+                    ref={boxRef}
+                    className="relative w-full max-w-[330px]"
+                    style={
+                        larguraMapa !== undefined ? { width: larguraMapa } : undefined
+                    }
                 >
-                    {MAPA.dots.map(([c, r, uf]) => (
-                        <circle
-                            key={`${c},${r}`}
-                            cx={c + 0.5}
-                            cy={r + 0.5}
-                            r={0.36}
-                            fill={colorOf(uf)}
-                            opacity={hover && hover.uf !== uf ? 0.35 : 1}
+                    <svg
+                        viewBox={`0 0 ${MAPA.columns} ${MAPA.rows}`}
+                        className="block h-auto w-full"
+                        role="img"
+                        aria-label={`Mapa do Brasil: ${nomeCurso} em ${comOferta.length} estados, ${formatInteger(total)} cursos.`}
+                        onMouseMove={onMove}
+                        onMouseLeave={() => setHover(null)}
+                    >
+                        {MAPA.dots.map(([c, r, uf]) => (
+                            <circle
+                                key={`${c},${r}`}
+                                cx={c + 0.5}
+                                cy={r + 0.5}
+                                r={0.36}
+                                fill={colorOf(uf)}
+                                opacity={hover && hover.uf !== uf ? 0.35 : 1}
+                            />
+                        ))}
+                        {pino && (
+                            <g aria-hidden>
+                                <circle
+                                    cx={pino.x}
+                                    cy={pino.y}
+                                    r={1.35}
+                                    fill={CHART.ink}
+                                    stroke={CHART.surface}
+                                    strokeWidth={0.5}
+                                />
+                                <circle
+                                    cx={pino.x}
+                                    cy={pino.y}
+                                    r={0.45}
+                                    fill={CHART.lime}
+                                />
+                            </g>
+                        )}
+                    </svg>
+                    {hover && (
+                        <StateTooltip
+                            uf={hover.uf}
+                            estado={estados.get(hover.uf)}
+                            x={hover.x}
+                            y={hover.y}
+                            width={hover.width}
                         />
-                    ))}
-                    {pino && (
-                        <g aria-hidden>
-                            <circle
-                                cx={pino.x}
-                                cy={pino.y}
-                                r={1.35}
-                                fill={CHART.ink}
-                                stroke={CHART.surface}
-                                strokeWidth={0.5}
-                            />
-                            <circle
-                                cx={pino.x}
-                                cy={pino.y}
-                                r={0.45}
-                                fill={CHART.lime}
-                            />
-                        </g>
                     )}
-                </svg>
-                {hover && (
-                    <StateTooltip
-                        uf={hover.uf}
-                        estado={estados.get(hover.uf)}
-                        x={hover.x}
-                        y={hover.y}
-                        width={hover.width}
-                    />
-                )}
+                </div>
             </div>
 
             {/* Legenda em duas linhas fixas (faixas em cima, "sem oferta" e
                 campus embaixo): o nº de faixas muda com o curso (1 a 4) e não
                 pode mudar a altura do card. */}
-            <div className="text-text-secondary mt-auto flex flex-col items-center gap-1.5 pt-4 text-[11px]">
+            <div className="text-text-secondary mt-auto flex shrink-0 flex-col items-center gap-1.5 pt-4 text-[11px]">
                 <ul className="flex h-4 items-center gap-3 whitespace-nowrap">
                     {bins.map((b) => (
                         <li key={b.label} className="flex items-center gap-1.5">

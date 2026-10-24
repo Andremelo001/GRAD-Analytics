@@ -176,6 +176,14 @@ export interface TrajetoriaComparada {
     evasao_por_curso: EvasaoPorCursoPonto[];
     heatmap_evasao_anual: HeatmapEvasaoAnualCelula[];
     demanda_ingressantes: DemandaIngressantesPonto[];
+    demanda_concluintes?: DemandaConcluintesPonto[];
+}
+
+export interface DemandaConcluintesPonto {
+    codigo_curso: number;
+    nome_curso: string;
+    ano_referencia: number;
+    qt_concluinte: number;
 }
 
 // --- D. campus ---------------------------------------------------------------
@@ -197,10 +205,18 @@ export interface TendenciaIngressantesPonto {
     qt_ingressante: number;
 }
 
+/** Concluintes do campus num ano (só os anos com todas as turmas que se
+ * formam acompanhadas pelo INEP). */
+export interface TendenciaConcluintesPonto {
+    ano_referencia: number;
+    qt_concluinte: number;
+}
+
 export interface Campus {
     kpis: CampusKpis;
     distribuicao_cpc_faixa: DistribuicaoCpcFaixaItem[];
     tendencia_ingressantes: TendenciaIngressantesPonto[];
+    tendencia_concluintes?: TendenciaConcluintesPonto[];
 }
 
 // --- E. medias_nacionais -------------------------------------------------------
@@ -297,6 +313,13 @@ export interface TrajetoriaPares {
     conclusao: number[];
 }
 
+export interface ConcluintesNacionalPonto {
+    codigo_curso: number;
+    ano_referencia: number;
+    qt_concluinte_media_nacional: number;
+    quantidade_cursos_considerados: number;
+}
+
 export interface IngressantesNacionalPonto {
     codigo_curso: number;
     ano_ingresso: number;
@@ -314,6 +337,7 @@ export interface MediasNacionais {
     campus: CampusNacional;
     distribuicao_uf: DistribuicaoUfCurso[];
     ingressantes: IngressantesNacionalPonto[];
+    concluintes?: ConcluintesNacionalPonto[];
     trajetoria_pares?: TrajetoriaPares[];
 }
 

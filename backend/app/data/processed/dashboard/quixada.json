@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-10-17T17:30:47+00:00",
+  "gerado_em": "2026-10-24T12:31:02+00:00",
   "escopo": {
     "codigo_ies": 583,
     "nome_ies": "UNIVERSIDADE FEDERAL DO CEARÁ",
@@ -10856,6 +10856,248 @@
         "ano_ingresso": 2020,
         "qt_ingressante": 53
       }
+    ],
+    "demanda_concluintes": [
+      {
+        "codigo_curso": 106167,
+        "nome_curso": "SISTEMAS DE INFORMAÇÃO",
+        "ano_referencia": 2016,
+        "qt_concluinte": 23
+      },
+      {
+        "codigo_curso": 106167,
+        "nome_curso": "SISTEMAS DE INFORMAÇÃO",
+        "ano_referencia": 2017,
+        "qt_concluinte": 10
+      },
+      {
+        "codigo_curso": 106167,
+        "nome_curso": "SISTEMAS DE INFORMAÇÃO",
+        "ano_referencia": 2018,
+        "qt_concluinte": 18
+      },
+      {
+        "codigo_curso": 106167,
+        "nome_curso": "SISTEMAS DE INFORMAÇÃO",
+        "ano_referencia": 2019,
+        "qt_concluinte": 19
+      },
+      {
+        "codigo_curso": 106167,
+        "nome_curso": "SISTEMAS DE INFORMAÇÃO",
+        "ano_referencia": 2020,
+        "qt_concluinte": 4
+      },
+      {
+        "codigo_curso": 106167,
+        "nome_curso": "SISTEMAS DE INFORMAÇÃO",
+        "ano_referencia": 2021,
+        "qt_concluinte": 14
+      },
+      {
+        "codigo_curso": 106167,
+        "nome_curso": "SISTEMAS DE INFORMAÇÃO",
+        "ano_referencia": 2022,
+        "qt_concluinte": 14
+      },
+      {
+        "codigo_curso": 106167,
+        "nome_curso": "SISTEMAS DE INFORMAÇÃO",
+        "ano_referencia": 2023,
+        "qt_concluinte": 15
+      },
+      {
+        "codigo_curso": 106167,
+        "nome_curso": "SISTEMAS DE INFORMAÇÃO",
+        "ano_referencia": 2024,
+        "qt_concluinte": 14
+      },
+      {
+        "codigo_curso": 150117,
+        "nome_curso": "ENGENHARIA DE SOFTWARE",
+        "ano_referencia": 2016,
+        "qt_concluinte": 18
+      },
+      {
+        "codigo_curso": 150117,
+        "nome_curso": "ENGENHARIA DE SOFTWARE",
+        "ano_referencia": 2017,
+        "qt_concluinte": 19
+      },
+      {
+        "codigo_curso": 150117,
+        "nome_curso": "ENGENHARIA DE SOFTWARE",
+        "ano_referencia": 2018,
+        "qt_concluinte": 26
+      },
+      {
+        "codigo_curso": 150117,
+        "nome_curso": "ENGENHARIA DE SOFTWARE",
+        "ano_referencia": 2019,
+        "qt_concluinte": 13
+      },
+      {
+        "codigo_curso": 150117,
+        "nome_curso": "ENGENHARIA DE SOFTWARE",
+        "ano_referencia": 2020,
+        "qt_concluinte": 15
+      },
+      {
+        "codigo_curso": 150117,
+        "nome_curso": "ENGENHARIA DE SOFTWARE",
+        "ano_referencia": 2021,
+        "qt_concluinte": 5
+      },
+      {
+        "codigo_curso": 150117,
+        "nome_curso": "ENGENHARIA DE SOFTWARE",
+        "ano_referencia": 2022,
+        "qt_concluinte": 17
+      },
+      {
+        "codigo_curso": 150117,
+        "nome_curso": "ENGENHARIA DE SOFTWARE",
+        "ano_referencia": 2023,
+        "qt_concluinte": 19
+      },
+      {
+        "codigo_curso": 150117,
+        "nome_curso": "ENGENHARIA DE SOFTWARE",
+        "ano_referencia": 2024,
+        "qt_concluinte": 22
+      },
+      {
+        "codigo_curso": 1127191,
+        "nome_curso": "REDES DE COMPUTADORES",
+        "ano_referencia": 2015,
+        "qt_concluinte": 9
+      },
+      {
+        "codigo_curso": 1127191,
+        "nome_curso": "REDES DE COMPUTADORES",
+        "ano_referencia": 2016,
+        "qt_concluinte": 13
+      },
+      {
+        "codigo_curso": 1127191,
+        "nome_curso": "REDES DE COMPUTADORES",
+        "ano_referencia": 2017,
+        "qt_concluinte": 13
+      },
+      {
+        "codigo_curso": 1127191,
+        "nome_curso": "REDES DE COMPUTADORES",
+        "ano_referencia": 2018,
+        "qt_concluinte": 6
+      },
+      {
+        "codigo_curso": 1127191,
+        "nome_curso": "REDES DE COMPUTADORES",
+        "ano_referencia": 2019,
+        "qt_concluinte": 8
+      },
+      {
+        "codigo_curso": 1127191,
+        "nome_curso": "REDES DE COMPUTADORES",
+        "ano_referencia": 2020,
+        "qt_concluinte": 5
+      },
+      {
+        "codigo_curso": 1127191,
+        "nome_curso": "REDES DE COMPUTADORES",
+        "ano_referencia": 2021,
+        "qt_concluinte": 6
+      },
+      {
+        "codigo_curso": 1127191,
+        "nome_curso": "REDES DE COMPUTADORES",
+        "ano_referencia": 2022,
+        "qt_concluinte": 5
+      },
+      {
+        "codigo_curso": 1127191,
+        "nome_curso": "REDES DE COMPUTADORES",
+        "ano_referencia": 2023,
+        "qt_concluinte": 4
+      },
+      {
+        "codigo_curso": 1270596,
+        "nome_curso": "CIÊNCIA DA COMPUTAÇÃO",
+        "ano_referencia": 2019,
+        "qt_concluinte": 11
+      },
+      {
+        "codigo_curso": 1270596,
+        "nome_curso": "CIÊNCIA DA COMPUTAÇÃO",
+        "ano_referencia": 2020,
+        "qt_concluinte": 7
+      },
+      {
+        "codigo_curso": 1270596,
+        "nome_curso": "CIÊNCIA DA COMPUTAÇÃO",
+        "ano_referencia": 2021,
+        "qt_concluinte": 15
+      },
+      {
+        "codigo_curso": 1270596,
+        "nome_curso": "CIÊNCIA DA COMPUTAÇÃO",
+        "ano_referencia": 2022,
+        "qt_concluinte": 6
+      },
+      {
+        "codigo_curso": 1270596,
+        "nome_curso": "CIÊNCIA DA COMPUTAÇÃO",
+        "ano_referencia": 2023,
+        "qt_concluinte": 14
+      },
+      {
+        "codigo_curso": 1270596,
+        "nome_curso": "CIÊNCIA DA COMPUTAÇÃO",
+        "ano_referencia": 2024,
+        "qt_concluinte": 16
+      },
+      {
+        "codigo_curso": 1299933,
+        "nome_curso": "ENGENHARIA DE COMPUTAÇÃO",
+        "ano_referencia": 2022,
+        "qt_concluinte": 3
+      },
+      {
+        "codigo_curso": 1299933,
+        "nome_curso": "ENGENHARIA DE COMPUTAÇÃO",
+        "ano_referencia": 2023,
+        "qt_concluinte": 9
+      },
+      {
+        "codigo_curso": 1299933,
+        "nome_curso": "ENGENHARIA DE COMPUTAÇÃO",
+        "ano_referencia": 2024,
+        "qt_concluinte": 13
+      },
+      {
+        "codigo_curso": 1304876,
+        "nome_curso": "DESIGN DIGITAL",
+        "ano_referencia": 2021,
+        "qt_concluinte": 9
+      },
+      {
+        "codigo_curso": 1304876,
+        "nome_curso": "DESIGN DIGITAL",
+        "ano_referencia": 2022,
+        "qt_concluinte": 15
+      },
+      {
+        "codigo_curso": 1304876,
+        "nome_curso": "DESIGN DIGITAL",
+        "ano_referencia": 2023,
+        "qt_concluinte": 23
+      },
+      {
+        "codigo_curso": 1304876,
+        "nome_curso": "DESIGN DIGITAL",
+        "ano_referencia": 2024,
+        "qt_concluinte": 20
+      }
     ]
   },
   "campus": {
@@ -10915,6 +11157,36 @@
       {
         "ano_ingresso": 2020,
         "qt_ingressante": 308
+      }
+    ],
+    "tendencia_concluintes": [
+      {
+        "ano_referencia": 2017,
+        "qt_concluinte": 49
+      },
+      {
+        "ano_referencia": 2018,
+        "qt_concluinte": 64
+      },
+      {
+        "ano_referencia": 2019,
+        "qt_concluinte": 72
+      },
+      {
+        "ano_referencia": 2020,
+        "qt_concluinte": 49
+      },
+      {
+        "ano_referencia": 2021,
+        "qt_concluinte": 60
+      },
+      {
+        "ano_referencia": 2022,
+        "qt_concluinte": 60
+      },
+      {
+        "ano_referencia": 2023,
+        "qt_concluinte": 84
       }
     ]
   },
@@ -13455,6 +13727,248 @@
         "codigo_curso": 1304876,
         "ano_ingresso": 2020,
         "qt_ingressante_media_nacional": 49.8,
+        "quantidade_cursos_considerados": 4
+      }
+    ],
+    "concluintes": [
+      {
+        "codigo_curso": 106167,
+        "ano_referencia": 2016,
+        "qt_concluinte_media_nacional": 13.5,
+        "quantidade_cursos_considerados": 639
+      },
+      {
+        "codigo_curso": 106167,
+        "ano_referencia": 2017,
+        "qt_concluinte_media_nacional": 12.5,
+        "quantidade_cursos_considerados": 648
+      },
+      {
+        "codigo_curso": 106167,
+        "ano_referencia": 2018,
+        "qt_concluinte_media_nacional": 11.5,
+        "quantidade_cursos_considerados": 662
+      },
+      {
+        "codigo_curso": 106167,
+        "ano_referencia": 2019,
+        "qt_concluinte_media_nacional": 10.3,
+        "quantidade_cursos_considerados": 670
+      },
+      {
+        "codigo_curso": 106167,
+        "ano_referencia": 2020,
+        "qt_concluinte_media_nacional": 10.0,
+        "quantidade_cursos_considerados": 661
+      },
+      {
+        "codigo_curso": 106167,
+        "ano_referencia": 2021,
+        "qt_concluinte_media_nacional": 8.9,
+        "quantidade_cursos_considerados": 635
+      },
+      {
+        "codigo_curso": 106167,
+        "ano_referencia": 2022,
+        "qt_concluinte_media_nacional": 9.1,
+        "quantidade_cursos_considerados": 597
+      },
+      {
+        "codigo_curso": 106167,
+        "ano_referencia": 2023,
+        "qt_concluinte_media_nacional": 9.3,
+        "quantidade_cursos_considerados": 570
+      },
+      {
+        "codigo_curso": 106167,
+        "ano_referencia": 2024,
+        "qt_concluinte_media_nacional": 6.4,
+        "quantidade_cursos_considerados": 541
+      },
+      {
+        "codigo_curso": 150117,
+        "ano_referencia": 2016,
+        "qt_concluinte_media_nacional": 5.4,
+        "quantidade_cursos_considerados": 30
+      },
+      {
+        "codigo_curso": 150117,
+        "ano_referencia": 2017,
+        "qt_concluinte_media_nacional": 7.1,
+        "quantidade_cursos_considerados": 37
+      },
+      {
+        "codigo_curso": 150117,
+        "ano_referencia": 2018,
+        "qt_concluinte_media_nacional": 6.7,
+        "quantidade_cursos_considerados": 46
+      },
+      {
+        "codigo_curso": 150117,
+        "ano_referencia": 2019,
+        "qt_concluinte_media_nacional": 6.3,
+        "quantidade_cursos_considerados": 64
+      },
+      {
+        "codigo_curso": 150117,
+        "ano_referencia": 2020,
+        "qt_concluinte_media_nacional": 6.2,
+        "quantidade_cursos_considerados": 70
+      },
+      {
+        "codigo_curso": 150117,
+        "ano_referencia": 2021,
+        "qt_concluinte_media_nacional": 8.6,
+        "quantidade_cursos_considerados": 70
+      },
+      {
+        "codigo_curso": 150117,
+        "ano_referencia": 2022,
+        "qt_concluinte_media_nacional": 11.8,
+        "quantidade_cursos_considerados": 70
+      },
+      {
+        "codigo_curso": 150117,
+        "ano_referencia": 2023,
+        "qt_concluinte_media_nacional": 15.8,
+        "quantidade_cursos_considerados": 70
+      },
+      {
+        "codigo_curso": 150117,
+        "ano_referencia": 2024,
+        "qt_concluinte_media_nacional": 11.7,
+        "quantidade_cursos_considerados": 70
+      },
+      {
+        "codigo_curso": 1127191,
+        "ano_referencia": 2015,
+        "qt_concluinte_media_nacional": 15.3,
+        "quantidade_cursos_considerados": 293
+      },
+      {
+        "codigo_curso": 1127191,
+        "ano_referencia": 2016,
+        "qt_concluinte_media_nacional": 14.3,
+        "quantidade_cursos_considerados": 303
+      },
+      {
+        "codigo_curso": 1127191,
+        "ano_referencia": 2017,
+        "qt_concluinte_media_nacional": 11.4,
+        "quantidade_cursos_considerados": 310
+      },
+      {
+        "codigo_curso": 1127191,
+        "ano_referencia": 2018,
+        "qt_concluinte_media_nacional": 8.8,
+        "quantidade_cursos_considerados": 324
+      },
+      {
+        "codigo_curso": 1127191,
+        "ano_referencia": 2019,
+        "qt_concluinte_media_nacional": 7.4,
+        "quantidade_cursos_considerados": 328
+      },
+      {
+        "codigo_curso": 1127191,
+        "ano_referencia": 2020,
+        "qt_concluinte_media_nacional": 6.9,
+        "quantidade_cursos_considerados": 324
+      },
+      {
+        "codigo_curso": 1127191,
+        "ano_referencia": 2021,
+        "qt_concluinte_media_nacional": 4.2,
+        "quantidade_cursos_considerados": 310
+      },
+      {
+        "codigo_curso": 1127191,
+        "ano_referencia": 2022,
+        "qt_concluinte_media_nacional": 3.2,
+        "quantidade_cursos_considerados": 291
+      },
+      {
+        "codigo_curso": 1127191,
+        "ano_referencia": 2023,
+        "qt_concluinte_media_nacional": 1.7,
+        "quantidade_cursos_considerados": 269
+      },
+      {
+        "codigo_curso": 1270596,
+        "ano_referencia": 2019,
+        "qt_concluinte_media_nacional": 14.1,
+        "quantidade_cursos_considerados": 435
+      },
+      {
+        "codigo_curso": 1270596,
+        "ano_referencia": 2020,
+        "qt_concluinte_media_nacional": 14.6,
+        "quantidade_cursos_considerados": 450
+      },
+      {
+        "codigo_curso": 1270596,
+        "ano_referencia": 2021,
+        "qt_concluinte_media_nacional": 14.0,
+        "quantidade_cursos_considerados": 442
+      },
+      {
+        "codigo_curso": 1270596,
+        "ano_referencia": 2022,
+        "qt_concluinte_media_nacional": 14.5,
+        "quantidade_cursos_considerados": 432
+      },
+      {
+        "codigo_curso": 1270596,
+        "ano_referencia": 2023,
+        "qt_concluinte_media_nacional": 17.3,
+        "quantidade_cursos_considerados": 423
+      },
+      {
+        "codigo_curso": 1270596,
+        "ano_referencia": 2024,
+        "qt_concluinte_media_nacional": 12.1,
+        "quantidade_cursos_considerados": 418
+      },
+      {
+        "codigo_curso": 1299933,
+        "ano_referencia": 2022,
+        "qt_concluinte_media_nacional": 10.9,
+        "quantidade_cursos_considerados": 268
+      },
+      {
+        "codigo_curso": 1299933,
+        "ano_referencia": 2023,
+        "qt_concluinte_media_nacional": 12.7,
+        "quantidade_cursos_considerados": 268
+      },
+      {
+        "codigo_curso": 1299933,
+        "ano_referencia": 2024,
+        "qt_concluinte_media_nacional": 12.2,
+        "quantidade_cursos_considerados": 268
+      },
+      {
+        "codigo_curso": 1304876,
+        "ano_referencia": 2021,
+        "qt_concluinte_media_nacional": 15.2,
+        "quantidade_cursos_considerados": 4
+      },
+      {
+        "codigo_curso": 1304876,
+        "ano_referencia": 2022,
+        "qt_concluinte_media_nacional": 17.0,
+        "quantidade_cursos_considerados": 4
+      },
+      {
+        "codigo_curso": 1304876,
+        "ano_referencia": 2023,
+        "qt_concluinte_media_nacional": 28.2,
+        "quantidade_cursos_considerados": 4
+      },
+      {
+        "codigo_curso": 1304876,
+        "ano_referencia": 2024,
+        "qt_concluinte_media_nacional": 24.5,
         "quantidade_cursos_considerados": 4
       }
     ],

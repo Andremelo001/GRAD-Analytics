@@ -1,4 +1,5 @@
-/** Última sub-aba aberta em cada aba com sub-abas (Qualidade, Trajetória):
+/** Última sub-aba aberta em cada aba com sub-abas (Início, Qualidade,
+ * Trajetória):
  * o caminho com a busca, ex.: ``/qualidade/curso/123`` ou
  * ``/qualidade/comparacoes?modo=cursos``. Ao voltar pra aba (o link do menu
  * aponta pra ``/qualidade``), o painel reabre onde estava em vez de cair
@@ -8,6 +9,7 @@ const ultimas = new Map<string, string>();
 
 /** Primeira sub-aba de cada aba (pra quando ainda não há memória). */
 const PADRAO: Record<string, string> = {
+    inicio: "/inicio/ingresso",
     qualidade: "/qualidade/campus",
     trajetoria: "/trajetoria/panorama",
 };

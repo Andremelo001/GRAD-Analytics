@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-10-17T17:30:47+00:00",
+  "gerado_em": "2026-10-24T12:31:02+00:00",
   "escopo": {
     "codigo_ies": 583,
     "nome_ies": "UNIVERSIDADE FEDERAL DO CEARÁ",
@@ -18523,6 +18523,398 @@
         "ano_ingresso": 2020,
         "qt_ingressante": 50
       }
+    ],
+    "demanda_concluintes": [
+      {
+        "codigo_curso": 54490,
+        "nome_curso": "MEDICINA",
+        "ano_referencia": 2018,
+        "qt_concluinte": 77
+      },
+      {
+        "codigo_curso": 54490,
+        "nome_curso": "MEDICINA",
+        "ano_referencia": 2019,
+        "qt_concluinte": 71
+      },
+      {
+        "codigo_curso": 54490,
+        "nome_curso": "MEDICINA",
+        "ano_referencia": 2020,
+        "qt_concluinte": 115
+      },
+      {
+        "codigo_curso": 54490,
+        "nome_curso": "MEDICINA",
+        "ano_referencia": 2021,
+        "qt_concluinte": 38
+      },
+      {
+        "codigo_curso": 54490,
+        "nome_curso": "MEDICINA",
+        "ano_referencia": 2022,
+        "qt_concluinte": 65
+      },
+      {
+        "codigo_curso": 54490,
+        "nome_curso": "MEDICINA",
+        "ano_referencia": 2023,
+        "qt_concluinte": 94
+      },
+      {
+        "codigo_curso": 54490,
+        "nome_curso": "MEDICINA",
+        "ano_referencia": 2024,
+        "qt_concluinte": 82
+      },
+      {
+        "codigo_curso": 99300,
+        "nome_curso": "ENGENHARIA DE COMPUTAÇÃO",
+        "ano_referencia": 2017,
+        "qt_concluinte": 11
+      },
+      {
+        "codigo_curso": 99300,
+        "nome_curso": "ENGENHARIA DE COMPUTAÇÃO",
+        "ano_referencia": 2018,
+        "qt_concluinte": 23
+      },
+      {
+        "codigo_curso": 99300,
+        "nome_curso": "ENGENHARIA DE COMPUTAÇÃO",
+        "ano_referencia": 2019,
+        "qt_concluinte": 21
+      },
+      {
+        "codigo_curso": 99300,
+        "nome_curso": "ENGENHARIA DE COMPUTAÇÃO",
+        "ano_referencia": 2020,
+        "qt_concluinte": 22
+      },
+      {
+        "codigo_curso": 99300,
+        "nome_curso": "ENGENHARIA DE COMPUTAÇÃO",
+        "ano_referencia": 2021,
+        "qt_concluinte": 18
+      },
+      {
+        "codigo_curso": 99300,
+        "nome_curso": "ENGENHARIA DE COMPUTAÇÃO",
+        "ano_referencia": 2022,
+        "qt_concluinte": 19
+      },
+      {
+        "codigo_curso": 99300,
+        "nome_curso": "ENGENHARIA DE COMPUTAÇÃO",
+        "ano_referencia": 2023,
+        "qt_concluinte": 25
+      },
+      {
+        "codigo_curso": 99300,
+        "nome_curso": "ENGENHARIA DE COMPUTAÇÃO",
+        "ano_referencia": 2024,
+        "qt_concluinte": 31
+      },
+      {
+        "codigo_curso": 99302,
+        "nome_curso": "ENGENHARIA ELÉTRICA",
+        "ano_referencia": 2017,
+        "qt_concluinte": 13
+      },
+      {
+        "codigo_curso": 99302,
+        "nome_curso": "ENGENHARIA ELÉTRICA",
+        "ano_referencia": 2018,
+        "qt_concluinte": 25
+      },
+      {
+        "codigo_curso": 99302,
+        "nome_curso": "ENGENHARIA ELÉTRICA",
+        "ano_referencia": 2019,
+        "qt_concluinte": 24
+      },
+      {
+        "codigo_curso": 99302,
+        "nome_curso": "ENGENHARIA ELÉTRICA",
+        "ano_referencia": 2020,
+        "qt_concluinte": 30
+      },
+      {
+        "codigo_curso": 99302,
+        "nome_curso": "ENGENHARIA ELÉTRICA",
+        "ano_referencia": 2021,
+        "qt_concluinte": 22
+      },
+      {
+        "codigo_curso": 99302,
+        "nome_curso": "ENGENHARIA ELÉTRICA",
+        "ano_referencia": 2022,
+        "qt_concluinte": 22
+      },
+      {
+        "codigo_curso": 99302,
+        "nome_curso": "ENGENHARIA ELÉTRICA",
+        "ano_referencia": 2023,
+        "qt_concluinte": 32
+      },
+      {
+        "codigo_curso": 99302,
+        "nome_curso": "ENGENHARIA ELÉTRICA",
+        "ano_referencia": 2024,
+        "qt_concluinte": 31
+      },
+      {
+        "codigo_curso": 99306,
+        "nome_curso": "CIÊNCIAS ECONÔMICAS",
+        "ano_referencia": 2016,
+        "qt_concluinte": 11
+      },
+      {
+        "codigo_curso": 99306,
+        "nome_curso": "CIÊNCIAS ECONÔMICAS",
+        "ano_referencia": 2017,
+        "qt_concluinte": 12
+      },
+      {
+        "codigo_curso": 99306,
+        "nome_curso": "CIÊNCIAS ECONÔMICAS",
+        "ano_referencia": 2018,
+        "qt_concluinte": 18
+      },
+      {
+        "codigo_curso": 99306,
+        "nome_curso": "CIÊNCIAS ECONÔMICAS",
+        "ano_referencia": 2019,
+        "qt_concluinte": 24
+      },
+      {
+        "codigo_curso": 99306,
+        "nome_curso": "CIÊNCIAS ECONÔMICAS",
+        "ano_referencia": 2020,
+        "qt_concluinte": 17
+      },
+      {
+        "codigo_curso": 99306,
+        "nome_curso": "CIÊNCIAS ECONÔMICAS",
+        "ano_referencia": 2021,
+        "qt_concluinte": 18
+      },
+      {
+        "codigo_curso": 99306,
+        "nome_curso": "CIÊNCIAS ECONÔMICAS",
+        "ano_referencia": 2022,
+        "qt_concluinte": 20
+      },
+      {
+        "codigo_curso": 99306,
+        "nome_curso": "CIÊNCIAS ECONÔMICAS",
+        "ano_referencia": 2023,
+        "qt_concluinte": 18
+      },
+      {
+        "codigo_curso": 99306,
+        "nome_curso": "CIÊNCIAS ECONÔMICAS",
+        "ano_referencia": 2024,
+        "qt_concluinte": 24
+      },
+      {
+        "codigo_curso": 99308,
+        "nome_curso": "ODONTOLOGIA",
+        "ano_referencia": 2017,
+        "qt_concluinte": 57
+      },
+      {
+        "codigo_curso": 99308,
+        "nome_curso": "ODONTOLOGIA",
+        "ano_referencia": 2018,
+        "qt_concluinte": 26
+      },
+      {
+        "codigo_curso": 99308,
+        "nome_curso": "ODONTOLOGIA",
+        "ano_referencia": 2019,
+        "qt_concluinte": 26
+      },
+      {
+        "codigo_curso": 99308,
+        "nome_curso": "ODONTOLOGIA",
+        "ano_referencia": 2020,
+        "qt_concluinte": 0
+      },
+      {
+        "codigo_curso": 99308,
+        "nome_curso": "ODONTOLOGIA",
+        "ano_referencia": 2021,
+        "qt_concluinte": 93
+      },
+      {
+        "codigo_curso": 99308,
+        "nome_curso": "ODONTOLOGIA",
+        "ano_referencia": 2022,
+        "qt_concluinte": 1
+      },
+      {
+        "codigo_curso": 99308,
+        "nome_curso": "ODONTOLOGIA",
+        "ano_referencia": 2023,
+        "qt_concluinte": 70
+      },
+      {
+        "codigo_curso": 99308,
+        "nome_curso": "ODONTOLOGIA",
+        "ano_referencia": 2024,
+        "qt_concluinte": 41
+      },
+      {
+        "codigo_curso": 99310,
+        "nome_curso": "PSICOLOGIA",
+        "ano_referencia": 2017,
+        "qt_concluinte": 37
+      },
+      {
+        "codigo_curso": 99310,
+        "nome_curso": "PSICOLOGIA",
+        "ano_referencia": 2018,
+        "qt_concluinte": 44
+      },
+      {
+        "codigo_curso": 99310,
+        "nome_curso": "PSICOLOGIA",
+        "ano_referencia": 2019,
+        "qt_concluinte": 31
+      },
+      {
+        "codigo_curso": 99310,
+        "nome_curso": "PSICOLOGIA",
+        "ano_referencia": 2020,
+        "qt_concluinte": 25
+      },
+      {
+        "codigo_curso": 99310,
+        "nome_curso": "PSICOLOGIA",
+        "ano_referencia": 2021,
+        "qt_concluinte": 56
+      },
+      {
+        "codigo_curso": 99310,
+        "nome_curso": "PSICOLOGIA",
+        "ano_referencia": 2022,
+        "qt_concluinte": 55
+      },
+      {
+        "codigo_curso": 99310,
+        "nome_curso": "PSICOLOGIA",
+        "ano_referencia": 2023,
+        "qt_concluinte": 44
+      },
+      {
+        "codigo_curso": 99310,
+        "nome_curso": "PSICOLOGIA",
+        "ano_referencia": 2024,
+        "qt_concluinte": 28
+      },
+      {
+        "codigo_curso": 150099,
+        "nome_curso": "MÚSICA",
+        "ano_referencia": 2017,
+        "qt_concluinte": 13
+      },
+      {
+        "codigo_curso": 150099,
+        "nome_curso": "MÚSICA",
+        "ano_referencia": 2018,
+        "qt_concluinte": 7
+      },
+      {
+        "codigo_curso": 150099,
+        "nome_curso": "MÚSICA",
+        "ano_referencia": 2019,
+        "qt_concluinte": 19
+      },
+      {
+        "codigo_curso": 150099,
+        "nome_curso": "MÚSICA",
+        "ano_referencia": 2020,
+        "qt_concluinte": 11
+      },
+      {
+        "codigo_curso": 150099,
+        "nome_curso": "MÚSICA",
+        "ano_referencia": 2021,
+        "qt_concluinte": 7
+      },
+      {
+        "codigo_curso": 150099,
+        "nome_curso": "MÚSICA",
+        "ano_referencia": 2022,
+        "qt_concluinte": 24
+      },
+      {
+        "codigo_curso": 150099,
+        "nome_curso": "MÚSICA",
+        "ano_referencia": 2023,
+        "qt_concluinte": 17
+      },
+      {
+        "codigo_curso": 150099,
+        "nome_curso": "MÚSICA",
+        "ano_referencia": 2024,
+        "qt_concluinte": 26
+      },
+      {
+        "codigo_curso": 150118,
+        "nome_curso": "FINANÇAS",
+        "ano_referencia": 2016,
+        "qt_concluinte": 16
+      },
+      {
+        "codigo_curso": 150118,
+        "nome_curso": "FINANÇAS",
+        "ano_referencia": 2017,
+        "qt_concluinte": 10
+      },
+      {
+        "codigo_curso": 150118,
+        "nome_curso": "FINANÇAS",
+        "ano_referencia": 2018,
+        "qt_concluinte": 15
+      },
+      {
+        "codigo_curso": 150118,
+        "nome_curso": "FINANÇAS",
+        "ano_referencia": 2019,
+        "qt_concluinte": 15
+      },
+      {
+        "codigo_curso": 150118,
+        "nome_curso": "FINANÇAS",
+        "ano_referencia": 2020,
+        "qt_concluinte": 11
+      },
+      {
+        "codigo_curso": 150118,
+        "nome_curso": "FINANÇAS",
+        "ano_referencia": 2021,
+        "qt_concluinte": 11
+      },
+      {
+        "codigo_curso": 150118,
+        "nome_curso": "FINANÇAS",
+        "ano_referencia": 2022,
+        "qt_concluinte": 22
+      },
+      {
+        "codigo_curso": 150118,
+        "nome_curso": "FINANÇAS",
+        "ano_referencia": 2023,
+        "qt_concluinte": 16
+      },
+      {
+        "codigo_curso": 150118,
+        "nome_curso": "FINANÇAS",
+        "ano_referencia": 2024,
+        "qt_concluinte": 9
+      }
     ]
   },
   "campus": {
@@ -18590,6 +18982,36 @@
       {
         "ano_ingresso": 2020,
         "qt_ingressante": 538
+      }
+    ],
+    "tendencia_concluintes": [
+      {
+        "ano_referencia": 2018,
+        "qt_concluinte": 235
+      },
+      {
+        "ano_referencia": 2019,
+        "qt_concluinte": 231
+      },
+      {
+        "ano_referencia": 2020,
+        "qt_concluinte": 231
+      },
+      {
+        "ano_referencia": 2021,
+        "qt_concluinte": 263
+      },
+      {
+        "ano_referencia": 2022,
+        "qt_concluinte": 228
+      },
+      {
+        "ano_referencia": 2023,
+        "qt_concluinte": 316
+      },
+      {
+        "ano_referencia": 2024,
+        "qt_concluinte": 272
       }
     ]
   },
@@ -22584,6 +23006,398 @@
         "codigo_curso": 150118,
         "ano_ingresso": 2020,
         "qt_ingressante_media_nacional": 51.5,
+        "quantidade_cursos_considerados": 2
+      }
+    ],
+    "concluintes": [
+      {
+        "codigo_curso": 54490,
+        "ano_referencia": 2018,
+        "qt_concluinte_media_nacional": 57.0,
+        "quantidade_cursos_considerados": 331
+      },
+      {
+        "codigo_curso": 54490,
+        "ano_referencia": 2019,
+        "qt_concluinte_media_nacional": 56.9,
+        "quantidade_cursos_considerados": 345
+      },
+      {
+        "codigo_curso": 54490,
+        "ano_referencia": 2020,
+        "qt_concluinte_media_nacional": 69.2,
+        "quantidade_cursos_considerados": 356
+      },
+      {
+        "codigo_curso": 54490,
+        "ano_referencia": 2021,
+        "qt_concluinte_media_nacional": 65.6,
+        "quantidade_cursos_considerados": 356
+      },
+      {
+        "codigo_curso": 54490,
+        "ano_referencia": 2022,
+        "qt_concluinte_media_nacional": 70.7,
+        "quantidade_cursos_considerados": 355
+      },
+      {
+        "codigo_curso": 54490,
+        "ano_referencia": 2023,
+        "qt_concluinte_media_nacional": 90.4,
+        "quantidade_cursos_considerados": 355
+      },
+      {
+        "codigo_curso": 54490,
+        "ano_referencia": 2024,
+        "qt_concluinte_media_nacional": 104.0,
+        "quantidade_cursos_considerados": 353
+      },
+      {
+        "codigo_curso": 99300,
+        "ano_referencia": 2017,
+        "qt_concluinte_media_nacional": 9.8,
+        "quantidade_cursos_considerados": 212
+      },
+      {
+        "codigo_curso": 99300,
+        "ano_referencia": 2018,
+        "qt_concluinte_media_nacional": 11.1,
+        "quantidade_cursos_considerados": 229
+      },
+      {
+        "codigo_curso": 99300,
+        "ano_referencia": 2019,
+        "qt_concluinte_media_nacional": 11.4,
+        "quantidade_cursos_considerados": 254
+      },
+      {
+        "codigo_curso": 99300,
+        "ano_referencia": 2020,
+        "qt_concluinte_media_nacional": 9.9,
+        "quantidade_cursos_considerados": 268
+      },
+      {
+        "codigo_curso": 99300,
+        "ano_referencia": 2021,
+        "qt_concluinte_media_nacional": 11.1,
+        "quantidade_cursos_considerados": 268
+      },
+      {
+        "codigo_curso": 99300,
+        "ano_referencia": 2022,
+        "qt_concluinte_media_nacional": 10.9,
+        "quantidade_cursos_considerados": 268
+      },
+      {
+        "codigo_curso": 99300,
+        "ano_referencia": 2023,
+        "qt_concluinte_media_nacional": 12.7,
+        "quantidade_cursos_considerados": 268
+      },
+      {
+        "codigo_curso": 99300,
+        "ano_referencia": 2024,
+        "qt_concluinte_media_nacional": 12.2,
+        "quantidade_cursos_considerados": 268
+      },
+      {
+        "codigo_curso": 99302,
+        "ano_referencia": 2017,
+        "qt_concluinte_media_nacional": 16.7,
+        "quantidade_cursos_considerados": 524
+      },
+      {
+        "codigo_curso": 99302,
+        "ano_referencia": 2018,
+        "qt_concluinte_media_nacional": 18.7,
+        "quantidade_cursos_considerados": 571
+      },
+      {
+        "codigo_curso": 99302,
+        "ano_referencia": 2019,
+        "qt_concluinte_media_nacional": 18.6,
+        "quantidade_cursos_considerados": 601
+      },
+      {
+        "codigo_curso": 99302,
+        "ano_referencia": 2020,
+        "qt_concluinte_media_nacional": 17.5,
+        "quantidade_cursos_considerados": 618
+      },
+      {
+        "codigo_curso": 99302,
+        "ano_referencia": 2021,
+        "qt_concluinte_media_nacional": 15.4,
+        "quantidade_cursos_considerados": 613
+      },
+      {
+        "codigo_curso": 99302,
+        "ano_referencia": 2022,
+        "qt_concluinte_media_nacional": 13.6,
+        "quantidade_cursos_considerados": 603
+      },
+      {
+        "codigo_curso": 99302,
+        "ano_referencia": 2023,
+        "qt_concluinte_media_nacional": 12.0,
+        "quantidade_cursos_considerados": 597
+      },
+      {
+        "codigo_curso": 99302,
+        "ano_referencia": 2024,
+        "qt_concluinte_media_nacional": 9.2,
+        "quantidade_cursos_considerados": 593
+      },
+      {
+        "codigo_curso": 99306,
+        "ano_referencia": 2016,
+        "qt_concluinte_media_nacional": 19.0,
+        "quantidade_cursos_considerados": 247
+      },
+      {
+        "codigo_curso": 99306,
+        "ano_referencia": 2017,
+        "qt_concluinte_media_nacional": 20.4,
+        "quantidade_cursos_considerados": 250
+      },
+      {
+        "codigo_curso": 99306,
+        "ano_referencia": 2018,
+        "qt_concluinte_media_nacional": 20.2,
+        "quantidade_cursos_considerados": 266
+      },
+      {
+        "codigo_curso": 99306,
+        "ano_referencia": 2019,
+        "qt_concluinte_media_nacional": 18.6,
+        "quantidade_cursos_considerados": 275
+      },
+      {
+        "codigo_curso": 99306,
+        "ano_referencia": 2020,
+        "qt_concluinte_media_nacional": 19.3,
+        "quantidade_cursos_considerados": 267
+      },
+      {
+        "codigo_curso": 99306,
+        "ano_referencia": 2021,
+        "qt_concluinte_media_nacional": 18.9,
+        "quantidade_cursos_considerados": 259
+      },
+      {
+        "codigo_curso": 99306,
+        "ano_referencia": 2022,
+        "qt_concluinte_media_nacional": 20.3,
+        "quantidade_cursos_considerados": 243
+      },
+      {
+        "codigo_curso": 99306,
+        "ano_referencia": 2023,
+        "qt_concluinte_media_nacional": 22.8,
+        "quantidade_cursos_considerados": 238
+      },
+      {
+        "codigo_curso": 99306,
+        "ano_referencia": 2024,
+        "qt_concluinte_media_nacional": 17.0,
+        "quantidade_cursos_considerados": 233
+      },
+      {
+        "codigo_curso": 99308,
+        "ano_referencia": 2017,
+        "qt_concluinte_media_nacional": 48.5,
+        "quantidade_cursos_considerados": 337
+      },
+      {
+        "codigo_curso": 99308,
+        "ano_referencia": 2018,
+        "qt_concluinte_media_nacional": 46.5,
+        "quantidade_cursos_considerados": 390
+      },
+      {
+        "codigo_curso": 99308,
+        "ano_referencia": 2019,
+        "qt_concluinte_media_nacional": 38.3,
+        "quantidade_cursos_considerados": 474
+      },
+      {
+        "codigo_curso": 99308,
+        "ano_referencia": 2020,
+        "qt_concluinte_media_nacional": 36.0,
+        "quantidade_cursos_considerados": 511
+      },
+      {
+        "codigo_curso": 99308,
+        "ano_referencia": 2021,
+        "qt_concluinte_media_nacional": 44.5,
+        "quantidade_cursos_considerados": 510
+      },
+      {
+        "codigo_curso": 99308,
+        "ano_referencia": 2022,
+        "qt_concluinte_media_nacional": 44.6,
+        "quantidade_cursos_considerados": 509
+      },
+      {
+        "codigo_curso": 99308,
+        "ano_referencia": 2023,
+        "qt_concluinte_media_nacional": 47.4,
+        "quantidade_cursos_considerados": 509
+      },
+      {
+        "codigo_curso": 99308,
+        "ano_referencia": 2024,
+        "qt_concluinte_media_nacional": 37.0,
+        "quantidade_cursos_considerados": 509
+      },
+      {
+        "codigo_curso": 99310,
+        "ano_referencia": 2017,
+        "qt_concluinte_media_nacional": 38.8,
+        "quantidade_cursos_considerados": 743
+      },
+      {
+        "codigo_curso": 99310,
+        "ano_referencia": 2018,
+        "qt_concluinte_media_nacional": 41.0,
+        "quantidade_cursos_considerados": 832
+      },
+      {
+        "codigo_curso": 99310,
+        "ano_referencia": 2019,
+        "qt_concluinte_media_nacional": 37.6,
+        "quantidade_cursos_considerados": 972
+      },
+      {
+        "codigo_curso": 99310,
+        "ano_referencia": 2020,
+        "qt_concluinte_media_nacional": 32.6,
+        "quantidade_cursos_considerados": 1023
+      },
+      {
+        "codigo_curso": 99310,
+        "ano_referencia": 2021,
+        "qt_concluinte_media_nacional": 35.4,
+        "quantidade_cursos_considerados": 1014
+      },
+      {
+        "codigo_curso": 99310,
+        "ano_referencia": 2022,
+        "qt_concluinte_media_nacional": 36.4,
+        "quantidade_cursos_considerados": 1004
+      },
+      {
+        "codigo_curso": 99310,
+        "ano_referencia": 2023,
+        "qt_concluinte_media_nacional": 37.8,
+        "quantidade_cursos_considerados": 1000
+      },
+      {
+        "codigo_curso": 99310,
+        "ano_referencia": 2024,
+        "qt_concluinte_media_nacional": 40.0,
+        "quantidade_cursos_considerados": 998
+      },
+      {
+        "codigo_curso": 150099,
+        "ano_referencia": 2017,
+        "qt_concluinte_media_nacional": 12.6,
+        "quantidade_cursos_considerados": 127
+      },
+      {
+        "codigo_curso": 150099,
+        "ano_referencia": 2018,
+        "qt_concluinte_media_nacional": 12.3,
+        "quantidade_cursos_considerados": 131
+      },
+      {
+        "codigo_curso": 150099,
+        "ano_referencia": 2019,
+        "qt_concluinte_media_nacional": 10.6,
+        "quantidade_cursos_considerados": 135
+      },
+      {
+        "codigo_curso": 150099,
+        "ano_referencia": 2020,
+        "qt_concluinte_media_nacional": 6.8,
+        "quantidade_cursos_considerados": 135
+      },
+      {
+        "codigo_curso": 150099,
+        "ano_referencia": 2021,
+        "qt_concluinte_media_nacional": 7.9,
+        "quantidade_cursos_considerados": 132
+      },
+      {
+        "codigo_curso": 150099,
+        "ano_referencia": 2022,
+        "qt_concluinte_media_nacional": 6.8,
+        "quantidade_cursos_considerados": 132
+      },
+      {
+        "codigo_curso": 150099,
+        "ano_referencia": 2023,
+        "qt_concluinte_media_nacional": 6.7,
+        "quantidade_cursos_considerados": 129
+      },
+      {
+        "codigo_curso": 150099,
+        "ano_referencia": 2024,
+        "qt_concluinte_media_nacional": 5.3,
+        "quantidade_cursos_considerados": 127
+      },
+      {
+        "codigo_curso": 150118,
+        "ano_referencia": 2016,
+        "qt_concluinte_media_nacional": 9.5,
+        "quantidade_cursos_considerados": 2
+      },
+      {
+        "codigo_curso": 150118,
+        "ano_referencia": 2017,
+        "qt_concluinte_media_nacional": 13.0,
+        "quantidade_cursos_considerados": 2
+      },
+      {
+        "codigo_curso": 150118,
+        "ano_referencia": 2018,
+        "qt_concluinte_media_nacional": 18.0,
+        "quantidade_cursos_considerados": 2
+      },
+      {
+        "codigo_curso": 150118,
+        "ano_referencia": 2019,
+        "qt_concluinte_media_nacional": 18.0,
+        "quantidade_cursos_considerados": 2
+      },
+      {
+        "codigo_curso": 150118,
+        "ano_referencia": 2020,
+        "qt_concluinte_media_nacional": 15.0,
+        "quantidade_cursos_considerados": 2
+      },
+      {
+        "codigo_curso": 150118,
+        "ano_referencia": 2021,
+        "qt_concluinte_media_nacional": 11.0,
+        "quantidade_cursos_considerados": 2
+      },
+      {
+        "codigo_curso": 150118,
+        "ano_referencia": 2022,
+        "qt_concluinte_media_nacional": 22.0,
+        "quantidade_cursos_considerados": 2
+      },
+      {
+        "codigo_curso": 150118,
+        "ano_referencia": 2023,
+        "qt_concluinte_media_nacional": 16.5,
+        "quantidade_cursos_considerados": 2
+      },
+      {
+        "codigo_curso": 150118,
+        "ano_referencia": 2024,
+        "qt_concluinte_media_nacional": 10.0,
         "quantidade_cursos_considerados": 2
       }
     ],

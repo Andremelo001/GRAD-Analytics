@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-10-17T17:30:47+00:00",
+  "gerado_em": "2026-10-24T12:31:02+00:00",
   "escopo": {
     "codigo_ies": 583,
     "nome_ies": "UNIVERSIDADE FEDERAL DO CEARÁ",
@@ -5875,6 +5875,110 @@
         "ano_ingresso": 2020,
         "qt_ingressante": 51
       }
+    ],
+    "demanda_concluintes": [
+      {
+        "codigo_curso": 1272079,
+        "nome_curso": "CIÊNCIA DA COMPUTAÇÃO",
+        "ano_referencia": 2020,
+        "qt_concluinte": 0
+      },
+      {
+        "codigo_curso": 1272079,
+        "nome_curso": "CIÊNCIA DA COMPUTAÇÃO",
+        "ano_referencia": 2021,
+        "qt_concluinte": 7
+      },
+      {
+        "codigo_curso": 1272079,
+        "nome_curso": "CIÊNCIA DA COMPUTAÇÃO",
+        "ano_referencia": 2022,
+        "qt_concluinte": 2
+      },
+      {
+        "codigo_curso": 1272079,
+        "nome_curso": "CIÊNCIA DA COMPUTAÇÃO",
+        "ano_referencia": 2023,
+        "qt_concluinte": 4
+      },
+      {
+        "codigo_curso": 1272079,
+        "nome_curso": "CIÊNCIA DA COMPUTAÇÃO",
+        "ano_referencia": 2024,
+        "qt_concluinte": 11
+      },
+      {
+        "codigo_curso": 1300426,
+        "nome_curso": "ENGENHARIA AMBIENTAL E SANITÁRIA",
+        "ano_referencia": 2022,
+        "qt_concluinte": 14
+      },
+      {
+        "codigo_curso": 1300426,
+        "nome_curso": "ENGENHARIA AMBIENTAL E SANITÁRIA",
+        "ano_referencia": 2023,
+        "qt_concluinte": 15
+      },
+      {
+        "codigo_curso": 1300426,
+        "nome_curso": "ENGENHARIA AMBIENTAL E SANITÁRIA",
+        "ano_referencia": 2024,
+        "qt_concluinte": 21
+      },
+      {
+        "codigo_curso": 1300427,
+        "nome_curso": "ENGENHARIA CIVIL",
+        "ano_referencia": 2022,
+        "qt_concluinte": 32
+      },
+      {
+        "codigo_curso": 1300427,
+        "nome_curso": "ENGENHARIA CIVIL",
+        "ano_referencia": 2023,
+        "qt_concluinte": 22
+      },
+      {
+        "codigo_curso": 1300427,
+        "nome_curso": "ENGENHARIA CIVIL",
+        "ano_referencia": 2024,
+        "qt_concluinte": 32
+      },
+      {
+        "codigo_curso": 1300428,
+        "nome_curso": "ENGENHARIA DE MINAS",
+        "ano_referencia": 2023,
+        "qt_concluinte": 5
+      },
+      {
+        "codigo_curso": 1300428,
+        "nome_curso": "ENGENHARIA DE MINAS",
+        "ano_referencia": 2024,
+        "qt_concluinte": 14
+      },
+      {
+        "codigo_curso": 1300429,
+        "nome_curso": "SISTEMAS DE INFORMAÇÃO",
+        "ano_referencia": 2021,
+        "qt_concluinte": 2
+      },
+      {
+        "codigo_curso": 1300429,
+        "nome_curso": "SISTEMAS DE INFORMAÇÃO",
+        "ano_referencia": 2022,
+        "qt_concluinte": 3
+      },
+      {
+        "codigo_curso": 1300429,
+        "nome_curso": "SISTEMAS DE INFORMAÇÃO",
+        "ano_referencia": 2023,
+        "qt_concluinte": 6
+      },
+      {
+        "codigo_curso": 1300429,
+        "nome_curso": "SISTEMAS DE INFORMAÇÃO",
+        "ano_referencia": 2024,
+        "qt_concluinte": 9
+      }
     ]
   },
   "campus": {
@@ -5918,6 +6022,24 @@
       {
         "ano_ingresso": 2020,
         "qt_ingressante": 250
+      }
+    ],
+    "tendencia_concluintes": [
+      {
+        "ano_referencia": 2021,
+        "qt_concluinte": 39
+      },
+      {
+        "ano_referencia": 2022,
+        "qt_concluinte": 64
+      },
+      {
+        "ano_referencia": 2023,
+        "qt_concluinte": 52
+      },
+      {
+        "ano_referencia": 2024,
+        "qt_concluinte": 87
       }
     ]
   },
@@ -8245,6 +8367,110 @@
         "ano_ingresso": 2020,
         "qt_ingressante_media_nacional": 44.6,
         "quantidade_cursos_considerados": 395
+      }
+    ],
+    "concluintes": [
+      {
+        "codigo_curso": 1272079,
+        "ano_referencia": 2020,
+        "qt_concluinte_media_nacional": 14.6,
+        "quantidade_cursos_considerados": 450
+      },
+      {
+        "codigo_curso": 1272079,
+        "ano_referencia": 2021,
+        "qt_concluinte_media_nacional": 14.0,
+        "quantidade_cursos_considerados": 442
+      },
+      {
+        "codigo_curso": 1272079,
+        "ano_referencia": 2022,
+        "qt_concluinte_media_nacional": 14.5,
+        "quantidade_cursos_considerados": 432
+      },
+      {
+        "codigo_curso": 1272079,
+        "ano_referencia": 2023,
+        "qt_concluinte_media_nacional": 17.3,
+        "quantidade_cursos_considerados": 423
+      },
+      {
+        "codigo_curso": 1272079,
+        "ano_referencia": 2024,
+        "qt_concluinte_media_nacional": 12.1,
+        "quantidade_cursos_considerados": 418
+      },
+      {
+        "codigo_curso": 1300426,
+        "ano_referencia": 2022,
+        "qt_concluinte_media_nacional": 8.1,
+        "quantidade_cursos_considerados": 176
+      },
+      {
+        "codigo_curso": 1300426,
+        "ano_referencia": 2023,
+        "qt_concluinte_media_nacional": 7.5,
+        "quantidade_cursos_considerados": 170
+      },
+      {
+        "codigo_curso": 1300426,
+        "ano_referencia": 2024,
+        "qt_concluinte_media_nacional": 6.0,
+        "quantidade_cursos_considerados": 168
+      },
+      {
+        "codigo_curso": 1300427,
+        "ano_referencia": 2022,
+        "qt_concluinte_media_nacional": 22.7,
+        "quantidade_cursos_considerados": 1138
+      },
+      {
+        "codigo_curso": 1300427,
+        "ano_referencia": 2023,
+        "qt_concluinte_media_nacional": 16.7,
+        "quantidade_cursos_considerados": 1136
+      },
+      {
+        "codigo_curso": 1300427,
+        "ano_referencia": 2024,
+        "qt_concluinte_media_nacional": 11.5,
+        "quantidade_cursos_considerados": 1134
+      },
+      {
+        "codigo_curso": 1300428,
+        "ano_referencia": 2023,
+        "qt_concluinte_media_nacional": 8.4,
+        "quantidade_cursos_considerados": 32
+      },
+      {
+        "codigo_curso": 1300428,
+        "ano_referencia": 2024,
+        "qt_concluinte_media_nacional": 7.2,
+        "quantidade_cursos_considerados": 31
+      },
+      {
+        "codigo_curso": 1300429,
+        "ano_referencia": 2021,
+        "qt_concluinte_media_nacional": 8.9,
+        "quantidade_cursos_considerados": 635
+      },
+      {
+        "codigo_curso": 1300429,
+        "ano_referencia": 2022,
+        "qt_concluinte_media_nacional": 9.1,
+        "quantidade_cursos_considerados": 597
+      },
+      {
+        "codigo_curso": 1300429,
+        "ano_referencia": 2023,
+        "qt_concluinte_media_nacional": 9.3,
+        "quantidade_cursos_considerados": 570
+      },
+      {
+        "codigo_curso": 1300429,
+        "ano_referencia": 2024,
+        "qt_concluinte_media_nacional": 6.4,
+        "quantidade_cursos_considerados": 541
       }
     ],
     "trajetoria_pares": [

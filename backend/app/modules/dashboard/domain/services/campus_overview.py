@@ -11,6 +11,7 @@ def build(
         "kpis": _kpis_campus(data, kpis_por_curso),
         "distribuicao_cpc_faixa": _distribuicao_cpc_faixa(kpis_por_curso),
         "tendencia_ingressantes": _tendencia_ingressantes(data),
+        "tendencia_concluintes": _tendencia_concluintes(data),
     }
 
 
@@ -66,6 +67,29 @@ def _tendencia_ingressantes(data: ScopedData) -> list[dict[str, object]]:
         .sum()
         .reset_index()
         .sort_values("ano_ingresso")
+    )
+    return records(grouped)
+
+
+def _tendencia_concluintes(data: ScopedData) -> list[dict[str, object]]:
+    """Total de concluintes do campus por ano de referência.
+
+    Soma de todos os cursos, só nos anos em que os dados estão completos
+    (``course_profile.janela_concluintes``, com os prazos dos cursos do
+    campus).
+    """
+    if data.trajetoria.empty or "prazo_integralizacao" not in data.cursos:
+        return []
+    janela = course_profile.janela_concluintes(
+        data.trajetoria["ano_ingresso"], data.cursos["prazo_integralizacao"]
+    )
+    if janela is None:
+        return []
+    por_curso = course_profile.concluintes_por_ano(data.trajetoria, janela)
+    grouped = (
+        por_curso.groupby("ano_referencia", as_index=False)["qt_concluinte"]
+        .sum()
+        .sort_values("ano_referencia")
     )
     return records(grouped)
 

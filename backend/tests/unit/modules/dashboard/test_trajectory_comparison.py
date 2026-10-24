@@ -8,6 +8,7 @@ def test_build_returns_all_sections(scoped_data: ScopedData) -> None:
         "evasao_por_curso",
         "heatmap_evasao_anual",
         "demanda_ingressantes",
+        "demanda_concluintes",
     }
 
 

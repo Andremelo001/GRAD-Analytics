@@ -45,6 +45,7 @@ def build(
             qualidade_nacional, trajetoria_nacional, data
         ),
         "ingressantes": _ingressantes_nacional(trajetoria_nacional, data),
+        "concluintes": _concluintes_nacional(trajetoria_nacional, data),
         "trajetoria_pares": _trajetoria_pares(trajetoria_nacional, data),
     }
 
@@ -141,6 +142,70 @@ def _ingressantes_nacional(
                     "ano_ingresso": int(ano),
                     "qt_ingressante_media_nacional": round(
                         float(grupo["qt_ingressante"].mean()), 1
+                    ),
+                    "quantidade_cursos_considerados": int(
+                        grupo["codigo_curso"].nunique()
+                    ),
+                }
+            )
+    return itens
+
+
+def _concluintes_nacional(
+    trajetoria_nacional: pd.DataFrame, data: ScopedData
+) -> list[dict[str, object]]:
+    """Concluintes médios por curso-par, por ano de referência.
+
+    Um item por (curso do campus, ano): a média de concluintes no ano dos
+    cursos do Brasil com a mesma área CINE, modalidade e grau (os mesmos
+    pares de ``_ingressantes_nacional``), contando os pares com turma
+    acompanhada naquele ano — e só nos anos em que os dados do curso do
+    campus estão completos (``course_profile.janela_concluintes``).
+    """
+    if (
+        data.trajetoria.empty
+        or trajetoria_nacional.empty
+        or "prazo_integralizacao" not in data.cursos
+    ):
+        return []
+    coluna = "nome_cine_area_geral"
+    atributos = trajetoria_nacional.drop_duplicates("codigo_curso")
+    anual = trajetoria_nacional.groupby(
+        ["codigo_curso", "ano_referencia"], as_index=False
+    )["qt_concluinte"].sum()
+    prazos = dict(
+        zip(
+            data.cursos["codigo_curso"],
+            data.cursos["prazo_integralizacao"],
+            strict=True,
+        )
+    )
+    itens: list[dict[str, object]] = []
+    for codigo in data.cursos["codigo_curso"]:
+        local = _rows_of(data.trajetoria, int(codigo))
+        rotulo = _first(local, coluna)
+        janela = course_profile.janela_concluintes(
+            local["ano_ingresso"] if not local.empty else pd.Series(dtype=float),
+            pd.Series([prazos.get(codigo)]),
+        )
+        if rotulo is None or janela is None:
+            continue
+        pares = atributos[atributos[coluna] == rotulo]
+        pares = _same_value(pares, local, "tp_modalidade_ensino_desc")
+        pares = _same_value(pares, local, "tp_grau_academico_desc")
+        inicio, fim = janela
+        do_ano = anual[
+            anual["codigo_curso"].isin(set(pares["codigo_curso"]))
+            & (anual["ano_referencia"] >= inicio)
+            & (anual["ano_referencia"] <= fim)
+        ]
+        for ano, grupo in do_ano.groupby("ano_referencia"):
+            itens.append(
+                {
+                    "codigo_curso": int(codigo),
+                    "ano_referencia": int(ano),
+                    "qt_concluinte_media_nacional": round(
+                        float(grupo["qt_concluinte"].mean()), 1
                     ),
                     "quantidade_cursos_considerados": int(
                         grupo["codigo_curso"].nunique()
