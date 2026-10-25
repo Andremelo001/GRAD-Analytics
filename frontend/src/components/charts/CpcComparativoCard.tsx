@@ -14,6 +14,7 @@ import {
 import { Card } from "@/components/cards/Card";
 import { FocusMarker, YearTick } from "@/components/charts/ChartMarks";
 import { DataTable } from "@/components/charts/DataTable";
+import { Segmentado } from "@/components/charts/Segmentado";
 import { formatDecimal, formatInteger, toTitleCase } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import type {
@@ -22,6 +23,37 @@ import type {
     EvolucaoCpcPonto,
 } from "@/types/dashboard";
 import { useChartTheme } from "@/hooks/useChartTheme";
+
+/** O que o card compara: o CPC ou o Conceito Enade (o mesmo card, com a
+ * série e os textos trocados). */
+type Metrica = "cpc" | "enade";
+
+const METRICAS: Record<
+    Metrica,
+    {
+        nome: string;
+        doCurso: (p: EvolucaoCpcPonto) => number | null;
+        nacional: (n: EvolucaoCpcNacionalPonto) => number | null;
+        cursos: (n: EvolucaoCpcNacionalPonto) => number;
+    }
+> = {
+    cpc: {
+        nome: "CPC",
+        doCurso: (p) => p.cpc_continuo,
+        nacional: (n) => n.cpc_continuo_medio_nacional,
+        cursos: (n) => n.quantidade_cursos_considerados,
+    },
+    enade: {
+        nome: "Conceito Enade",
+        doCurso: (p) => p.conceito_enade_continuo,
+        nacional: (n) => n.conceito_enade_medio_nacional,
+        cursos: (n) => n.quantidade_cursos_enade,
+    },
+};
+
+/** A última escolha do seletor: vale enquanto o painel está aberto, então
+ * sair da aba e voltar mantém o indicador. */
+let metricaEscolhida: Metrica = "cpc";
 
 interface Row {
     ano: number;
@@ -32,36 +64,41 @@ interface Row {
 
 /** Um ano por linha, do primeiro ao último ano com avaliação (anos sem
  * ciclo do Enade ficam vazios — o espaçamento entre avaliações é real). O
- * CPC do curso vem de ``curso_perfil.evolucao_cpc``; a média, dos cursos da
- * mesma área de avaliação (``medias_nacionais.evolucao_cpc``). */
+ * valor do curso vem de ``curso_perfil.evolucao_cpc``; a média, dos cursos
+ * da mesma área de avaliação (``medias_nacionais.evolucao_cpc``). */
 function buildRows(
     codigo: number,
     evolucao: EvolucaoCpcPonto[],
-    nacional: EvolucaoCpcNacionalPonto[]
+    nacional: EvolucaoCpcNacionalPonto[],
+    metrica: Metrica
 ): { area: string | null; rows: Row[] } {
+    const m = METRICAS[metrica];
     const doCurso = evolucao.filter(
-        (p) => p.codigo_curso === codigo && p.cpc_continuo !== null
+        (p) => p.codigo_curso === codigo && m.doCurso(p) !== null
     );
     const area = doCurso.at(-1)?.area_avaliacao ?? null;
-    const daArea = nacional.filter((n) => n.area_avaliacao === area);
+    const daArea = nacional.filter(
+        (n) => n.area_avaliacao === area && m.nacional(n) !== null
+    );
     const anos = [...doCurso.map((p) => p.ano), ...daArea.map((n) => n.ano)];
     if (anos.length === 0) return { area, rows: [] };
 
     const rows: Row[] = [];
     for (let ano = Math.min(...anos); ano <= Math.max(...anos); ano++) {
         const media = daArea.find((n) => n.ano === ano);
+        const doAno = doCurso.find((p) => p.ano === ano);
         rows.push({
             ano,
-            curso: doCurso.find((p) => p.ano === ano)?.cpc_continuo ?? null,
-            nacional: media?.cpc_continuo_medio_nacional ?? null,
-            cursosConsiderados: media?.quantidade_cursos_considerados ?? null,
+            curso: doAno ? m.doCurso(doAno) : null,
+            nacional: media ? m.nacional(media) : null,
+            cursosConsiderados: media ? m.cursos(media) : null,
         });
     }
     return { area, rows };
 }
 
 /** Eixo Y em passos de 0,5 com folga em volta das duas séries, dentro da
- * escala 0-5 do CPC (linha codifica posição, não precisa partir do zero). */
+ * escala 0-5 do CPC e do Enade (linha codifica posição, não precisa partir do zero). */
 function buildTicks(rows: Row[]): number[] {
     const values = rows.flatMap((r) =>
         [r.curso, r.nacional].filter((v): v is number => v !== null)
@@ -77,10 +114,11 @@ function buildTicks(rows: Row[]): number[] {
 
 const fmt = (v: number | null) => (v === null ? "—" : formatDecimal(v));
 
-/** CPC contínuo do curso escolhido x média nacional dos cursos da mesma
- * área, em duas linhas no estilo do gráfico de ingressantes: o ano em foco
- * ganha a pílula limão no eixo, anéis nas duas linhas e a etiqueta escura
- * com o valor do curso. Passar o mouse muda o foco (só anos avaliados). */
+/** CPC (ou Conceito Enade, no seletor do card) contínuo do curso escolhido
+ * x média nacional dos cursos da mesma área, em duas linhas no estilo do
+ * gráfico de ingressantes: o ano em foco ganha a pílula limão no eixo, anéis
+ * nas duas linhas e a etiqueta escura com o valor do curso. Passar o mouse
+ * muda o foco (só anos avaliados). */
 export function CpcComparativoCard({
     evolucao,
     nacional,
@@ -96,10 +134,10 @@ export function CpcComparativoCard({
     className?: string;
 }) {
     const CHART = useChartTheme();
+    const [metrica, setMetrica] = useState<Metrica>(() => metricaEscolhida);
+    const { nome, doCurso } = METRICAS[metrica];
     const opcoes = cursos.filter((c) =>
-        evolucao.some(
-            (p) => p.codigo_curso === c.codigo_curso && p.cpc_continuo !== null
-        )
+        evolucao.some((p) => p.codigo_curso === c.codigo_curso && doCurso(p) !== null)
     );
     const semCpc = cursos.length - opcoes.length;
     const [hover, setHover] = useState<number | null>(null);
@@ -108,8 +146,8 @@ export function CpcComparativoCard({
         () =>
             codigo === null
                 ? { area: null, rows: [] }
-                : buildRows(codigo, evolucao, nacional),
-        [codigo, evolucao, nacional]
+                : buildRows(codigo, evolucao, nacional, metrica),
+        [codigo, evolucao, nacional, metrica]
     );
     const ticks = buildTicks(rows);
     const avaliados = rows.filter((r) => r.curso !== null || r.nacional !== null);
@@ -137,8 +175,24 @@ export function CpcComparativoCard({
     return (
         <Card
             expansivel="tela"
-            title="CPC: curso x média nacional"
-            info="O CPC contínuo do curso escolhido em cada edição do Enade, contra a média nacional dos cursos da mesma área de avaliação na mesma edição."
+            title={`${nome}: curso x média nacional`}
+            info={`O ${nome} contínuo do curso escolhido em cada edição do Enade, contra a média nacional dos cursos da mesma área de avaliação na mesma edição. O seletor troca entre o CPC e o Conceito Enade.`}
+            action={
+                // duas opções: as duas à vista, como as sub-abas
+                <Segmentado
+                    label="Indicador"
+                    value={metrica}
+                    options={[
+                        { value: "cpc", label: "CPC" },
+                        { value: "enade", label: "Conceito Enade" },
+                    ]}
+                    onChange={(v) => {
+                        metricaEscolhida = v;
+                        setMetrica(v);
+                        setHover(null);
+                    }}
+                />
+            }
             subtitle={
                 area
                     ? `Média dos cursos de ${toTitleCase(area)} no Brasil`
@@ -149,8 +203,8 @@ export function CpcComparativoCard({
             {opcoes.length === 0 || !foco ? (
                 <p className="text-text-secondary mt-6 text-[13px]">
                     {opcoes.length === 0
-                        ? "Nenhum curso do campus com CPC avaliado."
-                        : `${toTitleCase(cursos.find((c) => c.codigo_curso === codigo)?.nome_curso ?? "Este curso")} ainda não tem CPC avaliado (sem ciclo do Enade). Escolha outro curso no seletor acima.`}
+                        ? `Nenhum curso do campus com ${nome} avaliado.`
+                        : `${toTitleCase(cursos.find((c) => c.codigo_curso === codigo)?.nome_curso ?? "Este curso")} ainda não tem ${nome} avaliado (sem ciclo do Enade). Escolha outro curso no seletor acima.`}
                 </p>
             ) : (
                 <>
@@ -164,7 +218,7 @@ export function CpcComparativoCard({
                                 <p className="text-text-secondary min-w-0 truncate text-[13px] leading-snug">
                                     {foco.curso === null
                                         ? `Curso sem avaliação em ${foco.ano}`
-                                        : `CPC do curso em ${foco.ano}`}
+                                        : `${nome} do curso em ${foco.ano}`}
                                 </p>
                             </div>
                             {/* sempre presente (vazia sem média), pra altura não mudar */}
@@ -333,14 +387,14 @@ export function CpcComparativoCard({
                     {semCpc > 0 && (
                         <p className="text-text-muted mt-2 text-[11px]">
                             {semCpc} {semCpc === 1 ? "curso" : "cursos"} do campus ainda
-                            sem CPC (sem ciclo do Enade) não{" "}
+                            sem {nome} (sem ciclo do Enade) não{" "}
                             {semCpc === 1 ? "aparece" : "aparecem"} na lista.
                         </p>
                     )}
 
                     <div className="sr-only">
                         <DataTable
-                            columns={["Ano", "CPC do curso", "Média nacional"]}
+                            columns={["Ano", `${nome} do curso`, "Média nacional"]}
                             rows={avaliados.map((r) => [
                                 String(r.ano),
                                 fmt(r.curso),

@@ -226,30 +226,48 @@ def _pares_nacionais(
 
 
 def _evolucao_cpc_nacional(pares_qualidade: pd.DataFrame) -> list[dict[str, object]]:
-    """Contraparte nacional: CPC médio por área de avaliação, por ano."""
+    """Contraparte nacional: CPC e Conceito Enade médios por área, por ano.
+
+    Cada média conta só os cursos com aquele valor (a contagem é a do CPC e,
+    à parte, a do Enade).
+    """
     if pares_qualidade.empty:
         return []
-    valid = pares_qualidade.dropna(subset=["cpc_continuo"])
-    if valid.empty:
+    group_cols = ["area_avaliacao", "ano"]
+    medias = []
+    for coluna, nome, contagem in (
+        (
+            "cpc_continuo",
+            "cpc_continuo_medio_nacional",
+            "quantidade_cursos_considerados",
+        ),
+        (
+            "conceito_enade_continuo",
+            "conceito_enade_medio_nacional",
+            "quantidade_cursos_enade",
+        ),
+    ):
+        if coluna not in pares_qualidade.columns:
+            continue
+        valid = pares_qualidade.dropna(subset=[coluna])
+        grouped = valid.groupby(group_cols)[coluna].agg(["mean", "count"])
+        medias.append(grouped.rename(columns={"mean": nome, "count": contagem}))
+    if not medias or all(m.empty for m in medias):
         return []
-    grouped = valid.groupby(["area_avaliacao", "ano"])["cpc_continuo"].agg(
-        ["mean", "count"]
-    )
-    grouped = grouped.rename(
-        columns={
-            "mean": "cpc_continuo_medio_nacional",
-            "count": "quantidade_cursos_considerados",
-        }
-    )
-    return records(
-        grouped.round(2).reset_index().sort_values(["area_avaliacao", "ano"])
-    )
+    grouped = pd.concat(medias, axis=1)
+    # área/ano só com um dos dois valores: a outra contagem é zero
+    for contagem in ("quantidade_cursos_considerados", "quantidade_cursos_enade"):
+        if contagem in grouped.columns:
+            grouped[contagem] = grouped[contagem].fillna(0).astype(int)
+    return records(grouped.round(2).reset_index().sort_values(group_cols))
 
 
 def _perfil_radar_nacional(
     pares_qualidade: pd.DataFrame, local_qualidade: pd.DataFrame
 ) -> list[dict[str, object]]:
     """Contraparte nacional: notas padronizadas médias por área e ano.
+
+    Mais o Conceito Enade contínuo médio (o tile da Visão do campus).
 
     Só os pares (área, ano) em que algum curso do campus foi avaliado: as
     notas são padronizadas dentro de cada edição do Enade, então o curso só
@@ -263,7 +281,7 @@ def _perfil_radar_nacional(
     if pares.empty:
         return []
     group_cols = ["area_avaliacao", "ano"]
-    radar_cols = list(course_profile.RADAR_FIELDS.values())
+    radar_cols = [*course_profile.RADAR_FIELDS.values(), "conceito_enade_continuo"]
     means = pares.groupby(group_cols)[radar_cols].mean()
     means = means.rename(
         columns={column: label for label, column in course_profile.RADAR_FIELDS.items()}

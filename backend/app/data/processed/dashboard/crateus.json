@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-10-24T12:31:02+00:00",
+  "gerado_em": "2026-10-25T01:09:26+00:00",
   "escopo": {
     "codigo_ies": 583,
     "nome_ies": "UNIVERSIDADE FEDERAL DO CEARÁ",
@@ -6049,61 +6049,81 @@
         "area_avaliacao": "CIÊNCIA DA COMPUTAÇÃO (BACHARELADO)",
         "ano": 2017,
         "cpc_continuo_medio_nacional": 2.79,
-        "quantidade_cursos_considerados": 307
+        "quantidade_cursos_considerados": 307,
+        "conceito_enade_medio_nacional": 2.42,
+        "quantidade_cursos_enade": 307
       },
       {
         "area_avaliacao": "CIÊNCIA DA COMPUTAÇÃO (BACHARELADO)",
         "ano": 2021,
         "cpc_continuo_medio_nacional": 2.81,
-        "quantidade_cursos_considerados": 319
+        "quantidade_cursos_considerados": 319,
+        "conceito_enade_medio_nacional": 2.19,
+        "quantidade_cursos_enade": 319
       },
       {
         "area_avaliacao": "ENGENHARIA AMBIENTAL",
         "ano": 2017,
         "cpc_continuo_medio_nacional": 2.85,
-        "quantidade_cursos_considerados": 247
+        "quantidade_cursos_considerados": 247,
+        "conceito_enade_medio_nacional": 2.5,
+        "quantidade_cursos_enade": 247
       },
       {
         "area_avaliacao": "ENGENHARIA AMBIENTAL",
         "ano": 2019,
         "cpc_continuo_medio_nacional": 2.87,
-        "quantidade_cursos_considerados": 277
+        "quantidade_cursos_considerados": 277,
+        "conceito_enade_medio_nacional": 2.44,
+        "quantidade_cursos_enade": 277
       },
       {
         "area_avaliacao": "ENGENHARIA AMBIENTAL",
         "ano": 2023,
         "cpc_continuo_medio_nacional": 2.99,
-        "quantidade_cursos_considerados": 169
+        "quantidade_cursos_considerados": 169,
+        "conceito_enade_medio_nacional": 2.53,
+        "quantidade_cursos_enade": 169
       },
       {
         "area_avaliacao": "ENGENHARIA CIVIL",
         "ano": 2017,
         "cpc_continuo_medio_nacional": 2.59,
-        "quantidade_cursos_considerados": 537
+        "quantidade_cursos_considerados": 537,
+        "conceito_enade_medio_nacional": 2.15,
+        "quantidade_cursos_enade": 537
       },
       {
         "area_avaliacao": "ENGENHARIA CIVIL",
         "ano": 2019,
         "cpc_continuo_medio_nacional": 2.77,
-        "quantidade_cursos_considerados": 726
+        "quantidade_cursos_considerados": 726,
+        "conceito_enade_medio_nacional": 2.33,
+        "quantidade_cursos_enade": 726
       },
       {
         "area_avaliacao": "ENGENHARIA CIVIL",
         "ano": 2023,
         "cpc_continuo_medio_nacional": 2.67,
-        "quantidade_cursos_considerados": 876
+        "quantidade_cursos_considerados": 876,
+        "conceito_enade_medio_nacional": 2.19,
+        "quantidade_cursos_enade": 876
       },
       {
         "area_avaliacao": "SISTEMAS DE INFORMAÇÃO",
         "ano": 2017,
         "cpc_continuo_medio_nacional": 2.74,
-        "quantidade_cursos_considerados": 454
+        "quantidade_cursos_considerados": 454,
+        "conceito_enade_medio_nacional": 2.32,
+        "quantidade_cursos_enade": 454
       },
       {
         "area_avaliacao": "SISTEMAS DE INFORMAÇÃO",
         "ano": 2021,
         "cpc_continuo_medio_nacional": 2.72,
-        "quantidade_cursos_considerados": 388
+        "quantidade_cursos_considerados": 388,
+        "conceito_enade_medio_nacional": 2.25,
+        "quantidade_cursos_enade": 388
       }
     ],
     "perfil_radar": [
@@ -6119,6 +6139,7 @@
         "mestres": 4.03,
         "doutores": 2.89,
         "regime_trabalho": 4.0,
+        "conceito_enade_continuo": 2.19,
         "quantidade_cursos_considerados": 329
       },
       {
@@ -6133,6 +6154,7 @@
         "mestres": 4.12,
         "doutores": 3.29,
         "regime_trabalho": 4.15,
+        "conceito_enade_continuo": 2.53,
         "quantidade_cursos_considerados": 204
       },
       {
@@ -6147,6 +6169,7 @@
         "mestres": 3.9,
         "doutores": 2.32,
         "regime_trabalho": 3.95,
+        "conceito_enade_continuo": 2.33,
         "quantidade_cursos_considerados": 726
       },
       {
@@ -6161,6 +6184,7 @@
         "mestres": 3.99,
         "doutores": 2.6,
         "regime_trabalho": 4.04,
+        "conceito_enade_continuo": 2.19,
         "quantidade_cursos_considerados": 917
       },
       {
@@ -6175,6 +6199,7 @@
         "mestres": 4.0,
         "doutores": 2.32,
         "regime_trabalho": 3.99,
+        "conceito_enade_continuo": 2.25,
         "quantidade_cursos_considerados": 424
       }
     ],

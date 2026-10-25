@@ -95,15 +95,23 @@ function PorCurso({ data }: { data: DashboardData }) {
                 cursos={avaliacoes}
                 onChange={(c) => navigate(`/qualidade/curso/${c}`)}
             />
-            {/* lado a lado com a mesma altura: o "Quanto falta" acompanha o
-                "De onde vem a nota" e rola a lista por dentro */}
+            {/* lado a lado com a mesma altura: as duas réguas (CPC e Conceito
+                Enade), empilhadas, dividem a altura do "De onde vem a nota" */}
             {temNotas && (
                 <div className="grid grid-cols-1 gap-5 lg:col-span-12 lg:grid-cols-12 lg:gap-6">
                     <ContribuicaoCard className="lg:col-span-7" curso={curso} />
-                    <ProximaFaixaCard
-                        className="lg:col-span-5"
-                        curso={curso as AvaliacaoCurso & { cpc: number }}
-                    />
+                    <div className="flex flex-col gap-5 lg:col-span-5 lg:gap-6">
+                        <ProximaFaixaCard
+                            className="lg:flex-1"
+                            indicador="cpc"
+                            valor={curso.cpc}
+                        />
+                        <ProximaFaixaCard
+                            className="lg:flex-1"
+                            indicador="enade"
+                            valor={curso.enade}
+                        />
+                    </div>
                 </div>
             )}
             {/* embaixo, também lado a lado com a mesma altura: a participação

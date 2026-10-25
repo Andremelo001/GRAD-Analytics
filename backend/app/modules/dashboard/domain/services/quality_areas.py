@@ -15,6 +15,9 @@ COLUNAS: tuple[str, ...] = (
     "ead",
     "cpc_continuo",
     "cpc_faixa",
+    # o Conceito Enade contínuo (0-5); a faixa sai dele, nos mesmos cortes do
+    # CPC — o INEP não traz a faixa do Enade nesta base
+    "conceito_enade_continuo",
     *course_profile.RADAR_FIELDS,
     # todas as edições do curso, cada uma uma lista na ordem de COLUNAS_EDICAO
     "historico",
@@ -62,7 +65,8 @@ def build_area(
 ) -> dict[str, object] | None:
     """Todos os cursos do Brasil na edição mais recente de uma área.
 
-    Um curso por linha (CPC, faixa e as 9 notas padronizadas), com o código
+    Um curso por linha (CPC, faixa, Conceito Enade contínuo e as 9 notas
+    padronizadas), com o código
     da IES e do município apontando pros dicionários ``ies`` e
     ``municipios`` — o front agrega por estado/município, filtra por rede
     (pública/privada) e modalidade e calcula percentis a partir disso. A
@@ -146,6 +150,7 @@ def _linha(row: pd.Series) -> list[object]:
         "dist" in modalidade.lower(),
         _numero(row.get("cpc_continuo"), 3),
         _faixa(row.get("cpc_faixa")),
+        _numero(row.get("conceito_enade_continuo"), 3),
     ]
     valores.extend(
         _numero(row.get(coluna), 2) for coluna in course_profile.RADAR_FIELDS.values()

@@ -156,10 +156,10 @@ export function VisaoCampusEsqueleto() {
                 <TileEsqueleto />
                 <TileEsqueleto />
             </div>
-            <CardEsqueleto className="lg:col-span-7">
+            <CardEsqueleto className="lg:col-span-6">
                 <Linhas n={7} className="gap-5" />
             </CardEsqueleto>
-            <CardEsqueleto className="lg:col-span-5" acao>
+            <CardEsqueleto className="lg:col-span-6" acao>
                 <Barra className="mt-5 h-[360px]" />
             </CardEsqueleto>
             <CardEsqueleto className="lg:col-span-12">

@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-10-24T12:31:02+00:00",
+  "gerado_em": "2026-10-25T01:09:26+00:00",
   "escopo": {
     "codigo_ies": 583,
     "nome_ies": "UNIVERSIDADE FEDERAL DO CEARÁ",
@@ -19021,121 +19021,161 @@
         "area_avaliacao": "CIÊNCIAS ECONÔMICAS",
         "ano": 2015,
         "cpc_continuo_medio_nacional": 2.58,
-        "quantidade_cursos_considerados": 180
+        "quantidade_cursos_considerados": 180,
+        "conceito_enade_medio_nacional": 2.3,
+        "quantidade_cursos_enade": 187
       },
       {
         "area_avaliacao": "CIÊNCIAS ECONÔMICAS",
         "ano": 2018,
         "cpc_continuo_medio_nacional": 2.73,
-        "quantidade_cursos_considerados": 190
+        "quantidade_cursos_considerados": 190,
+        "conceito_enade_medio_nacional": 2.08,
+        "quantidade_cursos_enade": 190
       },
       {
         "area_avaliacao": "CIÊNCIAS ECONÔMICAS",
         "ano": 2022,
         "cpc_continuo_medio_nacional": 2.7,
-        "quantidade_cursos_considerados": 209
+        "quantidade_cursos_considerados": 209,
+        "conceito_enade_medio_nacional": 1.92,
+        "quantidade_cursos_enade": 229
       },
       {
         "area_avaliacao": "ENGENHARIA DA COMPUTAÇÃO",
         "ano": 2017,
         "cpc_continuo_medio_nacional": 2.66,
-        "quantidade_cursos_considerados": 145
+        "quantidade_cursos_considerados": 145,
+        "conceito_enade_medio_nacional": 2.52,
+        "quantidade_cursos_enade": 145
       },
       {
         "area_avaliacao": "ENGENHARIA DA COMPUTAÇÃO",
         "ano": 2019,
         "cpc_continuo_medio_nacional": 2.73,
-        "quantidade_cursos_considerados": 172
+        "quantidade_cursos_considerados": 172,
+        "conceito_enade_medio_nacional": 2.1,
+        "quantidade_cursos_enade": 172
       },
       {
         "area_avaliacao": "ENGENHARIA DE COMPUTAÇÃO I",
         "ano": 2023,
         "cpc_continuo_medio_nacional": 2.76,
-        "quantidade_cursos_considerados": 134
+        "quantidade_cursos_considerados": 134,
+        "conceito_enade_medio_nacional": 2.26,
+        "quantidade_cursos_enade": 134
       },
       {
         "area_avaliacao": "ENGENHARIA ELÉTRICA",
         "ano": 2017,
         "cpc_continuo_medio_nacional": 2.74,
-        "quantidade_cursos_considerados": 355
+        "quantidade_cursos_considerados": 355,
+        "conceito_enade_medio_nacional": 2.31,
+        "quantidade_cursos_enade": 355
       },
       {
         "area_avaliacao": "ENGENHARIA ELÉTRICA",
         "ano": 2019,
         "cpc_continuo_medio_nacional": 2.78,
-        "quantidade_cursos_considerados": 441
+        "quantidade_cursos_considerados": 441,
+        "conceito_enade_medio_nacional": 2.15,
+        "quantidade_cursos_enade": 441
       },
       {
         "area_avaliacao": "ENGENHARIA ELÉTRICA",
         "ano": 2023,
         "cpc_continuo_medio_nacional": 2.85,
-        "quantidade_cursos_considerados": 459
+        "quantidade_cursos_considerados": 459,
+        "conceito_enade_medio_nacional": 2.18,
+        "quantidade_cursos_enade": 459
       },
       {
         "area_avaliacao": "MEDICINA",
         "ano": 2016,
         "cpc_continuo_medio_nacional": 2.73,
-        "quantidade_cursos_considerados": 176
+        "quantidade_cursos_considerados": 176,
+        "conceito_enade_medio_nacional": 2.58,
+        "quantidade_cursos_enade": 176
       },
       {
         "area_avaliacao": "MEDICINA",
         "ano": 2019,
         "cpc_continuo_medio_nacional": 2.98,
-        "quantidade_cursos_considerados": 232
+        "quantidade_cursos_considerados": 232,
+        "conceito_enade_medio_nacional": 2.85,
+        "quantidade_cursos_enade": 232
       },
       {
         "area_avaliacao": "MEDICINA",
         "ano": 2023,
         "cpc_continuo_medio_nacional": 2.78,
-        "quantidade_cursos_considerados": 305
+        "quantidade_cursos_considerados": 305,
+        "conceito_enade_medio_nacional": 2.79,
+        "quantidade_cursos_enade": 305
       },
       {
         "area_avaliacao": "MÚSICA (LICENCIATURA)",
         "ano": 2017,
         "cpc_continuo_medio_nacional": 2.54,
-        "quantidade_cursos_considerados": 101
+        "quantidade_cursos_considerados": 101,
+        "conceito_enade_medio_nacional": 2.19,
+        "quantidade_cursos_enade": 101
       },
       {
         "area_avaliacao": "MÚSICA (LICENCIATURA)",
         "ano": 2021,
         "cpc_continuo_medio_nacional": 2.58,
-        "quantidade_cursos_considerados": 93
+        "quantidade_cursos_considerados": 93,
+        "conceito_enade_medio_nacional": 2.22,
+        "quantidade_cursos_enade": 93
       },
       {
         "area_avaliacao": "ODONTOLOGIA",
         "ano": 2016,
         "cpc_continuo_medio_nacional": 2.87,
-        "quantidade_cursos_considerados": 204
+        "quantidade_cursos_considerados": 204,
+        "conceito_enade_medio_nacional": 2.51,
+        "quantidade_cursos_enade": 204
       },
       {
         "area_avaliacao": "ODONTOLOGIA",
         "ano": 2019,
         "cpc_continuo_medio_nacional": 2.88,
-        "quantidade_cursos_considerados": 237
+        "quantidade_cursos_considerados": 237,
+        "conceito_enade_medio_nacional": 2.61,
+        "quantidade_cursos_enade": 237
       },
       {
         "area_avaliacao": "ODONTOLOGIA",
         "ano": 2023,
         "cpc_continuo_medio_nacional": 2.89,
-        "quantidade_cursos_considerados": 448
+        "quantidade_cursos_considerados": 448,
+        "conceito_enade_medio_nacional": 2.34,
+        "quantidade_cursos_enade": 448
       },
       {
         "area_avaliacao": "PSICOLOGIA",
         "ano": 2015,
         "cpc_continuo_medio_nacional": 2.8,
-        "quantidade_cursos_considerados": 423
+        "quantidade_cursos_considerados": 423,
+        "conceito_enade_medio_nacional": 2.53,
+        "quantidade_cursos_enade": 461
       },
       {
         "area_avaliacao": "PSICOLOGIA",
         "ano": 2018,
         "cpc_continuo_medio_nacional": 2.79,
-        "quantidade_cursos_considerados": 524
+        "quantidade_cursos_considerados": 524,
+        "conceito_enade_medio_nacional": 2.3,
+        "quantidade_cursos_enade": 524
       },
       {
         "area_avaliacao": "PSICOLOGIA",
         "ano": 2022,
         "cpc_continuo_medio_nacional": 2.73,
-        "quantidade_cursos_considerados": 740
+        "quantidade_cursos_considerados": 740,
+        "conceito_enade_medio_nacional": 2.19,
+        "quantidade_cursos_enade": 746
       }
     ],
     "perfil_radar": [
@@ -19151,6 +19191,7 @@
         "mestres": 3.91,
         "doutores": 2.35,
         "regime_trabalho": 4.06,
+        "conceito_enade_continuo": 2.3,
         "quantidade_cursos_considerados": 191
       },
       {
@@ -19165,6 +19206,7 @@
         "mestres": 4.14,
         "doutores": 2.78,
         "regime_trabalho": 4.16,
+        "conceito_enade_continuo": 2.08,
         "quantidade_cursos_considerados": 195
       },
       {
@@ -19179,6 +19221,7 @@
         "mestres": 4.33,
         "doutores": 3.07,
         "regime_trabalho": 4.1,
+        "conceito_enade_continuo": 1.92,
         "quantidade_cursos_considerados": 229
       },
       {
@@ -19193,6 +19236,7 @@
         "mestres": 3.94,
         "doutores": 2.64,
         "regime_trabalho": 3.91,
+        "conceito_enade_continuo": 2.52,
         "quantidade_cursos_considerados": 149
       },
       {
@@ -19207,6 +19251,7 @@
         "mestres": 4.02,
         "doutores": 2.81,
         "regime_trabalho": 4.06,
+        "conceito_enade_continuo": 2.1,
         "quantidade_cursos_considerados": 172
       },
       {
@@ -19221,6 +19266,7 @@
         "mestres": 4.25,
         "doutores": 2.95,
         "regime_trabalho": 4.14,
+        "conceito_enade_continuo": 2.26,
         "quantidade_cursos_considerados": 145
       },
       {
@@ -19235,6 +19281,7 @@
         "mestres": 3.89,
         "doutores": 2.54,
         "regime_trabalho": 3.91,
+        "conceito_enade_continuo": 2.31,
         "quantidade_cursos_considerados": 365
       },
       {
@@ -19249,6 +19296,7 @@
         "mestres": 4.0,
         "doutores": 2.76,
         "regime_trabalho": 4.01,
+        "conceito_enade_continuo": 2.15,
         "quantidade_cursos_considerados": 441
       },
       {
@@ -19263,6 +19311,7 @@
         "mestres": 4.04,
         "doutores": 3.04,
         "regime_trabalho": 4.09,
+        "conceito_enade_continuo": 2.18,
         "quantidade_cursos_considerados": 483
       },
       {
@@ -19277,6 +19326,7 @@
         "mestres": 3.27,
         "doutores": 2.2,
         "regime_trabalho": 4.26,
+        "conceito_enade_continuo": 2.58,
         "quantidade_cursos_considerados": 177
       },
       {
@@ -19291,6 +19341,7 @@
         "mestres": 3.31,
         "doutores": 2.22,
         "regime_trabalho": 4.18,
+        "conceito_enade_continuo": 2.85,
         "quantidade_cursos_considerados": 232
       },
       {
@@ -19305,6 +19356,7 @@
         "mestres": 3.47,
         "doutores": 2.32,
         "regime_trabalho": 4.21,
+        "conceito_enade_continuo": 2.79,
         "quantidade_cursos_considerados": 309
       },
       {
@@ -19319,6 +19371,7 @@
         "mestres": 3.69,
         "doutores": 2.36,
         "regime_trabalho": 3.95,
+        "conceito_enade_continuo": 2.19,
         "quantidade_cursos_considerados": 107
       },
       {
@@ -19333,6 +19386,7 @@
         "mestres": 3.62,
         "doutores": 2.68,
         "regime_trabalho": 4.12,
+        "conceito_enade_continuo": 2.22,
         "quantidade_cursos_considerados": 98
       },
       {
@@ -19347,6 +19401,7 @@
         "mestres": 3.94,
         "doutores": 2.75,
         "regime_trabalho": 3.97,
+        "conceito_enade_continuo": 2.51,
         "quantidade_cursos_considerados": 206
       },
       {
@@ -19361,6 +19416,7 @@
         "mestres": 4.06,
         "doutores": 2.89,
         "regime_trabalho": 3.99,
+        "conceito_enade_continuo": 2.61,
         "quantidade_cursos_considerados": 237
       },
       {
@@ -19375,6 +19431,7 @@
         "mestres": 4.02,
         "doutores": 2.92,
         "regime_trabalho": 4.01,
+        "conceito_enade_continuo": 2.34,
         "quantidade_cursos_considerados": 452
       },
       {
@@ -19389,6 +19446,7 @@
         "mestres": 3.8,
         "doutores": 2.04,
         "regime_trabalho": 3.75,
+        "conceito_enade_continuo": 2.53,
         "quantidade_cursos_considerados": 466
       },
       {
@@ -19403,6 +19461,7 @@
         "mestres": 3.99,
         "doutores": 2.32,
         "regime_trabalho": 3.97,
+        "conceito_enade_continuo": 2.3,
         "quantidade_cursos_considerados": 528
       },
       {
@@ -19417,6 +19476,7 @@
         "mestres": 3.98,
         "doutores": 2.54,
         "regime_trabalho": 3.96,
+        "conceito_enade_continuo": 2.19,
         "quantidade_cursos_considerados": 746
       }
     ],

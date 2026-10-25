@@ -1,5 +1,5 @@
-import { COMPONENTES, type ComponenteKey } from "@/lib/cpc";
-import { formatDecimal, formatInteger, formatPercent, toTitleCase } from "@/lib/format";
+import { COMPONENTES, faixaDe, type ComponenteKey } from "@/lib/cpc";
+import { formatDecimal, toTitleCase } from "@/lib/format";
 import { media } from "@/lib/qualidade";
 import type { AreaArquivo } from "@/types/qualidade-area";
 
@@ -25,6 +25,8 @@ export interface CursoArea {
     ead: boolean;
     cpc: number | null;
     faixa: number | null;
+    /** Conceito Enade contínuo (0-5). */
+    enade: number | null;
     notas: Record<ComponenteKey, number | null>;
     /** Da IES do painel (UFC). */
     destaque: boolean;
@@ -66,6 +68,7 @@ export function parseArea(arquivo: AreaArquivo): CursoArea[] {
                 ead: Boolean(get("ead")),
                 cpc: get("cpc_continuo") as number | null,
                 faixa: get("cpc_faixa") as number | null,
+                enade: (get("conceito_enade_continuo") ?? null) as number | null,
                 notas,
                 destaque: ies === arquivo.codigo_ies_destaque,
                 historico: ((get("historico") ?? []) as (number | null)[][]).map(
@@ -82,16 +85,64 @@ export function parseArea(arquivo: AreaArquivo): CursoArea[] {
     });
 }
 
+export type Indicador = "cpc" | "idd" | "enade";
+
+/** Os indicadores do Mapa: o valor contínuo (0-5) de cada curso e a faixa
+ * dele (1-5). O CPC traz a faixa oficial; IDD e Conceito Enade usam os
+ * mesmos cortes do INEP sobre o valor contínuo (a base não traz a faixa
+ * deles). */
+export const INDICADORES: Record<
+    Indicador,
+    {
+        /** No seletor e no KPI ("CPC médio"). */
+        label: string;
+        /** Nas frases ("cursos com CPC"). */
+        nome: string;
+        /** "Melhores CPCs". */
+        plural: string;
+        doCurso: (c: CursoArea) => number | null;
+        faixaDoCurso: (c: CursoArea) => number | null;
+        valor: (r: ResumoArea) => number | null;
+    }
+> = {
+    cpc: {
+        label: "CPC médio",
+        nome: "CPC",
+        plural: "CPCs",
+        doCurso: (c) => c.cpc,
+        faixaDoCurso: (c) => c.faixa,
+        valor: (r) => r.medias.cpc,
+    },
+    idd: {
+        label: "IDD médio",
+        nome: "IDD",
+        plural: "IDDs",
+        doCurso: (c) => c.notas.idd,
+        faixaDoCurso: (c) => (c.notas.idd === null ? null : faixaDe(c.notas.idd)),
+        valor: (r) => r.medias.idd,
+    },
+    enade: {
+        label: "Conceito Enade médio",
+        nome: "Conceito Enade",
+        plural: "Conceitos Enade",
+        doCurso: (c) => c.enade,
+        faixaDoCurso: (c) => (c.enade === null ? null : faixaDe(c.enade)),
+        valor: (r) => r.medias.enade,
+    },
+};
+
+const CHAVES = Object.keys(INDICADORES) as Indicador[];
+
 /** Resumo de um conjunto de cursos (Brasil, um estado, um município). */
 export interface ResumoArea {
     cursos: number;
-    comCpc: number;
-    cpcMedio: number | null;
-    iddMedio: number | null;
-    /** % dos cursos com faixa que estão na 4 ou na 5. */
-    pctAltas: number | null;
-    /** Quantos cursos em cada faixa: índices 0-4 = faixas 1-5, 5 = sem conceito. */
-    faixas: number[];
+    /** Média de cada indicador (só os cursos com valor). */
+    medias: Record<Indicador, number | null>;
+    /** % dos cursos com faixa que estão na 4 ou na 5, por indicador. */
+    pctAltas: Record<Indicador, number | null>;
+    /** Quantos cursos em cada faixa, por indicador: índices 0-4 = faixas
+     * 1-5, 5 = sem conceito. */
+    faixas: Record<Indicador, number[]>;
     notas: Record<ComponenteKey, number | null>;
 }
 
@@ -101,16 +152,26 @@ const valores = (cursos: CursoArea[], get: (c: CursoArea) => number | null) =>
         return v === null ? [] : [v];
     });
 
+const porIndicador = <T>(f: (i: Indicador) => T) =>
+    Object.fromEntries(CHAVES.map((i) => [i, f(i)])) as Record<Indicador, T>;
+
 export function resumir(cursos: CursoArea[]): ResumoArea {
-    const faixas = [0, 0, 0, 0, 0, 0];
-    for (const c of cursos) faixas[c.faixa === null ? 5 : c.faixa - 1]++;
-    const comFaixa = faixas.slice(0, 5).reduce((a, b) => a + b, 0);
+    const faixas = porIndicador((i) => {
+        const n = [0, 0, 0, 0, 0, 0];
+        for (const c of cursos) {
+            const f = INDICADORES[i].faixaDoCurso(c);
+            n[f === null ? 5 : f - 1]++;
+        }
+        return n;
+    });
     return {
         cursos: cursos.length,
-        comCpc: cursos.filter((c) => c.cpc !== null).length,
-        cpcMedio: media(valores(cursos, (c) => c.cpc)),
-        iddMedio: media(valores(cursos, (c) => c.notas.idd)),
-        pctAltas: comFaixa > 0 ? (100 * (faixas[3] + faixas[4])) / comFaixa : null,
+        medias: porIndicador((i) => media(valores(cursos, INDICADORES[i].doCurso))),
+        pctAltas: porIndicador((i) => {
+            const f = faixas[i];
+            const comFaixa = f.slice(0, 5).reduce((a, b) => a + b, 0);
+            return comFaixa > 0 ? (100 * (f[3] + f[4])) / comFaixa : null;
+        }),
         faixas,
         notas: Object.fromEntries(
             COMPONENTES.map((comp) => [
@@ -129,44 +190,6 @@ export function agrupar<K>(cursos: CursoArea[], chave: (c: CursoArea) => K) {
     }
     return grupos;
 }
-
-export type Indicador = "cpc" | "idd" | "altas" | "cursos";
-
-export const INDICADORES: Record<
-    Indicador,
-    {
-        label: string;
-        /** Pro seletor do Mapa (cabe na linha do título). */
-        curto: string;
-        valor: (r: ResumoArea) => number | null;
-        formato: "nota" | "pct" | "n";
-    }
-> = {
-    cpc: {
-        label: "CPC médio",
-        curto: "CPC médio",
-        valor: (r) => r.cpcMedio,
-        formato: "nota",
-    },
-    idd: {
-        label: "IDD médio",
-        curto: "IDD médio",
-        valor: (r) => r.iddMedio,
-        formato: "nota",
-    },
-    altas: {
-        label: "% nas faixas 4 e 5",
-        curto: "% faixas 4–5",
-        valor: (r) => r.pctAltas,
-        formato: "pct",
-    },
-    cursos: {
-        label: "Nº de cursos",
-        curto: "Nº de cursos",
-        valor: (r) => r.cursos,
-        formato: "n",
-    },
-};
 
 export type Rede = "todas" | "publicas" | "privadas";
 
@@ -192,24 +215,24 @@ export function filtrar(cursos: CursoArea[], rede: Rede, ead: boolean): CursoAre
     );
 }
 
-/** Melhores CPCs primeiro (sem CPC no fim). */
-export function ranking(cursos: CursoArea[]): CursoArea[] {
-    return [...cursos].sort((a, b) => (b.cpc ?? -1) - (a.cpc ?? -1));
+/** Melhores primeiro no indicador (sem valor no fim). */
+export function ranking(cursos: CursoArea[], indicador: Indicador): CursoArea[] {
+    const v = INDICADORES[indicador].doCurso;
+    return [...cursos].sort((a, b) => (v(b) ?? -1) - (v(a) ?? -1));
 }
 
-/** % dos cursos com CPC que ficaram abaixo de ``cpc``. */
-export function percentil(cursos: CursoArea[], cpc: number): number | null {
-    const outros = valores(cursos, (c) => c.cpc);
+/** % dos cursos com valor no indicador que ficaram abaixo de ``valor``. */
+export function percentil(
+    cursos: CursoArea[],
+    valor: number,
+    indicador: Indicador
+): number | null {
+    const outros = valores(cursos, INDICADORES[indicador].doCurso);
     if (outros.length === 0) return null;
-    return (100 * outros.filter((v) => v < cpc).length) / outros.length;
+    return (100 * outros.filter((v) => v < valor).length) / outros.length;
 }
 
-export function formatIndicador(indicador: Indicador, valor: number | null): string {
-    if (valor === null) return "—";
-    const { formato } = INDICADORES[indicador];
-    return formato === "nota"
-        ? formatDecimal(valor)
-        : formato === "pct"
-          ? formatPercent(valor, 0)
-          : formatInteger(valor);
+/** Os três indicadores são notas de 0 a 5. */
+export function formatIndicador(valor: number | null): string {
+    return valor === null ? "—" : formatDecimal(valor);
 }

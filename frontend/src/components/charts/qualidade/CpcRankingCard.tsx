@@ -4,49 +4,34 @@ import { Link, useNavigate } from "react-router-dom";
 
 import { AMPLIADO_ROLA } from "@/components/cards/ampliado";
 import { Card } from "@/components/cards/Card";
-import { DeltaPill } from "@/components/charts/qualidade/DeltaPill";
-import { FaixaPill } from "@/components/charts/qualidade/FaixaPill";
 import { useChartTheme } from "@/hooks/useChartTheme";
 import { formatDecimal } from "@/lib/format";
 import type { AvaliacaoCurso } from "@/lib/qualidade";
 import { cn } from "@/lib/utils";
 
-type Coluna = "nome" | "faixa" | "cpc" | "enade" | "idd" | "delta";
+type Coluna = "nome" | "cpc" | "enade";
 
 const COLUNAS: { key: Coluna; label: string; title?: string }[] = [
     { key: "nome", label: "Curso" },
-    { key: "faixa", label: "Faixa" },
     { key: "cpc", label: "CPC" },
-    { key: "enade", label: "Enade", title: "Conceito Enade contínuo" },
-    { key: "idd", label: "IDD", title: "Nota padronizada do IDD (valor agregado)" },
-    {
-        key: "delta",
-        label: "Variação",
-        title: "Variação do CPC desde o ciclo anterior",
-    },
+    { key: "enade", label: "Conceito Enade", title: "Conceito Enade contínuo" },
 ];
 
 const valor = (a: AvaliacaoCurso, coluna: Coluna): number | string | null => {
     switch (coluna) {
         case "nome":
             return a.nome;
-        case "faixa":
-            return a.faixa;
         case "cpc":
             return a.cpc;
         case "enade":
             return a.enade;
-        case "idd":
-            return a.perfil?.idd ?? null;
-        case "delta":
-            return a.cpc !== null && a.anterior ? a.cpc - a.anterior.cpc : null;
     }
 };
 
-/** Ranking dos cursos pela avaliação mais recente: faixa, CPC (barra de 0 a
- * 5 com um traço na média nacional da área no mesmo ano), Enade, IDD e a
- * variação desde o ciclo anterior. Cabeçalhos ordenam; a linha abre o curso
- * em "Por curso". Cursos sem CPC ficam no fim, apagados. */
+/** Ranking dos cursos pela avaliação mais recente: CPC e Conceito Enade
+ * (cada um numa barra de 0 a 5 com um traço na média nacional da área no
+ * mesmo ano). Cabeçalhos ordenam; a linha abre o curso em "Por
+ * curso". Cursos sem CPC ficam no fim, apagados. */
 export function CpcRankingCard({
     avaliacoes,
     className,
@@ -91,14 +76,14 @@ export function CpcRankingCard({
         <Card
             expansivel
             title="Ranking dos cursos"
-            info="Os cursos do campus em ordem de CPC da avaliação mais recente, com a faixa, o Conceito Enade, o IDD e a variação em relação à média nacional da área. Clique numa coluna para reordenar e num curso para abrir os detalhes."
+            info="Os cursos do campus em ordem de CPC da avaliação mais recente, com o Conceito Enade. O traço nas barras do CPC e do Conceito Enade é a média nacional da área no mesmo ano. Clique numa coluna para reordenar e num curso para abrir os detalhes."
             subtitle="Avaliação mais recente de cada curso · clique para ver os detalhes"
             className={className}
         >
             <div className="text-text-muted mt-3 flex items-center gap-4 text-[11px]">
                 <span className="flex items-center gap-1.5">
                     <span aria-hidden className="bg-brand h-2 w-4 rounded-full" />
-                    CPC do curso
+                    valor do curso
                 </span>
                 <span className="flex items-center gap-1.5">
                     {/* mesma largura da marca do CPC: o traço vai numa trilha
@@ -119,14 +104,11 @@ export function CpcRankingCard({
                     AMPLIADO_ROLA
                 )}
             >
-                <table className="w-full min-w-[560px] table-fixed border-separate border-spacing-0 text-[13px]">
+                <table className="w-full min-w-[420px] table-fixed border-separate border-spacing-0 text-[13px]">
                     <colgroup>
                         <col />
-                        <col className="w-[52px]" />
-                        <col className="w-[28%]" />
-                        <col className="w-[56px]" />
-                        <col className="w-[48px]" />
-                        <col className="w-[90px]" />
+                        <col className="w-[30%]" />
+                        <col className="w-[30%]" />
                     </colgroup>
                     <thead>
                         <tr>
@@ -189,33 +171,24 @@ export function CpcRankingCard({
                                     </span>
                                 </Td>
                                 <Td>
-                                    <FaixaPill faixa={a.faixa} />
-                                </Td>
-                                <Td>
-                                    <CpcBar cpc={a.cpc!} nacional={a.cpcNacional} />
-                                </Td>
-                                <Td className="tabular-nums">
-                                    {a.enade === null ? "—" : formatDecimal(a.enade)}
-                                </Td>
-                                <Td className="tabular-nums">
-                                    {a.perfil?.idd == null
-                                        ? "—"
-                                        : formatDecimal(a.perfil.idd)}
+                                    <NotaBar
+                                        nome="CPC"
+                                        valor={a.cpc!}
+                                        nacional={a.cpcNacional}
+                                    />
                                 </Td>
                                 <Td className="rounded-r-lg">
-                                    {a.anterior ? (
-                                        <span
-                                            title={`${a.anterior.ano}: ${formatDecimal(a.anterior.cpc)} → ${a.ano}: ${formatDecimal(a.cpc!)}`}
-                                        >
-                                            <DeltaPill
-                                                size="sm"
-                                                diff={a.cpc! - a.anterior.cpc}
-                                            />
-                                        </span>
+                                    {a.enade === null ? (
+                                        <span className="text-text-muted">—</span>
                                     ) : (
-                                        <span className="text-text-muted text-[11px]">
-                                            1º ciclo
-                                        </span>
+                                        <NotaBar
+                                            nome="Conceito Enade"
+                                            valor={a.enade}
+                                            nacional={
+                                                a.nacional?.conceito_enade_continuo ??
+                                                null
+                                            }
+                                        />
                                     )}
                                 </Td>
                             </tr>
@@ -241,14 +214,7 @@ export function CpcRankingCard({
                                         </span>
                                     )}
                                 </Td>
-                                <Td>
-                                    {a.ano === null ? (
-                                        <span className="pl-2">—</span>
-                                    ) : (
-                                        <FaixaPill faixa={null} />
-                                    )}
-                                </Td>
-                                <Td className="rounded-r-lg text-[12px]" colSpan={4}>
+                                <Td className="rounded-r-lg text-[12px]" colSpan={2}>
                                     <span className="border-empty block rounded-md border border-dashed px-2 py-1">
                                         {a.ano === null
                                             ? "Ainda não avaliado"
@@ -286,25 +252,34 @@ function Td({
     );
 }
 
-/** CPC numa barra de 0 a 5, com o traço da média nacional. */
-function CpcBar({ cpc, nacional }: { cpc: number; nacional: number | null }) {
+/** Uma nota de 0 a 5 (CPC, Conceito Enade) numa barra, com o traço da média
+ * nacional. */
+function NotaBar({
+    nome,
+    valor,
+    nacional,
+}: {
+    nome: string;
+    valor: number;
+    nacional: number | null;
+}) {
     const CHART = useChartTheme();
     return (
         <span
             className="flex items-center gap-2"
             title={
                 nacional === null
-                    ? `CPC ${formatDecimal(cpc)}`
-                    : `CPC ${formatDecimal(cpc)} · média nacional ${formatDecimal(nacional)}`
+                    ? `${nome} ${formatDecimal(valor)}`
+                    : `${nome} ${formatDecimal(valor)} · média nacional ${formatDecimal(nacional)}`
             }
         >
             <span className="w-9 shrink-0 font-semibold tabular-nums">
-                {formatDecimal(cpc)}
+                {formatDecimal(valor)}
             </span>
             <span className="bg-page relative block h-2 flex-1 rounded-full group-hover:bg-current/10">
                 <span
                     className="absolute inset-y-0 left-0 rounded-full"
-                    style={{ width: `${(cpc / 5) * 100}%`, background: CHART.brand }}
+                    style={{ width: `${(valor / 5) * 100}%`, background: CHART.brand }}
                 />
                 {nacional !== null && (
                     <span

@@ -300,6 +300,28 @@ export function indicadoresMaduros(
     };
 }
 
+/** Os mesmos indicadores de um curso só: a média de todas as turmas maduras
+ * dele (pesada pelos ingressantes), contra a média nacional da área no mesmo
+ * ponto. ``null`` sem turma madura. */
+export function indicadoresMadurosCurso(
+    data: DashboardData,
+    curso: CursoTrajetoria
+): IndicadoresMaduros | null {
+    const turmas = maduras(curso);
+    const final = situacaoFinalMedia(turmas);
+    if (!final) return null;
+    const nacional = curvaNacional(data, curso.area);
+    const brasil = (campo: "concluiu" | "desistiu") =>
+        mediaPonderada(turmas, (t) => nacional.get(anosFinal(t.prazo!))?.[campo]);
+    return {
+        concluiu: final.concluiu,
+        desistiu: final.desistiu,
+        concluiuBrasil: brasil("concluiu"),
+        desistiuBrasil: brasil("desistiu"),
+        anos: turmas.filter((t) => situacaoFinal(t)).map((t) => t.ano),
+    };
+}
+
 /** A mesma taxa (situação final) por ano de ingresso, só com turmas maduras
  * e pesada pelos ingressantes: a linha dos cards do Início. */
 export function serieMaduras(

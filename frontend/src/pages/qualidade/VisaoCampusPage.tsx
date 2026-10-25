@@ -29,8 +29,8 @@ function VisaoCampus({ data }: { data: DashboardData }) {
                 avaliacoes={avaliacoes}
                 faixasNacional={data.medias_nacionais.campus.distribuicao_cpc_faixa}
             />
-            <CpcRankingCard className="lg:col-span-7" avaliacoes={avaliacoes} />
-            <CpcSlopeCard className="lg:col-span-5" avaliacoes={avaliacoes} />
+            <CpcRankingCard className="lg:col-span-6" avaliacoes={avaliacoes} />
+            <CpcSlopeCard className="lg:col-span-6" avaliacoes={avaliacoes} />
             <ComponentesHeatmapCard
                 className="lg:col-span-12"
                 avaliacoes={avaliacoes}

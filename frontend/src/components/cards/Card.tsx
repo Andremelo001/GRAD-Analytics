@@ -144,6 +144,7 @@ function mostrarInteiro(el: HTMLElement): Promise<void> {
 
 export function Card({
     title,
+    tituloExtra,
     subtitle,
     action,
     className,
@@ -152,6 +153,9 @@ export function Card({
     children,
 }: {
     title?: string;
+    /** Na linha do título, logo depois dele (ex.: "| CPC ▾", um seletor
+     * inline como os da frase de filtros do Mapa). */
+    tituloExtra?: ReactNode;
     /** Texto (inteiro no hover, se for cortado) ou um conteúdo próprio
      * numa linha só (ex.: texto + legenda). */
     subtitle?: ReactNode;
@@ -372,12 +376,20 @@ export function Card({
                     <div
                         className={cn(
                             (info || ampliado) &&
-                                "flex items-start gap-2 sm:items-center"
+                                "flex items-start gap-2 sm:items-center",
+                            tituloExtra && "lg:max-xl:gap-1"
                         )}
                     >
                         <div
                             className={cn(
                                 "flex flex-wrap items-center justify-between gap-3",
+                                // com seletor ao lado do título, a linha aperta
+                                // no desktop estreito (cards lado a lado)
+                                tituloExtra && "lg:max-xl:gap-1.5",
+                                // no desktop, título + extra e a ação ficam
+                                // na mesma linha: a ação (seletor com
+                                // ``min-w-0``) encolhe em vez de descer
+                                tituloExtra && "lg:flex-nowrap",
                                 (info || ampliado) && "min-w-0 flex-1"
                             )}
                         >
@@ -385,10 +397,28 @@ export function Card({
                                 (subtítulo trunca) e a ação só desce de linha
                                 quando nem os 12rem mínimos cabem — o tamanho do
                                 texto não mexe no layout */}
-                            <div className="min-w-48 flex-1 basis-0">
-                                <h2 className="text-[17px] leading-tight font-semibold tracking-[-0.01em]">
-                                    {title}
-                                </h2>
+                            <div
+                                className={cn(
+                                    "min-w-48 flex-1 basis-0",
+                                    // título + extra não se separam: se não
+                                    // couberem com a ação, é a ação que desce
+                                    // (no celular estreito, se nem sozinhos
+                                    // couberem, o extra desce)
+                                    tituloExtra && "sm:min-w-max"
+                                )}
+                            >
+                                {tituloExtra ? (
+                                    <div className="flex flex-wrap items-baseline gap-x-2 whitespace-nowrap sm:flex-nowrap lg:max-xl:gap-x-1">
+                                        <h2 className="text-[17px] leading-tight font-semibold tracking-[-0.01em] lg:max-xl:text-[14.5px]">
+                                            {title}
+                                        </h2>
+                                        {tituloExtra}
+                                    </div>
+                                ) : (
+                                    <h2 className="text-[17px] leading-tight font-semibold tracking-[-0.01em]">
+                                        {title}
+                                    </h2>
+                                )}
                                 {subtitle && (
                                     // texto: uma linha só (inteiro no hover) —
                                     // subtítulo que muda com a série escolhida
@@ -398,7 +428,11 @@ export function Card({
                                     <div
                                         className={cn(
                                             "text-text-muted mt-1 text-[12px]",
-                                            typeof subtitle === "string" && "truncate"
+                                            typeof subtitle === "string" && "truncate",
+                                            // não alarga o bloco do título (o
+                                            // ``min-w-max`` acima é só da linha
+                                            // do título)
+                                            tituloExtra && "[contain:inline-size]"
                                         )}
                                         title={
                                             typeof subtitle === "string"

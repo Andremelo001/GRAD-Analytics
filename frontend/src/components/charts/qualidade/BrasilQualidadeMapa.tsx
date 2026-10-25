@@ -129,13 +129,13 @@ export function BrasilQualidadeMapa({
     const px = largura > 0 ? vb[2] / largura : 1;
 
     const { ramp, dominio } = useMemo(() => {
-        // a mesma rampa azul em todos os indicadores (inclusive nº de cursos)
+        // a mesma rampa azul nos três indicadores
         const ramp = CHART.faixa.ramp;
         const vals = [...porUf.values()].flatMap((r) => {
             const v = INDICADORES[indicador].valor(r);
             return v === null ? [] : [v];
         });
-        const lo = indicador === "cursos" ? 0 : Math.min(...vals);
+        const lo = Math.min(...vals);
         const hi = Math.max(...vals);
         return { ramp, dominio: vals.length ? [lo, hi === lo ? lo + 1 : hi] : [0, 1] };
     }, [porUf, indicador, CHART]);
@@ -168,11 +168,7 @@ export function BrasilQualidadeMapa({
             linhas: resumo
                 ? [
                       `${formatInteger(resumo.cursos)} ${resumo.cursos === 1 ? "curso" : "cursos"}`,
-                      ...(indicador === "cursos"
-                          ? [`CPC médio ${formatIndicador("cpc", resumo.cpcMedio)}`]
-                          : [
-                                `${INDICADORES[indicador].label} ${formatIndicador(indicador, INDICADORES[indicador].valor(resumo))}`,
-                            ]),
+                      `${INDICADORES[indicador].label} ${formatIndicador(INDICADORES[indicador].valor(resumo))}`,
                   ]
                 : ["Sem cursos"],
             x: event.clientX - box.left,
@@ -226,7 +222,7 @@ export function BrasilQualidadeMapa({
                                     role="button"
                                     tabIndex={0}
                                     aria-pressed={ativo}
-                                    aria-label={`${nome}: ${resumo ? `${resumo.cursos} cursos, ${INDICADORES[indicador].label} ${formatIndicador(indicador, valor)}` : "sem cursos"}`}
+                                    aria-label={`${nome}: ${resumo ? `${resumo.cursos} cursos, ${INDICADORES[indicador].label} ${formatIndicador(valor)}` : "sem cursos"}`}
                                     onClick={(ev) => {
                                         ev.stopPropagation();
                                         onSelect(ativo ? null : e.sigla);
@@ -246,10 +242,7 @@ export function BrasilQualidadeMapa({
                             municipios.map((m) => {
                                 const c = GEO.municipios[String(m.codigo)];
                                 if (!c) return null;
-                                const valor =
-                                    indicador === "cursos"
-                                        ? m.resumo.cpcMedio
-                                        : INDICADORES[indicador].valor(m.resumo);
+                                const valor = INDICADORES[indicador].valor(m.resumo);
                                 const r =
                                     (4 +
                                         9 * Math.sqrt(m.resumo.cursos / maxMunicipio)) *
@@ -260,16 +253,7 @@ export function BrasilQualidadeMapa({
                                         cx={c[0]}
                                         cy={c[1]}
                                         r={r}
-                                        fill={
-                                            indicador === "cursos"
-                                                ? valor === null
-                                                    ? CHART.presenca.none
-                                                    : rampColor(
-                                                          CHART.faixa.ramp,
-                                                          (valor - 1) / 4
-                                                      )
-                                                : cor(valor)
-                                        }
+                                        fill={cor(valor)}
                                         stroke={CHART.ink}
                                         strokeWidth={1}
                                         vectorEffect="non-scaling-stroke"
@@ -342,7 +326,7 @@ export function BrasilQualidadeMapa({
                 ponta do Rio Grande do Sul */}
             <div className="text-text-muted mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[11px]">
                 <span className="flex items-center gap-2 whitespace-nowrap">
-                    <span>{formatIndicador(indicador, dominio[0])}</span>
+                    <span>{formatIndicador(dominio[0])}</span>
                     <span
                         aria-hidden
                         className="block h-2.5 w-24 rounded-full sm:w-32"
@@ -350,7 +334,7 @@ export function BrasilQualidadeMapa({
                             background: `linear-gradient(to right, ${ramp.join(", ")})`,
                         }}
                     />
-                    <span>{formatIndicador(indicador, dominio[1])}</span>
+                    <span>{formatIndicador(dominio[1])}</span>
                 </span>
                 <span className="flex items-center gap-1.5">
                     <span
@@ -370,10 +354,7 @@ export function BrasilQualidadeMapa({
                     </span>
                 )}
                 {selecionado && (
-                    <span>
-                        pontos: municípios (tamanho = nº de cursos
-                        {indicador === "cursos" ? ", cor = CPC médio" : ""})
-                    </span>
+                    <span>pontos: municípios (tamanho = nº de cursos)</span>
                 )}
             </div>
         </div>

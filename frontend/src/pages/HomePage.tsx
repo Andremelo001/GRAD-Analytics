@@ -34,14 +34,19 @@ import { useDashboardData } from "@/hooks/useDashboardData";
 import { opcaoCurso } from "@/lib/curso";
 import { toTitleCase } from "@/lib/format";
 import { SubTabs } from "@/components/layout/SubTabs";
-import { buildTrajetorias, indicadoresMaduros, serieMaduras } from "@/lib/trajetoria";
+import {
+    buildTrajetorias,
+    indicadoresMaduros,
+    indicadoresMadurosCurso,
+    serieMaduras,
+} from "@/lib/trajetoria";
 import { lembrarSubaba, ultimaSubaba } from "@/lib/ultima-subaba";
 import type { DashboardData } from "@/types/dashboard";
 
 const SUB_ABAS = [
     { to: "ingresso", label: "Ingresso e conclusão" },
-    { to: "cpc", label: "CPC" },
-    { to: "evasao", label: "Evasão" },
+    { to: "cpc", label: "Qualidade" },
+    { to: "evasao", label: "Trajetória" },
 ];
 
 /** O curso escolhido no seletor do cabeçalho do Início (``null`` = o campus
@@ -108,10 +113,9 @@ export function HomePage() {
                 tabs={(tom) => (
                     <SubTabs label="Seções do início" items={SUB_ABAS} tom={tom} />
                 )}
-                // o curso, ao lado do campus — some na Evasão, que mostra
-                // todos os cursos de uma vez
+                // o curso, na ponta direita (o mesmo nas três sub-abas)
                 filtros={(tom) =>
-                    data && subAba !== "evasao" ? (
+                    data ? (
                         <SeletorCurso
                             data={data}
                             subAba={subAba}
@@ -131,9 +135,9 @@ export function HomePage() {
     );
 }
 
-/** O seletor de curso do cabeçalho (com busca): em Ingresso e conclusão,
- * "Campus" (o total) ou um curso; em CPC, só cursos (o padrão é o primeiro
- * com CPC). */
+/** O seletor de curso do cabeçalho (com busca): em Ingresso e conclusão e
+ * em Evasão, "Campus" (o total) ou um curso; em CPC, só cursos (o padrão é
+ * o primeiro com CPC). */
 function SeletorCurso({
     data,
     subAba,
@@ -290,25 +294,41 @@ export function InicioEvasaoPage() {
 }
 
 function Evasao({ data }: { data: DashboardData }) {
-    // conclusão e evasão das turmas maduras (a mais recente de cada curso que
-    // já teve o prazo e mais dois anos): a comparação justa — a turma mais
-    // recente ainda não teve tempo de se formar. Mesma conta do Panorama da
-    // Trajetória.
+    const { curso } = useContext(CursoInicioContext);
+    // conclusão e evasão das turmas maduras (as que já tiveram o prazo e mais
+    // dois anos): a comparação justa — a turma mais recente ainda não teve
+    // tempo de se formar. Campus: a mais recente de cada curso (mesma conta
+    // do Panorama da Trajetória); curso escolhido: a média das turmas
+    // maduras dele
     const trajetorias = useMemo(() => buildTrajetorias(data), [data]);
+    const doCurso = trajetorias.find((t) => t.codigo === curso);
     const maduros = useMemo(
-        () => indicadoresMaduros(data, trajetorias),
-        [data, trajetorias]
+        () =>
+            doCurso
+                ? indicadoresMadurosCurso(data, doCurso)
+                : indicadoresMaduros(data, trajetorias),
+        [data, trajetorias, doCurso]
     );
+    const serieDe = doCurso ? [doCurso] : trajetorias;
     const turmas = maduros?.anos ?? [];
-    const infoTurma = maduros
-        ? `Turma madura mais recente de cada curso (${turmas.length > 1 ? `ingressos de ${turmas[0]} a ${turmas.at(-1)}` : `ingresso em ${turmas[0]}`}), dois anos depois do prazo do curso, contra os mesmos cursos no Brasil no mesmo ponto. A linha mostra a mesma taxa nas turmas maduras anteriores.`
-        : "Ainda não há turma madura (todas em andamento).";
+    const periodo =
+        turmas.length > 1
+            ? `ingressos de ${turmas[0]} a ${turmas.at(-1)}`
+            : `ingresso em ${turmas[0]}`;
+    const infoTurma = !maduros
+        ? doCurso
+            ? "Este curso ainda não tem turma madura (todas em andamento)."
+            : "Ainda não há turma madura (todas em andamento)."
+        : doCurso
+          ? `Média das turmas maduras do curso (${periodo}), pesada pelos ingressantes, dois anos depois do prazo, contra o mesmo curso no Brasil no mesmo ponto. A linha mostra a taxa de cada turma.`
+          : `Turma madura mais recente de cada curso (${periodo}), dois anos depois do prazo do curso, contra os mesmos cursos no Brasil no mesmo ponto. A linha mostra a mesma taxa nas turmas maduras anteriores.`;
 
     return (
         <GradeNaTela>
             <EvasaoHeatmapCard
                 className="lg:col-span-8"
                 preencher
+                selecionado={curso}
                 cursos={data.cursos}
                 local={data.trajetoria_comparada.heatmap_evasao_anual}
                 nacional={data.medias_nacionais.heatmap_evasao_anual}
@@ -320,7 +340,7 @@ function Evasao({ data }: { data: DashboardData }) {
                     value={maduros?.concluiu ?? null}
                     nationalValue={maduros?.concluiuBrasil ?? null}
                     higherIsBetter
-                    serie={serieMaduras(trajetorias, "concluiu")}
+                    serie={serieMaduras(serieDe, "concluiu")}
                     serieLabel="Conclusão por turma de ingresso"
                 />
                 <StatTile
@@ -329,7 +349,7 @@ function Evasao({ data }: { data: DashboardData }) {
                     value={maduros?.desistiu ?? null}
                     nationalValue={maduros?.desistiuBrasil ?? null}
                     higherIsBetter={false}
-                    serie={serieMaduras(trajetorias, "desistiu")}
+                    serie={serieMaduras(serieDe, "desistiu")}
                     serieLabel="Evasão por turma de ingresso"
                 />
             </div>

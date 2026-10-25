@@ -34,6 +34,9 @@ const MARGEM_TELA = 16;
  * altura do card; a lista fica mais larga que ele e abre pro lado que couber
  * na tela.
  *
+ * ``estreito``: no compacto, menor (e sem o ponto) no desktop estreito (cards
+ * lado a lado), pra caber na linha de um título com seletor.
+ *
  * ``faixa``: a versão em pílula da faixa escura, ao lado do seletor de campus
  * (Início) — mesma altura e desenho da barra de sub-abas. */
 export function CursoBusca({
@@ -45,6 +48,7 @@ export function CursoBusca({
     placeholder = "Buscar…",
     compacto = false,
     faixa = false,
+    estreito = false,
 }: {
     label: string;
     cor: string;
@@ -54,6 +58,7 @@ export function CursoBusca({
     placeholder?: string;
     compacto?: boolean;
     faixa?: boolean;
+    estreito?: boolean;
 }) {
     const id = useId();
     const rootRef = useRef<HTMLDivElement>(null);
@@ -137,7 +142,10 @@ export function CursoBusca({
                         faixa
                             ? "h-[33px] w-full rounded-full bg-white/[0.07] px-4 sm:h-9 sm:w-[240px]"
                             : compacto
-                              ? "bg-page h-8 w-[150px] max-w-full rounded-lg px-2.5"
+                              ? cn(
+                                    "bg-page h-8 w-[150px] max-w-full rounded-lg px-2.5",
+                                    estreito && "lg:max-xl:w-[108px]"
+                                )
                               : "bg-page h-10 rounded-xl px-3"
                     )}
                 >
@@ -184,7 +192,11 @@ export function CursoBusca({
                         faixa
                             ? "h-[33px] w-full gap-2 rounded-full bg-white/[0.07] px-4 text-white ring-1 ring-white/10 hover:bg-white/[0.12] sm:h-9 sm:w-[240px]"
                             : compacto
-                              ? "bg-page hover:bg-page/70 h-8 w-[150px] max-w-full gap-1.5 rounded-lg pr-2 pl-2.5"
+                              ? cn(
+                                    "bg-page hover:bg-page/70 h-8 w-[150px] max-w-full gap-1.5 rounded-lg pr-2 pl-2.5",
+                                    estreito &&
+                                        "lg:max-xl:w-[108px] lg:max-xl:gap-1 lg:max-xl:pl-2"
+                                )
                               : "bg-page hover:bg-page/70 h-10 w-full gap-2.5 rounded-xl px-3"
                     )}
                 >
@@ -192,7 +204,9 @@ export function CursoBusca({
                         aria-hidden
                         className={cn(
                             "shrink-0 rounded-full",
-                            compacto ? "h-2 w-2" : "h-2.5 w-2.5"
+                            compacto ? "h-2 w-2" : "h-2.5 w-2.5",
+                            // estreito: sem o ponto, sobra espaço pro nome
+                            estreito && "lg:max-xl:hidden"
                         )}
                         style={{ background: cor }}
                     />
@@ -204,7 +218,8 @@ export function CursoBusca({
                                     ? "text-[12px] font-semibold sm:text-[13px]"
                                     : compacto
                                       ? "text-[12px] font-medium"
-                                      : "text-[13px] font-semibold"
+                                      : "text-[13px] font-semibold",
+                                estreito && "lg:max-xl:text-[11.5px]"
                             )}
                         >
                             {selecionado?.label ?? placeholder}

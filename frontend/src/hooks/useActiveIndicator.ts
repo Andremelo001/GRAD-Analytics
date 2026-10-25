@@ -11,10 +11,13 @@ import {
  * ``container`` e devolve ``left``/``width`` pra um elemento absoluto que
  * desliza até ele. Na primeira medida não anima (senão o destaque viria
  * deslizando do canto); depois, ``animar`` liga a transição. Remede quando
- * ``chave`` muda (troca de rota) e quando a barra muda de tamanho. */
+ * ``chave`` muda (troca de rota) e quando a barra muda de tamanho.
+ * ``ativo`` troca o seletor do item ativo (ex.: ``[aria-checked="true"]``
+ * num controle segmentado, que não é rota). */
 export function useActiveIndicator(
     container: RefObject<HTMLElement | null>,
-    chave: string
+    chave: string,
+    ativo = '[aria-current="page"]'
 ): { style: CSSProperties; visivel: boolean; animar: boolean } {
     const [medida, setMedida] = useState<{ left: number; width: number } | null>(null);
     const [animar, setAnimar] = useState(false);
@@ -28,11 +31,11 @@ export function useActiveIndicator(
         const el = container.current;
         if (!el) return;
         const medir = () => {
-            const ativo = el.querySelector<HTMLElement>('[aria-current="page"]');
+            const atual = el.querySelector<HTMLElement>(ativo);
             // pela tela, não por offsetLeft: o link pode estar dentro de um
             // ``li`` posicionado (a medida seria relativa a ele)
             const caixa = el.getBoundingClientRect();
-            const alvo = ativo?.getBoundingClientRect();
+            const alvo = atual?.getBoundingClientRect();
             const nova = alvo
                 ? { left: alvo.left - caixa.left - el.clientLeft, width: alvo.width }
                 : null;
@@ -45,14 +48,14 @@ export function useActiveIndicator(
         observer.observe(el);
         // as abas também: com a barra de largura fixa (celular), elas mudam de
         // tamanho sem a barra mudar (ex.: a fonte termina de carregar)
-        for (const aba of el.querySelectorAll("a")) observer.observe(aba);
+        for (const aba of el.querySelectorAll("a, button")) observer.observe(aba);
         // depois do primeiro quadro desenhado, as próximas mudanças animam
         const frame = requestAnimationFrame(() => setAnimar(true));
         return () => {
             observer.disconnect();
             cancelAnimationFrame(frame);
         };
-    }, [container, chave]);
+    }, [container, chave, ativo]);
 
     return {
         style: medida

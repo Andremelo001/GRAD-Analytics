@@ -18,6 +18,7 @@ def _curso(**kwargs: object) -> dict[str, object]:
         "ano": 2021,
         "cpc_continuo": 3.0107,
         "cpc_faixa": "4",
+        "conceito_enade_continuo": 2.71828,
     }
     for coluna in quality_areas.course_profile.RADAR_FIELDS.values():
         base[coluna] = 3.0
@@ -67,6 +68,7 @@ def test_build_area_rows_follow_columns() -> None:
     linha = dict(zip(colunas, cursos[0], strict=True))
     assert linha["cpc_continuo"] == 3.011
     assert linha["cpc_faixa"] == 4
+    assert linha["conceito_enade_continuo"] == 2.718
     assert linha["ead"] is False
     assert linha["idd"] == 3.0
     sem_conceito = dict(zip(colunas, cursos[1], strict=True))

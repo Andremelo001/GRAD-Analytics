@@ -100,6 +100,9 @@ def test_evolucao_cpc_averages_across_peer_institutions(
     # curso 10 (3.8) + curso-par de outra IES (4.2) -> média nacional 4.0
     assert row["cpc_continuo_medio_nacional"] == 4.0
     assert row["quantidade_cursos_considerados"] == 2
+    # Conceito Enade: curso 10 (3.9) + par (4.3) -> 4.1
+    assert row["conceito_enade_medio_nacional"] == 4.1
+    assert row["quantidade_cursos_enade"] == 2
 
 
 def test_perfil_radar_nacional_is_per_area_and_year(
@@ -114,6 +117,8 @@ def test_perfil_radar_nacional_is_per_area_and_year(
     }
     # 2019: curso 10 (nota 4.0) + par (5.0) -> 4.5; 2017: só o curso 10 (3.0)
     assert rows[2019]["formacao_geral"] == 4.5
+    # Conceito Enade: curso 10 (3.9) + par (4.3) -> 4.1
+    assert rows[2019]["conceito_enade_continuo"] == 4.1
     assert rows[2019]["quantidade_cursos_considerados"] == 2
     assert rows[2017]["formacao_geral"] == 3.0
 

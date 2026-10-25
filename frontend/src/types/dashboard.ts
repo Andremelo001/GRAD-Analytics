@@ -224,8 +224,10 @@ export interface Campus {
 export interface EvolucaoCpcNacionalPonto {
     area_avaliacao: string;
     ano: number;
-    cpc_continuo_medio_nacional: number;
+    cpc_continuo_medio_nacional: number | null;
     quantidade_cursos_considerados: number;
+    conceito_enade_medio_nacional: number | null;
+    quantidade_cursos_enade: number;
 }
 
 /** Notas médias da área no ano (só os anos em que o campus foi avaliado);
@@ -242,6 +244,8 @@ export interface PerfilRadarNacional {
     mestres: number | null;
     doutores: number | null;
     regime_trabalho: number | null;
+    /** Conceito Enade contínuo médio da área no ano. */
+    conceito_enade_continuo: number | null;
     quantidade_cursos_considerados: number;
 }
 

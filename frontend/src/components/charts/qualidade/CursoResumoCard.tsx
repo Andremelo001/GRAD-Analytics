@@ -5,13 +5,14 @@ import { CursoBusca } from "@/components/charts/qualidade/CursoBusca";
 import { DeltaPill } from "@/components/charts/qualidade/DeltaPill";
 import { FaixaPill } from "@/components/charts/qualidade/FaixaPill";
 import { useChartTheme } from "@/hooks/useChartTheme";
+import { faixaDe } from "@/lib/cpc";
 import { opcaoCurso } from "@/lib/curso";
 import { formatDecimal, formatInteger, toTitleCase } from "@/lib/format";
 import type { AvaliacaoCurso } from "@/lib/qualidade";
 import { cn } from "@/lib/utils";
 
 /** Cabeçalho da sub-aba Por curso: seletor do curso (com busca) e a ficha da avaliação
- * mais recente (ano, área, CPC + faixa, Enade e a média nacional). */
+ * mais recente (ano, área, CPC + faixa, Enade + faixa e a média nacional). */
 export function CursoResumoCard({
     curso,
     cursos,
@@ -103,7 +104,17 @@ export function CursoResumoCard({
                     )}
                 </Item>
                 <Item label="Conceito Enade">
-                    {curso.enade === null ? "—" : formatDecimal(curso.enade)}
+                    {/* faixa do Conceito Enade: mesmos cortes da do CPC */}
+                    <span className="flex items-center gap-2">
+                        {curso.enade === null ? "—" : formatDecimal(curso.enade)}
+                        {curso.ano !== null && (
+                            <FaixaPill
+                                faixa={
+                                    curso.enade === null ? null : faixaDe(curso.enade)
+                                }
+                            />
+                        )}
+                    </span>
                 </Item>
             </dl>
         </Card>

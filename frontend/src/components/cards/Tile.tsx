@@ -47,7 +47,16 @@ export function Tile({
                     {badge}
                 </div>
             ) : (
-                <div className="relative mt-auto pt-1">{children}</div>
+                // com rodapé, o conteúdo fica no lugar do número (em cima);
+                // sem, desce até o fim do tile
+                <div
+                    className={cn(
+                        "relative",
+                        footer !== undefined ? "mt-2.5" : "mt-auto pt-1"
+                    )}
+                >
+                    {children}
+                </div>
             )}
             {footer !== undefined && (
                 <div

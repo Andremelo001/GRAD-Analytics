@@ -3,7 +3,14 @@ import { useState, type ReactNode } from "react";
 import { DeltaPill } from "@/components/charts/qualidade/DeltaPill";
 import { FaixaPill } from "@/components/charts/qualidade/FaixaPill";
 import { useChartTheme } from "@/hooks/useChartTheme";
-import { percentil, ranking, type CursoArea, type ResumoArea } from "@/lib/area";
+import {
+    INDICADORES,
+    percentil,
+    ranking,
+    type CursoArea,
+    type Indicador,
+    type ResumoArea,
+} from "@/lib/area";
 import { COMPONENTES } from "@/lib/cpc";
 import { formatDecimal, formatInteger, formatPercent } from "@/lib/format";
 import { cn } from "@/lib/utils";
@@ -11,14 +18,16 @@ import { cn } from "@/lib/utils";
 const TOP = 10;
 
 /** Painel ao lado do mapa: o recorte escolhido (Brasil ou um estado) em
- * números — cursos, CPC médio, faixas, onde o curso do campus fica entre os
- * pares, as notas médias do estado contra o Brasil e os melhores cursos. */
+ * números, no indicador escolhido no mapa (CPC, IDD ou Conceito Enade) —
+ * cursos, média, faixas, onde o curso do campus fica entre os pares, as
+ * notas médias do estado contra o Brasil e os melhores cursos. */
 export function EstadoPainel({
     titulo,
     cursos,
     resumo,
     brasil,
     ehEstado,
+    indicador,
     cursoCampus,
 }: {
     titulo: string;
@@ -26,16 +35,23 @@ export function EstadoPainel({
     resumo: ResumoArea;
     brasil: ResumoArea;
     ehEstado: boolean;
+    indicador: Indicador;
     cursoCampus: CursoArea | undefined;
 }) {
     const CHART = useChartTheme();
-    const ordenados = ranking(cursos);
+    const ind = INDICADORES[indicador];
+    const media = resumo.medias[indicador];
+    const mediaBrasil = brasil.medias[indicador];
+    const faixas = resumo.faixas[indicador];
+    const pctAltas = resumo.pctAltas[indicador];
+    const valorCampus = cursoCampus ? ind.doCurso(cursoCampus) : null;
+    const ordenados = ranking(cursos, indicador);
     const top = ordenados.slice(0, TOP);
     const posicaoCampus = cursoCampus
         ? ordenados.findIndex((c) => c.codigo === cursoCampus.codigo)
         : -1;
     const campusForaDoTop = posicaoCampus >= TOP;
-    const totalFaixas = resumo.faixas.reduce((a, b) => a + b, 0);
+    const totalFaixas = faixas.reduce((a, b) => a + b, 0);
     // faixa em foco (mouse na barra ou na legenda, ou toque): o pedaço dela
     // engrossa, os outros apagam e o item da legenda se destaca — como nos
     // medidores da Visão do campus
@@ -44,35 +60,33 @@ export function EstadoPainel({
 
     return (
         <div className="flex flex-col gap-6">
-            <dl className="grid grid-cols-3 gap-3">
+            {/* o mesmo espaço entre os três (rótulos de larguras diferentes),
+                com o do meio centrado no próprio rótulo */}
+            <dl className="flex justify-between gap-3">
                 <Kpi label="Cursos">{formatInteger(resumo.cursos)}</Kpi>
                 <Kpi
-                    label="CPC médio"
+                    centro
+                    label={ind.label}
                     extra={
-                        ehEstado &&
-                        resumo.cpcMedio !== null &&
-                        brasil.cpcMedio !== null ? (
-                            <DeltaPill
-                                size="sm"
-                                diff={resumo.cpcMedio - brasil.cpcMedio}
-                            />
+                        ehEstado && media !== null && mediaBrasil !== null ? (
+                            <DeltaPill size="sm" diff={media - mediaBrasil} />
                         ) : null
                     }
                 >
-                    {resumo.cpcMedio === null ? "—" : formatDecimal(resumo.cpcMedio)}
+                    {media === null ? "—" : formatDecimal(media)}
                 </Kpi>
                 <Kpi label="Faixas 4 e 5">
-                    {resumo.pctAltas === null ? "—" : formatPercent(resumo.pctAltas, 0)}
+                    {pctAltas === null ? "—" : formatPercent(pctAltas, 0)}
                 </Kpi>
             </dl>
 
-            <Secao titulo="Cursos por faixa">
+            <Secao titulo={`Cursos por faixa do ${ind.nome}`}>
                 <div
                     className="flex h-4 w-full items-center gap-[2px]"
                     onMouseLeave={() => setFoco(null)}
                     aria-hidden
                 >
-                    {resumo.faixas.map((n, i) =>
+                    {faixas.map((n, i) =>
                         n === 0 ? null : (
                             <span
                                 key={i}
@@ -92,7 +106,7 @@ export function EstadoPainel({
                     className="text-text-secondary mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[12px]"
                     onMouseLeave={() => setFoco(null)}
                 >
-                    {resumo.faixas.map((n, i) =>
+                    {faixas.map((n, i) =>
                         n === 0 ? null : (
                             <span
                                 key={i}
@@ -119,10 +133,12 @@ export function EstadoPainel({
                 </p>
             </Secao>
 
-            {cursoCampus?.cpc != null && (
+            {cursoCampus && valorCampus !== null && (
                 <PosicaoCampus
                     cursos={cursos}
-                    curso={cursoCampus as CursoArea & { cpc: number }}
+                    curso={cursoCampus}
+                    valor={valorCampus}
+                    indicador={indicador}
                     posicao={posicaoCampus}
                     ehEstado={ehEstado}
                     titulo={titulo}
@@ -160,12 +176,15 @@ export function EstadoPainel({
                 </Secao>
             )}
 
-            <Secao titulo={`Melhores CPCs${ehEstado ? ` em ${titulo}` : " do Brasil"}`}>
+            <Secao
+                titulo={`Melhores ${ind.plural}${ehEstado ? ` em ${titulo}` : " do Brasil"}`}
+            >
                 <ol className="flex flex-col">
                     {top.map((c, i) => (
                         <LinhaCurso
                             key={c.codigo}
                             curso={c}
+                            indicador={indicador}
                             posicao={i + 1}
                             campus={c.codigo === cursoCampus?.codigo}
                         />
@@ -180,6 +199,7 @@ export function EstadoPainel({
                             </li>
                             <LinhaCurso
                                 curso={cursoCampus}
+                                indicador={indicador}
                                 posicao={posicaoCampus + 1}
                                 campus
                             />
@@ -194,16 +214,24 @@ export function EstadoPainel({
 function Kpi({
     label,
     extra,
+    centro = false,
     children,
 }: {
     label: string;
     extra?: ReactNode;
+    /** O valor centrado embaixo do rótulo. */
+    centro?: boolean;
     children: ReactNode;
 }) {
     return (
-        <div className="min-w-0">
+        <div className={cn("min-w-0", centro && "text-center")}>
             <dt className="text-text-muted text-[11px]">{label}</dt>
-            <dd className="mt-1 flex flex-wrap items-center gap-1.5 text-[20px] leading-none font-semibold tracking-[-0.02em] tabular-nums">
+            <dd
+                className={cn(
+                    "mt-1 flex flex-wrap items-center gap-1.5 text-[20px] leading-none font-semibold tracking-[-0.02em] tabular-nums",
+                    centro && "justify-center"
+                )}
+            >
                 {children}
                 {extra}
             </dd>
@@ -224,13 +252,16 @@ function Secao({ titulo, children }: { titulo: string; children: ReactNode }) {
 
 function LinhaCurso({
     curso,
+    indicador,
     posicao,
     campus,
 }: {
     curso: CursoArea;
+    indicador: Indicador;
     posicao: number;
     campus: boolean;
 }) {
+    const valor = INDICADORES[indicador].doCurso(curso);
     return (
         <li
             className={cn(
@@ -261,47 +292,55 @@ function LinhaCurso({
                 </span>
             </span>
             <span className="font-semibold tabular-nums">
-                {curso.cpc === null ? "—" : formatDecimal(curso.cpc)}
+                {valor === null ? "—" : formatDecimal(valor)}
             </span>
-            <FaixaPill faixa={curso.faixa} />
+            <FaixaPill faixa={INDICADORES[indicador].faixaDoCurso(curso)} />
         </li>
     );
 }
 
-/** Histograma do CPC dos cursos do recorte (faixas de 0,25) com a barra do
- * curso do campus em oliva, e o percentil. */
+/** Histograma do indicador nos cursos do recorte (faixas de 0,25) com a
+ * barra do curso do campus em oliva, e o percentil. */
 function PosicaoCampus({
     cursos,
     curso,
+    valor,
+    indicador,
     posicao,
     ehEstado,
     titulo,
 }: {
     cursos: CursoArea[];
-    curso: CursoArea & { cpc: number };
+    curso: CursoArea;
+    /** O valor do curso do campus no indicador. */
+    valor: number;
+    indicador: Indicador;
     posicao: number;
     ehEstado: boolean;
     titulo: string;
 }) {
     const CHART = useChartTheme();
+    const { doCurso, nome } = INDICADORES[indicador];
     const LARGURA = 0.25;
     const bins = Array.from({ length: 20 }, () => 0);
     for (const c of cursos) {
-        if (c.cpc === null) continue;
-        bins[Math.min(Math.floor(c.cpc / LARGURA), 19)]++;
+        const v = doCurso(c);
+        if (v === null) continue;
+        bins[Math.min(Math.floor(v / LARGURA), 19)]++;
     }
-    const doCampus = Math.min(Math.floor(curso.cpc / LARGURA), 19);
+    const doCampus = Math.min(Math.floor(valor / LARGURA), 19);
     const max = Math.max(...bins, 1);
     const pct = percentil(
         cursos.filter((c) => c.codigo !== curso.codigo),
-        curso.cpc
+        valor,
+        indicador
     );
     // fora do recorte (ex.: um estado onde o campus não está): onde ficaria
     const noRecorte = posicao >= 0;
     const colocacao = noRecorte
         ? posicao + 1
-        : cursos.filter((c) => c.cpc !== null && c.cpc > curso.cpc).length + 1;
-    const comCpc = cursos.filter((c) => c.cpc !== null).length;
+        : cursos.filter((c) => (doCurso(c) ?? -Infinity) > valor).length + 1;
+    const comValor = cursos.filter((c) => doCurso(c) !== null).length;
 
     return (
         <Secao
@@ -313,11 +352,11 @@ function PosicaoCampus({
                     {colocacao}º
                 </span>{" "}
                 <span className="text-text-secondary">
-                    de {formatInteger(comCpc)} cursos com CPC
+                    de {formatInteger(comValor)} cursos com {nome}
                     {pct !== null && (
                         <>
                             {" "}
-                            · CPC maior que o de{" "}
+                            · {nome} maior que o de{" "}
                             <span className="text-ink font-semibold">
                                 {formatPercent(pct, 0)}
                             </span>{" "}

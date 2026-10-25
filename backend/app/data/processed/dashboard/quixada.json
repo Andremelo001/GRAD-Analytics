@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-10-24T12:31:02+00:00",
+  "gerado_em": "2026-10-25T01:09:26+00:00",
   "escopo": {
     "codigo_ies": 583,
     "nome_ies": "UNIVERSIDADE FEDERAL DO CEARÁ",
@@ -11196,49 +11196,65 @@
         "area_avaliacao": "CIÊNCIA DA COMPUTAÇÃO (BACHARELADO)",
         "ano": 2017,
         "cpc_continuo_medio_nacional": 2.79,
-        "quantidade_cursos_considerados": 307
+        "quantidade_cursos_considerados": 307,
+        "conceito_enade_medio_nacional": 2.42,
+        "quantidade_cursos_enade": 307
       },
       {
         "area_avaliacao": "CIÊNCIA DA COMPUTAÇÃO (BACHARELADO)",
         "ano": 2021,
         "cpc_continuo_medio_nacional": 2.81,
-        "quantidade_cursos_considerados": 319
+        "quantidade_cursos_considerados": 319,
+        "conceito_enade_medio_nacional": 2.19,
+        "quantidade_cursos_enade": 319
       },
       {
         "area_avaliacao": "ENGENHARIA DA COMPUTAÇÃO",
         "ano": 2017,
         "cpc_continuo_medio_nacional": 2.66,
-        "quantidade_cursos_considerados": 145
+        "quantidade_cursos_considerados": 145,
+        "conceito_enade_medio_nacional": 2.52,
+        "quantidade_cursos_enade": 145
       },
       {
         "area_avaliacao": "ENGENHARIA DA COMPUTAÇÃO",
         "ano": 2019,
         "cpc_continuo_medio_nacional": 2.73,
-        "quantidade_cursos_considerados": 172
+        "quantidade_cursos_considerados": 172,
+        "conceito_enade_medio_nacional": 2.1,
+        "quantidade_cursos_enade": 172
       },
       {
         "area_avaliacao": "SISTEMAS DE INFORMAÇÃO",
         "ano": 2017,
         "cpc_continuo_medio_nacional": 2.74,
-        "quantidade_cursos_considerados": 454
+        "quantidade_cursos_considerados": 454,
+        "conceito_enade_medio_nacional": 2.32,
+        "quantidade_cursos_enade": 454
       },
       {
         "area_avaliacao": "SISTEMAS DE INFORMAÇÃO",
         "ano": 2021,
         "cpc_continuo_medio_nacional": 2.72,
-        "quantidade_cursos_considerados": 388
+        "quantidade_cursos_considerados": 388,
+        "conceito_enade_medio_nacional": 2.25,
+        "quantidade_cursos_enade": 388
       },
       {
         "area_avaliacao": "TECNOLOGIA EM REDES DE COMPUTADORES",
         "ano": 2017,
         "cpc_continuo_medio_nacional": 2.82,
-        "quantidade_cursos_considerados": 158
+        "quantidade_cursos_considerados": 158,
+        "conceito_enade_medio_nacional": 2.67,
+        "quantidade_cursos_enade": 158
       },
       {
         "area_avaliacao": "TECNOLOGIA EM REDES DE COMPUTADORES",
         "ano": 2021,
         "cpc_continuo_medio_nacional": 2.6,
-        "quantidade_cursos_considerados": 114
+        "quantidade_cursos_considerados": 114,
+        "conceito_enade_medio_nacional": 2.22,
+        "quantidade_cursos_enade": 114
       }
     ],
     "perfil_radar": [
@@ -11254,6 +11270,7 @@
         "mestres": 3.96,
         "doutores": 2.51,
         "regime_trabalho": 3.97,
+        "conceito_enade_continuo": 2.42,
         "quantidade_cursos_considerados": 311
       },
       {
@@ -11268,6 +11285,7 @@
         "mestres": 4.03,
         "doutores": 2.89,
         "regime_trabalho": 4.0,
+        "conceito_enade_continuo": 2.19,
         "quantidade_cursos_considerados": 329
       },
       {
@@ -11282,6 +11300,7 @@
         "mestres": 4.02,
         "doutores": 2.81,
         "regime_trabalho": 4.06,
+        "conceito_enade_continuo": 2.1,
         "quantidade_cursos_considerados": 172
       },
       {
@@ -11296,6 +11315,7 @@
         "mestres": 3.81,
         "doutores": 1.96,
         "regime_trabalho": 3.89,
+        "conceito_enade_continuo": 2.32,
         "quantidade_cursos_considerados": 471
       },
       {
@@ -11310,6 +11330,7 @@
         "mestres": 4.0,
         "doutores": 2.32,
         "regime_trabalho": 3.99,
+        "conceito_enade_continuo": 2.25,
         "quantidade_cursos_considerados": 424
       },
       {
@@ -11324,6 +11345,7 @@
         "mestres": 3.58,
         "doutores": 1.68,
         "regime_trabalho": 3.7,
+        "conceito_enade_continuo": 2.67,
         "quantidade_cursos_considerados": 184
       },
       {
@@ -11338,6 +11360,7 @@
         "mestres": 4.02,
         "doutores": 2.37,
         "regime_trabalho": 3.82,
+        "conceito_enade_continuo": 2.22,
         "quantidade_cursos_considerados": 146
       }
     ],

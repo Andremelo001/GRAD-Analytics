@@ -263,10 +263,7 @@ function Mapa({ data }: { data: DashboardData }) {
                                 .map(([sigla, r]) => [
                                     UF_NOMES[sigla] ?? sigla,
                                     String(r.cursos),
-                                    formatIndicador(
-                                        indicador,
-                                        INDICADORES[indicador].valor(r)
-                                    ),
+                                    formatIndicador(INDICADORES[indicador].valor(r)),
                                 ])}
                         />
                     </div>
@@ -278,10 +275,10 @@ function Mapa({ data }: { data: DashboardData }) {
                 <Card
                     expansivel="tela"
                     title={titulo}
-                    info="Os números do Brasil, ou do estado escolhido no mapa: cursos por faixa, a posição do curso do campus e os cursos da área com os melhores CPCs."
+                    info={`Os números do Brasil, ou do estado escolhido no mapa, no indicador escolhido ao lado (${INDICADORES[indicador].nome}): cursos por faixa, a posição do curso do campus e os cursos da área com os melhores ${INDICADORES[indicador].plural}.${indicador === "cpc" ? "" : ` A faixa do ${INDICADORES[indicador].nome} usa os mesmos cortes do CPC (1 a 5) sobre o valor contínuo.`}`}
                     subtitle={
                         visao
-                            ? `${visao.cursoCampus ? "" : "Seu curso não tem CPC nesta edição · "}${uf ? "Clique fora do estado para voltar ao Brasil" : "Clique num estado para ver os detalhes"}`
+                            ? `${visao.cursoCampus && INDICADORES[indicador].doCurso(visao.cursoCampus) !== null ? "" : `Seu curso não tem ${INDICADORES[indicador].nome} nesta edição · `}${uf ? "Clique fora do estado para voltar ao Brasil" : "Clique num estado para ver os detalhes"}`
                             : undefined
                     }
                     className="lg:absolute lg:inset-0"
@@ -297,6 +294,7 @@ function Mapa({ data }: { data: DashboardData }) {
                                 resumo={uf ? visao.porUf.get(uf)! : visao.brasil}
                                 brasil={visao.brasil}
                                 ehEstado={uf !== null}
+                                indicador={indicador}
                                 cursoCampus={visao.cursoCampus}
                             />
                         )}

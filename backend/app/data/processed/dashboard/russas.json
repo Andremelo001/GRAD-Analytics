@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-10-24T12:31:02+00:00",
+  "gerado_em": "2026-10-25T01:09:26+00:00",
   "escopo": {
     "codigo_ies": 583,
     "nome_ies": "UNIVERSIDADE FEDERAL DO CEARÁ",
@@ -6332,67 +6332,89 @@
         "area_avaliacao": "CIÊNCIA DA COMPUTAÇÃO (BACHARELADO)",
         "ano": 2017,
         "cpc_continuo_medio_nacional": 2.79,
-        "quantidade_cursos_considerados": 307
+        "quantidade_cursos_considerados": 307,
+        "conceito_enade_medio_nacional": 2.42,
+        "quantidade_cursos_enade": 307
       },
       {
         "area_avaliacao": "CIÊNCIA DA COMPUTAÇÃO (BACHARELADO)",
         "ano": 2021,
         "cpc_continuo_medio_nacional": 2.81,
-        "quantidade_cursos_considerados": 319
+        "quantidade_cursos_considerados": 319,
+        "conceito_enade_medio_nacional": 2.19,
+        "quantidade_cursos_enade": 319
       },
       {
         "area_avaliacao": "ENGENHARIA CIVIL",
         "ano": 2017,
         "cpc_continuo_medio_nacional": 2.59,
-        "quantidade_cursos_considerados": 537
+        "quantidade_cursos_considerados": 537,
+        "conceito_enade_medio_nacional": 2.15,
+        "quantidade_cursos_enade": 537
       },
       {
         "area_avaliacao": "ENGENHARIA CIVIL",
         "ano": 2019,
         "cpc_continuo_medio_nacional": 2.77,
-        "quantidade_cursos_considerados": 726
+        "quantidade_cursos_considerados": 726,
+        "conceito_enade_medio_nacional": 2.33,
+        "quantidade_cursos_enade": 726
       },
       {
         "area_avaliacao": "ENGENHARIA CIVIL",
         "ano": 2023,
         "cpc_continuo_medio_nacional": 2.67,
-        "quantidade_cursos_considerados": 876
+        "quantidade_cursos_considerados": 876,
+        "conceito_enade_medio_nacional": 2.19,
+        "quantidade_cursos_enade": 876
       },
       {
         "area_avaliacao": "ENGENHARIA DE PRODUÇÃO",
         "ano": 2017,
         "cpc_continuo_medio_nacional": 2.63,
-        "quantidade_cursos_considerados": 494
+        "quantidade_cursos_considerados": 494,
+        "conceito_enade_medio_nacional": 2.35,
+        "quantidade_cursos_enade": 494
       },
       {
         "area_avaliacao": "ENGENHARIA DE PRODUÇÃO",
         "ano": 2019,
         "cpc_continuo_medio_nacional": 2.73,
-        "quantidade_cursos_considerados": 634
+        "quantidade_cursos_considerados": 634,
+        "conceito_enade_medio_nacional": 2.25,
+        "quantidade_cursos_enade": 634
       },
       {
         "area_avaliacao": "ENGENHARIA DE PRODUÇÃO",
         "ano": 2023,
         "cpc_continuo_medio_nacional": 2.81,
-        "quantidade_cursos_considerados": 575
+        "quantidade_cursos_considerados": 575,
+        "conceito_enade_medio_nacional": 2.36,
+        "quantidade_cursos_enade": 575
       },
       {
         "area_avaliacao": "ENGENHARIA MECÂNICA",
         "ano": 2017,
         "cpc_continuo_medio_nacional": 2.62,
-        "quantidade_cursos_considerados": 289
+        "quantidade_cursos_considerados": 289,
+        "conceito_enade_medio_nacional": 2.27,
+        "quantidade_cursos_enade": 289
       },
       {
         "area_avaliacao": "ENGENHARIA MECÂNICA",
         "ano": 2019,
         "cpc_continuo_medio_nacional": 2.62,
-        "quantidade_cursos_considerados": 373
+        "quantidade_cursos_considerados": 373,
+        "conceito_enade_medio_nacional": 2.06,
+        "quantidade_cursos_enade": 373
       },
       {
         "area_avaliacao": "ENGENHARIA MECÂNICA",
         "ano": 2023,
         "cpc_continuo_medio_nacional": 2.71,
-        "quantidade_cursos_considerados": 498
+        "quantidade_cursos_considerados": 498,
+        "conceito_enade_medio_nacional": 2.12,
+        "quantidade_cursos_enade": 498
       }
     ],
     "perfil_radar": [
@@ -6408,6 +6430,7 @@
         "mestres": 4.03,
         "doutores": 2.89,
         "regime_trabalho": 4.0,
+        "conceito_enade_continuo": 2.19,
         "quantidade_cursos_considerados": 329
       },
       {
@@ -6422,6 +6445,7 @@
         "mestres": 3.9,
         "doutores": 2.32,
         "regime_trabalho": 3.95,
+        "conceito_enade_continuo": 2.33,
         "quantidade_cursos_considerados": 726
       },
       {
@@ -6436,6 +6460,7 @@
         "mestres": 3.99,
         "doutores": 2.6,
         "regime_trabalho": 4.04,
+        "conceito_enade_continuo": 2.19,
         "quantidade_cursos_considerados": 917
       },
       {
@@ -6450,6 +6475,7 @@
         "mestres": 3.98,
         "doutores": 2.44,
         "regime_trabalho": 3.95,
+        "conceito_enade_continuo": 2.25,
         "quantidade_cursos_considerados": 634
       },
       {
@@ -6464,6 +6490,7 @@
         "mestres": 4.17,
         "doutores": 2.84,
         "regime_trabalho": 4.01,
+        "conceito_enade_continuo": 2.36,
         "quantidade_cursos_considerados": 637
       },
       {
@@ -6478,6 +6505,7 @@
         "mestres": 3.86,
         "doutores": 2.76,
         "regime_trabalho": 3.95,
+        "conceito_enade_continuo": 2.06,
         "quantidade_cursos_considerados": 373
       },
       {
@@ -6492,6 +6520,7 @@
         "mestres": 4.15,
         "doutores": 3.0,
         "regime_trabalho": 3.95,
+        "conceito_enade_continuo": 2.12,
         "quantidade_cursos_considerados": 516
       }
     ],

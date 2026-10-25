@@ -1,5 +1,5 @@
 import { ArrowDown, ArrowUp, Minus } from "lucide-react";
-import { useMemo, useState, type CSSProperties } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 
 import { AMPLIADO_FLEX, AMPLIADO_ROLA } from "@/components/cards/ampliado";
 import { Card } from "@/components/cards/Card";
@@ -72,12 +72,15 @@ const mean = (values: number[]) =>
  * vermelho acima, mais escuro quanto maior a distância). O número do
  * topo segue o mouse: a célula sob ele (curso, ano, taxa e diferença para a
  * média nacional da área no mesmo ano — ``medias_nacionais.heatmap_evasao_anual``)
- * ou, sem mouse, a média dos cursos no ano mais recente. */
+ * ou, sem mouse, a média dos cursos no ano mais recente. Com um curso
+ * ``selecionado`` (o seletor do Início), a linha dele fica marcada, as outras
+ * esmaecem e o número do topo passa a ser o dele. */
 export function EvasaoHeatmapCard({
     cursos,
     local,
     nacional,
     preencher = false,
+    selecionado = null,
     className,
 }: {
     cursos: Curso[];
@@ -86,6 +89,8 @@ export function EvasaoHeatmapCard({
     /** O card tem a altura da tela (Início → Evasão): a grade ocupa o card —
      * com poucos cursos as linhas crescem; com muitos, rola. */
     preencher?: boolean;
+    /** Curso em destaque (``null`` = todos iguais). */
+    selecionado?: number | null;
     className?: string;
 }) {
     const CHART = useChartTheme();
@@ -120,8 +125,30 @@ export function EvasaoHeatmapCard({
         };
     }, [linhas]);
 
-    // destaque do topo: a célula sob o mouse ou a média do ano mais recente
+    const rolagem = useRef<HTMLDivElement>(null);
+    const linhaSelecionada = linhas.find((l) => l.codigo === selecionado);
+    // curso escolhido: a grade rola até a linha dele (centrada)
+    useEffect(() => {
+        const box = rolagem.current;
+        const alvo = box?.querySelector<HTMLElement>(`[data-curso="${selecionado}"]`);
+        if (!box || !alvo) return;
+        const topo =
+            alvo.getBoundingClientRect().top -
+            box.getBoundingClientRect().top +
+            box.scrollTop;
+        box.scrollTo({
+            top: topo - (box.clientHeight - alvo.offsetHeight) / 2,
+            behavior: "smooth",
+        });
+    }, [selecionado]);
+
+    // destaque do topo: a célula sob o mouse, o curso escolhido (no ano mais
+    // recente) ou a média dos cursos no ano mais recente
     const ultimo = anos.at(-1);
+    const celulaSelecionada =
+        linhaSelecionada && ultimo !== undefined
+            ? linhaSelecionada.celulas.get(ultimo)
+            : undefined;
     const hoverLinha = hover
         ? linhas.find((l) => l.codigo === hover.codigo)
         : undefined;
@@ -136,15 +163,23 @@ export function EvasaoHeatmapCard({
                   nacional: hoverCelula?.nacional ?? null,
                   contexto: `${hoverLinha.nome} · ${hover.ano}`,
               }
-            : {
-                  taxa: mean(
-                      doUltimo.flatMap((c) => (c.taxa === null ? [] : [c.taxa]))
-                  ),
-                  nacional: mean(
-                      doUltimo.flatMap((c) => (c.nacional === null ? [] : [c.nacional]))
-                  ),
-                  contexto: `Média dos cursos em ${ultimo}`,
-              };
+            : linhaSelecionada
+              ? {
+                    taxa: celulaSelecionada?.taxa ?? null,
+                    nacional: celulaSelecionada?.nacional ?? null,
+                    contexto: `${linhaSelecionada.nome} · ${ultimo}`,
+                }
+              : {
+                    taxa: mean(
+                        doUltimo.flatMap((c) => (c.taxa === null ? [] : [c.taxa]))
+                    ),
+                    nacional: mean(
+                        doUltimo.flatMap((c) =>
+                            c.nacional === null ? [] : [c.nacional]
+                        )
+                    ),
+                    contexto: `Média dos cursos em ${ultimo}`,
+                };
     const diff =
         destaque.taxa !== null && destaque.nacional !== null
             ? destaque.taxa - destaque.nacional
@@ -211,6 +246,7 @@ export function EvasaoHeatmapCard({
                     (ex.: Fortaleza) a grade rola na vertical na altura de 6
                     linhas, com o eixo dos anos preso embaixo — o card não cresce. */}
                 <div
+                    ref={rolagem}
                     className={cn(
                         // até 6 linhas, depois rola: campus com poucos cursos
                         // não fica com espaço vazio, e Fortaleza não estica o card
@@ -254,6 +290,12 @@ export function EvasaoHeatmapCard({
                                 linha={linha}
                                 anos={anos}
                                 ativo={hover?.codigo === linha.codigo}
+                                marcada={selecionado === linha.codigo}
+                                apagada={
+                                    !!linhaSelecionada &&
+                                    selecionado !== linha.codigo &&
+                                    hover?.codigo !== linha.codigo
+                                }
                                 alta={preencher}
                                 hoverAno={
                                     hover?.codigo === linha.codigo ? hover.ano : null
@@ -322,12 +364,18 @@ function Row({
     linha,
     anos,
     ativo,
+    marcada = false,
+    apagada = false,
     hoverAno,
     colorOf,
     onHover,
     alta = false,
 }: {
     alta?: boolean;
+    /** O curso escolhido no seletor: nome numa pílula limão. */
+    marcada?: boolean;
+    /** Há um curso escolhido e não é este: esmaece. */
+    apagada?: boolean;
     linha: Linha;
     anos: number[];
     ativo: boolean;
@@ -340,13 +388,23 @@ function Row({
             {/* Nome fixo à esquerda quando a grade rola no celular, sem fundo:
                 só o texto, com as células passando por trás dele. */}
             <span
+                data-curso={linha.codigo}
                 className={cn(
-                    "sticky left-0 z-[1] flex min-w-0 items-center self-stretch pr-3 text-[12px]",
-                    ativo ? "text-ink font-semibold" : "text-text-secondary"
+                    "sticky left-0 z-[1] flex min-w-0 items-center self-stretch pr-3 text-[12px] transition-opacity",
+                    ativo || marcada ? "text-ink font-semibold" : "text-text-secondary",
+                    apagada && "opacity-45"
                 )}
                 title={linha.nome}
             >
-                <span className="truncate">{linha.nome}</span>
+                <span
+                    className={cn(
+                        "truncate",
+                        marcada &&
+                            "bg-lime text-on-lime -ml-1.5 rounded-md px-1.5 py-0.5"
+                    )}
+                >
+                    {linha.nome}
+                </span>
             </span>
             {anos.map((ano) => {
                 const cor = colorOf(linha.celulas.get(ano));
@@ -356,7 +414,8 @@ function Row({
                         onMouseEnter={() => onHover(ano)}
                         className={cn(
                             alta ? "h-full min-h-[25px]" : "h-[25px]",
-                            "rounded-[5px]",
+                            "rounded-[5px] transition-opacity",
+                            apagada && "opacity-30",
                             cor === null && "border-empty border border-dashed",
                             // por cima do eixo fixo (mesmo motivo do mapa de calor dos
                             // componentes: o contorno passa 3px da célula)

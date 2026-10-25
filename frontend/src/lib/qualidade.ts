@@ -163,6 +163,11 @@ export interface ResumoQualidade {
     cpcNacional: number | null;
     pctAltas: number | null;
     pctAltasNacional: number | null;
+    /** Conceito Enade contínuo médio (avaliação mais recente de cada curso)
+     * e, pareado como o CPC, a média nacional das mesmas áreas e anos. */
+    enadeMedio: number | null;
+    enadePareado: number | null;
+    enadeNacional: number | null;
     serieCpc: { ano: number; valor: number }[];
     serieAltas: { ano: number; valor: number }[];
 }
@@ -173,6 +178,13 @@ export function resumoQualidade(
 ): ResumoQualidade {
     const avaliados = comCpc(avaliacoes);
     const pareados = avaliados.filter((a) => a.cpcNacional !== null);
+    const comEnade = avaliacoes.flatMap((a) =>
+        a.enade === null ? [] : [{ enade: a.enade, nacional: a.nacional }]
+    );
+    const enadePares = comEnade.flatMap((a) => {
+        const n = a.nacional?.conceito_enade_continuo;
+        return n == null ? [] : [{ local: a.enade, nacional: n }];
+    });
     const faixas = avaliacoes.map((a) => a.faixa).filter((f) => f !== null);
     const pct = (fs: number[]) =>
         fs.length > 0 ? (100 * fs.filter((f) => f >= 4).length) / fs.length : null;
@@ -211,6 +223,9 @@ export function resumoQualidade(
                       .filter((f) => f.cpc_faixa === "4" || f.cpc_faixa === "5")
                       .reduce((total, f) => total + f.percentual_nacional, 0)
                 : null,
+        enadeMedio: media(comEnade.map((a) => a.enade)),
+        enadePareado: media(enadePares.map((p) => p.local)),
+        enadeNacional: media(enadePares.map((p) => p.nacional)),
         serieCpc,
         serieAltas,
     };

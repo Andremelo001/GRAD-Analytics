@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState } from "react";
 
 import { Card } from "@/components/cards/Card";
+import { ChartSelect } from "@/components/charts/ChartSelect";
 import { DataTable } from "@/components/charts/DataTable";
 import { CursoBusca } from "@/components/charts/qualidade/CursoBusca";
 import { useChartTheme } from "@/hooks/useChartTheme";
@@ -8,7 +9,7 @@ import { opcaoCurso } from "@/lib/curso";
 import { useElementSize } from "@/hooks/useElementSize";
 import { FAIXA_LIMITES } from "@/lib/cpc";
 import { formatDecimal } from "@/lib/format";
-import { comCpc, type AvaliacaoCurso } from "@/lib/qualidade";
+import type { AvaliacaoCurso } from "@/lib/qualidade";
 
 // margens iguais dos dois lados: o gráfico fica centralizado no card (à
 // esquerda os valores do eixo, à direita os nomes das faixas)
@@ -21,7 +22,55 @@ type Direcao = "subiu" | "caiu" | "estavel";
 const direcao = (diff: number): Direcao =>
     Math.abs(diff) < ESTAVEL ? "estavel" : diff > 0 ? "subiu" : "caiu";
 
-/** CPC de cada curso no ciclo anterior → no mais recente (slope chart), sobre
+/** O indicador do gráfico: o CPC ou o Conceito Enade (mesma escala 0-5 e
+ * mesmos cortes de faixa). */
+type Metrica = "cpc" | "enade";
+
+const NOME: Record<Metrica, string> = { cpc: "CPC", enade: "Conceito Enade" };
+
+/** A última escolha do seletor: sair da aba e voltar mantém o indicador. */
+let metricaEscolhida: Metrica = "cpc";
+
+/** Um curso no gráfico: o valor na avaliação mais recente e no ciclo
+ * anterior com valor (``null`` = um ciclo só). */
+interface Ponto {
+    codigo: number;
+    nome: string;
+    nomeCurso: string;
+    grau: string | null;
+    ano: number;
+    atual: number;
+    anterior: { ano: number; valor: number } | null;
+}
+
+function pontos(avaliacoes: AvaliacaoCurso[], metrica: Metrica): Ponto[] {
+    return avaliacoes.flatMap((a) => {
+        const atual = metrica === "cpc" ? a.cpc : a.enade;
+        if (atual === null || a.ano === null) return [];
+        const ano = a.ano;
+        const antes =
+            metrica === "cpc"
+                ? a.anterior && { ano: a.anterior.ano, valor: a.anterior.cpc }
+                : a.historico
+                      .filter((h) => h.ano < ano && h.conceito_enade_continuo !== null)
+                      .map((h) => ({ ano: h.ano, valor: h.conceito_enade_continuo! }))
+                      .at(-1);
+        return [
+            {
+                codigo: a.codigo,
+                nome: a.nome,
+                nomeCurso: a.nomeCurso,
+                grau: a.grau,
+                ano,
+                atual,
+                anterior: antes ?? null,
+            },
+        ];
+    });
+}
+
+/** CPC (ou Conceito Enade, no seletor ao lado do título) de cada curso no ciclo
+ * anterior → no mais recente (slope chart), sobre
  * a régua das faixas (à direita, limites tracejados): dá pra ver quem subiu,
  * quem caiu e quem trocou de faixa. Cada curso tem os próprios anos (as
  * áreas são avaliadas em anos diferentes), então as colunas são "ciclo
@@ -29,7 +78,7 @@ const direcao = (diff: number): Direcao =>
  * O seletor (canto superior direito) mostra só a linha de um curso (com
  * muitos cursos, como em Fortaleza, achar um pelo mouse é difícil); sem
  * seleção, passar o mouse destaca um curso e apaga os outros. Com um curso em
- * foco, o subtítulo vira "nome | CPC anterior – CPC atual". */
+ * foco, o subtítulo vira "nome | valor anterior – valor atual". */
 export function CpcSlopeCard({
     avaliacoes,
     className,
@@ -42,11 +91,17 @@ export function CpcSlopeCard({
     // o gráfico ocupa a altura que o card tem (esticado à do ranking, ao lado)
     const { width, height: H } = useElementSize(boxRef);
     const [hover, setHover] = useState<number | null>(null);
-    const [selecionado, setSelecionado] = useState<number | null>(null);
+    const [escolhido, setSelecionado] = useState<number | null>(null);
+    const [metrica, setMetrica] = useState<Metrica>(() => metricaEscolhida);
+    const nome = NOME[metrica];
+
+    const avaliados = useMemo(() => pontos(avaliacoes, metrica), [avaliacoes, metrica]);
+    // curso escolhido sem o indicador (ex.: sem Conceito Enade): todos
+    const selecionado = avaliados.some((a) => a.codigo === escolhido)
+        ? escolhido
+        : null;
     // o curso em destaque: o do mouse, senão o escolhido no seletor
     const foco = hover ?? selecionado;
-
-    const avaliados = useMemo(() => comCpc(avaliacoes), [avaliacoes]);
     // escolhido no seletor: só a linha dele (a escala continua a de todos,
     // pra não pular ao trocar de curso)
     const visiveis =
@@ -60,7 +115,7 @@ export function CpcSlopeCard({
     const unicos = visiveis.filter((a) => a.anterior === null);
 
     const valores = avaliados.flatMap((a) =>
-        a.anterior ? [a.cpc, a.anterior.cpc] : [a.cpc]
+        a.anterior ? [a.atual, a.anterior.valor] : [a.atual]
     );
     const lo = Math.max(0, Math.floor((Math.min(...valores, 3) - 0.15) * 2) / 2);
     const hi = Math.min(5, Math.ceil((Math.max(...valores, 4) + 0.15) * 2) / 2);
@@ -85,7 +140,7 @@ export function CpcSlopeCard({
         d === "subiu" ? CHART.brand : d === "caiu" ? CHART.critical : CHART.reference;
     const contagem = { subiu: 0, caiu: 0, estavel: 0 };
     for (const a of avaliados)
-        if (a.anterior) contagem[direcao(a.cpc - a.anterior.cpc)]++;
+        if (a.anterior) contagem[direcao(a.atual - a.anterior.valor)]++;
     const ativo = foco === null ? undefined : avaliados.find((a) => a.codigo === foco);
     const opcoes = [
         { value: "todos", label: "Todos os cursos", detalhe: "Visão geral do campus" },
@@ -100,15 +155,37 @@ export function CpcSlopeCard({
         <Card
             expansivel="tela"
             title="Evolução entre ciclos"
-            info="O CPC de cada curso no ciclo anterior do Enade e no mais recente, sobre as faixas: mostra quais cursos subiram, caíram ou mudaram de faixa. Escolha um curso no seletor para ver só a linha dele."
+            // o indicador ao lado do título (o canto direito já tem o curso),
+            // no estilo dos seletores da frase de filtros do Mapa
+            tituloExtra={
+                <div className="text-text-secondary text-[13px] lg:max-xl:text-[11.5px]">
+                    <span className="text-text-muted mr-2 lg:max-xl:mr-1">|</span>
+                    <ChartSelect
+                        variant="inline"
+                        tone="surface"
+                        label="Indicador"
+                        value={metrica}
+                        options={[
+                            { value: "cpc", label: "CPC" },
+                            { value: "enade", label: "Conceito Enade" },
+                        ]}
+                        onChange={(v) => {
+                            metricaEscolhida = v as Metrica;
+                            setMetrica(metricaEscolhida);
+                            setHover(null);
+                        }}
+                    />
+                </div>
+            }
+            info={`O ${nome} de cada curso no ciclo anterior do Enade e no mais recente, sobre as faixas: mostra quais cursos subiram, caíram ou mudaram de faixa. Escolha um curso no seletor para ver só a linha dele; ao lado do título, troque entre o CPC e o Conceito Enade.`}
             subtitle={
                 ativo
                     ? `${ativo.nome} | ${
                           ativo.anterior
-                              ? `${formatDecimal(ativo.anterior.cpc)} – ${formatDecimal(ativo.cpc)}`
-                              : `1º ciclo: ${formatDecimal(ativo.cpc)}`
+                              ? `${formatDecimal(ativo.anterior.valor)} – ${formatDecimal(ativo.atual)}`
+                              : `1º ciclo: ${formatDecimal(ativo.atual)}`
                       }`
-                    : "CPC no ciclo anterior e no mais recente, sobre as faixas"
+                    : `${nome} no ciclo anterior e no mais recente.`
             }
             className={className}
             action={
@@ -116,6 +193,7 @@ export function CpcSlopeCard({
                 // tamanho do seletor pequeno: o cabeçalho do card não muda
                 <CursoBusca
                     compacto
+                    estreito
                     label="Curso"
                     cor={CHART.brand}
                     value={selecionado === null ? "todos" : String(selecionado)}
@@ -136,7 +214,7 @@ export function CpcSlopeCard({
                         height={H}
                         className="absolute inset-0"
                         role="img"
-                        aria-label={`CPC de ${contagem.subiu + contagem.caiu + contagem.estavel} cursos entre o ciclo anterior e o mais recente: ${contagem.subiu} subiram, ${contagem.caiu} caíram e ${contagem.estavel} ficaram estáveis.`}
+                        aria-label={`${nome} de ${contagem.subiu + contagem.caiu + contagem.estavel} cursos entre o ciclo anterior e o mais recente: ${contagem.subiu} subiram, ${contagem.caiu} caíram e ${contagem.estavel} ficaram estáveis.`}
                     >
                         {/* grade horizontal leve, como nos outros gráficos */}
                         {ticks.map((t) => (
@@ -235,7 +313,7 @@ export function CpcSlopeCard({
                         ))}
 
                         {pares.map((a) => {
-                            const d = direcao(a.cpc - a.anterior!.cpc);
+                            const d = direcao(a.atual - a.anterior!.valor);
                             const apagado = foco !== null && foco !== a.codigo;
                             return (
                                 <g
@@ -246,23 +324,23 @@ export function CpcSlopeCard({
                                     <line
                                         x1={xA}
                                         x2={xB}
-                                        y1={y(a.anterior!.cpc)}
-                                        y2={y(a.cpc)}
+                                        y1={y(a.anterior!.valor)}
+                                        y2={y(a.atual)}
                                         stroke="transparent"
                                         strokeWidth={12}
                                     />
                                     <line
                                         x1={xA}
                                         x2={xB}
-                                        y1={y(a.anterior!.cpc)}
-                                        y2={y(a.cpc)}
+                                        y1={y(a.anterior!.valor)}
+                                        y2={y(a.atual)}
                                         stroke={cor(d)}
                                         strokeWidth={foco === a.codigo ? 3 : 2}
                                         strokeLinecap="round"
                                     />
                                     {[
-                                        [xA, a.anterior!.cpc],
-                                        [xB, a.cpc],
+                                        [xA, a.anterior!.valor],
+                                        [xB, a.atual],
                                     ].map(([x, v]) => (
                                         <circle
                                             key={x}
@@ -281,7 +359,7 @@ export function CpcSlopeCard({
                             <circle
                                 key={a.codigo}
                                 cx={xB}
-                                cy={y(a.cpc)}
+                                cy={y(a.atual)}
                                 r={4.5}
                                 fill={CHART.surface}
                                 stroke={CHART.reference}
@@ -295,16 +373,16 @@ export function CpcSlopeCard({
                                 {ativo.anterior && (
                                     <ValorLabel
                                         x={xA - 10}
-                                        y={y(ativo.anterior.cpc)}
+                                        y={y(ativo.anterior.valor)}
                                         anchor="end"
-                                        texto={formatDecimal(ativo.anterior.cpc)}
+                                        texto={formatDecimal(ativo.anterior.valor)}
                                     />
                                 )}
                                 <ValorLabel
                                     x={xB + 10}
-                                    y={y(ativo.cpc)}
+                                    y={y(ativo.atual)}
                                     anchor="start"
-                                    texto={formatDecimal(ativo.cpc)}
+                                    texto={formatDecimal(ativo.atual)}
                                 />
                             </>
                         )}
@@ -314,13 +392,13 @@ export function CpcSlopeCard({
 
             <div className="sr-only">
                 <DataTable
-                    columns={["Curso", "Ciclo anterior", "Mais recente"]}
+                    columns={["Curso", `${nome}: ciclo anterior`, "Mais recente"]}
                     rows={avaliados.map((a) => [
                         a.nome,
                         a.anterior
-                            ? `${a.anterior.ano}: ${formatDecimal(a.anterior.cpc)}`
+                            ? `${a.anterior.ano}: ${formatDecimal(a.anterior.valor)}`
                             : "—",
-                        `${a.ano}: ${formatDecimal(a.cpc)}`,
+                        `${a.ano}: ${formatDecimal(a.atual)}`,
                     ])}
                 />
             </div>
