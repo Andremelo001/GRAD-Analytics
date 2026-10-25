@@ -12,6 +12,7 @@ import { DataState } from "@/components/layout/DataState";
 import { PorCursoEsqueleto } from "@/components/layout/Esqueleto";
 import { useElementSize } from "@/hooks/useElementSize";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { lembrarCursoPorCurso } from "@/lib/curso-por-curso";
 import {
     buildTrajetorias,
     curvaNacional,
@@ -51,6 +52,7 @@ function PorCurso({ data }: { data: DashboardData }) {
     useEffect(() => {
         if (!curso) return;
         ultimoNome = curso.nome;
+        lembrarCursoPorCurso("trajetoria", curso.codigo);
         if (String(curso.codigo) !== codigo)
             navigate(`/trajetoria/curso/${curso.codigo}`, { replace: true });
     }, [curso, codigo, navigate]);

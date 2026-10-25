@@ -1,6 +1,6 @@
-import { X } from "lucide-react";
+import { ArrowLeft, Settings, X } from "lucide-react";
 import { useEffect, useRef, useState, type RefObject } from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 
 import brasao from "@/assets/brasao.png";
 import { PresentationBar } from "@/components/layout/PresentationBar";
@@ -30,6 +30,11 @@ const BAND_HEIGHT = "h-[325px] md:h-[291px] lg:h-[261px]";
 // página, desenhado via portal (``PageHeaderSlotContext``) no slot certo: o
 // de dentro do topo fixo (lg+) ou o de logo abaixo dele (telas menores).
 //
+// Configurações (a engrenagem ao lado do botão de apresentação) é uma tela à
+// parte: o mesmo topo (faixa, logo e o título da página), mas sem a busca, as
+// abas e os botões do topo; uma seta no canto superior esquerdo (onde fica o
+// X do modo apresentação) volta pra página de onde se veio.
+//
 // Modo apresentação (botão ao lado do tema, Ctrl/⌘+K, Esc pra sair): a faixa
 // e o topo sobem até sumir e os cards sobem junto — o topo recolhe a própria
 // altura (margem negativa medida em tempo real) enquanto se desloca pra cima;
@@ -42,9 +47,14 @@ export function AppLayout() {
     const [tabsSlot, setTabsSlot] = useState<HTMLDivElement | null>(null);
     const isLg = useMediaQuery("(min-width: 1024px)");
     const scrolled = useScrolled();
-    const { pathname } = useLocation();
+    const { pathname, search, state } = useLocation();
+    const navigate = useNavigate();
+    const configuracoes = pathname.startsWith("/configuracoes");
     // Configurações não tem cards pra apresentar: sem o botão nem o atalho
-    const apresentavel = !pathname.startsWith("/configuracoes");
+    const apresentavel = !configuracoes;
+    // de onde se abriu a engrenagem (pra seta voltar pra lá); aberta direto
+    // pelo link, volta pro início
+    const voltarPara = (state as { de?: string } | null)?.de ?? "/";
     const { presenting, toggle, exit } = usePresentationMode(apresentavel);
     // cursos de outro campus (busca, "nos outros campi"): navega quando o
     // campus novo carrega
@@ -120,7 +130,15 @@ export function AppLayout() {
                     </div>
                 </div>
 
-                <div className="relative mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 lg:pb-10">
+                <div
+                    className={cn(
+                        "relative mx-auto w-full max-w-[1200px] px-4 sm:px-6 lg:px-8 lg:pb-10",
+                        // Configurações: o logo abre espaço pra seta de voltar
+                        // (20px + 32px) quando a margem da página é estreita
+                        configuracoes &&
+                            "pl-[max(1rem,calc(64px_-_max(0px,(100vw_-_1200px)/2)))] sm:pl-[max(1.5rem,calc(64px_-_max(0px,(100vw_-_1200px)/2)))] lg:pl-[max(2rem,calc(64px_-_max(0px,(100vw_-_1200px)/2)))]"
+                    )}
+                >
                     <header className="flex h-16 items-center justify-between gap-3 sm:gap-4">
                         {/* Brasão (brasao.png, recortado do logo antigo, sem fundo) +
                             divisor + "Analytics" em texto branco, imitando o logo:
@@ -138,24 +156,41 @@ export function AppLayout() {
                                 <span className="sr-only">UFC — PROGRAD </span>
                                 Analytics
                             </span>
-                            <span className="flex items-center gap-2 sm:ml-2">
-                                <ThemeToggle />
-                                {/* no celular não aparece: o cabeçalho já está no
-                                    limite de largura, e lá não há atalho de teclado */}
-                                {apresentavel && (
+                            {/* na tela de Configurações, nenhum botão do topo */}
+                            {!configuracoes && (
+                                <span className="flex items-center gap-2 sm:ml-2">
+                                    <ThemeToggle />
+                                    {/* no celular não aparece: o cabeçalho já está no
+                                        limite de largura, e lá não há atalho de teclado */}
                                     <span className="hidden sm:flex">
                                         <PresentationToggle onClick={toggle} />
                                     </span>
-                                )}
-                            </span>
+                                    {/* só o ícone, sem a bolinha dos botões ao lado */}
+                                    <Link
+                                        to="/configuracoes"
+                                        state={{ de: pathname + search }}
+                                        aria-label="Configurações"
+                                        title="Configurações"
+                                        className="focus-visible:ring-lime/60 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-white/75 transition-colors outline-none hover:text-white focus-visible:ring-2"
+                                    >
+                                        <Settings
+                                            size={19}
+                                            strokeWidth={2}
+                                            aria-hidden
+                                        />
+                                    </Link>
+                                </span>
+                            )}
                         </div>
-                        <CourseSearch />
+                        {!configuracoes && <CourseSearch />}
                     </header>
 
                     <div className="relative text-white">
-                        <div className="lg:absolute lg:top-6 lg:right-0">
-                            <Sidebar />
-                        </div>
+                        {!configuracoes && (
+                            <div className="lg:absolute lg:top-6 lg:right-0">
+                                <Sidebar />
+                            </div>
+                        )}
                         <div ref={setStickySlot} />
                     </div>
                 </div>
@@ -235,6 +270,19 @@ export function AppLayout() {
                     </PresentationContext.Provider>
                 </main>
             </div>
+
+            {configuracoes && (
+                <button
+                    type="button"
+                    onClick={() => navigate(voltarPara)}
+                    aria-label="Voltar"
+                    title="Voltar"
+                    // no lugar e no estilo do X do modo apresentação
+                    className="bg-page text-text-secondary hover:text-ink ring-card-ring focus-visible:ring-lime/60 fixed top-5 left-5 z-40 flex h-8 w-8 items-center justify-center rounded-full shadow-[0_4px_16px_rgb(0_0_0/0.12)] ring-1 transition-colors outline-none focus-visible:ring-2"
+                >
+                    <ArrowLeft size={16} strokeWidth={2.25} aria-hidden />
+                </button>
+            )}
 
             <button
                 type="button"

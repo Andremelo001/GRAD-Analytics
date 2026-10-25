@@ -15,7 +15,6 @@ const NAV_ITEMS: NavItem[] = [
     { to: "/inicio", label: "Início" },
     { to: "/qualidade", label: "Qualidade" },
     { to: "/trajetoria", label: "Trajetória" },
-    { to: "/configuracoes", label: "Configurações" },
 ];
 
 /** Navegação principal em abas sobre a faixa escura: texto claro, a aba
@@ -69,7 +68,7 @@ export function Sidebar() {
                             }
                             className={({ isActive }) =>
                                 cn(
-                                    "relative block px-2 pb-[11px] text-[13px] whitespace-nowrap transition-colors duration-300 outline-none focus-visible:text-white sm:px-4 sm:text-[14px]",
+                                    "relative block px-4 pb-[11px] text-[14px] whitespace-nowrap transition-colors duration-300 outline-none focus-visible:text-white sm:px-6 sm:text-[15px]",
                                     isActive
                                         ? "font-semibold text-white"
                                         : "text-white/50 hover:text-white/80"

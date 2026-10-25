@@ -14,6 +14,7 @@ import { DataState } from "@/components/layout/DataState";
 import { MapaEsqueleto } from "@/components/layout/Esqueleto";
 import { useAlturaDisponivel } from "@/hooks/useAlturaDisponivel";
 import { useTrajetoriaArea } from "@/hooks/useTrajetoriaArea";
+import { cursoDoPorCurso } from "@/lib/curso-por-curso";
 import { type Rede } from "@/lib/area";
 import { buildTrajetorias } from "@/lib/trajetoria";
 import {
@@ -62,8 +63,10 @@ function Mapa({ data }: { data: DashboardData }) {
         () => buildTrajetorias(data).filter((c) => c.area !== null),
         [data]
     );
+    // o da URL; sem ele, o aberto no Por curso; senão o primeiro
     const curso =
         trajetorias.find((c) => String(c.codigo) === params.get("curso")) ??
+        trajetorias.find((c) => c.codigo === cursoDoPorCurso("trajetoria")) ??
         trajetorias[0];
     const indicador: IndicadorMapa = ehIndicador(params.get("indicador"))
         ? (params.get("indicador") as IndicadorMapa)

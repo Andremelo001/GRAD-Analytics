@@ -22,6 +22,7 @@ import { useChartTheme } from "@/hooks/useChartTheme";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { useQualidadeArea } from "@/hooks/useQualidadeArea";
 import { useResumoCampi } from "@/hooks/useResumoCampi";
+import { cursoDoPorCurso } from "@/lib/curso-por-curso";
 import { detalheCurso } from "@/lib/curso";
 import type { CursoArea } from "@/lib/area";
 import {
@@ -292,7 +293,11 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
     const padraoA = [...ufcCampus].sort(
         (x, y) => y.curso.cpc_continuo - x.curso.cpc_continuo
     )[0];
-    const cursoA = ufcCampus.find((u) => String(u.curso.codigo_curso) === a) ?? padraoA;
+    // o da URL; sem ele, o aberto no Por curso; senão o padrão
+    const cursoA =
+        ufcCampus.find((u) => String(u.curso.codigo_curso) === a) ??
+        ufcCampus.find((u) => u.curso.codigo_curso === cursoDoPorCurso("qualidade")) ??
+        padraoA;
     const area = cursoA?.curso.area_avaliacao ?? null;
     const { dados, erro } = useQualidadeArea(area);
 

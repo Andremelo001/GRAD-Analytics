@@ -19,6 +19,7 @@ import { useChartTheme } from "@/hooks/useChartTheme";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { useResumoCampi } from "@/hooks/useResumoCampi";
 import { useTrajetoriaArea, type CursoTrajetoriaArea } from "@/hooks/useTrajetoriaArea";
+import { cursoDoPorCurso } from "@/lib/curso-por-curso";
 import { detalheCurso } from "@/lib/curso";
 import { nomeCampus } from "@/lib/comparacao";
 import { formatPercent, toTitleCase } from "@/lib/format";
@@ -260,7 +261,11 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
         [ufc, doCampus]
     );
     const padraoA = ufcCampus[0];
-    const cursoA = ufcCampus.find((u) => String(u.curso.codigo_curso) === a) ?? padraoA;
+    // o da URL; sem ele, o aberto no Por curso; senão o padrão
+    const cursoA =
+        ufcCampus.find((u) => String(u.curso.codigo_curso) === a) ??
+        ufcCampus.find((u) => u.curso.codigo_curso === cursoDoPorCurso("trajetoria")) ??
+        padraoA;
     const area = cursoA?.curso.trajetoria.nome_cine_area_geral ?? null;
     const { dados, erro } = useTrajetoriaArea(area);
 

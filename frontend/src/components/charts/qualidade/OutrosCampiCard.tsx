@@ -2,30 +2,62 @@ import { useState, type KeyboardEvent } from "react";
 
 import { Card } from "@/components/cards/Card";
 import { DataTable } from "@/components/charts/DataTable";
+import { Segmentado } from "@/components/charts/Segmentado";
 import { useAbrirNoCampus } from "@/hooks/useAbrirNoCampus";
 import { useChartTheme } from "@/hooks/useChartTheme";
 import { useResumoCampi } from "@/hooks/useResumoCampi";
 import { nomeCampus } from "@/lib/comparacao";
-import { FAIXA_LIMITES, faixaNumero } from "@/lib/cpc";
-import { formatDecimal, formatPercent, toTitleCase } from "@/lib/format";
+import { FAIXA_LIMITES, faixaDe, faixaNumero } from "@/lib/cpc";
+import { formatDecimal, toTitleCase } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import type { ResumoCurso } from "@/types/dashboard";
+
+/** O indicador da régua: o CPC ou o Conceito Enade (mesma escala 0-5 e
+ * mesmos cortes de faixa), como no "CPC: curso x média nacional". */
+type Metrica = "cpc" | "enade";
+
+const METRICAS: Record<
+    Metrica,
+    {
+        nome: string;
+        valor: (c: ResumoCurso) => number | null;
+        faixa: (c: ResumoCurso, valor: number) => number | null;
+    }
+> = {
+    cpc: {
+        nome: "CPC",
+        valor: (c) => c.cpc_continuo,
+        // a faixa oficial do INEP
+        faixa: (c) => faixaNumero(c.cpc_faixa),
+    },
+    enade: {
+        nome: "Conceito Enade",
+        valor: (c) => c.conceito_enade_continuo,
+        faixa: (_, v) => faixaDe(v),
+    },
+};
+
+/** A última escolha do seletor: sair da página e voltar mantém o indicador. */
+let metricaEscolhida: Metrica = "cpc";
 
 interface Ponto {
     campus: string;
     slug: string;
-    curso: ResumoCurso & { cpc_continuo: number };
+    curso: ResumoCurso;
+    /** O valor do curso no indicador escolhido. */
+    valor: number;
 }
 
 /** Distância mínima (em % da régua) entre dois rótulos na mesma linha. */
 const VAO_ROTULO = 14;
 
-/** O curso escolhido (Por curso) nos outros campi da UFC: o CPC do curso da
- * mesma área de avaliação em cada campus que o oferece, em pontos numa régua
- * com as faixas de fundo. O deste campus em limão, com o nome e o valor em
- * cima; os outros em cinza, com nome e valor embaixo — em duas linhas que se
- * alternam quando dois pontos ficam perto (ano e evasão no hover). Sem outro
- * campus com a mesma área, o card não aparece. */
+/** O curso escolhido (Por curso) nos outros campi da UFC: o CPC (ou o
+ * Conceito Enade, no seletor do card) do curso da mesma área de avaliação em
+ * cada campus que o oferece, em pontos numa régua com as faixas de fundo. O
+ * deste campus em limão, com o nome e o valor em cima; os outros em cinza,
+ * com nome e valor embaixo — em duas linhas que se alternam quando dois
+ * pontos ficam perto (faixa e ano no hover). Sem outro campus com a mesma
+ * área, o card não aparece. */
 export function OutrosCampiCard({
     codigoCurso,
     campusAtual,
@@ -38,6 +70,8 @@ export function OutrosCampiCard({
     const CHART = useChartTheme();
     const { resumo } = useResumoCampi();
     const [hover, setHover] = useState<string | null>(null);
+    const [metrica, setMetrica] = useState<Metrica>(() => metricaEscolhida);
+    const m = METRICAS[metrica];
     const abrirNoCampus = useAbrirNoCampus();
     const abrir = (p: Ponto) =>
         abrirNoCampus(p.slug, `/qualidade/curso/${p.curso.codigo_curso}`, {
@@ -50,42 +84,83 @@ export function OutrosCampiCard({
     const area = curso?.area_avaliacao;
     if (!resumo || !area || curso?.cpc_continuo == null) return null;
 
-    const todos: Ponto[] = resumo.campi.flatMap((c) =>
-        c.cursos
-            .filter(
-                (k): k is Ponto["curso"] =>
-                    k.area_avaliacao === area &&
-                    k.cpc_continuo !== null &&
-                    // outros cursos da mesma área neste campus ficam de fora
-                    (c.slug !== campusAtual || k.codigo_curso === codigoCurso)
-            )
-            .map((k) => ({ campus: nomeCampus(c.nome), slug: c.slug, curso: k }))
+    // o card aparece pelo CPC (a avaliação existe); no Conceito Enade, um
+    // campus sem o valor só fica de fora da régua
+    const comCpc = resumo.campi.filter((c) =>
+        c.cursos.some(
+            (k) =>
+                k.area_avaliacao === area &&
+                k.cpc_continuo !== null &&
+                (c.slug !== campusAtual || k.codigo_curso === codigoCurso)
+        )
     );
-    if (new Set(todos.map((p) => p.slug)).size < 2) return null;
+    if (comCpc.length < 2) return null;
 
-    const valores = todos.map((p) => p.curso.cpc_continuo);
+    const todos: Ponto[] = resumo.campi.flatMap((c) =>
+        c.cursos.flatMap((k) => {
+            const valor = m.valor(k);
+            return k.area_avaliacao === area &&
+                valor !== null &&
+                // outros cursos da mesma área neste campus ficam de fora
+                (c.slug !== campusAtual || k.codigo_curso === codigoCurso)
+                ? [{ campus: nomeCampus(c.nome), slug: c.slug, curso: k, valor }]
+                : [];
+        })
+    );
+    const este = todos.find((p) => p.curso.codigo_curso === codigoCurso);
+
+    const seletor = (
+        <Segmentado
+            label="Indicador"
+            value={metrica}
+            options={[
+                { value: "cpc", label: "CPC" },
+                { value: "enade", label: "Conceito Enade" },
+            ]}
+            onChange={(v) => {
+                metricaEscolhida = v;
+                setMetrica(v);
+                setHover(null);
+            }}
+        />
+    );
+    const titulo = "Este curso nos outros campi da UFC";
+    const info = `O ${m.nome} do mesmo curso (mesma área de avaliação) nos outros campi da UFC, na avaliação mais recente de cada um. O seletor troca entre o CPC e o Conceito Enade.`;
+    const subtitulo = `${toTitleCase(area)} · ${m.nome} da avaliação mais recente de cada campus`;
+
+    if (!este || todos.length < 2) {
+        return (
+            <Card
+                expansivel
+                title={titulo}
+                info={info}
+                subtitle={subtitulo}
+                action={seletor}
+                className={className}
+            >
+                <p className="text-text-secondary mt-4 text-[13px]">
+                    {!este
+                        ? `Este curso não tem ${m.nome} na avaliação mais recente.`
+                        : `Nenhum outro campus tem ${m.nome} neste curso.`}
+                </p>
+            </Card>
+        );
+    }
+
+    const valores = todos.map((p) => p.valor);
     const lo = Math.max(0, Math.floor((Math.min(...valores, 3) - 0.15) * 4) / 4);
     const hi = Math.min(5, Math.ceil((Math.max(...valores, 4) + 0.15) * 4) / 4);
     const pct = (v: number) => ((v - lo) / (hi - lo)) * 100;
 
-    const este = todos.find((p) => p.curso.codigo_curso === codigoCurso)!;
     // rótulos dos outros, da esquerda pra direita: alterna de linha quando o
     // vizinho está perto
-    const outros = todos
-        .filter((p) => p !== este)
-        .sort((x, y) => x.curso.cpc_continuo - y.curso.cpc_continuo);
+    const outros = todos.filter((p) => p !== este).sort((x, y) => x.valor - y.valor);
     const niveis: number[] = [];
     outros.forEach((p, i) => {
-        const perto =
-            i > 0 &&
-            pct(p.curso.cpc_continuo) - pct(outros[i - 1].curso.cpc_continuo) <
-                VAO_ROTULO;
+        const perto = i > 0 && pct(p.valor) - pct(outros[i - 1].valor) < VAO_ROTULO;
         niveis.push(perto ? 1 - niveis[i - 1] : 0);
     });
-    const ordem = [...todos].sort(
-        (x, y) => y.curso.cpc_continuo - x.curso.cpc_continuo
-    );
-    const posicao = ordem.indexOf(este) + 1;
+    const ordem = [...todos].sort((x, y) => y.valor - x.valor);
     const lider = ordem[0];
     const chave = (p: Ponto) => `${p.slug}-${p.curso.codigo_curso}`;
     const ativo = todos.find((p) => chave(p) === hover);
@@ -104,40 +179,35 @@ export function OutrosCampiCard({
     return (
         <Card
             expansivel
-            title="Este curso nos outros campi da UFC"
-            info="O CPC do mesmo curso (mesma área de avaliação) nos outros campi da UFC, na avaliação mais recente de cada um, e a posição deste campus entre eles."
-            subtitle={`${toTitleCase(area)} · CPC da avaliação mais recente de cada campus`}
+            title={titulo}
+            info={info}
+            subtitle={subtitulo}
+            action={seletor}
             className={className}
         >
-            <div className="mt-3 flex min-h-[26px] items-center gap-3">
-                <p className="text-[26px] leading-none font-semibold tracking-[-0.02em] tabular-nums">
-                    {posicao}º
-                </p>
-                <p className="text-text-secondary min-w-0 truncate text-[13px]">
-                    {ativo ? (
-                        <>
-                            <span className="text-ink font-semibold">
-                                {ativo.campus}
-                            </span>
-                            {` | CPC ${formatDecimal(ativo.curso.cpc_continuo)}`}
-                            {faixaNumero(ativo.curso.cpc_faixa) !== null &&
-                                ` · faixa ${faixaNumero(ativo.curso.cpc_faixa)}`}
-                            {` · avaliado em ${ativo.curso.ano ?? "—"}`}
-                            {ativo.curso.taxa_desistencia_acumulada !== null &&
-                                ` · evasão ${formatPercent(ativo.curso.taxa_desistencia_acumulada, 0)}`}
-                        </>
-                    ) : (
-                        <>
-                            <span className="text-ink font-semibold">
-                                de {ordem.length} campi
-                            </span>
-                            {posicao === 1
-                                ? " | o maior CPC da UFC nesta área"
-                                : ` | o maior é ${lider.campus}, ${formatDecimal(lider.curso.cpc_continuo)}`}
-                        </>
-                    )}
-                </p>
-            </div>
+            {/* uma linha: o campus em foco (hover) ou quem tem o maior valor */}
+            <p className="text-text-secondary mt-3 min-h-[20px] min-w-0 truncate text-[13px]">
+                {ativo ? (
+                    <>
+                        <span className="text-ink font-semibold">{ativo.campus}</span>
+                        {` | ${m.nome} ${formatDecimal(ativo.valor)}`}
+                        {m.faixa(ativo.curso, ativo.valor) !== null &&
+                            ` · faixa ${m.faixa(ativo.curso, ativo.valor)}`}
+                        {` · avaliado em ${ativo.curso.ano ?? "—"}`}
+                    </>
+                ) : lider === este ? (
+                    <>
+                        <span className="text-ink font-semibold">{este.campus}</span>
+                        {` tem o maior ${m.nome} da UFC nesta área`}
+                    </>
+                ) : (
+                    <>
+                        O maior é{" "}
+                        <span className="text-ink font-semibold">{lider.campus}</span>
+                        {`, ${formatDecimal(lider.valor)}`}
+                    </>
+                )}
+            </p>
 
             <div className="mt-4" onMouseLeave={() => setHover(null)}>
                 <div className="text-text-muted relative h-4 text-[10px]">
@@ -177,11 +247,11 @@ export function OutrosCampiCard({
                     {/* este campus: nome e valor em cima do ponto */}
                     <span
                         className="pointer-events-none absolute top-[10px] -translate-x-1/2 text-[12px] whitespace-nowrap"
-                        style={{ left: `${pct(este.curso.cpc_continuo)}%` }}
+                        style={{ left: `${pct(este.valor)}%` }}
                     >
                         <span className="font-semibold">{este.campus}</span>{" "}
                         <span className="tabular-nums">
-                            {formatDecimal(este.curso.cpc_continuo)}
+                            {formatDecimal(este.valor)}
                         </span>
                     </span>
                     {/* outros: nome e valor embaixo, em uma de duas linhas */}
@@ -198,13 +268,13 @@ export function OutrosCampiCard({
                                       : "text-text-secondary opacity-50"
                             )}
                             style={{
-                                left: `${pct(p.curso.cpc_continuo)}%`,
+                                left: `${pct(p.valor)}%`,
                                 top: niveis[i] === 0 ? 58 : 78,
                             }}
                         >
                             {p.campus}{" "}
                             <span className="tabular-nums">
-                                {formatDecimal(p.curso.cpc_continuo)}
+                                {formatDecimal(p.valor)}
                             </span>
                         </span>
                     ))}
@@ -236,7 +306,7 @@ export function OutrosCampiCard({
                                     !atual &&
                                         "focus-visible:ring-lime/60 cursor-pointer focus-visible:ring-2"
                                 )}
-                                style={{ left: `${pct(p.curso.cpc_continuo)}%` }}
+                                style={{ left: `${pct(p.valor)}%` }}
                             >
                                 <span
                                     className={cn(
@@ -280,14 +350,11 @@ export function OutrosCampiCard({
 
             <div className="sr-only">
                 <DataTable
-                    columns={["Campus", "CPC", "Ano", "Evasão"]}
+                    columns={["Campus", m.nome, "Ano"]}
                     rows={ordem.map((p) => [
                         p.campus,
-                        formatDecimal(p.curso.cpc_continuo),
+                        formatDecimal(p.valor),
                         String(p.curso.ano ?? "—"),
-                        p.curso.taxa_desistencia_acumulada === null
-                            ? "—"
-                            : formatPercent(p.curso.taxa_desistencia_acumulada, 0),
                     ])}
                 />
             </div>

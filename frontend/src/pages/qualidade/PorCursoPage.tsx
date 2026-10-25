@@ -11,6 +11,7 @@ import { ProximaFaixaCard } from "@/components/charts/qualidade/ProximaFaixaCard
 import { DataState } from "@/components/layout/DataState";
 import { PorCursoEsqueleto } from "@/components/layout/Esqueleto";
 import { useDashboardData } from "@/hooks/useDashboardData";
+import { lembrarCursoPorCurso } from "@/lib/curso-por-curso";
 import { buildAvaliacoes, type AvaliacaoCurso } from "@/lib/qualidade";
 import type { DashboardData } from "@/types/dashboard";
 
@@ -72,6 +73,7 @@ function PorCurso({ data }: { data: DashboardData }) {
     useEffect(() => {
         if (!curso) return;
         ultimoVisto = { area: curso.area, nome: nomeBase(curso.nome) };
+        lembrarCursoPorCurso("qualidade", curso.codigo);
         if (String(curso.codigo) !== codigo) {
             if (semEquivalente) window.scrollTo({ top: 0 });
             navigate(`/qualidade/curso/${curso.codigo}`, { replace: true });

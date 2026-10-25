@@ -14,6 +14,7 @@ import { DataState } from "@/components/layout/DataState";
 import { MapaEsqueleto } from "@/components/layout/Esqueleto";
 import { useAlturaDisponivel } from "@/hooks/useAlturaDisponivel";
 import { useQualidadeArea } from "@/hooks/useQualidadeArea";
+import { cursoDoPorCurso } from "@/lib/curso-por-curso";
 import {
     agrupar,
     filtrar,
@@ -59,8 +60,10 @@ function Mapa({ data }: { data: DashboardData }) {
         () => buildAvaliacoes(data).filter((a) => a.area !== null),
         [data]
     );
+    // o da URL; sem ele, o aberto no Por curso; senão o de maior CPC
     const curso =
         avaliacoes.find((a) => String(a.codigo) === params.get("curso")) ??
+        avaliacoes.find((a) => a.codigo === cursoDoPorCurso("qualidade")) ??
         [...avaliacoes].sort((a, b) => (b.cpc ?? -1) - (a.cpc ?? -1))[0];
     const indicador: Indicador = ehIndicador(params.get("indicador"))
         ? (params.get("indicador") as Indicador)
