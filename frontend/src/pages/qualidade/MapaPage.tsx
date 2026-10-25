@@ -23,6 +23,7 @@ import {
     resumir,
     type Indicador,
     type Rede,
+    type ResumoArea,
 } from "@/lib/area";
 import { buildAvaliacoes } from "@/lib/qualidade";
 import { UF_NOMES } from "@/lib/uf";
@@ -128,7 +129,7 @@ function Mapa({ data }: { data: DashboardData }) {
     const cursosRecorte = uf
         ? (visao?.porUfCursos.get(uf) ?? [])
         : (visao?.filtrados ?? []);
-    const municipios: MunicipioMapa[] = uf
+    const municipios: MunicipioMapa<ResumoArea>[] = uf
         ? [...agrupar(cursosRecorte, (c) => c.municipio)].map(([codigo, cursos]) => ({
               codigo,
               nome: `${cursos[0].nomeMunicipio}/${cursos[0].uf}`,
@@ -188,6 +189,7 @@ function Mapa({ data }: { data: DashboardData }) {
             <Card
                 expansivel="tela"
                 className="lg:col-span-7"
+                tituloInfo={uf ? titulo : "Brasil por estado"}
                 info="Os cursos da mesma área de avaliação no Brasil, por estado, na edição mais recente do Enade, pintados pelo indicador escolhido. Clique num estado para ver os detalhes dele ao lado."
             >
                 {/* título com o ano do Enade ao lado (no estilo da frase de
@@ -206,7 +208,9 @@ function Mapa({ data }: { data: DashboardData }) {
                     {visao ? (
                         <BrasilQualidadeMapa
                             porUf={visao.porUf}
-                            indicador={indicador}
+                            valorDe={INDICADORES[indicador].valor}
+                            rotulo={INDICADORES[indicador].label}
+                            formatar={formatIndicador}
                             selecionado={uf}
                             onSelect={(sigla) => atualizar({ uf: sigla })}
                             municipios={municipios}
@@ -275,7 +279,7 @@ function Mapa({ data }: { data: DashboardData }) {
                 <Card
                     expansivel="tela"
                     title={titulo}
-                    info={`Os números do Brasil, ou do estado escolhido no mapa, no indicador escolhido ao lado (${INDICADORES[indicador].nome}): cursos por faixa, a posição do curso do campus e os cursos da área com os melhores ${INDICADORES[indicador].plural}.${indicador === "cpc" ? "" : ` A faixa do ${INDICADORES[indicador].nome} usa os mesmos cortes do CPC (1 a 5) sobre o valor contínuo.`}`}
+                    info={`Os números do Brasil, ou do estado escolhido no mapa, no indicador escolhido ao lado (${INDICADORES[indicador].nome}): cursos, a média, a parte nas faixas 4 e 5, as notas médias do estado contra as do seu curso e os cursos da área com os melhores ${INDICADORES[indicador].plural} (com o seu curso na posição em que fica, ou ficaria).${indicador === "cpc" ? "" : ` A faixa do ${INDICADORES[indicador].nome} usa os mesmos cortes do CPC (1 a 5) sobre o valor contínuo.`}`}
                     subtitle={
                         visao
                             ? `${visao.cursoCampus && INDICADORES[indicador].doCurso(visao.cursoCampus) !== null ? "" : `Seu curso não tem ${INDICADORES[indicador].nome} nesta edição · `}${uf ? "Clique fora do estado para voltar ao Brasil" : "Clique num estado para ver os detalhes"}`

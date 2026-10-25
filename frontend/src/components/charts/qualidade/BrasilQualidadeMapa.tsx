@@ -11,12 +11,6 @@ import brazilGeo from "@/assets/brazil-geo.json";
 import { rampColor } from "@/components/charts/chart-theme";
 import { useChartTheme } from "@/hooks/useChartTheme";
 import { useElementSize } from "@/hooks/useElementSize";
-import {
-    formatIndicador,
-    INDICADORES,
-    type Indicador,
-    type ResumoArea,
-} from "@/lib/area";
 import { formatInteger } from "@/lib/format";
 import { UF_NOMES } from "@/lib/uf";
 
@@ -38,10 +32,16 @@ type ViewBox = [number, number, number, number];
 const BRASIL: ViewBox = [-10, -10, GEO.largura + 20, GEO.altura + 20];
 const ANIMACAO_MS = 450;
 
-export interface MunicipioMapa {
+/** O mínimo que o mapa precisa de um recorte (estado, município): quantos
+ * cursos tem. O valor pintado sai de ``valorDe``. */
+export interface ResumoMapa {
+    cursos: number;
+}
+
+export interface MunicipioMapa<R extends ResumoMapa = ResumoMapa> {
     codigo: number;
     nome: string;
-    resumo: ResumoArea;
+    resumo: R;
 }
 
 /** ViewBox que enquadra a caixa de um estado, com folga e o mesmo formato do
@@ -83,21 +83,27 @@ function useViewBox(alvo: ViewBox): ViewBox {
 /** Brasil por estado num mapa coroplético (cor = indicador escolhido; mais
  * escuro = maior). Clicar num estado dá zoom nele e mostra os municípios com
  * cursos como pontos (tamanho = nº de cursos, cor = mesmo indicador);
- * clicar fora dele volta ao Brasil. O pino marca o município do campus. */
-export function BrasilQualidadeMapa({
+ * clicar fora dele volta ao Brasil. O pino marca o município do campus.
+ * Serve a qualquer indicador: ``valorDe`` tira o valor de um recorte,
+ * ``rotulo`` o nomeia ("CPC médio") e ``formatar`` o escreve. */
+export function BrasilQualidadeMapa<R extends ResumoMapa>({
     porUf,
-    indicador,
+    valorDe,
+    rotulo,
+    formatar,
     selecionado,
     onSelect,
     municipios,
     pino,
     children,
 }: {
-    porUf: Map<string, ResumoArea>;
-    indicador: Indicador;
+    porUf: Map<string, R>;
+    valorDe: (r: R) => number | null;
+    rotulo: string;
+    formatar: (v: number | null) => string;
     selecionado: string | null;
     onSelect: (uf: string | null) => void;
-    municipios: MunicipioMapa[];
+    municipios: MunicipioMapa<R>[];
     pino: { municipio: number; rotulo: string } | null;
     /** Controles sobre o mapa (ex.: "← Brasil", ampliar), já posicionados. */
     children?: ReactNode;
@@ -129,16 +135,16 @@ export function BrasilQualidadeMapa({
     const px = largura > 0 ? vb[2] / largura : 1;
 
     const { ramp, dominio } = useMemo(() => {
-        // a mesma rampa azul nos três indicadores
+        // a mesma rampa azul em todos os indicadores
         const ramp = CHART.faixa.ramp;
         const vals = [...porUf.values()].flatMap((r) => {
-            const v = INDICADORES[indicador].valor(r);
+            const v = valorDe(r);
             return v === null ? [] : [v];
         });
         const lo = Math.min(...vals);
         const hi = Math.max(...vals);
         return { ramp, dominio: vals.length ? [lo, hi === lo ? lo + 1 : hi] : [0, 1] };
-    }, [porUf, indicador, CHART]);
+    }, [porUf, valorDe, CHART]);
     const cor = (v: number | null) =>
         v === null
             ? CHART.presenca.none
@@ -156,11 +162,7 @@ export function BrasilQualidadeMapa({
         ? raioMunicipio(municipioPino.resumo.cursos)
         : null;
 
-    function mostrar(
-        event: MouseEvent,
-        titulo: string,
-        resumo: ResumoArea | undefined
-    ) {
+    function mostrar(event: MouseEvent, titulo: string, resumo: R | undefined) {
         const box = boxRef.current?.getBoundingClientRect();
         if (!box) return;
         setHover({
@@ -168,7 +170,7 @@ export function BrasilQualidadeMapa({
             linhas: resumo
                 ? [
                       `${formatInteger(resumo.cursos)} ${resumo.cursos === 1 ? "curso" : "cursos"}`,
-                      `${INDICADORES[indicador].label} ${formatIndicador(INDICADORES[indicador].valor(resumo))}`,
+                      `${rotulo} ${formatar(valorDe(resumo))}`,
                   ]
                 : ["Sem cursos"],
             x: event.clientX - box.left,
@@ -201,9 +203,7 @@ export function BrasilQualidadeMapa({
                     >
                         {GEO.estados.map((e) => {
                             const resumo = porUf.get(e.sigla);
-                            const valor = resumo
-                                ? INDICADORES[indicador].valor(resumo)
-                                : null;
+                            const valor = resumo ? valorDe(resumo) : null;
                             const ativo = e.sigla === selecionado;
                             const nome = UF_NOMES[e.sigla] ?? e.sigla;
                             return (
@@ -222,7 +222,7 @@ export function BrasilQualidadeMapa({
                                     role="button"
                                     tabIndex={0}
                                     aria-pressed={ativo}
-                                    aria-label={`${nome}: ${resumo ? `${resumo.cursos} cursos, ${INDICADORES[indicador].label} ${formatIndicador(valor)}` : "sem cursos"}`}
+                                    aria-label={`${nome}: ${resumo ? `${resumo.cursos} cursos, ${rotulo} ${formatar(valor)}` : "sem cursos"}`}
                                     onClick={(ev) => {
                                         ev.stopPropagation();
                                         onSelect(ativo ? null : e.sigla);
@@ -242,7 +242,7 @@ export function BrasilQualidadeMapa({
                             municipios.map((m) => {
                                 const c = GEO.municipios[String(m.codigo)];
                                 if (!c) return null;
-                                const valor = INDICADORES[indicador].valor(m.resumo);
+                                const valor = valorDe(m.resumo);
                                 const r =
                                     (4 +
                                         9 * Math.sqrt(m.resumo.cursos / maxMunicipio)) *
@@ -326,7 +326,7 @@ export function BrasilQualidadeMapa({
                 ponta do Rio Grande do Sul */}
             <div className="text-text-muted mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-[11px]">
                 <span className="flex items-center gap-2 whitespace-nowrap">
-                    <span>{formatIndicador(dominio[0])}</span>
+                    <span>{formatar(dominio[0])}</span>
                     <span
                         aria-hidden
                         className="block h-2.5 w-24 rounded-full sm:w-32"
@@ -334,7 +334,7 @@ export function BrasilQualidadeMapa({
                             background: `linear-gradient(to right, ${ramp.join(", ")})`,
                         }}
                     />
-                    <span>{formatIndicador(dominio[1])}</span>
+                    <span>{formatar(dominio[1])}</span>
                 </span>
                 <span className="flex items-center gap-1.5">
                     <span

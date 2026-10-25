@@ -1,4 +1,5 @@
 import { COMPONENTES, faixaDe, type ComponenteKey } from "@/lib/cpc";
+import { siglaValida } from "@/lib/curso";
 import { formatDecimal, toTitleCase } from "@/lib/format";
 import { media } from "@/lib/qualidade";
 import type { AreaArquivo } from "@/types/qualidade-area";
@@ -60,7 +61,7 @@ export function parseArea(arquivo: AreaArquivo): CursoArea[] {
                 codigo: Number(get("codigo_curso")),
                 ies,
                 nomeIes: nomeIes ? toTitleCase(nomeIes) : "Instituição sem nome",
-                siglaIes,
+                siglaIes: siglaValida(siglaIes),
                 publica,
                 municipio,
                 nomeMunicipio: nomeMunicipio ? toTitleCase(nomeMunicipio) : "—",
@@ -219,17 +220,6 @@ export function filtrar(cursos: CursoArea[], rede: Rede, ead: boolean): CursoAre
 export function ranking(cursos: CursoArea[], indicador: Indicador): CursoArea[] {
     const v = INDICADORES[indicador].doCurso;
     return [...cursos].sort((a, b) => (v(b) ?? -1) - (v(a) ?? -1));
-}
-
-/** % dos cursos com valor no indicador que ficaram abaixo de ``valor``. */
-export function percentil(
-    cursos: CursoArea[],
-    valor: number,
-    indicador: Indicador
-): number | null {
-    const outros = valores(cursos, INDICADORES[indicador].doCurso);
-    if (outros.length === 0) return null;
-    return (100 * outros.filter((v) => v < valor).length) / outros.length;
 }
 
 /** Os três indicadores são notas de 0 a 5. */

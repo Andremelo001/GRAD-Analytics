@@ -44,7 +44,7 @@ def nomes_da_qualidade(
     if qualidade_nacional.empty:
         return {}, {}
     siglas = {
-        int(codigo): quality_areas.texto_mais_comum(grupo, "sigla_ies")
+        int(codigo): quality_areas.sigla_ies(grupo)
         for codigo, grupo in qualidade_nacional.groupby("codigo_ies")
     }
     municipios = {

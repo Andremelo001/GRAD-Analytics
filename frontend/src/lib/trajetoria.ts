@@ -471,23 +471,6 @@ export function turmaResumo(t: TrajetoriaResumo): Turma {
     };
 }
 
-/** A média nacional dos mesmos cursos no formato de uma turma (com o prazo
- * e o peso da turma do campus): o "lado Brasil" das comparações. ``null``
- * sem a média no ponto final. */
-export function turmaNacional(
-    data: DashboardData,
-    curso: CursoTrajetoria,
-    turma: Turma
-): Turma | null {
-    if (turma.prazo === null) return null;
-    const fim = anosFinal(turma.prazo);
-    const pontos = [...curvaNacional(data, curso.area).values()]
-        .filter((p) => p.anos <= fim)
-        .sort((a, b) => a.anos - b.anos);
-    if (pontos.at(-1)?.anos !== fim) return null;
-    return { ...turma, pontos, ultimoAno: null, cursandoAgora: null };
-}
-
 /** Os indicadores de um conjunto de turmas maduras (pesados pelos
  * ingressantes), pra pôr lado a lado: situação final (TCA, TDA, TAP), quem
  * concluiu no prazo, quem desistiu já no 1º ano e o tempo até concluir. */

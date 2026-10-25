@@ -85,7 +85,7 @@ def build_area(
     ies = {
         str(int(codigo)): [
             texto_mais_comum(grupo, "nome_ies"),
-            texto_mais_comum(grupo, "sigla_ies"),
+            sigla_ies(grupo),
             rede_publica(texto_mais_comum(grupo, "categoria_administrativa")),
         ]
         for codigo, grupo in edicao.groupby("codigo_ies")
@@ -189,6 +189,16 @@ def rede_publica(categoria: str | None) -> bool | None:
     if any(chave in texto for chave in _PUBLICA):
         return True
     return None
+
+
+def sigla_ies(frame: pd.DataFrame) -> str | None:
+    """Sigla mais comum da IES, ou ``None`` se não for uma sigla.
+
+    O INEP registra ``"0"`` (ou outro valor sem letras) para várias IES sem sigla,
+    e o painel mostraria "0" no lugar do nome.
+    """
+    sigla = texto_mais_comum(frame, "sigla_ies")
+    return sigla if sigla and any(c.isalpha() for c in sigla) else None
 
 
 def texto_mais_comum(frame: pd.DataFrame, column: str) -> str | None:

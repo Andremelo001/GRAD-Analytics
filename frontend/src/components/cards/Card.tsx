@@ -12,6 +12,7 @@ import { createPortal, flushSync } from "react-dom";
 
 import { IconeInfo } from "@/components/cards/IconeInfo";
 import { PresentationContext } from "@/context/presentation-context";
+import type { FonteId } from "@/lib/fontes";
 import { cn } from "@/lib/utils";
 
 /** Clique nesses elementos é do próprio controle (botão, seletor, link…):
@@ -150,6 +151,8 @@ export function Card({
     className,
     expansivel = false,
     info,
+    tituloInfo,
+    fontes,
     children,
 }: {
     title?: string;
@@ -163,8 +166,14 @@ export function Card({
     className?: string;
     expansivel?: boolean | "tela";
     /** O que o card mostra: o ícone de informação no canto superior direito
-     * (texto no hover). Notas sobre as métricas ficam no rodapé do card. */
+     * (clicar abre um painel com o texto e a fonte dos dados). Notas sobre as
+     * métricas ficam no rodapé do card. */
     info?: string;
+    /** O título no topo do painel do "i", pra card sem ``title`` (com
+     * cabeçalho próprio, ex.: o mapa). */
+    tituloInfo?: string;
+    /** A fonte dos dados no painel do "i"; sem ela, a da aba aberta. */
+    fontes?: FonteId[];
     children: ReactNode;
 }) {
     const ref = useRef<HTMLElement>(null);
@@ -252,8 +261,9 @@ export function Card({
         // captura, antes do atalho do modo
         const onKeyDown = (e: KeyboardEvent) => {
             if (e.key !== "Escape") return;
-            // com a lista de um seletor aberta, o Esc fecha só a lista
-            if (document.querySelector('[role="listbox"]')) return;
+            // com a lista de um seletor (ou o painel do "i") aberta, o Esc
+            // fecha só ela
+            if (document.querySelector('[role="listbox"], [data-popover-info]')) return;
             e.stopImmediatePropagation();
             fecharRef.current?.click();
         };
@@ -365,7 +375,13 @@ export function Card({
                     pra eles */}
                 {!title && (info || ampliado) && (
                     <div className="absolute top-5 right-5 z-10 flex h-8 items-center gap-2 lg:top-6 lg:right-6">
-                        {info && <IconeInfo texto={info} />}
+                        {info && (
+                            <IconeInfo
+                                texto={info}
+                                titulo={title ?? tituloInfo}
+                                fontes={fontes}
+                            />
+                        )}
                         {ampliado && botaoFechar}
                     </div>
                 )}
@@ -446,7 +462,13 @@ export function Card({
                             </div>
                             {action}
                         </div>
-                        {info && <IconeInfo texto={info} />}
+                        {info && (
+                            <IconeInfo
+                                texto={info}
+                                titulo={title ?? tituloInfo}
+                                fontes={fontes}
+                            />
+                        )}
                         {ampliado && botaoFechar}
                     </div>
                 )}

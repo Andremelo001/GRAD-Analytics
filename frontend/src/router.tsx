@@ -19,6 +19,7 @@ import { VisaoCampusPage } from "@/pages/qualidade/VisaoCampusPage";
 import { TrajetoriaPage, VoltarSubabaTrajetoria } from "@/pages/TrajetoriaPage";
 import { ComparacoesTrajetoriaPage } from "@/pages/trajetoria/ComparacoesTrajetoriaPage";
 import { PanoramaPage } from "@/pages/trajetoria/PanoramaPage";
+import { MapaTrajetoriaPageLazy } from "@/pages/trajetoria/MapaTrajetoriaPageLazy";
 import { PorCursoTrajetoriaPage } from "@/pages/trajetoria/PorCursoTrajetoriaPage";
 
 // HashRouter (não BrowserRouter) de propósito: GitHub Pages é hospedagem
@@ -69,6 +70,7 @@ export const router = createHashRouter([
                     { index: true, element: <VoltarSubabaTrajetoria /> },
                     { path: "panorama", element: <PanoramaPage /> },
                     { path: "curso/:codigo?", element: <PorCursoTrajetoriaPage /> },
+                    { path: "mapa", element: <MapaTrajetoriaPageLazy /> },
                     { path: "comparacoes", element: <ComparacoesTrajetoriaPage /> },
                     // sub-aba que não existe mais (ex.: /trajetoria/turmas, removida):
                     // abre o Panorama em vez de uma tela vazia

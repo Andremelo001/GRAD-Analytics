@@ -151,3 +151,9 @@ def test_build_area_historico_column_has_every_edition() -> None:
     # curso 20: só 2021, sem conceito
     assert [e[0] for e in vinte["historico"]] == [2021]
     assert vinte["historico"][0][2] is None
+
+
+def test_sigla_ies_descarta_valor_sem_letras() -> None:
+    # o INEP registra "0" como sigla de várias IES sem sigla
+    assert quality_areas.sigla_ies(pd.DataFrame([_curso(sigla_ies="0")])) is None
+    assert quality_areas.sigla_ies(pd.DataFrame([_curso(sigla_ies="UFT")])) == "UFT"

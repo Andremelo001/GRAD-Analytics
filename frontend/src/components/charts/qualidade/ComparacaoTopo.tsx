@@ -1,4 +1,3 @@
-import { ArrowLeftRight } from "lucide-react";
 import type { ReactNode } from "react";
 
 import { Card } from "@/components/cards/Card";
@@ -8,9 +7,9 @@ import { nomeCampus } from "@/lib/comparacao";
 import type { ResumoCampi } from "@/types/dashboard";
 
 // O topo das Comparações (Qualidade e Trajetória): tipo de comparação, os dois
-// seletores (A ⇄ B) e a ficha de cada lado.
+// seletores (A e B) e a ficha de cada lado.
 
-/** Card do topo: tipo de comparação + os dois seletores (A ⇄ B) e, embaixo de
+/** Card do topo: tipo de comparação + os dois seletores (A e B) e, embaixo de
  * cada um, a ficha do lado escolhido. */
 export function Topo({
     seletorModo,
@@ -18,16 +17,12 @@ export function Topo({
     seletorB,
     fichaA,
     fichaB,
-    onTrocar,
-    podeTrocar = true,
 }: {
     seletorModo: ReactNode;
     seletorA: ReactNode;
     seletorB: ReactNode;
     fichaA?: ReactNode;
     fichaB?: ReactNode;
-    onTrocar: () => void;
-    podeTrocar?: boolean;
 }) {
     return (
         <Card className="lg:col-span-12">
@@ -39,20 +34,13 @@ export function Topo({
                     {seletorA}
                     {fichaA && <div className="mt-3">{fichaA}</div>}
                 </div>
-                <button
-                    type="button"
-                    onClick={onTrocar}
-                    disabled={!podeTrocar}
-                    aria-label="Trocar os lados"
-                    title={
-                        podeTrocar
-                            ? "Trocar os lados"
-                            : "O curso A é sempre da UFC: só dá pra trocar quando o B também é"
-                    }
-                    className="bg-page hover:text-ink text-text-secondary focus-visible:ring-lime/60 mt-1 flex h-8 w-8 items-center justify-center rounded-full outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-40"
+                {/* o "×" do confronto, na altura dos seletores */}
+                <span
+                    aria-hidden
+                    className="text-text-muted flex h-10 items-center text-[18px] font-semibold"
                 >
-                    <ArrowLeftRight size={15} strokeWidth={2.25} aria-hidden />
-                </button>
+                    ×
+                </span>
                 <div className="min-w-0">
                     {seletorB}
                     {fichaB && <div className="mt-3">{fichaB}</div>}

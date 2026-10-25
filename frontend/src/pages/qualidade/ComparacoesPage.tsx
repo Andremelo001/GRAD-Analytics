@@ -170,7 +170,6 @@ function ComparacaoCampi({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
                 }
                 fichaA={fichaCampus(ra)}
                 fichaB={fichaCampus(rb)}
-                onTrocar={() => atualizar({ a: slugB, b: slugA })}
             />
             {/* o conteúdo entra com a mesma animação das abas */}
             <div className="entrada grid grid-cols-1 items-start gap-5 lg:col-span-12 lg:grid-cols-12 lg:gap-6">
@@ -276,38 +275,46 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
             ),
         [resumo]
     );
-    // padrão de A: o curso de maior CPC do campus escolhido no painel
+    // o curso A é sempre do campus escolhido no painel (sem ele no resumo,
+    // qualquer um da UFC); padrão: o de maior CPC
     const doCampus = resumo.campi.find((c) => c.slug === campus);
-    const padraoA =
-        [...ufc]
-            .filter((u) =>
-                doCampus?.cursos.some((k) => k.codigo_curso === u.curso.codigo_curso)
-            )
-            .sort((x, y) => y.curso.cpc_continuo - x.curso.cpc_continuo)[0] ?? ufc[0];
-    const cursoA = ufc.find((u) => String(u.curso.codigo_curso) === a) ?? padraoA;
+    const ufcCampus = useMemo(
+        () =>
+            doCampus
+                ? ufc.filter((u) =>
+                      doCampus.cursos.some(
+                          (k) => k.codigo_curso === u.curso.codigo_curso
+                      )
+                  )
+                : ufc,
+        [ufc, doCampus]
+    );
+    const padraoA = [...ufcCampus].sort(
+        (x, y) => y.curso.cpc_continuo - x.curso.cpc_continuo
+    )[0];
+    const cursoA = ufcCampus.find((u) => String(u.curso.codigo_curso) === a) ?? padraoA;
     const area = cursoA?.curso.area_avaliacao ?? null;
     const { dados, erro } = useQualidadeArea(area);
 
     const opcoesA: OpcaoCurso[] = useMemo(
         () =>
-            [...ufc]
-                .sort(
-                    (x, y) =>
-                        toTitleCase(x.curso.nome_curso).localeCompare(
-                            toTitleCase(y.curso.nome_curso),
-                            "pt-BR"
-                        ) || x.campus.localeCompare(y.campus, "pt-BR")
+            [...ufcCampus]
+                .sort((x, y) =>
+                    toTitleCase(x.curso.nome_curso).localeCompare(
+                        toTitleCase(y.curso.nome_curso),
+                        "pt-BR"
+                    )
                 )
                 .map((u) => ({
                     value: String(u.curso.codigo_curso),
-                    label: `${toTitleCase(u.curso.nome_curso)} — ${u.campus}`,
+                    label: toTitleCase(u.curso.nome_curso),
                     detalhe: detalheCurso({
                         codigo: u.curso.codigo_curso,
                         grau: u.curso.grau_academico,
                     }),
                     busca: u.curso.area_avaliacao,
                 })),
-        [ufc]
+        [ufcCampus]
     );
 
     // a área inteira, na mesma modalidade do curso A (EaD é outro universo)
@@ -366,9 +373,6 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
     const siglaB = cursoB ? (cursoB.siglaIes ?? cursoB.nomeIes) : "—";
     const ladosInstituicao =
         siglaB.toUpperCase() === "UFC" ? lados : { a: "UFC", b: siglaB };
-    const ufcB = cursoB
-        ? ufc.find((u) => u.curso.codigo_curso === cursoB.codigo)
-        : undefined;
     const fichaArea = (c: CursoArea | undefined) =>
         c ? (
             <Ficha
@@ -421,14 +425,6 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
                 }
                 fichaA={fichaArea(linhaA)}
                 fichaB={fichaArea(cursoB)}
-                podeTrocar={ufcB !== undefined}
-                onTrocar={() =>
-                    ufcB &&
-                    atualizar({
-                        a: String(ufcB.curso.codigo_curso),
-                        b: String(cursoA.curso.codigo_curso),
-                    })
-                }
             />
             {/* o conteúdo entra com a mesma animação das abas */}
             <div className="entrada grid grid-cols-1 items-start gap-5 lg:col-span-12 lg:grid-cols-12 lg:gap-6">

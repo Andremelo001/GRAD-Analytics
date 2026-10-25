@@ -7,15 +7,16 @@ import { SubTabs } from "@/components/layout/SubTabs";
 import { lembrarSubaba, ultimaSubaba } from "@/lib/ultima-subaba";
 
 const SUB_ABAS = [
-    { to: "panorama", label: "Panorama" },
+    { to: "panorama", label: "Visão do campus" },
     { to: "curso", label: "Por curso" },
+    { to: "mapa", label: "Mapa" },
     { to: "comparacoes", label: "Comparações" },
 ];
 
 /** Aba Trajetória: o que acontece com as turmas depois que entram — quantas
  * se formam, quantas desistem e quando. Sub-abas com rota própria, como a
  * Qualidade (``/trajetoria/panorama``, ``/trajetoria/curso/:codigo``,
- * ``/trajetoria/comparacoes``). */
+ * ``/trajetoria/mapa``, ``/trajetoria/comparacoes``). */
 export function TrajetoriaPage() {
     const { pathname, search } = useLocation();
     const subAba = pathname.split("/")[2] ?? "";

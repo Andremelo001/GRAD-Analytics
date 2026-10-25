@@ -23,22 +23,18 @@ import { detalheCurso } from "@/lib/curso";
 import { nomeCampus } from "@/lib/comparacao";
 import { formatPercent, toTitleCase } from "@/lib/format";
 import {
-    buildTrajetorias,
     situacaoFinal,
     situacaoFinalMedia,
-    turmaMadura,
-    turmaNacional,
     turmaResumo,
     type Turma,
 } from "@/lib/trajetoria";
-import type { DashboardData, ResumoCampi, ResumoCurso } from "@/types/dashboard";
+import type { ResumoCampi, ResumoCurso } from "@/types/dashboard";
 
-type Modo = "campi" | "cursos" | "brasil";
+type Modo = "campi" | "cursos";
 
 const MODOS: { value: Modo; label: string }[] = [
     { value: "campi", label: "Entre campi" },
     { value: "cursos", label: "Entre cursos da mesma área" },
-    { value: "brasil", label: "Com o Brasil" },
 ];
 
 type Atualizar = (mudancas: Record<string, string | null>) => void;
@@ -47,28 +43,20 @@ export function ComparacoesTrajetoriaPage() {
     return (
         <DataState
             esqueleto={<ComparacoesEsqueleto />}
-            render={(data) => (
-                <Comparacoes key={data.escopo.codigo_municipio} data={data} />
-            )}
+            render={(data) => <Comparacoes key={data.escopo.codigo_municipio} />}
         />
     );
 }
 
 /** Trajetória → Comparações, no formato das Comparações da Qualidade: "entre
  * campi" (um campus da UFC contra outro, nas turmas maduras de todos os
- * cursos), "entre cursos da mesma área" (um curso da UFC contra qualquer
- * curso da mesma área CINE no Brasil) e "com o Brasil" (o campus contra a
- * média nacional dos mesmos cursos). Modo e lados ficam na URL
+ * cursos), e "entre cursos da mesma área" (um curso da UFC contra
+ * qualquer curso da mesma área CINE no Brasil). Modo e lados ficam na URL
  * (``?modo=…&a=…&b=…``). */
-function Comparacoes({ data }: { data: DashboardData }) {
+function Comparacoes() {
     const [params, setParams] = useSearchParams();
     const { resumo, erro } = useResumoCampi();
-    const modo: Modo =
-        params.get("modo") === "cursos"
-            ? "cursos"
-            : params.get("modo") === "brasil"
-              ? "brasil"
-              : "campi";
+    const modo: Modo = params.get("modo") === "cursos" ? "cursos" : "campi";
 
     const atualizar: Atualizar = (mudancas) => {
         setParams(
@@ -116,10 +104,8 @@ function Comparacoes({ data }: { data: DashboardData }) {
 
     return modo === "campi" ? (
         <ComparacaoCampi {...props} />
-    ) : modo === "cursos" ? (
-        <ComparacaoCursos {...props} />
     ) : (
-        <ComparacaoBrasil data={data} resumo={resumo} seletorModo={seletorModo} />
+        <ComparacaoCursos {...props} />
     );
 }
 
@@ -211,7 +197,6 @@ function ComparacaoCampi({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
                 }
                 fichaA={ficha(ca, ta)}
                 fichaB={ficha(cb, tb)}
-                onTrocar={() => atualizar({ a: slugB, b: slugA })}
             />
             {/* o conteúdo entra com a mesma animação das abas */}
             <div className="entrada grid grid-cols-1 items-start gap-5 lg:col-span-12 lg:grid-cols-12 lg:gap-6">
@@ -260,29 +245,37 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
             ),
         [resumo]
     );
-    // padrão de A: o primeiro curso do campus escolhido no painel
+    // o curso A é sempre do campus escolhido no painel (sem ele no resumo,
+    // qualquer um da UFC); padrão: o primeiro
     const doCampus = resumo.campi.find((c) => c.slug === campus);
-    const padraoA =
-        ufc.find((u) =>
-            doCampus?.cursos.some((k) => k.codigo_curso === u.curso.codigo_curso)
-        ) ?? ufc[0];
-    const cursoA = ufc.find((u) => String(u.curso.codigo_curso) === a) ?? padraoA;
+    const ufcCampus = useMemo(
+        () =>
+            doCampus
+                ? ufc.filter((u) =>
+                      doCampus.cursos.some(
+                          (k) => k.codigo_curso === u.curso.codigo_curso
+                      )
+                  )
+                : ufc,
+        [ufc, doCampus]
+    );
+    const padraoA = ufcCampus[0];
+    const cursoA = ufcCampus.find((u) => String(u.curso.codigo_curso) === a) ?? padraoA;
     const area = cursoA?.curso.trajetoria.nome_cine_area_geral ?? null;
     const { dados, erro } = useTrajetoriaArea(area);
 
     const opcoesA: OpcaoCurso[] = useMemo(
         () =>
-            [...ufc]
-                .sort(
-                    (x, y) =>
-                        toTitleCase(x.curso.nome_curso).localeCompare(
-                            toTitleCase(y.curso.nome_curso),
-                            "pt-BR"
-                        ) || x.campus.localeCompare(y.campus, "pt-BR")
+            [...ufcCampus]
+                .sort((x, y) =>
+                    toTitleCase(x.curso.nome_curso).localeCompare(
+                        toTitleCase(y.curso.nome_curso),
+                        "pt-BR"
+                    )
                 )
                 .map((u) => ({
                     value: String(u.curso.codigo_curso),
-                    label: `${toTitleCase(u.curso.nome_curso)} — ${u.campus}`,
+                    label: toTitleCase(u.curso.nome_curso),
                     detalhe: detalheCurso({
                         codigo: u.curso.codigo_curso,
                         grau:
@@ -290,7 +283,7 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
                     }),
                     busca: u.curso.trajetoria.nome_cine_area_geral ?? undefined,
                 })),
-        [ufc]
+        [ufcCampus]
     );
 
     // a área inteira, no mesmo grau e modalidade do curso A
@@ -348,9 +341,6 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
             ? `${cursoB.siglaIes ?? cursoB.nomeIes} · ${cursoB.nomeMunicipio}`
             : "—",
     };
-    const ufcB = cursoB
-        ? ufc.find((u) => u.curso.codigo_curso === cursoB.codigo)
-        : undefined;
     const fichaArea = (c: CursoTrajetoriaArea | undefined) => {
         if (!c) return null;
         const final = situacaoFinal(c.turma);
@@ -400,14 +390,6 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
                 }
                 fichaA={fichaArea(linhaA)}
                 fichaB={fichaArea(cursoB)}
-                podeTrocar={ufcB !== undefined}
-                onTrocar={() =>
-                    ufcB &&
-                    atualizar({
-                        a: String(ufcB.curso.codigo_curso),
-                        b: String(cursoA.curso.codigo_curso),
-                    })
-                }
             />
             <div className="entrada grid grid-cols-1 items-start gap-5 lg:col-span-12 lg:grid-cols-12 lg:gap-6">
                 {!daArea ? (
@@ -456,69 +438,6 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
                             b={[cursoB.turma]}
                             agregado={false}
                         />
-                    </>
-                )}
-            </div>
-        </div>
-    );
-}
-
-// --- com o Brasil ----------------------------------------------------------
-
-function ComparacaoBrasil({
-    data,
-    resumo,
-    seletorModo,
-}: {
-    data: DashboardData;
-    resumo: ResumoCampi;
-    seletorModo: ReactNode;
-}) {
-    const { campus } = useDashboardData();
-    const cp = resumo.campi.find((c) => c.slug === campus);
-    const nome = cp ? nomeCampus(cp.nome) : toTitleCase(data.escopo.municipio);
-    const cursos = useMemo(() => buildTrajetorias(data), [data]);
-    // a turma madura de cada curso e a média nacional dos mesmos cursos (mesma
-    // área CINE, no mesmo ponto), com o peso do curso do campus
-    const pares = cursos.flatMap((c) => {
-        const t = turmaMadura(c);
-        const n = t && turmaNacional(data, c, t);
-        return t && n ? [{ campus: t, brasil: n }] : [];
-    });
-    const lados = { a: nome, b: "Brasil" };
-    const a = pares.map((p) => p.campus);
-    const b = pares.map((p) => p.brasil);
-    const anos = a.map((t) => t.ano);
-    const [de, ate] = [Math.min(...anos), Math.max(...anos)];
-    return (
-        <div className="grid grid-cols-1 items-start gap-5 lg:grid-cols-12 lg:gap-6">
-            <Card className="lg:col-span-12">
-                <div className="-mx-1 max-w-full [scrollbar-width:none] overflow-x-auto px-1">
-                    {seletorModo}
-                </div>
-            </Card>
-            <div className="entrada grid grid-cols-1 items-start gap-5 lg:col-span-12 lg:grid-cols-12 lg:gap-6">
-                {pares.length === 0 ? (
-                    <p className="text-text-secondary text-[14px] lg:col-span-12">
-                        Nenhum curso deste campus tem turma madura com média nacional
-                        para comparar.
-                    </p>
-                ) : (
-                    <>
-                        {/* a mesma frase de contexto dos outros modos */}
-                        <p className="text-text-muted -mt-1 text-[12px] lg:col-span-12">
-                            {nome} × Brasil · turmas maduras de{" "}
-                            {de === ate ? de : `${de} a ${ate}`} · {pares.length}{" "}
-                            {pares.length === 1 ? "curso" : "cursos"} com média nacional
-                        </p>
-                        <IndicadoresTrajetoriaCards
-                            titulo="Indicadores do campus"
-                            lados={lados}
-                            a={a}
-                            b={b}
-                            rodape={`Brasil: média nacional dos mesmos cursos (mesma área CINE), com o peso de cada curso do campus. ${pares.length} ${pares.length === 1 ? "curso" : "cursos"} com média nacional.`}
-                        />
-                        <SituacaoPermanenciaCards lados={lados} a={a} b={b} agregado />
                     </>
                 )}
             </div>

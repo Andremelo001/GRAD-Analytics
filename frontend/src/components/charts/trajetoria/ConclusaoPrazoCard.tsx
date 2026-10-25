@@ -24,21 +24,17 @@ const FAIXAS: { chave: keyof ConclusaoPrazo; rotulo: string; concluiu: boolean }
 /** Conclusão no prazo e com atraso: das turmas maduras do curso (% dos
  * ingressantes, pesado pelas turmas), quantos se formaram no prazo previsto,
  * com 1 e com 2 anos de atraso, e quantos não concluíram até dois anos depois
- * do prazo. O traço em cada barra é a média do campus, pra comparar. Passar
- * o mouse numa linha a destaca. */
+ * do prazo. Passar o mouse numa linha a destaca. */
 export function ConclusaoPrazoCard({
     curso,
-    cursos,
     className,
 }: {
     curso: CursoTrajetoria;
-    cursos: CursoTrajetoria[];
     className?: string;
 }) {
     const CHART = useChartTheme();
     const [foco, setFoco] = useState<string | null>(null);
     const valores = conclusaoNoPrazo(maduras(curso));
-    const campus = conclusaoNoPrazo(cursos.flatMap(maduras));
     const tempo = tempoMedioConclusao(maduras(curso));
     const qtdMaduras = maduras(curso).length;
 
@@ -71,7 +67,6 @@ export function ConclusaoPrazoCard({
                     >
                         {FAIXAS.map((f) => {
                             const v = valores[f.chave];
-                            const c = campus?.[f.chave];
                             const cor = f.concluiu ? CHART.brand : CHART.reference;
                             return (
                                 <li
@@ -100,38 +95,19 @@ export function ConclusaoPrazoCard({
                                                     f.chave === "noPrazo" ? 1 : 0.75,
                                             }}
                                         />
-                                        {c !== undefined && (
-                                            <span
-                                                aria-hidden
-                                                title={`Campus: ${formatPercent(c, 0)}`}
-                                                className="bg-ink absolute -top-1 -bottom-1 w-0.5 -translate-x-1/2 rounded-full"
-                                                style={{
-                                                    left: `${Math.max(Math.min(c, 100), 0)}%`,
-                                                }}
-                                            />
-                                        )}
                                     </div>
                                 </li>
                             );
                         })}
                     </ul>
-                    <div className="text-text-muted mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px]">
-                        <span className="flex items-center gap-1.5">
-                            <span
-                                aria-hidden
-                                className="bg-ink h-3 w-0.5 rounded-full"
-                            />
-                            média do campus
-                        </span>
-                        {tempo !== null && (
-                            <span>
-                                Quem conclui leva, em média,{" "}
-                                <span className="text-ink font-semibold">
-                                    {formatDecimal(tempo, 1)} anos
-                                </span>
+                    {tempo !== null && (
+                        <p className="text-text-muted mt-4 text-[11px]">
+                            Quem conclui leva, em média,{" "}
+                            <span className="text-ink font-semibold">
+                                {formatDecimal(tempo, 1)} anos
                             </span>
-                        )}
-                    </div>
+                        </p>
+                    )}
                 </>
             )}
             <NotaRodape>
@@ -141,11 +117,10 @@ export function ConclusaoPrazoCard({
             <div className="sr-only">
                 {valores && (
                     <DataTable
-                        columns={["Situação", "Curso", "Campus"]}
+                        columns={["Situação", "Curso"]}
                         rows={FAIXAS.map((f) => [
                             f.rotulo,
                             formatPercent(valores[f.chave], 0),
-                            campus ? formatPercent(campus[f.chave], 0) : "—",
                         ])}
                     />
                 )}

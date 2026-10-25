@@ -152,11 +152,7 @@ function CursoDetalhe({
                     turmaAno={turma.ano}
                     onTurma={setTurmaAno}
                 />
-                <ConclusaoPrazoCard
-                    className="lg:col-span-5"
-                    curso={curso}
-                    cursos={cursos}
-                />
+                <ConclusaoPrazoCard className="lg:col-span-5" curso={curso} />
             </div>
         </div>
     );

@@ -155,6 +155,10 @@ export function BrasilMapaCard({
         <Card
             expansivel="tela"
             className={className}
+            // a quantidade de cursos vem das turmas acompanhadas; o CPC, da
+            // Qualidade
+            fontes={["trajetoria", "qualidade"]}
+            tituloInfo="Presença no Brasil"
             info={`Onde o curso escolhido é oferecido no Brasil: cada estado pintado pela quantidade de cursos presenciais da mesma área${item ? ` (${item.nome_cine_area_geral ?? "—"}) com turma em ${item.ano_ingresso ?? "—"}` : ""}. O ponto marca o campus.${item ? ` CPC: avaliação de ${item.ano_cpc ?? "—"}.` : ""}`}
         >
             <div className="flex items-center justify-between gap-2">

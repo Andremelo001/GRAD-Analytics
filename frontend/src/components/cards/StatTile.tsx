@@ -68,7 +68,7 @@ export function StatTile({
         <Card className={cn("relative overflow-hidden", className)}>
             <div className="flex items-center justify-between gap-2">
                 <p className="text-[14px] font-medium">{label}</p>
-                <IconeInfo texto={info} className="-mr-1" />
+                <IconeInfo texto={info} titulo={label} className="-mr-1" />
             </div>
 
             <div className="mt-2.5 flex items-center gap-3">

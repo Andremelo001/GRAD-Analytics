@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+import { siglaValida } from "@/lib/curso";
 import { toTitleCase } from "@/lib/format";
 import { turmaResumo, type Turma } from "@/lib/trajetoria";
 import type {
@@ -16,6 +17,8 @@ export interface CursoTrajetoriaArea {
     nomeIes: string;
     siglaIes: string | null;
     publica: boolean | null;
+    /** Código IBGE do município (``null`` sem o dado). */
+    municipio: number | null;
     nomeMunicipio: string;
     uf: string | null;
     grau: string | null;
@@ -62,8 +65,9 @@ function parse(arquivo: TrajetoriaAreaArquivo): CursoTrajetoriaArea[] {
             codigo: Number(get("codigo_curso")),
             ies,
             nomeIes: nomeIes ? toTitleCase(nomeIes) : "Instituição sem nome",
-            siglaIes,
+            siglaIes: siglaValida(siglaIes),
             publica,
+            municipio: municipio === null ? null : Number(municipio),
             nomeMunicipio: nomeMunicipio ? toTitleCase(nomeMunicipio) : "—",
             uf,
             grau: get("grau_academico") as string | null,

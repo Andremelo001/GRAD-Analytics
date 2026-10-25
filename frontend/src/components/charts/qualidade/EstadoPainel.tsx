@@ -1,11 +1,9 @@
-import { useState, type ReactNode } from "react";
+import type { ReactNode } from "react";
 
 import { DeltaPill } from "@/components/charts/qualidade/DeltaPill";
 import { FaixaPill } from "@/components/charts/qualidade/FaixaPill";
-import { useChartTheme } from "@/hooks/useChartTheme";
 import {
     INDICADORES,
-    percentil,
     ranking,
     type CursoArea,
     type Indicador,
@@ -19,8 +17,9 @@ const TOP = 10;
 
 /** Painel ao lado do mapa: o recorte escolhido (Brasil ou um estado) em
  * números, no indicador escolhido no mapa (CPC, IDD ou Conceito Enade) —
- * cursos, média, faixas, onde o curso do campus fica entre os pares, as
- * notas médias do estado contra o Brasil e os melhores cursos. */
+ * cursos, média, % nas faixas 4 e 5, as notas médias do estado contra as do
+ * curso do campus e os melhores cursos (com o curso do campus na posição em
+ * que fica, ou ficaria). */
 export function EstadoPainel({
     titulo,
     cursos,
@@ -38,25 +37,26 @@ export function EstadoPainel({
     indicador: Indicador;
     cursoCampus: CursoArea | undefined;
 }) {
-    const CHART = useChartTheme();
     const ind = INDICADORES[indicador];
     const media = resumo.medias[indicador];
     const mediaBrasil = brasil.medias[indicador];
-    const faixas = resumo.faixas[indicador];
     const pctAltas = resumo.pctAltas[indicador];
     const valorCampus = cursoCampus ? ind.doCurso(cursoCampus) : null;
-    const ordenados = ranking(cursos, indicador);
+    // o curso do campus fora do recorte (um estado onde ele não está): entra
+    // na lista na posição em que ficaria
+    const foraDoRecorte =
+        cursoCampus !== undefined &&
+        valorCampus !== null &&
+        !cursos.some((c) => c.codigo === cursoCampus.codigo);
+    const ordenados = ranking(
+        foraDoRecorte ? [...cursos, cursoCampus] : cursos,
+        indicador
+    );
     const top = ordenados.slice(0, TOP);
     const posicaoCampus = cursoCampus
         ? ordenados.findIndex((c) => c.codigo === cursoCampus.codigo)
         : -1;
     const campusForaDoTop = posicaoCampus >= TOP;
-    const totalFaixas = faixas.reduce((a, b) => a + b, 0);
-    // faixa em foco (mouse na barra ou na legenda, ou toque): o pedaço dela
-    // engrossa, os outros apagam e o item da legenda se destaca — como nos
-    // medidores da Visão do campus
-    const [foco, setFoco] = useState<number | null>(null);
-    const corFaixa = (i: number) => (i < 5 ? CHART.faixa.ramp[i] : CHART.presenca.none);
 
     return (
         <div className="flex flex-col gap-6">
@@ -80,91 +80,40 @@ export function EstadoPainel({
                 </Kpi>
             </dl>
 
-            <Secao titulo={`Cursos por faixa do ${ind.nome}`}>
-                <div
-                    className="flex h-4 w-full items-center gap-[2px]"
-                    onMouseLeave={() => setFoco(null)}
-                    aria-hidden
-                >
-                    {faixas.map((n, i) =>
-                        n === 0 ? null : (
-                            <span
-                                key={i}
-                                onMouseEnter={() => setFoco(i)}
-                                onClick={() => setFoco(foco === i ? null : i)}
-                                className={cn(
-                                    "cursor-pointer transition-[height,opacity] duration-200 first:rounded-l-full last:rounded-r-full",
-                                    foco === i ? "h-4" : "h-3",
-                                    foco !== null && foco !== i && "opacity-35"
-                                )}
-                                style={{ flexGrow: n, background: corFaixa(i) }}
-                            />
-                        )
-                    )}
-                </div>
-                <p
-                    className="text-text-secondary mt-2 flex flex-wrap gap-x-3 gap-y-1 text-[12px]"
-                    onMouseLeave={() => setFoco(null)}
-                >
-                    {faixas.map((n, i) =>
-                        n === 0 ? null : (
-                            <span
-                                key={i}
-                                onMouseEnter={() => setFoco(i)}
-                                className={cn(
-                                    "flex items-center gap-1.5 whitespace-nowrap transition-opacity duration-200",
-                                    foco === i && "text-ink font-semibold",
-                                    foco !== null && foco !== i && "opacity-45"
-                                )}
-                            >
-                                <span
-                                    aria-hidden
-                                    className="h-2 w-2 rounded-[3px]"
-                                    style={{ background: corFaixa(i) }}
-                                />
-                                {i < 5 ? `Faixa ${i + 1}` : "Sem conceito"}:{" "}
-                                <span className="text-ink font-semibold">{n}</span>
-                                <span className="text-text-muted">
-                                    ({formatPercent((100 * n) / totalFaixas, 0)})
-                                </span>
-                            </span>
-                        )
-                    )}
-                </p>
-            </Secao>
-
-            {cursoCampus && valorCampus !== null && (
-                <PosicaoCampus
-                    cursos={cursos}
-                    curso={cursoCampus}
-                    valor={valorCampus}
-                    indicador={indicador}
-                    posicao={posicaoCampus}
-                    ehEstado={ehEstado}
-                    titulo={titulo}
-                />
-            )}
-
             {ehEstado && (
-                <Secao titulo={`Notas médias: ${titulo} × Brasil`}>
+                <Secao titulo={`Notas médias: ${titulo} × seu curso`}>
+                    {/* as três colunas de dados com a mesma largura e o
+                        conteúdo centrado: o mesmo espaço entre elas */}
+                    <div className="text-text-muted grid grid-cols-[minmax(0,1fr)_repeat(3,72px)] items-center gap-2 pb-1.5 text-[11px]">
+                        <span />
+                        <span className="truncate text-center" title={titulo}>
+                            {titulo}
+                        </span>
+                        <span className="text-center">Seu curso</span>
+                        <span />
+                    </div>
                     <ul className="flex flex-col gap-1.5">
                         {COMPONENTES.map((c) => {
                             const uf = resumo.notas[c.key];
-                            const br = brasil.notas[c.key];
+                            const seu = cursoCampus ? cursoCampus.notas[c.key] : null;
                             return (
                                 <li
                                     key={c.key}
-                                    className="grid grid-cols-[minmax(0,1fr)_44px_64px] items-center gap-2 text-[12px]"
+                                    className="grid grid-cols-[minmax(0,1fr)_repeat(3,72px)] items-center gap-2 text-[12px]"
                                 >
                                     <span className="truncate" title={c.nome}>
                                         {c.nome}
                                     </span>
-                                    <span className="text-right font-semibold tabular-nums">
+                                    <span className="text-text-secondary text-center tabular-nums">
                                         {uf === null ? "—" : formatDecimal(uf)}
                                     </span>
-                                    <span className="flex justify-end">
-                                        {uf !== null && br !== null ? (
-                                            <DeltaPill size="sm" diff={uf - br} />
+                                    <span className="text-center font-semibold tabular-nums">
+                                        {seu === null ? "—" : formatDecimal(seu)}
+                                    </span>
+                                    {/* o seu curso em relação ao estado */}
+                                    <span className="flex justify-center">
+                                        {uf !== null && seu !== null ? (
+                                            <DeltaPill size="sm" diff={seu - uf} />
                                         ) : (
                                             <span className="text-text-muted">—</span>
                                         )}
@@ -206,6 +155,11 @@ export function EstadoPainel({
                         </>
                     )}
                 </ol>
+                {foraDoRecorte && (
+                    <p className="text-text-muted mt-2 text-[11px]">
+                        Seu curso não é de {titulo}: aparece na posição em que ficaria.
+                    </p>
+                )}
             </Secao>
         </div>
     );
@@ -296,94 +250,5 @@ function LinhaCurso({
             </span>
             <FaixaPill faixa={INDICADORES[indicador].faixaDoCurso(curso)} />
         </li>
-    );
-}
-
-/** Histograma do indicador nos cursos do recorte (faixas de 0,25) com a
- * barra do curso do campus em oliva, e o percentil. */
-function PosicaoCampus({
-    cursos,
-    curso,
-    valor,
-    indicador,
-    posicao,
-    ehEstado,
-    titulo,
-}: {
-    cursos: CursoArea[];
-    curso: CursoArea;
-    /** O valor do curso do campus no indicador. */
-    valor: number;
-    indicador: Indicador;
-    posicao: number;
-    ehEstado: boolean;
-    titulo: string;
-}) {
-    const CHART = useChartTheme();
-    const { doCurso, nome } = INDICADORES[indicador];
-    const LARGURA = 0.25;
-    const bins = Array.from({ length: 20 }, () => 0);
-    for (const c of cursos) {
-        const v = doCurso(c);
-        if (v === null) continue;
-        bins[Math.min(Math.floor(v / LARGURA), 19)]++;
-    }
-    const doCampus = Math.min(Math.floor(valor / LARGURA), 19);
-    const max = Math.max(...bins, 1);
-    const pct = percentil(
-        cursos.filter((c) => c.codigo !== curso.codigo),
-        valor,
-        indicador
-    );
-    // fora do recorte (ex.: um estado onde o campus não está): onde ficaria
-    const noRecorte = posicao >= 0;
-    const colocacao = noRecorte
-        ? posicao + 1
-        : cursos.filter((c) => (doCurso(c) ?? -Infinity) > valor).length + 1;
-    const comValor = cursos.filter((c) => doCurso(c) !== null).length;
-
-    return (
-        <Secao
-            titulo={`Posição do seu curso ${ehEstado ? `em ${titulo}` : "no Brasil"}`}
-        >
-            <p className="text-[13px] leading-snug">
-                {!noRecorte && <span className="text-text-secondary">Ficaria em </span>}
-                <span className="text-[20px] font-semibold tabular-nums">
-                    {colocacao}º
-                </span>{" "}
-                <span className="text-text-secondary">
-                    de {formatInteger(comValor)} cursos com {nome}
-                    {pct !== null && (
-                        <>
-                            {" "}
-                            · {nome} maior que o de{" "}
-                            <span className="text-ink font-semibold">
-                                {formatPercent(pct, 0)}
-                            </span>{" "}
-                            deles
-                        </>
-                    )}
-                </span>
-            </p>
-            <div className="mt-3 flex h-14 items-end gap-[2px]" aria-hidden>
-                {bins.map((n, i) => (
-                    <span
-                        key={i}
-                        className="flex-1 rounded-t-[3px]"
-                        style={{
-                            height: n === 0 ? 0 : `${Math.max((n / max) * 100, 4)}%`,
-                            // só a cor marca a barra do seu curso: oliva (o limão
-                            // sem contorno sumiria no fundo claro)
-                            background: i === doCampus ? CHART.brand : CHART.deemphasis,
-                        }}
-                    />
-                ))}
-            </div>
-            <div className="text-text-muted mt-1 flex justify-between text-[10px] tabular-nums">
-                {[0, 1, 2, 3, 4, 5].map((t) => (
-                    <span key={t}>{t}</span>
-                ))}
-            </div>
-        </Secao>
     );
 }
