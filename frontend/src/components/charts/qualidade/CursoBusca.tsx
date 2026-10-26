@@ -1,5 +1,6 @@
 import { Check, ChevronDown, Search } from "lucide-react";
 import { useEffect, useId, useMemo, useRef, useState, type KeyboardEvent } from "react";
+import { createPortal } from "react-dom";
 
 import { normalizeForSearch } from "@/lib/format";
 import { rolarDentro } from "@/lib/rolar";
@@ -23,6 +24,28 @@ const MAX_VISIVEIS = 60;
 /** Largura máxima da lista na versão compacta e margem até a tela (px). */
 const LISTA_PILULA = 280;
 const MARGEM_TELA = 16;
+
+/** Onde a lista abre: logo abaixo do seletor, como a do ``ChartSelect``. A
+ * lista vai num portal no <body> (dentro da saudação ou de um card ela seria
+ * cortada pelo ``overflow`` deles ou ficaria por baixo dos cards seguintes).
+ * No topo fixo ou num card ampliado, em coordenadas da tela (``fixed`` — fica
+ * parada com o seletor); no resto, da página (``absolute`` — rola junto). */
+interface Posicao {
+    top: number;
+    esquerda: number;
+    direita: number;
+    largura: number;
+}
+
+function posicao(seletor: DOMRect, fixo: boolean): Posicao {
+    const [dx, dy] = fixo ? [0, 0] : [window.scrollX, window.scrollY];
+    return {
+        top: seletor.bottom + dy + 6,
+        esquerda: seletor.left + dx,
+        direita: document.documentElement.clientWidth - seletor.right - dx,
+        largura: seletor.width,
+    };
+}
 
 /** Seletor com busca (combobox) pra listas longas — os cursos de uma área no
  * Brasil inteiro. Fechado, mostra o escolhido (com um ponto da cor da série);
@@ -75,14 +98,26 @@ export function CursoBusca({
     // compacto: a lista é mais larga que o botão e abre presa à direita dele;
     // se não couber na tela, presa à esquerda
     const [lado, setLado] = useState<"left" | "right">("right");
+    const [caixa, setCaixa] = useState<Posicao | null>(null);
+    const [fixo, setFixo] = useState(false);
+
+    function medir() {
+        const seletor = rootRef.current?.getBoundingClientRect();
+        if (!seletor) return;
+        const emFixo = !!rootRef.current?.closest(
+            "[data-topo-fixo], [data-card-expandido]"
+        );
+        setFixo(emFixo);
+        setCaixa(posicao(seletor, emFixo));
+        if (compacto) {
+            const largura = Math.min(LISTA_PILULA, window.innerWidth - 2 * MARGEM_TELA);
+            setLado(seletor.right - MARGEM_TELA >= largura ? "right" : "left");
+        }
+    }
 
     function abrir() {
         setAtivo(0);
-        const caixa = rootRef.current?.getBoundingClientRect();
-        if (compacto && caixa) {
-            const largura = Math.min(LISTA_PILULA, window.innerWidth - 2 * MARGEM_TELA);
-            setLado(caixa.right - MARGEM_TELA >= largura ? "right" : "left");
-        }
+        medir();
         setOpen(true);
     }
 
@@ -104,10 +139,20 @@ export function CursoBusca({
         if (!open) return;
         inputRef.current?.focus({ preventScroll: true });
         const fora = (e: PointerEvent) => {
-            if (!rootRef.current?.contains(e.target as Node)) setOpen(false);
+            const alvo = e.target as Node;
+            if (!rootRef.current?.contains(alvo) && !listaRef.current?.contains(alvo))
+                setOpen(false);
         };
+        // rolar a página não mexe em nada (a lista rola junto, ou fica parada
+        // com o seletor no topo fixo); só remede se a janela mudar de tamanho
         document.addEventListener("pointerdown", fora);
-        return () => document.removeEventListener("pointerdown", fora);
+        window.addEventListener("resize", medir);
+        return () => {
+            document.removeEventListener("pointerdown", fora);
+            window.removeEventListener("resize", medir);
+        };
+        // medir lê só refs e props estáveis durante a abertura
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [open]);
 
     useEffect(() => {
@@ -243,76 +288,93 @@ export function CursoBusca({
                 </button>
             )}
 
-            {open && (
-                <ul
-                    ref={listaRef}
-                    id={`${id}-lista`}
-                    role="listbox"
-                    aria-label={label}
-                    className={cn(
-                        "bg-popover text-ink absolute top-[calc(100%+6px)] z-20 max-h-80 overflow-y-auto rounded-xl p-1.5 shadow-[0_16px_40px_rgb(0_0_0/0.18)]",
-                        faixa
-                            ? "right-0 w-[min(320px,calc(100vw-32px))]"
-                            : compacto
-                              ? cn(
-                                    "w-[min(280px,calc(100vw-32px))]",
-                                    lado === "right" ? "right-0" : "left-0"
-                                )
-                              : "right-0 left-0"
-                    )}
-                >
-                    {filtradas.length === 0 && (
-                        <li className="text-text-secondary px-3 py-2 text-[13px]">
-                            Nenhum curso encontrado
-                        </li>
-                    )}
-                    {filtradas.map((o, i) => (
-                        <li
-                            key={o.value}
-                            id={`${id}-${i}`}
-                            role="option"
-                            aria-selected={o.value === value}
-                            onPointerEnter={() => setAtivo(i)}
-                            onPointerDown={(e) => e.preventDefault()}
-                            onClick={() => escolher(i)}
-                            className={cn(
-                                "flex cursor-pointer items-center justify-between gap-3 rounded-lg px-3 py-2",
-                                i === ativo && "bg-page"
-                            )}
-                        >
-                            <span className="min-w-0">
-                                <span
-                                    className={cn(
-                                        "block truncate text-[13px]",
-                                        o.value === value && "font-semibold"
-                                    )}
-                                >
-                                    {o.label}
-                                </span>
-                                {o.detalhe && (
-                                    <span className="text-text-muted block truncate text-[11px]">
-                                        {o.detalhe}
-                                    </span>
-                                )}
-                            </span>
-                            <Check
-                                size={15}
-                                strokeWidth={2.5}
-                                aria-hidden
+            {open &&
+                caixa &&
+                createPortal(
+                    <ul
+                        ref={listaRef}
+                        id={`${id}-lista`}
+                        role="listbox"
+                        aria-label={label}
+                        className={cn(
+                            "bg-popover text-ink max-h-80 overflow-y-auto rounded-xl p-1.5 text-left shadow-[0_16px_40px_rgb(0_0_0/0.18)]",
+                            // camada: abaixo do topo fixo (z-30) ao rolar, como o
+                            // resto da página; no topo fixo ou num card ampliado,
+                            // por cima dele
+                            fixo ? "fixed z-[60]" : "absolute z-20",
+                            faixa
+                                ? "w-[min(320px,calc(100vw-32px))]"
+                                : compacto
+                                  ? "w-[min(280px,calc(100vw-32px))]"
+                                  : undefined
+                        )}
+                        style={{
+                            top: caixa.top,
+                            // faixa: presa à direita do seletor; compacto: do lado
+                            // que couber; normal: na largura do seletor
+                            ...(faixa || (compacto && lado === "right")
+                                ? { right: caixa.direita }
+                                : { left: caixa.esquerda }),
+                            ...(!faixa && !compacto ? { width: caixa.largura } : {}),
+                        }}
+                        // a lista fica no <body>, mas o clique ainda sobe pela
+                        // árvore do React: não deixa um card ao redor ampliar
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        {filtradas.length === 0 && (
+                            <li className="text-text-secondary px-3 py-2 text-[13px]">
+                                Nenhum curso encontrado
+                            </li>
+                        )}
+                        {filtradas.map((o, i) => (
+                            <li
+                                key={o.value}
+                                id={`${id}-${i}`}
+                                role="option"
+                                aria-selected={o.value === value}
+                                onPointerEnter={() => setAtivo(i)}
+                                onPointerDown={(e) => e.preventDefault()}
+                                onClick={() => escolher(i)}
                                 className={cn(
-                                    "text-olive-text shrink-0",
-                                    o.value !== value && "invisible"
+                                    "flex cursor-pointer items-center justify-between gap-3 rounded-lg px-3 py-2",
+                                    i === ativo && "bg-page"
                                 )}
-                            />
-                        </li>
-                    ))}
-                    {total > filtradas.length && (
-                        <li className="text-text-muted px-3 py-2 text-[11px]">
-                            Mostrando {filtradas.length} de {total}: digite para refinar
-                        </li>
-                    )}
-                </ul>
-            )}
+                            >
+                                <span className="min-w-0">
+                                    <span
+                                        className={cn(
+                                            "block truncate text-[13px]",
+                                            o.value === value && "font-semibold"
+                                        )}
+                                    >
+                                        {o.label}
+                                    </span>
+                                    {o.detalhe && (
+                                        <span className="text-text-muted block truncate text-[11px]">
+                                            {o.detalhe}
+                                        </span>
+                                    )}
+                                </span>
+                                <Check
+                                    size={15}
+                                    strokeWidth={2.5}
+                                    aria-hidden
+                                    className={cn(
+                                        "text-olive-text shrink-0",
+                                        o.value !== value && "invisible"
+                                    )}
+                                />
+                            </li>
+                        ))}
+                        {total > filtradas.length && (
+                            <li className="text-text-muted px-3 py-2 text-[11px]">
+                                Mostrando {filtradas.length} de {total}: digite para
+                                refinar
+                            </li>
+                        )}
+                    </ul>,
+                    document.body
+                )}
         </div>
     );
 }
