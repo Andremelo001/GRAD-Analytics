@@ -23,7 +23,7 @@ import { MapaTrajetoriaPageLazy } from "@/pages/trajetoria/MapaTrajetoriaPageLaz
 import { PorCursoTrajetoriaPage } from "@/pages/trajetoria/PorCursoTrajetoriaPage";
 
 // HashRouter (não BrowserRouter) de propósito: GitHub Pages é hospedagem
-// estática pura — um refresh em /PROGRAD-Analytics/qualidade daria 404
+// estática pura — um refresh em /GRAD-Analytics/qualidade daria 404
 // porque não existe esse arquivo no servidor. Com hash (/#/qualidade) o
 // navegador nunca manda essa rota pro servidor, só pro JS local.
 export const router = createHashRouter([

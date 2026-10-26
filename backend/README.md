@@ -1,6 +1,6 @@
-# PROGRAD Analytics — Backend
+# GRAD Analytics — Backend
 
-Pipeline Python (Poetry) do PROGRAD Analytics: baixa os dados do INEP, limpa,
+Pipeline Python (Poetry) do GRAD Analytics: baixa os dados do INEP, limpa,
 gera os CSVs e os JSONs do painel (um por campus) que o
 [frontend](../frontend/README.md) consome.
 
@@ -16,7 +16,7 @@ Pré-requisitos: **Python 3.12+** e **Poetry 2.x** instalados.
 
 ```bash
 # 1. Entrar no backend
-cd PROGRAD-Analytics/backend
+cd GRAD-Analytics/backend
 
 # 2. Criar o virtualenv e instalar tudo (runtime + grupo dev)
 poetry install
@@ -86,8 +86,8 @@ mesmo comportamento nos dois formatos.
 | `black` | `^24.4.2` |
 | `pre-commit` | `^3.7.1` |
 | `import-linter` | `^2.11` |
-| `pytest` · `pytest-cov` | testes |
-| `openpyxl` | só para gerar fixtures `.xlsx` nos testes (não é usado em runtime) |
+| `pytest` · `pytest-cov` | `^9.1.1` · `^7.1.0` (testes) |
+| `openpyxl` | `^3.1.5` — só para gerar fixtures `.xlsx` nos testes (não é usado em runtime) |
 
 `[tool.mypy]` usa `plugins = ["pydantic.mypy"]`.
 
@@ -224,7 +224,7 @@ poetry install
 $ cd backend
 $ poetry run pre-commit run --all-files    # black · ruff · mypy
 $ poetry run lint-imports                  # Contracts: 3 kept, 0 broken.
-$ poetry run pytest                        # 129 passed
+$ poetry run pytest                        # 142 passed
 ```
 
 ---
@@ -309,13 +309,13 @@ reprocessar CSVs de ~68 mil/2,7 milhões de linhas no browser:
 ```
 app/data/processed/dashboard/
 ├── index.json       # lista de campi: slug, nome, codigo_municipio, total_cursos, arquivo
-├── crateus.json     # ~260 KB
-├── fortaleza.json   # ~7,6 MB (103 cursos)
-├── quixada.json     # ~430 KB — o que o site mostra hoje
-├── russas.json      # ~270 KB
-├── sobral.json      # ~700 KB
-├── resumo_campi.json # ~125 KB: os cursos de todos os campi, resumidos (comparações entre campi e cursos)
-├── areas_qualidade/ # um JSON por área de avaliação dos cursos da UFC (~56): todos os cursos do Brasil na edição mais recente
+├── crateus.json     # ~340 KB
+├── fortaleza.json   # ~9 MB (103 cursos)
+├── quixada.json     # ~500 KB — o campus que o site abre por padrão
+├── russas.json      # ~380 KB
+├── sobral.json      # ~840 KB
+├── resumo_campi.json # ~270 KB: os cursos de todos os campi, resumidos (busca, comparações entre campi e cursos)
+├── areas_qualidade/ # um JSON por área de avaliação dos cursos da UFC (~57): todos os cursos do Brasil na edição mais recente
 │   ├── index.json   # slug, area_avaliacao, ano, total_cursos, arquivo
 │   └── sistemas-de-informacao.json …   # 10-400 KB cada, gravados compactos
 └── trajetoria_areas/ # um JSON por área CINE dos cursos da UFC (~90): a turma madura de cada curso do Brasil
@@ -337,8 +337,9 @@ poetry run python -m app.cmd dashboard   # só o dashboard (exige qualidade.csv 
 poetry run python -m app.cmd all         # roda os dois pipelines e o dashboard em seguida
 ```
 
-Tempo aproximado (medido): **~50s** para os 5 campi, mais da metade em
-Fortaleza — as médias nacionais e a distribuição por UF são calculadas curso a
+Tempo aproximado (medido): **cerca de 3 min** no total — os 5 campi e os
+arquivos das áreas (`areas_qualidade/`, `trajetoria_areas/`); nos campi, mais
+da metade é Fortaleza — as médias nacionais e a distribuição por UF são calculadas curso a
 curso sobre os ~2,7 milhões de linhas de `trajetoria.csv.gz`.
 
 Cada seção do JSON tem seu próprio arquivo em
@@ -349,12 +350,15 @@ estrutura, não uma seção):
 | Arquivo | Chave no JSON | Conteúdo |
 |---|---|---|
 | `domain/shared.py` | `escopo`, `cursos` | metadados da IES/campus e catálogo de cursos no escopo |
-| `domain/services/course_profile.py` | `curso_perfil` | **(A)** perfil por curso: KPIs, evolução do CPC, radar de notas padronizadas, funil por coorte, curva de sobrevivência |
+| `domain/services/course_profile.py` | `curso_perfil` | **(A)** perfil por curso: KPIs, evolução do CPC (com as 9 notas de cada ano), radar de notas padronizadas, funil por coorte, curva de sobrevivência |
 | `domain/services/course_comparison.py` | `comparacao_cursos` | **(B)** comparação entre cursos: ranking de CPC, tabela comparativa, notas por dimensão, evolução do CPC comparada |
-| `domain/services/trajectory_comparison.py` | `trajetoria_comparada` | **(C)** trajetória comparada: evasão por curso (alinhada por anos-desde-o-ingresso), heatmap de evasão anual, demanda de ingressantes |
-| `domain/services/campus_overview.py` | `campus` | **(D)** visão agregada do campus: KPIs totais, distribuição de cursos por faixa de CPC, tendência de ingressantes do campus por ano |
+| `domain/services/trajectory_comparison.py` | `trajetoria_comparada` | **(C)** trajetória comparada: evasão por curso (alinhada por anos-desde-o-ingresso), heatmap de evasão anual, demanda de ingressantes e de concluintes |
+| `domain/services/campus_overview.py` | `campus` | **(D)** visão agregada do campus: KPIs totais, distribuição de cursos por faixa de CPC, tendência de ingressantes e de concluintes do campus por ano |
 | `domain/services/national_benchmarks.py` | `medias_nacionais` | **(E)** médias nacionais do grupo de pares de cada curso, para comparar com A/C/D — ver abaixo |
 | `domain/services/alerts.py` | `alertas` | **(F)** alertas automáticos (heurísticas simples) sobre os cursos do campus — ver abaixo |
+| `domain/services/campus_summary.py` | — (`resumo_campi.json`) | resumo de cada curso de todos os campi num arquivo só — ver abaixo |
+| `domain/services/quality_areas.py` | — (`areas_qualidade/`) | todos os cursos do Brasil de cada área de avaliação — ver abaixo |
+| `domain/services/trajectory_areas.py` | — (`trajetoria_areas/`) | a turma madura de cada curso do Brasil por área CINE — ver abaixo |
 
 `build_dashboard.py` (em `application/use_cases/`) só orquestra: lê os CSVs +
 o `_meta.json` (via `DashboardSource.read_meta()`, exposto em `fontes` no
@@ -380,15 +384,19 @@ comparar) e decide como exibir.
 | `curva_sobrevivencia` | A5 / C1 | `nome_cine_area_geral` + `anos_desde_ingresso` (não ano calendário — alinha coortes de anos diferentes) |
 | `heatmap_evasao_anual` | C2 | `nome_cine_area_geral` + `ano_referencia` (ano calendário direto) |
 | `campus` | D | — (já agregado, calculado só com os cursos-pares das áreas do campus) |
-| `distribuicao_uf` | — (mapa "Presença no Brasil" da home) | `codigo_curso` do campus → `estados[]` por `sigla_uf` |
+| `distribuicao_uf` | — (mapa "Presença no Brasil" do Início) | `codigo_curso` do campus → `estados[]` por `sigla_uf` |
+| `ingressantes` | C3 | `codigo_curso` + `ano_ingresso` (média de ingressantes por curso-par: mesma área CINE, grau e modalidade) |
+| `concluintes` | `demanda_concluintes` | `codigo_curso` + `ano_referencia` (média de concluintes por curso-par no ano) |
+| `trajetoria_pares` | — (sem uso no painel hoje: era da comparação "Com o Brasil" da Trajetória, removida) | `codigo_curso` (evasão e conclusão dos cursos-pares na turma madura do curso) |
 
 Cada linha nacional também traz `quantidade_cursos_considerados`, pra
-transparência de quantos cursos entraram na média. **A1** (KPIs por curso),
-**A4** (funil por coorte) e **C3** (demanda de ingressantes) não têm
-contraparte nacional: são números absolutos (não comparáveis entre
-instituições de tamanhos diferentes) ou não têm um ponto de coorte alinhado
-nacionalmente — o front usa `curva_sobrevivencia` no mesmo
-`anos_desde_ingresso` do curso local para comparar de forma justa.
+transparência de quantos cursos entraram na média. **A1** (KPIs por curso) e
+**A4** (funil por coorte) não têm contraparte nacional: são números
+absolutos (não comparáveis entre instituições de tamanhos diferentes) ou não
+têm um ponto de coorte alinhado nacionalmente — o front usa
+`curva_sobrevivencia` no mesmo `anos_desde_ingresso` do curso local para
+comparar de forma justa. Ingressantes e concluintes entram como **média por
+curso-par** (`ingressantes`, `concluintes`), não como total.
 
 `distribuicao_uf` é a exceção de formato: um item por curso do campus, com
 os estados onde existe o **mesmo curso** — quantidade de cursos, ingressantes
@@ -402,8 +410,10 @@ da UF (`codigo_uf`, trajetória) vira sigla por `UF_SIGLAS` pra casar com
 
 **Curso a curso (A2/A3)**: `evolucao_cpc` traz também a participação no
 Enade de cada edição (`n_concluintes_inscritos`,
-`n_concluintes_participantes`, `taxa_participacao` em %), e `perfil_radar`
-traz o `ano` e o CPC/faixa/Enade da mesma avaliação das notas.
+`n_concluintes_participantes`, `taxa_participacao` em %) e as 9 notas
+padronizadas de cada componente naquele ano (a linha do tempo dos
+componentes, no Por curso); `perfil_radar` traz só a avaliação mais recente,
+com o `ano` e o CPC/faixa/Enade da mesma avaliação das notas.
 
 **Áreas de avaliação (`areas_qualidade/`)**: `domain/services/quality_areas.py` grava,
 para cada área de avaliação em que algum curso da UFC foi avaliado por último,
@@ -414,16 +424,26 @@ pela categoria administrativa do INEP) e calcula percentis no próprio front.
 Formato colunar (`colunas` + uma lista por curso, IES e municípios em
 dicionários à parte) e JSON compacto: a maior área (Administração, ~1.800
 cursos) fica com ~400 KB (~110 KB comprimido). Um arquivo por área, compartilhado pelos campi.
+A sigla da IES vem do INEP, que registra `"0"` para várias instituições sem
+sigla: valor sem letras vira `null` (`quality_areas.sigla_ies`), e o front
+mostra o nome.
+
+**Áreas CINE (`trajetoria_areas/`)**: `domain/services/trajectory_areas.py`
+grava, para cada área CINE dos cursos da UFC, **a turma madura de cada curso
+do Brasil** — IES, município, grau, modalidade, prazo, ano de ingresso,
+ingressantes e a curva (permanência, conclusão e desistência acumuladas, ano
+a ano). É o Mapa e o "entre cursos da mesma área" das Comparações da aba
+Trajetória. Mesmo formato colunar e compacto do `areas_qualidade/`.
 
 **Resumo dos campi (`resumo_campi.json`)**:
 `domain/services/campus_summary.py` resume cada curso de cada campus (área,
 ano, CPC, faixa, Enade, IDD e as 9 notas da avaliação mais recente, as
-edições do CPC em `historico`, e a conclusão e a evasão da turma mais
-recente) num arquivo só, pra comparar campi e cursos sem baixar o JSON de
-cada campus.
+edições do CPC em `historico`, e a turma madura em `trajetoria` — área CINE,
+grau, prazo, ingressantes e a curva) num arquivo só, pra busca e pra
+comparar campi e cursos sem baixar o JSON de cada campus.
 
-**Alertas automáticos (F)**: pensado para a tela inicial (a versão atual da
-home não exibe alertas; o bloco segue no JSON pras próximas páginas) —
+**Alertas automáticos (F)**: pensado para a tela inicial (o painel ainda não
+exibe alertas; o bloco segue no JSON pras próximas páginas) —
 `alertas.itens` é uma lista (pode vir vazia) de heurísticas já calculadas,
 cada uma com `tipo`, `severidade` (`atencao`/`critico`), `mensagem` (texto
 pronto, com decimal em pt-BR) e `cursos` (quais cursos motivaram o alerta):
@@ -451,7 +471,7 @@ e podem ser trocados **sem mexer em código** — copie `.env.example` para `.en
 | `TRAJETORIA_MIN_YEAR` / `TRAJETORIA_MAX_YEAR` | vazio (sem restrição) | idem, para a Trajetória — vazio processa todas as faixas da página |
 | `HTTP_MAX_RETRIES` / `HTTP_BACKOFF` | `3` / `2.0` | tentativas e espera (segundos, exponencial) em cada request ao INEP |
 | `HTTP_TIMEOUT` | `30.0` | timeout (segundos) de cada request |
-| `HTTP_USER_AGENT` | `PROGRAD-Analytics/0.1 (data pipeline)` | header enviado ao INEP |
+| `HTTP_USER_AGENT` | `GRAD-Analytics/0.1 (data pipeline)` | header enviado ao INEP |
 | `CSV_GZIP_THRESHOLD_MB` | `40` | acima disso o CSV final vira `.csv.gz` |
 | `LOG_LEVEL` | `INFO` | nível de log (`DEBUG`, `INFO`, `WARNING`, ...) |
 | `DASHBOARD_CODIGO_IES` | `583` (UFC) | código INEP da IES; cada campus dela vira um JSON em `dashboard/` |

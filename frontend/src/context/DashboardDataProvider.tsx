@@ -4,7 +4,7 @@ import { DashboardDataContext, ULTIMO_CAMPUS } from "@/context/dashboard-data-co
 import type { CampusIndex, CampusInfo, DashboardData } from "@/types/dashboard";
 
 // import.meta.env.BASE_URL já reflete o `base` do vite.config.ts (inclui o
-// prefixo /PROGRAD-Analytics/ quando buildado pro GitHub Pages) — assim o
+// prefixo /GRAD-Analytics/ quando buildado pro GitHub Pages) — assim o
 // fetch funciona igual em dev e em produção sem configuração extra.
 const DATA_DIR = `${import.meta.env.BASE_URL}data/dashboard/`;
 const CAMPUS_STORAGE_KEY = "prograd-campus";

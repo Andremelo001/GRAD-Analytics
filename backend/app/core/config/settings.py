@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     data_dir: Path = _APP_DIR / "data"
 
     http_timeout: float = 30.0
-    http_user_agent: str = "PROGRAD-Analytics/0.1 (data pipeline)"
+    http_user_agent: str = "GRAD-Analytics/0.1 (data pipeline)"
     http_max_retries: int = 3
     http_backoff: float = 2.0
 
