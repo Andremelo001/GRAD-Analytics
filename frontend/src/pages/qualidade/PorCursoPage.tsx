@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import { Card } from "@/components/cards/Card";
 import { ComponentesDumbbellCard } from "@/components/charts/qualidade/ComponentesDumbbellCard";
+import { ComponentesTempoCard } from "@/components/charts/qualidade/ComponentesTempoCard";
 import { ContribuicaoCard } from "@/components/charts/qualidade/ContribuicaoCard";
 import { OutrosCampiCard } from "@/components/charts/qualidade/OutrosCampiCard";
 import { CursoResumoCard } from "@/components/charts/qualidade/CursoResumoCard";
@@ -115,6 +116,14 @@ function PorCurso({ data }: { data: DashboardData }) {
                         />
                     </div>
                 </div>
+            )}
+            {/* cada componente do CPC ao longo das avaliações */}
+            {temNotas && (
+                <ComponentesTempoCard
+                    className="lg:col-span-12"
+                    curso={curso}
+                    nacional={data.medias_nacionais.perfil_radar}
+                />
             )}
             {/* embaixo, também lado a lado com a mesma altura: a participação
                 acompanha o "Curso × média nacional" (ou o aviso de sem CPC) */}

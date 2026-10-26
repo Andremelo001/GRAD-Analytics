@@ -37,6 +37,9 @@ const MARGEM_TELA = 16;
  * ``estreito``: no compacto, menor (e sem o ponto) no desktop estreito (cards
  * lado a lado), pra caber na linha de um título com seletor.
  *
+ * ``largo``: no compacto, mais largo (320px), pra rótulos longos caberem
+ * inteiros (ex.: os componentes do CPC).
+ *
  * ``faixa``: a versão em pílula da faixa escura, ao lado do seletor de campus
  * (Início) — mesma altura e desenho da barra de sub-abas. */
 export function CursoBusca({
@@ -49,6 +52,7 @@ export function CursoBusca({
     compacto = false,
     faixa = false,
     estreito = false,
+    largo = false,
 }: {
     label: string;
     cor: string;
@@ -59,6 +63,7 @@ export function CursoBusca({
     compacto?: boolean;
     faixa?: boolean;
     estreito?: boolean;
+    largo?: boolean;
 }) {
     const id = useId();
     const rootRef = useRef<HTMLDivElement>(null);
@@ -144,7 +149,8 @@ export function CursoBusca({
                             : compacto
                               ? cn(
                                     "bg-page h-8 w-[150px] max-w-full rounded-lg px-2.5",
-                                    estreito && "lg:max-xl:w-[108px]"
+                                    estreito && "lg:max-xl:w-[108px]",
+                                    largo && "w-[320px]"
                                 )
                               : "bg-page h-10 rounded-xl px-3"
                     )}
@@ -195,7 +201,8 @@ export function CursoBusca({
                               ? cn(
                                     "bg-page hover:bg-page/70 h-8 w-[150px] max-w-full gap-1.5 rounded-lg pr-2 pl-2.5",
                                     estreito &&
-                                        "lg:max-xl:w-[108px] lg:max-xl:gap-1 lg:max-xl:pl-2"
+                                        "lg:max-xl:w-[108px] lg:max-xl:gap-1 lg:max-xl:pl-2",
+                                    largo && "w-[320px]"
                                 )
                               : "bg-page hover:bg-page/70 h-10 w-full gap-2.5 rounded-xl px-3"
                     )}

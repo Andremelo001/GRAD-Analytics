@@ -61,6 +61,18 @@ export interface EvolucaoCpcPonto {
     n_concluintes_inscritos: number | null;
     n_concluintes_participantes: number | null;
     taxa_participacao: number | null;
+    // notas padronizadas (0-5) de cada componente do CPC naquele ano (as
+    // mesmas do PerfilRadar, que só tem o ano mais recente); opcionais em
+    // dados gerados antes delas
+    formacao_geral?: number | null;
+    componente_especifico?: number | null;
+    idd?: number | null;
+    organizacao_didatico_pedagogica?: number | null;
+    infraestrutura?: number | null;
+    oportunidade_ampliacao?: number | null;
+    mestres?: number | null;
+    doutores?: number | null;
+    regime_trabalho?: number | null;
 }
 
 /** As 9 notas padronizadas (escala 0-5) da avaliação mais recente do curso,

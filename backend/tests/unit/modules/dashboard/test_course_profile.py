@@ -13,6 +13,20 @@ def test_build_evolucao_cpc_has_one_row_per_year(scoped_data: ScopedData) -> Non
     assert curso_10[1]["cpc_continuo"] == 3.8
 
 
+def test_build_evolucao_cpc_has_component_scores_of_each_year(
+    scoped_data: ScopedData,
+) -> None:
+    rows = {
+        r["ano"]: r
+        for r in course_profile.build_evolucao_cpc(scoped_data)
+        if r["codigo_curso"] == 10
+    }
+    # a nota de cada edição (o radar fica só com a mais recente)
+    assert rows[2017]["formacao_geral"] == 3.0
+    assert rows[2019]["formacao_geral"] == 4.0
+    assert set(course_profile.RADAR_FIELDS) <= set(rows[2019])
+
+
 def test_build_evolucao_cpc_computes_enade_participation(
     scoped_data: ScopedData,
 ) -> None:

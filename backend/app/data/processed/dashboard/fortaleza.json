@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-10-25T19:03:27+00:00",
+  "gerado_em": "2026-10-26T02:38:16+00:00",
   "escopo": {
     "codigo_ies": 583,
     "nome_ies": "UNIVERSIDADE FEDERAL DO CEARÁ",
@@ -2196,7 +2196,16 @@
         "conceito_enade_continuo": 3.3574786186,
         "n_concluintes_inscritos": 107,
         "n_concluintes_participantes": 102,
-        "taxa_participacao": 95.3
+        "taxa_participacao": 95.3,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.8511634875,
+        "organizacao_didatico_pedagogica": 1.4786505837,
+        "infraestrutura": 3.216724106,
+        "oportunidade_ampliacao": 3.0150526281,
+        "mestres": 4.3903940887,
+        "doutores": 4.3647912886,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13965,
@@ -2208,7 +2217,16 @@
         "conceito_enade_continuo": 3.69,
         "n_concluintes_inscritos": 80,
         "n_concluintes_participantes": 76,
-        "taxa_participacao": 95.0
+        "taxa_participacao": 95.0,
+        "formacao_geral": 4.587,
+        "componente_especifico": 3.3921,
+        "idd": 2.547,
+        "organizacao_didatico_pedagogica": 1.521,
+        "infraestrutura": 2.703,
+        "oportunidade_ampliacao": 2.005,
+        "mestres": 4.736,
+        "doutores": 4.573,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13965,
@@ -2220,7 +2238,16 @@
         "conceito_enade_continuo": 4.222,
         "n_concluintes_inscritos": 83,
         "n_concluintes_participantes": 72,
-        "taxa_participacao": 86.7
+        "taxa_participacao": 86.7,
+        "formacao_geral": 4.913931814,
+        "componente_especifico": 3.990997514,
+        "idd": 3.096,
+        "organizacao_didatico_pedagogica": 1.127,
+        "infraestrutura": 1.547,
+        "oportunidade_ampliacao": 2.48,
+        "mestres": 4.727,
+        "doutores": 4.675,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13967,
@@ -2232,7 +2259,16 @@
         "conceito_enade_continuo": 4.0466263389,
         "n_concluintes_inscritos": 104,
         "n_concluintes_participantes": 76,
-        "taxa_participacao": 73.1
+        "taxa_participacao": 73.1,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.00655055,
+        "organizacao_didatico_pedagogica": 0.970492752,
+        "infraestrutura": 2.079294903,
+        "oportunidade_ampliacao": 1.680973226,
+        "mestres": 4.829059839,
+        "doutores": 4.743589759,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13967,
@@ -2244,7 +2280,16 @@
         "conceito_enade_continuo": 4.423,
         "n_concluintes_inscritos": 93,
         "n_concluintes_participantes": 79,
-        "taxa_participacao": 84.9
+        "taxa_participacao": 84.9,
+        "formacao_geral": 3.869,
+        "componente_especifico": 4.608,
+        "idd": 2.411,
+        "organizacao_didatico_pedagogica": 1.983,
+        "infraestrutura": 2.319,
+        "oportunidade_ampliacao": 2.206,
+        "mestres": 4.58,
+        "doutores": 4.302,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13968,
@@ -2256,7 +2301,16 @@
         "conceito_enade_continuo": 4.7267427444,
         "n_concluintes_inscritos": 104,
         "n_concluintes_participantes": 100,
-        "taxa_participacao": 96.2
+        "taxa_participacao": 96.2,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.8880632152,
+        "organizacao_didatico_pedagogica": 1.1438424742,
+        "infraestrutura": 2.7640589015,
+        "oportunidade_ampliacao": 2.2849124242,
+        "mestres": 4.6943573668,
+        "doutores": 3.8582375479,
+        "regime_trabalho": 4.9051724138
       },
       {
         "codigo_curso": 13968,
@@ -2268,7 +2322,16 @@
         "conceito_enade_continuo": 4.956091935,
         "n_concluintes_inscritos": 90,
         "n_concluintes_participantes": 84,
-        "taxa_participacao": 93.3
+        "taxa_participacao": 93.3,
+        "formacao_geral": 4.824367742,
+        "componente_especifico": 5.0,
+        "idd": 1.882567479,
+        "organizacao_didatico_pedagogica": 1.919528202,
+        "infraestrutura": 2.390959779,
+        "oportunidade_ampliacao": 2.776549561,
+        "mestres": 4.785247637,
+        "doutores": 4.148629352,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13968,
@@ -2280,7 +2343,16 @@
         "conceito_enade_continuo": 4.133,
         "n_concluintes_inscritos": 101,
         "n_concluintes_participantes": 68,
-        "taxa_participacao": 67.3
+        "taxa_participacao": 67.3,
+        "formacao_geral": 4.27016543,
+        "componente_especifico": 4.088171291,
+        "idd": 1.79082587,
+        "organizacao_didatico_pedagogica": 1.189559008,
+        "infraestrutura": 2.274077164,
+        "oportunidade_ampliacao": 2.49901872,
+        "mestres": 4.800724639,
+        "doutores": 4.057971015,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13969,
@@ -2292,7 +2364,16 @@
         "conceito_enade_continuo": 3.5176124573,
         "n_concluintes_inscritos": 121,
         "n_concluintes_participantes": 96,
-        "taxa_participacao": 79.3
+        "taxa_participacao": 79.3,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.0372366274,
+        "organizacao_didatico_pedagogica": 2.0955571744,
+        "infraestrutura": 2.6381792157,
+        "oportunidade_ampliacao": 2.4193969187,
+        "mestres": 4.7548076923,
+        "doutores": 3.8031674208,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13969,
@@ -2304,7 +2385,16 @@
         "conceito_enade_continuo": 3.673590184,
         "n_concluintes_inscritos": 91,
         "n_concluintes_participantes": 71,
-        "taxa_participacao": 78.0
+        "taxa_participacao": 78.0,
+        "formacao_geral": 4.27024768,
+        "componente_especifico": 3.474704353,
+        "idd": 2.126451474,
+        "organizacao_didatico_pedagogica": 1.985271726,
+        "infraestrutura": 2.436863001,
+        "oportunidade_ampliacao": 2.832014351,
+        "mestres": 4.572434815,
+        "doutores": 2.746479,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13969,
@@ -2316,7 +2406,16 @@
         "conceito_enade_continuo": 4.071,
         "n_concluintes_inscritos": 131,
         "n_concluintes_participantes": 93,
-        "taxa_participacao": 71.0
+        "taxa_participacao": 71.0,
+        "formacao_geral": 4.441041835,
+        "componente_especifico": 3.948823611,
+        "idd": 3.614050011,
+        "organizacao_didatico_pedagogica": 2.766932985,
+        "infraestrutura": 2.877059717,
+        "oportunidade_ampliacao": 3.118629326,
+        "mestres": 4.853658536,
+        "doutores": 3.414634145,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13970,
@@ -2328,7 +2427,16 @@
         "conceito_enade_continuo": 2.0584375858,
         "n_concluintes_inscritos": 62,
         "n_concluintes_participantes": 36,
-        "taxa_participacao": 58.1
+        "taxa_participacao": 58.1,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 0.177385863,
+        "organizacao_didatico_pedagogica": 1.5551966791,
+        "infraestrutura": 2.363777505,
+        "oportunidade_ampliacao": 2.2249757321,
+        "mestres": 4.8163452709,
+        "doutores": 4.0909090909,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13970,
@@ -2340,7 +2448,16 @@
         "conceito_enade_continuo": 2.67247344,
         "n_concluintes_inscritos": 72,
         "n_concluintes_participantes": 62,
-        "taxa_participacao": 86.1
+        "taxa_participacao": 86.1,
+        "formacao_geral": 2.49901318,
+        "componente_especifico": 2.730293527,
+        "idd": 2.192296052,
+        "organizacao_didatico_pedagogica": 1.94203417,
+        "infraestrutura": 2.464064148,
+        "oportunidade_ampliacao": 2.376358616,
+        "mestres": 5.0,
+        "doutores": 3.529412,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13970,
@@ -2352,7 +2469,16 @@
         "conceito_enade_continuo": 3.411,
         "n_concluintes_inscritos": 61,
         "n_concluintes_participantes": 45,
-        "taxa_participacao": 73.8
+        "taxa_participacao": 73.8,
+        "formacao_geral": 3.763381867,
+        "componente_especifico": 3.2941734,
+        "idd": 3.121536417,
+        "organizacao_didatico_pedagogica": 1.484375,
+        "infraestrutura": 2.081165675,
+        "oportunidade_ampliacao": 2.361453202,
+        "mestres": 4.535519129,
+        "doutores": 3.93442623,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13972,
@@ -2364,7 +2490,16 @@
         "conceito_enade_continuo": 3.3321425541,
         "n_concluintes_inscritos": 12,
         "n_concluintes_participantes": 8,
-        "taxa_participacao": 66.7
+        "taxa_participacao": 66.7,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 3.704416275,
+        "organizacao_didatico_pedagogica": 0.753435818,
+        "infraestrutura": 2.560592255,
+        "oportunidade_ampliacao": 1.43168814,
+        "mestres": 5.0,
+        "doutores": 4.427860597,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13974,
@@ -2376,7 +2511,16 @@
         "conceito_enade_continuo": 3.4278711648,
         "n_concluintes_inscritos": 47,
         "n_concluintes_participantes": 37,
-        "taxa_participacao": 78.7
+        "taxa_participacao": 78.7,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.315407515,
+        "organizacao_didatico_pedagogica": 1.716631803,
+        "infraestrutura": 2.877862013,
+        "oportunidade_ampliacao": 2.958593741,
+        "mestres": 4.761904762,
+        "doutores": 4.851851761,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13974,
@@ -2388,7 +2532,16 @@
         "conceito_enade_continuo": 3.835,
         "n_concluintes_inscritos": 64,
         "n_concluintes_participantes": 54,
-        "taxa_participacao": 84.4
+        "taxa_participacao": 84.4,
+        "formacao_geral": 3.856,
+        "componente_especifico": 3.828,
+        "idd": 2.145,
+        "organizacao_didatico_pedagogica": 2.204,
+        "infraestrutura": 3.141,
+        "oportunidade_ampliacao": 2.171,
+        "mestres": 4.465,
+        "doutores": 4.245,
+        "regime_trabalho": 4.923
       },
       {
         "codigo_curso": 13976,
@@ -2400,7 +2553,16 @@
         "conceito_enade_continuo": 2.9261580439,
         "n_concluintes_inscritos": 58,
         "n_concluintes_participantes": 52,
-        "taxa_participacao": 89.7
+        "taxa_participacao": 89.7,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 0.538983941,
+        "organizacao_didatico_pedagogica": 2.428593206,
+        "infraestrutura": 3.30223434,
+        "oportunidade_ampliacao": 2.356861556,
+        "mestres": 4.76089994,
+        "doutores": 4.74683553,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13976,
@@ -2412,7 +2574,16 @@
         "conceito_enade_continuo": 3.561,
         "n_concluintes_inscritos": 75,
         "n_concluintes_participantes": 65,
-        "taxa_participacao": 86.7
+        "taxa_participacao": 86.7,
+        "formacao_geral": 3.456,
+        "componente_especifico": 3.596,
+        "idd": 2.314,
+        "organizacao_didatico_pedagogica": 2.472,
+        "infraestrutura": 3.149,
+        "oportunidade_ampliacao": 2.698,
+        "mestres": 4.327,
+        "doutores": 4.462,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13977,
@@ -2424,7 +2595,16 @@
         "conceito_enade_continuo": 2.8414717424,
         "n_concluintes_inscritos": 18,
         "n_concluintes_participantes": 16,
-        "taxa_participacao": 88.9
+        "taxa_participacao": 88.9,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.101327896,
+        "organizacao_didatico_pedagogica": 2.863555353,
+        "infraestrutura": 2.954348729,
+        "oportunidade_ampliacao": 2.084989698,
+        "mestres": 3.88333421,
+        "doutores": 4.180952543,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13980,
@@ -2436,7 +2616,16 @@
         "conceito_enade_continuo": 4.4466134013,
         "n_concluintes_inscritos": 46,
         "n_concluintes_participantes": 44,
-        "taxa_participacao": 95.7
+        "taxa_participacao": 95.7,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.695523977,
+        "organizacao_didatico_pedagogica": 2.75483957,
+        "infraestrutura": 3.221225596,
+        "oportunidade_ampliacao": 3.396577303,
+        "mestres": 4.900568276,
+        "doutores": 4.375,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13980,
@@ -2448,7 +2637,16 @@
         "conceito_enade_continuo": 3.324,
         "n_concluintes_inscritos": 34,
         "n_concluintes_participantes": 32,
-        "taxa_participacao": 94.1
+        "taxa_participacao": 94.1,
+        "formacao_geral": 3.325,
+        "componente_especifico": 3.324,
+        "idd": 2.627,
+        "organizacao_didatico_pedagogica": 2.627,
+        "infraestrutura": 3.111,
+        "oportunidade_ampliacao": 3.169,
+        "mestres": 4.826,
+        "doutores": 4.347,
+        "regime_trabalho": 4.906
       },
       {
         "codigo_curso": 13982,
@@ -2460,7 +2658,16 @@
         "conceito_enade_continuo": 3.9465496527,
         "n_concluintes_inscritos": 28,
         "n_concluintes_participantes": 12,
-        "taxa_participacao": 42.9
+        "taxa_participacao": 42.9,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.125327587,
+        "organizacao_didatico_pedagogica": 2.582618301,
+        "infraestrutura": 1.146217518,
+        "oportunidade_ampliacao": 1.629650233,
+        "mestres": 4.725490219,
+        "doutores": 4.80392158,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13982,
@@ -2472,7 +2679,16 @@
         "conceito_enade_continuo": 3.703,
         "n_concluintes_inscritos": 7,
         "n_concluintes_participantes": 4,
-        "taxa_participacao": 57.1
+        "taxa_participacao": 57.1,
+        "formacao_geral": 2.405,
+        "componente_especifico": 4.136,
+        "idd": 2.047,
+        "organizacao_didatico_pedagogica": 1.379,
+        "infraestrutura": 1.066,
+        "oportunidade_ampliacao": 1.886,
+        "mestres": 4.2,
+        "doutores": 4.333,
+        "regime_trabalho": 4.811
       },
       {
         "codigo_curso": 13984,
@@ -2484,7 +2700,16 @@
         "conceito_enade_continuo": 3.0108361073,
         "n_concluintes_inscritos": 51,
         "n_concluintes_participantes": 43,
-        "taxa_participacao": 84.3
+        "taxa_participacao": 84.3,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.534154654,
+        "organizacao_didatico_pedagogica": 1.998996549,
+        "infraestrutura": 1.87645098,
+        "oportunidade_ampliacao": 1.784433653,
+        "mestres": 4.885057211,
+        "doutores": 4.712643623,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13984,
@@ -2496,7 +2721,16 @@
         "conceito_enade_continuo": 4.203,
         "n_concluintes_inscritos": 74,
         "n_concluintes_participantes": 66,
-        "taxa_participacao": 89.2
+        "taxa_participacao": 89.2,
+        "formacao_geral": 4.075,
+        "componente_especifico": 4.246,
+        "idd": 2.611,
+        "organizacao_didatico_pedagogica": 2.298,
+        "infraestrutura": 2.219,
+        "oportunidade_ampliacao": 2.203,
+        "mestres": 4.282,
+        "doutores": 4.23,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13986,
@@ -2508,7 +2742,16 @@
         "conceito_enade_continuo": 4.3773021698,
         "n_concluintes_inscritos": 54,
         "n_concluintes_participantes": 47,
-        "taxa_participacao": 87.0
+        "taxa_participacao": 87.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 3.9932629665,
+        "organizacao_didatico_pedagogica": 1.7291059722,
+        "infraestrutura": 2.1721910798,
+        "oportunidade_ampliacao": 2.4649438347,
+        "mestres": 4.5467032967,
+        "doutores": 4.1313559322,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13986,
@@ -2520,7 +2763,16 @@
         "conceito_enade_continuo": 4.881510258,
         "n_concluintes_inscritos": 84,
         "n_concluintes_participantes": 83,
-        "taxa_participacao": 98.8
+        "taxa_participacao": 98.8,
+        "formacao_geral": 4.830345776,
+        "componente_especifico": 4.898565085,
+        "idd": 2.491260473,
+        "organizacao_didatico_pedagogica": 1.860650034,
+        "infraestrutura": 2.306154482,
+        "oportunidade_ampliacao": 2.314450556,
+        "mestres": 4.853846303,
+        "doutores": 4.0,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13986,
@@ -2532,7 +2784,16 @@
         "conceito_enade_continuo": 3.823,
         "n_concluintes_inscritos": 87,
         "n_concluintes_participantes": 83,
-        "taxa_participacao": 95.4
+        "taxa_participacao": 95.4,
+        "formacao_geral": 3.698621991,
+        "componente_especifico": 3.86574741,
+        "idd": 1.563478001,
+        "organizacao_didatico_pedagogica": 2.114092549,
+        "infraestrutura": 2.343966635,
+        "oportunidade_ampliacao": 2.792528841,
+        "mestres": 4.24863388,
+        "doutores": 3.68852459,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13987,
@@ -2544,7 +2805,16 @@
         "conceito_enade_continuo": 4.3156200661,
         "n_concluintes_inscritos": 128,
         "n_concluintes_participantes": 119,
-        "taxa_participacao": 93.0
+        "taxa_participacao": 93.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.607417464,
+        "organizacao_didatico_pedagogica": 1.703296886,
+        "infraestrutura": 2.248943549,
+        "oportunidade_ampliacao": 2.910014878,
+        "mestres": 4.878542516,
+        "doutores": 4.119230824,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13987,
@@ -2556,7 +2826,16 @@
         "conceito_enade_continuo": 4.441,
         "n_concluintes_inscritos": 126,
         "n_concluintes_participantes": 116,
-        "taxa_participacao": 92.1
+        "taxa_participacao": 92.1,
+        "formacao_geral": 4.695,
+        "componente_especifico": 4.3565,
+        "idd": 2.146,
+        "organizacao_didatico_pedagogica": 2.449,
+        "infraestrutura": 2.31,
+        "oportunidade_ampliacao": 2.747,
+        "mestres": 4.054,
+        "doutores": 3.909,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13987,
@@ -2568,7 +2847,16 @@
         "conceito_enade_continuo": 4.642,
         "n_concluintes_inscritos": 102,
         "n_concluintes_participantes": 95,
-        "taxa_participacao": 93.1
+        "taxa_participacao": 93.1,
+        "formacao_geral": 4.410661443,
+        "componente_especifico": 4.718462791,
+        "idd": 3.273,
+        "organizacao_didatico_pedagogica": 2.609,
+        "infraestrutura": 2.557,
+        "oportunidade_ampliacao": 2.794,
+        "mestres": 4.779,
+        "doutores": 4.412,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13988,
@@ -2580,7 +2868,16 @@
         "conceito_enade_continuo": 4.3734502633,
         "n_concluintes_inscritos": 153,
         "n_concluintes_participantes": 147,
-        "taxa_participacao": 96.1
+        "taxa_participacao": 96.1,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.205785751,
+        "organizacao_didatico_pedagogica": 1.086500767,
+        "infraestrutura": 2.134568192,
+        "oportunidade_ampliacao": 2.585005409,
+        "mestres": 4.79640743,
+        "doutores": 4.431137741,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13988,
@@ -2592,7 +2889,16 @@
         "conceito_enade_continuo": 4.246,
         "n_concluintes_inscritos": 124,
         "n_concluintes_participantes": 112,
-        "taxa_participacao": 90.3
+        "taxa_participacao": 90.3,
+        "formacao_geral": 4.262,
+        "componente_especifico": 4.2407,
+        "idd": 2.542,
+        "organizacao_didatico_pedagogica": 1.62,
+        "infraestrutura": 2.556,
+        "oportunidade_ampliacao": 2.352,
+        "mestres": 4.562,
+        "doutores": 4.02,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13988,
@@ -2604,7 +2910,16 @@
         "conceito_enade_continuo": 4.489,
         "n_concluintes_inscritos": 130,
         "n_concluintes_participantes": 119,
-        "taxa_participacao": 91.5
+        "taxa_participacao": 91.5,
+        "formacao_geral": 4.163244245,
+        "componente_especifico": 4.597914834,
+        "idd": 4.066,
+        "organizacao_didatico_pedagogica": 1.644,
+        "infraestrutura": 2.027,
+        "oportunidade_ampliacao": 2.919,
+        "mestres": 4.614,
+        "doutores": 4.191,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13989,
@@ -2616,7 +2931,16 @@
         "conceito_enade_continuo": 3.3236847128,
         "n_concluintes_inscritos": 88,
         "n_concluintes_participantes": 72,
-        "taxa_participacao": 81.8
+        "taxa_participacao": 81.8,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.296800137,
+        "organizacao_didatico_pedagogica": 1.41877594,
+        "infraestrutura": 1.848163692,
+        "oportunidade_ampliacao": 2.568863452,
+        "mestres": 4.810267936,
+        "doutores": 4.404761791,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13989,
@@ -2628,7 +2952,16 @@
         "conceito_enade_continuo": 3.617,
         "n_concluintes_inscritos": 100,
         "n_concluintes_participantes": 92,
-        "taxa_participacao": 92.0
+        "taxa_participacao": 92.0,
+        "formacao_geral": 4.16,
+        "componente_especifico": 3.4369,
+        "idd": 2.721,
+        "organizacao_didatico_pedagogica": 1.283,
+        "infraestrutura": 1.97,
+        "oportunidade_ampliacao": 2.469,
+        "mestres": 4.127,
+        "doutores": 3.75,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13989,
@@ -2640,7 +2973,16 @@
         "conceito_enade_continuo": 3.202,
         "n_concluintes_inscritos": 95,
         "n_concluintes_participantes": 83,
-        "taxa_participacao": 87.4
+        "taxa_participacao": 87.4,
+        "formacao_geral": 3.597419983,
+        "componente_especifico": 3.069631467,
+        "idd": 1.243,
+        "organizacao_didatico_pedagogica": 1.977,
+        "infraestrutura": 2.604,
+        "oportunidade_ampliacao": 3.468,
+        "mestres": 4.231,
+        "doutores": 4.145,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13990,
@@ -2652,7 +2994,16 @@
         "conceito_enade_continuo": 3.4839153423,
         "n_concluintes_inscritos": 93,
         "n_concluintes_participantes": 69,
-        "taxa_participacao": 74.2
+        "taxa_participacao": 74.2,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.163174629,
+        "organizacao_didatico_pedagogica": 1.468750446,
+        "infraestrutura": 1.779102824,
+        "oportunidade_ampliacao": 3.077187869,
+        "mestres": 4.662835091,
+        "doutores": 4.344827533,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13990,
@@ -2664,7 +3015,16 @@
         "conceito_enade_continuo": 3.674,
         "n_concluintes_inscritos": 111,
         "n_concluintes_participantes": 102,
-        "taxa_participacao": 91.9
+        "taxa_participacao": 91.9,
+        "formacao_geral": 4.172,
+        "componente_especifico": 3.5084,
+        "idd": 2.321,
+        "organizacao_didatico_pedagogica": 1.534,
+        "infraestrutura": 1.823,
+        "oportunidade_ampliacao": 2.96,
+        "mestres": 3.76,
+        "doutores": 3.536,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13990,
@@ -2676,7 +3036,16 @@
         "conceito_enade_continuo": 4.146,
         "n_concluintes_inscritos": 98,
         "n_concluintes_participantes": 78,
-        "taxa_participacao": 79.6
+        "taxa_participacao": 79.6,
+        "formacao_geral": 4.009091372,
+        "componente_especifico": 4.191606332,
+        "idd": 3.413,
+        "organizacao_didatico_pedagogica": 1.56,
+        "infraestrutura": 1.924,
+        "oportunidade_ampliacao": 3.143,
+        "mestres": 4.459,
+        "doutores": 4.144,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13991,
@@ -2688,7 +3057,16 @@
         "conceito_enade_continuo": 3.8294270277,
         "n_concluintes_inscritos": 47,
         "n_concluintes_participantes": 46,
-        "taxa_participacao": 97.9
+        "taxa_participacao": 97.9,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 3.067968845,
+        "organizacao_didatico_pedagogica": 1.727773662,
+        "infraestrutura": 1.808855183,
+        "oportunidade_ampliacao": 2.379448754,
+        "mestres": 4.690475545,
+        "doutores": 4.464285672,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13991,
@@ -2700,7 +3078,16 @@
         "conceito_enade_continuo": 3.586,
         "n_concluintes_inscritos": 62,
         "n_concluintes_participantes": 56,
-        "taxa_participacao": 90.3
+        "taxa_participacao": 90.3,
+        "formacao_geral": 3.516,
+        "componente_especifico": 3.6106,
+        "idd": 2.399,
+        "organizacao_didatico_pedagogica": 1.384,
+        "infraestrutura": 2.062,
+        "oportunidade_ampliacao": 2.582,
+        "mestres": 4.399,
+        "doutores": 4.009,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13991,
@@ -2712,7 +3099,16 @@
         "conceito_enade_continuo": 3.008,
         "n_concluintes_inscritos": 79,
         "n_concluintes_participantes": 74,
-        "taxa_participacao": 93.7
+        "taxa_participacao": 93.7,
+        "formacao_geral": 3.22895103,
+        "componente_especifico": 2.934682055,
+        "idd": 1.191,
+        "organizacao_didatico_pedagogica": 0.816,
+        "infraestrutura": 1.568,
+        "oportunidade_ampliacao": 2.68,
+        "mestres": 4.842,
+        "doutores": 4.353,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13993,
@@ -2724,7 +3120,16 @@
         "conceito_enade_continuo": 3.2889898987,
         "n_concluintes_inscritos": 65,
         "n_concluintes_participantes": 60,
-        "taxa_participacao": 92.3
+        "taxa_participacao": 92.3,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.61354053,
+        "organizacao_didatico_pedagogica": 1.110634644,
+        "infraestrutura": 1.905368693,
+        "oportunidade_ampliacao": 1.725204456,
+        "mestres": 4.558558869,
+        "doutores": 4.649649527,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13993,
@@ -2736,7 +3141,16 @@
         "conceito_enade_continuo": 2.977,
         "n_concluintes_inscritos": 50,
         "n_concluintes_participantes": 49,
-        "taxa_participacao": 98.0
+        "taxa_participacao": 98.0,
+        "formacao_geral": 3.751,
+        "componente_especifico": 2.7188,
+        "idd": 2.248,
+        "organizacao_didatico_pedagogica": 0.97,
+        "infraestrutura": 0.706,
+        "oportunidade_ampliacao": 1.643,
+        "mestres": 2.644,
+        "doutores": 3.8,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13993,
@@ -2748,7 +3162,16 @@
         "conceito_enade_continuo": 2.736,
         "n_concluintes_inscritos": 77,
         "n_concluintes_participantes": 70,
-        "taxa_participacao": 90.9
+        "taxa_participacao": 90.9,
+        "formacao_geral": 2.603039074,
+        "componente_especifico": 2.780629889,
+        "idd": 1.683,
+        "organizacao_didatico_pedagogica": 1.099,
+        "infraestrutura": 1.308,
+        "oportunidade_ampliacao": 2.096,
+        "mestres": 3.611,
+        "doutores": 3.894,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13994,
@@ -2760,7 +3183,16 @@
         "conceito_enade_continuo": 4.8728122711,
         "n_concluintes_inscritos": 25,
         "n_concluintes_participantes": 24,
-        "taxa_participacao": 96.0
+        "taxa_participacao": 96.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.8169386372,
+        "organizacao_didatico_pedagogica": 1.6005748762,
+        "infraestrutura": 2.3949787706,
+        "oportunidade_ampliacao": 3.1544219929,
+        "mestres": 4.776674938,
+        "doutores": 4.6703296703,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13994,
@@ -2772,7 +3204,16 @@
         "conceito_enade_continuo": 5.0,
         "n_concluintes_inscritos": 71,
         "n_concluintes_participantes": 71,
-        "taxa_participacao": 100.0
+        "taxa_participacao": 100.0,
+        "formacao_geral": 5.0,
+        "componente_especifico": 5.0,
+        "idd": 2.903,
+        "organizacao_didatico_pedagogica": 3.022,
+        "infraestrutura": 1.658,
+        "oportunidade_ampliacao": 2.839,
+        "mestres": 4.668,
+        "doutores": 4.285,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13994,
@@ -2784,7 +3225,16 @@
         "conceito_enade_continuo": 4.45,
         "n_concluintes_inscritos": 62,
         "n_concluintes_participantes": 62,
-        "taxa_participacao": 100.0
+        "taxa_participacao": 100.0,
+        "formacao_geral": 4.87640018,
+        "componente_especifico": 4.307654111,
+        "idd": 2.645,
+        "organizacao_didatico_pedagogica": 3.845,
+        "infraestrutura": 3.303,
+        "oportunidade_ampliacao": 3.459,
+        "mestres": 4.778,
+        "doutores": 4.353,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13995,
@@ -2796,7 +3246,16 @@
         "conceito_enade_continuo": 4.2746953964,
         "n_concluintes_inscritos": 62,
         "n_concluintes_participantes": 61,
-        "taxa_participacao": 98.4
+        "taxa_participacao": 98.4,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.5513990762,
+        "organizacao_didatico_pedagogica": 1.4259263001,
+        "infraestrutura": 2.5972448059,
+        "oportunidade_ampliacao": 3.2050076534,
+        "mestres": 4.5324675325,
+        "doutores": 4.5,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13995,
@@ -2808,7 +3267,16 @@
         "conceito_enade_continuo": 5.0,
         "n_concluintes_inscritos": 76,
         "n_concluintes_participantes": 74,
-        "taxa_participacao": 97.4
+        "taxa_participacao": 97.4,
+        "formacao_geral": 5.0,
+        "componente_especifico": 5.0,
+        "idd": 2.793,
+        "organizacao_didatico_pedagogica": 1.712,
+        "infraestrutura": 2.722,
+        "oportunidade_ampliacao": 2.73,
+        "mestres": 4.446,
+        "doutores": 4.22,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13995,
@@ -2820,7 +3288,16 @@
         "conceito_enade_continuo": 4.926,
         "n_concluintes_inscritos": 100,
         "n_concluintes_participantes": 98,
-        "taxa_participacao": 98.0
+        "taxa_participacao": 98.0,
+        "formacao_geral": 4.845367745,
+        "componente_especifico": 4.952713483,
+        "idd": 3.997,
+        "organizacao_didatico_pedagogica": 1.258,
+        "infraestrutura": 1.774,
+        "oportunidade_ampliacao": 2.443,
+        "mestres": 4.551,
+        "doutores": 4.541,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13996,
@@ -2832,7 +3309,16 @@
         "conceito_enade_continuo": 3.3885495663,
         "n_concluintes_inscritos": 131,
         "n_concluintes_participantes": 126,
-        "taxa_participacao": 96.2
+        "taxa_participacao": 96.2,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.9249107163,
+        "organizacao_didatico_pedagogica": 2.8481524642,
+        "infraestrutura": 2.6567954387,
+        "oportunidade_ampliacao": 3.4086207686,
+        "mestres": 4.9150535,
+        "doutores": 4.1352497969,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13996,
@@ -2844,7 +3330,16 @@
         "conceito_enade_continuo": 4.323,
         "n_concluintes_inscritos": 166,
         "n_concluintes_participantes": 163,
-        "taxa_participacao": 98.2
+        "taxa_participacao": 98.2,
+        "formacao_geral": 4.472,
+        "componente_especifico": 4.2736,
+        "idd": 3.414,
+        "organizacao_didatico_pedagogica": 2.043,
+        "infraestrutura": 1.957,
+        "oportunidade_ampliacao": 3.025,
+        "mestres": 4.699,
+        "doutores": 3.934,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13996,
@@ -2856,7 +3351,16 @@
         "conceito_enade_continuo": 3.97,
         "n_concluintes_inscritos": 164,
         "n_concluintes_participantes": 162,
-        "taxa_participacao": 98.8
+        "taxa_participacao": 98.8,
+        "formacao_geral": 4.439853557,
+        "componente_especifico": 3.812949216,
+        "idd": 2.439,
+        "organizacao_didatico_pedagogica": 2.329,
+        "infraestrutura": 2.768,
+        "oportunidade_ampliacao": 2.916,
+        "mestres": 4.835,
+        "doutores": 4.313,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13997,
@@ -2868,7 +3372,16 @@
         "conceito_enade_continuo": 3.6670570374,
         "n_concluintes_inscritos": 41,
         "n_concluintes_participantes": 39,
-        "taxa_participacao": 95.1
+        "taxa_participacao": 95.1,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.0822584875,
+        "organizacao_didatico_pedagogica": 1.429211147,
+        "infraestrutura": 2.7068602772,
+        "oportunidade_ampliacao": 3.347081623,
+        "mestres": 4.7878359264,
+        "doutores": 4.504950495,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13997,
@@ -2880,7 +3393,16 @@
         "conceito_enade_continuo": 3.905,
         "n_concluintes_inscritos": 81,
         "n_concluintes_participantes": 76,
-        "taxa_participacao": 93.8
+        "taxa_participacao": 93.8,
+        "formacao_geral": 4.249,
+        "componente_especifico": 3.7911,
+        "idd": 2.329,
+        "organizacao_didatico_pedagogica": 2.226,
+        "infraestrutura": 1.87,
+        "oportunidade_ampliacao": 3.205,
+        "mestres": 4.693,
+        "doutores": 4.189,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13997,
@@ -2892,7 +3414,16 @@
         "conceito_enade_continuo": 4.247,
         "n_concluintes_inscritos": 72,
         "n_concluintes_participantes": 72,
-        "taxa_participacao": 100.0
+        "taxa_participacao": 100.0,
+        "formacao_geral": 4.805249375,
+        "componente_especifico": 4.06064111,
+        "idd": 2.813,
+        "organizacao_didatico_pedagogica": 3.276,
+        "infraestrutura": 3.69,
+        "oportunidade_ampliacao": 3.841,
+        "mestres": 4.83,
+        "doutores": 4.453,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13998,
@@ -2904,7 +3435,16 @@
         "conceito_enade_continuo": 4.9803009033,
         "n_concluintes_inscritos": 110,
         "n_concluintes_participantes": 68,
-        "taxa_participacao": 61.8
+        "taxa_participacao": 61.8,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.7598488163,
+        "organizacao_didatico_pedagogica": 1.6511538202,
+        "infraestrutura": 3.1367813466,
+        "oportunidade_ampliacao": 3.1103741157,
+        "mestres": 4.6014492754,
+        "doutores": 3.6684782609,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13998,
@@ -2916,7 +3456,16 @@
         "conceito_enade_continuo": 4.606839996,
         "n_concluintes_inscritos": 107,
         "n_concluintes_participantes": 83,
-        "taxa_participacao": 77.6
+        "taxa_participacao": 77.6,
+        "formacao_geral": 4.508642975,
+        "componente_especifico": 4.639572337,
+        "idd": 2.50841447,
+        "organizacao_didatico_pedagogica": 2.345611268,
+        "infraestrutura": 3.037255606,
+        "oportunidade_ampliacao": 3.009773615,
+        "mestres": 4.602272735,
+        "doutores": 3.125,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13998,
@@ -2928,7 +3477,16 @@
         "conceito_enade_continuo": 4.336,
         "n_concluintes_inscritos": 146,
         "n_concluintes_participantes": 117,
-        "taxa_participacao": 80.1
+        "taxa_participacao": 80.1,
+        "formacao_geral": 4.335907853,
+        "componente_especifico": 4.336104812,
+        "idd": 3.296390845,
+        "organizacao_didatico_pedagogica": 1.581444681,
+        "infraestrutura": 2.374226208,
+        "oportunidade_ampliacao": 2.814821077,
+        "mestres": 4.69331873,
+        "doutores": 3.31325301,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 14000,
@@ -2940,7 +3498,16 @@
         "conceito_enade_continuo": 4.6162125825,
         "n_concluintes_inscritos": 52,
         "n_concluintes_participantes": 27,
-        "taxa_participacao": 51.9
+        "taxa_participacao": 51.9,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.03843832,
+        "organizacao_didatico_pedagogica": 2.287678879,
+        "infraestrutura": 2.846702258,
+        "oportunidade_ampliacao": 2.647301777,
+        "mestres": 5.0,
+        "doutores": 4.324324429,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 14000,
@@ -2952,7 +3519,16 @@
         "conceito_enade_continuo": 4.526,
         "n_concluintes_inscritos": 80,
         "n_concluintes_participantes": 52,
-        "taxa_participacao": 65.0
+        "taxa_participacao": 65.0,
+        "formacao_geral": 4.204,
+        "componente_especifico": 4.633,
+        "idd": 2.791,
+        "organizacao_didatico_pedagogica": 3.242,
+        "infraestrutura": 2.294,
+        "oportunidade_ampliacao": 3.152,
+        "mestres": 4.611,
+        "doutores": 4.083,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 14002,
@@ -2964,7 +3540,16 @@
         "conceito_enade_continuo": 4.0584506989,
         "n_concluintes_inscritos": 34,
         "n_concluintes_participantes": 32,
-        "taxa_participacao": 94.1
+        "taxa_participacao": 94.1,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.8500488188,
+        "organizacao_didatico_pedagogica": 2.2003051861,
+        "infraestrutura": 3.1063982033,
+        "oportunidade_ampliacao": 2.7984998374,
+        "mestres": 5.0,
+        "doutores": 4.1666666667,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 14002,
@@ -2976,7 +3561,16 @@
         "conceito_enade_continuo": 4.169014307,
         "n_concluintes_inscritos": 42,
         "n_concluintes_participantes": 35,
-        "taxa_participacao": 83.3
+        "taxa_participacao": 83.3,
+        "formacao_geral": 3.488833269,
+        "componente_especifico": 4.39574132,
+        "idd": 1.990401274,
+        "organizacao_didatico_pedagogica": 3.669029828,
+        "infraestrutura": 3.703069581,
+        "oportunidade_ampliacao": 3.251619431,
+        "mestres": 4.142857366,
+        "doutores": 2.6785715,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 14002,
@@ -2988,7 +3582,16 @@
         "conceito_enade_continuo": 3.907,
         "n_concluintes_inscritos": 65,
         "n_concluintes_participantes": 43,
-        "taxa_participacao": 66.2
+        "taxa_participacao": 66.2,
+        "formacao_geral": 4.383761672,
+        "componente_especifico": 3.749380115,
+        "idd": 0.79879046,
+        "organizacao_didatico_pedagogica": 2.948387096,
+        "infraestrutura": 2.73546627,
+        "oportunidade_ampliacao": 3.578945148,
+        "mestres": 4.487603304,
+        "doutores": 3.636363635,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 23947,
@@ -3000,7 +3603,16 @@
         "conceito_enade_continuo": 3.7554311752,
         "n_concluintes_inscritos": 35,
         "n_concluintes_participantes": 30,
-        "taxa_participacao": 85.7
+        "taxa_participacao": 85.7,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 0.8093355272,
+        "organizacao_didatico_pedagogica": 2.0966764082,
+        "infraestrutura": 1.300454855,
+        "oportunidade_ampliacao": 2.8403043715,
+        "mestres": 4.3961352657,
+        "doutores": 3.6956521739,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 23947,
@@ -3012,7 +3624,16 @@
         "conceito_enade_continuo": 4.730822923,
         "n_concluintes_inscritos": 72,
         "n_concluintes_participantes": 58,
-        "taxa_participacao": 80.6
+        "taxa_participacao": 80.6,
+        "formacao_geral": 4.340279389,
+        "componente_especifico": 4.861004101,
+        "idd": 2.573110804,
+        "organizacao_didatico_pedagogica": 2.93411391,
+        "infraestrutura": 2.520423677,
+        "oportunidade_ampliacao": 2.61901112,
+        "mestres": 4.230769,
+        "doutores": 3.717949,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 23947,
@@ -3024,7 +3645,16 @@
         "conceito_enade_continuo": 4.218,
         "n_concluintes_inscritos": 87,
         "n_concluintes_participantes": 67,
-        "taxa_participacao": 77.0
+        "taxa_participacao": 77.0,
+        "formacao_geral": 4.377515155,
+        "componente_especifico": 4.16536767,
+        "idd": 3.391648671,
+        "organizacao_didatico_pedagogica": 3.153337819,
+        "infraestrutura": 2.076822005,
+        "oportunidade_ampliacao": 3.03346401,
+        "mestres": 3.07692308,
+        "doutores": 3.46153846,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 27263,
@@ -3036,7 +3666,16 @@
         "conceito_enade_continuo": 3.6606189387,
         "n_concluintes_inscritos": 14,
         "n_concluintes_participantes": 12,
-        "taxa_participacao": 85.7
+        "taxa_participacao": 85.7,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.943599701,
+        "organizacao_didatico_pedagogica": 1.641094852,
+        "infraestrutura": 2.889739664,
+        "oportunidade_ampliacao": 2.947145087,
+        "mestres": 4.874245376,
+        "doutores": 4.577464759,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 27263,
@@ -3048,7 +3687,16 @@
         "conceito_enade_continuo": 3.652,
         "n_concluintes_inscritos": 35,
         "n_concluintes_participantes": 33,
-        "taxa_participacao": 94.3
+        "taxa_participacao": 94.3,
+        "formacao_geral": 3.136,
+        "componente_especifico": 3.823,
+        "idd": 2.439,
+        "organizacao_didatico_pedagogica": 3.243,
+        "infraestrutura": 2.952,
+        "oportunidade_ampliacao": 3.282,
+        "mestres": 4.388,
+        "doutores": 4.19,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 29489,
@@ -3060,7 +3708,16 @@
         "conceito_enade_continuo": 4.0349878384,
         "n_concluintes_inscritos": 54,
         "n_concluintes_participantes": 38,
-        "taxa_participacao": 70.4
+        "taxa_participacao": 70.4,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.366229296,
+        "organizacao_didatico_pedagogica": 2.152184478,
+        "infraestrutura": 2.764326864,
+        "oportunidade_ampliacao": 2.235206967,
+        "mestres": 4.895522473,
+        "doutores": 4.776119292,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 29489,
@@ -3072,7 +3729,16 @@
         "conceito_enade_continuo": 4.088,
         "n_concluintes_inscritos": 40,
         "n_concluintes_participantes": 34,
-        "taxa_participacao": 85.0
+        "taxa_participacao": 85.0,
+        "formacao_geral": 4.048,
+        "componente_especifico": 4.102,
+        "idd": 2.331,
+        "organizacao_didatico_pedagogica": 2.096,
+        "infraestrutura": 2.535,
+        "oportunidade_ampliacao": 2.268,
+        "mestres": 4.387,
+        "doutores": 4.326,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 33013,
@@ -3084,7 +3750,16 @@
         "conceito_enade_continuo": 3.9504313115,
         "n_concluintes_inscritos": 22,
         "n_concluintes_participantes": 15,
-        "taxa_participacao": 68.2
+        "taxa_participacao": 68.2,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 4.038370609,
+        "organizacao_didatico_pedagogica": 3.049848131,
+        "infraestrutura": 3.295804612,
+        "oportunidade_ampliacao": 3.173576702,
+        "mestres": 4.891304372,
+        "doutores": 4.637681246,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 33013,
@@ -3096,7 +3771,16 @@
         "conceito_enade_continuo": 4.489,
         "n_concluintes_inscritos": 25,
         "n_concluintes_participantes": 23,
-        "taxa_participacao": 92.0
+        "taxa_participacao": 92.0,
+        "formacao_geral": 3.222,
+        "componente_especifico": 4.911,
+        "idd": 2.556,
+        "organizacao_didatico_pedagogica": 2.376,
+        "infraestrutura": 2.951,
+        "oportunidade_ampliacao": 2.485,
+        "mestres": 4.628,
+        "doutores": 4.324,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 37265,
@@ -3108,7 +3792,16 @@
         "conceito_enade_continuo": 4.4886435087,
         "n_concluintes_inscritos": 62,
         "n_concluintes_participantes": 54,
-        "taxa_participacao": 87.1
+        "taxa_participacao": 87.1,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.707133293,
+        "organizacao_didatico_pedagogica": 1.617093083,
+        "infraestrutura": 2.745041766,
+        "oportunidade_ampliacao": 3.455330094,
+        "mestres": 5.0,
+        "doutores": 4.415584505,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 37265,
@@ -3120,7 +3813,16 @@
         "conceito_enade_continuo": 3.947,
         "n_concluintes_inscritos": 109,
         "n_concluintes_participantes": 89,
-        "taxa_participacao": 81.7
+        "taxa_participacao": 81.7,
+        "formacao_geral": 4.055717222,
+        "componente_especifico": 3.91044863,
+        "idd": 2.37,
+        "organizacao_didatico_pedagogica": 2.55,
+        "infraestrutura": 2.705,
+        "oportunidade_ampliacao": 3.351,
+        "mestres": 4.481,
+        "doutores": 4.167,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 37267,
@@ -3132,7 +3834,16 @@
         "conceito_enade_continuo": 4.4515128136,
         "n_concluintes_inscritos": 56,
         "n_concluintes_participantes": 50,
-        "taxa_participacao": 89.3
+        "taxa_participacao": 89.3,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.3849808573,
+        "organizacao_didatico_pedagogica": 1.8963098758,
+        "infraestrutura": 1.2154696288,
+        "oportunidade_ampliacao": 2.4571389302,
+        "mestres": 4.2361111111,
+        "doutores": 3.9246031746,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 37267,
@@ -3144,7 +3855,16 @@
         "conceito_enade_continuo": 4.053161258,
         "n_concluintes_inscritos": 59,
         "n_concluintes_participantes": 47,
-        "taxa_participacao": 79.7
+        "taxa_participacao": 79.7,
+        "formacao_geral": 4.274097721,
+        "componente_especifico": 3.97951577,
+        "idd": 1.347889723,
+        "organizacao_didatico_pedagogica": 3.562063041,
+        "infraestrutura": 3.108834344,
+        "oportunidade_ampliacao": 3.201442011,
+        "mestres": 4.338624286,
+        "doutores": 3.703703684,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 37267,
@@ -3156,7 +3876,16 @@
         "conceito_enade_continuo": 4.243,
         "n_concluintes_inscritos": 80,
         "n_concluintes_participantes": 66,
-        "taxa_participacao": 82.5
+        "taxa_participacao": 82.5,
+        "formacao_geral": 4.477593375,
+        "componente_especifico": 4.166077877,
+        "idd": 2.931210827,
+        "organizacao_didatico_pedagogica": 3.314755664,
+        "infraestrutura": 1.86405852,
+        "oportunidade_ampliacao": 3.022285235,
+        "mestres": 4.224683543,
+        "doutores": 3.2278481,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 37274,
@@ -3168,7 +3897,16 @@
         "conceito_enade_continuo": 2.7733046893,
         "n_concluintes_inscritos": 27,
         "n_concluintes_participantes": 17,
-        "taxa_participacao": 63.0
+        "taxa_participacao": 63.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.870769262,
+        "organizacao_didatico_pedagogica": 1.394080732,
+        "infraestrutura": 2.421716849,
+        "oportunidade_ampliacao": 2.635317643,
+        "mestres": 5.0,
+        "doutores": 4.270833433,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 37274,
@@ -3180,7 +3918,16 @@
         "conceito_enade_continuo": 3.103,
         "n_concluintes_inscritos": 40,
         "n_concluintes_participantes": 27,
-        "taxa_participacao": 67.5
+        "taxa_participacao": 67.5,
+        "formacao_geral": 2.207,
+        "componente_especifico": 3.402,
+        "idd": 2.266,
+        "organizacao_didatico_pedagogica": 1.446,
+        "infraestrutura": 1.771,
+        "oportunidade_ampliacao": 2.229,
+        "mestres": 4.166,
+        "doutores": 4.09,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38202,
@@ -3192,7 +3939,16 @@
         "conceito_enade_continuo": 4.3355059624,
         "n_concluintes_inscritos": 135,
         "n_concluintes_participantes": 81,
-        "taxa_participacao": 60.0
+        "taxa_participacao": 60.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 3.1125746023,
+        "organizacao_didatico_pedagogica": 1.2800174141,
+        "infraestrutura": 2.9543666398,
+        "oportunidade_ampliacao": 2.6685382549,
+        "mestres": 4.7295081967,
+        "doutores": 3.5963114754,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38202,
@@ -3204,7 +3960,16 @@
         "conceito_enade_continuo": 4.171774576,
         "n_concluintes_inscritos": 85,
         "n_concluintes_participantes": 51,
-        "taxa_participacao": 60.0
+        "taxa_participacao": 60.0,
+        "formacao_geral": 4.647628696,
+        "componente_especifico": 4.013156536,
+        "idd": 2.53364211,
+        "organizacao_didatico_pedagogica": 2.04837097,
+        "infraestrutura": 2.66279794,
+        "oportunidade_ampliacao": 2.981616117,
+        "mestres": 4.446640465,
+        "doutores": 2.7173915,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38202,
@@ -3216,7 +3981,16 @@
         "conceito_enade_continuo": 4.793,
         "n_concluintes_inscritos": 105,
         "n_concluintes_participantes": 76,
-        "taxa_participacao": 72.4
+        "taxa_participacao": 72.4,
+        "formacao_geral": 4.730580078,
+        "componente_especifico": 4.813969447,
+        "idd": 4.52220892,
+        "organizacao_didatico_pedagogica": 1.369142872,
+        "infraestrutura": 2.236854517,
+        "oportunidade_ampliacao": 2.551261925,
+        "mestres": 4.581339711,
+        "doutores": 3.486842105,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38204,
@@ -3228,7 +4002,16 @@
         "conceito_enade_continuo": 3.1258189678,
         "n_concluintes_inscritos": 104,
         "n_concluintes_participantes": 78,
-        "taxa_participacao": 75.0
+        "taxa_participacao": 75.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 0.9318516529,
+        "organizacao_didatico_pedagogica": 1.6069979693,
+        "infraestrutura": 2.2571921139,
+        "oportunidade_ampliacao": 2.4407827034,
+        "mestres": 4.7470238095,
+        "doutores": 3.9239028945,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38204,
@@ -3240,7 +4023,16 @@
         "conceito_enade_continuo": 3.810315884,
         "n_concluintes_inscritos": 85,
         "n_concluintes_participantes": 77,
-        "taxa_participacao": 90.6
+        "taxa_participacao": 90.6,
+        "formacao_geral": 4.848009426,
+        "componente_especifico": 3.464418037,
+        "idd": 2.129380707,
+        "organizacao_didatico_pedagogica": 1.810455635,
+        "infraestrutura": 1.941343527,
+        "oportunidade_ampliacao": 2.631028724,
+        "mestres": 4.486921778,
+        "doutores": 2.6760565,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38204,
@@ -3252,7 +4044,16 @@
         "conceito_enade_continuo": 4.094,
         "n_concluintes_inscritos": 110,
         "n_concluintes_participantes": 90,
-        "taxa_participacao": 81.8
+        "taxa_participacao": 81.8,
+        "formacao_geral": 4.247076336,
+        "componente_especifico": 4.043170916,
+        "idd": 3.421924602,
+        "organizacao_didatico_pedagogica": 2.351785876,
+        "infraestrutura": 2.063027295,
+        "oportunidade_ampliacao": 2.858828607,
+        "mestres": 4.62962963,
+        "doutores": 3.14814815,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38206,
@@ -3264,7 +4065,16 @@
         "conceito_enade_continuo": 1.9016954899,
         "n_concluintes_inscritos": 49,
         "n_concluintes_participantes": 22,
-        "taxa_participacao": 44.9
+        "taxa_participacao": 44.9,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.9016954899,
+        "organizacao_didatico_pedagogica": 1.9836004756,
+        "infraestrutura": 2.4700375293,
+        "oportunidade_ampliacao": 2.4500896755,
+        "mestres": 4.8643147897,
+        "doutores": 3.8805970149,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38206,
@@ -3276,7 +4086,16 @@
         "conceito_enade_continuo": 2.195292871,
         "n_concluintes_inscritos": 59,
         "n_concluintes_participantes": 45,
-        "taxa_participacao": 76.3
+        "taxa_participacao": 76.3,
+        "formacao_geral": 2.780610318,
+        "componente_especifico": 2.000187056,
+        "idd": 2.286630203,
+        "organizacao_didatico_pedagogica": 2.334089333,
+        "infraestrutura": 2.076473726,
+        "oportunidade_ampliacao": 2.257081213,
+        "mestres": 5.0,
+        "doutores": 3.6,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38206,
@@ -3288,7 +4107,16 @@
         "conceito_enade_continuo": 3.345,
         "n_concluintes_inscritos": 55,
         "n_concluintes_participantes": 37,
-        "taxa_participacao": 67.3
+        "taxa_participacao": 67.3,
+        "formacao_geral": 3.59174114,
+        "componente_especifico": 3.264039282,
+        "idd": 3.286904579,
+        "organizacao_didatico_pedagogica": 2.026460383,
+        "infraestrutura": 2.387339183,
+        "oportunidade_ampliacao": 2.455611646,
+        "mestres": 4.543010745,
+        "doutores": 3.951612905,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38208,
@@ -3300,7 +4128,16 @@
         "conceito_enade_continuo": 4.6302690506,
         "n_concluintes_inscritos": 89,
         "n_concluintes_participantes": 84,
-        "taxa_participacao": 94.4
+        "taxa_participacao": 94.4,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.9327795844,
+        "organizacao_didatico_pedagogica": 1.1866924003,
+        "infraestrutura": 2.7659210946,
+        "oportunidade_ampliacao": 2.2986712565,
+        "mestres": 4.6146245059,
+        "doutores": 3.7125603865,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38208,
@@ -3312,7 +4149,16 @@
         "conceito_enade_continuo": 4.755027415,
         "n_concluintes_inscritos": 73,
         "n_concluintes_participantes": 53,
-        "taxa_participacao": 72.6
+        "taxa_participacao": 72.6,
+        "formacao_geral": 5.0,
+        "componente_especifico": 4.673369886,
+        "idd": 2.458246711,
+        "organizacao_didatico_pedagogica": 1.765928345,
+        "infraestrutura": 2.449034447,
+        "oportunidade_ampliacao": 2.639732276,
+        "mestres": 4.788602931,
+        "doutores": 4.410511544,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38208,
@@ -3324,7 +4170,16 @@
         "conceito_enade_continuo": 4.418,
         "n_concluintes_inscritos": 124,
         "n_concluintes_participantes": 70,
-        "taxa_participacao": 56.5
+        "taxa_participacao": 56.5,
+        "formacao_geral": 4.489108564,
+        "componente_especifico": 4.394719604,
+        "idd": 2.364017455,
+        "organizacao_didatico_pedagogica": 1.328103658,
+        "infraestrutura": 2.292294591,
+        "oportunidade_ampliacao": 2.27146615,
+        "mestres": 4.803571426,
+        "doutores": 4.07142857,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38217,
@@ -3336,7 +4191,16 @@
         "conceito_enade_continuo": 3.2251823142,
         "n_concluintes_inscritos": 49,
         "n_concluintes_participantes": 35,
-        "taxa_participacao": 71.4
+        "taxa_participacao": 71.4,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 3.453663588,
+        "organizacao_didatico_pedagogica": 1.43459882,
+        "infraestrutura": 2.752814111,
+        "oportunidade_ampliacao": 2.339350185,
+        "mestres": 5.0,
+        "doutores": 4.729729593,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38217,
@@ -3348,7 +4212,16 @@
         "conceito_enade_continuo": 2.66,
         "n_concluintes_inscritos": 41,
         "n_concluintes_participantes": 35,
-        "taxa_participacao": 85.4
+        "taxa_participacao": 85.4,
+        "formacao_geral": 2.912,
+        "componente_especifico": 2.576,
+        "idd": 2.618,
+        "organizacao_didatico_pedagogica": 2.583,
+        "infraestrutura": 3.32,
+        "oportunidade_ampliacao": 2.51,
+        "mestres": 4.66,
+        "doutores": 4.562,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38239,
@@ -3360,7 +4233,16 @@
         "conceito_enade_continuo": 3.1063754649,
         "n_concluintes_inscritos": 56,
         "n_concluintes_participantes": 40,
-        "taxa_participacao": 71.4
+        "taxa_participacao": 71.4,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.088471174,
+        "organizacao_didatico_pedagogica": 2.952850204,
+        "infraestrutura": 3.838407336,
+        "oportunidade_ampliacao": 3.188541884,
+        "mestres": 5.0,
+        "doutores": 4.871794879,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38239,
@@ -3372,7 +4254,16 @@
         "conceito_enade_continuo": 2.974,
         "n_concluintes_inscritos": 32,
         "n_concluintes_participantes": 26,
-        "taxa_participacao": 81.2
+        "taxa_participacao": 81.2,
+        "formacao_geral": 3.024,
+        "componente_especifico": 2.958,
+        "idd": 2.281,
+        "organizacao_didatico_pedagogica": 2.199,
+        "infraestrutura": 3.789,
+        "oportunidade_ampliacao": 2.925,
+        "mestres": 4.54,
+        "doutores": 4.387,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38246,
@@ -3384,7 +4275,16 @@
         "conceito_enade_continuo": 2.1933590517,
         "n_concluintes_inscritos": 26,
         "n_concluintes_participantes": 14,
-        "taxa_participacao": 53.8
+        "taxa_participacao": 53.8,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.444470406,
+        "organizacao_didatico_pedagogica": 0.973128806,
+        "infraestrutura": 1.946106147,
+        "oportunidade_ampliacao": 1.457870538,
+        "mestres": 5.0,
+        "doutores": 4.600000083,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38246,
@@ -3396,7 +4296,16 @@
         "conceito_enade_continuo": 2.294,
         "n_concluintes_inscritos": 84,
         "n_concluintes_participantes": 47,
-        "taxa_participacao": 56.0
+        "taxa_participacao": 56.0,
+        "formacao_geral": 2.392,
+        "componente_especifico": 2.261,
+        "idd": 1.935,
+        "organizacao_didatico_pedagogica": 0.815,
+        "infraestrutura": 2.044,
+        "oportunidade_ampliacao": 2.583,
+        "mestres": 4.718,
+        "doutores": 4.312,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38273,
@@ -3408,7 +4317,16 @@
         "conceito_enade_continuo": 3.6781185558,
         "n_concluintes_inscritos": 96,
         "n_concluintes_participantes": 75,
-        "taxa_participacao": 78.1
+        "taxa_participacao": 78.1,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 0.835599422,
+        "organizacao_didatico_pedagogica": 1.495554475,
+        "infraestrutura": 2.359809377,
+        "oportunidade_ampliacao": 2.336921692,
+        "mestres": 5.0,
+        "doutores": 5.0,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38273,
@@ -3420,7 +4338,16 @@
         "conceito_enade_continuo": 2.704,
         "n_concluintes_inscritos": 311,
         "n_concluintes_participantes": 240,
-        "taxa_participacao": 77.2
+        "taxa_participacao": 77.2,
+        "formacao_geral": 2.223,
+        "componente_especifico": 2.865,
+        "idd": 2.394,
+        "organizacao_didatico_pedagogica": 3.035,
+        "infraestrutura": 2.447,
+        "oportunidade_ampliacao": 2.085,
+        "mestres": 4.564,
+        "doutores": 4.337,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 50392,
@@ -3432,7 +4359,16 @@
         "conceito_enade_continuo": 3.5818281174,
         "n_concluintes_inscritos": 34,
         "n_concluintes_participantes": 28,
-        "taxa_participacao": 82.4
+        "taxa_participacao": 82.4,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.7666659209,
+        "organizacao_didatico_pedagogica": 1.4824176944,
+        "infraestrutura": 2.7065259819,
+        "oportunidade_ampliacao": 2.706115768,
+        "mestres": 5.0,
+        "doutores": 4.5616883117,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 50392,
@@ -3444,7 +4380,16 @@
         "conceito_enade_continuo": 3.5,
         "n_concluintes_inscritos": 35,
         "n_concluintes_participantes": 33,
-        "taxa_participacao": 94.3
+        "taxa_participacao": 94.3,
+        "formacao_geral": 4.574,
+        "componente_especifico": 3.1432,
+        "idd": 2.348,
+        "organizacao_didatico_pedagogica": 2.232,
+        "infraestrutura": 2.936,
+        "oportunidade_ampliacao": 2.322,
+        "mestres": 3.437,
+        "doutores": 4.051,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 50392,
@@ -3456,7 +4401,16 @@
         "conceito_enade_continuo": 4.507,
         "n_concluintes_inscritos": 44,
         "n_concluintes_participantes": 34,
-        "taxa_participacao": 77.3
+        "taxa_participacao": 77.3,
+        "formacao_geral": 4.848297214,
+        "componente_especifico": 4.39345388,
+        "idd": 3.772,
+        "organizacao_didatico_pedagogica": 1.961,
+        "infraestrutura": 2.439,
+        "oportunidade_ampliacao": 2.064,
+        "mestres": 4.704,
+        "doutores": 4.643,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 69190,
@@ -3468,7 +4422,16 @@
         "conceito_enade_continuo": 2.8590713046,
         "n_concluintes_inscritos": 7,
         "n_concluintes_participantes": 6,
-        "taxa_participacao": 85.7
+        "taxa_participacao": 85.7,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.447110295,
+        "organizacao_didatico_pedagogica": 1.522358225,
+        "infraestrutura": 1.472033449,
+        "oportunidade_ampliacao": 1.70965783,
+        "mestres": 5.0,
+        "doutores": 4.499999881,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 99252,
@@ -3480,7 +4443,16 @@
         "conceito_enade_continuo": 2.98072052,
         "n_concluintes_inscritos": 25,
         "n_concluintes_participantes": 9,
-        "taxa_participacao": 36.0
+        "taxa_participacao": 36.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 0.0,
+        "organizacao_didatico_pedagogica": 1.4885400919,
+        "infraestrutura": 0.5487497445,
+        "oportunidade_ampliacao": 0.8309665816,
+        "mestres": 5.0,
+        "doutores": 3.2142857143,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 99567,
@@ -3492,7 +4464,16 @@
         "conceito_enade_continuo": 3.2941351134,
         "n_concluintes_inscritos": 40,
         "n_concluintes_participantes": 27,
-        "taxa_participacao": 67.5
+        "taxa_participacao": 67.5,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 3.287279844,
+        "organizacao_didatico_pedagogica": 1.742526708,
+        "infraestrutura": 2.983689287,
+        "oportunidade_ampliacao": 1.837386366,
+        "mestres": 4.662309413,
+        "doutores": 4.880952387,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 99567,
@@ -3504,7 +4485,16 @@
         "conceito_enade_continuo": 2.743,
         "n_concluintes_inscritos": 53,
         "n_concluintes_participantes": 43,
-        "taxa_participacao": 81.1
+        "taxa_participacao": 81.1,
+        "formacao_geral": 3.435,
+        "componente_especifico": 2.512,
+        "idd": 2.569,
+        "organizacao_didatico_pedagogica": 3.086,
+        "infraestrutura": 2.903,
+        "oportunidade_ampliacao": 2.396,
+        "mestres": 4.345,
+        "doutores": 4.181,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 100021,
@@ -3516,7 +4506,16 @@
         "conceito_enade_continuo": 1.8998954204,
         "n_concluintes_inscritos": 12,
         "n_concluintes_participantes": 12,
-        "taxa_participacao": 100.0
+        "taxa_participacao": 100.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 0.585967422,
+        "organizacao_didatico_pedagogica": 3.084712648,
+        "infraestrutura": 3.019918137,
+        "oportunidade_ampliacao": 3.164623214,
+        "mestres": 4.363636444,
+        "doutores": 3.909091055,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 100021,
@@ -3528,7 +4527,16 @@
         "conceito_enade_continuo": 3.445,
         "n_concluintes_inscritos": 19,
         "n_concluintes_participantes": 18,
-        "taxa_participacao": 94.7
+        "taxa_participacao": 94.7,
+        "formacao_geral": 3.091,
+        "componente_especifico": 3.563,
+        "idd": 2.222,
+        "organizacao_didatico_pedagogica": 2.613,
+        "infraestrutura": 2.768,
+        "oportunidade_ampliacao": 3.196,
+        "mestres": 4.318,
+        "doutores": 4.09,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 100256,
@@ -3540,7 +4548,16 @@
         "conceito_enade_continuo": 4.4323816299,
         "n_concluintes_inscritos": 65,
         "n_concluintes_participantes": 48,
-        "taxa_participacao": 73.8
+        "taxa_participacao": 73.8,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.5248685741,
+        "organizacao_didatico_pedagogica": 2.2836537058,
+        "infraestrutura": 2.1882689148,
+        "oportunidade_ampliacao": 2.3216034682,
+        "mestres": 4.3303571429,
+        "doutores": 3.3035714286,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 100256,
@@ -3552,7 +4569,16 @@
         "conceito_enade_continuo": 4.109,
         "n_concluintes_inscritos": 122,
         "n_concluintes_participantes": 99,
-        "taxa_participacao": 81.1
+        "taxa_participacao": 81.1,
+        "formacao_geral": 4.637,
+        "componente_especifico": 3.9336,
+        "idd": 2.574,
+        "organizacao_didatico_pedagogica": 3.153,
+        "infraestrutura": 1.456,
+        "oportunidade_ampliacao": 2.891,
+        "mestres": 3.69,
+        "doutores": 3.214,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 100256,
@@ -3564,7 +4590,16 @@
         "conceito_enade_continuo": 4.354,
         "n_concluintes_inscritos": 128,
         "n_concluintes_participantes": 90,
-        "taxa_participacao": 70.3
+        "taxa_participacao": 70.3,
+        "formacao_geral": 3.988,
+        "componente_especifico": 4.475,
+        "idd": 2.579,
+        "organizacao_didatico_pedagogica": 2.877,
+        "infraestrutura": 1.959,
+        "oportunidade_ampliacao": 3.115,
+        "mestres": 4.383,
+        "doutores": 3.928,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 100367,
@@ -3576,7 +4611,16 @@
         "conceito_enade_continuo": 1.3202562816,
         "n_concluintes_inscritos": 24,
         "n_concluintes_participantes": 16,
-        "taxa_participacao": 66.7
+        "taxa_participacao": 66.7,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.009723067,
+        "organizacao_didatico_pedagogica": 2.022556754,
+        "infraestrutura": 1.918576555,
+        "oportunidade_ampliacao": 1.034849794,
+        "mestres": 5.0,
+        "doutores": 4.565217495,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 100367,
@@ -3588,7 +4632,16 @@
         "conceito_enade_continuo": 1.716,
         "n_concluintes_inscritos": 22,
         "n_concluintes_participantes": 19,
-        "taxa_participacao": 86.4
+        "taxa_participacao": 86.4,
+        "formacao_geral": 2.761,
+        "componente_especifico": 1.368,
+        "idd": 2.048,
+        "organizacao_didatico_pedagogica": 2.335,
+        "infraestrutura": 2.145,
+        "oportunidade_ampliacao": 1.24,
+        "mestres": 5.0,
+        "doutores": 4.0,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 100369,
@@ -3600,7 +4653,16 @@
         "conceito_enade_continuo": 1.4296046553,
         "n_concluintes_inscritos": 100,
         "n_concluintes_participantes": 94,
-        "taxa_participacao": 94.0
+        "taxa_participacao": 94.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.236145258,
+        "organizacao_didatico_pedagogica": 2.984668758,
+        "infraestrutura": 2.622202986,
+        "oportunidade_ampliacao": 1.804478101,
+        "mestres": 5.0,
+        "doutores": 4.473684132,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 100375,
@@ -3612,7 +4674,16 @@
         "conceito_enade_continuo": 2.556605835,
         "n_concluintes_inscritos": 118,
         "n_concluintes_participantes": 93,
-        "taxa_participacao": 78.8
+        "taxa_participacao": 78.8,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.560182095,
+        "organizacao_didatico_pedagogica": 2.197415917,
+        "infraestrutura": 2.418772995,
+        "oportunidade_ampliacao": 1.172694277,
+        "mestres": 5.0,
+        "doutores": 5.0,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 100376,
@@ -3624,7 +4695,16 @@
         "conceito_enade_continuo": 1.6949087594,
         "n_concluintes_inscritos": 40,
         "n_concluintes_participantes": 19,
-        "taxa_participacao": 47.5
+        "taxa_participacao": 47.5,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.6078794,
+        "organizacao_didatico_pedagogica": 1.848404272,
+        "infraestrutura": 2.6225962,
+        "oportunidade_ampliacao": 1.198169698,
+        "mestres": 5.0,
+        "doutores": 5.0,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 113757,
@@ -3636,7 +4716,16 @@
         "conceito_enade_continuo": 1.8008050039,
         "n_concluintes_inscritos": 28,
         "n_concluintes_participantes": 22,
-        "taxa_participacao": 78.6
+        "taxa_participacao": 78.6,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.282746553,
+        "organizacao_didatico_pedagogica": 3.563769399,
+        "infraestrutura": 3.014192486,
+        "oportunidade_ampliacao": 2.199298875,
+        "mestres": 5.0,
+        "doutores": 4.333333373,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 113757,
@@ -3648,7 +4737,16 @@
         "conceito_enade_continuo": 1.95,
         "n_concluintes_inscritos": 9,
         "n_concluintes_participantes": 7,
-        "taxa_participacao": 77.8
+        "taxa_participacao": 77.8,
+        "formacao_geral": 2.222,
+        "componente_especifico": 1.86,
+        "idd": 3.076,
+        "organizacao_didatico_pedagogica": 3.096,
+        "infraestrutura": 2.917,
+        "oportunidade_ampliacao": 1.925,
+        "mestres": 5.0,
+        "doutores": 4.09,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 116834,
@@ -3660,7 +4758,16 @@
         "conceito_enade_continuo": 3.6109366853,
         "n_concluintes_inscritos": 23,
         "n_concluintes_participantes": 19,
-        "taxa_participacao": 82.6
+        "taxa_participacao": 82.6,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.642971396,
+        "organizacao_didatico_pedagogica": 2.267019286,
+        "infraestrutura": 1.284445585,
+        "oportunidade_ampliacao": 1.727382355,
+        "mestres": 3.962962771,
+        "doutores": 4.07407403,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 116834,
@@ -3672,7 +4779,16 @@
         "conceito_enade_continuo": 3.078,
         "n_concluintes_inscritos": 14,
         "n_concluintes_participantes": 9,
-        "taxa_participacao": 64.3
+        "taxa_participacao": 64.3,
+        "formacao_geral": 2.875,
+        "componente_especifico": 3.146,
+        "idd": 0.789,
+        "organizacao_didatico_pedagogica": 2.115,
+        "infraestrutura": 1.888,
+        "oportunidade_ampliacao": 2.228,
+        "mestres": 3.701,
+        "doutores": 4.107,
+        "regime_trabalho": 4.816
       },
       {
         "codigo_curso": 150112,
@@ -3684,7 +4800,16 @@
         "conceito_enade_continuo": 4.2920109167,
         "n_concluintes_inscritos": 45,
         "n_concluintes_participantes": 41,
-        "taxa_participacao": 91.1
+        "taxa_participacao": 91.1,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.551770926,
+        "organizacao_didatico_pedagogica": 1.148719122,
+        "infraestrutura": 2.710142019,
+        "oportunidade_ampliacao": 2.938519138,
+        "mestres": 4.659722047,
+        "doutores": 4.259259403,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 150112,
@@ -3696,7 +4821,16 @@
         "conceito_enade_continuo": 4.169,
         "n_concluintes_inscritos": 39,
         "n_concluintes_participantes": 38,
-        "taxa_participacao": 97.4
+        "taxa_participacao": 97.4,
+        "formacao_geral": 4.425,
+        "componente_especifico": 4.0847,
+        "idd": 2.474,
+        "organizacao_didatico_pedagogica": 1.339,
+        "infraestrutura": 2.505,
+        "oportunidade_ampliacao": 2.55,
+        "mestres": 4.162,
+        "doutores": 4.202,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 150112,
@@ -3708,7 +4842,16 @@
         "conceito_enade_continuo": 3.407,
         "n_concluintes_inscritos": 31,
         "n_concluintes_participantes": 29,
-        "taxa_participacao": 93.5
+        "taxa_participacao": 93.5,
+        "formacao_geral": 3.306979267,
+        "componente_especifico": 3.440831845,
+        "idd": 1.448,
+        "organizacao_didatico_pedagogica": 2.378,
+        "infraestrutura": 2.872,
+        "oportunidade_ampliacao": 3.132,
+        "mestres": 3.946,
+        "doutores": 4.253,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 150113,
@@ -3720,7 +4863,16 @@
         "conceito_enade_continuo": 3.2100511231,
         "n_concluintes_inscritos": 37,
         "n_concluintes_participantes": 33,
-        "taxa_participacao": 89.2
+        "taxa_participacao": 89.2,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.270652294,
+        "organizacao_didatico_pedagogica": 1.54390698,
+        "infraestrutura": 2.620070958,
+        "oportunidade_ampliacao": 2.674883257,
+        "mestres": 4.881434356,
+        "doutores": 4.450549483,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 150116,
@@ -3732,7 +4884,16 @@
         "conceito_enade_continuo": 4.1477092949,
         "n_concluintes_inscritos": 25,
         "n_concluintes_participantes": 25,
-        "taxa_participacao": 100.0
+        "taxa_participacao": 100.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 3.043345213,
+        "organizacao_didatico_pedagogica": 1.448957793,
+        "infraestrutura": 2.241234384,
+        "oportunidade_ampliacao": 3.206535661,
+        "mestres": 4.770436745,
+        "doutores": 4.308510721,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 313974,
@@ -3744,7 +4905,16 @@
         "conceito_enade_continuo": 3.8773146077,
         "n_concluintes_inscritos": 59,
         "n_concluintes_participantes": 39,
-        "taxa_participacao": 66.1
+        "taxa_participacao": 66.1,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.568819761,
+        "organizacao_didatico_pedagogica": 1.87151447,
+        "infraestrutura": 2.638463264,
+        "oportunidade_ampliacao": 2.829399528,
+        "mestres": 4.738806173,
+        "doutores": 4.744136333,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 313974,
@@ -3756,7 +4926,16 @@
         "conceito_enade_continuo": 3.371,
         "n_concluintes_inscritos": 65,
         "n_concluintes_participantes": 51,
-        "taxa_participacao": 78.5
+        "taxa_participacao": 78.5,
+        "formacao_geral": 3.447,
+        "componente_especifico": 3.345,
+        "idd": 1.753,
+        "organizacao_didatico_pedagogica": 1.789,
+        "infraestrutura": 2.928,
+        "oportunidade_ampliacao": 2.23,
+        "mestres": 4.12,
+        "doutores": 4.074,
+        "regime_trabalho": 4.92
       },
       {
         "codigo_curso": 313976,
@@ -3768,7 +4947,16 @@
         "conceito_enade_continuo": 3.2615618857,
         "n_concluintes_inscritos": 61,
         "n_concluintes_participantes": 47,
-        "taxa_participacao": 77.0
+        "taxa_participacao": 77.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.227052212,
+        "organizacao_didatico_pedagogica": 2.483994953,
+        "infraestrutura": 3.793321579,
+        "oportunidade_ampliacao": 2.345154049,
+        "mestres": 5.0,
+        "doutores": 4.387754894,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 313976,
@@ -3780,7 +4968,16 @@
         "conceito_enade_continuo": 3.485,
         "n_concluintes_inscritos": 79,
         "n_concluintes_participantes": 59,
-        "taxa_participacao": 74.7
+        "taxa_participacao": 74.7,
+        "formacao_geral": 3.416,
+        "componente_especifico": 3.508,
+        "idd": 2.127,
+        "organizacao_didatico_pedagogica": 2.683,
+        "infraestrutura": 3.14,
+        "oportunidade_ampliacao": 2.127,
+        "mestres": 4.722,
+        "doutores": 4.347,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 313982,
@@ -3792,7 +4989,16 @@
         "conceito_enade_continuo": 2.8335744244,
         "n_concluintes_inscritos": 65,
         "n_concluintes_participantes": 25,
-        "taxa_participacao": 38.5
+        "taxa_participacao": 38.5,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 3.913718939,
+        "organizacao_didatico_pedagogica": 2.961429502,
+        "infraestrutura": 1.631626951,
+        "oportunidade_ampliacao": 2.453668784,
+        "mestres": 5.0,
+        "doutores": 4.791666417,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 313982,
@@ -3804,7 +5010,16 @@
         "conceito_enade_continuo": 2.261,
         "n_concluintes_inscritos": 30,
         "n_concluintes_participantes": 21,
-        "taxa_participacao": 70.0
+        "taxa_participacao": 70.0,
+        "formacao_geral": 2.306,
+        "componente_especifico": 2.246,
+        "idd": 2.41,
+        "organizacao_didatico_pedagogica": 1.668,
+        "infraestrutura": 1.359,
+        "oportunidade_ampliacao": 1.494,
+        "mestres": 3.448,
+        "doutores": 3.676,
+        "regime_trabalho": 4.448
       },
       {
         "codigo_curso": 313984,
@@ -3816,7 +5031,16 @@
         "conceito_enade_continuo": 3.4269818192,
         "n_concluintes_inscritos": 13,
         "n_concluintes_participantes": 9,
-        "taxa_participacao": 69.2
+        "taxa_participacao": 69.2,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.825663209,
+        "organizacao_didatico_pedagogica": 0.713043403,
+        "infraestrutura": 1.388457775,
+        "oportunidade_ampliacao": 2.315826787,
+        "mestres": 5.0,
+        "doutores": 4.631579094,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 313984,
@@ -3828,7 +5052,16 @@
         "conceito_enade_continuo": null,
         "n_concluintes_inscritos": 2,
         "n_concluintes_participantes": 1,
-        "taxa_participacao": 50.0
+        "taxa_participacao": 50.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": null,
+        "organizacao_didatico_pedagogica": null,
+        "infraestrutura": null,
+        "oportunidade_ampliacao": null,
+        "mestres": 5.0,
+        "doutores": 5.0,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 337274,
@@ -3840,7 +5073,16 @@
         "conceito_enade_continuo": 2.325301913,
         "n_concluintes_inscritos": 51,
         "n_concluintes_participantes": 21,
-        "taxa_participacao": 41.2
+        "taxa_participacao": 41.2,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.711312175,
+        "organizacao_didatico_pedagogica": 2.131379405,
+        "infraestrutura": 2.699312625,
+        "oportunidade_ampliacao": 2.58638866,
+        "mestres": 4.385964522,
+        "doutores": 4.473684132,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 337274,
@@ -3852,7 +5094,16 @@
         "conceito_enade_continuo": 3.015,
         "n_concluintes_inscritos": 13,
         "n_concluintes_participantes": 4,
-        "taxa_participacao": 30.8
+        "taxa_participacao": 30.8,
+        "formacao_geral": 3.28,
+        "componente_especifico": 2.927,
+        "idd": 1.916,
+        "organizacao_didatico_pedagogica": 1.816,
+        "infraestrutura": 1.664,
+        "oportunidade_ampliacao": 3.471,
+        "mestres": 4.285,
+        "doutores": 4.166,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 416834,
@@ -3864,7 +5115,16 @@
         "conceito_enade_continuo": 2.4851830821,
         "n_concluintes_inscritos": 40,
         "n_concluintes_participantes": 22,
-        "taxa_participacao": 55.0
+        "taxa_participacao": 55.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.607734919,
+        "organizacao_didatico_pedagogica": 2.739020103,
+        "infraestrutura": 2.383957829,
+        "oportunidade_ampliacao": 3.703431821,
+        "mestres": 5.0,
+        "doutores": 4.290540437,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 416834,
@@ -3876,7 +5136,16 @@
         "conceito_enade_continuo": 1.944,
         "n_concluintes_inscritos": 17,
         "n_concluintes_participantes": 10,
-        "taxa_participacao": 58.8
+        "taxa_participacao": 58.8,
+        "formacao_geral": 2.839,
+        "componente_especifico": 1.645,
+        "idd": 1.438,
+        "organizacao_didatico_pedagogica": 2.515,
+        "infraestrutura": 2.038,
+        "oportunidade_ampliacao": 2.537,
+        "mestres": 3.749,
+        "doutores": 4.2,
+        "regime_trabalho": 4.666
       },
       {
         "codigo_curso": 1122966,
@@ -3888,7 +5157,16 @@
         "conceito_enade_continuo": 4.9584827423,
         "n_concluintes_inscritos": 32,
         "n_concluintes_participantes": 32,
-        "taxa_participacao": 100.0
+        "taxa_participacao": 100.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.7770371092,
+        "organizacao_didatico_pedagogica": 2.7486679023,
+        "infraestrutura": 1.8276512623,
+        "oportunidade_ampliacao": 3.1444315822,
+        "mestres": 3.9583333333,
+        "doutores": 3.125,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1122966,
@@ -3900,7 +5178,16 @@
         "conceito_enade_continuo": 4.944,
         "n_concluintes_inscritos": 29,
         "n_concluintes_participantes": 29,
-        "taxa_participacao": 100.0
+        "taxa_participacao": 100.0,
+        "formacao_geral": 4.776,
+        "componente_especifico": 5.0,
+        "idd": 3.461,
+        "organizacao_didatico_pedagogica": 3.769,
+        "infraestrutura": 1.982,
+        "oportunidade_ampliacao": 2.967,
+        "mestres": 4.48,
+        "doutores": 4.09,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1122966,
@@ -3912,7 +5199,16 @@
         "conceito_enade_continuo": 4.923,
         "n_concluintes_inscritos": 37,
         "n_concluintes_participantes": 36,
-        "taxa_participacao": 97.3
+        "taxa_participacao": 97.3,
+        "formacao_geral": 5.0,
+        "componente_especifico": 4.896737844,
+        "idd": 3.759,
+        "organizacao_didatico_pedagogica": 4.232,
+        "infraestrutura": 3.81,
+        "oportunidade_ampliacao": 3.772,
+        "mestres": 4.753,
+        "doutores": 4.589,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1128911,
@@ -3924,7 +5220,16 @@
         "conceito_enade_continuo": 4.4181060468,
         "n_concluintes_inscritos": 28,
         "n_concluintes_participantes": 25,
-        "taxa_participacao": 89.3
+        "taxa_participacao": 89.3,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.930921555,
+        "organizacao_didatico_pedagogica": 2.489688512,
+        "infraestrutura": 3.272220259,
+        "oportunidade_ampliacao": 2.195967951,
+        "mestres": 4.567567348,
+        "doutores": 4.054054022,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1128911,
@@ -3936,7 +5241,16 @@
         "conceito_enade_continuo": 3.377,
         "n_concluintes_inscritos": 19,
         "n_concluintes_participantes": 13,
-        "taxa_participacao": 68.4
+        "taxa_participacao": 68.4,
+        "formacao_geral": 3.774,
+        "componente_especifico": 3.244,
+        "idd": 2.501,
+        "organizacao_didatico_pedagogica": 2.296,
+        "infraestrutura": 3.321,
+        "oportunidade_ampliacao": 2.79,
+        "mestres": 4.105,
+        "doutores": 4.322,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1167971,
@@ -3948,7 +5262,16 @@
         "conceito_enade_continuo": 5.0,
         "n_concluintes_inscritos": 2,
         "n_concluintes_participantes": 2,
-        "taxa_participacao": 100.0
+        "taxa_participacao": 100.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 5.0,
+        "organizacao_didatico_pedagogica": 4.4021098268,
+        "infraestrutura": 4.327703718,
+        "oportunidade_ampliacao": 3.646846205,
+        "mestres": 4.0038314176,
+        "doutores": 3.1034482759,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1167971,
@@ -3960,7 +5283,16 @@
         "conceito_enade_continuo": 4.313202244,
         "n_concluintes_inscritos": 52,
         "n_concluintes_participantes": 48,
-        "taxa_participacao": 92.3
+        "taxa_participacao": 92.3,
+        "formacao_geral": 4.338418175,
+        "componente_especifico": 4.304796933,
+        "idd": 2.26967795,
+        "organizacao_didatico_pedagogica": 3.714216301,
+        "infraestrutura": 3.419265823,
+        "oportunidade_ampliacao": 3.570352108,
+        "mestres": 4.4252875,
+        "doutores": 3.6206895,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1167971,
@@ -3972,7 +5304,16 @@
         "conceito_enade_continuo": 3.899,
         "n_concluintes_inscritos": 32,
         "n_concluintes_participantes": 25,
-        "taxa_participacao": 78.1
+        "taxa_participacao": 78.1,
+        "formacao_geral": 3.627,
+        "componente_especifico": 3.989,
+        "idd": 1.835,
+        "organizacao_didatico_pedagogica": 3.409,
+        "infraestrutura": 3.448,
+        "oportunidade_ampliacao": 3.24,
+        "mestres": 4.085,
+        "doutores": 3.472,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1186730,
@@ -3984,7 +5325,16 @@
         "conceito_enade_continuo": 2.381325955,
         "n_concluintes_inscritos": 79,
         "n_concluintes_participantes": 77,
-        "taxa_participacao": 97.5
+        "taxa_participacao": 97.5,
+        "formacao_geral": 3.597320538,
+        "componente_especifico": 1.975994428,
+        "idd": 2.121444324,
+        "organizacao_didatico_pedagogica": 3.407521756,
+        "infraestrutura": 2.706740004,
+        "oportunidade_ampliacao": 2.235523419,
+        "mestres": 3.4,
+        "doutores": 3.374999958,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1191427,
@@ -3996,7 +5346,16 @@
         "conceito_enade_continuo": 5.0,
         "n_concluintes_inscritos": 10,
         "n_concluintes_participantes": 9,
-        "taxa_participacao": 90.0
+        "taxa_participacao": 90.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 4.196156502,
+        "organizacao_didatico_pedagogica": 2.159992962,
+        "infraestrutura": 1.860533975,
+        "oportunidade_ampliacao": 1.670354834,
+        "mestres": 5.0,
+        "doutores": 4.00000006,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1191427,
@@ -4008,7 +5367,16 @@
         "conceito_enade_continuo": 4.315,
         "n_concluintes_inscritos": 20,
         "n_concluintes_participantes": 16,
-        "taxa_participacao": 80.0
+        "taxa_participacao": 80.0,
+        "formacao_geral": 3.355,
+        "componente_especifico": 4.635,
+        "idd": 3.081,
+        "organizacao_didatico_pedagogica": 2.108,
+        "infraestrutura": 1.722,
+        "oportunidade_ampliacao": 2.185,
+        "mestres": 4.551,
+        "doutores": 4.038,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1191555,
@@ -4020,7 +5388,16 @@
         "conceito_enade_continuo": 4.8736448288,
         "n_concluintes_inscritos": 5,
         "n_concluintes_participantes": 5,
-        "taxa_participacao": 100.0
+        "taxa_participacao": 100.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 3.8987476002,
+        "organizacao_didatico_pedagogica": 1.9082298878,
+        "infraestrutura": 2.2802568667,
+        "oportunidade_ampliacao": 2.0149253132,
+        "mestres": 4.4,
+        "doutores": 2.8,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1191555,
@@ -4032,7 +5409,16 @@
         "conceito_enade_continuo": 4.372,
         "n_concluintes_inscritos": 32,
         "n_concluintes_participantes": 28,
-        "taxa_participacao": 87.5
+        "taxa_participacao": 87.5,
+        "formacao_geral": 5.0,
+        "componente_especifico": 4.1632,
+        "idd": 2.85,
+        "organizacao_didatico_pedagogica": 2.037,
+        "infraestrutura": 0.43,
+        "oportunidade_ampliacao": 2.207,
+        "mestres": 4.326,
+        "doutores": 3.714,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1191555,
@@ -4044,7 +5430,16 @@
         "conceito_enade_continuo": 4.404,
         "n_concluintes_inscritos": 37,
         "n_concluintes_participantes": 27,
-        "taxa_participacao": 73.0
+        "taxa_participacao": 73.0,
+        "formacao_geral": 3.831,
+        "componente_especifico": 4.595,
+        "idd": 3.177,
+        "organizacao_didatico_pedagogica": 3.08,
+        "infraestrutura": 2.123,
+        "oportunidade_ampliacao": 3.026,
+        "mestres": 4.533,
+        "doutores": 4.324,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1216500,
@@ -4056,7 +5451,16 @@
         "conceito_enade_continuo": 2.483,
         "n_concluintes_inscritos": 79,
         "n_concluintes_participantes": 24,
-        "taxa_participacao": 30.4
+        "taxa_participacao": 30.4,
+        "formacao_geral": 2.412677767,
+        "componente_especifico": 2.507135394,
+        "idd": 2.647770134,
+        "organizacao_didatico_pedagogica": 2.683873998,
+        "infraestrutura": 1.772893588,
+        "oportunidade_ampliacao": 1.075695809,
+        "mestres": 0.500000004,
+        "doutores": 2.5,
+        "regime_trabalho": 0.0
       },
       {
         "codigo_curso": 1313213,
@@ -4068,7 +5472,16 @@
         "conceito_enade_continuo": 2.5938018251,
         "n_concluintes_inscritos": 61,
         "n_concluintes_participantes": 52,
-        "taxa_participacao": 85.2
+        "taxa_participacao": 85.2,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.617073417,
+        "organizacao_didatico_pedagogica": 2.784863836,
+        "infraestrutura": 3.127669269,
+        "oportunidade_ampliacao": 3.252020989,
+        "mestres": 4.804733985,
+        "doutores": 4.319526553,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1313213,
@@ -4080,7 +5493,16 @@
         "conceito_enade_continuo": 2.47,
         "n_concluintes_inscritos": 56,
         "n_concluintes_participantes": 52,
-        "taxa_participacao": 92.9
+        "taxa_participacao": 92.9,
+        "formacao_geral": 3.698,
+        "componente_especifico": 2.0617,
+        "idd": 1.952,
+        "organizacao_didatico_pedagogica": 1.484,
+        "infraestrutura": 2.724,
+        "oportunidade_ampliacao": 3.303,
+        "mestres": 4.256,
+        "doutores": 3.982,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1313213,
@@ -4092,7 +5514,16 @@
         "conceito_enade_continuo": 3.457,
         "n_concluintes_inscritos": 66,
         "n_concluintes_participantes": 57,
-        "taxa_participacao": 86.4
+        "taxa_participacao": 86.4,
+        "formacao_geral": 3.163544894,
+        "componente_especifico": 3.555237174,
+        "idd": 1.789,
+        "organizacao_didatico_pedagogica": 2.143,
+        "infraestrutura": 2.979,
+        "oportunidade_ampliacao": 3.603,
+        "mestres": 4.627,
+        "doutores": 4.231,
+        "regime_trabalho": 5.0
       }
     ],
     "perfil_radar": [
@@ -108579,7 +110010,16 @@
         "conceito_enade_continuo": 3.3574786186,
         "n_concluintes_inscritos": 107,
         "n_concluintes_participantes": 102,
-        "taxa_participacao": 95.3
+        "taxa_participacao": 95.3,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.8511634875,
+        "organizacao_didatico_pedagogica": 1.4786505837,
+        "infraestrutura": 3.216724106,
+        "oportunidade_ampliacao": 3.0150526281,
+        "mestres": 4.3903940887,
+        "doutores": 4.3647912886,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13965,
@@ -108591,7 +110031,16 @@
         "conceito_enade_continuo": 3.69,
         "n_concluintes_inscritos": 80,
         "n_concluintes_participantes": 76,
-        "taxa_participacao": 95.0
+        "taxa_participacao": 95.0,
+        "formacao_geral": 4.587,
+        "componente_especifico": 3.3921,
+        "idd": 2.547,
+        "organizacao_didatico_pedagogica": 1.521,
+        "infraestrutura": 2.703,
+        "oportunidade_ampliacao": 2.005,
+        "mestres": 4.736,
+        "doutores": 4.573,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13965,
@@ -108603,7 +110052,16 @@
         "conceito_enade_continuo": 4.222,
         "n_concluintes_inscritos": 83,
         "n_concluintes_participantes": 72,
-        "taxa_participacao": 86.7
+        "taxa_participacao": 86.7,
+        "formacao_geral": 4.913931814,
+        "componente_especifico": 3.990997514,
+        "idd": 3.096,
+        "organizacao_didatico_pedagogica": 1.127,
+        "infraestrutura": 1.547,
+        "oportunidade_ampliacao": 2.48,
+        "mestres": 4.727,
+        "doutores": 4.675,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13967,
@@ -108615,7 +110073,16 @@
         "conceito_enade_continuo": 4.0466263389,
         "n_concluintes_inscritos": 104,
         "n_concluintes_participantes": 76,
-        "taxa_participacao": 73.1
+        "taxa_participacao": 73.1,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.00655055,
+        "organizacao_didatico_pedagogica": 0.970492752,
+        "infraestrutura": 2.079294903,
+        "oportunidade_ampliacao": 1.680973226,
+        "mestres": 4.829059839,
+        "doutores": 4.743589759,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13967,
@@ -108627,7 +110094,16 @@
         "conceito_enade_continuo": 4.423,
         "n_concluintes_inscritos": 93,
         "n_concluintes_participantes": 79,
-        "taxa_participacao": 84.9
+        "taxa_participacao": 84.9,
+        "formacao_geral": 3.869,
+        "componente_especifico": 4.608,
+        "idd": 2.411,
+        "organizacao_didatico_pedagogica": 1.983,
+        "infraestrutura": 2.319,
+        "oportunidade_ampliacao": 2.206,
+        "mestres": 4.58,
+        "doutores": 4.302,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13968,
@@ -108639,7 +110115,16 @@
         "conceito_enade_continuo": 4.7267427444,
         "n_concluintes_inscritos": 104,
         "n_concluintes_participantes": 100,
-        "taxa_participacao": 96.2
+        "taxa_participacao": 96.2,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.8880632152,
+        "organizacao_didatico_pedagogica": 1.1438424742,
+        "infraestrutura": 2.7640589015,
+        "oportunidade_ampliacao": 2.2849124242,
+        "mestres": 4.6943573668,
+        "doutores": 3.8582375479,
+        "regime_trabalho": 4.9051724138
       },
       {
         "codigo_curso": 13968,
@@ -108651,7 +110136,16 @@
         "conceito_enade_continuo": 4.956091935,
         "n_concluintes_inscritos": 90,
         "n_concluintes_participantes": 84,
-        "taxa_participacao": 93.3
+        "taxa_participacao": 93.3,
+        "formacao_geral": 4.824367742,
+        "componente_especifico": 5.0,
+        "idd": 1.882567479,
+        "organizacao_didatico_pedagogica": 1.919528202,
+        "infraestrutura": 2.390959779,
+        "oportunidade_ampliacao": 2.776549561,
+        "mestres": 4.785247637,
+        "doutores": 4.148629352,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13968,
@@ -108663,7 +110157,16 @@
         "conceito_enade_continuo": 4.133,
         "n_concluintes_inscritos": 101,
         "n_concluintes_participantes": 68,
-        "taxa_participacao": 67.3
+        "taxa_participacao": 67.3,
+        "formacao_geral": 4.27016543,
+        "componente_especifico": 4.088171291,
+        "idd": 1.79082587,
+        "organizacao_didatico_pedagogica": 1.189559008,
+        "infraestrutura": 2.274077164,
+        "oportunidade_ampliacao": 2.49901872,
+        "mestres": 4.800724639,
+        "doutores": 4.057971015,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13969,
@@ -108675,7 +110178,16 @@
         "conceito_enade_continuo": 3.5176124573,
         "n_concluintes_inscritos": 121,
         "n_concluintes_participantes": 96,
-        "taxa_participacao": 79.3
+        "taxa_participacao": 79.3,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.0372366274,
+        "organizacao_didatico_pedagogica": 2.0955571744,
+        "infraestrutura": 2.6381792157,
+        "oportunidade_ampliacao": 2.4193969187,
+        "mestres": 4.7548076923,
+        "doutores": 3.8031674208,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13969,
@@ -108687,7 +110199,16 @@
         "conceito_enade_continuo": 3.673590184,
         "n_concluintes_inscritos": 91,
         "n_concluintes_participantes": 71,
-        "taxa_participacao": 78.0
+        "taxa_participacao": 78.0,
+        "formacao_geral": 4.27024768,
+        "componente_especifico": 3.474704353,
+        "idd": 2.126451474,
+        "organizacao_didatico_pedagogica": 1.985271726,
+        "infraestrutura": 2.436863001,
+        "oportunidade_ampliacao": 2.832014351,
+        "mestres": 4.572434815,
+        "doutores": 2.746479,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13969,
@@ -108699,7 +110220,16 @@
         "conceito_enade_continuo": 4.071,
         "n_concluintes_inscritos": 131,
         "n_concluintes_participantes": 93,
-        "taxa_participacao": 71.0
+        "taxa_participacao": 71.0,
+        "formacao_geral": 4.441041835,
+        "componente_especifico": 3.948823611,
+        "idd": 3.614050011,
+        "organizacao_didatico_pedagogica": 2.766932985,
+        "infraestrutura": 2.877059717,
+        "oportunidade_ampliacao": 3.118629326,
+        "mestres": 4.853658536,
+        "doutores": 3.414634145,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13970,
@@ -108711,7 +110241,16 @@
         "conceito_enade_continuo": 2.0584375858,
         "n_concluintes_inscritos": 62,
         "n_concluintes_participantes": 36,
-        "taxa_participacao": 58.1
+        "taxa_participacao": 58.1,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 0.177385863,
+        "organizacao_didatico_pedagogica": 1.5551966791,
+        "infraestrutura": 2.363777505,
+        "oportunidade_ampliacao": 2.2249757321,
+        "mestres": 4.8163452709,
+        "doutores": 4.0909090909,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13970,
@@ -108723,7 +110262,16 @@
         "conceito_enade_continuo": 2.67247344,
         "n_concluintes_inscritos": 72,
         "n_concluintes_participantes": 62,
-        "taxa_participacao": 86.1
+        "taxa_participacao": 86.1,
+        "formacao_geral": 2.49901318,
+        "componente_especifico": 2.730293527,
+        "idd": 2.192296052,
+        "organizacao_didatico_pedagogica": 1.94203417,
+        "infraestrutura": 2.464064148,
+        "oportunidade_ampliacao": 2.376358616,
+        "mestres": 5.0,
+        "doutores": 3.529412,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13970,
@@ -108735,7 +110283,16 @@
         "conceito_enade_continuo": 3.411,
         "n_concluintes_inscritos": 61,
         "n_concluintes_participantes": 45,
-        "taxa_participacao": 73.8
+        "taxa_participacao": 73.8,
+        "formacao_geral": 3.763381867,
+        "componente_especifico": 3.2941734,
+        "idd": 3.121536417,
+        "organizacao_didatico_pedagogica": 1.484375,
+        "infraestrutura": 2.081165675,
+        "oportunidade_ampliacao": 2.361453202,
+        "mestres": 4.535519129,
+        "doutores": 3.93442623,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13972,
@@ -108747,7 +110304,16 @@
         "conceito_enade_continuo": 3.3321425541,
         "n_concluintes_inscritos": 12,
         "n_concluintes_participantes": 8,
-        "taxa_participacao": 66.7
+        "taxa_participacao": 66.7,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 3.704416275,
+        "organizacao_didatico_pedagogica": 0.753435818,
+        "infraestrutura": 2.560592255,
+        "oportunidade_ampliacao": 1.43168814,
+        "mestres": 5.0,
+        "doutores": 4.427860597,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13974,
@@ -108759,7 +110325,16 @@
         "conceito_enade_continuo": 3.4278711648,
         "n_concluintes_inscritos": 47,
         "n_concluintes_participantes": 37,
-        "taxa_participacao": 78.7
+        "taxa_participacao": 78.7,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.315407515,
+        "organizacao_didatico_pedagogica": 1.716631803,
+        "infraestrutura": 2.877862013,
+        "oportunidade_ampliacao": 2.958593741,
+        "mestres": 4.761904762,
+        "doutores": 4.851851761,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13974,
@@ -108771,7 +110346,16 @@
         "conceito_enade_continuo": 3.835,
         "n_concluintes_inscritos": 64,
         "n_concluintes_participantes": 54,
-        "taxa_participacao": 84.4
+        "taxa_participacao": 84.4,
+        "formacao_geral": 3.856,
+        "componente_especifico": 3.828,
+        "idd": 2.145,
+        "organizacao_didatico_pedagogica": 2.204,
+        "infraestrutura": 3.141,
+        "oportunidade_ampliacao": 2.171,
+        "mestres": 4.465,
+        "doutores": 4.245,
+        "regime_trabalho": 4.923
       },
       {
         "codigo_curso": 13976,
@@ -108783,7 +110367,16 @@
         "conceito_enade_continuo": 2.9261580439,
         "n_concluintes_inscritos": 58,
         "n_concluintes_participantes": 52,
-        "taxa_participacao": 89.7
+        "taxa_participacao": 89.7,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 0.538983941,
+        "organizacao_didatico_pedagogica": 2.428593206,
+        "infraestrutura": 3.30223434,
+        "oportunidade_ampliacao": 2.356861556,
+        "mestres": 4.76089994,
+        "doutores": 4.74683553,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13976,
@@ -108795,7 +110388,16 @@
         "conceito_enade_continuo": 3.561,
         "n_concluintes_inscritos": 75,
         "n_concluintes_participantes": 65,
-        "taxa_participacao": 86.7
+        "taxa_participacao": 86.7,
+        "formacao_geral": 3.456,
+        "componente_especifico": 3.596,
+        "idd": 2.314,
+        "organizacao_didatico_pedagogica": 2.472,
+        "infraestrutura": 3.149,
+        "oportunidade_ampliacao": 2.698,
+        "mestres": 4.327,
+        "doutores": 4.462,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13977,
@@ -108807,7 +110409,16 @@
         "conceito_enade_continuo": 2.8414717424,
         "n_concluintes_inscritos": 18,
         "n_concluintes_participantes": 16,
-        "taxa_participacao": 88.9
+        "taxa_participacao": 88.9,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.101327896,
+        "organizacao_didatico_pedagogica": 2.863555353,
+        "infraestrutura": 2.954348729,
+        "oportunidade_ampliacao": 2.084989698,
+        "mestres": 3.88333421,
+        "doutores": 4.180952543,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13980,
@@ -108819,7 +110430,16 @@
         "conceito_enade_continuo": 4.4466134013,
         "n_concluintes_inscritos": 46,
         "n_concluintes_participantes": 44,
-        "taxa_participacao": 95.7
+        "taxa_participacao": 95.7,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.695523977,
+        "organizacao_didatico_pedagogica": 2.75483957,
+        "infraestrutura": 3.221225596,
+        "oportunidade_ampliacao": 3.396577303,
+        "mestres": 4.900568276,
+        "doutores": 4.375,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13980,
@@ -108831,7 +110451,16 @@
         "conceito_enade_continuo": 3.324,
         "n_concluintes_inscritos": 34,
         "n_concluintes_participantes": 32,
-        "taxa_participacao": 94.1
+        "taxa_participacao": 94.1,
+        "formacao_geral": 3.325,
+        "componente_especifico": 3.324,
+        "idd": 2.627,
+        "organizacao_didatico_pedagogica": 2.627,
+        "infraestrutura": 3.111,
+        "oportunidade_ampliacao": 3.169,
+        "mestres": 4.826,
+        "doutores": 4.347,
+        "regime_trabalho": 4.906
       },
       {
         "codigo_curso": 13982,
@@ -108843,7 +110472,16 @@
         "conceito_enade_continuo": 3.9465496527,
         "n_concluintes_inscritos": 28,
         "n_concluintes_participantes": 12,
-        "taxa_participacao": 42.9
+        "taxa_participacao": 42.9,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.125327587,
+        "organizacao_didatico_pedagogica": 2.582618301,
+        "infraestrutura": 1.146217518,
+        "oportunidade_ampliacao": 1.629650233,
+        "mestres": 4.725490219,
+        "doutores": 4.80392158,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13982,
@@ -108855,7 +110493,16 @@
         "conceito_enade_continuo": 3.703,
         "n_concluintes_inscritos": 7,
         "n_concluintes_participantes": 4,
-        "taxa_participacao": 57.1
+        "taxa_participacao": 57.1,
+        "formacao_geral": 2.405,
+        "componente_especifico": 4.136,
+        "idd": 2.047,
+        "organizacao_didatico_pedagogica": 1.379,
+        "infraestrutura": 1.066,
+        "oportunidade_ampliacao": 1.886,
+        "mestres": 4.2,
+        "doutores": 4.333,
+        "regime_trabalho": 4.811
       },
       {
         "codigo_curso": 13984,
@@ -108867,7 +110514,16 @@
         "conceito_enade_continuo": 3.0108361073,
         "n_concluintes_inscritos": 51,
         "n_concluintes_participantes": 43,
-        "taxa_participacao": 84.3
+        "taxa_participacao": 84.3,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.534154654,
+        "organizacao_didatico_pedagogica": 1.998996549,
+        "infraestrutura": 1.87645098,
+        "oportunidade_ampliacao": 1.784433653,
+        "mestres": 4.885057211,
+        "doutores": 4.712643623,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13984,
@@ -108879,7 +110535,16 @@
         "conceito_enade_continuo": 4.203,
         "n_concluintes_inscritos": 74,
         "n_concluintes_participantes": 66,
-        "taxa_participacao": 89.2
+        "taxa_participacao": 89.2,
+        "formacao_geral": 4.075,
+        "componente_especifico": 4.246,
+        "idd": 2.611,
+        "organizacao_didatico_pedagogica": 2.298,
+        "infraestrutura": 2.219,
+        "oportunidade_ampliacao": 2.203,
+        "mestres": 4.282,
+        "doutores": 4.23,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13986,
@@ -108891,7 +110556,16 @@
         "conceito_enade_continuo": 4.3773021698,
         "n_concluintes_inscritos": 54,
         "n_concluintes_participantes": 47,
-        "taxa_participacao": 87.0
+        "taxa_participacao": 87.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 3.9932629665,
+        "organizacao_didatico_pedagogica": 1.7291059722,
+        "infraestrutura": 2.1721910798,
+        "oportunidade_ampliacao": 2.4649438347,
+        "mestres": 4.5467032967,
+        "doutores": 4.1313559322,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13986,
@@ -108903,7 +110577,16 @@
         "conceito_enade_continuo": 4.881510258,
         "n_concluintes_inscritos": 84,
         "n_concluintes_participantes": 83,
-        "taxa_participacao": 98.8
+        "taxa_participacao": 98.8,
+        "formacao_geral": 4.830345776,
+        "componente_especifico": 4.898565085,
+        "idd": 2.491260473,
+        "organizacao_didatico_pedagogica": 1.860650034,
+        "infraestrutura": 2.306154482,
+        "oportunidade_ampliacao": 2.314450556,
+        "mestres": 4.853846303,
+        "doutores": 4.0,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13986,
@@ -108915,7 +110598,16 @@
         "conceito_enade_continuo": 3.823,
         "n_concluintes_inscritos": 87,
         "n_concluintes_participantes": 83,
-        "taxa_participacao": 95.4
+        "taxa_participacao": 95.4,
+        "formacao_geral": 3.698621991,
+        "componente_especifico": 3.86574741,
+        "idd": 1.563478001,
+        "organizacao_didatico_pedagogica": 2.114092549,
+        "infraestrutura": 2.343966635,
+        "oportunidade_ampliacao": 2.792528841,
+        "mestres": 4.24863388,
+        "doutores": 3.68852459,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13987,
@@ -108927,7 +110619,16 @@
         "conceito_enade_continuo": 4.3156200661,
         "n_concluintes_inscritos": 128,
         "n_concluintes_participantes": 119,
-        "taxa_participacao": 93.0
+        "taxa_participacao": 93.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.607417464,
+        "organizacao_didatico_pedagogica": 1.703296886,
+        "infraestrutura": 2.248943549,
+        "oportunidade_ampliacao": 2.910014878,
+        "mestres": 4.878542516,
+        "doutores": 4.119230824,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13987,
@@ -108939,7 +110640,16 @@
         "conceito_enade_continuo": 4.441,
         "n_concluintes_inscritos": 126,
         "n_concluintes_participantes": 116,
-        "taxa_participacao": 92.1
+        "taxa_participacao": 92.1,
+        "formacao_geral": 4.695,
+        "componente_especifico": 4.3565,
+        "idd": 2.146,
+        "organizacao_didatico_pedagogica": 2.449,
+        "infraestrutura": 2.31,
+        "oportunidade_ampliacao": 2.747,
+        "mestres": 4.054,
+        "doutores": 3.909,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13987,
@@ -108951,7 +110661,16 @@
         "conceito_enade_continuo": 4.642,
         "n_concluintes_inscritos": 102,
         "n_concluintes_participantes": 95,
-        "taxa_participacao": 93.1
+        "taxa_participacao": 93.1,
+        "formacao_geral": 4.410661443,
+        "componente_especifico": 4.718462791,
+        "idd": 3.273,
+        "organizacao_didatico_pedagogica": 2.609,
+        "infraestrutura": 2.557,
+        "oportunidade_ampliacao": 2.794,
+        "mestres": 4.779,
+        "doutores": 4.412,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13988,
@@ -108963,7 +110682,16 @@
         "conceito_enade_continuo": 4.3734502633,
         "n_concluintes_inscritos": 153,
         "n_concluintes_participantes": 147,
-        "taxa_participacao": 96.1
+        "taxa_participacao": 96.1,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.205785751,
+        "organizacao_didatico_pedagogica": 1.086500767,
+        "infraestrutura": 2.134568192,
+        "oportunidade_ampliacao": 2.585005409,
+        "mestres": 4.79640743,
+        "doutores": 4.431137741,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13988,
@@ -108975,7 +110703,16 @@
         "conceito_enade_continuo": 4.246,
         "n_concluintes_inscritos": 124,
         "n_concluintes_participantes": 112,
-        "taxa_participacao": 90.3
+        "taxa_participacao": 90.3,
+        "formacao_geral": 4.262,
+        "componente_especifico": 4.2407,
+        "idd": 2.542,
+        "organizacao_didatico_pedagogica": 1.62,
+        "infraestrutura": 2.556,
+        "oportunidade_ampliacao": 2.352,
+        "mestres": 4.562,
+        "doutores": 4.02,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13988,
@@ -108987,7 +110724,16 @@
         "conceito_enade_continuo": 4.489,
         "n_concluintes_inscritos": 130,
         "n_concluintes_participantes": 119,
-        "taxa_participacao": 91.5
+        "taxa_participacao": 91.5,
+        "formacao_geral": 4.163244245,
+        "componente_especifico": 4.597914834,
+        "idd": 4.066,
+        "organizacao_didatico_pedagogica": 1.644,
+        "infraestrutura": 2.027,
+        "oportunidade_ampliacao": 2.919,
+        "mestres": 4.614,
+        "doutores": 4.191,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13989,
@@ -108999,7 +110745,16 @@
         "conceito_enade_continuo": 3.3236847128,
         "n_concluintes_inscritos": 88,
         "n_concluintes_participantes": 72,
-        "taxa_participacao": 81.8
+        "taxa_participacao": 81.8,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.296800137,
+        "organizacao_didatico_pedagogica": 1.41877594,
+        "infraestrutura": 1.848163692,
+        "oportunidade_ampliacao": 2.568863452,
+        "mestres": 4.810267936,
+        "doutores": 4.404761791,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13989,
@@ -109011,7 +110766,16 @@
         "conceito_enade_continuo": 3.617,
         "n_concluintes_inscritos": 100,
         "n_concluintes_participantes": 92,
-        "taxa_participacao": 92.0
+        "taxa_participacao": 92.0,
+        "formacao_geral": 4.16,
+        "componente_especifico": 3.4369,
+        "idd": 2.721,
+        "organizacao_didatico_pedagogica": 1.283,
+        "infraestrutura": 1.97,
+        "oportunidade_ampliacao": 2.469,
+        "mestres": 4.127,
+        "doutores": 3.75,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13989,
@@ -109023,7 +110787,16 @@
         "conceito_enade_continuo": 3.202,
         "n_concluintes_inscritos": 95,
         "n_concluintes_participantes": 83,
-        "taxa_participacao": 87.4
+        "taxa_participacao": 87.4,
+        "formacao_geral": 3.597419983,
+        "componente_especifico": 3.069631467,
+        "idd": 1.243,
+        "organizacao_didatico_pedagogica": 1.977,
+        "infraestrutura": 2.604,
+        "oportunidade_ampliacao": 3.468,
+        "mestres": 4.231,
+        "doutores": 4.145,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13990,
@@ -109035,7 +110808,16 @@
         "conceito_enade_continuo": 3.4839153423,
         "n_concluintes_inscritos": 93,
         "n_concluintes_participantes": 69,
-        "taxa_participacao": 74.2
+        "taxa_participacao": 74.2,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.163174629,
+        "organizacao_didatico_pedagogica": 1.468750446,
+        "infraestrutura": 1.779102824,
+        "oportunidade_ampliacao": 3.077187869,
+        "mestres": 4.662835091,
+        "doutores": 4.344827533,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13990,
@@ -109047,7 +110829,16 @@
         "conceito_enade_continuo": 3.674,
         "n_concluintes_inscritos": 111,
         "n_concluintes_participantes": 102,
-        "taxa_participacao": 91.9
+        "taxa_participacao": 91.9,
+        "formacao_geral": 4.172,
+        "componente_especifico": 3.5084,
+        "idd": 2.321,
+        "organizacao_didatico_pedagogica": 1.534,
+        "infraestrutura": 1.823,
+        "oportunidade_ampliacao": 2.96,
+        "mestres": 3.76,
+        "doutores": 3.536,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13990,
@@ -109059,7 +110850,16 @@
         "conceito_enade_continuo": 4.146,
         "n_concluintes_inscritos": 98,
         "n_concluintes_participantes": 78,
-        "taxa_participacao": 79.6
+        "taxa_participacao": 79.6,
+        "formacao_geral": 4.009091372,
+        "componente_especifico": 4.191606332,
+        "idd": 3.413,
+        "organizacao_didatico_pedagogica": 1.56,
+        "infraestrutura": 1.924,
+        "oportunidade_ampliacao": 3.143,
+        "mestres": 4.459,
+        "doutores": 4.144,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13991,
@@ -109071,7 +110871,16 @@
         "conceito_enade_continuo": 3.8294270277,
         "n_concluintes_inscritos": 47,
         "n_concluintes_participantes": 46,
-        "taxa_participacao": 97.9
+        "taxa_participacao": 97.9,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 3.067968845,
+        "organizacao_didatico_pedagogica": 1.727773662,
+        "infraestrutura": 1.808855183,
+        "oportunidade_ampliacao": 2.379448754,
+        "mestres": 4.690475545,
+        "doutores": 4.464285672,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13991,
@@ -109083,7 +110892,16 @@
         "conceito_enade_continuo": 3.586,
         "n_concluintes_inscritos": 62,
         "n_concluintes_participantes": 56,
-        "taxa_participacao": 90.3
+        "taxa_participacao": 90.3,
+        "formacao_geral": 3.516,
+        "componente_especifico": 3.6106,
+        "idd": 2.399,
+        "organizacao_didatico_pedagogica": 1.384,
+        "infraestrutura": 2.062,
+        "oportunidade_ampliacao": 2.582,
+        "mestres": 4.399,
+        "doutores": 4.009,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13991,
@@ -109095,7 +110913,16 @@
         "conceito_enade_continuo": 3.008,
         "n_concluintes_inscritos": 79,
         "n_concluintes_participantes": 74,
-        "taxa_participacao": 93.7
+        "taxa_participacao": 93.7,
+        "formacao_geral": 3.22895103,
+        "componente_especifico": 2.934682055,
+        "idd": 1.191,
+        "organizacao_didatico_pedagogica": 0.816,
+        "infraestrutura": 1.568,
+        "oportunidade_ampliacao": 2.68,
+        "mestres": 4.842,
+        "doutores": 4.353,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13993,
@@ -109107,7 +110934,16 @@
         "conceito_enade_continuo": 3.2889898987,
         "n_concluintes_inscritos": 65,
         "n_concluintes_participantes": 60,
-        "taxa_participacao": 92.3
+        "taxa_participacao": 92.3,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.61354053,
+        "organizacao_didatico_pedagogica": 1.110634644,
+        "infraestrutura": 1.905368693,
+        "oportunidade_ampliacao": 1.725204456,
+        "mestres": 4.558558869,
+        "doutores": 4.649649527,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13993,
@@ -109119,7 +110955,16 @@
         "conceito_enade_continuo": 2.977,
         "n_concluintes_inscritos": 50,
         "n_concluintes_participantes": 49,
-        "taxa_participacao": 98.0
+        "taxa_participacao": 98.0,
+        "formacao_geral": 3.751,
+        "componente_especifico": 2.7188,
+        "idd": 2.248,
+        "organizacao_didatico_pedagogica": 0.97,
+        "infraestrutura": 0.706,
+        "oportunidade_ampliacao": 1.643,
+        "mestres": 2.644,
+        "doutores": 3.8,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13993,
@@ -109131,7 +110976,16 @@
         "conceito_enade_continuo": 2.736,
         "n_concluintes_inscritos": 77,
         "n_concluintes_participantes": 70,
-        "taxa_participacao": 90.9
+        "taxa_participacao": 90.9,
+        "formacao_geral": 2.603039074,
+        "componente_especifico": 2.780629889,
+        "idd": 1.683,
+        "organizacao_didatico_pedagogica": 1.099,
+        "infraestrutura": 1.308,
+        "oportunidade_ampliacao": 2.096,
+        "mestres": 3.611,
+        "doutores": 3.894,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13994,
@@ -109143,7 +110997,16 @@
         "conceito_enade_continuo": 4.8728122711,
         "n_concluintes_inscritos": 25,
         "n_concluintes_participantes": 24,
-        "taxa_participacao": 96.0
+        "taxa_participacao": 96.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.8169386372,
+        "organizacao_didatico_pedagogica": 1.6005748762,
+        "infraestrutura": 2.3949787706,
+        "oportunidade_ampliacao": 3.1544219929,
+        "mestres": 4.776674938,
+        "doutores": 4.6703296703,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13994,
@@ -109155,7 +111018,16 @@
         "conceito_enade_continuo": 5.0,
         "n_concluintes_inscritos": 71,
         "n_concluintes_participantes": 71,
-        "taxa_participacao": 100.0
+        "taxa_participacao": 100.0,
+        "formacao_geral": 5.0,
+        "componente_especifico": 5.0,
+        "idd": 2.903,
+        "organizacao_didatico_pedagogica": 3.022,
+        "infraestrutura": 1.658,
+        "oportunidade_ampliacao": 2.839,
+        "mestres": 4.668,
+        "doutores": 4.285,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13994,
@@ -109167,7 +111039,16 @@
         "conceito_enade_continuo": 4.45,
         "n_concluintes_inscritos": 62,
         "n_concluintes_participantes": 62,
-        "taxa_participacao": 100.0
+        "taxa_participacao": 100.0,
+        "formacao_geral": 4.87640018,
+        "componente_especifico": 4.307654111,
+        "idd": 2.645,
+        "organizacao_didatico_pedagogica": 3.845,
+        "infraestrutura": 3.303,
+        "oportunidade_ampliacao": 3.459,
+        "mestres": 4.778,
+        "doutores": 4.353,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13995,
@@ -109179,7 +111060,16 @@
         "conceito_enade_continuo": 4.2746953964,
         "n_concluintes_inscritos": 62,
         "n_concluintes_participantes": 61,
-        "taxa_participacao": 98.4
+        "taxa_participacao": 98.4,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.5513990762,
+        "organizacao_didatico_pedagogica": 1.4259263001,
+        "infraestrutura": 2.5972448059,
+        "oportunidade_ampliacao": 3.2050076534,
+        "mestres": 4.5324675325,
+        "doutores": 4.5,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13995,
@@ -109191,7 +111081,16 @@
         "conceito_enade_continuo": 5.0,
         "n_concluintes_inscritos": 76,
         "n_concluintes_participantes": 74,
-        "taxa_participacao": 97.4
+        "taxa_participacao": 97.4,
+        "formacao_geral": 5.0,
+        "componente_especifico": 5.0,
+        "idd": 2.793,
+        "organizacao_didatico_pedagogica": 1.712,
+        "infraestrutura": 2.722,
+        "oportunidade_ampliacao": 2.73,
+        "mestres": 4.446,
+        "doutores": 4.22,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13995,
@@ -109203,7 +111102,16 @@
         "conceito_enade_continuo": 4.926,
         "n_concluintes_inscritos": 100,
         "n_concluintes_participantes": 98,
-        "taxa_participacao": 98.0
+        "taxa_participacao": 98.0,
+        "formacao_geral": 4.845367745,
+        "componente_especifico": 4.952713483,
+        "idd": 3.997,
+        "organizacao_didatico_pedagogica": 1.258,
+        "infraestrutura": 1.774,
+        "oportunidade_ampliacao": 2.443,
+        "mestres": 4.551,
+        "doutores": 4.541,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13996,
@@ -109215,7 +111123,16 @@
         "conceito_enade_continuo": 3.3885495663,
         "n_concluintes_inscritos": 131,
         "n_concluintes_participantes": 126,
-        "taxa_participacao": 96.2
+        "taxa_participacao": 96.2,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.9249107163,
+        "organizacao_didatico_pedagogica": 2.8481524642,
+        "infraestrutura": 2.6567954387,
+        "oportunidade_ampliacao": 3.4086207686,
+        "mestres": 4.9150535,
+        "doutores": 4.1352497969,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13996,
@@ -109227,7 +111144,16 @@
         "conceito_enade_continuo": 4.323,
         "n_concluintes_inscritos": 166,
         "n_concluintes_participantes": 163,
-        "taxa_participacao": 98.2
+        "taxa_participacao": 98.2,
+        "formacao_geral": 4.472,
+        "componente_especifico": 4.2736,
+        "idd": 3.414,
+        "organizacao_didatico_pedagogica": 2.043,
+        "infraestrutura": 1.957,
+        "oportunidade_ampliacao": 3.025,
+        "mestres": 4.699,
+        "doutores": 3.934,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13996,
@@ -109239,7 +111165,16 @@
         "conceito_enade_continuo": 3.97,
         "n_concluintes_inscritos": 164,
         "n_concluintes_participantes": 162,
-        "taxa_participacao": 98.8
+        "taxa_participacao": 98.8,
+        "formacao_geral": 4.439853557,
+        "componente_especifico": 3.812949216,
+        "idd": 2.439,
+        "organizacao_didatico_pedagogica": 2.329,
+        "infraestrutura": 2.768,
+        "oportunidade_ampliacao": 2.916,
+        "mestres": 4.835,
+        "doutores": 4.313,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13997,
@@ -109251,7 +111186,16 @@
         "conceito_enade_continuo": 3.6670570374,
         "n_concluintes_inscritos": 41,
         "n_concluintes_participantes": 39,
-        "taxa_participacao": 95.1
+        "taxa_participacao": 95.1,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.0822584875,
+        "organizacao_didatico_pedagogica": 1.429211147,
+        "infraestrutura": 2.7068602772,
+        "oportunidade_ampliacao": 3.347081623,
+        "mestres": 4.7878359264,
+        "doutores": 4.504950495,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13997,
@@ -109263,7 +111207,16 @@
         "conceito_enade_continuo": 3.905,
         "n_concluintes_inscritos": 81,
         "n_concluintes_participantes": 76,
-        "taxa_participacao": 93.8
+        "taxa_participacao": 93.8,
+        "formacao_geral": 4.249,
+        "componente_especifico": 3.7911,
+        "idd": 2.329,
+        "organizacao_didatico_pedagogica": 2.226,
+        "infraestrutura": 1.87,
+        "oportunidade_ampliacao": 3.205,
+        "mestres": 4.693,
+        "doutores": 4.189,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13997,
@@ -109275,7 +111228,16 @@
         "conceito_enade_continuo": 4.247,
         "n_concluintes_inscritos": 72,
         "n_concluintes_participantes": 72,
-        "taxa_participacao": 100.0
+        "taxa_participacao": 100.0,
+        "formacao_geral": 4.805249375,
+        "componente_especifico": 4.06064111,
+        "idd": 2.813,
+        "organizacao_didatico_pedagogica": 3.276,
+        "infraestrutura": 3.69,
+        "oportunidade_ampliacao": 3.841,
+        "mestres": 4.83,
+        "doutores": 4.453,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13998,
@@ -109287,7 +111249,16 @@
         "conceito_enade_continuo": 4.9803009033,
         "n_concluintes_inscritos": 110,
         "n_concluintes_participantes": 68,
-        "taxa_participacao": 61.8
+        "taxa_participacao": 61.8,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.7598488163,
+        "organizacao_didatico_pedagogica": 1.6511538202,
+        "infraestrutura": 3.1367813466,
+        "oportunidade_ampliacao": 3.1103741157,
+        "mestres": 4.6014492754,
+        "doutores": 3.6684782609,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13998,
@@ -109299,7 +111270,16 @@
         "conceito_enade_continuo": 4.606839996,
         "n_concluintes_inscritos": 107,
         "n_concluintes_participantes": 83,
-        "taxa_participacao": 77.6
+        "taxa_participacao": 77.6,
+        "formacao_geral": 4.508642975,
+        "componente_especifico": 4.639572337,
+        "idd": 2.50841447,
+        "organizacao_didatico_pedagogica": 2.345611268,
+        "infraestrutura": 3.037255606,
+        "oportunidade_ampliacao": 3.009773615,
+        "mestres": 4.602272735,
+        "doutores": 3.125,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 13998,
@@ -109311,7 +111291,16 @@
         "conceito_enade_continuo": 4.336,
         "n_concluintes_inscritos": 146,
         "n_concluintes_participantes": 117,
-        "taxa_participacao": 80.1
+        "taxa_participacao": 80.1,
+        "formacao_geral": 4.335907853,
+        "componente_especifico": 4.336104812,
+        "idd": 3.296390845,
+        "organizacao_didatico_pedagogica": 1.581444681,
+        "infraestrutura": 2.374226208,
+        "oportunidade_ampliacao": 2.814821077,
+        "mestres": 4.69331873,
+        "doutores": 3.31325301,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 14000,
@@ -109323,7 +111312,16 @@
         "conceito_enade_continuo": 4.6162125825,
         "n_concluintes_inscritos": 52,
         "n_concluintes_participantes": 27,
-        "taxa_participacao": 51.9
+        "taxa_participacao": 51.9,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.03843832,
+        "organizacao_didatico_pedagogica": 2.287678879,
+        "infraestrutura": 2.846702258,
+        "oportunidade_ampliacao": 2.647301777,
+        "mestres": 5.0,
+        "doutores": 4.324324429,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 14000,
@@ -109335,7 +111333,16 @@
         "conceito_enade_continuo": 4.526,
         "n_concluintes_inscritos": 80,
         "n_concluintes_participantes": 52,
-        "taxa_participacao": 65.0
+        "taxa_participacao": 65.0,
+        "formacao_geral": 4.204,
+        "componente_especifico": 4.633,
+        "idd": 2.791,
+        "organizacao_didatico_pedagogica": 3.242,
+        "infraestrutura": 2.294,
+        "oportunidade_ampliacao": 3.152,
+        "mestres": 4.611,
+        "doutores": 4.083,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 14002,
@@ -109347,7 +111354,16 @@
         "conceito_enade_continuo": 4.0584506989,
         "n_concluintes_inscritos": 34,
         "n_concluintes_participantes": 32,
-        "taxa_participacao": 94.1
+        "taxa_participacao": 94.1,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.8500488188,
+        "organizacao_didatico_pedagogica": 2.2003051861,
+        "infraestrutura": 3.1063982033,
+        "oportunidade_ampliacao": 2.7984998374,
+        "mestres": 5.0,
+        "doutores": 4.1666666667,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 14002,
@@ -109359,7 +111375,16 @@
         "conceito_enade_continuo": 4.169014307,
         "n_concluintes_inscritos": 42,
         "n_concluintes_participantes": 35,
-        "taxa_participacao": 83.3
+        "taxa_participacao": 83.3,
+        "formacao_geral": 3.488833269,
+        "componente_especifico": 4.39574132,
+        "idd": 1.990401274,
+        "organizacao_didatico_pedagogica": 3.669029828,
+        "infraestrutura": 3.703069581,
+        "oportunidade_ampliacao": 3.251619431,
+        "mestres": 4.142857366,
+        "doutores": 2.6785715,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 14002,
@@ -109371,7 +111396,16 @@
         "conceito_enade_continuo": 3.907,
         "n_concluintes_inscritos": 65,
         "n_concluintes_participantes": 43,
-        "taxa_participacao": 66.2
+        "taxa_participacao": 66.2,
+        "formacao_geral": 4.383761672,
+        "componente_especifico": 3.749380115,
+        "idd": 0.79879046,
+        "organizacao_didatico_pedagogica": 2.948387096,
+        "infraestrutura": 2.73546627,
+        "oportunidade_ampliacao": 3.578945148,
+        "mestres": 4.487603304,
+        "doutores": 3.636363635,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 23947,
@@ -109383,7 +111417,16 @@
         "conceito_enade_continuo": 3.7554311752,
         "n_concluintes_inscritos": 35,
         "n_concluintes_participantes": 30,
-        "taxa_participacao": 85.7
+        "taxa_participacao": 85.7,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 0.8093355272,
+        "organizacao_didatico_pedagogica": 2.0966764082,
+        "infraestrutura": 1.300454855,
+        "oportunidade_ampliacao": 2.8403043715,
+        "mestres": 4.3961352657,
+        "doutores": 3.6956521739,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 23947,
@@ -109395,7 +111438,16 @@
         "conceito_enade_continuo": 4.730822923,
         "n_concluintes_inscritos": 72,
         "n_concluintes_participantes": 58,
-        "taxa_participacao": 80.6
+        "taxa_participacao": 80.6,
+        "formacao_geral": 4.340279389,
+        "componente_especifico": 4.861004101,
+        "idd": 2.573110804,
+        "organizacao_didatico_pedagogica": 2.93411391,
+        "infraestrutura": 2.520423677,
+        "oportunidade_ampliacao": 2.61901112,
+        "mestres": 4.230769,
+        "doutores": 3.717949,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 23947,
@@ -109407,7 +111459,16 @@
         "conceito_enade_continuo": 4.218,
         "n_concluintes_inscritos": 87,
         "n_concluintes_participantes": 67,
-        "taxa_participacao": 77.0
+        "taxa_participacao": 77.0,
+        "formacao_geral": 4.377515155,
+        "componente_especifico": 4.16536767,
+        "idd": 3.391648671,
+        "organizacao_didatico_pedagogica": 3.153337819,
+        "infraestrutura": 2.076822005,
+        "oportunidade_ampliacao": 3.03346401,
+        "mestres": 3.07692308,
+        "doutores": 3.46153846,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 27263,
@@ -109419,7 +111480,16 @@
         "conceito_enade_continuo": 3.6606189387,
         "n_concluintes_inscritos": 14,
         "n_concluintes_participantes": 12,
-        "taxa_participacao": 85.7
+        "taxa_participacao": 85.7,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.943599701,
+        "organizacao_didatico_pedagogica": 1.641094852,
+        "infraestrutura": 2.889739664,
+        "oportunidade_ampliacao": 2.947145087,
+        "mestres": 4.874245376,
+        "doutores": 4.577464759,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 27263,
@@ -109431,7 +111501,16 @@
         "conceito_enade_continuo": 3.652,
         "n_concluintes_inscritos": 35,
         "n_concluintes_participantes": 33,
-        "taxa_participacao": 94.3
+        "taxa_participacao": 94.3,
+        "formacao_geral": 3.136,
+        "componente_especifico": 3.823,
+        "idd": 2.439,
+        "organizacao_didatico_pedagogica": 3.243,
+        "infraestrutura": 2.952,
+        "oportunidade_ampliacao": 3.282,
+        "mestres": 4.388,
+        "doutores": 4.19,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 29489,
@@ -109443,7 +111522,16 @@
         "conceito_enade_continuo": 4.0349878384,
         "n_concluintes_inscritos": 54,
         "n_concluintes_participantes": 38,
-        "taxa_participacao": 70.4
+        "taxa_participacao": 70.4,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.366229296,
+        "organizacao_didatico_pedagogica": 2.152184478,
+        "infraestrutura": 2.764326864,
+        "oportunidade_ampliacao": 2.235206967,
+        "mestres": 4.895522473,
+        "doutores": 4.776119292,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 29489,
@@ -109455,7 +111543,16 @@
         "conceito_enade_continuo": 4.088,
         "n_concluintes_inscritos": 40,
         "n_concluintes_participantes": 34,
-        "taxa_participacao": 85.0
+        "taxa_participacao": 85.0,
+        "formacao_geral": 4.048,
+        "componente_especifico": 4.102,
+        "idd": 2.331,
+        "organizacao_didatico_pedagogica": 2.096,
+        "infraestrutura": 2.535,
+        "oportunidade_ampliacao": 2.268,
+        "mestres": 4.387,
+        "doutores": 4.326,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 33013,
@@ -109467,7 +111564,16 @@
         "conceito_enade_continuo": 3.9504313115,
         "n_concluintes_inscritos": 22,
         "n_concluintes_participantes": 15,
-        "taxa_participacao": 68.2
+        "taxa_participacao": 68.2,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 4.038370609,
+        "organizacao_didatico_pedagogica": 3.049848131,
+        "infraestrutura": 3.295804612,
+        "oportunidade_ampliacao": 3.173576702,
+        "mestres": 4.891304372,
+        "doutores": 4.637681246,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 33013,
@@ -109479,7 +111585,16 @@
         "conceito_enade_continuo": 4.489,
         "n_concluintes_inscritos": 25,
         "n_concluintes_participantes": 23,
-        "taxa_participacao": 92.0
+        "taxa_participacao": 92.0,
+        "formacao_geral": 3.222,
+        "componente_especifico": 4.911,
+        "idd": 2.556,
+        "organizacao_didatico_pedagogica": 2.376,
+        "infraestrutura": 2.951,
+        "oportunidade_ampliacao": 2.485,
+        "mestres": 4.628,
+        "doutores": 4.324,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 37265,
@@ -109491,7 +111606,16 @@
         "conceito_enade_continuo": 4.4886435087,
         "n_concluintes_inscritos": 62,
         "n_concluintes_participantes": 54,
-        "taxa_participacao": 87.1
+        "taxa_participacao": 87.1,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.707133293,
+        "organizacao_didatico_pedagogica": 1.617093083,
+        "infraestrutura": 2.745041766,
+        "oportunidade_ampliacao": 3.455330094,
+        "mestres": 5.0,
+        "doutores": 4.415584505,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 37265,
@@ -109503,7 +111627,16 @@
         "conceito_enade_continuo": 3.947,
         "n_concluintes_inscritos": 109,
         "n_concluintes_participantes": 89,
-        "taxa_participacao": 81.7
+        "taxa_participacao": 81.7,
+        "formacao_geral": 4.055717222,
+        "componente_especifico": 3.91044863,
+        "idd": 2.37,
+        "organizacao_didatico_pedagogica": 2.55,
+        "infraestrutura": 2.705,
+        "oportunidade_ampliacao": 3.351,
+        "mestres": 4.481,
+        "doutores": 4.167,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 37267,
@@ -109515,7 +111648,16 @@
         "conceito_enade_continuo": 4.4515128136,
         "n_concluintes_inscritos": 56,
         "n_concluintes_participantes": 50,
-        "taxa_participacao": 89.3
+        "taxa_participacao": 89.3,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.3849808573,
+        "organizacao_didatico_pedagogica": 1.8963098758,
+        "infraestrutura": 1.2154696288,
+        "oportunidade_ampliacao": 2.4571389302,
+        "mestres": 4.2361111111,
+        "doutores": 3.9246031746,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 37267,
@@ -109527,7 +111669,16 @@
         "conceito_enade_continuo": 4.053161258,
         "n_concluintes_inscritos": 59,
         "n_concluintes_participantes": 47,
-        "taxa_participacao": 79.7
+        "taxa_participacao": 79.7,
+        "formacao_geral": 4.274097721,
+        "componente_especifico": 3.97951577,
+        "idd": 1.347889723,
+        "organizacao_didatico_pedagogica": 3.562063041,
+        "infraestrutura": 3.108834344,
+        "oportunidade_ampliacao": 3.201442011,
+        "mestres": 4.338624286,
+        "doutores": 3.703703684,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 37267,
@@ -109539,7 +111690,16 @@
         "conceito_enade_continuo": 4.243,
         "n_concluintes_inscritos": 80,
         "n_concluintes_participantes": 66,
-        "taxa_participacao": 82.5
+        "taxa_participacao": 82.5,
+        "formacao_geral": 4.477593375,
+        "componente_especifico": 4.166077877,
+        "idd": 2.931210827,
+        "organizacao_didatico_pedagogica": 3.314755664,
+        "infraestrutura": 1.86405852,
+        "oportunidade_ampliacao": 3.022285235,
+        "mestres": 4.224683543,
+        "doutores": 3.2278481,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 37274,
@@ -109551,7 +111711,16 @@
         "conceito_enade_continuo": 2.7733046893,
         "n_concluintes_inscritos": 27,
         "n_concluintes_participantes": 17,
-        "taxa_participacao": 63.0
+        "taxa_participacao": 63.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.870769262,
+        "organizacao_didatico_pedagogica": 1.394080732,
+        "infraestrutura": 2.421716849,
+        "oportunidade_ampliacao": 2.635317643,
+        "mestres": 5.0,
+        "doutores": 4.270833433,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 37274,
@@ -109563,7 +111732,16 @@
         "conceito_enade_continuo": 3.103,
         "n_concluintes_inscritos": 40,
         "n_concluintes_participantes": 27,
-        "taxa_participacao": 67.5
+        "taxa_participacao": 67.5,
+        "formacao_geral": 2.207,
+        "componente_especifico": 3.402,
+        "idd": 2.266,
+        "organizacao_didatico_pedagogica": 1.446,
+        "infraestrutura": 1.771,
+        "oportunidade_ampliacao": 2.229,
+        "mestres": 4.166,
+        "doutores": 4.09,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38202,
@@ -109575,7 +111753,16 @@
         "conceito_enade_continuo": 4.3355059624,
         "n_concluintes_inscritos": 135,
         "n_concluintes_participantes": 81,
-        "taxa_participacao": 60.0
+        "taxa_participacao": 60.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 3.1125746023,
+        "organizacao_didatico_pedagogica": 1.2800174141,
+        "infraestrutura": 2.9543666398,
+        "oportunidade_ampliacao": 2.6685382549,
+        "mestres": 4.7295081967,
+        "doutores": 3.5963114754,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38202,
@@ -109587,7 +111774,16 @@
         "conceito_enade_continuo": 4.171774576,
         "n_concluintes_inscritos": 85,
         "n_concluintes_participantes": 51,
-        "taxa_participacao": 60.0
+        "taxa_participacao": 60.0,
+        "formacao_geral": 4.647628696,
+        "componente_especifico": 4.013156536,
+        "idd": 2.53364211,
+        "organizacao_didatico_pedagogica": 2.04837097,
+        "infraestrutura": 2.66279794,
+        "oportunidade_ampliacao": 2.981616117,
+        "mestres": 4.446640465,
+        "doutores": 2.7173915,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38202,
@@ -109599,7 +111795,16 @@
         "conceito_enade_continuo": 4.793,
         "n_concluintes_inscritos": 105,
         "n_concluintes_participantes": 76,
-        "taxa_participacao": 72.4
+        "taxa_participacao": 72.4,
+        "formacao_geral": 4.730580078,
+        "componente_especifico": 4.813969447,
+        "idd": 4.52220892,
+        "organizacao_didatico_pedagogica": 1.369142872,
+        "infraestrutura": 2.236854517,
+        "oportunidade_ampliacao": 2.551261925,
+        "mestres": 4.581339711,
+        "doutores": 3.486842105,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38204,
@@ -109611,7 +111816,16 @@
         "conceito_enade_continuo": 3.1258189678,
         "n_concluintes_inscritos": 104,
         "n_concluintes_participantes": 78,
-        "taxa_participacao": 75.0
+        "taxa_participacao": 75.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 0.9318516529,
+        "organizacao_didatico_pedagogica": 1.6069979693,
+        "infraestrutura": 2.2571921139,
+        "oportunidade_ampliacao": 2.4407827034,
+        "mestres": 4.7470238095,
+        "doutores": 3.9239028945,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38204,
@@ -109623,7 +111837,16 @@
         "conceito_enade_continuo": 3.810315884,
         "n_concluintes_inscritos": 85,
         "n_concluintes_participantes": 77,
-        "taxa_participacao": 90.6
+        "taxa_participacao": 90.6,
+        "formacao_geral": 4.848009426,
+        "componente_especifico": 3.464418037,
+        "idd": 2.129380707,
+        "organizacao_didatico_pedagogica": 1.810455635,
+        "infraestrutura": 1.941343527,
+        "oportunidade_ampliacao": 2.631028724,
+        "mestres": 4.486921778,
+        "doutores": 2.6760565,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38204,
@@ -109635,7 +111858,16 @@
         "conceito_enade_continuo": 4.094,
         "n_concluintes_inscritos": 110,
         "n_concluintes_participantes": 90,
-        "taxa_participacao": 81.8
+        "taxa_participacao": 81.8,
+        "formacao_geral": 4.247076336,
+        "componente_especifico": 4.043170916,
+        "idd": 3.421924602,
+        "organizacao_didatico_pedagogica": 2.351785876,
+        "infraestrutura": 2.063027295,
+        "oportunidade_ampliacao": 2.858828607,
+        "mestres": 4.62962963,
+        "doutores": 3.14814815,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38206,
@@ -109647,7 +111879,16 @@
         "conceito_enade_continuo": 1.9016954899,
         "n_concluintes_inscritos": 49,
         "n_concluintes_participantes": 22,
-        "taxa_participacao": 44.9
+        "taxa_participacao": 44.9,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.9016954899,
+        "organizacao_didatico_pedagogica": 1.9836004756,
+        "infraestrutura": 2.4700375293,
+        "oportunidade_ampliacao": 2.4500896755,
+        "mestres": 4.8643147897,
+        "doutores": 3.8805970149,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38206,
@@ -109659,7 +111900,16 @@
         "conceito_enade_continuo": 2.195292871,
         "n_concluintes_inscritos": 59,
         "n_concluintes_participantes": 45,
-        "taxa_participacao": 76.3
+        "taxa_participacao": 76.3,
+        "formacao_geral": 2.780610318,
+        "componente_especifico": 2.000187056,
+        "idd": 2.286630203,
+        "organizacao_didatico_pedagogica": 2.334089333,
+        "infraestrutura": 2.076473726,
+        "oportunidade_ampliacao": 2.257081213,
+        "mestres": 5.0,
+        "doutores": 3.6,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38206,
@@ -109671,7 +111921,16 @@
         "conceito_enade_continuo": 3.345,
         "n_concluintes_inscritos": 55,
         "n_concluintes_participantes": 37,
-        "taxa_participacao": 67.3
+        "taxa_participacao": 67.3,
+        "formacao_geral": 3.59174114,
+        "componente_especifico": 3.264039282,
+        "idd": 3.286904579,
+        "organizacao_didatico_pedagogica": 2.026460383,
+        "infraestrutura": 2.387339183,
+        "oportunidade_ampliacao": 2.455611646,
+        "mestres": 4.543010745,
+        "doutores": 3.951612905,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38208,
@@ -109683,7 +111942,16 @@
         "conceito_enade_continuo": 4.6302690506,
         "n_concluintes_inscritos": 89,
         "n_concluintes_participantes": 84,
-        "taxa_participacao": 94.4
+        "taxa_participacao": 94.4,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.9327795844,
+        "organizacao_didatico_pedagogica": 1.1866924003,
+        "infraestrutura": 2.7659210946,
+        "oportunidade_ampliacao": 2.2986712565,
+        "mestres": 4.6146245059,
+        "doutores": 3.7125603865,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38208,
@@ -109695,7 +111963,16 @@
         "conceito_enade_continuo": 4.755027415,
         "n_concluintes_inscritos": 73,
         "n_concluintes_participantes": 53,
-        "taxa_participacao": 72.6
+        "taxa_participacao": 72.6,
+        "formacao_geral": 5.0,
+        "componente_especifico": 4.673369886,
+        "idd": 2.458246711,
+        "organizacao_didatico_pedagogica": 1.765928345,
+        "infraestrutura": 2.449034447,
+        "oportunidade_ampliacao": 2.639732276,
+        "mestres": 4.788602931,
+        "doutores": 4.410511544,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38208,
@@ -109707,7 +111984,16 @@
         "conceito_enade_continuo": 4.418,
         "n_concluintes_inscritos": 124,
         "n_concluintes_participantes": 70,
-        "taxa_participacao": 56.5
+        "taxa_participacao": 56.5,
+        "formacao_geral": 4.489108564,
+        "componente_especifico": 4.394719604,
+        "idd": 2.364017455,
+        "organizacao_didatico_pedagogica": 1.328103658,
+        "infraestrutura": 2.292294591,
+        "oportunidade_ampliacao": 2.27146615,
+        "mestres": 4.803571426,
+        "doutores": 4.07142857,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38217,
@@ -109719,7 +112005,16 @@
         "conceito_enade_continuo": 3.2251823142,
         "n_concluintes_inscritos": 49,
         "n_concluintes_participantes": 35,
-        "taxa_participacao": 71.4
+        "taxa_participacao": 71.4,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 3.453663588,
+        "organizacao_didatico_pedagogica": 1.43459882,
+        "infraestrutura": 2.752814111,
+        "oportunidade_ampliacao": 2.339350185,
+        "mestres": 5.0,
+        "doutores": 4.729729593,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38217,
@@ -109731,7 +112026,16 @@
         "conceito_enade_continuo": 2.66,
         "n_concluintes_inscritos": 41,
         "n_concluintes_participantes": 35,
-        "taxa_participacao": 85.4
+        "taxa_participacao": 85.4,
+        "formacao_geral": 2.912,
+        "componente_especifico": 2.576,
+        "idd": 2.618,
+        "organizacao_didatico_pedagogica": 2.583,
+        "infraestrutura": 3.32,
+        "oportunidade_ampliacao": 2.51,
+        "mestres": 4.66,
+        "doutores": 4.562,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38239,
@@ -109743,7 +112047,16 @@
         "conceito_enade_continuo": 3.1063754649,
         "n_concluintes_inscritos": 56,
         "n_concluintes_participantes": 40,
-        "taxa_participacao": 71.4
+        "taxa_participacao": 71.4,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.088471174,
+        "organizacao_didatico_pedagogica": 2.952850204,
+        "infraestrutura": 3.838407336,
+        "oportunidade_ampliacao": 3.188541884,
+        "mestres": 5.0,
+        "doutores": 4.871794879,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38239,
@@ -109755,7 +112068,16 @@
         "conceito_enade_continuo": 2.974,
         "n_concluintes_inscritos": 32,
         "n_concluintes_participantes": 26,
-        "taxa_participacao": 81.2
+        "taxa_participacao": 81.2,
+        "formacao_geral": 3.024,
+        "componente_especifico": 2.958,
+        "idd": 2.281,
+        "organizacao_didatico_pedagogica": 2.199,
+        "infraestrutura": 3.789,
+        "oportunidade_ampliacao": 2.925,
+        "mestres": 4.54,
+        "doutores": 4.387,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38246,
@@ -109767,7 +112089,16 @@
         "conceito_enade_continuo": 2.1933590517,
         "n_concluintes_inscritos": 26,
         "n_concluintes_participantes": 14,
-        "taxa_participacao": 53.8
+        "taxa_participacao": 53.8,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.444470406,
+        "organizacao_didatico_pedagogica": 0.973128806,
+        "infraestrutura": 1.946106147,
+        "oportunidade_ampliacao": 1.457870538,
+        "mestres": 5.0,
+        "doutores": 4.600000083,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38246,
@@ -109779,7 +112110,16 @@
         "conceito_enade_continuo": 2.294,
         "n_concluintes_inscritos": 84,
         "n_concluintes_participantes": 47,
-        "taxa_participacao": 56.0
+        "taxa_participacao": 56.0,
+        "formacao_geral": 2.392,
+        "componente_especifico": 2.261,
+        "idd": 1.935,
+        "organizacao_didatico_pedagogica": 0.815,
+        "infraestrutura": 2.044,
+        "oportunidade_ampliacao": 2.583,
+        "mestres": 4.718,
+        "doutores": 4.312,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38273,
@@ -109791,7 +112131,16 @@
         "conceito_enade_continuo": 3.6781185558,
         "n_concluintes_inscritos": 96,
         "n_concluintes_participantes": 75,
-        "taxa_participacao": 78.1
+        "taxa_participacao": 78.1,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 0.835599422,
+        "organizacao_didatico_pedagogica": 1.495554475,
+        "infraestrutura": 2.359809377,
+        "oportunidade_ampliacao": 2.336921692,
+        "mestres": 5.0,
+        "doutores": 5.0,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 38273,
@@ -109803,7 +112152,16 @@
         "conceito_enade_continuo": 2.704,
         "n_concluintes_inscritos": 311,
         "n_concluintes_participantes": 240,
-        "taxa_participacao": 77.2
+        "taxa_participacao": 77.2,
+        "formacao_geral": 2.223,
+        "componente_especifico": 2.865,
+        "idd": 2.394,
+        "organizacao_didatico_pedagogica": 3.035,
+        "infraestrutura": 2.447,
+        "oportunidade_ampliacao": 2.085,
+        "mestres": 4.564,
+        "doutores": 4.337,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 50392,
@@ -109815,7 +112173,16 @@
         "conceito_enade_continuo": 3.5818281174,
         "n_concluintes_inscritos": 34,
         "n_concluintes_participantes": 28,
-        "taxa_participacao": 82.4
+        "taxa_participacao": 82.4,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.7666659209,
+        "organizacao_didatico_pedagogica": 1.4824176944,
+        "infraestrutura": 2.7065259819,
+        "oportunidade_ampliacao": 2.706115768,
+        "mestres": 5.0,
+        "doutores": 4.5616883117,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 50392,
@@ -109827,7 +112194,16 @@
         "conceito_enade_continuo": 3.5,
         "n_concluintes_inscritos": 35,
         "n_concluintes_participantes": 33,
-        "taxa_participacao": 94.3
+        "taxa_participacao": 94.3,
+        "formacao_geral": 4.574,
+        "componente_especifico": 3.1432,
+        "idd": 2.348,
+        "organizacao_didatico_pedagogica": 2.232,
+        "infraestrutura": 2.936,
+        "oportunidade_ampliacao": 2.322,
+        "mestres": 3.437,
+        "doutores": 4.051,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 50392,
@@ -109839,7 +112215,16 @@
         "conceito_enade_continuo": 4.507,
         "n_concluintes_inscritos": 44,
         "n_concluintes_participantes": 34,
-        "taxa_participacao": 77.3
+        "taxa_participacao": 77.3,
+        "formacao_geral": 4.848297214,
+        "componente_especifico": 4.39345388,
+        "idd": 3.772,
+        "organizacao_didatico_pedagogica": 1.961,
+        "infraestrutura": 2.439,
+        "oportunidade_ampliacao": 2.064,
+        "mestres": 4.704,
+        "doutores": 4.643,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 69190,
@@ -109851,7 +112236,16 @@
         "conceito_enade_continuo": 2.8590713046,
         "n_concluintes_inscritos": 7,
         "n_concluintes_participantes": 6,
-        "taxa_participacao": 85.7
+        "taxa_participacao": 85.7,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.447110295,
+        "organizacao_didatico_pedagogica": 1.522358225,
+        "infraestrutura": 1.472033449,
+        "oportunidade_ampliacao": 1.70965783,
+        "mestres": 5.0,
+        "doutores": 4.499999881,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 99252,
@@ -109863,7 +112257,16 @@
         "conceito_enade_continuo": 2.98072052,
         "n_concluintes_inscritos": 25,
         "n_concluintes_participantes": 9,
-        "taxa_participacao": 36.0
+        "taxa_participacao": 36.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 0.0,
+        "organizacao_didatico_pedagogica": 1.4885400919,
+        "infraestrutura": 0.5487497445,
+        "oportunidade_ampliacao": 0.8309665816,
+        "mestres": 5.0,
+        "doutores": 3.2142857143,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 99567,
@@ -109875,7 +112278,16 @@
         "conceito_enade_continuo": 3.2941351134,
         "n_concluintes_inscritos": 40,
         "n_concluintes_participantes": 27,
-        "taxa_participacao": 67.5
+        "taxa_participacao": 67.5,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 3.287279844,
+        "organizacao_didatico_pedagogica": 1.742526708,
+        "infraestrutura": 2.983689287,
+        "oportunidade_ampliacao": 1.837386366,
+        "mestres": 4.662309413,
+        "doutores": 4.880952387,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 99567,
@@ -109887,7 +112299,16 @@
         "conceito_enade_continuo": 2.743,
         "n_concluintes_inscritos": 53,
         "n_concluintes_participantes": 43,
-        "taxa_participacao": 81.1
+        "taxa_participacao": 81.1,
+        "formacao_geral": 3.435,
+        "componente_especifico": 2.512,
+        "idd": 2.569,
+        "organizacao_didatico_pedagogica": 3.086,
+        "infraestrutura": 2.903,
+        "oportunidade_ampliacao": 2.396,
+        "mestres": 4.345,
+        "doutores": 4.181,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 100021,
@@ -109899,7 +112320,16 @@
         "conceito_enade_continuo": 1.8998954204,
         "n_concluintes_inscritos": 12,
         "n_concluintes_participantes": 12,
-        "taxa_participacao": 100.0
+        "taxa_participacao": 100.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 0.585967422,
+        "organizacao_didatico_pedagogica": 3.084712648,
+        "infraestrutura": 3.019918137,
+        "oportunidade_ampliacao": 3.164623214,
+        "mestres": 4.363636444,
+        "doutores": 3.909091055,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 100021,
@@ -109911,7 +112341,16 @@
         "conceito_enade_continuo": 3.445,
         "n_concluintes_inscritos": 19,
         "n_concluintes_participantes": 18,
-        "taxa_participacao": 94.7
+        "taxa_participacao": 94.7,
+        "formacao_geral": 3.091,
+        "componente_especifico": 3.563,
+        "idd": 2.222,
+        "organizacao_didatico_pedagogica": 2.613,
+        "infraestrutura": 2.768,
+        "oportunidade_ampliacao": 3.196,
+        "mestres": 4.318,
+        "doutores": 4.09,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 100256,
@@ -109923,7 +112362,16 @@
         "conceito_enade_continuo": 4.4323816299,
         "n_concluintes_inscritos": 65,
         "n_concluintes_participantes": 48,
-        "taxa_participacao": 73.8
+        "taxa_participacao": 73.8,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.5248685741,
+        "organizacao_didatico_pedagogica": 2.2836537058,
+        "infraestrutura": 2.1882689148,
+        "oportunidade_ampliacao": 2.3216034682,
+        "mestres": 4.3303571429,
+        "doutores": 3.3035714286,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 100256,
@@ -109935,7 +112383,16 @@
         "conceito_enade_continuo": 4.109,
         "n_concluintes_inscritos": 122,
         "n_concluintes_participantes": 99,
-        "taxa_participacao": 81.1
+        "taxa_participacao": 81.1,
+        "formacao_geral": 4.637,
+        "componente_especifico": 3.9336,
+        "idd": 2.574,
+        "organizacao_didatico_pedagogica": 3.153,
+        "infraestrutura": 1.456,
+        "oportunidade_ampliacao": 2.891,
+        "mestres": 3.69,
+        "doutores": 3.214,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 100256,
@@ -109947,7 +112404,16 @@
         "conceito_enade_continuo": 4.354,
         "n_concluintes_inscritos": 128,
         "n_concluintes_participantes": 90,
-        "taxa_participacao": 70.3
+        "taxa_participacao": 70.3,
+        "formacao_geral": 3.988,
+        "componente_especifico": 4.475,
+        "idd": 2.579,
+        "organizacao_didatico_pedagogica": 2.877,
+        "infraestrutura": 1.959,
+        "oportunidade_ampliacao": 3.115,
+        "mestres": 4.383,
+        "doutores": 3.928,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 100367,
@@ -109959,7 +112425,16 @@
         "conceito_enade_continuo": 1.3202562816,
         "n_concluintes_inscritos": 24,
         "n_concluintes_participantes": 16,
-        "taxa_participacao": 66.7
+        "taxa_participacao": 66.7,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.009723067,
+        "organizacao_didatico_pedagogica": 2.022556754,
+        "infraestrutura": 1.918576555,
+        "oportunidade_ampliacao": 1.034849794,
+        "mestres": 5.0,
+        "doutores": 4.565217495,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 100367,
@@ -109971,7 +112446,16 @@
         "conceito_enade_continuo": 1.716,
         "n_concluintes_inscritos": 22,
         "n_concluintes_participantes": 19,
-        "taxa_participacao": 86.4
+        "taxa_participacao": 86.4,
+        "formacao_geral": 2.761,
+        "componente_especifico": 1.368,
+        "idd": 2.048,
+        "organizacao_didatico_pedagogica": 2.335,
+        "infraestrutura": 2.145,
+        "oportunidade_ampliacao": 1.24,
+        "mestres": 5.0,
+        "doutores": 4.0,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 100369,
@@ -109983,7 +112467,16 @@
         "conceito_enade_continuo": 1.4296046553,
         "n_concluintes_inscritos": 100,
         "n_concluintes_participantes": 94,
-        "taxa_participacao": 94.0
+        "taxa_participacao": 94.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.236145258,
+        "organizacao_didatico_pedagogica": 2.984668758,
+        "infraestrutura": 2.622202986,
+        "oportunidade_ampliacao": 1.804478101,
+        "mestres": 5.0,
+        "doutores": 4.473684132,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 100375,
@@ -109995,7 +112488,16 @@
         "conceito_enade_continuo": 2.556605835,
         "n_concluintes_inscritos": 118,
         "n_concluintes_participantes": 93,
-        "taxa_participacao": 78.8
+        "taxa_participacao": 78.8,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.560182095,
+        "organizacao_didatico_pedagogica": 2.197415917,
+        "infraestrutura": 2.418772995,
+        "oportunidade_ampliacao": 1.172694277,
+        "mestres": 5.0,
+        "doutores": 5.0,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 100376,
@@ -110007,7 +112509,16 @@
         "conceito_enade_continuo": 1.6949087594,
         "n_concluintes_inscritos": 40,
         "n_concluintes_participantes": 19,
-        "taxa_participacao": 47.5
+        "taxa_participacao": 47.5,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.6078794,
+        "organizacao_didatico_pedagogica": 1.848404272,
+        "infraestrutura": 2.6225962,
+        "oportunidade_ampliacao": 1.198169698,
+        "mestres": 5.0,
+        "doutores": 5.0,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 113757,
@@ -110019,7 +112530,16 @@
         "conceito_enade_continuo": 1.8008050039,
         "n_concluintes_inscritos": 28,
         "n_concluintes_participantes": 22,
-        "taxa_participacao": 78.6
+        "taxa_participacao": 78.6,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.282746553,
+        "organizacao_didatico_pedagogica": 3.563769399,
+        "infraestrutura": 3.014192486,
+        "oportunidade_ampliacao": 2.199298875,
+        "mestres": 5.0,
+        "doutores": 4.333333373,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 113757,
@@ -110031,7 +112551,16 @@
         "conceito_enade_continuo": 1.95,
         "n_concluintes_inscritos": 9,
         "n_concluintes_participantes": 7,
-        "taxa_participacao": 77.8
+        "taxa_participacao": 77.8,
+        "formacao_geral": 2.222,
+        "componente_especifico": 1.86,
+        "idd": 3.076,
+        "organizacao_didatico_pedagogica": 3.096,
+        "infraestrutura": 2.917,
+        "oportunidade_ampliacao": 1.925,
+        "mestres": 5.0,
+        "doutores": 4.09,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 116834,
@@ -110043,7 +112572,16 @@
         "conceito_enade_continuo": 3.6109366853,
         "n_concluintes_inscritos": 23,
         "n_concluintes_participantes": 19,
-        "taxa_participacao": 82.6
+        "taxa_participacao": 82.6,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.642971396,
+        "organizacao_didatico_pedagogica": 2.267019286,
+        "infraestrutura": 1.284445585,
+        "oportunidade_ampliacao": 1.727382355,
+        "mestres": 3.962962771,
+        "doutores": 4.07407403,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 116834,
@@ -110055,7 +112593,16 @@
         "conceito_enade_continuo": 3.078,
         "n_concluintes_inscritos": 14,
         "n_concluintes_participantes": 9,
-        "taxa_participacao": 64.3
+        "taxa_participacao": 64.3,
+        "formacao_geral": 2.875,
+        "componente_especifico": 3.146,
+        "idd": 0.789,
+        "organizacao_didatico_pedagogica": 2.115,
+        "infraestrutura": 1.888,
+        "oportunidade_ampliacao": 2.228,
+        "mestres": 3.701,
+        "doutores": 4.107,
+        "regime_trabalho": 4.816
       },
       {
         "codigo_curso": 150112,
@@ -110067,7 +112614,16 @@
         "conceito_enade_continuo": 4.2920109167,
         "n_concluintes_inscritos": 45,
         "n_concluintes_participantes": 41,
-        "taxa_participacao": 91.1
+        "taxa_participacao": 91.1,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.551770926,
+        "organizacao_didatico_pedagogica": 1.148719122,
+        "infraestrutura": 2.710142019,
+        "oportunidade_ampliacao": 2.938519138,
+        "mestres": 4.659722047,
+        "doutores": 4.259259403,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 150112,
@@ -110079,7 +112635,16 @@
         "conceito_enade_continuo": 4.169,
         "n_concluintes_inscritos": 39,
         "n_concluintes_participantes": 38,
-        "taxa_participacao": 97.4
+        "taxa_participacao": 97.4,
+        "formacao_geral": 4.425,
+        "componente_especifico": 4.0847,
+        "idd": 2.474,
+        "organizacao_didatico_pedagogica": 1.339,
+        "infraestrutura": 2.505,
+        "oportunidade_ampliacao": 2.55,
+        "mestres": 4.162,
+        "doutores": 4.202,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 150112,
@@ -110091,7 +112656,16 @@
         "conceito_enade_continuo": 3.407,
         "n_concluintes_inscritos": 31,
         "n_concluintes_participantes": 29,
-        "taxa_participacao": 93.5
+        "taxa_participacao": 93.5,
+        "formacao_geral": 3.306979267,
+        "componente_especifico": 3.440831845,
+        "idd": 1.448,
+        "organizacao_didatico_pedagogica": 2.378,
+        "infraestrutura": 2.872,
+        "oportunidade_ampliacao": 3.132,
+        "mestres": 3.946,
+        "doutores": 4.253,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 150113,
@@ -110103,7 +112677,16 @@
         "conceito_enade_continuo": 3.2100511231,
         "n_concluintes_inscritos": 37,
         "n_concluintes_participantes": 33,
-        "taxa_participacao": 89.2
+        "taxa_participacao": 89.2,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.270652294,
+        "organizacao_didatico_pedagogica": 1.54390698,
+        "infraestrutura": 2.620070958,
+        "oportunidade_ampliacao": 2.674883257,
+        "mestres": 4.881434356,
+        "doutores": 4.450549483,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 150116,
@@ -110115,7 +112698,16 @@
         "conceito_enade_continuo": 4.1477092949,
         "n_concluintes_inscritos": 25,
         "n_concluintes_participantes": 25,
-        "taxa_participacao": 100.0
+        "taxa_participacao": 100.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 3.043345213,
+        "organizacao_didatico_pedagogica": 1.448957793,
+        "infraestrutura": 2.241234384,
+        "oportunidade_ampliacao": 3.206535661,
+        "mestres": 4.770436745,
+        "doutores": 4.308510721,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 313974,
@@ -110127,7 +112719,16 @@
         "conceito_enade_continuo": 3.8773146077,
         "n_concluintes_inscritos": 59,
         "n_concluintes_participantes": 39,
-        "taxa_participacao": 66.1
+        "taxa_participacao": 66.1,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.568819761,
+        "organizacao_didatico_pedagogica": 1.87151447,
+        "infraestrutura": 2.638463264,
+        "oportunidade_ampliacao": 2.829399528,
+        "mestres": 4.738806173,
+        "doutores": 4.744136333,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 313974,
@@ -110139,7 +112740,16 @@
         "conceito_enade_continuo": 3.371,
         "n_concluintes_inscritos": 65,
         "n_concluintes_participantes": 51,
-        "taxa_participacao": 78.5
+        "taxa_participacao": 78.5,
+        "formacao_geral": 3.447,
+        "componente_especifico": 3.345,
+        "idd": 1.753,
+        "organizacao_didatico_pedagogica": 1.789,
+        "infraestrutura": 2.928,
+        "oportunidade_ampliacao": 2.23,
+        "mestres": 4.12,
+        "doutores": 4.074,
+        "regime_trabalho": 4.92
       },
       {
         "codigo_curso": 313976,
@@ -110151,7 +112761,16 @@
         "conceito_enade_continuo": 3.2615618857,
         "n_concluintes_inscritos": 61,
         "n_concluintes_participantes": 47,
-        "taxa_participacao": 77.0
+        "taxa_participacao": 77.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.227052212,
+        "organizacao_didatico_pedagogica": 2.483994953,
+        "infraestrutura": 3.793321579,
+        "oportunidade_ampliacao": 2.345154049,
+        "mestres": 5.0,
+        "doutores": 4.387754894,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 313976,
@@ -110163,7 +112782,16 @@
         "conceito_enade_continuo": 3.485,
         "n_concluintes_inscritos": 79,
         "n_concluintes_participantes": 59,
-        "taxa_participacao": 74.7
+        "taxa_participacao": 74.7,
+        "formacao_geral": 3.416,
+        "componente_especifico": 3.508,
+        "idd": 2.127,
+        "organizacao_didatico_pedagogica": 2.683,
+        "infraestrutura": 3.14,
+        "oportunidade_ampliacao": 2.127,
+        "mestres": 4.722,
+        "doutores": 4.347,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 313982,
@@ -110175,7 +112803,16 @@
         "conceito_enade_continuo": 2.8335744244,
         "n_concluintes_inscritos": 65,
         "n_concluintes_participantes": 25,
-        "taxa_participacao": 38.5
+        "taxa_participacao": 38.5,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 3.913718939,
+        "organizacao_didatico_pedagogica": 2.961429502,
+        "infraestrutura": 1.631626951,
+        "oportunidade_ampliacao": 2.453668784,
+        "mestres": 5.0,
+        "doutores": 4.791666417,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 313982,
@@ -110187,7 +112824,16 @@
         "conceito_enade_continuo": 2.261,
         "n_concluintes_inscritos": 30,
         "n_concluintes_participantes": 21,
-        "taxa_participacao": 70.0
+        "taxa_participacao": 70.0,
+        "formacao_geral": 2.306,
+        "componente_especifico": 2.246,
+        "idd": 2.41,
+        "organizacao_didatico_pedagogica": 1.668,
+        "infraestrutura": 1.359,
+        "oportunidade_ampliacao": 1.494,
+        "mestres": 3.448,
+        "doutores": 3.676,
+        "regime_trabalho": 4.448
       },
       {
         "codigo_curso": 313984,
@@ -110199,7 +112845,16 @@
         "conceito_enade_continuo": 3.4269818192,
         "n_concluintes_inscritos": 13,
         "n_concluintes_participantes": 9,
-        "taxa_participacao": 69.2
+        "taxa_participacao": 69.2,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.825663209,
+        "organizacao_didatico_pedagogica": 0.713043403,
+        "infraestrutura": 1.388457775,
+        "oportunidade_ampliacao": 2.315826787,
+        "mestres": 5.0,
+        "doutores": 4.631579094,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 313984,
@@ -110211,7 +112866,16 @@
         "conceito_enade_continuo": null,
         "n_concluintes_inscritos": 2,
         "n_concluintes_participantes": 1,
-        "taxa_participacao": 50.0
+        "taxa_participacao": 50.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": null,
+        "organizacao_didatico_pedagogica": null,
+        "infraestrutura": null,
+        "oportunidade_ampliacao": null,
+        "mestres": 5.0,
+        "doutores": 5.0,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 337274,
@@ -110223,7 +112887,16 @@
         "conceito_enade_continuo": 2.325301913,
         "n_concluintes_inscritos": 51,
         "n_concluintes_participantes": 21,
-        "taxa_participacao": 41.2
+        "taxa_participacao": 41.2,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.711312175,
+        "organizacao_didatico_pedagogica": 2.131379405,
+        "infraestrutura": 2.699312625,
+        "oportunidade_ampliacao": 2.58638866,
+        "mestres": 4.385964522,
+        "doutores": 4.473684132,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 337274,
@@ -110235,7 +112908,16 @@
         "conceito_enade_continuo": 3.015,
         "n_concluintes_inscritos": 13,
         "n_concluintes_participantes": 4,
-        "taxa_participacao": 30.8
+        "taxa_participacao": 30.8,
+        "formacao_geral": 3.28,
+        "componente_especifico": 2.927,
+        "idd": 1.916,
+        "organizacao_didatico_pedagogica": 1.816,
+        "infraestrutura": 1.664,
+        "oportunidade_ampliacao": 3.471,
+        "mestres": 4.285,
+        "doutores": 4.166,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 416834,
@@ -110247,7 +112929,16 @@
         "conceito_enade_continuo": 2.4851830821,
         "n_concluintes_inscritos": 40,
         "n_concluintes_participantes": 22,
-        "taxa_participacao": 55.0
+        "taxa_participacao": 55.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.607734919,
+        "organizacao_didatico_pedagogica": 2.739020103,
+        "infraestrutura": 2.383957829,
+        "oportunidade_ampliacao": 3.703431821,
+        "mestres": 5.0,
+        "doutores": 4.290540437,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 416834,
@@ -110259,7 +112950,16 @@
         "conceito_enade_continuo": 1.944,
         "n_concluintes_inscritos": 17,
         "n_concluintes_participantes": 10,
-        "taxa_participacao": 58.8
+        "taxa_participacao": 58.8,
+        "formacao_geral": 2.839,
+        "componente_especifico": 1.645,
+        "idd": 1.438,
+        "organizacao_didatico_pedagogica": 2.515,
+        "infraestrutura": 2.038,
+        "oportunidade_ampliacao": 2.537,
+        "mestres": 3.749,
+        "doutores": 4.2,
+        "regime_trabalho": 4.666
       },
       {
         "codigo_curso": 1122966,
@@ -110271,7 +112971,16 @@
         "conceito_enade_continuo": 4.9584827423,
         "n_concluintes_inscritos": 32,
         "n_concluintes_participantes": 32,
-        "taxa_participacao": 100.0
+        "taxa_participacao": 100.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.7770371092,
+        "organizacao_didatico_pedagogica": 2.7486679023,
+        "infraestrutura": 1.8276512623,
+        "oportunidade_ampliacao": 3.1444315822,
+        "mestres": 3.9583333333,
+        "doutores": 3.125,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1122966,
@@ -110283,7 +112992,16 @@
         "conceito_enade_continuo": 4.944,
         "n_concluintes_inscritos": 29,
         "n_concluintes_participantes": 29,
-        "taxa_participacao": 100.0
+        "taxa_participacao": 100.0,
+        "formacao_geral": 4.776,
+        "componente_especifico": 5.0,
+        "idd": 3.461,
+        "organizacao_didatico_pedagogica": 3.769,
+        "infraestrutura": 1.982,
+        "oportunidade_ampliacao": 2.967,
+        "mestres": 4.48,
+        "doutores": 4.09,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1122966,
@@ -110295,7 +113013,16 @@
         "conceito_enade_continuo": 4.923,
         "n_concluintes_inscritos": 37,
         "n_concluintes_participantes": 36,
-        "taxa_participacao": 97.3
+        "taxa_participacao": 97.3,
+        "formacao_geral": 5.0,
+        "componente_especifico": 4.896737844,
+        "idd": 3.759,
+        "organizacao_didatico_pedagogica": 4.232,
+        "infraestrutura": 3.81,
+        "oportunidade_ampliacao": 3.772,
+        "mestres": 4.753,
+        "doutores": 4.589,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1128911,
@@ -110307,7 +113034,16 @@
         "conceito_enade_continuo": 4.4181060468,
         "n_concluintes_inscritos": 28,
         "n_concluintes_participantes": 25,
-        "taxa_participacao": 89.3
+        "taxa_participacao": 89.3,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 2.930921555,
+        "organizacao_didatico_pedagogica": 2.489688512,
+        "infraestrutura": 3.272220259,
+        "oportunidade_ampliacao": 2.195967951,
+        "mestres": 4.567567348,
+        "doutores": 4.054054022,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1128911,
@@ -110319,7 +113055,16 @@
         "conceito_enade_continuo": 3.377,
         "n_concluintes_inscritos": 19,
         "n_concluintes_participantes": 13,
-        "taxa_participacao": 68.4
+        "taxa_participacao": 68.4,
+        "formacao_geral": 3.774,
+        "componente_especifico": 3.244,
+        "idd": 2.501,
+        "organizacao_didatico_pedagogica": 2.296,
+        "infraestrutura": 3.321,
+        "oportunidade_ampliacao": 2.79,
+        "mestres": 4.105,
+        "doutores": 4.322,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1167971,
@@ -110331,7 +113076,16 @@
         "conceito_enade_continuo": 5.0,
         "n_concluintes_inscritos": 2,
         "n_concluintes_participantes": 2,
-        "taxa_participacao": 100.0
+        "taxa_participacao": 100.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 5.0,
+        "organizacao_didatico_pedagogica": 4.4021098268,
+        "infraestrutura": 4.327703718,
+        "oportunidade_ampliacao": 3.646846205,
+        "mestres": 4.0038314176,
+        "doutores": 3.1034482759,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1167971,
@@ -110343,7 +113097,16 @@
         "conceito_enade_continuo": 4.313202244,
         "n_concluintes_inscritos": 52,
         "n_concluintes_participantes": 48,
-        "taxa_participacao": 92.3
+        "taxa_participacao": 92.3,
+        "formacao_geral": 4.338418175,
+        "componente_especifico": 4.304796933,
+        "idd": 2.26967795,
+        "organizacao_didatico_pedagogica": 3.714216301,
+        "infraestrutura": 3.419265823,
+        "oportunidade_ampliacao": 3.570352108,
+        "mestres": 4.4252875,
+        "doutores": 3.6206895,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1167971,
@@ -110355,7 +113118,16 @@
         "conceito_enade_continuo": 3.899,
         "n_concluintes_inscritos": 32,
         "n_concluintes_participantes": 25,
-        "taxa_participacao": 78.1
+        "taxa_participacao": 78.1,
+        "formacao_geral": 3.627,
+        "componente_especifico": 3.989,
+        "idd": 1.835,
+        "organizacao_didatico_pedagogica": 3.409,
+        "infraestrutura": 3.448,
+        "oportunidade_ampliacao": 3.24,
+        "mestres": 4.085,
+        "doutores": 3.472,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1186730,
@@ -110367,7 +113139,16 @@
         "conceito_enade_continuo": 2.381325955,
         "n_concluintes_inscritos": 79,
         "n_concluintes_participantes": 77,
-        "taxa_participacao": 97.5
+        "taxa_participacao": 97.5,
+        "formacao_geral": 3.597320538,
+        "componente_especifico": 1.975994428,
+        "idd": 2.121444324,
+        "organizacao_didatico_pedagogica": 3.407521756,
+        "infraestrutura": 2.706740004,
+        "oportunidade_ampliacao": 2.235523419,
+        "mestres": 3.4,
+        "doutores": 3.374999958,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1191427,
@@ -110379,7 +113160,16 @@
         "conceito_enade_continuo": 5.0,
         "n_concluintes_inscritos": 10,
         "n_concluintes_participantes": 9,
-        "taxa_participacao": 90.0
+        "taxa_participacao": 90.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 4.196156502,
+        "organizacao_didatico_pedagogica": 2.159992962,
+        "infraestrutura": 1.860533975,
+        "oportunidade_ampliacao": 1.670354834,
+        "mestres": 5.0,
+        "doutores": 4.00000006,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1191427,
@@ -110391,7 +113181,16 @@
         "conceito_enade_continuo": 4.315,
         "n_concluintes_inscritos": 20,
         "n_concluintes_participantes": 16,
-        "taxa_participacao": 80.0
+        "taxa_participacao": 80.0,
+        "formacao_geral": 3.355,
+        "componente_especifico": 4.635,
+        "idd": 3.081,
+        "organizacao_didatico_pedagogica": 2.108,
+        "infraestrutura": 1.722,
+        "oportunidade_ampliacao": 2.185,
+        "mestres": 4.551,
+        "doutores": 4.038,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1191555,
@@ -110403,7 +113202,16 @@
         "conceito_enade_continuo": 4.8736448288,
         "n_concluintes_inscritos": 5,
         "n_concluintes_participantes": 5,
-        "taxa_participacao": 100.0
+        "taxa_participacao": 100.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 3.8987476002,
+        "organizacao_didatico_pedagogica": 1.9082298878,
+        "infraestrutura": 2.2802568667,
+        "oportunidade_ampliacao": 2.0149253132,
+        "mestres": 4.4,
+        "doutores": 2.8,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1191555,
@@ -110415,7 +113223,16 @@
         "conceito_enade_continuo": 4.372,
         "n_concluintes_inscritos": 32,
         "n_concluintes_participantes": 28,
-        "taxa_participacao": 87.5
+        "taxa_participacao": 87.5,
+        "formacao_geral": 5.0,
+        "componente_especifico": 4.1632,
+        "idd": 2.85,
+        "organizacao_didatico_pedagogica": 2.037,
+        "infraestrutura": 0.43,
+        "oportunidade_ampliacao": 2.207,
+        "mestres": 4.326,
+        "doutores": 3.714,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1191555,
@@ -110427,7 +113244,16 @@
         "conceito_enade_continuo": 4.404,
         "n_concluintes_inscritos": 37,
         "n_concluintes_participantes": 27,
-        "taxa_participacao": 73.0
+        "taxa_participacao": 73.0,
+        "formacao_geral": 3.831,
+        "componente_especifico": 4.595,
+        "idd": 3.177,
+        "organizacao_didatico_pedagogica": 3.08,
+        "infraestrutura": 2.123,
+        "oportunidade_ampliacao": 3.026,
+        "mestres": 4.533,
+        "doutores": 4.324,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1216500,
@@ -110439,7 +113265,16 @@
         "conceito_enade_continuo": 2.483,
         "n_concluintes_inscritos": 79,
         "n_concluintes_participantes": 24,
-        "taxa_participacao": 30.4
+        "taxa_participacao": 30.4,
+        "formacao_geral": 2.412677767,
+        "componente_especifico": 2.507135394,
+        "idd": 2.647770134,
+        "organizacao_didatico_pedagogica": 2.683873998,
+        "infraestrutura": 1.772893588,
+        "oportunidade_ampliacao": 1.075695809,
+        "mestres": 0.500000004,
+        "doutores": 2.5,
+        "regime_trabalho": 0.0
       },
       {
         "codigo_curso": 1313213,
@@ -110451,7 +113286,16 @@
         "conceito_enade_continuo": 2.5938018251,
         "n_concluintes_inscritos": 61,
         "n_concluintes_participantes": 52,
-        "taxa_participacao": 85.2
+        "taxa_participacao": 85.2,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": 1.617073417,
+        "organizacao_didatico_pedagogica": 2.784863836,
+        "infraestrutura": 3.127669269,
+        "oportunidade_ampliacao": 3.252020989,
+        "mestres": 4.804733985,
+        "doutores": 4.319526553,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1313213,
@@ -110463,7 +113307,16 @@
         "conceito_enade_continuo": 2.47,
         "n_concluintes_inscritos": 56,
         "n_concluintes_participantes": 52,
-        "taxa_participacao": 92.9
+        "taxa_participacao": 92.9,
+        "formacao_geral": 3.698,
+        "componente_especifico": 2.0617,
+        "idd": 1.952,
+        "organizacao_didatico_pedagogica": 1.484,
+        "infraestrutura": 2.724,
+        "oportunidade_ampliacao": 3.303,
+        "mestres": 4.256,
+        "doutores": 3.982,
+        "regime_trabalho": 5.0
       },
       {
         "codigo_curso": 1313213,
@@ -110475,7 +113328,16 @@
         "conceito_enade_continuo": 3.457,
         "n_concluintes_inscritos": 66,
         "n_concluintes_participantes": 57,
-        "taxa_participacao": 86.4
+        "taxa_participacao": 86.4,
+        "formacao_geral": 3.163544894,
+        "componente_especifico": 3.555237174,
+        "idd": 1.789,
+        "organizacao_didatico_pedagogica": 2.143,
+        "infraestrutura": 2.979,
+        "oportunidade_ampliacao": 3.603,
+        "mestres": 4.627,
+        "doutores": 4.231,
+        "regime_trabalho": 5.0
       }
     ]
   },

@@ -25,10 +25,11 @@ def build_evolucao_cpc(data: ScopedData) -> list[dict[str, object]]:
     """CPC do curso por ano de avaliação (só os anos com ciclo Enade).
 
     Inclui ``area_avaliacao`` como chave de junção com a média nacional do
-    grupo de pares (``national_benchmarks.build``), e a participação no Enade
+    grupo de pares (``national_benchmarks.build``), a participação no Enade
     daquela edição: concluintes inscritos, participantes e a taxa
     (participantes / inscritos, em %) — participação baixa deixa o conceito
-    menos representativo da turma.
+    menos representativo da turma —, e as notas padronizadas (0-5) de cada
+    componente do CPC (``RADAR_FIELDS``), pra linha do tempo de cada um.
     """
     if data.qualidade.empty:
         return []
@@ -47,6 +48,9 @@ def build_evolucao_cpc(data: ScopedData) -> list[dict[str, object]]:
     frame["taxa_participacao"] = (
         100 * participantes / inscritos.where(inscritos > 0)
     ).round(1)
+    notas = data.qualidade.reindex(columns=list(RADAR_FIELDS.values()))
+    for label, column in RADAR_FIELDS.items():
+        frame[label] = notas[column]
     return records(frame.sort_values(["codigo_curso", "ano"]))
 
 
