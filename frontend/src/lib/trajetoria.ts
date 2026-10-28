@@ -184,6 +184,21 @@ export function evasaoPorAnoDoCurso(turmas: Turma[]): number[] {
     return total > 0 ? Array.from(alunos, (v) => (v ?? 0) / total) : [];
 }
 
+/** Quantos anos de curso entram em "em que ano a evasão acontece" (depois
+ * disso a evasão é residual e as turmas maduras mais novas nem chegam lá). */
+export const ANOS_EVASAO = 7;
+
+/** O ano do curso (1 = 1º ano) em que a evasão mais acontece, entre os
+ * ``ANOS_EVASAO`` primeiros, e a parte de toda a evasão que ficou nele — o
+ * destaque de "Em que ano do curso a evasão acontece" e do indicador do
+ * topo da Visão do campus. ``null`` sem evasão. */
+export function picoEvasao(fracoes: number[]): { ano: number; fracao: number } | null {
+    const colunas = fracoes.slice(0, ANOS_EVASAO);
+    if (colunas.length === 0) return null;
+    const fracao = Math.max(...colunas);
+    return { ano: colunas.indexOf(fracao) + 1, fracao };
+}
+
 /** Quando quem concluiu se formou, em relação ao prazo, nas turmas maduras
  * (% dos ingressantes, pesado): no prazo, com 1 e com 2 anos de atraso, e
  * quem não concluiu até o ponto final. */

@@ -6,7 +6,7 @@ import { CursoNacionalLinha, type Row } from "@/components/charts/CursoNacionalL
 import { CursoBusca } from "@/components/charts/qualidade/CursoBusca";
 import { useChartTheme } from "@/hooks/useChartTheme";
 import { COMPONENTES, type Componente, type ComponenteKey } from "@/lib/cpc";
-import { formatPercent, toTitleCase } from "@/lib/format";
+import { formatPercent } from "@/lib/format";
 import type { AvaliacaoCurso } from "@/lib/qualidade";
 import { cn } from "@/lib/utils";
 import type { PerfilRadarNacional } from "@/types/dashboard";
@@ -71,14 +71,13 @@ export function ComponentesTempoCard({
     const componente = COMPONENTES.find((c) => c.key === chave)!;
     const rows = buildRows(curso, nacional, chave);
     const avaliado = rows.some((r) => r.curso !== null);
-    const area = curso.historico.at(-1)?.area_avaliacao ?? curso.area;
 
     return (
         <Card
             expansivel="tela"
             title="Componentes do CPC ao longo do tempo"
             info="A nota padronizada (0 a 5) do componente escolhido no seletor, em cada avaliação do curso, contra a média nacional dos cursos da mesma área de avaliação no mesmo ano. As notas são padronizadas dentro de cada edição do Enade: o que vale é a posição do curso em relação aos outros naquele ano."
-            subtitle={`${componente.nome} (peso ${peso(componente)} no CPC) · média dos cursos de ${area ? toTitleCase(area) : "mesma área"} no Brasil`}
+            subtitle={`${componente.nome} (peso ${peso(componente)} no CPC)`}
             action={
                 // o mesmo seletor com busca dos cursos (o do "Evolução entre
                 // ciclos"): o componente em cima, o peso e o bloco embaixo

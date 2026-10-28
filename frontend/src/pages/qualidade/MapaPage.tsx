@@ -114,7 +114,11 @@ function Mapa({ data }: { data: DashboardData }) {
             porUfCursos,
             porUf,
             brasil: resumir(filtrados),
-            cursoCampus: filtrados.find((c) => c.codigo === curso.codigo),
+            // o curso do campus é a referência mesmo quando o filtro de rede o
+            // tira do recorte (a UFC é pública: "só rede privada"); aí ele
+            // aparece onde ficaria entre os cursos filtrados
+            cursoCampus,
+            noFiltro: filtrados.some((c) => c.codigo === curso.codigo),
         };
     }, [dados, curso, rede, data.cursos]);
 
@@ -140,6 +144,14 @@ function Mapa({ data }: { data: DashboardData }) {
           }))
         : [];
     const titulo = uf ? (UF_NOMES[uf] ?? uf) : "Brasil";
+    // por que o curso do campus aparece "na posição em que ficaria" no painel
+    const avisoFora = !visao?.cursoCampus
+        ? null
+        : !visao.noFiltro
+          ? `Seu curso é da rede ${visao.cursoCampus.publica ? "pública" : "privada"} e não entra no filtro: aparece na posição em que ficaria.`
+          : uf && visao.cursoCampus.uf !== uf
+            ? `Seu curso não é de ${UF_NOMES[uf] ?? uf}: aparece na posição em que ficaria.`
+            : null;
 
     // filtros como frase no cabeçalho (seletores "inline", como o do campus
     // na saudação): "CPC médio ▾ em Redes de Computadores ▾ | todas as
@@ -303,6 +315,7 @@ function Mapa({ data }: { data: DashboardData }) {
                                 ehEstado={uf !== null}
                                 indicador={indicador}
                                 cursoCampus={visao.cursoCampus}
+                                avisoFora={avisoFora}
                             />
                         )}
                     </div>

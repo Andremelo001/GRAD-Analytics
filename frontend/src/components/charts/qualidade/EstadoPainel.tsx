@@ -28,6 +28,7 @@ export function EstadoPainel({
     ehEstado,
     indicador,
     cursoCampus,
+    avisoFora,
 }: {
     titulo: string;
     cursos: CursoArea[];
@@ -36,6 +37,9 @@ export function EstadoPainel({
     ehEstado: boolean;
     indicador: Indicador;
     cursoCampus: CursoArea | undefined;
+    /** Por que o curso do campus está fora do recorte (outro estado, ou fora
+     * do filtro de rede): a nota embaixo da lista. */
+    avisoFora: string | null;
 }) {
     const ind = INDICADORES[indicador];
     const media = resumo.medias[indicador];
@@ -155,10 +159,8 @@ export function EstadoPainel({
                         </>
                     )}
                 </ol>
-                {foraDoRecorte && (
-                    <p className="text-text-muted mt-2 text-[11px]">
-                        Seu curso não é de {titulo}: aparece na posição em que ficaria.
-                    </p>
+                {foraDoRecorte && avisoFora && (
+                    <p className="text-text-muted mt-2 text-[11px]">{avisoFora}</p>
                 )}
             </Secao>
         </div>

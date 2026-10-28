@@ -30,6 +30,7 @@ export function EstadoPainelTrajetoria({
     ehEstado,
     indicador,
     cursoCampus,
+    avisoFora,
 }: {
     titulo: string;
     cursos: CursoTrajetoriaArea[];
@@ -38,6 +39,9 @@ export function EstadoPainelTrajetoria({
     ehEstado: boolean;
     indicador: IndicadorMapa;
     cursoCampus: CursoTrajetoriaArea | undefined;
+    /** Por que o curso do campus está fora do recorte (outro estado, ou fora
+     * do filtro de rede): a nota embaixo da lista. */
+    avisoFora: string | null;
 }) {
     const ind = INDICADORES_MAPA[indicador];
     const media = resumo.medias[indicador];
@@ -182,8 +186,7 @@ export function EstadoPainelTrajetoria({
                     )}
                 </ol>
                 <p className="text-text-muted mt-2 text-[11px]">
-                    {foraDoRecorte &&
-                        `Seu curso não é de ${titulo}: aparece na posição em que ficaria. `}
+                    {foraDoRecorte && avisoFora && `${avisoFora} `}
                     Só turmas com {MIN_INGRESSANTES_RANKING} ingressantes ou mais.
                 </p>
             </Secao>

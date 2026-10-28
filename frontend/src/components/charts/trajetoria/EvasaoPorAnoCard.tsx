@@ -10,12 +10,17 @@ import { opcaoCurso } from "@/lib/curso";
 import { useElementSize } from "@/hooks/useElementSize";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { formatPercent } from "@/lib/format";
-import { evasaoPorAnoDoCurso, maduras, type CursoTrajetoria } from "@/lib/trajetoria";
+import {
+    ANOS_EVASAO,
+    evasaoPorAnoDoCurso,
+    maduras,
+    picoEvasao,
+    type CursoTrajetoria,
+} from "@/lib/trajetoria";
 import { cn } from "@/lib/utils";
 
-/** Quantos anos de curso mostrar nas colunas (depois disso, a evasão é
- * residual e as turmas maduras mais novas nem chegam lá). */
-const ANOS = 7;
+/** Quantos anos de curso mostrar nas colunas. */
+const ANOS = ANOS_EVASAO;
 
 /** Fileiras de mini gráficos visíveis antes da grade passar a rolar. */
 const FILEIRAS_VISIVEIS = 3;
@@ -177,7 +182,8 @@ function MiniColunas({
     const [foco, setFoco] = useState<number | null>(null);
     const colunas = Array.from({ length: ANOS }, (_, i) => painel.fracoes[i] ?? 0);
     const maximo = maximoGrade ?? Math.max(...colunas, 0.01);
-    const pico = colunas.indexOf(Math.max(...colunas));
+    // a coluna mais alta (a mesma conta do indicador do topo da Visão do campus)
+    const pico = (picoEvasao(painel.fracoes)?.ano ?? 1) - 1;
     const ativo = foco ?? pico;
 
     return (

@@ -43,17 +43,12 @@ export function CampusSelect({ tom = "band" }: { tom?: "band" | "surface" }) {
     );
 }
 
-/** O campus selecionado, em destaque no meio de uma frase ("…da graduação do
- * UFC Campus **Quixadá**"): só mostra; quem troca é o ``CampusSelect``. */
-export function CampusAtual({ tom = "band" }: { tom?: "band" | "surface" }) {
+/** O campus selecionado no meio de uma frase ("…da graduação do UFC Campus
+ * Quixadá"), com a mesma cor e o mesmo peso da frase: só mostra; quem troca
+ * é o ``CampusSelect``. */
+export function CampusAtual() {
     const { campi, campus } = useDashboardData();
     const info = campi.find((c) => c.slug === campus);
     if (!info) return null;
-    return (
-        <span
-            className={cn("font-semibold", tom === "band" ? "text-white" : "text-ink")}
-        >
-            {nomeCurto(info.nome)}
-        </span>
-    );
+    return <>{nomeCurto(info.nome)}</>;
 }
