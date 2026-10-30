@@ -56,7 +56,7 @@ export function AppLayout() {
     // pelo link, volta pro início
     const voltarPara = (state as { de?: string } | null)?.de ?? "/";
     const { presenting, toggle, exit } = usePresentationMode(apresentavel);
-    // cursos de outro campus (busca, "nos outros campi"): navega quando o
+    // cursos de outro campus (busca): navega quando o
     // campus novo carrega
     useNavegacaoPendente();
     const topoRef = useRef<HTMLDivElement>(null);
@@ -242,7 +242,15 @@ export function AppLayout() {
                                 : "grid-rows-[0fr] opacity-0"
                         )}
                     >
-                        <div className="min-h-0 overflow-hidden">
+                        <div
+                            className={cn(
+                                "min-h-0 overflow-hidden",
+                                // folga de 4px em volta (compensada na margem):
+                                // o anel de foco do seletor de curso, que encosta
+                                // na borda, não é cortado pelo overflow
+                                presenting && "-mx-1 -mt-1 px-1 pt-1"
+                            )}
+                        >
                             <div
                                 ref={setTabsSlot}
                                 // desce e sobe junto com a barra

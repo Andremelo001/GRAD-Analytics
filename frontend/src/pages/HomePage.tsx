@@ -169,8 +169,10 @@ function SeletorCurso({
           : String(curso);
     return (
         <CursoBusca
-            faixa={tom === "band"}
-            compacto={tom === "surface"}
+            // pílula nos dois tons: escura na faixa, clara no modo
+            // apresentação (como a barra de sub-abas ao lado)
+            faixa
+            superficie={tom === "surface"}
             cor={CHART.comparacao.a}
             label="Curso"
             placeholder="Buscar curso…"

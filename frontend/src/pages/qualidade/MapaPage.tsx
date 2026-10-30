@@ -207,14 +207,16 @@ function Mapa({ data }: { data: DashboardData }) {
                 tituloInfo={uf ? titulo : "Brasil por estado"}
                 info="Os cursos da mesma área de avaliação no Brasil, por estado, na edição mais recente do Enade, pintados pelo indicador escolhido. Clique num estado para ver os detalhes dele ao lado."
             >
-                {/* título com o ano do Enade ao lado (no estilo da frase de
-                    filtros), e a frase de filtros embaixo */}
+                {/* título com o ano do Enade e a modalidade ao lado (o mapa só
+                    compara cursos da modalidade do curso do campus; no estilo
+                    da frase de filtros), e a frase de filtros embaixo */}
                 <h2 className="text-[17px] leading-tight font-semibold tracking-[-0.01em]">
                     {uf ? titulo : "Brasil por estado"}
                     {visao && (
                         <span className="text-text-muted text-[13px] font-normal tracking-normal">
                             {" "}
-                            · Enade {visao.ano}
+                            · Enade {visao.ano} · cursos{" "}
+                            {visao.ead ? "a distância" : "presenciais"}
                         </span>
                     )}
                 </h2>
@@ -304,8 +306,10 @@ function Mapa({ data }: { data: DashboardData }) {
                 >
                     {/* folga de 4px em volta (compensada nas margens): o contorno do
                         curso do campus na lista não é cortado pela rolagem, nem
-                        quando ele é o primeiro ou o último */}
-                    <div className="-mx-1 mt-4 -mr-3 min-h-0 flex-1 [scrollbar-width:thin] overflow-y-auto py-1 pr-3 pl-1">
+                        quando ele é o primeiro ou o último. Embaixo, a rolagem
+                        vai até a borda do card (margem negativa sobre o padding
+                        dele) e o respiro fica no fim da lista */}
+                    <div className="-mx-1 mt-4 -mr-3 -mb-5 min-h-0 flex-1 [scrollbar-width:thin] overflow-y-auto pt-1 pr-3 pb-6 pl-1 lg:-mb-6 lg:pb-7">
                         {visao && (
                             <EstadoPainel
                                 titulo={titulo}

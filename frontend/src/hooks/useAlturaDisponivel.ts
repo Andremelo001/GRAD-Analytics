@@ -4,7 +4,9 @@ import { useEffect, useState, type RefObject } from "react";
  * tela, menos ``margem`` — pra um bloco caber inteiro na tela sem rolar (ex.:
  * o Mapa da Qualidade). Nunca menos que ``minimo`` (tela muito baixa: aí
  * rola). Recalcula quando a janela ou a página mudam de tamanho (o topo fixo
- * crescendo, o modo apresentação). */
+ * crescendo) e no fim de cada animação da página: no modo apresentação o topo
+ * sobe e o bloco junto, mas a página continua da altura da tela (nada muda
+ * de tamanho pro ResizeObserver ver). */
 export function useAlturaDisponivel(
     ref: RefObject<HTMLElement | null>,
     { margem = 24, minimo = 520 }: { margem?: number; minimo?: number } = {}
@@ -30,9 +32,11 @@ export function useAlturaDisponivel(
         const observer = new ResizeObserver(medir);
         observer.observe(document.documentElement);
         window.addEventListener("resize", medir);
+        document.addEventListener("transitionend", medir);
         return () => {
             observer.disconnect();
             window.removeEventListener("resize", medir);
+            document.removeEventListener("transitionend", medir);
         };
     }, [ref, margem, minimo]);
     return altura;

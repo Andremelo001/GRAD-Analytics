@@ -13,7 +13,10 @@ import { COMPONENTES } from "@/lib/cpc";
 import { formatDecimal, formatInteger, formatPercent } from "@/lib/format";
 import { cn } from "@/lib/utils";
 
-const TOP = 10;
+/** Quantos cursos a lista dos melhores mostra: o bastante pra preencher o
+ * painel mesmo numa tela alta (no modo apresentação, em tela cheia); quando
+ * não cabem, a lista rola por dentro. */
+const TOP = 20;
 
 /** Painel ao lado do mapa: o recorte escolhido (Brasil ou um estado) em
  * números, no indicador escolhido no mapa (CPC, IDD ou Conceito Enade) —

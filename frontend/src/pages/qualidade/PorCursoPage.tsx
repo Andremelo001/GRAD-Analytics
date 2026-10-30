@@ -5,13 +5,11 @@ import { Card } from "@/components/cards/Card";
 import { ComponentesDumbbellCard } from "@/components/charts/qualidade/ComponentesDumbbellCard";
 import { ComponentesTempoCard } from "@/components/charts/qualidade/ComponentesTempoCard";
 import { ContribuicaoCard } from "@/components/charts/qualidade/ContribuicaoCard";
-import { OutrosCampiCard } from "@/components/charts/qualidade/OutrosCampiCard";
 import { CursoResumoCard } from "@/components/charts/qualidade/CursoResumoCard";
 import { ParticipacaoEnadeCard } from "@/components/charts/qualidade/ParticipacaoEnadeCard";
 import { ProximaFaixaCard } from "@/components/charts/qualidade/ProximaFaixaCard";
 import { DataState } from "@/components/layout/DataState";
 import { PorCursoEsqueleto } from "@/components/layout/Esqueleto";
-import { useDashboardData } from "@/hooks/useDashboardData";
 import { lembrarCursoPorCurso } from "@/lib/curso-por-curso";
 import { buildAvaliacoes, type AvaliacaoCurso } from "@/lib/qualidade";
 import type { DashboardData } from "@/types/dashboard";
@@ -56,13 +54,6 @@ function equivalente(avaliacoes: AvaliacaoCurso[]): AvaliacaoCurso | undefined {
 function PorCurso({ data }: { data: DashboardData }) {
     const { codigo } = useParams<{ codigo: string }>();
     const navigate = useNavigate();
-    // o campus dos dados na tela (não o escolhido no seletor): durante a troca
-    // os dois diferem por um instante, e o card de outros campi procuraria o
-    // curso no campus novo, sumiria e encolheria a página (rolagem pulava)
-    const { campi } = useDashboardData();
-    const campus =
-        campi.find((c) => c.codigo_municipio === data.escopo.codigo_municipio)?.slug ??
-        null;
     const avaliacoes = useMemo(() => buildAvaliacoes(data), [data]);
     const pedido = avaliacoes.find((a) => String(a.codigo) === codigo);
     const correspondente = pedido ? undefined : equivalente(avaliacoes);
@@ -135,14 +126,6 @@ function PorCurso({ data }: { data: DashboardData }) {
                 )}
                 <ParticipacaoEnadeCard className="lg:col-span-5" curso={curso} />
             </div>
-            {/* o mesmo curso nos outros campi (some sozinho se nenhum oferece) */}
-            {campus && (
-                <OutrosCampiCard
-                    className="lg:col-span-12"
-                    codigoCurso={curso.codigo}
-                    campusAtual={campus}
-                />
-            )}
         </div>
     );
 }

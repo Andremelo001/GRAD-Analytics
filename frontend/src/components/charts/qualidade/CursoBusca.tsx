@@ -63,6 +63,9 @@ function posicao(seletor: DOMRect, fixo: boolean): Posicao {
  * ``largo``: no compacto, mais largo (320px), pra rótulos longos caberem
  * inteiros (ex.: os componentes do CPC).
  *
+ * ``superficie``: com ``faixa``, a mesma pílula em claro (na cor dos cards),
+ * pro modo apresentação — como a barra de sub-abas e o seletor de campus lá.
+ *
  * ``faixa``: a versão em pílula da faixa escura, ao lado do seletor de campus
  * (Início) — mesma altura e desenho da barra de sub-abas. */
 export function CursoBusca({
@@ -74,6 +77,7 @@ export function CursoBusca({
     placeholder = "Buscar…",
     compacto = false,
     faixa = false,
+    superficie = false,
     estreito = false,
     largo = false,
 }: {
@@ -85,6 +89,7 @@ export function CursoBusca({
     placeholder?: string;
     compacto?: boolean;
     faixa?: boolean;
+    superficie?: boolean;
     estreito?: boolean;
     largo?: boolean;
 }) {
@@ -178,6 +183,8 @@ export function CursoBusca({
             e.preventDefault();
             escolher(ativo);
         } else if (e.key === "Escape") {
+            // o Esc foi pra lista: não sai do modo apresentação junto
+            e.preventDefault();
             setOpen(false);
             setBusca("");
         }
@@ -190,7 +197,10 @@ export function CursoBusca({
                     className={cn(
                         "ring-lime/60 flex items-center gap-2 ring-2",
                         faixa
-                            ? "h-[33px] w-full rounded-full bg-white/[0.07] px-4 sm:h-9 sm:w-[240px]"
+                            ? cn(
+                                  "h-[33px] w-full rounded-full px-4 sm:h-9 sm:w-[240px]",
+                                  superficie ? "bg-surface" : "bg-white/[0.07]"
+                              )
                             : compacto
                               ? cn(
                                     "bg-page h-8 w-[150px] max-w-full rounded-lg px-2.5",
@@ -225,9 +235,10 @@ export function CursoBusca({
                         // no iPhone) aproxima a tela ao focar o campo
                         className={cn(
                             "min-w-0 flex-1 bg-transparent text-[16px] outline-none",
-                            faixa
+                            faixa && !superficie
                                 ? "text-white placeholder:text-white/45 sm:text-[13px]"
                                 : "placeholder:text-text-muted",
+                            faixa && superficie && "text-ink sm:text-[13px]",
                             !faixa && (compacto ? "sm:text-[12px]" : "sm:text-[13px]")
                         )}
                     />
@@ -241,7 +252,12 @@ export function CursoBusca({
                     className={cn(
                         "focus-visible:ring-lime/60 flex min-w-0 items-center text-left outline-none focus-visible:ring-2",
                         faixa
-                            ? "h-[33px] w-full gap-2 rounded-full bg-white/[0.07] px-4 text-white ring-1 ring-white/10 hover:bg-white/[0.12] sm:h-9 sm:w-[240px]"
+                            ? cn(
+                                  "h-[33px] w-full gap-2 rounded-full px-4 ring-1 sm:h-9 sm:w-[240px]",
+                                  superficie
+                                      ? "bg-surface text-ink ring-card-ring hover:bg-page shadow-[0_4px_24px_rgb(0_0_0/0.05)]"
+                                      : "bg-white/[0.07] text-white ring-white/10 hover:bg-white/[0.12]"
+                              )
                             : compacto
                               ? cn(
                                     "bg-page hover:bg-page/70 h-8 w-[150px] max-w-full gap-1.5 rounded-lg pr-2 pl-2.5",
@@ -281,7 +297,7 @@ export function CursoBusca({
                         size={compacto || faixa ? 14 : 15}
                         className={cn(
                             "shrink-0",
-                            faixa ? "text-white/60" : "text-text-muted"
+                            faixa && !superficie ? "text-white/60" : "text-text-muted"
                         )}
                         aria-hidden
                     />

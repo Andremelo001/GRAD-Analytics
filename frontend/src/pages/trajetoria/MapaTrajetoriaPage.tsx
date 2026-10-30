@@ -119,6 +119,7 @@ function Mapa({ data }: { data: DashboardData }) {
             [...porUfCursos].map(([uf, cursos]) => [uf, resumirTrajetoria(cursos)])
         );
         return {
+            ead,
             filtrados,
             porUfCursos,
             porUf,
@@ -224,9 +225,13 @@ function Mapa({ data }: { data: DashboardData }) {
             >
                 <h2 className="text-[17px] leading-tight font-semibold tracking-[-0.01em]">
                     {uf ? titulo : "Brasil por estado"}
+                    {/* a modalidade: o mapa só compara cursos da do curso do
+                        campus (e do mesmo grau) */}
                     <span className="text-text-muted text-[13px] font-normal tracking-normal">
                         {" "}
                         · turmas maduras
+                        {visao &&
+                            ` · cursos ${visao.ead ? "a distância" : "presenciais"}`}
                     </span>
                 </h2>
                 {filtros}
@@ -314,8 +319,10 @@ function Mapa({ data }: { data: DashboardData }) {
                     className="lg:absolute lg:inset-0"
                 >
                     {/* folga de 4px em volta (compensada nas margens): o contorno do
-                        curso do campus na lista não é cortado pela rolagem */}
-                    <div className="-mx-1 mt-4 -mr-3 min-h-0 flex-1 [scrollbar-width:thin] overflow-y-auto py-1 pr-3 pl-1">
+                        curso do campus na lista não é cortado pela rolagem. Embaixo,
+                        a rolagem vai até a borda do card (margem negativa sobre o
+                        padding dele) e o respiro fica no fim da lista */}
+                    <div className="-mx-1 mt-4 -mr-3 -mb-5 min-h-0 flex-1 [scrollbar-width:thin] overflow-y-auto pt-1 pr-3 pb-6 pl-1 lg:-mb-6 lg:pb-7">
                         {visao && (
                             <EstadoPainelTrajetoria
                                 titulo={titulo}

@@ -14,6 +14,7 @@ import { DataTable } from "@/components/charts/DataTable";
 import { useChartTheme } from "@/hooks/useChartTheme";
 import { useElementSize } from "@/hooks/useElementSize";
 import { formatInteger, toTitleCase } from "@/lib/format";
+import { cn } from "@/lib/utils";
 import type { Curso, DashboardData } from "@/types/dashboard";
 
 /** ``escolha`` da série do campus inteiro. */
@@ -685,5 +686,174 @@ export function ConcluintesCard({
             escolha={escolha}
             {...valores}
         />
+    );
+}
+
+// os pontos ficam um pouco pra dentro (o anel do foco não é cortado pela
+// borda do card); a linha e a área seguem retas até as bordas
+const PAD_MINI = { top: 10, right: 10, bottom: 26, left: 10 };
+
+/** A versão reduzida do gráfico de Ingressantes/Concluintes, pros tiles de
+ * taxa (Início → Trajetória): a mesma curva suave com a área esmaecida, o
+ * ponto em foco com a pílula do valor e os anos embaixo — sem eixo Y, grade,
+ * legenda nem a média nacional. De borda a borda do bloco (quem usa decide o
+ * tamanho); passar o mouse muda o foco, ao sair volta pro último ano. */
+export function MiniSerieAnual({
+    serie,
+    cor,
+    pilula,
+    textoPilula,
+    formatar,
+    className,
+}: {
+    serie: ValorAno[];
+    cor: string;
+    /** Fundo e texto da pílula do valor em foco. */
+    pilula: string;
+    textoPilula: string;
+    formatar: (v: number) => string;
+    className?: string;
+}) {
+    const CHART = useChartTheme();
+    const gradId = useId();
+    const [hover, setHover] = useState<number | null>(null);
+    const boxRef = useRef<HTMLDivElement>(null);
+    const { width: W, height: H } = useElementSize(boxRef);
+
+    const sel = hover !== null && hover < serie.length ? hover : serie.length - 1;
+    const foco = serie.at(sel);
+    const showTick = yearTickFilter(serie.length, sel, W);
+    const valores = serie.map((p) => p.valor);
+    const lo = Math.min(...valores);
+    const hi = Math.max(...valores);
+    // folga em cima pra pílula do valor e embaixo pra área não sumir
+    const folga = (hi - lo || Math.abs(hi) || 1) * 0.35;
+    const [y0, y1] = [lo - folga, hi + folga];
+
+    const plotW = Math.max(W - PAD_MINI.left - PAD_MINI.right, 1);
+    const plotH = Math.max(H - PAD_MINI.top - PAD_MINI.bottom, 1);
+    const x = (i: number) =>
+        PAD_MINI.left +
+        (serie.length > 1 ? (i * plotW) / (serie.length - 1) : plotW / 2);
+    const y = (v: number) => PAD_MINI.top + plotH - ((v - y0) / (y1 - y0 || 1)) * plotH;
+    const base = PAD_MINI.top + plotH;
+    const linha = serie.map((p, i): Pt => [x(i), y(p.valor)]);
+    // "M x,y C…" -> "L x,y C…": a curva continua o trecho reto da borda
+    const meio = linha.length > 1 ? `L${curva(linha).slice(1)}` : "";
+    const [primeiro, ultimo] = [linha[0], linha.at(-1)];
+    const tracado =
+        primeiro && ultimo ? `M0,${primeiro[1]}${meio}L${W},${ultimo[1]}` : "";
+    const area =
+        primeiro && ultimo
+            ? `M0,${base}L0,${primeiro[1]}${meio}L${W},${ultimo[1]}L${W},${base}Z`
+            : "";
+
+    function onPointer(e: PointerEvent<SVGRectElement>) {
+        if (serie.length === 0) return;
+        const rect = e.currentTarget.getBoundingClientRect();
+        const passo = serie.length > 1 ? plotW / (serie.length - 1) : 1;
+        const i = Math.round((e.clientX - rect.left) / passo);
+        setHover(Math.min(Math.max(i, 0), serie.length - 1));
+    }
+
+    const fx = foco ? x(sel) : 0;
+    const fy = foco ? y(foco.valor) : 0;
+    const texto = foco ? formatar(foco.valor) : "";
+    const caixa = foco
+        ? posicionarPilula(
+              fx,
+              fy,
+              texto.length * 7 + 18,
+              true,
+              // a pílula não encosta nas bordas do card
+              { x0: 8, x1: W - 8, y0: 0, y1: base },
+              [
+                  ...amostrar(linha),
+                  ...[-7, 0, 7].flatMap((dx) =>
+                      [-7, 0, 7].map((dy): Pt => [fx + dx, fy + dy])
+                  ),
+              ],
+              []
+          )
+        : null;
+
+    return (
+        <div ref={boxRef} className={cn("relative", className)}>
+            {W > 0 && H > 0 && serie.length > 1 && (
+                <svg
+                    width={W}
+                    height={H}
+                    className="absolute inset-0 touch-pan-y select-none"
+                    aria-hidden
+                >
+                    <defs>
+                        <linearGradient id={gradId} x1="0" x2="0" y1="0" y2="1">
+                            <stop offset="0%" stopColor={cor} stopOpacity={0.28} />
+                            <stop offset="100%" stopColor={cor} stopOpacity={0} />
+                        </linearGradient>
+                    </defs>
+                    <path d={area} fill={`url(#${gradId})`} />
+                    <path
+                        d={tracado}
+                        fill="none"
+                        stroke={cor}
+                        strokeWidth={2.5}
+                        strokeLinecap="round"
+                    />
+                    {caixa && (
+                        <Ponto
+                            cx={fx}
+                            cy={fy}
+                            cor={cor}
+                            fundo={CHART.surface}
+                            pilula={pilula}
+                            texto={texto}
+                            textoCor={textoPilula}
+                            caixa={caixa}
+                        />
+                    )}
+                    {/* anos: nas pontas, alinhados pra dentro (com um respiro
+                        da borda do card) */}
+                    {serie.map(
+                        (p, i) =>
+                            showTick(i) && (
+                                <text
+                                    key={p.ano}
+                                    x={
+                                        i === 0
+                                            ? x(i) + 12
+                                            : i === serie.length - 1
+                                              ? x(i) - 12
+                                              : x(i)
+                                    }
+                                    y={H - 8}
+                                    textAnchor={
+                                        i === 0
+                                            ? "start"
+                                            : i === serie.length - 1
+                                              ? "end"
+                                              : "middle"
+                                    }
+                                    fontSize={11}
+                                    fontWeight={i === sel ? 700 : 400}
+                                    fill={i === sel ? CHART.ink : CHART.textMuted}
+                                >
+                                    {p.ano}
+                                </text>
+                            )
+                    )}
+                    <rect
+                        x={0}
+                        y={0}
+                        width={W}
+                        height={H}
+                        fill="transparent"
+                        onPointerMove={onPointer}
+                        onPointerDown={onPointer}
+                        onPointerLeave={() => setHover(null)}
+                    />
+                </svg>
+            )}
+        </div>
     );
 }

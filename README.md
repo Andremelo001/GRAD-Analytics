@@ -33,8 +33,7 @@ Russas ou Sobral), escolhido no seletor de campus do topo. São três abas:
       média do país.
     - **Por curso**: de onde vem a nota de um curso, quanto falta para a
       próxima faixa (no CPC e no Conceito Enade), como cada parte da nota
-      evoluiu ao longo das avaliações, a participação dos alunos no Enade e o
-      mesmo curso nos outros campi da UFC.
+      evoluiu ao longo das avaliações e a participação dos alunos no Enade.
     - **Mapa**: o mesmo curso pelo Brasil, estado por estado; clicando num
       estado aparecem as cidades, a comparação do estado com o seu curso e os
       cursos com as melhores notas, com a posição do seu curso entre eles.

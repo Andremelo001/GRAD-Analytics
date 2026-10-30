@@ -13,7 +13,10 @@ import {
 } from "@/lib/trajetoria-mapa";
 import { cn } from "@/lib/utils";
 
-const TOP = 10;
+/** Quantos cursos a lista dos melhores mostra: o bastante pra preencher o
+ * painel mesmo numa tela alta (no modo apresentação, em tela cheia); quando
+ * não cabem, a lista rola por dentro. */
+const TOP = 20;
 const ORDEM: IndicadorMapa[] = ["TCA", "TDA", "TAP"];
 
 /** Painel ao lado do mapa da Trajetória: o recorte escolhido (Brasil ou um

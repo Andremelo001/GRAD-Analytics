@@ -197,9 +197,13 @@ export function BrasilQualidadeMapa<R extends ResumoMapa>({
                         className="absolute inset-0 h-full w-full"
                         role="group"
                         aria-label="Mapa do Brasil por estado"
-                        // clicar no fundo tira a seleção do estado (não amplia o card)
-                        data-sem-expandir
-                        onClick={() => onSelect(null)}
+                        // com um estado escolhido, clicar no fundo volta pro
+                        // Brasil (e não amplia o card); sem estado, o fundo é
+                        // só fundo: o clique amplia o card, como no resto dele
+                        data-sem-expandir={selecionado ? true : undefined}
+                        onClick={() => {
+                            if (selecionado) onSelect(null);
+                        }}
                     >
                         {GEO.estados.map((e) => {
                             const resumo = porUf.get(e.sigla);
