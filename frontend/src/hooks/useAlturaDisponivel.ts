@@ -6,16 +6,31 @@ import { useEffect, useState, type RefObject } from "react";
  * rola). Recalcula quando a janela ou a página mudam de tamanho (o topo fixo
  * crescendo) e no fim de cada animação da página: no modo apresentação o topo
  * sobe e o bloco junto, mas a página continua da altura da tela (nada muda
- * de tamanho pro ResizeObserver ver). */
+ * de tamanho pro ResizeObserver ver).
+ *
+ * ``sobOTopo``: em vez do topo do elemento, a altura sob o topo fixo da
+ * página (``[data-topo-fixo]``) mais ``sobOTopo`` px — o que um bloco mais
+ * abaixo na página tem quando a página rola até ele (ver ``topoVisivel``). */
 export function useAlturaDisponivel(
     ref: RefObject<HTMLElement | null>,
-    { margem = 24, minimo = 520 }: { margem?: number; minimo?: number } = {}
+    {
+        margem = 24,
+        minimo = 520,
+        sobOTopo,
+    }: { margem?: number; minimo?: number; sobOTopo?: number } = {}
 ): number {
     const [altura, setAltura] = useState(0);
     useEffect(() => {
         const el = ref.current;
         if (!el) return;
         const medir = () => {
+            if (sobOTopo !== undefined) {
+                const topo = topoVisivel() + sobOTopo;
+                setAltura(
+                    Math.max(minimo, Math.floor(window.innerHeight - topo - margem))
+                );
+                return;
+            }
             // offsetTop somado (não getBoundingClientRect): não sofre com a
             // animação de entrada (translateY) nem com a rolagem
             let topo = 0;
@@ -38,6 +53,14 @@ export function useAlturaDisponivel(
             window.removeEventListener("resize", medir);
             document.removeEventListener("transitionend", medir);
         };
-    }, [ref, margem, minimo]);
+    }, [ref, margem, minimo, sobOTopo]);
     return altura;
+}
+
+/** Onde o conteúdo da página começa a aparecer, embaixo do topo fixo (logo,
+ * abas e, no desktop, a saudação), em px a partir do topo da tela. No modo
+ * apresentação o topo sobe pra fora da tela: 0. */
+export function topoVisivel(): number {
+    const topo = document.querySelector("[data-topo-fixo]");
+    return topo ? Math.max(0, topo.getBoundingClientRect().bottom) : 0;
 }

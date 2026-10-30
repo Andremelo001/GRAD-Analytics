@@ -1,43 +1,27 @@
 import type { ReactNode } from "react";
 
 import { Card } from "@/components/cards/Card";
-import { CursoBusca } from "@/components/charts/qualidade/CursoBusca";
 import { DeltaPill } from "@/components/charts/qualidade/DeltaPill";
 import { FaixaPill } from "@/components/charts/qualidade/FaixaPill";
-import { useChartTheme } from "@/hooks/useChartTheme";
 import { faixaDe } from "@/lib/cpc";
-import { opcaoCurso } from "@/lib/curso";
 import { formatDecimal, formatInteger, toTitleCase } from "@/lib/format";
 import type { AvaliacaoCurso } from "@/lib/qualidade";
 import { cn } from "@/lib/utils";
 
-/** Cabeçalho da sub-aba Por curso: seletor do curso (com busca) e a ficha da avaliação
- * mais recente (ano, área, CPC + faixa, Enade + faixa e a média nacional). */
+/** Cabeçalho da sub-aba Por curso: a ficha da avaliação mais recente (ano,
+ * área, CPC + faixa, Enade + faixa e a média nacional). O curso se escolhe no
+ * seletor do cabeçalho da aba. */
 export function CursoResumoCard({
     curso,
-    cursos,
-    onChange,
     className,
 }: {
     curso: AvaliacaoCurso;
-    cursos: AvaliacaoCurso[];
-    onChange: (codigo: number) => void;
     className?: string;
 }) {
-    const CHART = useChartTheme();
-    // a busca filtra por nome, código e grau (e, sem aparecer, pela área)
-    const options = [...cursos]
-        .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"))
-        .map((c) => ({
-            ...opcaoCurso({ codigo: c.codigo, nome: c.nomeCurso, grau: c.grau }),
-            busca: c.area ?? undefined,
-        }));
-
     return (
         <Card className={cn("relative", className)}>
             {/* enfeite: os pontinhos dos 4 resumos da Visão do campus. Recortados
-                numa camada própria (não no card): o overflow-hidden no card
-                cortaria a lista do seletor de curso */}
+                numa camada própria (não no card) */}
             <span
                 aria-hidden
                 className="pointer-events-none absolute inset-0 overflow-hidden rounded-[inherit]"
@@ -63,17 +47,6 @@ export function CursoResumoCard({
                     <h2 className="mt-1 truncate text-[22px] leading-tight font-semibold tracking-[-0.02em]">
                         {curso.nome}
                     </h2>
-                </div>
-                {/* mesmo seletor com busca das Comparações */}
-                <div className="w-full sm:w-80">
-                    <CursoBusca
-                        label="Curso"
-                        cor={CHART.brand}
-                        value={String(curso.codigo)}
-                        options={options}
-                        onChange={(v) => onChange(Number(v))}
-                        placeholder="Buscar curso…"
-                    />
                 </div>
             </div>
 

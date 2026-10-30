@@ -217,7 +217,7 @@ def campus() -> Campus:
     return Campus(
         codigo_ies=_IES,
         codigo_municipio=_MUNICIPIO,
-        nome="UFT Campus Teste",
+        nome="UFT em Teste",
         slug="teste",
     )
 

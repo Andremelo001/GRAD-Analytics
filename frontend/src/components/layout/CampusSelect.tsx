@@ -2,10 +2,10 @@ import { ChartSelect } from "@/components/charts/ChartSelect";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { cn } from "@/lib/utils";
 
-/** "Quixadá" a partir de "UFC Campus Quixadá" — a frase em volta já diz "UFC
- * Campus". */
+/** "Quixadá" a partir de "UFC em Quixadá" — a frase em volta já diz "UFC
+ * em". */
 function nomeCurto(nome: string): string {
-    return nome.replace(/^UFC\s+Campus\s+/i, "");
+    return nome.replace(/^UFC\s+(?:em|Campus)\s+/i, "");
 }
 
 /** Seletor de campus em pílula, à esquerda das sub-abas (``PageHeader``) — o
@@ -26,10 +26,10 @@ export function CampusSelect({ tom = "band" }: { tom?: "band" | "surface" }) {
                     : "bg-surface text-text-secondary ring-card-ring shadow-[0_4px_24px_rgb(0_0_0/0.05)]"
             )}
         >
-            Campus
+            Cidade
             <ChartSelect
                 variant="inline"
-                label="Campus"
+                label="Cidade"
                 value={campus}
                 options={campi.map((c) => ({
                     value: c.slug,

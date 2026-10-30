@@ -49,12 +49,12 @@ export function EvasaoPorAnoCard({
 }) {
     const CHART = useChartTheme();
     // filtro de busca (o mesmo de "Situação final por curso"): todos em
-    // grade, ou só o campus / um curso, num gráfico ampliado e centrado
+    // grade, ou só a soma de todos / um curso, num gráfico ampliado e centrado
     const [escolha, setEscolha] = useState(TODOS);
     const paineis: Painel[] = [
         {
             chave: "campus",
-            nome: "Campus (todos os cursos)",
+            nome: "Todos os cursos somados",
             fracoes: evasaoPorAnoDoCurso(cursos.flatMap(maduras)),
         },
         ...cursos.map((c) => ({
@@ -106,8 +106,8 @@ export function EvasaoPorAnoCard({
                                       })
                                     : {
                                           value: p.chave,
-                                          label: "Campus",
-                                          detalhe: "Todos os cursos somados",
+                                          label: "Todos os cursos somados",
+                                          detalhe: "A cidade inteira, num gráfico só",
                                       };
                             }),
                         ]}

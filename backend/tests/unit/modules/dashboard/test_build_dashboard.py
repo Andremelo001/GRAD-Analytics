@@ -52,7 +52,7 @@ def test_writes_one_json_per_campus_plus_index(
     ]
     index = json.loads((tmp_path / "index.json").read_text(encoding="utf-8"))
     assert [c["slug"] for c in index["campi"]] == ["cidade-um", "200"]
-    assert index["campi"][0]["nome"] == "UFT Campus Cidade Um"
+    assert index["campi"][0]["nome"] == "UFT em Cidade Um"
     assert index["campi"][0]["total_cursos"] == 3
 
 

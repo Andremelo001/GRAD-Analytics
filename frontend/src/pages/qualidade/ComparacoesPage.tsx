@@ -37,7 +37,7 @@ import type { ResumoCampi, ResumoCurso } from "@/types/dashboard";
 type Modo = "campi" | "cursos";
 
 const MODOS: { value: Modo; label: string }[] = [
-    { value: "campi", label: "Entre campi" },
+    { value: "campi", label: "Entre cidades" },
     { value: "cursos", label: "Entre cursos da mesma área" },
 ];
 
@@ -183,8 +183,8 @@ function ComparacaoCampi({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
                 <div className="grid grid-cols-1 gap-5 lg:col-span-12 lg:grid-cols-12 lg:gap-6">
                     <LadoALadoCard
                         className="lg:col-span-5"
-                        titulo="Indicadores do campus"
-                        info="As médias dos indicadores de qualidade dos cursos de cada campus, na avaliação mais recente de cada curso. O ✓ marca o campus à frente em cada linha."
+                        titulo="Indicadores da cidade"
+                        info="As médias dos indicadores de qualidade dos cursos de cada cidade, na avaliação mais recente de cada curso. O ✓ marca a cidade à frente em cada linha."
                         subtitulo="Média dos cursos, na avaliação mais recente de cada um"
                         lados={lados}
                         linhas={[
@@ -220,13 +220,13 @@ function ComparacaoCampi({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
                                 neutro: true,
                             },
                         ]}
-                        rodape="As áreas de cada campus são diferentes: as médias resumem a posição dos cursos de cada campus entre os pares da própria área."
+                        rodape="As áreas de cada cidade são diferentes: as médias resumem a posição dos cursos de cada cidade entre os pares da própria área."
                     />
                     <ComponentesEspelhoCard
                         className="lg:col-span-7"
                         titulo="Componentes do CPC"
-                        subtitulo="Nota média dos cursos de cada campus em cada componente"
-                        info="A nota média dos cursos de cada campus em cada componente do CPC (0 a 5), lado a lado."
+                        subtitulo="Nota média dos cursos de cada cidade em cada componente"
+                        info="A nota média dos cursos de cada cidade em cada componente do CPC (0 a 5), lado a lado."
                         lados={lados}
                         a={ra.notas}
                         b={rb.notas}

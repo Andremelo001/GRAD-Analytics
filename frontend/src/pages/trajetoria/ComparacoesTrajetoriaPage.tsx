@@ -34,7 +34,7 @@ import type { ResumoCampi, ResumoCurso } from "@/types/dashboard";
 type Modo = "campi" | "cursos";
 
 const MODOS: { value: Modo; label: string }[] = [
-    { value: "campi", label: "Entre campi" },
+    { value: "campi", label: "Entre cidades" },
     { value: "cursos", label: "Entre cursos da mesma área" },
 ];
 
@@ -147,7 +147,7 @@ function ComparacaoCampi({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
         return (
             <Card title="Comparações">
                 <p className="text-text-secondary mt-3 text-[14px]">
-                    Nenhum campus tem turma madura para comparar.
+                    Nenhuma cidade tem turma madura para comparar.
                 </p>
             </Card>
         );
@@ -206,12 +206,12 @@ function ComparacaoCampi({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
                     {de === ate ? de : `${de} a ${ate}`}
                 </p>
                 <IndicadoresTrajetoriaCards
-                    titulo="Indicadores do campus"
+                    titulo="Indicadores da cidade"
                     lados={lados}
                     a={ta}
                     b={tb}
                     contarCursos
-                    rodape="Cada campus tem cursos diferentes: as médias resumem as turmas maduras dos cursos de cada um, pesadas pelos ingressantes."
+                    rodape="Cada cidade tem cursos diferentes: as médias resumem as turmas maduras dos cursos de cada uma, pesadas pelos ingressantes."
                 />
                 <SituacaoPermanenciaCards lados={lados} a={ta} b={tb} agregado />
             </div>

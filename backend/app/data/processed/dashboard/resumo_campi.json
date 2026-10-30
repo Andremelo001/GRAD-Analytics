@@ -3,7 +3,7 @@
   "campi": [
     {
       "slug": "crateus",
-      "nome": "UFC Campus Crateús",
+      "nome": "UFC em Crateús",
       "cursos": [
         {
           "codigo_curso": 1272079,
@@ -436,7 +436,7 @@
     },
     {
       "slug": "fortaleza",
-      "nome": "UFC Campus Fortaleza",
+      "nome": "UFC em Fortaleza",
       "cursos": [
         {
           "codigo_curso": 13965,
@@ -8979,7 +8979,7 @@
     },
     {
       "slug": "quixada",
-      "nome": "UFC Campus Quixadá",
+      "nome": "UFC em Quixadá",
       "cursos": [
         {
           "codigo_curso": 106167,
@@ -9472,7 +9472,7 @@
     },
     {
       "slug": "russas",
-      "nome": "UFC Campus Russas",
+      "nome": "UFC em Russas",
       "cursos": [
         {
           "codigo_curso": 1272130,
@@ -9915,7 +9915,7 @@
     },
     {
       "slug": "sobral",
-      "nome": "UFC Campus Sobral",
+      "nome": "UFC em Sobral",
       "cursos": [
         {
           "codigo_curso": 54490,

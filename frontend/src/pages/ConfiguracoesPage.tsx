@@ -72,16 +72,16 @@ export function ConfiguracoesPage() {
                     />
                     <Linha
                         icone={<MapPin size={18} />}
-                        titulo="Campus ao abrir o painel"
+                        titulo="Cidade ao abrir o painel"
                         descricao={
                             fixo
                                 ? `O painel sempre abre em ${nomeCampus(fixo.nome)}`
-                                : "O painel abre no último campus escolhido"
+                                : "O painel abre na última cidade escolhida"
                         }
                         controle={
                             campi.length > 0 && (
                                 <ChartSelect
-                                    label="Campus ao abrir o painel"
+                                    label="Cidade ao abrir o painel"
                                     value={fixo ? fixo.slug : ULTIMO_CAMPUS}
                                     options={[
                                         { value: ULTIMO_CAMPUS, label: "Último usado" },

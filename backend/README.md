@@ -314,7 +314,7 @@ app/data/processed/dashboard/
 ├── quixada.json     # ~500 KB — o campus que o site abre por padrão
 ├── russas.json      # ~380 KB
 ├── sobral.json      # ~840 KB
-├── resumo_campi.json # ~270 KB: os cursos de todos os campi, resumidos (busca, comparações entre campi e cursos)
+├── resumo_campi.json # ~270 KB: os cursos de todas as cidades, resumidos (busca, comparações entre cidades e cursos)
 ├── areas_qualidade/ # um JSON por área de avaliação dos cursos da UFC (~57): todos os cursos do Brasil na edição mais recente
 │   ├── index.json   # slug, area_avaliacao, ano, total_cursos, arquivo
 │   └── sistemas-de-informacao.json …   # 10-400 KB cada, gravados compactos
@@ -328,7 +328,7 @@ tabela abaixo); muda só o recorte. Os campi **não são configurados**:
 `shared.discover_campi()` pega cada município onde a IES tem curso na
 trajetória — campus novo publicado pelo INEP entra sozinho no próximo run; um
 polo EaD que só aparece na qualidade (sem turma acompanhada) fica de fora. O
-nome ("UFC Campus Crateús") vem da sigla da IES + município da qualidade, e o
+nome ("UFC em Crateús") vem da sigla da IES + município da qualidade, e o
 nome do arquivo é o município sem acento. JSON de campus que deixou de existir
 é apagado.
 

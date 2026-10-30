@@ -149,7 +149,7 @@ export function InicioEvasaoEsqueleto() {
 /** Qualidade → Visão do campus: 4 tiles, ranking + evolução, componentes. */
 export function VisaoCampusEsqueleto() {
     return (
-        <Pagina rotulo="Carregando a Visão do campus">
+        <Pagina rotulo="Carregando a Visão geral">
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:col-span-12 lg:grid-cols-4 lg:gap-6">
                 <TileEsqueleto />
                 <TileEsqueleto />

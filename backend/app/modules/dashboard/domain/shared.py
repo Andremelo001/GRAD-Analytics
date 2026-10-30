@@ -17,10 +17,11 @@ _LOWERCASE_WORDS = {"de", "da", "do", "das", "dos", "e"}
 
 @dataclass(frozen=True, slots=True)
 class Campus:
-    """Um campus da IES: o recorte (IES + município) de um arquivo do dashboard.
+    """Uma cidade da IES: o recorte (IES + município) de um arquivo do dashboard.
 
-    ``nome`` é o rótulo exibido no front (``escopo.municipio``, ex.: "UFC Campus
-    Quixadá"); ``slug`` é o nome do arquivo (``quixada`` -> ``quixada.json``).
+    ``nome`` é o rótulo exibido no front (``escopo.municipio``, ex.: "UFC em
+    Quixadá" — a cidade, não um campus: Fortaleza junta vários); ``slug`` é o
+    nome do arquivo (``quixada`` -> ``quixada.json``).
     """
 
     codigo_ies: int
@@ -70,7 +71,7 @@ def discover_campi(
             Campus(
                 codigo_ies=codigo_ies,
                 codigo_municipio=int(codigo),
-                nome=f"{sigla} Campus {rotulo}" if sigla else f"Campus {rotulo}",
+                nome=f"{sigla} em {rotulo}" if sigla else rotulo,
                 slug=slugify(rotulo),
             )
         )

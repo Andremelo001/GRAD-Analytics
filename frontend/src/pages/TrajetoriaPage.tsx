@@ -4,10 +4,12 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { CampusAtual } from "@/components/layout/CampusSelect";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { SubTabs } from "@/components/layout/SubTabs";
+import { FiltroTopoContext } from "@/context/filtro-topo";
+import { useFiltroTopo } from "@/hooks/useFiltroTopo";
 import { lembrarSubaba, ultimaSubaba } from "@/lib/ultima-subaba";
 
 const SUB_ABAS = [
-    { to: "panorama", label: "Visão do campus" },
+    { to: "panorama", label: "Visão geral" },
     { to: "curso", label: "Por curso" },
     { to: "mapa", label: "Mapa" },
     { to: "comparacoes", label: "Comparações" },
@@ -20,6 +22,8 @@ const SUB_ABAS = [
 export function TrajetoriaPage() {
     const { pathname, search } = useLocation();
     const subAba = pathname.split("/")[2] ?? "";
+    // o seletor de curso do cabeçalho: Por curso e Mapa põem o seu ali
+    const filtroTopo = useFiltroTopo();
 
     // lembra onde está, pra reabrir aqui ao voltar de outra aba
     useEffect(() => {
@@ -32,16 +36,19 @@ export function TrajetoriaPage() {
                 title="Trajetória dos estudantes"
                 subtitle={
                     <>
-                        Conclusão e evasão das turmas do UFC Campus <CampusAtual />
+                        Conclusão e evasão das turmas da UFC em <CampusAtual />
                     </>
                 }
                 tabs={(tom) => (
                     <SubTabs label="Seções da trajetória" items={SUB_ABAS} tom={tom} />
                 )}
+                filtrosSlot={filtroTopo.slot}
             />
-            <div key={subAba} className="entrada">
-                <Outlet />
-            </div>
+            <FiltroTopoContext.Provider value={filtroTopo.contexto}>
+                <div key={subAba} className="entrada">
+                    <Outlet />
+                </div>
+            </FiltroTopoContext.Provider>
         </>
     );
 }

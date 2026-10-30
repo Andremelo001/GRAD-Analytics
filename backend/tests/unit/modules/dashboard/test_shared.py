@@ -59,7 +59,7 @@ def test_build_escopo_reads_metadata_from_qualidade(
     assert escopo["sigla_ies"] == "UFT"
     assert escopo["codigo_ies"] == 1
     assert escopo["codigo_municipio"] == 100
-    assert escopo["municipio"] == "UFT Campus Teste"
+    assert escopo["municipio"] == "UFT em Teste"
 
 
 def test_build_escopo_falls_back_to_trajetoria_when_qualidade_empty(
@@ -127,14 +127,14 @@ def test_discover_campi_one_per_municipality_with_trajetoria() -> None:
 def test_discover_campi_names_from_qualidade_most_common_spelling() -> None:
     qualidade, trajetoria = _campi_frames()
     campus = discover_campi(qualidade, trajetoria, codigo_ies=1)[0]
-    assert campus.nome == "UFT Campus Crateús"
+    assert campus.nome == "UFT em Crateús"
     assert campus.slug == "crateus"
 
 
 def test_discover_campi_falls_back_to_code_without_name() -> None:
     qualidade, trajetoria = _campi_frames()
     campus = discover_campi(qualidade, trajetoria, codigo_ies=1)[1]
-    assert campus.nome == "UFT Campus 300"
+    assert campus.nome == "UFT em 300"
     assert campus.slug == "300"
 
 

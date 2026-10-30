@@ -15,7 +15,7 @@ function carregar(): Promise<ResumoCampi> {
     promessa ??= fetch(ARQUIVO).then(async (response) => {
         if (!response.ok) {
             throw new Error(
-                `Falha ao carregar o resumo dos campi (HTTP ${response.status})`
+                `Falha ao carregar o resumo das cidades (HTTP ${response.status})`
             );
         }
         carregado = (await response.json()) as ResumoCampi;

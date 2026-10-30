@@ -54,9 +54,9 @@ export function PresentationBar({ presenting }: { presenting: boolean }) {
                     >
                         <div className="text-text-secondary min-w-0 text-[13px] leading-snug sm:text-[14px]">
                             <span className="hidden sm:inline">
-                                Acompanhe os indicadores da graduação do{" "}
+                                Acompanhe os indicadores da graduação da{" "}
                             </span>
-                            UFC Campus <CampusAtual />
+                            UFC em <CampusAtual />
                         </div>
                         <div className="flex shrink-0 items-center gap-2.5">
                             <img

@@ -84,7 +84,7 @@ export function SeletorCampus({
     const CHART = useChartTheme();
     return (
         <CursoBusca
-            label={lado === "a" ? "Campus A" : "Campus B"}
+            label={lado === "a" ? "Cidade A" : "Cidade B"}
             cor={CHART.comparacao[lado]}
             value={value}
             options={campi.map((c) => ({
@@ -93,7 +93,7 @@ export function SeletorCampus({
                 detalhe: detalhe ? detalhe(c) : `${c.cursos.length} cursos`,
             }))}
             onChange={onChange}
-            placeholder="Buscar campus…"
+            placeholder="Buscar cidade…"
         />
     );
 }

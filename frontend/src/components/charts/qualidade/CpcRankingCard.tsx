@@ -76,7 +76,7 @@ export function CpcRankingCard({
         <Card
             expansivel
             title="Ranking dos cursos"
-            info="Os cursos do campus em ordem de CPC da avaliação mais recente, com o Conceito Enade. O traço nas barras do CPC e do Conceito Enade é a média nacional da área no mesmo ano. Clique numa coluna para reordenar e num curso para abrir os detalhes."
+            info="Os cursos da cidade em ordem de CPC da avaliação mais recente, com o Conceito Enade. O traço nas barras do CPC e do Conceito Enade é a média nacional da área no mesmo ano. Clique numa coluna para reordenar e num curso para abrir os detalhes."
             subtitle="Avaliação mais recente de cada curso · clique para ver os detalhes"
             className={className}
         >

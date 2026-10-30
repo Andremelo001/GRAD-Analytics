@@ -4,11 +4,13 @@ import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { CampusAtual } from "@/components/layout/CampusSelect";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { SubTabs } from "@/components/layout/SubTabs";
+import { FiltroTopoContext } from "@/context/filtro-topo";
+import { useFiltroTopo } from "@/hooks/useFiltroTopo";
 import { lembrarSubaba, ultimaSubaba } from "@/lib/ultima-subaba";
 import { carregarMapa } from "@/pages/qualidade/mapa-loader";
 
 const SUB_ABAS = [
-    { to: "campus", label: "Visão do campus" },
+    { to: "campus", label: "Visão geral" },
     { to: "curso", label: "Por curso" },
     { to: "mapa", label: "Mapa" },
     { to: "comparacoes", label: "Comparações" },
@@ -24,6 +26,8 @@ export function QualidadePage() {
     // em "Por curso" não reanima a página
     const { pathname, search } = useLocation();
     const subAba = pathname.split("/")[2] ?? "";
+    // o seletor de curso do cabeçalho: Por curso e Mapa põem o seu ali
+    const filtroTopo = useFiltroTopo();
 
     // lembra onde está, pra reabrir aqui ao voltar de outra aba
     useEffect(() => {
@@ -43,16 +47,19 @@ export function QualidadePage() {
                 title="Qualidade dos cursos"
                 subtitle={
                     <>
-                        Conceitos do MEC (CPC) dos cursos do UFC Campus <CampusAtual />
+                        Conceitos do MEC (CPC) dos cursos da UFC em <CampusAtual />
                     </>
                 }
                 tabs={(tom) => (
                     <SubTabs label="Seções da qualidade" items={SUB_ABAS} tom={tom} />
                 )}
+                filtrosSlot={filtroTopo.slot}
             />
-            <div key={subAba} className="entrada">
-                <Outlet />
-            </div>
+            <FiltroTopoContext.Provider value={filtroTopo.contexto}>
+                <div key={subAba} className="entrada">
+                    <Outlet />
+                </div>
+            </FiltroTopoContext.Provider>
         </>
     );
 }

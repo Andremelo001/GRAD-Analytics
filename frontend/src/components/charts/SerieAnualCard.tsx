@@ -278,7 +278,7 @@ export function SerieAnualCard({
             ? buildTicks(serie.flatMap((p) => [p.valor, p.nacional ?? p.valor]))
             : [0, 1];
     const curso = cursos.find((c) => String(c.codigo_curso) === escolha);
-    const nomeSerie = escolha === CAMPUS ? "Campus" : "Curso";
+    const nomeSerie = escolha === CAMPUS ? "Todos os cursos" : "Curso";
     const subtitulo =
         escolha === CAMPUS
             ? subtituloCampus
@@ -630,8 +630,8 @@ export function IngressantesCard({
         <SerieAnualCard
             className={className}
             titulo="Ingressantes"
-            info="Quantos alunos entraram em cada ano: o total do campus, ou do curso escolhido no seletor, contra a média nacional dos mesmos cursos no mesmo ano de ingresso."
-            subtituloCampus="Campus × média nacional, por ano de ingresso"
+            info="Quantos alunos entraram em cada ano: o total de todos os cursos da cidade, ou do curso escolhido no seletor, contra a média nacional dos mesmos cursos no mesmo ano de ingresso."
+            subtituloCampus="Todos os cursos × média nacional, por ano de ingresso"
             rotuloAno="Ano de ingresso"
             vazio="Sem dado de ingressantes para esta série."
             cursos={data.cursos}
@@ -678,8 +678,8 @@ export function ConcluintesCard({
         <SerieAnualCard
             className={className}
             titulo="Concluintes"
-            info="Quantos alunos se formaram em cada ano: o total do campus, ou do curso escolhido no seletor, contra a média nacional dos mesmos cursos no mesmo ano. Só aparecem os anos em que os dados do INEP cobrem todas as turmas que se formam (o INEP acompanha as turmas que entraram de 2010 a 2020)."
-            subtituloCampus="Campus × média nacional, por ano de conclusão"
+            info="Quantos alunos se formaram em cada ano: o total de todos os cursos da cidade, ou do curso escolhido no seletor, contra a média nacional dos mesmos cursos no mesmo ano. Só aparecem os anos em que os dados do INEP cobrem todas as turmas que se formam (o INEP acompanha as turmas que entraram de 2010 a 2020)."
+            subtituloCampus="Todos os cursos × média nacional, por ano de conclusão"
             rotuloAno="Ano de conclusão"
             vazio="Sem dado de concluintes para esta série."
             cursos={data.cursos}

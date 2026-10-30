@@ -67,7 +67,7 @@ export function TrajetoriaResumo({
             />
             <Tile
                 label="Ano com mais evasão"
-                info="O ano do curso em que a evasão das turmas maduras mais acontece: a Taxa de Desistência Anual (TADA) desse ano como parte de toda a desistência (TDA) até dois anos depois do prazo. É o destaque do campus em “Em que ano do curso a evasão acontece”. No 1º ano, pede acolhimento de calouros; mais tarde, atenção ao meio e ao fim do curso."
+                info="O ano do curso em que a evasão das turmas maduras mais acontece: a Taxa de Desistência Anual (TADA) desse ano como parte de toda a desistência (TDA) até dois anos depois do prazo. É o destaque da cidade em “Em que ano do curso a evasão acontece”. No 1º ano, pede acolhimento de calouros; mais tarde, atenção ao meio e ao fim do curso."
                 value={pico === null ? "—" : formatPercent(100 * pico.fracao, 0)}
                 footer={
                     pico === null

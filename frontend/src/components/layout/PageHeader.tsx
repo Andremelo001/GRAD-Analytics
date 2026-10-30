@@ -1,4 +1,4 @@
-import { useContext, type ReactNode } from "react";
+import { useContext, type ReactNode, type Ref } from "react";
 import { createPortal } from "react-dom";
 
 import { CampusSelect } from "@/components/layout/CampusSelect";
@@ -22,12 +22,16 @@ export function PageHeader({
     subtitle,
     tabs,
     filtros,
+    filtrosSlot,
 }: {
     title: string;
     subtitle?: ReactNode;
     tabs?: (tom: "band" | "surface") => ReactNode;
     /** Seletores da página ao lado do de campus (ex.: o curso, no Início). */
     filtros?: (tom: "band" | "surface") => ReactNode;
+    /** No lugar de ``filtros``: um lugar vazio ali, pra cada sub-aba pôr o
+     * seu seletor (ou nenhum: aí some). Ver ``FiltroTopo``. */
+    filtrosSlot?: (tom: "band" | "surface") => Ref<HTMLDivElement>;
 }) {
     const slot = useContext(PageHeaderSlotContext);
     const slotApresentacao = useContext(PresentationTabsSlotContext);
@@ -49,7 +53,12 @@ export function PageHeader({
                 // espaço que o Início deixa abaixo da saudação); embaixo, a
                 // margem negativa aproxima os cards delas
                 <div className="mt-8 -mb-4 lg:mt-10 lg:-mb-5">
-                    <ComAbas tabs={tabs} filtros={filtros} tom="band" />
+                    <ComAbas
+                        tabs={tabs}
+                        filtros={filtros}
+                        filtrosSlot={filtrosSlot}
+                        tom="band"
+                    />
                 </div>
             )}
         </header>
@@ -60,7 +69,12 @@ export function PageHeader({
             {tabs &&
                 slotApresentacao &&
                 createPortal(
-                    <ComAbas tabs={tabs} filtros={filtros} tom="surface" />,
+                    <ComAbas
+                        tabs={tabs}
+                        filtros={filtros}
+                        filtrosSlot={filtrosSlot}
+                        tom="surface"
+                    />,
                     slotApresentacao
                 )}
         </>
@@ -73,10 +87,12 @@ export function PageHeader({
 function ComAbas({
     tabs,
     filtros,
+    filtrosSlot,
     tom,
 }: {
     tabs: (tom: "band" | "surface") => ReactNode;
     filtros?: (tom: "band" | "surface") => ReactNode;
+    filtrosSlot?: (tom: "band" | "surface") => Ref<HTMLDivElement>;
     tom: "band" | "surface";
 }) {
     return (
@@ -84,9 +100,13 @@ function ComAbas({
             <CampusSelect tom={tom} />
             <div className="w-full max-sm:order-2 sm:w-auto">{tabs(tom)}</div>
             {/* celular: ao lado do campus (estica); sm+: na ponta direita */}
-            {filtros && (
-                <div className="min-w-0 flex-1 basis-32 max-sm:order-1 sm:ml-auto sm:flex-none">
-                    {filtros(tom)}
+            {(filtros || filtrosSlot) && (
+                <div
+                    ref={filtrosSlot?.(tom)}
+                    // vazio (sub-aba sem seletor): some
+                    className="min-w-0 flex-1 basis-32 empty:hidden max-sm:order-1 sm:ml-auto sm:flex-none"
+                >
+                    {filtros?.(tom)}
                 </div>
             )}
         </div>

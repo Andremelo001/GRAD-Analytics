@@ -11,9 +11,11 @@ import {
 } from "@/components/charts/qualidade/BrasilQualidadeMapa";
 import { EstadoPainelTrajetoria } from "@/components/charts/trajetoria/EstadoPainelTrajetoria";
 import { DataState } from "@/components/layout/DataState";
+import { FiltroTopo, SeletorCursoTopo } from "@/components/layout/FiltroTopo";
 import { MapaEsqueleto } from "@/components/layout/Esqueleto";
 import { useAlturaDisponivel } from "@/hooks/useAlturaDisponivel";
 import { useTrajetoriaArea } from "@/hooks/useTrajetoriaArea";
+import { opcaoCurso } from "@/lib/curso";
 import { cursoDoPorCurso } from "@/lib/curso-por-curso";
 import { type Rede } from "@/lib/area";
 import { buildTrajetorias } from "@/lib/trajetoria";
@@ -136,7 +138,7 @@ function Mapa({ data }: { data: DashboardData }) {
         return (
             <Card title="Mapa">
                 <p className="text-text-secondary mt-3 text-[14px]">
-                    Nenhum curso deste campus tem turmas acompanhadas para comparar.
+                    Nenhum curso desta cidade tem turmas acompanhadas para comparar.
                 </p>
             </Card>
         );
@@ -170,7 +172,8 @@ function Mapa({ data }: { data: DashboardData }) {
     const valorDe = (r: ResumoTrajetoria) => r.medias[indicador];
 
     // filtros como frase no cabeçalho, como no Mapa da Qualidade:
-    // "Taxa de Conclusão Acumulada ▾ em Computação ▾ | todas as redes ▾"
+    // "Taxa de Conclusão Acumulada ▾ | todas as redes ▾" (o curso, no
+    // seletor do cabeçalho da aba)
     const filtros = (
         <div className="text-text-secondary mt-1.5 text-[13px] leading-relaxed">
             <ChartSelect
@@ -183,18 +186,6 @@ function Mapa({ data }: { data: DashboardData }) {
                     label: INDICADORES_MAPA[i].label,
                 }))}
                 onChange={(v) => atualizar({ indicador: v })}
-            />{" "}
-            em{" "}
-            <ChartSelect
-                variant="inline"
-                tone="surface"
-                label="Curso"
-                value={String(curso.codigo)}
-                options={trajetorias.map((c) => ({
-                    value: String(c.codigo),
-                    label: c.nome,
-                }))}
-                onChange={(v) => atualizar({ curso: v, uf: null })}
             />
             <span className="text-text-muted mx-1.5">|</span>
             <ChartSelect
@@ -217,6 +208,23 @@ function Mapa({ data }: { data: DashboardData }) {
             className="grid grid-cols-1 gap-5 lg:h-[var(--mapa-h)] lg:grid-cols-12 lg:gap-6"
             style={{ "--mapa-h": `${alturaDisponivel}px` } as CSSProperties}
         >
+            {/* o curso, no seletor do cabeçalho da aba */}
+            <FiltroTopo>
+                {(tom) => (
+                    <SeletorCursoTopo
+                        tom={tom}
+                        value={String(curso.codigo)}
+                        options={trajetorias.map((c) =>
+                            opcaoCurso({
+                                codigo: c.codigo,
+                                nome: c.nomeCurso,
+                                grau: c.grau,
+                            })
+                        )}
+                        onChange={(v) => atualizar({ curso: v, uf: null })}
+                    />
+                )}
+            </FiltroTopo>
             <Card
                 expansivel="tela"
                 className="lg:col-span-7"
@@ -228,10 +236,10 @@ function Mapa({ data }: { data: DashboardData }) {
                     {/* a modalidade: o mapa só compara cursos da do curso do
                         campus (e do mesmo grau) */}
                     <span className="text-text-muted text-[13px] font-normal tracking-normal">
-                        {" "}
-                        · turmas maduras
+                        <span className="mx-1.5">|</span>
+                        {curso.nome} · Turmas maduras
                         {visao &&
-                            ` · cursos ${visao.ead ? "a distância" : "presenciais"}`}
+                            ` · Cursos ${visao.ead ? "a distância" : "presenciais"}`}
                     </span>
                 </h2>
                 {filtros}
@@ -310,7 +318,7 @@ function Mapa({ data }: { data: DashboardData }) {
                 <Card
                     expansivel="tela"
                     title={titulo}
-                    info={`Os números do Brasil, ou do estado escolhido no mapa, na ${ind.label}: cursos, a posição do curso do campus e os cursos da área com as ${ind.melhores.toLowerCase()}.`}
+                    info={`Os números do Brasil, ou do estado escolhido no mapa, na ${ind.label}: cursos, a posição do seu curso e os cursos da área com as ${ind.melhores.toLowerCase()}.`}
                     subtitle={
                         visao
                             ? `${visao.cursoCampus && ind.doCurso(visao.cursoCampus) !== null ? "" : "Seu curso não tem turma madura nesta área · "}${uf ? "Clique fora do estado para voltar ao Brasil" : "Clique num estado para ver os detalhes"}`

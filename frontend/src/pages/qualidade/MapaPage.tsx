@@ -11,9 +11,11 @@ import {
 } from "@/components/charts/qualidade/BrasilQualidadeMapa";
 import { EstadoPainel } from "@/components/charts/qualidade/EstadoPainel";
 import { DataState } from "@/components/layout/DataState";
+import { FiltroTopo, SeletorCursoTopo } from "@/components/layout/FiltroTopo";
 import { MapaEsqueleto } from "@/components/layout/Esqueleto";
 import { useAlturaDisponivel } from "@/hooks/useAlturaDisponivel";
 import { useQualidadeArea } from "@/hooks/useQualidadeArea";
+import { opcaoCurso } from "@/lib/curso";
 import { cursoDoPorCurso } from "@/lib/curso-por-curso";
 import {
     agrupar,
@@ -126,7 +128,7 @@ function Mapa({ data }: { data: DashboardData }) {
         return (
             <Card title="Mapa">
                 <p className="text-text-secondary mt-3 text-[14px]">
-                    Nenhum curso deste campus tem avaliação para comparar.
+                    Nenhum curso desta cidade tem avaliação para comparar.
                 </p>
             </Card>
         );
@@ -154,8 +156,8 @@ function Mapa({ data }: { data: DashboardData }) {
             : null;
 
     // filtros como frase no cabeçalho (seletores "inline", como o do campus
-    // na saudação): "CPC médio ▾ em Redes de Computadores ▾ | todas as
-    // redes ▾" (o ano do Enade fica ao lado do título) — os três continuam à mão, sem pílulas escuras
+    // na saudação): "CPC médio ▾ | todas as redes ▾" (o ano do Enade fica ao
+    // lado do título; o curso, no seletor do cabeçalho da aba)
     const filtros = (
         <div className="text-text-secondary mt-1.5 text-[13px] leading-relaxed">
             <ChartSelect
@@ -168,17 +170,6 @@ function Mapa({ data }: { data: DashboardData }) {
                     label,
                 }))}
                 onChange={(v) => atualizar({ indicador: v })}
-            />{" "}
-            em{" "}
-            <ChartSelect
-                variant="inline"
-                tone="surface"
-                label="Curso"
-                value={String(curso.codigo)}
-                options={[...avaliacoes]
-                    .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"))
-                    .map((a) => ({ value: String(a.codigo), label: a.nome }))}
-                onChange={(v) => atualizar({ curso: v, uf: null })}
             />
             <span className="text-text-muted mx-1.5">|</span>
             <ChartSelect
@@ -201,24 +192,42 @@ function Mapa({ data }: { data: DashboardData }) {
             className="grid grid-cols-1 gap-5 lg:h-[var(--mapa-h)] lg:grid-cols-12 lg:gap-6"
             style={{ "--mapa-h": `${alturaDisponivel}px` } as CSSProperties}
         >
+            {/* o curso, no seletor do cabeçalho da aba */}
+            <FiltroTopo>
+                {(tom) => (
+                    <SeletorCursoTopo
+                        tom={tom}
+                        value={String(curso.codigo)}
+                        options={[...avaliacoes]
+                            .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"))
+                            .map((c) =>
+                                opcaoCurso({
+                                    codigo: c.codigo,
+                                    nome: c.nomeCurso,
+                                    grau: c.grau,
+                                })
+                            )}
+                        onChange={(v) => atualizar({ curso: v, uf: null })}
+                    />
+                )}
+            </FiltroTopo>
             <Card
                 expansivel="tela"
                 className="lg:col-span-7"
                 tituloInfo={uf ? titulo : "Brasil por estado"}
                 info="Os cursos da mesma área de avaliação no Brasil, por estado, na edição mais recente do Enade, pintados pelo indicador escolhido. Clique num estado para ver os detalhes dele ao lado."
             >
-                {/* título com o ano do Enade e a modalidade ao lado (o mapa só
-                    compara cursos da modalidade do curso do campus; no estilo
-                    da frase de filtros), e a frase de filtros embaixo */}
+                {/* título com o curso, o ano do Enade e a modalidade ao lado (o
+                    mapa só compara cursos da modalidade do curso do campus; no
+                    estilo da frase de filtros), e a frase de filtros embaixo */}
                 <h2 className="text-[17px] leading-tight font-semibold tracking-[-0.01em]">
                     {uf ? titulo : "Brasil por estado"}
-                    {visao && (
-                        <span className="text-text-muted text-[13px] font-normal tracking-normal">
-                            {" "}
-                            · Enade {visao.ano} · cursos{" "}
-                            {visao.ead ? "a distância" : "presenciais"}
-                        </span>
-                    )}
+                    <span className="text-text-muted text-[13px] font-normal tracking-normal">
+                        <span className="mx-1.5">|</span>
+                        {curso.nome}
+                        {visao &&
+                            ` · Enade ${visao.ano} · Cursos ${visao.ead ? "a distância" : "presenciais"}`}
+                    </span>
                 </h2>
                 {filtros}
                 <div className="relative mt-4 lg:min-h-0 lg:flex-1">

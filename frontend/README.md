@@ -2,7 +2,7 @@
 
 SPA React do GRAD Analytics: lê os JSONs do painel gerados pelo
 [backend](../backend/README.md) — um por campus da UFC — e mostra os
-indicadores do campus escolhido no seletor de campus (padrão: Quixadá).
+indicadores da cidade escolhida no seletor de cidade (padrão: Quixadá).
 Publicada no GitHub Pages como site estático, sem servidor.
 
 **Todos os comandos `npm ...` deste README rodam de dentro de `frontend/`.**
@@ -151,10 +151,10 @@ JSONs dos campi ficam em `public/data/dashboard/`.
 3. `DashboardDataProvider` (em `App.tsx`) busca o `index.json` e o JSON do
    campus escolhido, em `${import.meta.env.BASE_URL}data/dashboard/` — o
    `BASE_URL` já inclui o prefixo do GitHub Pages no build de produção. O
-   campus inicial é o fixado em Configurações ("Campus ao abrir o painel",
+   campus inicial é o fixado em Configurações ("Cidade ao abrir o painel",
    chave `prograd-campus-inicial` no `localStorage`), senão o último escolhido
    (`prograd-campus`), senão Quixadá. JSONs já baixados ficam em cache.
-4. O seletor de campus (`CampusSelect`, ao lado das sub-abas) troca o
+4. O seletor de cidade (`CampusSelect`, ao lado das sub-abas) troca o
    campus; os dados antigos seguem na tela até os novos chegarem (a seta do
    seletor vira um indicador de carga) e os cards remontam — cursos e focos
    escolhidos voltam ao padrão do novo campus. A busca e o "nos outros
@@ -180,39 +180,50 @@ comprimidos) só quando o Mapa ou as Comparações entre cursos abrem, um por
 
 ## 5. Rotas e páginas
 
-Três abas principais (`Sidebar`), cada uma com sub-abas em pílula
-(`SubTabs`, prop `tabs` do `PageHeader`) e rota própria por sub-aba. O link
-de cada aba reabre a última sub-aba aberta nela (`lib/ultima-subaba.ts`).
+Três abas principais (`Sidebar`), cada uma com uma navbar interna em pílula
+(`SubTabs`, prop `tabs` do `PageHeader`). Na Qualidade e na Trajetória são
+sub-abas, com rota própria cada uma, e o link da aba reabre a última sub-aba
+aberta nela (`lib/ultima-subaba.ts`). O Início é uma página só, rolada: a
+navbar leva às seções dela. O seletor de curso fica na ponta direita da
+linha da navbar (`SeletorCursoTopo`): no Início, sempre; na Qualidade e na
+Trajetória, só nas sub-abas Por curso e Mapa, que o desenham ali por portal
+(`FiltroTopo`, no lugar que a aba reserva com `filtrosSlot`). Nas outras
+sub-abas o lugar some.
 
 | Rota                         | Página                                                                                                                   | Onde                                                  |
 | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------- |
-| `/`, `/inicio/…`             | `HomePage` + sub-abas (ver abaixo)                                                                                       | Início                                                |
+| `/`, `/inicio`               | `HomePage`, uma página com três seções (ver abaixo)                                                                      | Início                                                |
 | `/qualidade/…`               | `QualidadePage` + sub-abas (ver abaixo)                                                                                  | Qualidade                                             |
 | `/trajetoria/…`              | `TrajetoriaPage` + sub-abas (ver abaixo)                                                                                 | Trajetória                                            |
-| `/configuracoes`             | `ConfiguracoesPage` — tema (claro, escuro, automático), campus ao abrir o painel e cores acessíveis, salvos no navegador | engrenagem no topo (tela à parte, com seta de voltar) |
+| `/configuracoes`             | `ConfiguracoesPage` — tema (claro, escuro, automático), cidade ao abrir o painel e cores acessíveis, salvos no navegador | engrenagem no topo (tela à parte, com seta de voltar) |
 | `/campus`, `/cursos/:codigo` | `CampusPage`, `CursoDetalhePage` (placeholders)                                                                          | — (rotas existem, fora da navegação)                  |
 
 ### Início
 
-O curso escolhido no seletor do cabeçalho vale nas três sub-abas.
+Uma página só, com as três seções uma embaixo da outra. A navbar interna rola
+até a seção clicada e acompanha a rolagem, destacando a seção que está à
+vista. As antigas rotas `/inicio/…` voltam para `/inicio`. No desktop, cada
+seção ocupa a altura da tela sob o topo fixo. Cada uma diz a fonte dos
+próprios cards (`FontesSecaoContext`). O curso escolhido no seletor do
+cabeçalho vale nas três seções.
 
-| Rota               | Sub-aba              | Cards                                                                                                        |
-| ------------------ | -------------------- | ------------------------------------------------------------------------------------------------------------ |
-| `/inicio/ingresso` | Ingresso e conclusão | ingressantes e concluintes por ano (`SerieAnualCard`), do campus ou do curso, × média nacional               |
-| `/inicio/cpc`      | Qualidade            | presença no Brasil (mapa em pontos) · CPC ou Conceito Enade do curso × média nacional (`CpcComparativoCard`) |
-| `/inicio/evasao`   | Trajetória           | evasão anual por curso (mapa de calor cursos × anos) · taxas de conclusão e de evasão (`StatTile`)           |
+| Seção                | Cards                                                                                                             |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| Ingresso e conclusão | ingressantes e concluintes por ano (`SerieAnualCard`), de todos os cursos da cidade ou do curso, × média nacional |
+| Qualidade            | presença no Brasil (mapa em pontos) · CPC ou Conceito Enade do curso × média nacional (`CpcComparativoCard`)      |
+| Trajetória           | evasão anual por curso (mapa de calor cursos × anos) · taxas de conclusão e de evasão (`StatTile`)                |
 
 ### Aba Qualidade
 
 Por que o CPC de cada curso é o que é, onde dá para melhorar e como ele se
 compara ao país.
 
-| Rota                       | Página            | Cards                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| -------------------------- | ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/qualidade/campus`        | `VisaoCampusPage` | 4 indicadores (CPC médio × Brasil, maior avanço no CPC desde o ciclo anterior, Conceito Enade médio × Brasil, cursos com CPC) · ranking dos cursos (ordenável; a linha abre o curso) · evolução entre ciclos (slope chart sobre as faixas; CPC ou Conceito Enade) · mapa de calor cursos × 9 componentes                                                                                                                                                                                                                                                                                                                        |
-| `/qualidade/curso/:codigo` | `PorCursoPage`    | ficha da avaliação + seletor (CPC e Conceito Enade com a faixa) · "De onde vem a nota" (nota × peso de cada componente) · "CPC: próxima faixa" e "Conceito Enade: próxima faixa" (régua das faixas, empilhadas na altura do card ao lado) · componentes do CPC ao longo do tempo (nota do componente escolhido × média nacional, ano a ano) · curso × média nacional por componente · participação no Enade                                                                                                                                                                                                                     |
-| `/qualidade/mapa`          | `MapaPage` (lazy) | Brasil por estado (indicador: CPC médio, IDD médio ou Conceito Enade médio; filtro de rede); clicar num estado dá zoom e mostra os municípios; no desktop o mapa e o painel cabem na tela sem rolar (`useAlturaDisponivel`) · painel do recorte: cursos, média × Brasil, % nas faixas 4 e 5, notas médias do estado × as do curso do campus e os melhores cursos, com o curso do campus na posição em que fica (ou ficaria, num estado em que ele não está)                                                                                                                                                                     |
-| `/qualidade/comparacoes`   | `ComparacoesPage` | dois modos (modo e lados na URL `?modo=…&a=…&b=…`), com os dois seletores separados por um "×": **entre campi** — dois campi da UFC lado a lado (CPC médio, % nas faixas 4 e 5, Enade e IDD médios, notas médias dos 9 componentes em barras espelhadas e as áreas em comum numa régua de CPC) · **entre cursos da mesma área** — um curso do campus escolhido (A) contra qualquer curso da mesma área no Brasil (B, com busca por instituição ou cidade), na edição mais recente da área: indicadores, componentes espelhados e a participação no Enade em cada edição. A em oliva, B em violeta (par validado nos dois temas) |
+| Rota                       | Página            | Cards                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| -------------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/qualidade/campus`        | `VisaoCampusPage` | 4 indicadores (CPC médio × Brasil, maior avanço no CPC desde o ciclo anterior, Conceito Enade médio × Brasil, cursos com CPC) · ranking dos cursos (ordenável; a linha abre o curso) · evolução entre ciclos (slope chart sobre as faixas; CPC ou Conceito Enade) · mapa de calor cursos × 9 componentes                                                                                                                                                                                                                                                                                                                            |
+| `/qualidade/curso/:codigo` | `PorCursoPage`    | ficha da avaliação + seletor (CPC e Conceito Enade com a faixa) · "De onde vem a nota" (nota × peso de cada componente) · "CPC: próxima faixa" e "Conceito Enade: próxima faixa" (régua das faixas, empilhadas na altura do card ao lado) · componentes do CPC ao longo do tempo (nota do componente escolhido × média nacional, ano a ano) · curso × média nacional por componente · participação no Enade                                                                                                                                                                                                                         |
+| `/qualidade/mapa`          | `MapaPage` (lazy) | Brasil por estado (indicador: CPC médio, IDD médio ou Conceito Enade médio; filtro de rede); clicar num estado dá zoom e mostra os municípios; no desktop o mapa e o painel cabem na tela sem rolar (`useAlturaDisponivel`) · painel do recorte: cursos, média × Brasil, % nas faixas 4 e 5, notas médias do estado × as do curso do campus e os melhores cursos, com o curso do campus na posição em que fica (ou ficaria, num estado em que ele não está)                                                                                                                                                                         |
+| `/qualidade/comparacoes`   | `ComparacoesPage` | dois modos (modo e lados na URL `?modo=…&a=…&b=…`), com os dois seletores separados por um "×": **entre cidades** — duas cidades da UFC lado a lado (CPC médio, % nas faixas 4 e 5, Enade e IDD médios, notas médias dos 9 componentes em barras espelhadas e as áreas em comum numa régua de CPC) · **entre cursos da mesma área** — um curso da cidade escolhida (A) contra qualquer curso da mesma área no Brasil (B, com busca por instituição ou cidade), na edição mais recente da área: indicadores, componentes espelhados e a participação no Enade em cada edição. A em oliva, B em violeta (par validado nos dois temas) |
 
 ### Aba Trajetória
 
@@ -220,12 +231,12 @@ O que acontece com as turmas depois que entram: quantas se formam, quantas
 desistem e quando. Só entram nas comparações as turmas **maduras** (que já
 tiveram o prazo do curso e mais dois anos para se formar).
 
-| Rota                        | Página                             | Cards                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| --------------------------- | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/trajetoria/panorama`      | `PanoramaPage` ("Visão do campus") | 4 indicadores (conclusão × Brasil, evasão no 1º ano, tempo até concluir, turmas em andamento) · situação final por curso · em que ano do curso a evasão acontece                                                                                                                                                                                                                                                                                                                                                              |
-| `/trajetoria/curso/:codigo` | `PorCursoTrajetoriaPage`           | ficha do curso + seletores de curso e turma · alunos do curso (entraram, concluíram, desistiram, cursando) · o caminho de uma turma (área empilhada ano a ano) · permanência × Brasil · indicadores do INEP (TAP, TCA, TDA) · triângulo das turmas (evasão acumulada de cada turma, ano a ano) · conclusão no prazo e com atraso. A turma escolhida vale em todos os cards                                                                                                                                                    |
-| `/trajetoria/mapa`          | `MapaTrajetoriaPage` (lazy)        | o mesmo curso (área CINE, grau e modalidade) pelo Brasil, por estado, na turma madura de cada curso: Taxa de Permanência, de Conclusão Acumulada ou de Desistência Acumulada (média pesada pelos ingressantes); filtro de rede · painel do recorte: cursos, taxa média × Brasil, ingressantes, situação final do estado × a do curso do campus e as maiores (ou, na desistência, menores) taxas, com o curso do campus posicionado. Usa o mesmo mapa da Qualidade (`BrasilQualidadeMapa`, que recebe o indicador como função) |
-| `/trajetoria/comparacoes`   | `ComparacoesTrajetoriaPage`        | dois modos, como na Qualidade: **entre campi** (turmas maduras de todos os cursos) e **entre cursos da mesma área** (um curso do campus contra qualquer curso da mesma área CINE, grau e modalidade no Brasil): indicadores, desistência a cada ano do curso (barras espelhadas), situação final e permanência ano a ano lado a lado                                                                                                                                                                                          |
+| Rota                        | Página                         | Cards                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| --------------------------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `/trajetoria/panorama`      | `PanoramaPage` ("Visão geral") | 4 indicadores (conclusão × Brasil, evasão no 1º ano, tempo até concluir, turmas em andamento) · situação final por curso · em que ano do curso a evasão acontece                                                                                                                                                                                                                                                                                                                                                              |
+| `/trajetoria/curso/:codigo` | `PorCursoTrajetoriaPage`       | ficha do curso + seletores de curso e turma · alunos do curso (entraram, concluíram, desistiram, cursando) · o caminho de uma turma (área empilhada ano a ano) · permanência × Brasil · indicadores do INEP (TAP, TCA, TDA) · triângulo das turmas (evasão acumulada de cada turma, ano a ano) · conclusão no prazo e com atraso. A turma escolhida vale em todos os cards                                                                                                                                                    |
+| `/trajetoria/mapa`          | `MapaTrajetoriaPage` (lazy)    | o mesmo curso (área CINE, grau e modalidade) pelo Brasil, por estado, na turma madura de cada curso: Taxa de Permanência, de Conclusão Acumulada ou de Desistência Acumulada (média pesada pelos ingressantes); filtro de rede · painel do recorte: cursos, taxa média × Brasil, ingressantes, situação final do estado × a do curso do campus e as maiores (ou, na desistência, menores) taxas, com o curso do campus posicionado. Usa o mesmo mapa da Qualidade (`BrasilQualidadeMapa`, que recebe o indicador como função) |
+| `/trajetoria/comparacoes`   | `ComparacoesTrajetoriaPage`    | dois modos, como na Qualidade: **entre cidades** (turmas maduras de todos os cursos) e **entre cursos da mesma área** (um curso da cidade contra qualquer curso da mesma área CINE, grau e modalidade no Brasil): indicadores, desistência a cada ano do curso (barras espelhadas), situação final e permanência ano a ano lado a lado                                                                                                                                                                                        |
 
 O curso aberto no Por curso de uma aba é o que o Mapa e as Comparações entre
 cursos da mesma aba mostram, quando a URL deles não traz outro
@@ -316,7 +327,7 @@ servidor. Com hash, a rota nunca vai pro servidor.
   navegador também sai do modo). Um X no
   canto superior esquerdo sai do modo. No lugar da saudação entra a
   `PresentationBar`: um card baixo, da largura da grade, com a frase + o
-  seletor de campus (`CampusSelect tone="surface"`) à esquerda e o logo à
+  seletor de cidade (`CampusSelect tone="surface"`) à esquerda e o logo à
   direita — entra descendo até o lugar e sai subindo (mesmo movimento
   vertical do topo, 0,5s) enquanto abre o próprio espaço e empurra os
   cards; aberta, fica sem recorte e acima dos
@@ -327,7 +338,7 @@ servidor. Com hash, a rota nunca vai pro servidor.
   fica recolhido e `inert`. O topo
   escondido fica `inert` (o Tab não passa por ele). Estado e atalhos em
   `hooks/usePresentationMode.ts`; a animação em `AppLayout`.
-- **Início** (`lg+`, grade de 12 colunas, cards na altura da tela): Ingresso
+- **Início** (`lg+`, grade de 12 colunas, cada seção na altura da tela): Ingresso
   e conclusão = Ingressantes (6) + Concluintes (6); Qualidade = Presença no
   Brasil (4) + CPC/Conceito Enade curso × média nacional (8); Trajetória =
   evasão anual por curso — mapa de calor cursos × anos (8) + taxas de

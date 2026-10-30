@@ -1,5 +1,6 @@
 import {
     createContext,
+    useCallback,
     useContext,
     useEffect,
     useMemo,
@@ -8,13 +9,11 @@ import {
     type CSSProperties,
     type ReactNode,
 } from "react";
-import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 import { StatTile } from "@/components/cards/StatTile";
 import { BrasilMapaCard } from "@/components/charts/BrasilMapaCard";
 import { CpcComparativoCard } from "@/components/charts/CpcComparativoCard";
 import { EvasaoHeatmapCard } from "@/components/charts/EvasaoHeatmapCard";
-import { CursoBusca } from "@/components/charts/qualidade/CursoBusca";
 import {
     ConcluintesCard,
     IngressantesCard,
@@ -22,14 +21,15 @@ import {
 } from "@/components/charts/SerieAnualCard";
 import { CampusAtual } from "@/components/layout/CampusSelect";
 import { DataState } from "@/components/layout/DataState";
+import { SeletorCursoTopo } from "@/components/layout/FiltroTopo";
 import {
     InicioCpcEsqueleto,
     InicioEvasaoEsqueleto,
     InicioIngressantesEsqueleto,
 } from "@/components/layout/Esqueleto";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { useAlturaDisponivel } from "@/hooks/useAlturaDisponivel";
-import { useChartTheme } from "@/hooks/useChartTheme";
+import { FontesSecaoContext } from "@/context/fontes-secao";
+import { topoVisivel, useAlturaDisponivel } from "@/hooks/useAlturaDisponivel";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { opcaoCurso } from "@/lib/curso";
 import { toTitleCase } from "@/lib/format";
@@ -40,14 +40,23 @@ import {
     indicadoresMadurosCurso,
     serieMaduras,
 } from "@/lib/trajetoria";
-import { lembrarSubaba, ultimaSubaba } from "@/lib/ultima-subaba";
+import type { FonteId } from "@/lib/fontes";
 import type { DashboardData } from "@/types/dashboard";
 
-const SUB_ABAS = [
+/** As seções do Início, de cima pra baixo: a navbar interna rola até elas. */
+const SECOES = [
     { to: "ingresso", label: "Ingresso e conclusão" },
     { to: "cpc", label: "Qualidade" },
     { to: "evasao", label: "Trajetória" },
 ];
+const IDS = SECOES.map((s) => s.to);
+
+/** Espaço entre o topo fixo e a seção à qual a navbar levou (px). */
+const FOLGA_TOPO = 24;
+/** Espaço embaixo de cada seção: o rodapé da página (pb-10 do AppLayout) e,
+ * entre seções, o vão até a seguinte (``gap-10``) — a seguinte começa logo
+ * abaixo do fim da tela. */
+const MARGEM_SECAO = 40;
 
 /** O curso escolhido no seletor do cabeçalho do Início (``null`` = o campus
  * inteiro): o mesmo pros cards de Ingresso e conclusão e de CPC. */
@@ -56,7 +65,7 @@ const CursoInicioContext = createContext<{
     setCurso: (curso: number | null) => void;
 }>({ curso: null, setCurso: () => {} });
 
-/** O primeiro curso com CPC: o padrão da sub-aba CPC, que precisa de um
+/** O primeiro curso com CPC: o padrão da seção Qualidade, que precisa de um
  * curso (não tem a opção "Campus"). */
 function cursoPadraoCpc(data: DashboardData): number | null {
     const comCpc = new Set(
@@ -71,14 +80,81 @@ function cursoPadraoCpc(data: DashboardData): number | null {
     );
 }
 
-/** Aba Início: o panorama do campus em três sub-abas com rota própria, como
- * a Qualidade e a Trajetória (``/inicio/ingresso``, ``/inicio/cpc``,
- * ``/inicio/evasao``). A saudação e as sub-abas ficam fixas; cada sub-aba
- * carrega com o próprio esqueleto. */
+/** A seção visível (a navbar interna a destaca) e ``ir``, que rola até uma.
+ * Visível: a última cujo topo já passou de um terço da área sob o topo fixo
+ * (ou a última de todas, no fim da página). Durante a rolagem de um clique,
+ * fica na escolhida (senão a navbar passaria pelas do meio). */
+function useSecaoAtiva() {
+    const [ativa, setAtiva] = useState(IDS[0]);
+    const indoPara = useRef<string | null>(null);
+    const fimIda = useRef<number | undefined>(undefined);
+
+    useEffect(() => {
+        const medir = () => {
+            if (indoPara.current) return;
+            const topo = topoVisivel();
+            const linha = topo + (window.innerHeight - topo) / 3;
+            const fim =
+                window.scrollY + window.innerHeight >=
+                document.documentElement.scrollHeight - 2;
+            let atual = IDS[0];
+            for (const id of IDS) {
+                const el = document.getElementById(`inicio-${id}`);
+                if (el && el.getBoundingClientRect().top <= linha) atual = id;
+            }
+            setAtiva(fim && window.scrollY > 0 ? IDS[IDS.length - 1] : atual);
+        };
+        // a rolagem do clique terminou: volta a seguir a página
+        const chegou = () => {
+            window.clearTimeout(fimIda.current);
+            indoPara.current = null;
+            medir();
+        };
+        medir();
+        window.addEventListener("scroll", medir, { passive: true });
+        window.addEventListener("resize", medir);
+        window.addEventListener("scrollend", chegou);
+        return () => {
+            window.clearTimeout(fimIda.current);
+            window.removeEventListener("scroll", medir);
+            window.removeEventListener("resize", medir);
+            window.removeEventListener("scrollend", chegou);
+        };
+    }, []);
+
+    const ir = useCallback((id: string) => {
+        const el = document.getElementById(`inicio-${id}`);
+        if (!el) return;
+        setAtiva(id);
+        indoPara.current = id;
+        // a primeira, o começo da página; as outras, logo abaixo do topo fixo
+        const top =
+            id === IDS[0]
+                ? 0
+                : el.getBoundingClientRect().top +
+                  window.scrollY -
+                  topoVisivel() -
+                  FOLGA_TOPO;
+        const suave = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        window.scrollTo({ top, behavior: suave ? "smooth" : "auto" });
+        // sem o evento ``scrollend`` (Safari antigo) ou sem rolagem nenhuma
+        window.clearTimeout(fimIda.current);
+        fimIda.current = window.setTimeout(() => {
+            indoPara.current = null;
+        }, 1200);
+    }, []);
+
+    return { ativa, ir };
+}
+
+/** Aba Início: o panorama do campus numa página só, em três seções
+ * (Ingresso e conclusão, Qualidade e Trajetória), uma embaixo da outra. A
+ * navbar interna rola até cada seção e acompanha a rolagem (destaca a seção
+ * visível). A saudação e a navbar ficam fixas; cada seção carrega com o
+ * próprio esqueleto. */
 export function HomePage() {
-    const { pathname, search } = useLocation();
-    const subAba = pathname.split("/")[2] ?? "";
     const { data } = useDashboardData();
+    const { ativa, ir } = useSecaoAtiva();
     // o curso vale pro campus em que foi escolhido: trocou de campus, volta
     // pro campus inteiro (os códigos de curso são outros)
     const [escolha, setEscolha] = useState<{
@@ -95,30 +171,30 @@ export function HomePage() {
         [curso, municipio]
     );
 
-    // lembra onde está, pra reabrir aqui ao voltar de outra aba
-    useEffect(() => {
-        if (subAba) lembrarSubaba("inicio", pathname + search);
-    }, [subAba, pathname, search]);
-
     return (
         <>
             <PageHeader
                 title="Olá, bem-vindo ao GRAD Analytics!"
                 subtitle={
                     <>
-                        Acompanhe os indicadores da graduação do UFC Campus{" "}
-                        <CampusAtual />
+                        Acompanhe os indicadores da graduação da UFC em <CampusAtual />
                     </>
                 }
                 tabs={(tom) => (
-                    <SubTabs label="Seções do início" items={SUB_ABAS} tom={tom} />
+                    <SubTabs
+                        label="Seções do início"
+                        items={SECOES}
+                        tom={tom}
+                        ativo={ativa}
+                        onSelect={ir}
+                    />
                 )}
-                // o curso, na ponta direita (o mesmo nas três sub-abas)
+                // o curso, na ponta direita (o mesmo nas três seções)
                 filtros={(tom) =>
                     data ? (
                         <SeletorCurso
                             data={data}
-                            subAba={subAba}
+                            secao={ativa}
                             curso={curso}
                             onChange={contexto.setCurso}
                             tom={tom}
@@ -127,32 +203,64 @@ export function HomePage() {
                 }
             />
             <CursoInicioContext.Provider value={contexto}>
-                <div key={subAba} className="entrada">
-                    <Outlet />
+                <div className="flex flex-col gap-5 lg:gap-10">
+                    <Secao
+                        id="ingresso"
+                        label="Ingresso e conclusão"
+                        fontes={["trajetoria"]}
+                    >
+                        <InicioIngresso />
+                    </Secao>
+                    <Secao id="cpc" label="Qualidade" fontes={["qualidade"]}>
+                        <InicioCpc />
+                    </Secao>
+                    <Secao id="evasao" label="Trajetória" fontes={["trajetoria"]}>
+                        <InicioEvasao />
+                    </Secao>
                 </div>
             </CursoInicioContext.Provider>
         </>
     );
 }
 
-/** O seletor de curso do cabeçalho (com busca): em Ingresso e conclusão e
- * em Evasão, "Campus" (o total) ou um curso; em CPC, só cursos (o padrão é
- * o primeiro com CPC). */
+/** Uma seção do Início: a âncora da navbar interna e a fonte dos cards. */
+function Secao({
+    id,
+    label,
+    fontes,
+    children,
+}: {
+    id: string;
+    label: string;
+    fontes: FonteId[];
+    children: ReactNode;
+}) {
+    return (
+        <section id={`inicio-${id}`} aria-label={label}>
+            <FontesSecaoContext.Provider value={fontes}>
+                {children}
+            </FontesSecaoContext.Provider>
+        </section>
+    );
+}
+
+/** O seletor de curso do cabeçalho (com busca): com a seção Ingresso e
+ * conclusão ou a Trajetória à vista, "Campus" (o total) ou um curso; com a
+ * Qualidade, só cursos (o padrão é o primeiro com CPC). */
 function SeletorCurso({
     data,
-    subAba,
+    secao,
     curso,
     onChange,
     tom,
 }: {
     data: DashboardData;
-    subAba: string;
+    secao: string;
     curso: number | null;
     onChange: (curso: number | null) => void;
     tom: "band" | "surface";
 }) {
-    const CHART = useChartTheme();
-    const cpc = subAba === "cpc";
+    const cpc = secao === "cpc";
     const cursos = data.cursos
         .map((c) =>
             opcaoCurso({
@@ -168,14 +276,8 @@ function SeletorCurso({
           ? SERIE_CAMPUS
           : String(curso);
     return (
-        <CursoBusca
-            // pílula nos dois tons: escura na faixa, clara no modo
-            // apresentação (como a barra de sub-abas ao lado)
-            faixa
-            superficie={tom === "surface"}
-            cor={CHART.comparacao.a}
-            label="Curso"
-            placeholder="Buscar curso…"
+        <SeletorCursoTopo
+            tom={tom}
             value={valor}
             options={
                 cpc
@@ -183,8 +285,8 @@ function SeletorCurso({
                     : [
                           {
                               value: SERIE_CAMPUS,
-                              label: "Campus",
-                              detalhe: "Todos os cursos somados",
+                              label: "Todos os cursos",
+                              detalhe: "Todos os cursos da cidade somados",
                           },
                           ...cursos,
                       ]
@@ -194,11 +296,6 @@ function SeletorCurso({
     );
 }
 
-/** ``/`` ou ``/inicio`` sozinho (o link do menu): reabre a última sub-aba. */
-export function VoltarSubabaInicio() {
-    return <Navigate to={ultimaSubaba("inicio")} replace />;
-}
-
 /** A coluna de dois stat tiles (um embaixo do outro; lado a lado no tablet).
  * No desktop cada tile tem pelo menos a altura que tinha ao lado do card de
  * Ingressantes (176px): ao lado de um card mais baixo, ele estica o vizinho
@@ -206,13 +303,23 @@ export function VoltarSubabaInicio() {
 const COLUNA_TILES =
     "grid grid-cols-1 gap-5 sm:grid-cols-2 lg:col-span-4 lg:auto-rows-[minmax(176px,auto)] lg:grid-cols-1 lg:gap-6";
 
-/** A grade de uma sub-aba na altura da tela (no desktop), como o Mapa da
- * Qualidade: os cards esticam até o fim da tela e tudo fica à vista sem
- * rolar. Tela baixa demais: um mínimo, e aí rola. */
-function GradeNaTela({ children }: { children: ReactNode }) {
+/** A grade de uma seção na altura da tela (no desktop), como o Mapa da
+ * Qualidade: os cards esticam até o fim da tela e a seção fica inteira à
+ * vista sem rolar — a primeira desde onde está; as outras, sob o topo fixo
+ * (onde a navbar interna as deixa). Tela baixa demais: um mínimo. */
+function GradeNaTela({
+    primeira = false,
+    children,
+}: {
+    primeira?: boolean;
+    children: ReactNode;
+}) {
     const ref = useRef<HTMLDivElement>(null);
-    // margem = o espaço do rodapé da página (pb-10 do AppLayout)
-    const altura = useAlturaDisponivel(ref, { margem: 40, minimo: 420 });
+    const altura = useAlturaDisponivel(ref, {
+        margem: MARGEM_SECAO,
+        minimo: 420,
+        sobOTopo: primeira ? undefined : FOLGA_TOPO,
+    });
     return (
         <div
             ref={ref}
@@ -230,7 +337,7 @@ function GradeNaTela({ children }: { children: ReactNode }) {
 
 /** Início → Ingresso e conclusão: quantos entram e quantos se formam por
  * ano, contra a média nacional dos mesmos cursos. */
-export function InicioIngressoPage() {
+function InicioIngresso() {
     return (
         <DataState
             esqueleto={<InicioIngressantesEsqueleto />}
@@ -245,16 +352,16 @@ function Ingresso({ data }: { data: DashboardData }) {
     const { curso } = useContext(CursoInicioContext);
     const escolha = curso === null ? SERIE_CAMPUS : String(curso);
     return (
-        <GradeNaTela>
+        <GradeNaTela primeira>
             <IngressantesCard className="lg:col-span-6" data={data} escolha={escolha} />
             <ConcluintesCard className="lg:col-span-6" data={data} escolha={escolha} />
         </GradeNaTela>
     );
 }
 
-/** Início → CPC: onde o curso existe no Brasil, ao lado do CPC do curso
- * contra a média nacional. */
-export function InicioCpcPage() {
+/** Início → Qualidade: onde o curso existe no Brasil, ao lado do CPC do
+ * curso contra a média nacional. */
+function InicioCpc() {
     return (
         <DataState
             esqueleto={<InicioCpcEsqueleto />}
@@ -285,8 +392,9 @@ function Cpc({ data }: { data: DashboardData }) {
     );
 }
 
-/** Início → Evasão: a evasão anual por curso e as taxas das turmas maduras. */
-export function InicioEvasaoPage() {
+/** Início → Trajetória: a evasão anual por curso e as taxas das turmas
+ * maduras. */
+function InicioEvasao() {
     return (
         <DataState
             esqueleto={<InicioEvasaoEsqueleto />}

@@ -11,6 +11,7 @@ import type {
     DistribuicaoUfEstado,
 } from "@/types/dashboard";
 import { useChartTheme } from "@/hooks/useChartTheme";
+import { useDashboardData } from "@/hooks/useDashboardData";
 import { useElementSize } from "@/hooks/useElementSize";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 
@@ -82,6 +83,8 @@ export function BrasilMapaCard({
     className?: string;
 }) {
     const CHART = useChartTheme();
+    // o ponto, na legenda: "UFC em Quixadá"
+    const local = useDashboardData().data?.escopo.municipio ?? "UFC";
     const [hover, setHover] = useState<{
         uf: string;
         x: number;
@@ -159,7 +162,7 @@ export function BrasilMapaCard({
             // Qualidade
             fontes={["trajetoria", "qualidade"]}
             tituloInfo="Presença no Brasil"
-            info={`Onde o curso escolhido é oferecido no Brasil: cada estado pintado pela quantidade de cursos presenciais da mesma área${item ? ` (${item.nome_cine_area_geral ?? "—"}) com turma em ${item.ano_ingresso ?? "—"}` : ""}. O ponto marca o campus.${item ? ` CPC: avaliação de ${item.ano_cpc ?? "—"}.` : ""}`}
+            info={`Onde o curso escolhido é oferecido no Brasil: cada estado pintado pela quantidade de cursos presenciais da mesma área${item ? ` (${item.nome_cine_area_geral ?? "—"}) com turma em ${item.ano_ingresso ?? "—"}` : ""}. O ponto marca a UFC na cidade escolhida.${item ? ` CPC: avaliação de ${item.ano_cpc ?? "—"}.` : ""}`}
         >
             <div className="flex items-center justify-between gap-2">
                 <p className="flex shrink-0 items-center gap-1.5 text-[14px] font-medium whitespace-nowrap">
@@ -275,7 +278,7 @@ export function BrasilMapaCard({
                                 aria-hidden
                                 className="bg-ink ring-lime h-2.5 w-2.5 rounded-full ring-2 ring-inset"
                             />
-                            Campus
+                            {local}
                         </li>
                     )}
                 </ul>

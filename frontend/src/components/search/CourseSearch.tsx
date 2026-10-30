@@ -165,7 +165,7 @@ export function CourseSearch() {
                 onBlur={() => setOpen(false)}
                 onKeyDown={onKeyDown}
                 placeholder="Pesquisar curso..."
-                aria-label="Pesquisar curso em todos os campi"
+                aria-label="Pesquisar curso em todas as cidades"
                 role="combobox"
                 aria-expanded={showList}
                 aria-controls={listId}

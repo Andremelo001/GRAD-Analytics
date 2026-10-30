@@ -1,11 +1,8 @@
 import type { ReactNode } from "react";
 
 import { Card } from "@/components/cards/Card";
-import { CursoBusca } from "@/components/charts/qualidade/CursoBusca";
 import { TurmaInline } from "@/components/charts/trajetoria/TurmaInline";
 import { DeltaPill } from "@/components/charts/qualidade/DeltaPill";
-import { useChartTheme } from "@/hooks/useChartTheme";
-import { opcaoCurso } from "@/lib/curso";
 import { formatInteger, formatPercent, formatPoints } from "@/lib/format";
 import {
     anosFinal,
@@ -19,29 +16,24 @@ import {
 import { cn } from "@/lib/utils";
 import type { DashboardData } from "@/types/dashboard";
 
-/** Cabeçalho da sub-aba Por curso da Trajetória: o curso (com o seletor com
- * busca), a turma (ano de ingresso — a mesma dos cards da página) e os
+/** Cabeçalho da sub-aba Por curso da Trajetória: o curso (escolhido no
+ * seletor do cabeçalho da aba), a turma (ano de ingresso — a mesma dos cards da página) e os
  * números principais — prazo, ingressantes por turma, conclusão da turma
  * contra o Brasil e quanto da evasão é no 1º ano. Mesmo formato do cabeçalho
  * de Qualidade → Por curso. */
 export function CursoTrajetoriaCard({
     data,
     curso,
-    cursos,
     turma,
-    onChange,
     onTurma,
     className,
 }: {
     data: DashboardData;
     curso: CursoTrajetoria;
-    cursos: CursoTrajetoria[];
     turma: Turma;
-    onChange: (codigo: number) => void;
     onTurma: (ano: number) => void;
     className?: string;
 }) {
-    const CHART = useChartTheme();
     // conclusão da turma escolhida: madura, no ponto final (prazo + 2 anos);
     // em andamento, no último ano acompanhado — e o Brasil no mesmo ponto
     const ponto = turma.madura ? situacaoFinal(turma) : turma.pontos.at(-1);
@@ -89,29 +81,13 @@ export function CursoTrajetoriaCard({
                     </h2>
                 </div>
                 {/* a turma, como frase (o seletor "inline" do Mapa da
-                    Qualidade), ao lado do seletor de curso */}
+                    Qualidade), na ponta direita */}
                 <div className="text-text-secondary flex h-10 items-center gap-1.5 self-start text-[13px] whitespace-nowrap sm:ml-auto">
                     Turma de
                     <TurmaInline
                         turmas={curso.turmas}
                         valor={turma.ano}
                         onChange={(a) => typeof a === "number" && onTurma(a)}
-                    />
-                </div>
-                <div className="w-full sm:w-80">
-                    <CursoBusca
-                        label="Curso"
-                        cor={CHART.brand}
-                        value={String(curso.codigo)}
-                        options={cursos.map((c) =>
-                            opcaoCurso({
-                                codigo: c.codigo,
-                                nome: c.nomeCurso,
-                                grau: c.grau,
-                            })
-                        )}
-                        onChange={(v) => onChange(Number(v))}
-                        placeholder="Buscar curso…"
                     />
                 </div>
             </div>

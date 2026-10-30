@@ -9,9 +9,11 @@ import { IndicadoresInepCard } from "@/components/charts/trajetoria/IndicadoresI
 import { PermanenciaCard } from "@/components/charts/trajetoria/PermanenciaCard";
 import { TrianguloTurmasCard } from "@/components/charts/trajetoria/TrianguloTurmasCard";
 import { DataState } from "@/components/layout/DataState";
+import { FiltroTopo, SeletorCursoTopo } from "@/components/layout/FiltroTopo";
 import { PorCursoEsqueleto } from "@/components/layout/Esqueleto";
 import { useElementSize } from "@/hooks/useElementSize";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { opcaoCurso } from "@/lib/curso";
 import { lembrarCursoPorCurso } from "@/lib/curso-por-curso";
 import {
     buildTrajetorias,
@@ -60,31 +62,41 @@ function PorCurso({ data }: { data: DashboardData }) {
     if (!curso) {
         return (
             <p className="text-text-secondary text-[14px]">
-                Nenhum curso deste campus tem turmas acompanhadas.
+                Nenhum curso desta cidade tem turmas acompanhadas.
             </p>
         );
     }
     return (
-        <CursoDetalhe
-            key={curso.codigo}
-            data={data}
-            curso={curso}
-            cursos={cursos}
-            onCurso={(c) => navigate(`/trajetoria/curso/${c}`)}
-        />
+        <>
+            {/* o seletor do cabeçalho da aba (fora do detalhe, que remonta a
+                cada curso) */}
+            <FiltroTopo>
+                {(tom) => (
+                    <SeletorCursoTopo
+                        tom={tom}
+                        value={String(curso.codigo)}
+                        options={cursos.map((c) =>
+                            opcaoCurso({
+                                codigo: c.codigo,
+                                nome: c.nomeCurso,
+                                grau: c.grau,
+                            })
+                        )}
+                        onChange={(c) => navigate(`/trajetoria/curso/${c}`)}
+                    />
+                )}
+            </FiltroTopo>
+            <CursoDetalhe key={curso.codigo} data={data} curso={curso} />
+        </>
     );
 }
 
 function CursoDetalhe({
     data,
     curso,
-    cursos,
-    onCurso,
 }: {
     data: DashboardData;
     curso: CursoTrajetoria;
-    cursos: CursoTrajetoria[];
-    onCurso: (codigo: number) => void;
 }) {
     const [turmaAno, setTurmaAno] = useState(
         () => (turmaMadura(curso) ?? curso.turmas.at(-1))!.ano
@@ -101,9 +113,7 @@ function CursoDetalhe({
                 className="lg:col-span-12"
                 data={data}
                 curso={curso}
-                cursos={cursos}
                 turma={turma}
-                onChange={onCurso}
                 onTurma={setTurmaAno}
             />
             {/* os alunos em números, na largura toda, logo abaixo do cabeçalho */}

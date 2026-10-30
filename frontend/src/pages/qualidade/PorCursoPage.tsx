@@ -9,7 +9,9 @@ import { CursoResumoCard } from "@/components/charts/qualidade/CursoResumoCard";
 import { ParticipacaoEnadeCard } from "@/components/charts/qualidade/ParticipacaoEnadeCard";
 import { ProximaFaixaCard } from "@/components/charts/qualidade/ProximaFaixaCard";
 import { DataState } from "@/components/layout/DataState";
+import { FiltroTopo, SeletorCursoTopo } from "@/components/layout/FiltroTopo";
 import { PorCursoEsqueleto } from "@/components/layout/Esqueleto";
+import { opcaoCurso } from "@/lib/curso";
 import { lembrarCursoPorCurso } from "@/lib/curso-por-curso";
 import { buildAvaliacoes, type AvaliacaoCurso } from "@/lib/qualidade";
 import type { DashboardData } from "@/types/dashboard";
@@ -55,6 +57,22 @@ function PorCurso({ data }: { data: DashboardData }) {
     const { codigo } = useParams<{ codigo: string }>();
     const navigate = useNavigate();
     const avaliacoes = useMemo(() => buildAvaliacoes(data), [data]);
+    // o seletor do cabeçalho: a busca filtra por nome, código e grau (e, sem
+    // aparecer, pela área)
+    const opcoes = useMemo(
+        () =>
+            [...avaliacoes]
+                .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"))
+                .map((c) => ({
+                    ...opcaoCurso({
+                        codigo: c.codigo,
+                        nome: c.nomeCurso,
+                        grau: c.grau,
+                    }),
+                    busca: c.area ?? undefined,
+                })),
+        [avaliacoes]
+    );
     const pedido = avaliacoes.find((a) => String(a.codigo) === codigo);
     const correspondente = pedido ? undefined : equivalente(avaliacoes);
     const curso = pedido ?? correspondente ?? [...avaliacoes].sort(porCpc)[0];
@@ -75,7 +93,7 @@ function PorCurso({ data }: { data: DashboardData }) {
     if (!curso) {
         return (
             <p className="text-text-secondary text-[14px]">
-                Nenhum curso neste campus.
+                Nenhum curso nesta cidade.
             </p>
         );
     }
@@ -83,12 +101,17 @@ function PorCurso({ data }: { data: DashboardData }) {
     const temNotas = curso.cpc !== null && curso.perfil !== undefined;
     return (
         <div className="grid grid-cols-1 items-start gap-5 lg:grid-cols-12 lg:gap-6">
-            <CursoResumoCard
-                className="lg:col-span-12"
-                curso={curso}
-                cursos={avaliacoes}
-                onChange={(c) => navigate(`/qualidade/curso/${c}`)}
-            />
+            <FiltroTopo>
+                {(tom) => (
+                    <SeletorCursoTopo
+                        tom={tom}
+                        value={String(curso.codigo)}
+                        options={opcoes}
+                        onChange={(c) => navigate(`/qualidade/curso/${c}`)}
+                    />
+                )}
+            </FiltroTopo>
+            <CursoResumoCard className="lg:col-span-12" curso={curso} />
             {/* lado a lado com a mesma altura: as duas réguas (CPC e Conceito
                 Enade), empilhadas, dividem a altura do "De onde vem a nota" */}
             {temNotas && (

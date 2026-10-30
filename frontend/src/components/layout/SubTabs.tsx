@@ -8,22 +8,29 @@ import { cn } from "@/lib/utils";
  * em pílulas sobre a faixa escura, logo abaixo da saudação (``PageHeader``,
  * prop ``tabs``): a ativa em limão, as outras em branco apagado. A pílula
  * limão desliza até a sub-aba escolhida. Cada uma é uma rota, então dá pra
- * compartilhar o link de uma sub-aba. No celular, se não couberem, rolam na
- * horizontal. */
+ * compartilhar o link de uma sub-aba. Com ``onSelect``, os itens são botões
+ * (seções da mesma página, ex.: o Início): ``ativo`` diz qual destacar. No
+ * celular, se não couberem, rolam na horizontal. */
 export function SubTabs({
     label,
     items,
     tom = "band",
+    ativo,
+    onSelect,
 }: {
     label: string;
     items: { to: string; label: string }[];
     /** ``band``: sobre a faixa escura; ``surface``: sobre o plano claro da
      * página (modo apresentação), em pílula branca como os cards. */
     tom?: "band" | "surface";
+    /** A seção destacada (com ``onSelect``). */
+    ativo?: string;
+    /** Itens como botões, não rotas: chamado com o ``to`` do clicado. */
+    onSelect?: (to: string) => void;
 }) {
     const listRef = useRef<HTMLUListElement>(null);
     const { pathname } = useLocation();
-    const indicador = useActiveIndicator(listRef, pathname);
+    const indicador = useActiveIndicator(listRef, ativo ?? pathname);
 
     return (
         <nav
@@ -51,25 +58,40 @@ export function SubTabs({
                     )}
                     style={indicador.style}
                 />
-                {items.map(({ to, label }) => (
-                    <li key={to} className="relative flex-auto sm:flex-none">
-                        <NavLink
-                            to={to}
-                            className={({ isActive }) =>
-                                cn(
-                                    "focus-visible:ring-lime/60 block rounded-full px-[5px] py-1 text-center text-[10px] whitespace-nowrap transition-colors duration-300 outline-none focus-visible:ring-2 min-[360px]:px-2 min-[360px]:text-[11px] min-[390px]:text-[11.5px] sm:px-4 sm:text-[13px]",
-                                    isActive
-                                        ? "text-on-lime font-semibold"
-                                        : tom === "band"
-                                          ? "text-white/60 hover:text-white"
-                                          : "text-text-secondary hover:text-ink"
-                                )
-                            }
-                        >
-                            {label}
-                        </NavLink>
-                    </li>
-                ))}
+                {items.map(({ to, label }) => {
+                    const classe = (isActive: boolean) =>
+                        cn(
+                            "focus-visible:ring-lime/60 block rounded-full px-[5px] py-1 text-center text-[10px] whitespace-nowrap transition-colors duration-300 outline-none focus-visible:ring-2 min-[360px]:px-2 min-[360px]:text-[11px] min-[390px]:text-[11.5px] sm:px-4 sm:text-[13px]",
+                            isActive
+                                ? "text-on-lime font-semibold"
+                                : tom === "band"
+                                  ? "text-white/60 hover:text-white"
+                                  : "text-text-secondary hover:text-ink"
+                        );
+                    return (
+                        <li key={to} className="relative flex-auto sm:flex-none">
+                            {onSelect ? (
+                                <button
+                                    type="button"
+                                    // o mesmo atributo do NavLink ativo: é o
+                                    // que o destaque deslizante procura
+                                    aria-current={to === ativo ? "page" : undefined}
+                                    onClick={() => onSelect(to)}
+                                    className={cn("w-full", classe(to === ativo))}
+                                >
+                                    {label}
+                                </button>
+                            ) : (
+                                <NavLink
+                                    to={to}
+                                    className={({ isActive }) => classe(isActive)}
+                                >
+                                    {label}
+                                </NavLink>
+                            )}
+                        </li>
+                    );
+                })}
             </ul>
         </nav>
     );

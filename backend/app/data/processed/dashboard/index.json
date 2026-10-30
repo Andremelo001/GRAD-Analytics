@@ -4,35 +4,35 @@
   "campi": [
     {
       "slug": "crateus",
-      "nome": "UFC Campus Crateús",
+      "nome": "UFC em Crateús",
       "codigo_municipio": 2304103,
       "total_cursos": 5,
       "arquivo": "crateus.json"
     },
     {
       "slug": "fortaleza",
-      "nome": "UFC Campus Fortaleza",
+      "nome": "UFC em Fortaleza",
       "codigo_municipio": 2304400,
       "total_cursos": 103,
       "arquivo": "fortaleza.json"
     },
     {
       "slug": "quixada",
-      "nome": "UFC Campus Quixadá",
+      "nome": "UFC em Quixadá",
       "codigo_municipio": 2311306,
       "total_cursos": 6,
       "arquivo": "quixada.json"
     },
     {
       "slug": "russas",
-      "nome": "UFC Campus Russas",
+      "nome": "UFC em Russas",
       "codigo_municipio": 2311801,
       "total_cursos": 5,
       "arquivo": "russas.json"
     },
     {
       "slug": "sobral",
-      "nome": "UFC Campus Sobral",
+      "nome": "UFC em Sobral",
       "codigo_municipio": 2312908,
       "total_cursos": 8,
       "arquivo": "sobral.json"

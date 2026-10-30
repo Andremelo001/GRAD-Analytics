@@ -5,7 +5,7 @@ export function CampusPage() {
         <DataState
             render={(data) => (
                 <div>
-                    <h1 className="text-2xl font-bold">Visão do campus</h1>
+                    <h1 className="text-2xl font-bold">Visão geral</h1>
                     <p className="text-white/80">
                         {data.campus.kpis.total_cursos} curso(s) no total
                     </p>

@@ -406,8 +406,8 @@ export function CursosEmComumCard({
         <Card
             expansivel
             title="Cursos em comum"
-            info="As áreas de avaliação que os dois campi oferecem, com o melhor CPC de cada campus em cada área."
-            subtitle="Áreas que os dois campi oferecem: o melhor CPC de cada um na área"
+            info="As áreas de avaliação que as duas cidades oferecem, com o melhor CPC de cada cidade em cada área."
+            subtitle="Áreas que as duas cidades oferecem: o melhor CPC de cada uma na área"
             className={className}
             // legenda à direita, na linha do subtítulo
             action={
@@ -420,7 +420,7 @@ export function CursosEmComumCard({
         >
             {areas.length === 0 ? (
                 <p className="text-text-secondary mt-4 text-[13px]">
-                    Os dois campi não têm nenhuma área de avaliação em comum.
+                    As duas cidades não têm nenhuma área de avaliação em comum.
                 </p>
             ) : (
                 <>

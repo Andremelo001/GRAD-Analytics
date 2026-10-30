@@ -14,12 +14,14 @@ tomar decisões.
 
 ## O que dá para ver no painel
 
-O painel mostra um campus da UFC por vez (Crateús, Fortaleza, Quixadá,
-Russas ou Sobral), escolhido no seletor de campus do topo. São três abas:
+O painel mostra uma cidade onde a UFC tem cursos por vez (Crateús,
+Fortaleza, Quixadá, Russas ou Sobral), escolhida no seletor de cidade do
+topo. Fortaleza junta todos os campi da capital. São três abas:
 
-- **Início**: um resumo rápido, em três partes:
+- **Início**: um resumo rápido, numa página só, em três partes (a barra de
+  cima leva a cada uma):
     - **Ingresso e conclusão**: quantos alunos entram e quantos se formam a
-      cada ano, no campus ou num curso escolhido, comparados com a média do
+      cada ano, em todos os cursos da cidade ou num curso escolhido, comparados com a média do
       país.
     - **Qualidade**: onde o curso existe no Brasil e a nota dele (o CPC ou o
       Conceito Enade) ao longo dos anos, comparada com a média do país.
@@ -27,7 +29,7 @@ Russas ou Sobral), escolhido no seletor de campus do topo. São três abas:
       de conclusão e de evasão.
 - **Qualidade dos cursos**: a nota que o MEC dá a cada curso (o CPC,
   Conceito Preliminar de Curso), de onde ela vem e como mudou. Quatro partes:
-    - **Visão do campus**: todos os cursos lado a lado, com a nota e a faixa
+    - **Visão geral**: todos os cursos lado a lado, com a nota e a faixa
       (1 a 5), o curso que mais melhorou, quem subiu ou caiu desde a avaliação
       anterior e em quais partes da nota cada curso está acima ou abaixo da
       média do país.
@@ -37,11 +39,11 @@ Russas ou Sobral), escolhido no seletor de campus do topo. São três abas:
     - **Mapa**: o mesmo curso pelo Brasil, estado por estado; clicando num
       estado aparecem as cidades, a comparação do estado com o seu curso e os
       cursos com as melhores notas, com a posição do seu curso entre eles.
-    - **Comparações**: dois campi da UFC lado a lado, ou um curso do campus
+    - **Comparações**: duas cidades da UFC lado a lado, ou um curso da cidade
       contra qualquer curso da mesma área no Brasil.
 - **Trajetória dos estudantes**: o caminho dos alunos desde a entrada, com as
   mesmas quatro partes:
-    - **Visão do campus**: quanto as turmas concluem, quanto da evasão
+    - **Visão geral**: quanto as turmas concluem, quanto da evasão
       acontece no 1º ano, o tempo até concluir e a situação final de cada
       curso.
     - **Por curso**: os alunos que entraram, concluíram, desistiram e ainda
@@ -50,7 +52,7 @@ Russas ou Sobral), escolhido no seletor de campus do topo. São três abas:
       prazo.
     - **Mapa**: a taxa de permanência, de conclusão ou de desistência do
       mesmo curso pelo Brasil, estado por estado, com a posição do seu curso.
-    - **Comparações**: dois campi da UFC lado a lado, ou um curso do campus
+    - **Comparações**: duas cidades da UFC lado a lado, ou um curso da cidade
       contra qualquer curso da mesma área no Brasil.
 
 Em todas as partes, cada curso é comparado com a **média dos cursos da mesma
@@ -59,15 +61,15 @@ qual é o número.
 
 Outros recursos:
 
-- **Busca por curso**: no topo, procura cursos de todos os campi. Escolha se
-  quer abrir o curso em Qualidade ou em Trajetória; se ele for de outro
-  campus, o painel troca de campus sozinho.
+- **Busca por curso**: no topo, procura cursos de todas as cidades. Escolha
+  se quer abrir o curso em Qualidade ou em Trajetória; se ele for de outra
+  cidade, o painel troca de cidade sozinho.
 - **De onde vem cada número**: o ícone **i** no canto de cada card explica o
   que ele mostra e traz o link para a base do INEP de onde vieram os dados.
 - **Ampliar um card**: clique num card para vê-lo maior, no centro da tela
   (Esc ou o X fecham).
 - **Configurações** (a engrenagem no topo): tema claro, escuro ou automático;
-  o campus em que o painel abre; e **cores acessíveis**, em azul e laranja,
+  a cidade em que o painel abre; e **cores acessíveis**, em azul e laranja,
   para quem tem daltonismo.
 
 ## Modo apresentação
@@ -87,9 +89,9 @@ as abas e a barra de endereço.
 A faixa do topo sobe até sumir, os cards sobem junto e a página volta para o
 começo, para a apresentação começar pelos primeiros gráficos. No lugar da
 faixa aparece uma barra fina, acima dos cards, com a frase "Acompanhe os
-indicadores da graduação do UFC Campus …", o **seletor de campus** e o logo:
-dá para trocar de campus sem sair da apresentação. As partes de cada aba
-(por exemplo, Visão do campus, Por curso, Mapa e Comparações) aparecem logo
+indicadores da graduação da UFC em …", o **seletor de cidade** e o logo:
+dá para trocar de cidade sem sair da apresentação. As partes de cada aba
+(por exemplo, Visão geral, Por curso, Mapa e Comparações) aparecem logo
 abaixo dessa barra, para navegar entre elas durante a apresentação.
 
 **Como sair:**
@@ -120,7 +122,7 @@ atualiza o painel.
 O projeto tem duas partes:
 
 - **Coleta e organização dos dados**: baixa as planilhas do INEP, limpa as
-  informações e separa só o que interessa ao campus.
+  informações e separa só o que interessa a cada cidade.
 - **Site do painel**: a página que você acessa pelo navegador, com os gráficos.
 
 Quem for trabalhar no código encontra as instruções de cada parte em

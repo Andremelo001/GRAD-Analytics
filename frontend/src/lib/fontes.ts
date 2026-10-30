@@ -17,13 +17,12 @@ export const FONTES: Record<FonteId, { nome: string; orgao: string; url: string 
 };
 
 /** A fonte dos cards de uma rota, quando o card não diz a dele: a Qualidade
- * e o Início → CPC vêm do CPC; a Trajetória e o Início → Ingresso/Evasão,
- * das turmas acompanhadas. Fora disso (páginas que juntam as duas), as duas. */
+ * vem do CPC; a Trajetória, das turmas acompanhadas. Fora disso (páginas que
+ * juntam as duas, como o Início — lá cada seção diz a sua, ver
+ * ``FontesSecaoContext``), as duas. */
 export function fontesDaRota(pathname: string): FonteId[] {
-    const [aba, subAba] = pathname.split("/").filter(Boolean);
+    const [aba] = pathname.split("/").filter(Boolean);
     if (aba === "qualidade") return ["qualidade"];
     if (aba === "trajetoria") return ["trajetoria"];
-    if (aba === "inicio" || aba === undefined)
-        return subAba === "cpc" ? ["qualidade"] : ["trajetoria"];
     return ["qualidade", "trajetoria"];
 }

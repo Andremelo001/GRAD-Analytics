@@ -4,7 +4,8 @@ import type { ResumoCampi, ResumoCurso } from "@/types/dashboard";
 
 export type Notas = Record<ComponenteKey, number | null>;
 
-export const nomeCampus = (nome: string) => nome.replace(/^UFC\s+Campus\s+/i, "");
+export const nomeCampus = (nome: string) =>
+    nome.replace(/^UFC\s+(?:em|Campus)\s+/i, "");
 
 /** Um campus resumido pra comparação entre campi: médias dos cursos com CPC
  * (avaliação mais recente de cada um) e as notas médias. */

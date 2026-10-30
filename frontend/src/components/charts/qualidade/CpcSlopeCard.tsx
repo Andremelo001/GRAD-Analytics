@@ -143,7 +143,7 @@ export function CpcSlopeCard({
         if (a.anterior) contagem[direcao(a.atual - a.anterior.valor)]++;
     const ativo = foco === null ? undefined : avaliados.find((a) => a.codigo === foco);
     const opcoes = [
-        { value: "todos", label: "Todos os cursos", detalhe: "Visão geral do campus" },
+        { value: "todos", label: "Todos os cursos", detalhe: "Visão geral da cidade" },
         ...[...avaliados]
             .sort((a, b) => a.nome.localeCompare(b.nome, "pt-BR"))
             .map((a) =>

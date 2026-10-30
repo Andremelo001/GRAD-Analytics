@@ -4,13 +4,7 @@ import { AppLayout } from "@/components/layout/AppLayout";
 import { CampusPage } from "@/pages/CampusPage";
 import { ConfiguracoesPage } from "@/pages/ConfiguracoesPage";
 import { CursoDetalhePage } from "@/pages/CursoDetalhePage";
-import {
-    HomePage,
-    InicioCpcPage,
-    InicioEvasaoPage,
-    InicioIngressoPage,
-    VoltarSubabaInicio,
-} from "@/pages/HomePage";
+import { HomePage } from "@/pages/HomePage";
 import { QualidadePage, VoltarSubaba } from "@/pages/QualidadePage";
 import { ComparacoesPage } from "@/pages/qualidade/ComparacoesPage";
 import { MapaPageLazy } from "@/pages/qualidade/MapaPageLazy";
@@ -31,22 +25,11 @@ export const router = createHashRouter([
         path: "/",
         element: <AppLayout />,
         children: [
-            // / sozinho (a entrada do painel) reabre a última sub-aba do Início
-            { index: true, element: <VoltarSubabaInicio /> },
-            {
-                path: "inicio",
-                element: <HomePage />,
-                children: [
-                    { index: true, element: <VoltarSubabaInicio /> },
-                    { path: "ingresso", element: <InicioIngressoPage /> },
-                    { path: "cpc", element: <InicioCpcPage /> },
-                    { path: "evasao", element: <InicioEvasaoPage /> },
-                    {
-                        path: "*",
-                        element: <Navigate to="/inicio/ingresso" replace />,
-                    },
-                ],
-            },
+            // / sozinho (a entrada do painel): o Início
+            { index: true, element: <Navigate to="/inicio" replace /> },
+            { path: "inicio", element: <HomePage /> },
+            // as antigas sub-abas do Início (hoje seções da mesma página)
+            { path: "inicio/*", element: <Navigate to="/inicio" replace /> },
             {
                 path: "qualidade",
                 element: <QualidadePage />,

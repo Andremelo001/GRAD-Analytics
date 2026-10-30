@@ -26,7 +26,7 @@ function Panorama({ data }: { data: DashboardData }) {
     if (cursos.length === 0) {
         return (
             <p className="text-text-secondary text-[14px]">
-                Nenhum curso deste campus tem turmas acompanhadas.
+                Nenhum curso desta cidade tem turmas acompanhadas.
             </p>
         );
     }

@@ -1,8 +1,9 @@
 import { ExternalLink, Info } from "lucide-react";
-import { useEffect, useId, useRef, useState } from "react";
+import { useContext, useEffect, useId, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { useLocation } from "react-router-dom";
 
+import { FontesSecaoContext } from "@/context/fontes-secao";
 import { FONTES, fontesDaRota, type FonteId } from "@/lib/fontes";
 import { cn } from "@/lib/utils";
 
@@ -12,17 +13,26 @@ const MARGEM_TELA = 16;
 
 interface Posicao {
     top: number;
+    /** O topo do ícone menos a folga: a base do painel quando ele abre pra
+     * cima. */
+    base: number;
+    /** Espaço na tela abaixo e acima do ícone (px). */
+    abaixo: number;
+    acima: number;
     esquerda: number;
     direita: number;
 }
 
-/** Logo abaixo do ícone, como a lista dos seletores: em coordenadas da tela
- * dentro de um card ampliado (``fixed``), senão da página (``absolute`` no
- * <body>, rola junto com o card). */
+/** Logo abaixo do ícone (ou logo acima, ver ``acima``), como a lista dos
+ * seletores: em coordenadas da tela dentro de um card ampliado (``fixed``),
+ * senão da página (``absolute`` no <body>, rola junto com o card). */
 function posicao(icone: DOMRect, fixo: boolean): Posicao {
     const [dx, dy] = fixo ? [0, 0] : [window.scrollX, window.scrollY];
     return {
         top: icone.bottom + dy + 6,
+        base: icone.top + dy - 6,
+        abaixo: window.innerHeight - icone.bottom - 6 - MARGEM_TELA,
+        acima: icone.top - 6 - MARGEM_TELA,
         esquerda: icone.left + dx,
         direita: document.documentElement.clientWidth - icone.right - dx,
     };
@@ -31,7 +41,8 @@ function posicao(icone: DOMRect, fixo: boolean): Posicao {
 /** O "i" do canto superior direito dos cards. Clicar abre um painel pequeno
  * ao lado dele (no estilo da lista dos seletores de curso) com o que o card
  * mostra e a fonte dos dados, com o link para a base do INEP. A fonte vem de
- * ``fontes`` ou, sem ela, da aba aberta (ver ``fontesDaRota``). Fecha com
+ * ``fontes`` ou, sem ela, da seção da página (``FontesSecaoContext``) ou da
+ * aba aberta (ver ``fontesDaRota``). Fecha com
  * outro clique no ícone, um clique fora ou o Esc. Num card que amplia, o
  * clique nele (e no painel) não amplia o card. */
 export function IconeInfo({
@@ -47,7 +58,8 @@ export function IconeInfo({
     className?: string;
 }) {
     const { pathname } = useLocation();
-    const lista = fontes ?? fontesDaRota(pathname);
+    const secao = useContext(FontesSecaoContext);
+    const lista = fontes ?? secao ?? fontesDaRota(pathname);
     const id = useId();
     const botaoRef = useRef<HTMLButtonElement>(null);
     const painelRef = useRef<HTMLDivElement>(null);
@@ -57,6 +69,16 @@ export function IconeInfo({
     // abre pra esquerda do ícone (ele fica no canto direito do card); se não
     // couber, pra direita
     const [lado, setLado] = useState<"left" | "right">("right");
+    // abre pra baixo; se não couber até o fim da tela (card no pé da tela) e
+    // houver mais espaço em cima, pra cima. Medido antes de pintar: o painel
+    // não aparece embaixo e pula
+    const [paraCima, setParaCima] = useState(false);
+    useLayoutEffect(() => {
+        const painel = painelRef.current;
+        if (!aberto || !caixa || !painel) return;
+        const altura = painel.offsetHeight;
+        setParaCima(altura > caixa.abaixo && caixa.acima > caixa.abaixo);
+    }, [aberto, caixa]);
 
     function medir() {
         const icone = botaoRef.current?.getBoundingClientRect();
@@ -143,7 +165,9 @@ export function IconeInfo({
                             fixo ? "fixed z-[60]" : "absolute z-20"
                         )}
                         style={{
-                            top: caixa.top,
+                            ...(paraCima
+                                ? { top: caixa.base, transform: "translateY(-100%)" }
+                                : { top: caixa.top }),
                             ...(lado === "right"
                                 ? { right: caixa.direita }
                                 : { left: caixa.esquerda }),
