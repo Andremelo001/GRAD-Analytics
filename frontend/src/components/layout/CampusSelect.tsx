@@ -1,3 +1,5 @@
+import { useLocation, useNavigate } from "react-router-dom";
+
 import { ChartSelect } from "@/components/charts/ChartSelect";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { cn } from "@/lib/utils";
@@ -12,10 +14,26 @@ function nomeCurto(nome: string): string {
  * mesmo desenho da barra delas, separado: "Campus [Quixadá ▾]". Troca o JSON
  * carregado (``DashboardDataProvider``); enquanto o novo campus baixa, a seta
  * vira um indicador de carga. ``tom="surface"``: sobre o plano claro (modo
- * apresentação), em pílula branca como as sub-abas. */
+ * apresentação), em pílula branca como as sub-abas.
+ *
+ * Nas Comparações entre cidades (Qualidade e Trajetória), o lado A acompanha
+ * a troca: sai da URL (``a``) e volta a ser a cidade escolhida aqui; o B sai
+ * também se for a mesma cidade. O inverso não: trocar o A lá não muda esta. */
 export function CampusSelect({ tom = "band" }: { tom?: "band" | "surface" }) {
     const { campi, campus, setCampus, switching } = useDashboardData();
+    const { pathname, search } = useLocation();
+    const navigate = useNavigate();
     if (campi.length === 0 || campus === null) return null;
+
+    function trocar(slug: string) {
+        setCampus(slug);
+        const params = new URLSearchParams(search);
+        if (!pathname.endsWith("/comparacoes") || params.get("modo") === "cursos")
+            return;
+        params.delete("a");
+        if (params.get("b") === slug) params.delete("b");
+        navigate({ pathname, search: params.toString() }, { replace: true });
+    }
 
     return (
         <div
@@ -35,7 +53,7 @@ export function CampusSelect({ tom = "band" }: { tom?: "band" | "surface" }) {
                     value: c.slug,
                     label: nomeCurto(c.nome),
                 }))}
-                onChange={setCampus}
+                onChange={trocar}
                 busy={switching}
                 tone={tom}
             />
