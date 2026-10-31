@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-10-31T14:01:03+00:00",
+  "gerado_em": "2026-10-31T14:51:52+00:00",
   "campi": [
     {
       "slug": "crateus",
@@ -5340,7 +5340,7 @@
           "area_avaliacao": "ADMINISTRAÇÃO",
           "ano": 2015,
           "cpc_continuo": null,
-          "cpc_faixa": "Curso não reconhecido até 31/12/2015",
+          "cpc_faixa": "SC",
           "conceito_enade_continuo": 2.98072052,
           "idd": 0.0,
           "notas": {
@@ -5358,7 +5358,7 @@
             {
               "ano": 2015,
               "cpc_continuo": null,
-              "cpc_faixa": "Curso não reconhecido até 31/12/2015"
+              "cpc_faixa": "SC"
             }
           ],
           "ano_ingresso_referencia": null,
@@ -7886,7 +7886,7 @@
             {
               "ano": 2015,
               "cpc_continuo": null,
-              "cpc_faixa": "Curso não reconhecido até 31/12/2015"
+              "cpc_faixa": "SC"
             },
             {
               "ano": 2018,

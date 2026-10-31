@@ -252,13 +252,21 @@ O que acontece, por módulo:
    tamanho) — sempre roda, é rápido (não baixa o corpo).
 3. **Download** (em paralelo) só dos arquivos novos ou que mudaram desde a
    última vez; o resto é reaproveitado de `app/data/raw/`.
-4. Se **nada mudou em nenhum arquivo** do módulo, o `colunas_inep.json` é o
-   mesmo da última vez e já existe um CSV anterior, o pipeline **para aqui** —
+4. Se **nada mudou em nenhum arquivo** do módulo, o `colunas_inep.json` e as
+   regras de limpeza são os mesmos da última vez e já existe um CSV anterior,
+   o pipeline **para aqui** —
    não relê, não retransforma, não reexporta. Log:
    `"<módulo> sem mudanças na fonte | mantém ..."`.
 5. Caso contrário: lê (planilha → DataFrame), transforma (renomeia, tipa,
-   decodifica, dedup exato) e grava `app/data/processed/<módulo>.csv[.gz]` +
-   atualiza `_meta.json`.
+   decodifica, dedup exato e, se a mesma chave — ex.: curso + ano — vier em
+   dois arquivos, fica a do arquivo mais recente) e grava
+   `app/data/processed/<módulo>.csv[.gz]` + atualiza `_meta.json`.
+
+No fim, o log marca com **`REVISAR`** cada arquivo baixado agora que tem
+coluna faltando ou sem par, código de categoria sem rótulo em
+`colunas_inep.json` ou mais de 10 linhas descartadas (rodapé de planilha
+descarta poucas; muitas indicam mudança de formato). A mesma lista vai para
+`review_items` no `_meta.json`.
 
 Saída esperada num run com tudo novo:
 
@@ -467,7 +475,7 @@ e podem ser trocados **sem mexer em código** — copie `.env.example` para `.en
 |---|---|---|
 | `QUALIDADE_LANDING_URL` | URL do portal de Indicadores de Qualidade | se o INEP mudar a página |
 | `TRAJETORIA_LANDING_URL` | URL do portal de Indicadores de Trajetória | se o INEP mudar a página |
-| `QUALIDADE_MIN_YEAR` / `QUALIDADE_MAX_YEAR` | `2015` / `2025` | janela de anos do CPC processada por padrão (sem `--years`) |
+| `QUALIDADE_MIN_YEAR` / `QUALIDADE_MAX_YEAR` | `2015` / vazio (sem limite) | janela de anos do CPC processada por padrão (sem `--years`); sem máximo, um CPC novo entra sozinho |
 | `TRAJETORIA_MIN_YEAR` / `TRAJETORIA_MAX_YEAR` | vazio (sem restrição) | idem, para a Trajetória — vazio processa todas as faixas da página |
 | `HTTP_MAX_RETRIES` / `HTTP_BACKOFF` | `3` / `2.0` | tentativas e espera (segundos, exponencial) em cada request ao INEP |
 | `HTTP_TIMEOUT` | `30.0` | timeout (segundos) de cada request |
@@ -498,7 +506,10 @@ Continuam no código de propósito o nome interno e o tipo de cada coluna
 e o dashboard, então é mudança de código de qualquer jeito. Quando o
 `colunas_inep.json` muda, o pipeline percebe (hash gravado como
 `mapping_fingerprint` no `_meta.json`) e reprocessa a partir dos arquivos em
-cache, sem precisar de `--force`.
+cache, sem precisar de `--force`. O mesmo hash inclui `CLEANING_VERSION`
+(`app/core/domain/pipelines/spec_transformer.py`): **quem mudar uma regra de
+limpeza ou de leitura incrementa esse número**, e o próximo run reprocessa
+sozinho.
 
 ---
 

@@ -59,3 +59,12 @@ def test_extract_xlsx_picks_expected_member(trajetoria_xlsx: Path, tmp_path: Pat
     with zipfile.ZipFile(empty, "w") as archive:
         archive.writestr("leia-me.txt", b"x")
     assert _extract_xlsx(empty, tmp_path / "e2", force=True) is None
+
+
+def test_qualidade_scope_without_max_year_accepts_future_editions():
+    source = InepQualidadeSource(client=object(), min_year=2015)  # type: ignore[arg-type]
+    source._max_year = None  # sem limite, independente do .env de quem roda
+    assert source._in_scope(2031, None) is True
+    assert source._in_scope(2014, None) is False
+    limited = InepQualidadeSource(client=object(), min_year=2015, max_year=2023)  # type: ignore[arg-type]
+    assert limited._in_scope(2024, None) is False

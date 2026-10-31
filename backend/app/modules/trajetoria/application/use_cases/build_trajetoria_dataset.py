@@ -5,6 +5,7 @@ from app.core.config.settings import settings
 from app.core.domain.pipelines.pipeline import DataPipeline
 from app.core.domain.pipelines.report import ModuleReport
 from app.core.domain.pipelines.schema import model_to_specs, validate_category_columns
+from app.core.domain.pipelines.spec_transformer import CLEANING_VERSION
 from app.core.infrastructure.readers.spreadsheet_reader import SpreadsheetReader
 from app.core.infrastructure.storage.file_exporter import CsvExporter
 from app.core.infrastructure.storage.meta_writer import (
@@ -20,6 +21,8 @@ from app.modules.trajetoria.infrastructure.sources.inep_trajetoria_source import
 )
 
 _MODULE = "trajetoria"
+# uma linha por curso, turma e ano de acompanhamento
+_UNIQUE_KEY = ("codigo_curso", "ano_ingresso", "ano_referencia")
 _SHEET_PATTERNS = ("trajetoria", "fluxo", "indicadores")
 _HEADER_BLOCK_ROWS = 3
 
@@ -40,13 +43,20 @@ def build_trajetoria_dataset(
         source=source if source is not None else InepTrajetoriaSource(),
         reader=SpreadsheetReader(
             sheet_patterns=_SHEET_PATTERNS,
-            expected_labels=[spec.original for spec in specs],
+            # todos os nomes conhecidos de cada coluna, não só o atual: arquivos
+            # antigos usam os nomes antigos (inclusive na 2ª linha do cabeçalho)
+            expected_labels=[alias for spec in specs for alias in spec.aliases],
+            # metade das colunas do schema: uma linha qualquer não chega lá
+            min_header_matches=len(specs) // 2,
             header_block_rows=_HEADER_BLOCK_ROWS,
         ),
         transformer=TrajetoriaTransformer(specs, mapping.categorias),
         exporter=CsvExporter(),
-        config_fingerprint=mapping.fingerprint(),
+        # nomes das colunas + versão das regras de limpeza: mudou um dos dois,
+        # o CSV anterior não serve e o módulo é reprocessado do cache
+        config_fingerprint=f"{mapping.fingerprint()}-limpeza{CLEANING_VERSION}",
         previous_config_fingerprint=read_previous_fingerprint(_MODULE),
+        unique_key=_UNIQUE_KEY,
     )
     report = pipeline.run(years=years, force=force)
     _write_meta(report)

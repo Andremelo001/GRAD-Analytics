@@ -7,6 +7,7 @@ from app.core.config.column_mapping import ColumnMappingError
 from app.core.config.log import configure_logging
 from app.core.domain.pipelines.report import ModuleReport
 from app.core.domain.pipelines.schema import SchemaMappingError
+from app.core.infrastructure.readers.spreadsheet_reader import HeaderNotFoundError
 from app.modules.dashboard.application.use_cases.build_dashboard import build_dashboard
 from app.modules.qualidade.application.use_cases.build_qualidade_dataset import (
     build_qualidade_dataset,
@@ -54,6 +55,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         # Erro de edição no colunas_inep.json: mensagem direta, sem traceback,
         # pra quem editou o arquivo saber exatamente o que corrigir.
         logger.error("configuração de colunas inválida — {}", exc)
+        return 1
+    except HeaderNotFoundError as exc:
+        logger.error("cabeçalho não encontrado — {}", exc)
         return 1
 
 

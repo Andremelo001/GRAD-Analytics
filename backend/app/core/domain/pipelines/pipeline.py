@@ -9,6 +9,9 @@ from app.core.domain.interfaces.reader import Reader
 from app.core.domain.interfaces.transformer import Transformer
 from app.core.domain.pipelines.report import ModuleReport
 
+# Coluna auxiliar (removida antes de exportar): de qual arquivo veio a linha.
+_SOURCE_COL = "__arquivo_origem"
+
 
 class DataPipeline:
     """Orquestra os 4 estágios de um módulo: Extract -> Read -> Transform -> Load.
@@ -28,6 +31,7 @@ class DataPipeline:
         exporter: Exporter,
         config_fingerprint: str | None = None,
         previous_config_fingerprint: str | None = None,
+        unique_key: Sequence[str] = (),
     ) -> None:
         """Monta o pipeline de um módulo.
 
@@ -36,6 +40,12 @@ class DataPipeline:
         ``_meta.json``). Se diferirem, o CSV anterior não serve mais — foi
         gerado com outros nomes de coluna — e o módulo é reprocessado a partir
         dos arquivos em cache, mesmo sem nada novo na fonte.
+
+        ``unique_key``: colunas que identificam uma linha (ex.: curso + ano).
+        Depois de tirar as linhas idênticas, se a mesma chave ainda aparecer
+        com valores diferentes — o mesmo dado publicado em dois arquivos —,
+        fica a do arquivo mais recente (``year_label`` maior: "2015-2025" ganha
+        de "2015-2024") e a ocorrência vai pro relatório.
         """
         self._module = module
         self._source = source
@@ -43,6 +53,7 @@ class DataPipeline:
         self._transformer = transformer
         self._exporter = exporter
         self._config_fingerprint = config_fingerprint
+        self._unique_key = list(unique_key)
         self._config_changed = (
             config_fingerprint is not None
             and config_fingerprint != previous_config_fingerprint
@@ -76,7 +87,8 @@ class DataPipeline:
                 report.log_summary()
                 return report
             logger.info(
-                "module {} | colunas_inep.json mudou desde a última geração — "
+                "module {} | colunas_inep.json ou as regras de limpeza mudaram "
+                "desde a última geração — "
                 "reprocessando a partir dos arquivos em cache",
                 self._module,
             )
@@ -89,7 +101,7 @@ class DataPipeline:
             result = self._transformer.transform(raw_frame, raw)
             report.file_reports.append(result.report)
             if not result.frame.empty:
-                frames.append(result.frame)
+                frames.append(result.frame.assign(**{_SOURCE_COL: raw.year_label}))
 
         if not frames:
             logger.warning("pipeline sem dados | module={}", self._module)
@@ -97,9 +109,12 @@ class DataPipeline:
             return report
 
         combined = pd.concat(frames, ignore_index=True)
+        data_cols = [col for col in combined.columns if col != _SOURCE_COL]
         rows_before = len(combined)
-        combined = combined.drop_duplicates(ignore_index=True)
+        combined = combined.drop_duplicates(subset=data_cols, ignore_index=True)
         report.duplicates_removed = rows_before - len(combined)
+        combined, report.key_duplicates_removed = self._keep_newest_per_key(combined)
+        combined = combined.drop(columns=_SOURCE_COL)
         report.rows_final = len(combined)
         report.columns = [str(col) for col in combined.columns]
         report.output_path = self._exporter.export(combined, self._module)
@@ -112,3 +127,11 @@ class DataPipeline:
             report.output_path,
         )
         return report
+
+    def _keep_newest_per_key(self, frame: pd.DataFrame) -> tuple[pd.DataFrame, int]:
+        key = [col for col in self._unique_key if col in frame.columns]
+        if not key:
+            return frame, 0
+        newest_first = frame.sort_values(_SOURCE_COL, ascending=False, kind="stable")
+        kept = newest_first.drop_duplicates(subset=key, keep="first").sort_index()
+        return kept.reset_index(drop=True), len(frame) - len(kept)

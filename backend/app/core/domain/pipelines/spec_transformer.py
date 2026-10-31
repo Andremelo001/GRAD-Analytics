@@ -9,6 +9,12 @@ from app.core.domain.pipelines.report import FileReport
 from app.core.domain.value_objects.column_spec import ColumnSpec, DType
 from app.core.domain.value_objects.raw_file import RawFile
 
+# Versão das regras de limpeza (deste arquivo e dos transformers dos módulos).
+# Entra no hash que decide se o CSV anterior ainda serve (ver use cases): mudou
+# uma regra -> incremente aqui, e o próximo run reprocessa a partir do cache,
+# sem precisar de --force.
+CLEANING_VERSION = 4
+
 _NULL_TOKENS = {
     "",
     "-",
@@ -66,7 +72,10 @@ def _coerce(series: pd.Series, dtype: DType) -> pd.Series:
     numeric = pd.to_numeric(text, errors="coerce")
     if dtype == "float":
         return numeric.astype("Float64")
-    return numeric.astype("Float64").round().astype("Int64")
+    # inteiro com parte fracionária (3.7, ou "1,234" lido como 1.234) não é
+    # arredondado: vira inválido e a linha é descartada e contada (D4)
+    fractional = (numeric % 1 != 0).fillna(False)
+    return numeric.mask(fractional).astype("Float64").astype("Int64")
 
 
 def _find_match(spec: ColumnSpec, file_cols: Mapping[str, str]) -> str | None:
@@ -87,7 +96,12 @@ class SpecTransformer:
     - Token nulo (``-``, ``.``, vazio, ...) -> ``<NA>`` sem descartar a linha (D3).
       Em coluna numérica também ``SC`` e erro do Excel (``#NÚM!``, ...).
     - Decimal com vírgula inequívoco -> convertido para ponto antes de coagir.
+    - Inteiro com parte fracionária -> inválido (a linha é descartada), não
+      arredondado.
+    - ``zero_as_null``: colunas em que ``0`` quer dizer "não informado" (ex.:
+      código de município 0) -> ``<NA>``, sem descartar a linha.
     - Linha sem valor em alguma coluna de ``required_columns`` -> descartada.
+    - ``_normalize``: regras próprias do módulo (subclasses), depois das acima.
     - Para cada ``col`` em ``category_labels``: cria ``<col>_desc`` com o rótulo.
     """
 
@@ -96,10 +110,12 @@ class SpecTransformer:
         specs: Sequence[ColumnSpec],
         category_labels: Mapping[str, Mapping[int, str]] | None = None,
         required_columns: Sequence[str] = (),
+        zero_as_null: Sequence[str] = (),
     ) -> None:
         self._specs = list(specs)
         self._categories = dict(category_labels or {})
         self._required = list(required_columns)
+        self._zero_as_null = list(zero_as_null)
 
     def transform(self, frame: pd.DataFrame, raw: RawFile) -> TransformResult:
         report = FileReport(raw_file=raw, rows_in=len(frame))
@@ -108,8 +124,10 @@ class SpecTransformer:
         out = frame[list(rename)].rename(columns=rename)
 
         out = self._coerce_matched(out, matched_specs, report)
+        out = self._zeros_to_null(out)
         out = self._drop_missing_required(out, report)
-        out = self._decode_categories(out)
+        out = self._normalize(out)
+        out = self._decode_categories(out, report)
 
         out = out.reset_index(drop=True)
         report.rows_out = len(out)
@@ -165,6 +183,17 @@ class SpecTransformer:
         report.rows_dropped_bad_type = int(bad_mask.sum())
         return out.loc[~bad_mask] if report.rows_dropped_bad_type else out
 
+    def _zeros_to_null(self, out: pd.DataFrame) -> pd.DataFrame:
+        for col in self._zero_as_null:
+            if col in out.columns:
+                zero = out[col].astype("string").str.strip().eq("0").fillna(False)
+                out[col] = out[col].mask(zero)
+        return out
+
+    def _normalize(self, out: pd.DataFrame) -> pd.DataFrame:
+        """Gancho pra regras de limpeza de um módulo só (ex.: faixa do CPC)."""
+        return out
+
     def _drop_missing_required(
         self, out: pd.DataFrame, report: FileReport
     ) -> pd.DataFrame:
@@ -175,8 +204,14 @@ class SpecTransformer:
         report.rows_dropped_missing_key = rows_before - len(out)
         return out
 
-    def _decode_categories(self, out: pd.DataFrame) -> pd.DataFrame:
+    def _decode_categories(self, out: pd.DataFrame, report: FileReport) -> pd.DataFrame:
         for col, mapping in self._categories.items():
             if col in out.columns:
                 out[f"{col}_desc"] = out[col].map(mapping).astype("string")
+                # código novo do INEP sem rótulo em colunas_inep.json: o _desc
+                # fica vazio -> registrado pra REVISAR, não some calado
+                codes = out[col].dropna()
+                unmapped = sorted({int(c) for c in codes} - set(mapping))
+                if unmapped:
+                    report.categories_unmapped[col] = unmapped
         return out

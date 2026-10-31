@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-10-31T14:01:03+00:00",
+  "gerado_em": "2026-10-31T14:51:52+00:00",
   "escopo": {
     "codigo_ies": 583,
     "nome_ies": "UNIVERSIDADE FEDERAL DO CEARÁ",
@@ -732,11 +732,11 @@
   ],
   "fontes": {
     "qualidade": {
-      "gerado_em": "2026-10-31T14:00:47+00:00",
+      "gerado_em": "2026-10-31T14:45:11+00:00",
       "linhas": 67883
     },
     "trajetoria": {
-      "gerado_em": "2026-09-17T23:39:32+00:00",
+      "gerado_em": "2026-10-31T14:51:30+00:00",
       "linhas": 2731155
     }
   },
@@ -1503,7 +1503,7 @@
         "nome_curso": "ADMINISTRAÇÃO",
         "ano_qualidade": 2015,
         "cpc_continuo": null,
-        "cpc_faixa": "Curso não reconhecido até 31/12/2015",
+        "cpc_faixa": "SC",
         "conceito_enade_continuo": 2.9807205200195312,
         "ano_ingresso_referencia": null,
         "ano_referencia": null,
@@ -4439,7 +4439,7 @@
         "area_avaliacao": "ADMINISTRAÇÃO",
         "ano": 2015,
         "cpc_continuo": null,
-        "cpc_faixa": "Curso não reconhecido até 31/12/2015",
+        "cpc_faixa": "SC",
         "conceito_enade_continuo": 2.98072052,
         "n_concluintes_inscritos": 25,
         "n_concluintes_participantes": 9,
@@ -5258,7 +5258,7 @@
         "area_avaliacao": "DESIGN",
         "ano": 2015,
         "cpc_continuo": null,
-        "cpc_faixa": "Curso não reconhecido até 31/12/2015",
+        "cpc_faixa": "SC",
         "conceito_enade_continuo": 5.0,
         "n_concluintes_inscritos": 2,
         "n_concluintes_participantes": 2,
@@ -6307,7 +6307,7 @@
         "area_avaliacao": "ADMINISTRAÇÃO",
         "ano": 2015,
         "cpc_continuo": null,
-        "cpc_faixa": "Curso não reconhecido até 31/12/2015",
+        "cpc_faixa": "SC",
         "conceito_enade_continuo": 2.98072052,
         "formacao_geral": null,
         "componente_especifico": null,
@@ -108298,7 +108298,7 @@
       {
         "codigo_curso": 99252,
         "nome_curso": "ADMINISTRAÇÃO",
-        "cpc_faixa": "Curso não reconhecido até 31/12/2015",
+        "cpc_faixa": "SC",
         "conceito_enade_continuo": 2.9807205200195312,
         "taxa_conclusao_acumulada": null,
         "taxa_desistencia_acumulada": null,
@@ -109518,7 +109518,7 @@
         "area_avaliacao": "ADMINISTRAÇÃO",
         "ano": 2015,
         "cpc_continuo": null,
-        "cpc_faixa": "Curso não reconhecido até 31/12/2015",
+        "cpc_faixa": "SC",
         "conceito_enade_continuo": 2.98072052,
         "formacao_geral": null,
         "componente_especifico": null,
@@ -112253,7 +112253,7 @@
         "area_avaliacao": "ADMINISTRAÇÃO",
         "ano": 2015,
         "cpc_continuo": null,
-        "cpc_faixa": "Curso não reconhecido até 31/12/2015",
+        "cpc_faixa": "SC",
         "conceito_enade_continuo": 2.98072052,
         "n_concluintes_inscritos": 25,
         "n_concluintes_participantes": 9,
@@ -113072,7 +113072,7 @@
         "area_avaliacao": "DESIGN",
         "ano": 2015,
         "cpc_continuo": null,
-        "cpc_faixa": "Curso não reconhecido até 31/12/2015",
+        "cpc_faixa": "SC",
         "conceito_enade_continuo": 5.0,
         "n_concluintes_inscritos": 2,
         "n_concluintes_participantes": 2,
@@ -206463,12 +206463,8 @@
         "quantidade_cursos": 5
       },
       {
-        "cpc_faixa": "Curso não reconhecido até 31/12/2015",
-        "quantidade_cursos": 1
-      },
-      {
         "cpc_faixa": "SC",
-        "quantidade_cursos": 1
+        "quantidade_cursos": 2
       }
     ],
     "tendencia_ingressantes": [
@@ -223884,27 +223880,23 @@
         },
         {
           "cpc_faixa": "2",
-          "percentual_nacional": 9.7
+          "percentual_nacional": 9.6
         },
         {
           "cpc_faixa": "3",
-          "percentual_nacional": 48.2
+          "percentual_nacional": 47.9
         },
         {
           "cpc_faixa": "4",
-          "percentual_nacional": 33.5
+          "percentual_nacional": 33.4
         },
         {
           "cpc_faixa": "5",
           "percentual_nacional": 3.3
         },
         {
-          "cpc_faixa": "Curso não reconhecido até 31/12/2015",
-          "percentual_nacional": 0.3
-        },
-        {
           "cpc_faixa": "SC",
-          "percentual_nacional": 4.7
+          "percentual_nacional": 5.4
         }
       ]
     },
@@ -309126,7 +309118,7 @@
       {
         "tipo": "sem_cpc",
         "severidade": "atencao",
-        "mensagem": "34 curso(s) sem avaliação de CPC no ciclo atual.",
+        "mensagem": "35 curso(s) sem avaliação de CPC no ciclo atual.",
         "cursos": [
           "ECONOMIA DOMÉSTICA",
           "ESTATÍSTICA",
@@ -309139,6 +309131,7 @@
           "LETRAS - PORTUGUÊS E ITALIANO",
           "LETRAS - PORTUGUÊS E ALEMÃO",
           "LETRAS - PORTUGUÊS E FRANCÊS",
+          "ADMINISTRAÇÃO",
           "ENGENHARIA METALÚRGICA",
           "OCEANOGRAFIA",
           "ENGENHARIA DE TELEINFORMÁTICA",

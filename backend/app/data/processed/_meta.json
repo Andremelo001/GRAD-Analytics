@@ -41,44 +41,53 @@
       "cpc_faixa"
     ],
     "file": "qualidade.csv",
-    "generated_at": "2026-10-31T14:00:47+00:00",
-    "mapping_fingerprint": "1d3f8a114425a1a6",
+    "generated_at": "2026-10-31T15:10:31+00:00",
+    "mapping_fingerprint": "1d3f8a114425a1a6-limpeza4",
     "name": "qualidade",
     "review_items": [
       {
+        "categories_unmapped": {},
         "columns_missing_from_file": [],
         "columns_unmatched_in_file": [
           "Entidade Beneficiente de Assistência Social (CEBAS)"
         ],
         "file": "CPC_2023.xlsx",
+        "rows_dropped": 0,
         "year_label": "2023"
       },
       {
+        "categories_unmapped": {},
         "columns_missing_from_file": [],
         "columns_unmatched_in_file": [
           "Entidade Beneficiente de Assistência Social (CEBAS)"
         ],
         "file": "cpc_2022.xlsx",
+        "rows_dropped": 1,
         "year_label": "2022"
       },
       {
+        "categories_unmapped": {},
         "columns_missing_from_file": [],
         "columns_unmatched_in_file": [
           "Grau acadêmico",
           "Entidade Beneficiente de Assistência Social (CEBAS)"
         ],
         "file": "CPC_2021.xlsx",
+        "rows_dropped": 4,
         "year_label": "2021"
       },
       {
+        "categories_unmapped": {},
         "columns_missing_from_file": [],
         "columns_unmatched_in_file": [
           "Observação"
         ],
         "file": "resultados_cpc_2019.xlsx",
+        "rows_dropped": 0,
         "year_label": "2019"
       },
       {
+        "categories_unmapped": {},
         "columns_missing_from_file": [
           "nota_padronizada_fg",
           "nota_padronizada_ce"
@@ -88,9 +97,11 @@
           "Observação"
         ],
         "file": "resultado_cpc_2017.xlsx",
+        "rows_dropped": 0,
         "year_label": "2017"
       },
       {
+        "categories_unmapped": {},
         "columns_missing_from_file": [
           "nota_padronizada_fg",
           "nota_padronizada_ce"
@@ -100,9 +111,11 @@
           "Observação"
         ],
         "file": "Resultado_CPC_2016_portal_23_02_2018.xls",
+        "rows_dropped": 0,
         "year_label": "2016"
       },
       {
+        "categories_unmapped": {},
         "columns_missing_from_file": [
           "nota_padronizada_fg",
           "nota_padronizada_ce"
@@ -112,6 +125,7 @@
           "Obs"
         ],
         "file": "cpc_2015_portal_atualizado_03_10_2017.xls",
+        "rows_dropped": 0,
         "year_label": "2015"
       }
     ],
@@ -168,8 +182,8 @@
       "tp_modalidade_ensino_desc"
     ],
     "file": "trajetoria.csv.gz",
-    "generated_at": "2026-09-17T23:39:32+00:00",
-    "mapping_fingerprint": "7078507220be000b",
+    "generated_at": "2026-10-31T15:16:41+00:00",
+    "mapping_fingerprint": "7078507220be000b-limpeza4",
     "name": "trajetoria",
     "review_items": [],
     "review_needed": false,

@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-10-31T14:01:03+00:00",
+  "gerado_em": "2026-10-31T14:51:52+00:00",
   "escopo": {
     "codigo_ies": 583,
     "nome_ies": "UNIVERSIDADE FEDERAL DO CEARÁ",
@@ -67,11 +67,11 @@
   ],
   "fontes": {
     "qualidade": {
-      "gerado_em": "2026-10-31T14:00:47+00:00",
+      "gerado_em": "2026-10-31T14:45:11+00:00",
       "linhas": 67883
     },
     "trajetoria": {
-      "gerado_em": "2026-09-17T23:39:32+00:00",
+      "gerado_em": "2026-10-31T14:51:30+00:00",
       "linhas": 2731155
     }
   },
@@ -21355,7 +21355,7 @@
         },
         {
           "cpc_faixa": "3",
-          "percentual_nacional": 48.7
+          "percentual_nacional": 48.6
         },
         {
           "cpc_faixa": "4",
@@ -21366,12 +21366,8 @@
           "percentual_nacional": 3.5
         },
         {
-          "cpc_faixa": "Curso não reconhecido até 31/12/2015",
-          "percentual_nacional": 0.1
-        },
-        {
           "cpc_faixa": "SC",
-          "percentual_nacional": 3.7
+          "percentual_nacional": 3.8
         }
       ]
     },

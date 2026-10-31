@@ -62,3 +62,17 @@ def test_config_change_rechecks_unchanged_files():
         module="m", file_reports=[unchanged_with_gap, fixed], config_changed=True
     )
     assert len(module_report.review_items()) == 1
+
+
+def test_unmapped_category_code_needs_review():
+    report = FileReport(raw_file=_RAW, categories_unmapped={"tp_categoria": [8]})
+    assert report.needs_review() is True
+
+
+def test_many_dropped_rows_need_review_but_a_footer_does_not():
+    footer = FileReport(
+        raw_file=_RAW, rows_dropped_bad_type=3, rows_dropped_missing_key=1
+    )
+    assert footer.needs_review() is False
+    many = FileReport(raw_file=_RAW, rows_dropped_bad_type=179)
+    assert many.needs_review() is True

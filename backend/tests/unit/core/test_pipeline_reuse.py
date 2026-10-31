@@ -129,3 +129,37 @@ def test_missing_previous_fingerprint_counts_as_changed():
 
     assert report.reused is False
     assert exporter.export_calls == 1
+
+
+class _PerFileReader:
+    """Mesma chave (curso 1) nos dois arquivos, com valor diferente."""
+
+    def read(self, raw: RawFile) -> pd.DataFrame:
+        valor = 10 if raw.year_label == "2015-2024" else 20
+        return pd.DataFrame({"curso": [1, 2], "valor": [valor, 5]})
+
+
+class _CapturingExporter(_FakeExporter):
+    def export(self, frame: pd.DataFrame, name: str) -> Path:
+        self.frame = frame
+        return super().export(frame, name)
+
+
+def test_same_key_in_two_files_keeps_the_newest_file():
+    exporter = _CapturingExporter(existing=None)
+    older = replace(_RAW, year_label="2015-2024")
+    newer = replace(_RAW, year_label="2015-2025")
+    report = DataPipeline(
+        module="m",
+        source=_FakeSource([older, newer]),
+        reader=_PerFileReader(),
+        transformer=_FakeTransformer(),
+        exporter=exporter,
+        unique_key=("curso",),
+    ).run()
+
+    # curso 2 é idêntico nos dois -> some como duplicado exato; curso 1 difere
+    assert report.duplicates_removed == 1
+    assert report.key_duplicates_removed == 1
+    assert sorted(exporter.frame.itertuples(index=False)) == [(1, 20), (2, 5)]
+    assert list(exporter.frame.columns) == ["curso", "valor"]

@@ -85,7 +85,9 @@ class InepQualidadeSource:
     def _in_scope(self, year: int, wanted: set[int] | None) -> bool:
         if wanted is not None:
             return year in wanted
-        return self._min_year <= year <= self._max_year
+        if year < self._min_year:
+            return False
+        return self._max_year is None or year <= self._max_year
 
     @staticmethod
     def _year_of(label: str) -> int | None:

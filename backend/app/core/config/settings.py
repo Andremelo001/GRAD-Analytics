@@ -26,7 +26,8 @@ class Settings(BaseSettings):
     )
 
     qualidade_min_year: int = 2015
-    qualidade_max_year: int = 2025
+    # None = sem limite: um CPC novo (2026, 2027...) entra sozinho.
+    qualidade_max_year: int | None = None
 
     trajetoria_landing_url: str = (
         "https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/"

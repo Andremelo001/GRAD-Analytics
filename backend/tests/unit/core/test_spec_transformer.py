@@ -107,3 +107,33 @@ def test_sc_and_excel_errors_are_null_in_numeric_columns_only():
     assert result.frame["nota"].iloc[3] == 2.5
     # ...e na de texto "SC" continua sendo o dado
     assert result.frame["faixa"].tolist() == ["SC", "SC", "3", "4"]
+
+
+def test_fractional_value_in_int_column_drops_row_instead_of_rounding():
+    frame = pd.DataFrame({"Ano": ["2023", "2023.7"], "Código da IES": ["1", "2"]})
+    result = SpecTransformer(_SPECS, required_columns=("codigo_ies",)).transform(
+        frame, _RAW
+    )
+    assert result.report.rows_dropped_bad_type == 1
+    assert result.frame["codigo_ies"].tolist() == [1]
+
+
+def test_zero_as_null_keeps_row_and_clears_value():
+    frame = pd.DataFrame(
+        {"Categoria": ["0", "2"], "Faixa": ["0", "3"], "Código da IES": ["1", "2"]}
+    )
+    result = SpecTransformer(
+        _SPECS, required_columns=("codigo_ies",), zero_as_null=("cat", "faixa")
+    ).transform(frame, _RAW)
+    assert len(result.frame) == 2
+    assert result.frame["cat"].isna().tolist() == [True, False]
+    assert result.frame["faixa"].isna().tolist() == [True, False]
+
+
+def test_unmapped_category_code_is_reported():
+    frame = pd.DataFrame({"Categoria": ["1", "9"], "Código da IES": ["1", "2"]})
+    result = SpecTransformer(
+        _SPECS, _LABELS, required_columns=("codigo_ies",)
+    ).transform(frame, _RAW)
+    assert result.report.categories_unmapped == {"cat": [9]}
+    assert result.frame["cat_desc"].isna().tolist() == [False, True]
