@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-10-26T22:09:11+00:00",
+  "gerado_em": "2026-10-31T14:01:03+00:00",
   "escopo": {
     "codigo_ies": 583,
     "nome_ies": "UNIVERSIDADE FEDERAL DO CEARÁ",
@@ -46,8 +46,8 @@
   ],
   "fontes": {
     "qualidade": {
-      "gerado_em": "2026-09-11T17:35:30+00:00",
-      "linhas": 67703
+      "gerado_em": "2026-10-31T14:00:47+00:00",
+      "linhas": 67883
     },
     "trajetoria": {
       "gerado_em": "2026-09-17T23:39:32+00:00",
@@ -147,6 +147,27 @@
         "oportunidade_ampliacao": 3.71,
         "mestres": 3.666,
         "doutores": 2.222,
+        "regime_trabalho": 5.0
+      },
+      {
+        "codigo_curso": 1300426,
+        "nome_curso": "ENGENHARIA AMBIENTAL E SANITÁRIA",
+        "area_avaliacao": "ENGENHARIA AMBIENTAL",
+        "ano": 2019,
+        "cpc_continuo": null,
+        "cpc_faixa": "SC",
+        "conceito_enade_continuo": null,
+        "n_concluintes_inscritos": 1,
+        "n_concluintes_participantes": 0,
+        "taxa_participacao": 0.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": null,
+        "organizacao_didatico_pedagogica": null,
+        "infraestrutura": null,
+        "oportunidade_ampliacao": null,
+        "mestres": 3.874,
+        "doutores": 2.0,
         "regime_trabalho": 5.0
       },
       {
@@ -3322,6 +3343,27 @@
         "codigo_curso": 1300426,
         "nome_curso": "ENGENHARIA AMBIENTAL E SANITÁRIA",
         "area_avaliacao": "ENGENHARIA AMBIENTAL",
+        "ano": 2019,
+        "cpc_continuo": null,
+        "cpc_faixa": "SC",
+        "conceito_enade_continuo": null,
+        "n_concluintes_inscritos": 1,
+        "n_concluintes_participantes": 0,
+        "taxa_participacao": 0.0,
+        "formacao_geral": null,
+        "componente_especifico": null,
+        "idd": null,
+        "organizacao_didatico_pedagogica": null,
+        "infraestrutura": null,
+        "oportunidade_ampliacao": null,
+        "mestres": 3.874,
+        "doutores": 2.0,
+        "regime_trabalho": 5.0
+      },
+      {
+        "codigo_curso": 1300426,
+        "nome_curso": "ENGENHARIA AMBIENTAL E SANITÁRIA",
+        "area_avaliacao": "ENGENHARIA AMBIENTAL",
         "ano": 2023,
         "cpc_continuo": 3.751,
         "cpc_faixa": "4",
@@ -6234,6 +6276,21 @@
       },
       {
         "area_avaliacao": "ENGENHARIA AMBIENTAL",
+        "ano": 2019,
+        "formacao_geral": 2.41,
+        "componente_especifico": 2.45,
+        "idd": 2.44,
+        "organizacao_didatico_pedagogica": 2.81,
+        "infraestrutura": 3.22,
+        "oportunidade_ampliacao": 3.08,
+        "mestres": 4.17,
+        "doutores": 3.02,
+        "regime_trabalho": 4.16,
+        "conceito_enade_continuo": 2.44,
+        "quantidade_cursos_considerados": 292
+      },
+      {
+        "area_avaliacao": "ENGENHARIA AMBIENTAL",
         "ano": 2023,
         "formacao_geral": 2.48,
         "componente_especifico": 2.54,
@@ -6253,14 +6310,14 @@
         "formacao_geral": 2.39,
         "componente_especifico": 2.31,
         "idd": 2.61,
-        "organizacao_didatico_pedagogica": 2.98,
+        "organizacao_didatico_pedagogica": 2.97,
         "infraestrutura": 3.22,
         "oportunidade_ampliacao": 2.85,
-        "mestres": 3.9,
+        "mestres": 3.89,
         "doutores": 2.32,
-        "regime_trabalho": 3.95,
+        "regime_trabalho": 3.94,
         "conceito_enade_continuo": 2.33,
-        "quantidade_cursos_considerados": 726
+        "quantidade_cursos_considerados": 742
       },
       {
         "area_avaliacao": "ENGENHARIA CIVIL",
@@ -7160,15 +7217,15 @@
         },
         {
           "cpc_faixa": "2",
-          "percentual_nacional": 10.7
+          "percentual_nacional": 10.5
         },
         {
           "cpc_faixa": "3",
-          "percentual_nacional": 52.1
+          "percentual_nacional": 51.7
         },
         {
           "cpc_faixa": "4",
-          "percentual_nacional": 27.8
+          "percentual_nacional": 27.7
         },
         {
           "cpc_faixa": "5",
@@ -7176,7 +7233,7 @@
         },
         {
           "cpc_faixa": "SC",
-          "percentual_nacional": 5.7
+          "percentual_nacional": 6.4
         }
       ]
     },

@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-10-26T22:09:11+00:00",
+  "gerado_em": "2026-10-31T14:01:03+00:00",
   "escopo": {
     "codigo_ies": 583,
     "nome_ies": "UNIVERSIDADE FEDERAL DO CEARÁ",
@@ -732,8 +732,8 @@
   ],
   "fontes": {
     "qualidade": {
-      "gerado_em": "2026-09-11T17:35:30+00:00",
-      "linhas": 67703
+      "gerado_em": "2026-10-31T14:00:47+00:00",
+      "linhas": 67883
     },
     "trajetoria": {
       "gerado_em": "2026-09-17T23:39:32+00:00",
@@ -206563,8 +206563,8 @@
         "ano": 2022,
         "cpc_continuo_medio_nacional": 2.65,
         "quantidade_cursos_considerados": 1724,
-        "conceito_enade_medio_nacional": 2.32,
-        "quantidade_cursos_enade": 1804
+        "conceito_enade_medio_nacional": 2.31,
+        "quantidade_cursos_enade": 1805
       },
       {
         "area_avaliacao": "ADMINISTRAÇÃO PÚBLICA",
@@ -207631,11 +207631,11 @@
         "organizacao_didatico_pedagogica": 3.13,
         "infraestrutura": 3.18,
         "oportunidade_ampliacao": 3.02,
-        "mestres": 4.02,
+        "mestres": 4.01,
         "doutores": 2.02,
         "regime_trabalho": 3.96,
-        "conceito_enade_continuo": 2.32,
-        "quantidade_cursos_considerados": 1804
+        "conceito_enade_continuo": 2.31,
+        "quantidade_cursos_considerados": 1805
       },
       {
         "area_avaliacao": "ADMINISTRAÇÃO PÚBLICA",
@@ -207676,11 +207676,11 @@
         "organizacao_didatico_pedagogica": 2.84,
         "infraestrutura": 3.02,
         "oportunidade_ampliacao": 2.76,
-        "mestres": 3.98,
-        "doutores": 3.29,
-        "regime_trabalho": 4.3,
+        "mestres": 3.97,
+        "doutores": 3.28,
+        "regime_trabalho": 4.29,
         "conceito_enade_continuo": 2.69,
-        "quantidade_cursos_considerados": 297
+        "quantidade_cursos_considerados": 299
       },
       {
         "area_avaliacao": "AGRONOMIA",
@@ -207725,7 +207725,7 @@
         "doutores": 2.17,
         "regime_trabalho": 3.88,
         "conceito_enade_continuo": 2.32,
-        "quantidade_cursos_considerados": 398
+        "quantidade_cursos_considerados": 400
       },
       {
         "area_avaliacao": "ARQUITETURA E URBANISMO",
@@ -208095,12 +208095,12 @@
         "idd": 2.53,
         "organizacao_didatico_pedagogica": 3.27,
         "infraestrutura": 3.27,
-        "oportunidade_ampliacao": 3.24,
-        "mestres": 4.0,
-        "doutores": 2.46,
+        "oportunidade_ampliacao": 3.23,
+        "mestres": 3.98,
+        "doutores": 2.44,
         "regime_trabalho": 3.92,
         "conceito_enade_continuo": 2.51,
-        "quantidade_cursos_considerados": 501
+        "quantidade_cursos_considerados": 508
       },
       {
         "area_avaliacao": "EDUCAÇÃO FÍSICA (BACHARELADO)",
@@ -208172,10 +208172,10 @@
         "infraestrutura": 3.39,
         "oportunidade_ampliacao": 3.23,
         "mestres": 3.83,
-        "doutores": 2.31,
+        "doutores": 2.3,
         "regime_trabalho": 4.01,
         "conceito_enade_continuo": 2.21,
-        "quantidade_cursos_considerados": 793
+        "quantidade_cursos_considerados": 800
       },
       {
         "area_avaliacao": "ENFERMAGEM",
@@ -208228,14 +208228,14 @@
         "formacao_geral": 2.41,
         "componente_especifico": 2.45,
         "idd": 2.44,
-        "organizacao_didatico_pedagogica": 2.8,
+        "organizacao_didatico_pedagogica": 2.81,
         "infraestrutura": 3.22,
         "oportunidade_ampliacao": 3.08,
-        "mestres": 4.19,
-        "doutores": 3.08,
-        "regime_trabalho": 4.19,
+        "mestres": 4.17,
+        "doutores": 3.02,
+        "regime_trabalho": 4.16,
         "conceito_enade_continuo": 2.44,
-        "quantidade_cursos_considerados": 277
+        "quantidade_cursos_considerados": 292
       },
       {
         "area_avaliacao": "ENGENHARIA AMBIENTAL",
@@ -208273,14 +208273,14 @@
         "formacao_geral": 2.39,
         "componente_especifico": 2.31,
         "idd": 2.61,
-        "organizacao_didatico_pedagogica": 2.98,
+        "organizacao_didatico_pedagogica": 2.97,
         "infraestrutura": 3.22,
         "oportunidade_ampliacao": 2.85,
-        "mestres": 3.9,
+        "mestres": 3.89,
         "doutores": 2.32,
-        "regime_trabalho": 3.95,
+        "regime_trabalho": 3.94,
         "conceito_enade_continuo": 2.33,
-        "quantidade_cursos_considerados": 726
+        "quantidade_cursos_considerados": 742
       },
       {
         "area_avaliacao": "ENGENHARIA CIVIL",
@@ -208322,10 +208322,10 @@
         "infraestrutura": 3.07,
         "oportunidade_ampliacao": 3.29,
         "mestres": 4.02,
-        "doutores": 2.81,
-        "regime_trabalho": 4.06,
+        "doutores": 2.8,
+        "regime_trabalho": 4.08,
         "conceito_enade_continuo": 2.1,
-        "quantidade_cursos_considerados": 172
+        "quantidade_cursos_considerados": 178
       },
       {
         "area_avaliacao": "ENGENHARIA DE ALIMENTOS",
@@ -208348,14 +208348,14 @@
         "formacao_geral": 2.94,
         "componente_especifico": 2.5,
         "idd": 2.6,
-        "organizacao_didatico_pedagogica": 2.63,
-        "infraestrutura": 2.7,
-        "oportunidade_ampliacao": 2.89,
-        "mestres": 4.08,
-        "doutores": 3.3,
-        "regime_trabalho": 4.29,
+        "organizacao_didatico_pedagogica": 2.6,
+        "infraestrutura": 2.68,
+        "oportunidade_ampliacao": 2.87,
+        "mestres": 4.07,
+        "doutores": 3.29,
+        "regime_trabalho": 4.3,
         "conceito_enade_continuo": 2.61,
-        "quantidade_cursos_considerados": 82
+        "quantidade_cursos_considerados": 83
       },
       {
         "area_avaliacao": "ENGENHARIA DE ALIMENTOS",
@@ -208443,9 +208443,9 @@
         "oportunidade_ampliacao": 3.07,
         "mestres": 4.0,
         "doutores": 2.76,
-        "regime_trabalho": 4.01,
+        "regime_trabalho": 4.0,
         "conceito_enade_continuo": 2.15,
-        "quantidade_cursos_considerados": 441
+        "quantidade_cursos_considerados": 450
       },
       {
         "area_avaliacao": "ENGENHARIA ELÉTRICA",
@@ -208488,9 +208488,9 @@
         "oportunidade_ampliacao": 3.05,
         "mestres": 3.86,
         "doutores": 2.76,
-        "regime_trabalho": 3.95,
+        "regime_trabalho": 3.93,
         "conceito_enade_continuo": 2.06,
-        "quantidade_cursos_considerados": 373
+        "quantidade_cursos_considerados": 385
       },
       {
         "area_avaliacao": "ENGENHARIA MECÂNICA",
@@ -208533,9 +208533,9 @@
         "oportunidade_ampliacao": 3.06,
         "mestres": 4.12,
         "doutores": 3.29,
-        "regime_trabalho": 4.05,
+        "regime_trabalho": 4.06,
         "conceito_enade_continuo": 2.2,
-        "quantidade_cursos_considerados": 182
+        "quantidade_cursos_considerados": 185
       },
       {
         "area_avaliacao": "ENGENHARIA QUÍMICA",
@@ -208576,11 +208576,11 @@
         "organizacao_didatico_pedagogica": 3.13,
         "infraestrutura": 3.39,
         "oportunidade_ampliacao": 3.14,
-        "mestres": 4.02,
-        "doutores": 2.83,
+        "mestres": 4.01,
+        "doutores": 2.82,
         "regime_trabalho": 4.03,
         "conceito_enade_continuo": 2.58,
-        "quantidade_cursos_considerados": 429
+        "quantidade_cursos_considerados": 431
       },
       {
         "area_avaliacao": "FARMÁCIA",
@@ -208681,11 +208681,11 @@
         "organizacao_didatico_pedagogica": 3.43,
         "infraestrutura": 3.45,
         "oportunidade_ampliacao": 3.39,
-        "mestres": 3.91,
-        "doutores": 2.54,
-        "regime_trabalho": 4.03,
+        "mestres": 3.88,
+        "doutores": 2.51,
+        "regime_trabalho": 4.01,
         "conceito_enade_continuo": 2.43,
-        "quantidade_cursos_considerados": 517
+        "quantidade_cursos_considerados": 525
       },
       {
         "area_avaliacao": "FISIOTERAPIA",
@@ -209180,7 +209180,7 @@
         "doutores": 2.89,
         "regime_trabalho": 3.99,
         "conceito_enade_continuo": 2.61,
-        "quantidade_cursos_considerados": 237
+        "quantidade_cursos_considerados": 238
       },
       {
         "area_avaliacao": "ODONTOLOGIA",
@@ -209458,14 +209458,14 @@
         "formacao_geral": 2.63,
         "componente_especifico": 2.29,
         "idd": 2.8,
-        "organizacao_didatico_pedagogica": 2.66,
-        "infraestrutura": 2.88,
+        "organizacao_didatico_pedagogica": 2.65,
+        "infraestrutura": 2.87,
         "oportunidade_ampliacao": 2.54,
-        "mestres": 4.13,
-        "doutores": 3.36,
+        "mestres": 4.11,
+        "doutores": 3.35,
         "regime_trabalho": 4.56,
         "conceito_enade_continuo": 2.37,
-        "quantidade_cursos_considerados": 96
+        "quantidade_cursos_considerados": 97
       },
       {
         "area_avaliacao": "ZOOTECNIA",
@@ -223888,11 +223888,11 @@
         },
         {
           "cpc_faixa": "3",
-          "percentual_nacional": 48.3
+          "percentual_nacional": 48.2
         },
         {
           "cpc_faixa": "4",
-          "percentual_nacional": 33.6
+          "percentual_nacional": 33.5
         },
         {
           "cpc_faixa": "5",
@@ -223904,7 +223904,7 @@
         },
         {
           "cpc_faixa": "SC",
-          "percentual_nacional": 4.4
+          "percentual_nacional": 4.7
         }
       ]
     },

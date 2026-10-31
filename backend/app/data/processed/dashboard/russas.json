@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-10-26T22:09:11+00:00",
+  "gerado_em": "2026-10-31T14:01:03+00:00",
   "escopo": {
     "codigo_ies": 583,
     "nome_ies": "UNIVERSIDADE FEDERAL DO CEARÁ",
@@ -46,8 +46,8 @@
   ],
   "fontes": {
     "qualidade": {
-      "gerado_em": "2026-09-11T17:35:30+00:00",
-      "linhas": 67703
+      "gerado_em": "2026-10-31T14:00:47+00:00",
+      "linhas": 67883
     },
     "trajetoria": {
       "gerado_em": "2026-09-17T23:39:32+00:00",
@@ -6565,14 +6565,14 @@
         "formacao_geral": 2.39,
         "componente_especifico": 2.31,
         "idd": 2.61,
-        "organizacao_didatico_pedagogica": 2.98,
+        "organizacao_didatico_pedagogica": 2.97,
         "infraestrutura": 3.22,
         "oportunidade_ampliacao": 2.85,
-        "mestres": 3.9,
+        "mestres": 3.89,
         "doutores": 2.32,
-        "regime_trabalho": 3.95,
+        "regime_trabalho": 3.94,
         "conceito_enade_continuo": 2.33,
-        "quantidade_cursos_considerados": 726
+        "quantidade_cursos_considerados": 742
       },
       {
         "area_avaliacao": "ENGENHARIA CIVIL",
@@ -6599,10 +6599,10 @@
         "infraestrutura": 3.21,
         "oportunidade_ampliacao": 2.99,
         "mestres": 3.98,
-        "doutores": 2.44,
-        "regime_trabalho": 3.95,
+        "doutores": 2.45,
+        "regime_trabalho": 3.94,
         "conceito_enade_continuo": 2.25,
-        "quantidade_cursos_considerados": 634
+        "quantidade_cursos_considerados": 654
       },
       {
         "area_avaliacao": "ENGENHARIA DE PRODUÇÃO",
@@ -6630,9 +6630,9 @@
         "oportunidade_ampliacao": 3.05,
         "mestres": 3.86,
         "doutores": 2.76,
-        "regime_trabalho": 3.95,
+        "regime_trabalho": 3.93,
         "conceito_enade_continuo": 2.06,
-        "quantidade_cursos_considerados": 373
+        "quantidade_cursos_considerados": 385
       },
       {
         "area_avaliacao": "ENGENHARIA MECÂNICA",
@@ -7517,15 +7517,15 @@
         },
         {
           "cpc_faixa": "2",
-          "percentual_nacional": 10.0
+          "percentual_nacional": 9.9
         },
         {
           "cpc_faixa": "3",
-          "percentual_nacional": 54.5
+          "percentual_nacional": 54.1
         },
         {
           "cpc_faixa": "4",
-          "percentual_nacional": 26.7
+          "percentual_nacional": 26.6
         },
         {
           "cpc_faixa": "5",
@@ -7533,7 +7533,7 @@
         },
         {
           "cpc_faixa": "SC",
-          "percentual_nacional": 4.8
+          "percentual_nacional": 5.4
         }
       ]
     },

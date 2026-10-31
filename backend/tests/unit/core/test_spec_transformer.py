@@ -88,3 +88,22 @@ def test_required_columns_drop_rows_without_key():
 def test_category_decode():
     result = _transform()
     assert result.frame["cat_desc"].tolist() == ["Um", "Dois"]
+
+
+def test_sc_and_excel_errors_are_null_in_numeric_columns_only():
+    frame = pd.DataFrame(
+        {
+            "Nota": ["SC", "#NÚM!", "#DIV/0!", "2,5"],
+            "Faixa": ["SC", "SC", "3", "4"],
+            "Código da IES": ["1", "2", "3", "4"],
+        }
+    )
+    result = SpecTransformer(_SPECS, required_columns=("codigo_ies",)).transform(
+        frame, _RAW
+    )
+    # nenhuma linha some: na coluna numérica "SC"/erro do Excel viram nulo...
+    assert result.report.rows_dropped_bad_type == 0
+    assert result.frame["nota"].isna().tolist() == [True, True, True, False]
+    assert result.frame["nota"].iloc[3] == 2.5
+    # ...e na de texto "SC" continua sendo o dado
+    assert result.frame["faixa"].tolist() == ["SC", "SC", "3", "4"]

@@ -1,11 +1,11 @@
 {
-  "gerado_em": "2026-10-26T22:09:11+00:00",
+  "gerado_em": "2026-10-31T14:01:03+00:00",
   "areas": [
     {
       "slug": "administracao",
       "area_avaliacao": "ADMINISTRAÇÃO",
       "ano": 2022,
-      "total_cursos": 1804,
+      "total_cursos": 1805,
       "arquivo": "administracao.json"
     },
     {
@@ -138,7 +138,7 @@
       "slug": "engenharia-da-computacao",
       "area_avaliacao": "ENGENHARIA DA COMPUTAÇÃO",
       "ano": 2019,
-      "total_cursos": 172,
+      "total_cursos": 178,
       "arquivo": "engenharia-da-computacao.json"
     },
     {

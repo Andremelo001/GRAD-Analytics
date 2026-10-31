@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-10-26T22:09:11+00:00",
+  "gerado_em": "2026-10-31T14:01:03+00:00",
   "escopo": {
     "codigo_ies": 583,
     "nome_ies": "UNIVERSIDADE FEDERAL DO CEARÁ",
@@ -67,8 +67,8 @@
   ],
   "fontes": {
     "qualidade": {
-      "gerado_em": "2026-09-11T17:35:30+00:00",
-      "linhas": 67703
+      "gerado_em": "2026-10-31T14:00:47+00:00",
+      "linhas": 67883
     },
     "trajetoria": {
       "gerado_em": "2026-09-17T23:39:32+00:00",
@@ -19609,10 +19609,10 @@
         "infraestrutura": 3.07,
         "oportunidade_ampliacao": 3.29,
         "mestres": 4.02,
-        "doutores": 2.81,
-        "regime_trabalho": 4.06,
+        "doutores": 2.8,
+        "regime_trabalho": 4.08,
         "conceito_enade_continuo": 2.1,
-        "quantidade_cursos_considerados": 172
+        "quantidade_cursos_considerados": 178
       },
       {
         "area_avaliacao": "ENGENHARIA DE COMPUTAÇÃO I",
@@ -19655,9 +19655,9 @@
         "oportunidade_ampliacao": 3.07,
         "mestres": 4.0,
         "doutores": 2.76,
-        "regime_trabalho": 4.01,
+        "regime_trabalho": 4.0,
         "conceito_enade_continuo": 2.15,
-        "quantidade_cursos_considerados": 441
+        "quantidade_cursos_considerados": 450
       },
       {
         "area_avaliacao": "ENGENHARIA ELÉTRICA",
@@ -19777,7 +19777,7 @@
         "doutores": 2.89,
         "regime_trabalho": 3.99,
         "conceito_enade_continuo": 2.61,
-        "quantidade_cursos_considerados": 237
+        "quantidade_cursos_considerados": 238
       },
       {
         "area_avaliacao": "ODONTOLOGIA",
@@ -21351,11 +21351,11 @@
         },
         {
           "cpc_faixa": "2",
-          "percentual_nacional": 9.9
+          "percentual_nacional": 9.8
         },
         {
           "cpc_faixa": "3",
-          "percentual_nacional": 48.9
+          "percentual_nacional": 48.7
         },
         {
           "cpc_faixa": "4",
@@ -21371,7 +21371,7 @@
         },
         {
           "cpc_faixa": "SC",
-          "percentual_nacional": 3.3
+          "percentual_nacional": 3.7
         }
       ]
     },

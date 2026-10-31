@@ -24,9 +24,25 @@ _NULL_TOKENS = {
 }
 
 
-def _is_null_token(series: pd.Series) -> pd.Series:
+# Só em coluna numérica: o INEP escreve "SC" (sem conceito) numa coluna de
+# número em vez de deixá-la vazia, e erro de fórmula do
+# Excel (#NÚM!, #DIV/0!...) vaza pra planilha. Os dois querem dizer "sem
+# valor" — não linha corrompida. Em coluna de texto "SC" é dado (CPC Faixa) e
+# fica como está.
+_NUMERIC_NULL_TOKENS = {"sc"}
+_EXCEL_ERROR_PREFIX = "#"
+
+
+def _is_null_token(series: pd.Series, *, numeric: bool = False) -> pd.Series:
     text = series.astype("string").str.strip().str.casefold()
-    return series.isna() | text.isin(_NULL_TOKENS)
+    null = series.isna() | text.isin(_NULL_TOKENS)
+    if numeric:
+        null = (
+            null
+            | text.isin(_NUMERIC_NULL_TOKENS)
+            | text.str.startswith(_EXCEL_ERROR_PREFIX).fillna(False)
+        )
+    return null
 
 
 def _dot_decimal(text: pd.Series) -> pd.Series:
@@ -41,7 +57,9 @@ def _dot_decimal(text: pd.Series) -> pd.Series:
 
 
 def _coerce(series: pd.Series, dtype: DType) -> pd.Series:
-    cleaned = series.mask(_is_null_token(series), other=pd.NA)
+    cleaned = series.mask(
+        _is_null_token(series, numeric=dtype != "string"), other=pd.NA
+    )
     if dtype == "string":
         return cleaned.astype("string").str.strip()
     text = _dot_decimal(cleaned.astype("string"))
@@ -67,6 +85,7 @@ class SpecTransformer:
     - ``spec`` sem coluna no arquivo -> registrada como ausente.
     - Valor não-nulo que não converte -> a linha é descartada e contada (D4).
     - Token nulo (``-``, ``.``, vazio, ...) -> ``<NA>`` sem descartar a linha (D3).
+      Em coluna numérica também ``SC`` e erro do Excel (``#NÚM!``, ...).
     - Decimal com vírgula inequívoco -> convertido para ponto antes de coagir.
     - Linha sem valor em alguma coluna de ``required_columns`` -> descartada.
     - Para cada ``col`` em ``category_labels``: cria ``<col>_desc`` com o rótulo.
@@ -139,7 +158,7 @@ class SpecTransformer:
         for spec in matched_specs:
             source = out[spec.normalized]
             coerced = _coerce(source, spec.dtype)
-            meaningful = ~_is_null_token(source)
+            meaningful = ~_is_null_token(source, numeric=spec.dtype != "string")
             bad_mask = bad_mask | (coerced.isna() & meaningful)
             out[spec.normalized] = coerced
 

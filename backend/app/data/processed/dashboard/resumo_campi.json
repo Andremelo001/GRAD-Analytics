@@ -1,5 +1,5 @@
 {
-  "gerado_em": "2026-10-26T22:09:11+00:00",
+  "gerado_em": "2026-10-31T14:01:03+00:00",
   "campi": [
     {
       "slug": "crateus",
@@ -111,6 +111,11 @@
             "regime_trabalho": 5.0
           },
           "historico": [
+            {
+              "ano": 2019,
+              "cpc_continuo": null,
+              "cpc_faixa": "SC"
+            },
             {
               "ano": 2023,
               "cpc_continuo": 3.751,

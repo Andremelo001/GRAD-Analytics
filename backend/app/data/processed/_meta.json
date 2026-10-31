@@ -41,7 +41,7 @@
       "cpc_faixa"
     ],
     "file": "qualidade.csv",
-    "generated_at": "2026-09-11T17:35:30+00:00",
+    "generated_at": "2026-10-31T14:00:47+00:00",
     "mapping_fingerprint": "1d3f8a114425a1a6",
     "name": "qualidade",
     "review_items": [
@@ -116,7 +116,7 @@
       }
     ],
     "review_needed": true,
-    "rows": 67703,
+    "rows": 67883,
     "source_urls": [
       "https://download.inep.gov.br/educacao_superior/igc_cpc/2018/portal_CPC_edicao2018.xlsx",
       "https://download.inep.gov.br/educacao_superior/igc_cpc/2018/resultado_cpc_2017.xlsx",
