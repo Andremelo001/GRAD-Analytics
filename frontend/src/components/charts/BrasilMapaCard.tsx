@@ -125,13 +125,13 @@ export function BrasilMapaCard({
 
     const comOferta = [...estados.values()].filter((e) => e.quantidade_cursos > 0);
     const total = comOferta.reduce((sum, e) => sum + e.quantidade_cursos, 0);
-    const ufCampus = item?.sigla_uf_campus ?? null;
-    const campus = ufCampus ? estados.get(ufCampus) : undefined;
-    const posicao = campus
-        ? comOferta.filter((e) => e.quantidade_cursos > campus.quantidade_cursos)
+    const ufUnidade = item?.sigla_uf_unidade ?? null;
+    const unidade = ufUnidade ? estados.get(ufUnidade) : undefined;
+    const posicao = unidade
+        ? comOferta.filter((e) => e.quantidade_cursos > unidade.quantidade_cursos)
               .length + 1
         : null;
-    const pino = useMemo(() => centroid(ufCampus), [ufCampus]);
+    const pino = useMemo(() => centroid(ufUnidade), [ufUnidade]);
     const nomeCurso = toTitleCase(
         cursos.find((c) => c.codigo_curso === codigo)?.nome_curso ?? ""
     );
@@ -162,7 +162,7 @@ export function BrasilMapaCard({
             // Qualidade
             fontes={["trajetoria", "qualidade"]}
             tituloInfo="Presença no Brasil"
-            info={`Onde o curso escolhido é oferecido no Brasil: cada estado pintado pela quantidade de cursos presenciais da mesma área${item ? ` (${item.nome_cine_area_geral ?? "—"}) com turma em ${item.ano_ingresso ?? "—"}` : ""}. O ponto marca a UFC na cidade escolhida.${item ? ` CPC: avaliação de ${item.ano_cpc ?? "—"}.` : ""}`}
+            info={`Onde o curso escolhido é oferecido no Brasil: cada estado pintado pela quantidade de cursos presenciais da mesma área${item ? ` (${item.nome_cine_area_geral ?? "—"}) com turma em ${item.ano_ingresso ?? "—"}` : ""}. O ponto marca a UFC na cidade da unidade escolhida.${item ? ` CPC: avaliação de ${item.ano_cpc ?? "—"}.` : ""}`}
         >
             <div className="flex items-center justify-between gap-2">
                 <p className="flex shrink-0 items-center gap-1.5 text-[14px] font-medium whitespace-nowrap">
@@ -179,12 +179,12 @@ export function BrasilMapaCard({
                 </span>
             </div>
             <p className="mt-3 truncate text-[13px] leading-snug">
-                {campus && campus.quantidade_cursos > 0 && posicao !== null ? (
+                {unidade && unidade.quantidade_cursos > 0 && posicao !== null ? (
                     <>
-                        {ufCampus}:{" "}
+                        {ufUnidade}:{" "}
                         <span className="text-olive-text font-semibold">
-                            {formatInteger(campus.quantidade_cursos)}{" "}
-                            {campus.quantidade_cursos === 1 ? "curso" : "cursos"}
+                            {formatInteger(unidade.quantidade_cursos)}{" "}
+                            {unidade.quantidade_cursos === 1 ? "curso" : "cursos"}
                         </span>{" "}
                         | {posicao}º estado com mais cursos
                     </>
@@ -256,7 +256,7 @@ export function BrasilMapaCard({
             </div>
 
             {/* Legenda em duas linhas fixas (faixas em cima, "sem oferta" e
-                campus embaixo): o nº de faixas muda com o curso (1 a 4) e não
+                unidade embaixo): o nº de faixas muda com o curso (1 a 4) e não
                 pode mudar a altura do card. */}
             <div className="text-text-secondary mt-auto flex shrink-0 flex-col items-center gap-1.5 pt-4 text-[11px]">
                 <ul className="flex h-4 items-center gap-3 whitespace-nowrap">

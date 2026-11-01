@@ -11,8 +11,8 @@ export interface AreaCarregada {
     cursos: CursoArea[];
 }
 
-// Cache do módulo (sobrevive à troca de sub-aba e de campus): cada área é
-// compartilhada por todos os campi e só é baixada uma vez.
+// Cache do módulo (sobrevive à troca de sub-aba e de unidade): cada área é
+// compartilhada por todas as unidades e só é baixada uma vez.
 let indexPromise: Promise<AreaIndex> | null = null;
 const areas = new Map<string, Promise<AreaCarregada>>();
 

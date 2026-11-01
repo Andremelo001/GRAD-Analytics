@@ -14,14 +14,17 @@ tomar decisões.
 
 ## O que dá para ver no painel
 
-O painel mostra uma cidade onde a UFC tem cursos por vez (Crateús,
-Fortaleza, Quixadá, Russas ou Sobral), escolhida no seletor de cidade do
-topo. Fortaleza junta todos os campi da capital. São três abas:
+O painel mostra uma unidade acadêmica da UFC por vez, escolhida no seletor de unidade do
+topo. As unidades são as do SIGAA da UFC: os centros, faculdades e institutos de
+Fortaleza (como o CCA - Centro de Ciências Agrárias ou o CH - Centro de
+Humanidades) e os campi do interior (Crateús, Quixadá, Russas e Sobral). No
+seletor, cada unidade aparece com o nome do SIGAA e, embaixo, a cidade. São
+três abas:
 
 - **Início**: um resumo rápido, numa página só, em três partes (a barra de
   cima leva a cada uma):
     - **Ingresso e conclusão**: quantos alunos entram e quantos se formam a
-      cada ano, em todos os cursos da cidade ou num curso escolhido, comparados com a média do
+      cada ano, em todos os cursos da unidade ou num curso escolhido, comparados com a média do
       país.
     - **Qualidade**: onde o curso existe no Brasil e a nota dele (o CPC ou o
       Conceito Enade) ao longo dos anos, comparada com a média do país.
@@ -39,7 +42,7 @@ topo. Fortaleza junta todos os campi da capital. São três abas:
     - **Mapa**: o mesmo curso pelo Brasil, estado por estado; clicando num
       estado aparecem as cidades, a comparação do estado com o seu curso e os
       cursos com as melhores notas, com a posição do seu curso entre eles.
-    - **Comparações**: duas cidades da UFC lado a lado, ou um curso da cidade
+    - **Comparações**: duas unidades da UFC lado a lado, ou um curso da unidade
       contra qualquer curso da mesma área no Brasil.
 - **Trajetória dos estudantes**: o caminho dos alunos desde a entrada, com as
   mesmas quatro partes:
@@ -52,7 +55,7 @@ topo. Fortaleza junta todos os campi da capital. São três abas:
       prazo.
     - **Mapa**: a taxa de permanência, de conclusão ou de desistência do
       mesmo curso pelo Brasil, estado por estado, com a posição do seu curso.
-    - **Comparações**: duas cidades da UFC lado a lado, ou um curso da cidade
+    - **Comparações**: duas unidades da UFC lado a lado, ou um curso da unidade
       contra qualquer curso da mesma área no Brasil.
 
 Em todas as partes, cada curso é comparado com a **média dos cursos da mesma
@@ -61,15 +64,22 @@ qual é o número.
 
 Outros recursos:
 
-- **Busca por curso**: no topo, procura cursos de todas as cidades. Escolha
+- **Guia do painel**: no primeiro acesso, um guia rápido abre sozinho no
+  centro da tela, em cards numerados com ilustrações animadas: o que é o
+  painel, como escolher a unidade, o que tem em cada aba, as buscas, as
+  comparações e as dicas.
+  Passe pelos cards com as setas dos lados (ou ← → no teclado). Pra ver de
+  novo, clique no **i** ao lado da busca, no topo.
+
+- **Busca por curso**: no topo, procura cursos de todas as unidades. Escolha
   se quer abrir o curso em Qualidade ou em Trajetória; se ele for de outra
-  cidade, o painel troca de cidade sozinho.
+  unidade, o painel troca de unidade sozinho.
 - **De onde vem cada número**: o ícone **i** no canto de cada card explica o
   que ele mostra e traz o link para a base do INEP de onde vieram os dados.
 - **Ampliar um card**: clique num card para vê-lo maior, no centro da tela
   (Esc ou o X fecham).
 - **Configurações** (a engrenagem no topo): tema claro, escuro ou automático;
-  a cidade em que o painel abre; e **cores acessíveis**, em azul e laranja,
+  a unidade em que o painel abre; e **cores acessíveis**, em azul e laranja,
   para quem tem daltonismo.
 
 ## Modo apresentação
@@ -89,8 +99,8 @@ as abas e a barra de endereço.
 A faixa do topo sobe até sumir, os cards sobem junto e a página volta para o
 começo, para a apresentação começar pelos primeiros gráficos. No lugar da
 faixa aparece uma barra fina, acima dos cards, com a frase "Acompanhe os
-indicadores da graduação da UFC em …", o **seletor de cidade** e o logo:
-dá para trocar de cidade sem sair da apresentação. As partes de cada aba
+indicadores da graduação da UFC na unidade …", o **seletor de unidade** e o
+logo: dá para trocar de unidade sem sair da apresentação. As partes de cada aba
 (por exemplo, Visão geral, Por curso, Mapa e Comparações) aparecem logo
 abaixo dessa barra, para navegar entre elas durante a apresentação.
 
@@ -107,7 +117,9 @@ sai da tela cheia.
 
 Todos os números vêm de dados **públicos e oficiais** do **INEP**, o instituto
 do Ministério da Educação responsável pelas avaliações e estatísticas da
-educação superior no Brasil:
+educação superior no Brasil. A divisão por unidade vem da lista pública de
+cursos de graduação do **SIGAA da UFC**, já que o INEP só informa a cidade de
+cada curso. Os dados do INEP são:
 
 - **Indicadores de Qualidade da Educação Superior**, com as notas dos cursos.
 - **Indicadores de Trajetória da Educação Superior**, com o caminho dos alunos
@@ -121,8 +133,9 @@ atualiza o painel.
 
 O projeto tem duas partes:
 
-- **Coleta e organização dos dados**: baixa as planilhas do INEP, limpa as
-  informações e separa só o que interessa a cada cidade.
+- **Coleta e organização dos dados**: baixa as planilhas do INEP e a lista
+  de cursos de cada unidade do SIGAA da UFC, limpa as informações e separa só
+  o que interessa a cada unidade.
 - **Site do painel**: a página que você acessa pelo navegador, com os gráficos.
 
 Quem for trabalhar no código encontra as instruções de cada parte em

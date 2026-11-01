@@ -20,15 +20,13 @@ export function PorCursoPage() {
     return (
         <DataState
             esqueleto={<PorCursoEsqueleto />}
-            render={(data) => (
-                <PorCurso key={data.escopo.codigo_municipio} data={data} />
-            )}
+            render={(data) => <PorCurso key={data.escopo.slug} data={data} />}
         />
     );
 }
 
-// O último curso visto (área e nome), pra abrir o equivalente quando o campus
-// muda: a página é montada de novo e o código da URL é de outro campus.
+// O último curso visto (área e nome), pra abrir o equivalente quando a unidade
+// muda: a página é montada de novo e o código da URL é de outra unidade.
 let ultimoVisto: { area: string | null; nome: string } | null = null;
 
 /** Nome-base do curso, sem o grau/código que os repetidos ganham
@@ -37,7 +35,7 @@ const nomeBase = (nome: string) => nome.split(" · ")[0].toLocaleLowerCase("pt-B
 
 const porCpc = (a: AvaliacaoCurso, b: AvaliacaoCurso) => (b.cpc ?? -1) - (a.cpc ?? -1);
 
-/** O curso deste campus que corresponde ao último visto: mesma área de
+/** O curso desta unidade que corresponde ao último visto: mesma área de
  * avaliação, senão mesmo nome; o de maior CPC se houver mais de um. */
 function equivalente(avaliacoes: AvaliacaoCurso[]): AvaliacaoCurso | undefined {
     if (!ultimoVisto) return undefined;
@@ -49,7 +47,7 @@ function equivalente(avaliacoes: AvaliacaoCurso[]): AvaliacaoCurso | undefined {
 
 /** Qualidade → Por curso (``/qualidade/curso/:codigo``): por que o CPC do
  * curso é o que é e onde dá pra melhorar. Sem código (ou com um código de
- * outro campus, depois de trocar o campus), abre o curso equivalente ao que
+ * outra unidade, depois de trocar a unidade), abre o curso equivalente ao que
  * estava aberto (mesma área ou mesmo nome) — já desenhando a página (a URL é
  * corrigida em seguida), sem um quadro vazio no meio: assim a rolagem fica
  * onde estava. Sem equivalente, abre o de maior CPC e volta ao topo. */
@@ -76,7 +74,7 @@ function PorCurso({ data }: { data: DashboardData }) {
     const pedido = avaliacoes.find((a) => String(a.codigo) === codigo);
     const correspondente = pedido ? undefined : equivalente(avaliacoes);
     const curso = pedido ?? correspondente ?? [...avaliacoes].sort(porCpc)[0];
-    // trocou de campus e o curso que estava aberto não existe aqui: abre outro
+    // trocou de unidade e o curso que estava aberto não existe aqui: abre outro
     // curso, então a página volta ao topo (com o equivalente, a rolagem fica)
     const semEquivalente = !pedido && !correspondente && ultimoVisto !== null;
 
@@ -93,7 +91,7 @@ function PorCurso({ data }: { data: DashboardData }) {
     if (!curso) {
         return (
             <p className="text-text-secondary text-[14px]">
-                Nenhum curso nesta cidade.
+                Nenhum curso nesta unidade.
             </p>
         );
     }

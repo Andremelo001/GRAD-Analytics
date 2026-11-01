@@ -43,9 +43,20 @@ class Settings(BaseSettings):
     # código pra que uma coluna renomeada pelo INEP se resolva editando JSON.
     colunas_inep_file: Path = _REPO_ROOT / "colunas_inep.json"
 
-    # Instituição do módulo dashboard (código INEP). Os campi não são
-    # configurados: cada município onde ela tem curso vira um JSON.
+    # Instituição do módulo dashboard (código INEP). As unidades não são
+    # configuradas: vêm da lista de cursos do SIGAA (unidades_ufc.json).
     dashboard_codigo_ies: int = 583
+
+    # Lista pública de cursos de graduação do SIGAA da UFC: a unidade (centro,
+    # faculdade, instituto ou campus do interior) de cada curso — o INEP só
+    # tem o município. O módulo unidades grava a página inteira em
+    # unidades_ufc.json; os ajustes manuais do casamento curso INEP -> unidade
+    # ficam em unidades_ufc_ajustes.json (os dois na raiz).
+    sigaa_cursos_url: str = (
+        "https://si3.ufc.br/sigaa/public/curso/lista.jsf?nivel=G&aba=p-ensino"
+    )
+    unidades_ufc_file: Path = _REPO_ROOT / "unidades_ufc.json"
+    unidades_ufc_ajustes_file: Path = _REPO_ROOT / "unidades_ufc_ajustes.json"
 
     model_config = SettingsConfigDict(
         env_file=_ENV_FILE,

@@ -15,7 +15,7 @@ export interface Ciclo {
     faixa: number | null;
 }
 
-/** Um curso do campus na aba Qualidade: a avaliação mais recente (ano, CPC,
+/** Um curso da unidade na aba Qualidade: a avaliação mais recente (ano, CPC,
  * faixa, Enade, notas), a média nacional da mesma área no mesmo ano e o
  * ciclo anterior. ``ano === null`` = curso nunca avaliado. */
 export interface AvaliacaoCurso {
@@ -42,7 +42,7 @@ export interface AvaliacaoCurso {
 }
 
 /** Nome de exibição de cada curso, sem repetição: o INEP registra cursos
- * diferentes com o mesmo nome no mesmo campus (turno, grau). Repetidos ganham
+ * diferentes com o mesmo nome na mesma unidade (turno, grau). Repetidos ganham
  * o grau quando ele os diferencia, e o código do curso quando nem isso basta. */
 export function rotulosCursos(cursos: Curso[]): Map<number, string> {
     const chave = (c: Curso) => c.nome_curso.trim().toLocaleUpperCase("pt-BR");
@@ -151,8 +151,8 @@ export function comCpc(
 export const media = (values: number[]): number | null =>
     values.length === 0 ? null : values.reduce((a, b) => a + b, 0) / values.length;
 
-/** Os indicadores-resumo de qualidade do campus (os mesmos da Visão do
- * campus e dos cards do Início): CPC médio da avaliação mais recente de cada
+/** Os indicadores-resumo de qualidade da unidade (os mesmos da Visão do
+ * unidade e dos cards do Início): CPC médio da avaliação mais recente de cada
  * curso e a média nacional das mesmas áreas nos mesmos anos (pareada: só
  * cursos com as duas pontas), e o % de cursos nas faixas 4 e 5 contra o
  * Brasil. As séries são o mesmo número "visto em cada ano": a avaliação mais

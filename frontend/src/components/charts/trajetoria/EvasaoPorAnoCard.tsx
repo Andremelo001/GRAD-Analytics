@@ -35,7 +35,7 @@ interface Painel {
 }
 
 /** Em que ano do curso a evasão acontece: um mini gráfico de colunas por
- * curso (e um do campus inteiro), todos na mesma escala — a parte de toda a
+ * curso (e uma da unidade inteira), todos na mesma escala — a parte de toda a
  * evasão das turmas maduras que aconteceu no 1º, 2º, 3º… ano. A coluna mais
  * alta de cada um fica na cor de alerta e ganha o rótulo ("62% no 1º ano"):
  * se a maior parte for no 1º ano, a ação é acolher calouros, não reforçar o
@@ -53,7 +53,7 @@ export function EvasaoPorAnoCard({
     const [escolha, setEscolha] = useState(TODOS);
     const paineis: Painel[] = [
         {
-            chave: "campus",
+            chave: "unidade",
             nome: "Todos os cursos somados",
             fracoes: evasaoPorAnoDoCurso(cursos.flatMap(maduras)),
         },
@@ -107,7 +107,7 @@ export function EvasaoPorAnoCard({
                                     : {
                                           value: p.chave,
                                           label: "Todos os cursos somados",
-                                          detalhe: "A cidade inteira, num gráfico só",
+                                          detalhe: "A unidade inteira, num gráfico só",
                                       };
                             }),
                         ]}
@@ -182,7 +182,7 @@ function MiniColunas({
     const [foco, setFoco] = useState<number | null>(null);
     const colunas = Array.from({ length: ANOS }, (_, i) => painel.fracoes[i] ?? 0);
     const maximo = maximoGrade ?? Math.max(...colunas, 0.01);
-    // a coluna mais alta (a mesma conta do indicador do topo da Visão do campus)
+    // a coluna mais alta (a mesma conta do indicador do topo da Visão da unidade)
     const pico = (picoEvasao(painel.fracoes)?.ano ?? 1) - 1;
     const ativo = foco ?? pico;
 

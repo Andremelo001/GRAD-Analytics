@@ -4,7 +4,7 @@ from app.modules.dashboard.domain.shared import ScopedData, records
 
 
 def build(data: ScopedData) -> dict[str, object]:
-    """Comparação entre os cursos do campus."""
+    """Comparação entre os cursos da unidade."""
     return {
         "ranking_cpc": _ranking_cpc(data),
         "tabela_comparativa": _tabela_comparativa(

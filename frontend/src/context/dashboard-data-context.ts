@@ -1,28 +1,28 @@
 import { createContext } from "react";
 
-import type { CampusInfo, DashboardData } from "@/types/dashboard";
+import type { UnidadeInfo, DashboardData } from "@/types/dashboard";
 
 export interface DashboardDataContextValue {
-    /** Dados do campus selecionado (durante a troca, os do anterior). */
+    /** Dados da unidade selecionada (durante a troca, os da anterior). */
     data: DashboardData | null;
-    /** Só a primeira carga — na troca de campus os dados antigos seguem na tela. */
+    /** Só a primeira carga — na troca de unidade os dados antigos seguem na tela. */
     loading: boolean;
     error: string | null;
-    /** Campi disponíveis (index.json). */
-    campi: CampusInfo[];
-    /** Slug do campus selecionado. */
-    campus: string | null;
-    setCampus: (slug: string) => void;
-    /** ``true`` enquanto baixa o JSON de um campus recém-escolhido. */
+    /** Unidades disponíveis (index.json). */
+    unidades: UnidadeInfo[];
+    /** Slug da unidade selecionada. */
+    unidade: string | null;
+    setUnidade: (slug: string) => void;
+    /** ``true`` enquanto baixa o JSON de uma unidade recém-escolhida. */
     switching: boolean;
-    /** Campus ao abrir o painel (Configurações): ``ULTIMO_CAMPUS`` (o último
-     * escolhido) ou o slug de um campus fixo. */
-    campusAoAbrir: string;
-    setCampusAoAbrir: (valor: string) => void;
+    /** Unidade ao abrir o painel (Configurações): ``ULTIMA_UNIDADE`` (a última
+     * escolhida) ou o slug de uma unidade fixa. */
+    unidadeAoAbrir: string;
+    setUnidadeAoAbrir: (valor: string) => void;
 }
 
-/** Valor de ``campusAoAbrir`` que abre no último campus escolhido (padrão). */
-export const ULTIMO_CAMPUS = "ultimo";
+/** Valor de ``unidadeAoAbrir`` que abre na última unidade escolhida (padrão). */
+export const ULTIMA_UNIDADE = "ultimo";
 
 export const DashboardDataContext = createContext<
     DashboardDataContextValue | undefined

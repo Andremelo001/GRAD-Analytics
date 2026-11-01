@@ -1,9 +1,13 @@
 {
-  "gerado_em": "2026-10-31T14:51:52+00:00",
+  "gerado_em": "2026-11-01T12:51:36+00:00",
   "escopo": {
     "codigo_ies": 583,
     "nome_ies": "UNIVERSIDADE FEDERAL DO CEARÁ",
     "sigla_ies": "UFC",
+    "slug": "dirquixada",
+    "unidade": "DIRQUIXADA - CAMPUS DA UFC EM QUIXADÁ",
+    "sigla_unidade": "DIRQUIXADA",
+    "localidade": "Quixadá",
     "codigo_municipio": 2311306,
     "municipio": "UFC em Quixadá"
   },
@@ -53,11 +57,11 @@
   ],
   "fontes": {
     "qualidade": {
-      "gerado_em": "2026-10-31T14:45:11+00:00",
+      "gerado_em": "2026-10-31T15:10:31+00:00",
       "linhas": 67883
     },
     "trajetoria": {
-      "gerado_em": "2026-10-31T14:51:30+00:00",
+      "gerado_em": "2026-10-31T15:16:41+00:00",
       "linhas": 2731155
     }
   },
@@ -11226,7 +11230,7 @@
       }
     ]
   },
-  "campus": {
+  "unidade": {
     "kpis": {
       "total_cursos": 6,
       "total_ingressantes_ultimo_ano": 308,
@@ -12478,7 +12482,7 @@
         "quantidade_cursos_considerados": 1312
       }
     ],
-    "campus": {
+    "unidade": {
       "kpis": {
         "taxa_conclusao_media_nacional": 22.15,
         "taxa_desistencia_media_nacional": 66.97,
@@ -12516,7 +12520,7 @@
         "codigo_curso": 106167,
         "nome_cine_area_geral": "Sistemas de informação",
         "area_avaliacao": "SISTEMAS DE INFORMAÇÃO",
-        "sigla_uf_campus": "CE",
+        "sigla_uf_unidade": "CE",
         "ano_ingresso": 2020,
         "ano_cpc": 2021,
         "estados": [
@@ -12734,7 +12738,7 @@
         "codigo_curso": 150117,
         "nome_cine_area_geral": "Engenharia de software",
         "area_avaliacao": null,
-        "sigla_uf_campus": "CE",
+        "sigla_uf_unidade": "CE",
         "ano_ingresso": 2020,
         "ano_cpc": null,
         "estados": [
@@ -12888,7 +12892,7 @@
         "codigo_curso": 1127191,
         "nome_cine_area_geral": "Redes de computadores",
         "area_avaliacao": "TECNOLOGIA EM REDES DE COMPUTADORES",
-        "sigla_uf_campus": "CE",
+        "sigla_uf_unidade": "CE",
         "ano_ingresso": 2020,
         "ano_cpc": 2021,
         "estados": [
@@ -13082,7 +13086,7 @@
         "codigo_curso": 1270596,
         "nome_cine_area_geral": "Ciência da computação",
         "area_avaliacao": "CIÊNCIA DA COMPUTAÇÃO (BACHARELADO)",
-        "sigla_uf_campus": "CE",
+        "sigla_uf_unidade": "CE",
         "ano_ingresso": 2020,
         "ano_cpc": 2021,
         "estados": [
@@ -13300,7 +13304,7 @@
         "codigo_curso": 1299933,
         "nome_cine_area_geral": "Engenharia de computação",
         "area_avaliacao": "ENGENHARIA DA COMPUTAÇÃO",
-        "sigla_uf_campus": "CE",
+        "sigla_uf_unidade": "CE",
         "ano_ingresso": 2020,
         "ano_cpc": 2019,
         "estados": [
@@ -13494,7 +13498,7 @@
         "codigo_curso": 1304876,
         "nome_cine_area_geral": "Criação digital",
         "area_avaliacao": null,
-        "sigla_uf_campus": "CE",
+        "sigla_uf_unidade": "CE",
         "ano_ingresso": 2020,
         "ano_cpc": null,
         "estados": [
@@ -16548,7 +16552,7 @@
       {
         "tipo": "evasao_acima_da_media",
         "severidade": "atencao",
-        "mensagem": "2 curso(s) com evasão acima da média do campus (49,5%).",
+        "mensagem": "2 curso(s) com evasão acima da média da unidade (49,5%).",
         "cursos": [
           "REDES DE COMPUTADORES",
           "ENGENHARIA DE COMPUTAÇÃO"

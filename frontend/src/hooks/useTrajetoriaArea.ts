@@ -33,7 +33,7 @@ export interface TrajetoriaAreaCarregada {
     cursos: CursoTrajetoriaArea[];
 }
 
-// Cache do módulo (sobrevive à troca de sub-aba e de campus), como o das
+// Cache do módulo (sobrevive à troca de sub-aba e de unidade), como o das
 // áreas da Qualidade: cada área só é baixada uma vez.
 let indexPromise: Promise<TrajetoriaAreaIndex> | null = null;
 const areas = new Map<string, Promise<TrajetoriaAreaCarregada>>();

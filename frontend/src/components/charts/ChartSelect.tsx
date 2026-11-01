@@ -33,6 +33,13 @@ function posicao(botao: DOMRect, fixo: boolean): Posicao {
 interface Option {
     value: string;
     label: string;
+    /** Segunda linha da opção na lista, menor (ex.: a localidade da unidade).
+     * Com ela, o rótulo quebra linha em vez de cortar. */
+    descricao?: string;
+    /** O que o botão mostra com a opção escolhida, se for diferente do rótulo
+     * da lista (ex.: "CCA (Fortaleza)" para "CCA - CENTRO DE CIÊNCIAS
+     * AGRÁRIAS"). */
+    curto?: string;
 }
 
 /** Seletor em pílula escura dos cards (o "Weekly" do design de referência):
@@ -81,7 +88,7 @@ export function ChartSelect({
     const [caixa, setCaixa] = useState<Posicao | null>(null);
     // camada da lista: abaixo da faixa fixa do topo (z-30) — ao rolar, a
     // lista passa por baixo dela como o resto da página —, exceto quando o
-    // seletor está na própria faixa (o de campus), aí fica por cima
+    // seletor está na própria faixa (o de unidade), aí fica por cima
     const [naFaixa, setNaFaixa] = useState(false);
     const [active, setActive] = useState(0);
 
@@ -210,7 +217,8 @@ export function ChartSelect({
                 aria-haspopup="listbox"
                 aria-expanded={open}
                 aria-controls={listId}
-                aria-label={`${label}: ${selected?.label ?? ""}`}
+                aria-label={`${label}: ${selected?.curto ?? selected?.label ?? ""}`}
+                title={selected?.curto ? selected.label : undefined}
                 onClick={() => (open ? close(false) : openList())}
                 onKeyDown={onButtonKeyDown}
                 className={cn(
@@ -230,7 +238,7 @@ export function ChartSelect({
             >
                 {inline ? (
                     // no meio da frase: só o nome escolhido (largura do próprio nome)
-                    <span>{selected?.label}</span>
+                    <span>{selected?.curto ?? selected?.label}</span>
                 ) : (
                     // Todos os rótulos empilhados na mesma célula e só o escolhido
                     // visível: o botão fica com a largura do rótulo mais longo
@@ -244,7 +252,7 @@ export function ChartSelect({
                                     index !== selectedIndex && "invisible"
                                 )}
                             >
-                                {option.label}
+                                {option.curto ?? option.label}
                             </span>
                         ))}
                     </span>
@@ -308,7 +316,18 @@ export function ChartSelect({
                                         isSelected && "font-semibold"
                                     )}
                                 >
-                                    <span className="truncate">{option.label}</span>
+                                    {option.descricao ? (
+                                        <span className="min-w-0">
+                                            <span className="block leading-snug">
+                                                {option.label}
+                                            </span>
+                                            <span className="text-text-muted block text-[11px] leading-snug font-normal">
+                                                {option.descricao}
+                                            </span>
+                                        </span>
+                                    ) : (
+                                        <span className="truncate">{option.label}</span>
+                                    )}
                                     <Check
                                         size={15}
                                         strokeWidth={2.5}

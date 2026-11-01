@@ -15,14 +15,19 @@ export interface OpcaoCurso {
     /** Termos que a busca também encontra, sem aparecer (ex.: o nome inteiro
      * da instituição quando o rótulo mostra só a sigla). */
     busca?: string;
+    /** O que o seletor fechado mostra, se for diferente do rótulo da lista
+     * (ex.: "CCA (Fortaleza)" para "CCA - CENTRO DE CIÊNCIAS AGRÁRIAS"). */
+    curto?: string;
 }
 
 /** Quantas opções a lista mostra de uma vez (com 1.800 cursos numa área, a
  * busca é que leva ao curso). */
 const MAX_VISIVEIS = 60;
 
-/** Largura máxima da lista na versão compacta e margem até a tela (px). */
+/** Largura máxima da lista na versão compacta e na da faixa, e margem até a
+ * tela (px). */
 const LISTA_PILULA = 280;
+const LISTA_FAIXA = 320;
 const MARGEM_TELA = 16;
 
 /** Onde a lista abre: logo abaixo do seletor, como a do ``ChartSelect``. A
@@ -64,10 +69,18 @@ function posicao(seletor: DOMRect, fixo: boolean): Posicao {
  * inteiros (ex.: os componentes do CPC).
  *
  * ``superficie``: com ``faixa``, a mesma pílula em claro (na cor dos cards),
- * pro modo apresentação — como a barra de sub-abas e o seletor de campus lá.
+ * pro modo apresentação — como a barra de sub-abas e o seletor de unidade lá.
  *
- * ``faixa``: a versão em pílula da faixa escura, ao lado do seletor de campus
- * (Início) — mesma altura e desenho da barra de sub-abas. */
+ * ``faixa``: a versão em pílula da faixa escura, ao lado do seletor de unidade
+ * (Início) — mesma altura e desenho da barra de sub-abas. A lista abre presa
+ * à direita da pílula; ``alinhar="esquerda"``, presa à esquerda (o seletor de
+ * unidade, que fica no começo da linha).
+ *
+ * ``prefixo``: com ``faixa``, um rótulo mais claro antes do valor, na própria
+ * pílula ("Unidade [CCA (Fortaleza)]"); a pílula fica da largura do texto.
+ * ``quebrar``: rótulos longos quebram linha na lista em vez de cortar.
+ * ``ocupado``: troca a seta por um indicador de carga. ``vazio``: o texto da
+ * lista quando a busca não acha nada. Sem ``cor``, sem o ponto. */
 export function CursoBusca({
     label,
     cor,
@@ -80,9 +93,14 @@ export function CursoBusca({
     superficie = false,
     estreito = false,
     largo = false,
+    prefixo,
+    alinhar = "direita",
+    quebrar = false,
+    ocupado = false,
+    vazio = "Nenhum curso encontrado",
 }: {
     label: string;
-    cor: string;
+    cor?: string;
     value: string | null;
     options: OpcaoCurso[];
     onChange: (value: string) => void;
@@ -92,6 +110,11 @@ export function CursoBusca({
     superficie?: boolean;
     estreito?: boolean;
     largo?: boolean;
+    prefixo?: string;
+    alinhar?: "esquerda" | "direita";
+    quebrar?: boolean;
+    ocupado?: boolean;
+    vazio?: string;
 }) {
     const id = useId();
     const rootRef = useRef<HTMLDivElement>(null);
@@ -198,7 +221,8 @@ export function CursoBusca({
                         "ring-lime/60 flex items-center gap-2 ring-2",
                         faixa
                             ? cn(
-                                  "h-[33px] w-full rounded-full px-4 sm:h-9 sm:w-[240px]",
+                                  "h-[33px] rounded-full px-4 sm:h-9",
+                                  !prefixo && "w-full sm:w-[240px]",
                                   superficie ? "bg-surface" : "bg-white/[0.07]"
                               )
                             : compacto
@@ -209,6 +233,9 @@ export function CursoBusca({
                                 )
                               : "bg-page h-10 rounded-xl px-3"
                     )}
+                    // com prefixo a pílula tem a largura do texto: o campo de
+                    // busca ocupa o mesmo espaço, sem a linha pular
+                    style={prefixo && caixa ? { width: caixa.largura } : undefined}
                 >
                     <Search
                         size={compacto ? 13 : 15}
@@ -247,13 +274,17 @@ export function CursoBusca({
                 <button
                     type="button"
                     aria-haspopup="listbox"
-                    aria-label={`${label}: ${selecionado?.label ?? "nenhum"}`}
+                    aria-label={`${label}: ${selecionado?.curto ?? selecionado?.label ?? "nenhum"}`}
+                    title={selecionado?.curto ? selecionado.label : undefined}
                     onClick={abrir}
                     className={cn(
                         "focus-visible:ring-lime/60 flex min-w-0 items-center text-left outline-none focus-visible:ring-2",
                         faixa
                             ? cn(
-                                  "h-[33px] w-full gap-2 rounded-full px-4 ring-1 sm:h-9 sm:w-[240px]",
+                                  "h-[33px] gap-2 rounded-full px-4 ring-1 sm:h-9",
+                                  prefixo
+                                      ? "max-w-full gap-1.5"
+                                      : "w-full sm:w-[240px]",
                                   superficie
                                       ? "bg-surface text-ink ring-card-ring hover:bg-page shadow-[0_4px_24px_rgb(0_0_0/0.05)]"
                                       : "bg-white/[0.07] text-white ring-white/10 hover:bg-white/[0.12]"
@@ -268,16 +299,28 @@ export function CursoBusca({
                               : "bg-page hover:bg-page/70 h-10 w-full gap-2.5 rounded-xl px-3"
                     )}
                 >
-                    <span
-                        aria-hidden
-                        className={cn(
-                            "shrink-0 rounded-full",
-                            compacto ? "h-2 w-2" : "h-2.5 w-2.5",
-                            // estreito: sem o ponto, sobra espaço pro nome
-                            estreito && "lg:max-xl:hidden"
-                        )}
-                        style={{ background: cor }}
-                    />
+                    {cor && (
+                        <span
+                            aria-hidden
+                            className={cn(
+                                "shrink-0 rounded-full",
+                                compacto ? "h-2 w-2" : "h-2.5 w-2.5",
+                                // estreito: sem o ponto, sobra espaço pro nome
+                                estreito && "lg:max-xl:hidden"
+                            )}
+                            style={{ background: cor }}
+                        />
+                    )}
+                    {prefixo && (
+                        <span
+                            className={cn(
+                                "shrink-0 text-[12px] sm:text-[13px]",
+                                superficie ? "text-text-secondary" : "text-white/60"
+                            )}
+                        >
+                            {prefixo}
+                        </span>
+                    )}
                     <span className="min-w-0 flex-1">
                         <span
                             className={cn(
@@ -290,17 +333,26 @@ export function CursoBusca({
                                 estreito && "lg:max-xl:text-[11.5px]"
                             )}
                         >
-                            {selecionado?.label ?? placeholder}
+                            {selecionado?.curto ?? selecionado?.label ?? placeholder}
                         </span>
                     </span>
-                    <ChevronDown
-                        size={compacto || faixa ? 14 : 15}
-                        className={cn(
-                            "shrink-0",
-                            faixa && !superficie ? "text-white/60" : "text-text-muted"
-                        )}
-                        aria-hidden
-                    />
+                    {ocupado ? (
+                        <span
+                            aria-hidden
+                            className="border-t-lime h-3.5 w-3.5 shrink-0 animate-spin rounded-full border-2 border-current/25"
+                        />
+                    ) : (
+                        <ChevronDown
+                            size={compacto || faixa ? 14 : 15}
+                            className={cn(
+                                "shrink-0",
+                                faixa && !superficie
+                                    ? "text-white/60"
+                                    : "text-text-muted"
+                            )}
+                            aria-hidden
+                        />
+                    )}
                 </button>
             )}
 
@@ -326,11 +378,24 @@ export function CursoBusca({
                         )}
                         style={{
                             top: caixa.top,
-                            // faixa: presa à direita do seletor; compacto: do lado
-                            // que couber; normal: na largura do seletor
-                            ...(faixa || (compacto && lado === "right")
-                                ? { right: caixa.direita }
-                                : { left: caixa.esquerda }),
+                            // faixa: presa à direita do seletor (ou à esquerda, com
+                            // alinhar="esquerda", sem passar da tela); compacto:
+                            // do lado que couber; normal: na largura do seletor
+                            ...(faixa && alinhar === "esquerda"
+                                ? {
+                                      left: Math.min(
+                                          caixa.esquerda,
+                                          document.documentElement.clientWidth -
+                                              Math.min(
+                                                  LISTA_FAIXA,
+                                                  window.innerWidth - 2 * MARGEM_TELA
+                                              ) -
+                                              MARGEM_TELA
+                                      ),
+                                  }
+                                : faixa || (compacto && lado === "right")
+                                  ? { right: caixa.direita }
+                                  : { left: caixa.esquerda }),
                             ...(!faixa && !compacto ? { width: caixa.largura } : {}),
                         }}
                         // a lista fica no <body>, mas o clique ainda sobe pela
@@ -339,7 +404,7 @@ export function CursoBusca({
                     >
                         {filtradas.length === 0 && (
                             <li className="text-text-secondary px-3 py-2 text-[13px]">
-                                Nenhum curso encontrado
+                                {vazio}
                             </li>
                         )}
                         {filtradas.map((o, i) => (
@@ -359,7 +424,8 @@ export function CursoBusca({
                                 <span className="min-w-0">
                                     <span
                                         className={cn(
-                                            "block truncate text-[13px]",
+                                            "block text-[13px]",
+                                            quebrar ? "leading-snug" : "truncate",
                                             o.value === value && "font-semibold"
                                         )}
                                     >

@@ -130,6 +130,7 @@ modules = [
     "app.modules.qualidade",
     "app.modules.trajetoria",
     "app.modules.dashboard",
+    "app.modules.unidades",
 ]
 
 # 2 — a camada domain não depende de I/O (web / http / html / banco)
@@ -141,6 +142,7 @@ source_modules = [
     "app.modules.qualidade.domain",
     "app.modules.trajetoria.domain",
     "app.modules.dashboard.domain",
+    "app.modules.unidades.domain",
 ]
 forbidden_modules = [
     "httpx",
@@ -159,6 +161,7 @@ source_modules = [
     "app.modules.qualidade.application",
     "app.modules.trajetoria.application",
     "app.modules.dashboard.application",
+    "app.modules.unidades.application",
 ]
 forbidden_modules = [
     "sqlalchemy",

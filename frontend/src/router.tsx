@@ -1,7 +1,7 @@
 import { createHashRouter, Navigate } from "react-router-dom";
 
 import { AppLayout } from "@/components/layout/AppLayout";
-import { CampusPage } from "@/pages/CampusPage";
+import { UnidadePage } from "@/pages/UnidadePage";
 import { ConfiguracoesPage } from "@/pages/ConfiguracoesPage";
 import { CursoDetalhePage } from "@/pages/CursoDetalhePage";
 import { HomePage } from "@/pages/HomePage";
@@ -9,7 +9,7 @@ import { QualidadePage, VoltarSubaba } from "@/pages/QualidadePage";
 import { ComparacoesPage } from "@/pages/qualidade/ComparacoesPage";
 import { MapaPageLazy } from "@/pages/qualidade/MapaPageLazy";
 import { PorCursoPage } from "@/pages/qualidade/PorCursoPage";
-import { VisaoCampusPage } from "@/pages/qualidade/VisaoCampusPage";
+import { VisaoUnidadePage } from "@/pages/qualidade/VisaoUnidadePage";
 import { TrajetoriaPage, VoltarSubabaTrajetoria } from "@/pages/TrajetoriaPage";
 import { ComparacoesTrajetoriaPage } from "@/pages/trajetoria/ComparacoesTrajetoriaPage";
 import { PanoramaPage } from "@/pages/trajetoria/PanoramaPage";
@@ -36,7 +36,9 @@ export const router = createHashRouter([
                 children: [
                     // /qualidade sozinho (o link do menu) reabre a última sub-aba
                     { index: true, element: <VoltarSubaba /> },
-                    { path: "campus", element: <VisaoCampusPage /> },
+                    { path: "unidade", element: <VisaoUnidadePage /> },
+                    // nome antigo da sub-aba (links e a última sub-aba salva)
+                    { path: "campus", element: <Navigate to="../unidade" replace /> },
                     { path: "curso/:codigo?", element: <PorCursoPage /> },
                     {
                         path: "mapa",
@@ -63,7 +65,8 @@ export const router = createHashRouter([
                     },
                 ],
             },
-            { path: "campus", element: <CampusPage /> },
+            { path: "unidade", element: <UnidadePage /> },
+            { path: "campus", element: <Navigate to="/unidade" replace /> },
             { path: "cursos/:codigoCurso", element: <CursoDetalhePage /> },
             { path: "configuracoes", element: <ConfiguracoesPage /> },
         ],

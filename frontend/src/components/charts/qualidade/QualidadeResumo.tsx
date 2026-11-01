@@ -9,7 +9,7 @@ import { formatDecimal, toTitleCase } from "@/lib/format";
 import { resumoQualidade, type AvaliacaoCurso } from "@/lib/qualidade";
 import type { DistribuicaoCpcFaixaNacionalItem } from "@/types/dashboard";
 
-/** Quatro indicadores do campus no topo da Visão do campus: CPC médio,
+/** Quatro indicadores da unidade no topo da Visão da unidade: CPC médio,
  * o curso que mais melhorou, Conceito Enade médio e cursos sem CPC. */
 export function QualidadeResumo({
     avaliacoes,
@@ -168,7 +168,7 @@ function maiorAvanco(avaliacoes: AvaliacaoCurso[]): AvaliacaoCurso | null {
     return melhor;
 }
 
-/** Rosca dos cursos do campus: com CPC (cor da série), nunca avaliados
+/** Rosca dos cursos da unidade: com CPC (cor da série), nunca avaliados
  * (cinza) e sem conceito (SC, cor de alerta), com um respiro entre as partes.
  * No centro, o % com CPC; passar o mouse (ou tocar) numa parte mostra a
  * quantidade e o nome dela, e apaga as outras. */

@@ -12,14 +12,14 @@ _KPIS = (
 
 
 def build_resumo_cursos(data: ScopedData) -> list[dict[str, object]]:
-    """Resumo de cada curso de um campus, pra comparar entre campi e cursos.
+    """Resumo de cada curso de uma unidade, pra comparar entre unidades e cursos.
 
     Grau acadêmico, avaliação mais recente (área, ano, CPC, faixa, Enade, IDD
     e as 9 notas padronizadas em ``notas``), as edições do CPC (``historico``)
     e a evasão e a conclusão da turma mais recente — os mesmos números de
     ``curso_perfil.perfil_radar``, ``evolucao_cpc`` e ``kpis``, num arquivo
-    pequeno (``resumo_campi.json``): o front compara cursos e campi sem baixar
-    o JSON de cada campus (o de Fortaleza tem ~8 MB).
+    pequeno (``resumo_unidades.json``): o front compara cursos e unidades sem baixar
+    o JSON de cada unidade (o maior, o do CH, tem ~1,7 MB).
     """
     perfis = {p["codigo_curso"]: p for p in course_profile.build_perfil_radar(data)}
     historicos: dict[object, list[dict[str, object]]] = {}
@@ -69,11 +69,11 @@ def _ou_none(value: object) -> object:
 def _trajetoria_madura(
     data: ScopedData, codigo_curso: object
 ) -> dict[str, object] | None:
-    """A turma madura do curso, pra comparar o mesmo curso entre campi.
+    """A turma madura do curso, pra comparar o mesmo curso entre unidades.
 
     Área CINE (o curso em si) e grau — pra achar o mesmo curso noutro
-    campus —, prazo, ano de ingresso, ingressantes (o peso do curso nas
-    médias do campus) e a curva ano a ano: ``[anos desde o ingresso,
+    unidade —, prazo, ano de ingresso, ingressantes (o peso do curso nas
+    médias da unidade) e a curva ano a ano: ``[anos desde o ingresso,
     % cursando, % concluiu, % desistiu]``. ``None`` sem turma madura.
     """
     local = data.trajetoria[data.trajetoria["codigo_curso"] == codigo_curso]

@@ -36,7 +36,7 @@ export function MapaPage() {
     return (
         <DataState
             esqueleto={<MapaEsqueleto />}
-            render={(data) => <Mapa key={data.escopo.codigo_municipio} data={data} />}
+            render={(data) => <Mapa key={data.escopo.slug} data={data} />}
         />
     );
 }
@@ -99,11 +99,11 @@ function Mapa({ data }: { data: DashboardData }) {
 
     const visao = useMemo(() => {
         if (!dados || !curso || dados.area !== curso.area) return null;
-        const cursoCampus = dados.cursos.find((c) => c.codigo === curso.codigo);
+        const cursoUnidade = dados.cursos.find((c) => c.codigo === curso.codigo);
         const modalidade = data.cursos.find(
             (c) => c.codigo_curso === curso.codigo
         )?.modalidade_ensino;
-        const ead = cursoCampus?.ead ?? /dist/i.test(modalidade ?? "");
+        const ead = cursoUnidade?.ead ?? /dist/i.test(modalidade ?? "");
         const filtrados = filtrar(dados.cursos, rede, ead);
         const porUfCursos = agrupar(filtrados, (c) => c.uf);
         const porUf = new Map(
@@ -116,10 +116,10 @@ function Mapa({ data }: { data: DashboardData }) {
             porUfCursos,
             porUf,
             brasil: resumir(filtrados),
-            // o curso do campus é a referência mesmo quando o filtro de rede o
+            // o curso da unidade é a referência mesmo quando o filtro de rede o
             // tira do recorte (a UFC é pública: "só rede privada"); aí ele
             // aparece onde ficaria entre os cursos filtrados
-            cursoCampus,
+            cursoUnidade,
             noFiltro: filtrados.some((c) => c.codigo === curso.codigo),
         };
     }, [dados, curso, rede, data.cursos]);
@@ -128,7 +128,7 @@ function Mapa({ data }: { data: DashboardData }) {
         return (
             <Card title="Mapa">
                 <p className="text-text-secondary mt-3 text-[14px]">
-                    Nenhum curso desta cidade tem avaliação para comparar.
+                    Nenhum curso desta unidade tem avaliação para comparar.
                 </p>
             </Card>
         );
@@ -146,16 +146,16 @@ function Mapa({ data }: { data: DashboardData }) {
           }))
         : [];
     const titulo = uf ? (UF_NOMES[uf] ?? uf) : "Brasil";
-    // por que o curso do campus aparece "na posição em que ficaria" no painel
-    const avisoFora = !visao?.cursoCampus
+    // por que o curso da unidade aparece "na posição em que ficaria" no painel
+    const avisoFora = !visao?.cursoUnidade
         ? null
         : !visao.noFiltro
-          ? `Seu curso é da rede ${visao.cursoCampus.publica ? "pública" : "privada"} e não entra no filtro: aparece na posição em que ficaria.`
-          : uf && visao.cursoCampus.uf !== uf
+          ? `Seu curso é da rede ${visao.cursoUnidade.publica ? "pública" : "privada"} e não entra no filtro: aparece na posição em que ficaria.`
+          : uf && visao.cursoUnidade.uf !== uf
             ? `Seu curso não é de ${UF_NOMES[uf] ?? uf}: aparece na posição em que ficaria.`
             : null;
 
-    // filtros como frase no cabeçalho (seletores "inline", como o do campus
+    // filtros como frase no cabeçalho (seletores "inline", como a da unidade
     // na saudação): "CPC médio ▾ | todas as redes ▾" (o ano do Enade fica ao
     // lado do título; o curso, no seletor do cabeçalho da aba)
     const filtros = (
@@ -218,7 +218,7 @@ function Mapa({ data }: { data: DashboardData }) {
                 info="Os cursos da mesma área de avaliação no Brasil, por estado, na edição mais recente do Enade, pintados pelo indicador escolhido. Clique num estado para ver os detalhes dele ao lado."
             >
                 {/* título com o curso, o ano do Enade e a modalidade ao lado (o
-                    mapa só compara cursos da modalidade do curso do campus; no
+                    mapa só compara cursos da modalidade do curso da unidade; no
                     estilo da frase de filtros), e a frase de filtros embaixo */}
                 <h2 className="text-[17px] leading-tight font-semibold tracking-[-0.01em]">
                     {uf ? titulo : "Brasil por estado"}
@@ -308,13 +308,13 @@ function Mapa({ data }: { data: DashboardData }) {
                     info={`Os números do Brasil, ou do estado escolhido no mapa, no indicador escolhido ao lado (${INDICADORES[indicador].nome}): cursos, a média, a parte nas faixas 4 e 5, as notas médias do estado contra as do seu curso e os cursos da área com os melhores ${INDICADORES[indicador].plural} (com o seu curso na posição em que fica, ou ficaria).${indicador === "cpc" ? "" : ` A faixa do ${INDICADORES[indicador].nome} usa os mesmos cortes do CPC (1 a 5) sobre o valor contínuo.`}`}
                     subtitle={
                         visao
-                            ? `${visao.cursoCampus && INDICADORES[indicador].doCurso(visao.cursoCampus) !== null ? "" : `Seu curso não tem ${INDICADORES[indicador].nome} nesta edição · `}${uf ? "Clique fora do estado para voltar ao Brasil" : "Clique num estado para ver os detalhes"}`
+                            ? `${visao.cursoUnidade && INDICADORES[indicador].doCurso(visao.cursoUnidade) !== null ? "" : `Seu curso não tem ${INDICADORES[indicador].nome} nesta edição · `}${uf ? "Clique fora do estado para voltar ao Brasil" : "Clique num estado para ver os detalhes"}`
                             : undefined
                     }
                     className="lg:absolute lg:inset-0"
                 >
                     {/* folga de 4px em volta (compensada nas margens): o contorno do
-                        curso do campus na lista não é cortado pela rolagem, nem
+                        curso da unidade na lista não é cortado pela rolagem, nem
                         quando ele é o primeiro ou o último. Embaixo, a rolagem
                         vai até a borda do card (margem negativa sobre o padding
                         dele) e o respiro fica no fim da lista */}
@@ -327,7 +327,7 @@ function Mapa({ data }: { data: DashboardData }) {
                                 brasil={visao.brasil}
                                 ehEstado={uf !== null}
                                 indicador={indicador}
-                                cursoCampus={visao.cursoCampus}
+                                cursoUnidade={visao.cursoUnidade}
                                 avisoFora={avisoFora}
                             />
                         )}

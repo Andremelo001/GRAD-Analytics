@@ -27,15 +27,13 @@ export function PorCursoTrajetoriaPage() {
     return (
         <DataState
             esqueleto={<PorCursoEsqueleto />}
-            render={(data) => (
-                <PorCurso key={data.escopo.codigo_municipio} data={data} />
-            )}
+            render={(data) => <PorCurso key={data.escopo.slug} data={data} />}
         />
     );
 }
 
-// O nome do último curso visto: ao trocar de campus (a página é montada de
-// novo e o código da URL é de outro campus), abre o curso de mesmo nome.
+// O nome do último curso visto: ao trocar de unidade (a página é montada de
+// novo e o código da URL é de outra unidade), abre o curso de mesmo nome.
 let ultimoNome: string | null = null;
 
 /** Trajetória → Por curso (``/trajetoria/curso/:codigo``): a história das
@@ -62,7 +60,7 @@ function PorCurso({ data }: { data: DashboardData }) {
     if (!curso) {
         return (
             <p className="text-text-secondary text-[14px]">
-                Nenhum curso desta cidade tem turmas acompanhadas.
+                Nenhum curso desta unidade tem turmas acompanhadas.
             </p>
         );
     }

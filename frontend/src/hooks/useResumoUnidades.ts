@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
 
-import type { ResumoCampi } from "@/types/dashboard";
+import type { ResumoUnidades } from "@/types/dashboard";
 
-const ARQUIVO = `${import.meta.env.BASE_URL}data/dashboard/resumo_campi.json`;
+const ARQUIVO = `${import.meta.env.BASE_URL}data/dashboard/resumo_unidades.json`;
 
-// baixado uma vez por sessão (é o mesmo pra todos os campi); depois de
+// baixado uma vez por sessão (é o mesmo pra todas as unidades); depois de
 // chegar, fica também em ``carregado`` pra quem montar em seguida já desenhar
 // com ele, sem um quadro sem os dados (encolheria a página e mexeria na
-// rolagem — ex.: trocar de campus em Por curso)
-let promessa: Promise<ResumoCampi> | null = null;
-let carregado: ResumoCampi | null = null;
+// rolagem — ex.: trocar de unidade em Por curso)
+let promessa: Promise<ResumoUnidades> | null = null;
+let carregado: ResumoUnidades | null = null;
 
-function carregar(): Promise<ResumoCampi> {
+function carregar(): Promise<ResumoUnidades> {
     promessa ??= fetch(ARQUIVO).then(async (response) => {
         if (!response.ok) {
             throw new Error(
-                `Falha ao carregar o resumo das cidades (HTTP ${response.status})`
+                `Falha ao carregar o resumo das unidades (HTTP ${response.status})`
             );
         }
-        carregado = (await response.json()) as ResumoCampi;
+        carregado = (await response.json()) as ResumoUnidades;
         return carregado;
     });
     promessa.catch(() => {
@@ -27,10 +27,13 @@ function carregar(): Promise<ResumoCampi> {
     return promessa;
 }
 
-/** Resumo dos cursos de todos os campi (``dashboard/resumo_campi.json``). */
-export function useResumoCampi(): { resumo: ResumoCampi | null; erro: string | null } {
+/** Resumo dos cursos de todas as unidades (``dashboard/resumo_unidades.json``). */
+export function useResumoUnidades(): {
+    resumo: ResumoUnidades | null;
+    erro: string | null;
+} {
     const [estado, setEstado] = useState<{
-        resumo: ResumoCampi | null;
+        resumo: ResumoUnidades | null;
         erro: string | null;
     }>({ resumo: carregado, erro: null });
     useEffect(() => {

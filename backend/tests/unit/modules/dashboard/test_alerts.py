@@ -19,10 +19,10 @@ def test_build_flags_low_cpc_faixa(scoped_data: ScopedData) -> None:
     assert item["cursos"] == ["Curso Só Qualidade"]  # curso 20, faixa "2"
 
 
-def test_build_flags_evasao_above_campus_average(scoped_data: ScopedData) -> None:
+def test_build_flags_evasao_above_unidade_average(scoped_data: ScopedData) -> None:
     result = alerts.build(scoped_data)
     item = next(a for a in result if a["tipo"] == "evasao_acima_da_media")
-    # média do campus é 3.35% (curso 10: 0%, curso 30: 6.7%) -> só o 30 destoa
+    # média da unidade é 3.35% (curso 10: 0%, curso 30: 6.7%) -> só o 30 destoa
     assert item["cursos"] == ["Somente Trajetória"]
 
 

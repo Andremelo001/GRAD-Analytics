@@ -15,7 +15,7 @@ import type { DashboardData } from "@/types/dashboard";
 
 /** Quatro indicadores no topo do Panorama: conclusão das turmas maduras
  * (contra o Brasil), o ano do curso em que a evasão mais acontece (o mesmo
- * destaque do campus em "Em que ano do curso a evasão acontece"), o tempo médio até
+ * destaque da unidade em "Em que ano do curso a evasão acontece"), o tempo médio até
  * concluir e quantas turmas ainda estão em andamento. As turmas maduras são
  * a mais recente de cada curso que já teve tempo de se formar. */
 export function TrajetoriaResumo({
@@ -67,7 +67,7 @@ export function TrajetoriaResumo({
             />
             <Tile
                 label="Ano com mais evasão"
-                info="O ano do curso em que a evasão das turmas maduras mais acontece: a Taxa de Desistência Anual (TADA) desse ano como parte de toda a desistência (TDA) até dois anos depois do prazo. É o destaque da cidade em “Em que ano do curso a evasão acontece”. No 1º ano, pede acolhimento de calouros; mais tarde, atenção ao meio e ao fim do curso."
+                info="O ano do curso em que a evasão das turmas maduras mais acontece: a Taxa de Desistência Anual (TADA) desse ano como parte de toda a desistência (TDA) até dois anos depois do prazo. É o destaque da unidade em “Em que ano do curso a evasão acontece”. No 1º ano, pede acolhimento de calouros; mais tarde, atenção ao meio e ao fim do curso."
                 value={pico === null ? "—" : formatPercent(100 * pico.fracao, 0)}
                 footer={
                     pico === null

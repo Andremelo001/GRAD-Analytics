@@ -1,41 +1,177 @@
 {
-  "gerado_em": "2026-10-31T14:51:52+00:00",
+  "gerado_em": "2026-11-01T12:51:36+00:00",
   "codigo_ies": 583,
-  "campi": [
+  "unidades": [
     {
-      "slug": "crateus",
-      "nome": "UFC em Crateús",
+      "slug": "ccrateus",
+      "nome": "CCRATEUS - CAMPUS DA UFC DE CRATEÚS",
+      "sigla": "CCRATEUS",
+      "localidade": "Crateús",
       "codigo_municipio": 2304103,
       "total_cursos": 5,
-      "arquivo": "crateus.json"
+      "arquivo": "ccrateus.json"
     },
     {
-      "slug": "fortaleza",
-      "nome": "UFC em Fortaleza",
+      "slug": "cc",
+      "nome": "CC - CENTRO DE CIÊNCIAS",
+      "sigla": "CC",
+      "localidade": "Fortaleza",
       "codigo_municipio": 2304400,
-      "total_cursos": 103,
-      "arquivo": "fortaleza.json"
+      "total_cursos": 15,
+      "arquivo": "cc.json"
     },
     {
-      "slug": "quixada",
-      "nome": "UFC em Quixadá",
+      "slug": "cca",
+      "nome": "CCA - CENTRO DE CIÊNCIAS AGRÁRIAS",
+      "sigla": "CCA",
+      "localidade": "Fortaleza",
+      "codigo_municipio": 2304400,
+      "total_cursos": 7,
+      "arquivo": "cca.json"
+    },
+    {
+      "slug": "ch",
+      "nome": "CH - CENTRO DE HUMANIDADES",
+      "sigla": "CH",
+      "localidade": "Fortaleza",
+      "codigo_municipio": 2304400,
+      "total_cursos": 20,
+      "arquivo": "ch.json"
+    },
+    {
+      "slug": "ct",
+      "nome": "CT - CENTRO DE TECNOLOGIA",
+      "sigla": "CT",
+      "localidade": "Fortaleza",
+      "codigo_municipio": 2304400,
+      "total_cursos": 13,
+      "arquivo": "ct.json"
+    },
+    {
+      "slug": "facdir",
+      "nome": "FACDIR - FACULDADE DE DIREITO",
+      "sigla": "FACDIR",
+      "localidade": "Fortaleza",
+      "codigo_municipio": 2304400,
+      "total_cursos": 2,
+      "arquivo": "facdir.json"
+    },
+    {
+      "slug": "faced",
+      "nome": "FACED - FACULDADE DE EDUCAÇÃO",
+      "sigla": "FACED",
+      "localidade": "Fortaleza",
+      "codigo_municipio": 2304400,
+      "total_cursos": 2,
+      "arquivo": "faced.json"
+    },
+    {
+      "slug": "facmed",
+      "nome": "FACMED - FACULDADE DE MEDICINA",
+      "sigla": "FACMED",
+      "localidade": "Fortaleza",
+      "codigo_municipio": 2304400,
+      "total_cursos": 2,
+      "arquivo": "facmed.json"
+    },
+    {
+      "slug": "feaac",
+      "nome": "FEAAC - FACULDADE DE ECONOMIA ADMINISTRAÇÃO ATUARIA E CONTABILIDADE",
+      "sigla": "FEAAC",
+      "localidade": "Fortaleza",
+      "codigo_municipio": 2304400,
+      "total_cursos": 10,
+      "arquivo": "feaac.json"
+    },
+    {
+      "slug": "ffoe",
+      "nome": "FFOE - FACULDADE DE FARMÁCIA ODONTOLOGIA E ENFERMAGEM",
+      "sigla": "FFOE",
+      "localidade": "Fortaleza",
+      "codigo_municipio": 2304400,
+      "total_cursos": 3,
+      "arquivo": "ffoe.json"
+    },
+    {
+      "slug": "iaud",
+      "nome": "IAUD - INSTITUTO DE ARQUITETURA E URBANISMO E DESIGN",
+      "sigla": "IAUD",
+      "localidade": "Fortaleza",
+      "codigo_municipio": 2304400,
+      "total_cursos": 2,
+      "arquivo": "iaud.json"
+    },
+    {
+      "slug": "ica",
+      "nome": "ICA - INSTITUTO DE CULTURA E ARTE",
+      "sigla": "ICA",
+      "localidade": "Fortaleza",
+      "codigo_municipio": 2304400,
+      "total_cursos": 10,
+      "arquivo": "ica.json"
+    },
+    {
+      "slug": "iefes",
+      "nome": "IEFES - INSTITUTO DE EDUCAÇÃO FÍSICA E ESPORTES",
+      "sigla": "IEFES",
+      "localidade": "Fortaleza",
+      "codigo_municipio": 2304400,
+      "total_cursos": 4,
+      "arquivo": "iefes.json"
+    },
+    {
+      "slug": "ifec",
+      "nome": "IFEC - INSTITUTO DE FILOSOFIA E ESTUDOS CLÁSSICOS",
+      "sigla": "IFEC",
+      "localidade": "Fortaleza",
+      "codigo_municipio": 2304400,
+      "total_cursos": 2,
+      "arquivo": "ifec.json"
+    },
+    {
+      "slug": "iuvi",
+      "nome": "IUVI - INSTITUTO UNIVERSIDADE VIRTUAL",
+      "sigla": "IUVI",
+      "localidade": "Fortaleza",
+      "codigo_municipio": 2304400,
+      "total_cursos": 9,
+      "arquivo": "iuvi.json"
+    },
+    {
+      "slug": "labomar",
+      "nome": "LABOMAR - INSTITUTO DE CIÊNCIAS DO MAR",
+      "sigla": "LABOMAR",
+      "localidade": "Fortaleza",
+      "codigo_municipio": 2304400,
+      "total_cursos": 2,
+      "arquivo": "labomar.json"
+    },
+    {
+      "slug": "dirquixada",
+      "nome": "DIRQUIXADA - CAMPUS DA UFC EM QUIXADÁ",
+      "sigla": "DIRQUIXADA",
+      "localidade": "Quixadá",
       "codigo_municipio": 2311306,
       "total_cursos": 6,
-      "arquivo": "quixada.json"
+      "arquivo": "dirquixada.json"
     },
     {
-      "slug": "russas",
-      "nome": "UFC em Russas",
+      "slug": "camprussas",
+      "nome": "CAMPRUSSAS - CAMPUS DA UFC DE RUSSAS",
+      "sigla": "CAMPRUSSAS",
+      "localidade": "Russas",
       "codigo_municipio": 2311801,
       "total_cursos": 5,
-      "arquivo": "russas.json"
+      "arquivo": "camprussas.json"
     },
     {
-      "slug": "sobral",
-      "nome": "UFC em Sobral",
+      "slug": "cufcsobral",
+      "nome": "CUFCSOBRAL - CAMPUS DA UFC EM SOBRAL",
+      "sigla": "CUFCSOBRAL",
+      "localidade": "Sobral",
       "codigo_municipio": 2312908,
       "total_cursos": 8,
-      "arquivo": "sobral.json"
+      "arquivo": "cufcsobral.json"
     }
   ]
 }

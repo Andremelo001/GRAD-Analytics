@@ -1,3 +1,6 @@
+import json
+from pathlib import Path
+
 import pandas as pd
 
 from app.core.config.settings import settings
@@ -13,7 +16,8 @@ _TRAJETORIA_TEXT = {"codigo_cine_area_geral": "string", "codigo_cine_rotulo": "s
 class ProcessedCsvSource:
     """Implementa ``DashboardSource`` lendo os CSVs já processados.
 
-    Lê qualidade.csv/trajetoria.csv[.gz] de ``app/data/processed/``.
+    Lê qualidade.csv/trajetoria.csv[.gz] de ``app/data/processed/`` e os
+    JSONs de unidades da raiz (``unidades_ufc.json`` + ajustes).
     """
 
     def read_qualidade(self) -> pd.DataFrame:
@@ -28,3 +32,28 @@ class ProcessedCsvSource:
 
     def read_meta(self) -> dict[str, object]:
         return read_meta()
+
+    def read_unidades(self) -> dict[str, object]:
+        return _read_json(settings.unidades_ufc_file)
+
+    def read_unidades_ajustes(self) -> dict[str, object]:
+        return _read_json(settings.unidades_ufc_ajustes_file)
+
+
+class ArquivoJsonInvalidoError(ValueError):
+    """``unidades_ufc.json``/``unidades_ufc_ajustes.json`` com erro de formato."""
+
+
+def _read_json(path: Path) -> dict[str, object]:
+    if not path.exists():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        # mesma mensagem do colunas_inep.json: quem edita à mão vê onde errou
+        msg = (
+            f"{path.name}: JSON inválido na linha {exc.lineno}, coluna {exc.colno} "
+            f"({exc.msg}) — confira vírgulas, aspas e chaves perto desse ponto"
+        )
+        raise ArquivoJsonInvalidoError(msg) from exc
+    return data if isinstance(data, dict) else {}

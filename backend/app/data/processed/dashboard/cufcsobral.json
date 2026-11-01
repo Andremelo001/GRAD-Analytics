@@ -1,9 +1,13 @@
 {
-  "gerado_em": "2026-10-31T14:51:52+00:00",
+  "gerado_em": "2026-11-01T12:51:36+00:00",
   "escopo": {
     "codigo_ies": 583,
     "nome_ies": "UNIVERSIDADE FEDERAL DO CEARÁ",
     "sigla_ies": "UFC",
+    "slug": "cufcsobral",
+    "unidade": "CUFCSOBRAL - CAMPUS DA UFC EM SOBRAL",
+    "sigla_unidade": "CUFCSOBRAL",
+    "localidade": "Sobral",
     "codigo_municipio": 2312908,
     "municipio": "UFC em Sobral"
   },
@@ -67,11 +71,11 @@
   ],
   "fontes": {
     "qualidade": {
-      "gerado_em": "2026-10-31T14:45:11+00:00",
+      "gerado_em": "2026-10-31T15:10:31+00:00",
       "linhas": 67883
     },
     "trajetoria": {
-      "gerado_em": "2026-10-31T14:51:30+00:00",
+      "gerado_em": "2026-10-31T15:16:41+00:00",
       "linhas": 2731155
     }
   },
@@ -19277,7 +19281,7 @@
       }
     ]
   },
-  "campus": {
+  "unidade": {
     "kpis": {
       "total_cursos": 8,
       "total_ingressantes_ultimo_ano": 538,
@@ -21338,7 +21342,7 @@
         "quantidade_cursos_considerados": 999
       }
     ],
-    "campus": {
+    "unidade": {
       "kpis": {
         "taxa_conclusao_media_nacional": 23.4,
         "taxa_desistencia_media_nacional": 54.87,
@@ -21376,7 +21380,7 @@
         "codigo_curso": 54490,
         "nome_cine_area_geral": "Medicina",
         "area_avaliacao": "MEDICINA",
-        "sigla_uf_campus": "CE",
+        "sigla_uf_unidade": "CE",
         "ano_ingresso": 2020,
         "ano_cpc": 2023,
         "estados": [
@@ -21602,7 +21606,7 @@
         "codigo_curso": 99300,
         "nome_cine_area_geral": "Engenharia de computação",
         "area_avaliacao": "ENGENHARIA DE COMPUTAÇÃO I",
-        "sigla_uf_campus": "CE",
+        "sigla_uf_unidade": "CE",
         "ano_ingresso": 2020,
         "ano_cpc": 2023,
         "estados": [
@@ -21796,7 +21800,7 @@
         "codigo_curso": 99302,
         "nome_cine_area_geral": "Engenharia elétrica",
         "area_avaliacao": "ENGENHARIA ELÉTRICA",
-        "sigla_uf_campus": "CE",
+        "sigla_uf_unidade": "CE",
         "ano_ingresso": 2020,
         "ano_cpc": 2023,
         "estados": [
@@ -22022,7 +22026,7 @@
         "codigo_curso": 99306,
         "nome_cine_area_geral": "Economia",
         "area_avaliacao": "CIÊNCIAS ECONÔMICAS",
-        "sigla_uf_campus": "CE",
+        "sigla_uf_unidade": "CE",
         "ano_ingresso": 2020,
         "ano_cpc": 2022,
         "estados": [
@@ -22240,7 +22244,7 @@
         "codigo_curso": 99308,
         "nome_cine_area_geral": "Odontologia",
         "area_avaliacao": "ODONTOLOGIA",
-        "sigla_uf_campus": "CE",
+        "sigla_uf_unidade": "CE",
         "ano_ingresso": 2020,
         "ano_cpc": 2023,
         "estados": [
@@ -22466,7 +22470,7 @@
         "codigo_curso": 99310,
         "nome_cine_area_geral": "Psicologia",
         "area_avaliacao": "PSICOLOGIA",
-        "sigla_uf_campus": "CE",
+        "sigla_uf_unidade": "CE",
         "ano_ingresso": 2020,
         "ano_cpc": 2022,
         "estados": [
@@ -22692,7 +22696,7 @@
         "codigo_curso": 150099,
         "nome_cine_area_geral": "Música formação de professor",
         "area_avaliacao": "MÚSICA (LICENCIATURA)",
-        "sigla_uf_campus": "CE",
+        "sigla_uf_unidade": "CE",
         "ano_ingresso": 2020,
         "ano_cpc": 2021,
         "estados": [
@@ -22910,7 +22914,7 @@
         "codigo_curso": 150118,
         "nome_cine_area_geral": "Gestão financeira",
         "area_avaliacao": null,
-        "sigla_uf_campus": "CE",
+        "sigla_uf_unidade": "CE",
         "ano_ingresso": 2020,
         "ano_cpc": null,
         "estados": [
@@ -28429,7 +28433,7 @@
       {
         "tipo": "evasao_acima_da_media",
         "severidade": "atencao",
-        "mensagem": "5 curso(s) com evasão acima da média do campus (42,1%).",
+        "mensagem": "5 curso(s) com evasão acima da média da unidade (42,1%).",
         "cursos": [
           "ENGENHARIA DE COMPUTAÇÃO",
           "ENGENHARIA ELÉTRICA",

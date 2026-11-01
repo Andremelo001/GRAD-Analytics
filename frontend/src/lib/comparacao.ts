@@ -1,15 +1,28 @@
 import { COMPONENTES, faixaNumero, type ComponenteKey } from "@/lib/cpc";
 import { media } from "@/lib/qualidade";
-import type { ResumoCampi, ResumoCurso } from "@/types/dashboard";
+import type { ResumoUnidades, ResumoCurso } from "@/types/dashboard";
 
 export type Notas = Record<ComponenteKey, number | null>;
 
-export const nomeCampus = (nome: string) =>
-    nome.replace(/^UFC\s+(?:em|Campus)\s+/i, "");
+/** Nome curto de uma unidade, pra frases, botões e comparações: a sigla do
+ * SIGAA com o município ("CCA (Fortaleza)"); sem unidade no SIGAA, só a
+ * cidade ("Fortaleza", de "UFC em Fortaleza"). Nas listas de escolha vai o
+ * rótulo inteiro (``nome``), com a localidade embaixo. */
+export function nomeUnidade(unidade: {
+    nome: string;
+    sigla?: string | null;
+    localidade?: string | null;
+}): string {
+    if (unidade.sigla)
+        return unidade.localidade
+            ? `${unidade.sigla} (${unidade.localidade})`
+            : unidade.sigla;
+    return unidade.nome.replace(/^UFC\s+(?:em|Unidade)\s+/i, "");
+}
 
-/** Um campus resumido pra comparação entre campi: médias dos cursos com CPC
+/** Uma unidade resumida pra comparação entre unidades: médias dos cursos com CPC
  * (avaliação mais recente de cada um) e as notas médias. */
-export interface ResumoCampus {
+export interface ResumoUnidade {
     slug: string;
     nome: string;
     cursos: ResumoCurso[];
@@ -25,21 +38,23 @@ export interface ResumoCampus {
 const numeros = (valores: (number | null | undefined)[]) =>
     valores.filter((v): v is number => v !== null && v !== undefined);
 
-export function resumirCampus(campus: ResumoCampi["campi"][number]): ResumoCampus {
-    const comCpc = campus.cursos.filter(
+export function resumirUnidade(
+    unidade: ResumoUnidades["unidades"][number]
+): ResumoUnidade {
+    const comCpc = unidade.cursos.filter(
         (c): c is ResumoCurso & { cpc_continuo: number } => c.cpc_continuo !== null
     );
     const faixas = [0, 0, 0, 0, 0, 0];
-    for (const c of campus.cursos) {
+    for (const c of unidade.cursos) {
         if (c.ano === null) continue;
         const f = faixaNumero(c.cpc_faixa);
         faixas[f === null ? 5 : f - 1]++;
     }
     const comFaixa = faixas.slice(0, 5).reduce((a, b) => a + b, 0);
     return {
-        slug: campus.slug,
-        nome: nomeCampus(campus.nome),
-        cursos: campus.cursos,
+        slug: unidade.slug,
+        nome: nomeUnidade(unidade),
+        cursos: unidade.cursos,
         comCpc,
         cpcMedio: media(comCpc.map((c) => c.cpc_continuo)),
         enadeMedio: media(numeros(comCpc.map((c) => c.conceito_enade_continuo))),
@@ -54,13 +69,13 @@ export function resumirCampus(campus: ResumoCampi["campi"][number]): ResumoCampu
     };
 }
 
-/** Áreas que os dois campi oferecem (com CPC nos dois): o melhor CPC de cada
- * campus na área. */
+/** Áreas que as duas unidades oferecem (com CPC nos dois): o melhor CPC de cada
+ * unidade na área. */
 export function areasEmComum(
-    a: ResumoCampus,
-    b: ResumoCampus
+    a: ResumoUnidade,
+    b: ResumoUnidade
 ): { area: string; a: number; b: number }[] {
-    const melhor = (r: ResumoCampus) => {
+    const melhor = (r: ResumoUnidade) => {
         const m = new Map<string, number>();
         for (const c of r.comCpc) {
             if (!c.area_avaliacao) continue;

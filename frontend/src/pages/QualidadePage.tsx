@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 
-import { CampusAtual } from "@/components/layout/CampusSelect";
+import { UnidadeAtual } from "@/components/layout/UnidadeSelect";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { SubTabs } from "@/components/layout/SubTabs";
 import { FiltroTopoContext } from "@/context/filtro-topo";
@@ -10,7 +10,7 @@ import { lembrarSubaba, ultimaSubaba } from "@/lib/ultima-subaba";
 import { carregarMapa } from "@/pages/qualidade/mapa-loader";
 
 const SUB_ABAS = [
-    { to: "campus", label: "Visão geral" },
+    { to: "unidade", label: "Visão geral" },
     { to: "curso", label: "Por curso" },
     { to: "mapa", label: "Mapa" },
     { to: "comparacoes", label: "Comparações" },
@@ -18,11 +18,11 @@ const SUB_ABAS = [
 
 /** Aba Qualidade: por que o CPC de cada curso é o que é, onde dá pra melhorar
  * e como ele se compara ao país. Dividida em sub-abas com rota própria
- * (``/qualidade/campus``, ``/qualidade/curso/:codigo``, ``/qualidade/mapa``,
+ * (``/qualidade/unidade``, ``/qualidade/curso/:codigo``, ``/qualidade/mapa``,
  * ``/qualidade/comparacoes``); cada uma é uma
  * página filha, desenhada no ``Outlet``. */
 export function QualidadePage() {
-    // a sub-aba (campus, curso, mapa…) sem o código do curso: trocar de curso
+    // a sub-aba (unidade, curso, mapa…) sem o código do curso: trocar de curso
     // em "Por curso" não reanima a página
     const { pathname, search } = useLocation();
     const subAba = pathname.split("/")[2] ?? "";
@@ -47,7 +47,8 @@ export function QualidadePage() {
                 title="Qualidade dos cursos"
                 subtitle={
                     <>
-                        Conceitos do MEC (CPC) dos cursos da UFC em <CampusAtual />
+                        Conceitos do MEC (CPC) dos cursos da UFC na unidade{" "}
+                        <UnidadeAtual />
                     </>
                 }
                 tabs={(tom) => (

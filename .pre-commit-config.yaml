@@ -1,16 +1,21 @@
 # See https://pre-commit.com for more information
 # See https://pre-commit.com/hooks.html for more hooks
 #
-# O pre-commit roda a partir da raiz do repo; `poetry -C backend` muda o
-# diretório de trabalho pra backend/ antes de rodar cada ferramenta (lá estão
-# pyproject.toml e o .venv). Os hooks só disparam quando algo em backend/ muda.
+# O pre-commit roda a partir da raiz do repo; cada hook entra em backend/ (lá
+# estão o pyproject.toml, com a configuração das ferramentas, e o .venv) e
+# roda a ferramenta direto do .venv do projeto (poetry.toml: in-project). Não
+# depende do `poetry` estar no PATH: clientes Git gráficos (o do VS Code no
+# WSL, por exemplo) não carregam o ~/.profile, e sem isso o `poetry` não era
+# encontrado e o commit falhava. `sh` (e não bash) pra não imprimir aviso de
+# locale quando o cliente força um LC_ALL que não está instalado. Os hooks só
+# disparam quando algo em backend/ muda.
 repos:
     - repo: local
       hooks:
 
           - id: black
             name: Format with Black
-            entry: poetry -C backend run black
+            entry: sh -c 'cd backend && exec .venv/bin/black "$@"' --
             language: system
             files: ^backend/.*\.py$
             pass_filenames: false
@@ -18,7 +23,7 @@ repos:
 
           - id: ruff
             name: Check with Ruff
-            entry: poetry -C backend run ruff
+            entry: sh -c 'cd backend && exec .venv/bin/ruff "$@"' --
             language: system
             files: ^backend/.*\.py$
             pass_filenames: false
@@ -26,7 +31,7 @@ repos:
 
           - id: mypy
             name: Validate types with MyPy
-            entry: poetry -C backend run mypy
+            entry: sh -c 'cd backend && exec .venv/bin/mypy "$@"' --
             language: system
             files: ^backend/.*\.py$
             pass_filenames: false

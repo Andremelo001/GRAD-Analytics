@@ -1,0 +1,1631 @@
+{
+  "gerado_em": "2026-11-01T12:51:25+00:00",
+  "fonte": "https://si3.ufc.br/sigaa/public/curso/lista.jsf?nivel=G&aba=p-ensino",
+  "total_unidades": 22,
+  "total_cursos": 170,
+  "titulo": "Consulta de Cursos - GRADUAÇÃO",
+  "descricao": [
+    "Através desta página você pode consultar os cursos de GRADUAÇÃO ofereridos pela UFC.",
+    "Para cada curso listado é possível consultar mais detalhes sobre ele, incluíndo as estruturas curriculares ou as disciplinas por módulos disponíveis.",
+    "Utilize o formulário abaixo para filtrar os cursos de acordo com os critérios desejados."
+  ],
+  "nivel": "G",
+  "modalidades_filtro": [
+    "A Distância",
+    "Presencial",
+    "Semi-Presencial"
+  ],
+  "colunas": [
+    "Nome",
+    "Sede",
+    "Modalidade",
+    "Coordenador"
+  ],
+  "unidades": [
+    {
+      "rotulo": "CAMPRUSSAS - CAMPUS DA UFC DE RUSSAS",
+      "sigla": "CAMPRUSSAS",
+      "nome": "CAMPUS DA UFC DE RUSSAS",
+      "sedes": [
+        "RUSSAS"
+      ],
+      "total_cursos": 5,
+      "cursos": [
+        {
+          "nome": "CIÊNCIA DA COMPUTAÇÃO",
+          "sede": "RUSSAS",
+          "modalidade": "Presencial",
+          "coordenador": "REUBER REGIS DE MELO",
+          "id_sigaa": 1912104,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=1912104&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA CIVIL",
+          "sede": "RUSSAS",
+          "modalidade": "Presencial",
+          "coordenador": "JERFSON MOURA LIMA",
+          "id_sigaa": 2097288,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=2097288&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA DE PRODUÇÃO",
+          "sede": "RUSSAS",
+          "modalidade": "Presencial",
+          "coordenador": "PEDRO HELTON MAGALHAES PINHEIRO",
+          "id_sigaa": 2097200,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=2097200&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA DE SOFTWARE",
+          "sede": "RUSSAS",
+          "modalidade": "Presencial",
+          "coordenador": "ANDERSON FEITOZA LEITAO MAIA",
+          "id_sigaa": 1878932,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=1878932&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA MECÂNICA",
+          "sede": "RUSSAS",
+          "modalidade": "Presencial",
+          "coordenador": "GEORGE LUIZ GOMES DE OLIVEIRA",
+          "id_sigaa": 2097267,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=2097267&lc=pt_BR"
+        }
+      ]
+    },
+    {
+      "rotulo": "CC - CENTRO DE CIÊNCIAS",
+      "sigla": "CC",
+      "nome": "CENTRO DE CIÊNCIAS",
+      "sedes": [
+        "FORTALEZA"
+      ],
+      "total_cursos": 20,
+      "cursos": [
+        {
+          "nome": "ARQUEOLOGIA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 79802471,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=79802471&lc=pt_BR"
+        },
+        {
+          "nome": "BIOTECNOLOGIA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "DANIELE DE OLIVEIRA BEZERRA DE SOUSA",
+          "id_sigaa": 657502,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657502&lc=pt_BR"
+        },
+        {
+          "nome": "CIÊNCIA DA COMPUTAÇÃO",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "YURI LENON BARBOSA NOGUEIRA",
+          "id_sigaa": 3325058,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=3325058&lc=pt_BR"
+        },
+        {
+          "nome": "CIÊNCIA DE DADOS",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "ANGELO RONCALLI ALENCAR BRAYNER",
+          "id_sigaa": 75287727,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=75287727&lc=pt_BR"
+        },
+        {
+          "nome": "CIÊNCIAS BIOLÓGICAS",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "DIOGO HENRIQUE COSTA DE REZENDE",
+          "id_sigaa": 657427,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657427&lc=pt_BR"
+        },
+        {
+          "nome": "COMPUTAÇÃO",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "YURI LENON BARBOSA NOGUEIRA",
+          "id_sigaa": 657442,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657442&lc=pt_BR"
+        },
+        {
+          "nome": "ESTATÍSTICA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "JENIFFER JOHANA DUARTE SANCHEZ",
+          "id_sigaa": 657428,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657428&lc=pt_BR"
+        },
+        {
+          "nome": "FÍSICA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657430,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657430&lc=pt_BR"
+        },
+        {
+          "nome": "FÍSICA - BACHARELADO",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "SAULO DAVI SOARES E REIS",
+          "id_sigaa": 657435,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657435&lc=pt_BR"
+        },
+        {
+          "nome": "FÍSICA - LICENCIATURA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "DANIEL BRITO DE FREITAS",
+          "id_sigaa": 657429,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657429&lc=pt_BR"
+        },
+        {
+          "nome": "GEOGRAFIA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "DIRCEU ROGERIO CADENA DE MELO FILHO",
+          "id_sigaa": 657432,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657432&lc=pt_BR"
+        },
+        {
+          "nome": "GEOLOGIA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "ENEAS OLIVEIRA LOUSADA",
+          "id_sigaa": 657431,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657431&lc=pt_BR"
+        },
+        {
+          "nome": "MATEMÁTICA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657434,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657434&lc=pt_BR"
+        },
+        {
+          "nome": "MATEMÁTICA - BACHARELADO",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "FABRICIO SIQUEIRA BENEVIDES",
+          "id_sigaa": 657436,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657436&lc=pt_BR"
+        },
+        {
+          "nome": "MATEMÁTICA INDUSTRIAL",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "ANGELO RONCALLI ALENCAR BRAYNER",
+          "id_sigaa": 657522,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657522&lc=pt_BR"
+        },
+        {
+          "nome": "MATEMÁTICA - LICENCIATURA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "JOSE ALBERTO DUARTE MAIA",
+          "id_sigaa": 657433,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657433&lc=pt_BR"
+        },
+        {
+          "nome": "QUÍMICA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657438,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657438&lc=pt_BR"
+        },
+        {
+          "nome": "QUÍMICA - BACHARELADO",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "PAULO NAFTALI DA SILVA CASCIANO",
+          "id_sigaa": 657437,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657437&lc=pt_BR"
+        },
+        {
+          "nome": "QUÍMICA INDUSTRIAL",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657439,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657439&lc=pt_BR"
+        },
+        {
+          "nome": "QUÍMICA - LICENCIATURA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "DANIEL ESDRAS DE ANDRADE UCHOA",
+          "id_sigaa": 657440,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657440&lc=pt_BR"
+        }
+      ]
+    },
+    {
+      "rotulo": "CCA - CENTRO DE CIÊNCIAS AGRÁRIAS",
+      "sigla": "CCA",
+      "nome": "CENTRO DE CIÊNCIAS AGRÁRIAS",
+      "sedes": [
+        "FORTALEZA"
+      ],
+      "total_cursos": 7,
+      "cursos": [
+        {
+          "nome": "AGRONOMIA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "ALEK SANDRO DUTRA",
+          "id_sigaa": 657420,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657420&lc=pt_BR"
+        },
+        {
+          "nome": "ECONOMIA DOMÉSTICA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657421,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657421&lc=pt_BR"
+        },
+        {
+          "nome": "ECONOMIA ECOLÓGICA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "MARIA INES ESCOBAR DA COSTA CASIMIRO",
+          "id_sigaa": 2683037,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=2683037&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA DE ALIMENTOS",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "RAFAEL AUDINO ZAMBELLI",
+          "id_sigaa": 657424,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657424&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA DE PESCA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "ALDENEY ANDRADE SOARES FILHO",
+          "id_sigaa": 657423,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657423&lc=pt_BR"
+        },
+        {
+          "nome": "GESTÃO DE POLÍTICAS PÚBLICAS",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "JOSE LENHO SILVA DIOGENES",
+          "id_sigaa": 2168903,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=2168903&lc=pt_BR"
+        },
+        {
+          "nome": "ZOOTECNIA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "ANDREA PEREIRA PINTO",
+          "id_sigaa": 657425,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657425&lc=pt_BR"
+        }
+      ]
+    },
+    {
+      "rotulo": "CCRATEUS - CAMPUS DA UFC DE CRATEÚS",
+      "sigla": "CCRATEUS",
+      "nome": "CAMPUS DA UFC DE CRATEÚS",
+      "sedes": [
+        "CRATEÚS"
+      ],
+      "total_cursos": 6,
+      "cursos": [
+        {
+          "nome": "CIÊNCIA DA COMPUTAÇÃO",
+          "sede": "CRATEÚS",
+          "modalidade": "Presencial",
+          "coordenador": "ANTONIO EMERSON BARROS TOMAZ",
+          "id_sigaa": 1878933,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=1878933&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA AMBIENTAL",
+          "sede": "CRATEÚS",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 2097265,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=2097265&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA AMBIENTAL E SANITÁRIA",
+          "sede": "CRATEÚS",
+          "modalidade": "Presencial",
+          "coordenador": "MARCIO DE MELO FREIRE",
+          "id_sigaa": 71172498,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=71172498&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA CIVIL",
+          "sede": "CRATEÚS",
+          "modalidade": "Presencial",
+          "coordenador": "THIAGO FERNANDES DA SILVA",
+          "id_sigaa": 2097286,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=2097286&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA DE MINAS",
+          "sede": "CRATEÚS",
+          "modalidade": "Presencial",
+          "coordenador": "MARTHA NOELIA LIMA",
+          "id_sigaa": 2118717,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=2118717&lc=pt_BR"
+        },
+        {
+          "nome": "SISTEMAS DE INFORMAÇÃO",
+          "sede": "CRATEÚS",
+          "modalidade": "Presencial",
+          "coordenador": "LAISE LIMA DE CARVALHO SOUSA",
+          "id_sigaa": 2097205,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=2097205&lc=pt_BR"
+        }
+      ]
+    },
+    {
+      "rotulo": "CH - CENTRO DE HUMANIDADES",
+      "sigla": "CH",
+      "nome": "CENTRO DE HUMANIDADES",
+      "sedes": [
+        "FORTALEZA"
+      ],
+      "total_cursos": 17,
+      "cursos": [
+        {
+          "nome": "BIBLIOTECONOMIA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "HAMILTON RODRIGUES TABOSA",
+          "id_sigaa": 657457,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657457&lc=pt_BR"
+        },
+        {
+          "nome": "CIÊNCIAS SOCIAIS (DIURNO)",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "KLEYTON RATTES GONCALVES",
+          "id_sigaa": 657458,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657458&lc=pt_BR"
+        },
+        {
+          "nome": "CIÊNCIAS SOCIAIS (NOTURNO)",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "CELINA AMALIA RAMALHO GALVAO LIMA",
+          "id_sigaa": 657499,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657499&lc=pt_BR"
+        },
+        {
+          "nome": "HISTÓRIA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "ANA LORYM SOARES DE VASCONCELOS",
+          "id_sigaa": 657460,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657460&lc=pt_BR"
+        },
+        {
+          "nome": "LETRAS",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "MARIA CLARA GOMES MATHIAS CAVALCANTI",
+          "id_sigaa": 657461,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657461&lc=pt_BR"
+        },
+        {
+          "nome": "LETRAS - ESPANHOL",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "SARA DE PAULA LIMA",
+          "id_sigaa": 657507,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657507&lc=pt_BR"
+        },
+        {
+          "nome": "LETRAS - INGLÊS",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "FABIO NUNES ASSUNCAO",
+          "id_sigaa": 657508,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657508&lc=pt_BR"
+        },
+        {
+          "nome": "LETRAS - LIBRAS",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "MARIANA FARIAS LIMA",
+          "id_sigaa": 1371493,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=1371493&lc=pt_BR"
+        },
+        {
+          "nome": "LETRAS LÍNGUA PORTUGUESA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "MARIA CLARA GOMES MATHIAS CAVALCANTI",
+          "id_sigaa": 75319980,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=75319980&lc=pt_BR"
+        },
+        {
+          "nome": "LETRAS PORTUGUÊS E ALEMÃO",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "FERNANDA SUELY MULLER",
+          "id_sigaa": 75307867,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=75307867&lc=pt_BR"
+        },
+        {
+          "nome": "LETRAS PORTUGUÊS E ESPANHOL",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "SARA DE PAULA LIMA",
+          "id_sigaa": 76313990,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=76313990&lc=pt_BR"
+        },
+        {
+          "nome": "LETRAS PORTUGUÊS E FRANCÊS",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "FERNANDA SUELY MULLER",
+          "id_sigaa": 75449986,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=75449986&lc=pt_BR"
+        },
+        {
+          "nome": "LETRAS PORTUGUÊS E INGLÊS",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "ANDREIA TUROLO DA SILVA",
+          "id_sigaa": 75281014,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=75281014&lc=pt_BR"
+        },
+        {
+          "nome": "LETRAS PORTUGUÊS E ITALIANO",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "FERNANDA SUELY MULLER",
+          "id_sigaa": 76326155,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=76326155&lc=pt_BR"
+        },
+        {
+          "nome": "LICENCIATURA INTERCULTURAL INDÍGENA KUABA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "ANTONIO DUARTE FERNANDES TAVORA",
+          "id_sigaa": 5244893,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=5244893&lc=pt_BR"
+        },
+        {
+          "nome": "LICENCIATURA INTERCULTURAL INDÍGENA PITAKAJÁ",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "CARLOS KLEBER SARAIVA DE SOUSA",
+          "id_sigaa": 657519,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657519&lc=pt_BR"
+        },
+        {
+          "nome": "PSICOLOGIA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "ANDREA CARLA FILGUEIRAS CORDEIRO",
+          "id_sigaa": 657462,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657462&lc=pt_BR"
+        }
+      ]
+    },
+    {
+      "rotulo": "CITAPAJE - CAMPUS DE ITAPAJÉ",
+      "sigla": "CITAPAJE",
+      "nome": "CAMPUS DE ITAPAJÉ",
+      "sedes": [
+        "ITAPAJÉ"
+      ],
+      "total_cursos": 4,
+      "cursos": [
+        {
+          "nome": "ANÁLISE E DESENVOLVIMENTO DE SISTEMAS",
+          "sede": "ITAPAJÉ",
+          "modalidade": "Presencial",
+          "coordenador": "ITALO LINHARES DE ARAUJO",
+          "id_sigaa": 72461781,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=72461781&lc=pt_BR"
+        },
+        {
+          "nome": "CIÊNCIA DE DADOS",
+          "sede": "ITAPAJÉ",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 72460878,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=72460878&lc=pt_BR"
+        },
+        {
+          "nome": "SEGURANÇA DA INFORMAÇÃO",
+          "sede": "ITAPAJÉ",
+          "modalidade": "Presencial",
+          "coordenador": "SOLON ALVES PEIXOTO",
+          "id_sigaa": 72461701,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=72461701&lc=pt_BR"
+        },
+        {
+          "nome": "TEATRO",
+          "sede": "ITAPAJÉ",
+          "modalidade": "Presencial",
+          "coordenador": "NATALIA PINTO DA ROCHA RIBEIRO",
+          "id_sigaa": 78320237,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=78320237&lc=pt_BR"
+        }
+      ]
+    },
+    {
+      "rotulo": "CT - CENTRO DE TECNOLOGIA",
+      "sigla": "CT",
+      "nome": "CENTRO DE TECNOLOGIA",
+      "sedes": [
+        "FORTALEZA"
+      ],
+      "total_cursos": 14,
+      "cursos": [
+        {
+          "nome": "ENGENHARIA AMBIENTAL E SANITÁRIA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "JOSE CARLOS ALVES BARROSO JUNIOR",
+          "id_sigaa": 75732895,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=75732895&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA CIVIL",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "MARIANA VELLA SILVEIRA",
+          "id_sigaa": 657474,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657474&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA DE COMPUTAÇÃO",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "RICARDO JARDEL NUNES DA SILVEIRA",
+          "id_sigaa": 2103424,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=2103424&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA DE ENERGIAS E MEIO AMBIENTE",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "JOSE CARLOS ALVES BARROSO JUNIOR",
+          "id_sigaa": 657517,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657517&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA DE ENERGIAS RENOVÁVEIS",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "ANA FABIOLA LEITE ALMEIDA",
+          "id_sigaa": 75776991,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=75776991&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA DE PRODUÇÃO",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "BRENO BARROS TELLES DO CARMO",
+          "id_sigaa": 74365941,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=74365941&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA DE PRODUÇÃO MECÂNICA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "BRENO BARROS TELLES DO CARMO",
+          "id_sigaa": 657479,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657479&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA DE TELECOMUNICAÇÕES",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "ALBERTO SAMPAIO LIMA",
+          "id_sigaa": 1994679,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=1994679&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA DE TELEINFORMÁTICA (DIURNO)",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657480,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657480&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA DE TELEINFORMÁTICA (NOTURNO)",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657498,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657498&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA ELÉTRICA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "ARTHUR PLINIO DE SOUZA BRAGA",
+          "id_sigaa": 657475,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657475&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA MECÂNICA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "VANESSA VIEIRA GONCALVES",
+          "id_sigaa": 657476,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657476&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA METALÚRGICA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "EMERSON MENDONCA MINA",
+          "id_sigaa": 657477,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657477&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA QUÍMICA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "ANDREA DA SILVA PEREIRA",
+          "id_sigaa": 657478,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657478&lc=pt_BR"
+        }
+      ]
+    },
+    {
+      "rotulo": "CUFCCARIRI - CAMPUS DA UFC NO CARIRI",
+      "sigla": "CUFCCARIRI",
+      "nome": "CAMPUS DA UFC NO CARIRI",
+      "sedes": [
+        "JUAZEIRO DO NORTE",
+        "ICÓ",
+        "BREJO SANTO",
+        "FORTALEZA"
+      ],
+      "total_cursos": 19,
+      "cursos": [
+        {
+          "nome": "ADMINISTRAÇÃO",
+          "sede": "JUAZEIRO DO NORTE",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657488,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657488&lc=pt_BR"
+        },
+        {
+          "nome": "ADMINISTRAÇÃO PUBLICA",
+          "sede": "JUAZEIRO DO NORTE",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657524,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657524&lc=pt_BR"
+        },
+        {
+          "nome": "AGRONOMIA",
+          "sede": "JUAZEIRO DO NORTE",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657489,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657489&lc=pt_BR"
+        },
+        {
+          "nome": "BACHARELADO EM DESIGN",
+          "sede": "JUAZEIRO DO NORTE",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 5707016,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=5707016&lc=pt_BR"
+        },
+        {
+          "nome": "BIBLIOTECONOMIA",
+          "sede": "JUAZEIRO DO NORTE",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657490,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657490&lc=pt_BR"
+        },
+        {
+          "nome": "COMUNICAÇÃO SOCIAL - JORNALISMO",
+          "sede": "JUAZEIRO DO NORTE",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657510,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657510&lc=pt_BR"
+        },
+        {
+          "nome": "DESIGN DE PRODUTO",
+          "sede": "JUAZEIRO DO NORTE",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657511,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657511&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA CIVIL",
+          "sede": "JUAZEIRO DO NORTE",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657491,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657491&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA DE MATERIAIS",
+          "sede": "JUAZEIRO DO NORTE",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657513,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657513&lc=pt_BR"
+        },
+        {
+          "nome": "FILOSOFIA",
+          "sede": "JUAZEIRO DO NORTE",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657492,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657492&lc=pt_BR"
+        },
+        {
+          "nome": "HISTORIA",
+          "sede": "ICÓ",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 1883790,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=1883790&lc=pt_BR"
+        },
+        {
+          "nome": "INTERDISCIPLINAR EM CIÊNCIAS NATURAIS",
+          "sede": "BREJO SANTO",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 1904932,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=1904932&lc=pt_BR"
+        },
+        {
+          "nome": "INTERDISCIPLINAR EM CIÊNCIAS NATURAIS E MATEMÁTICA",
+          "sede": "BREJO SANTO",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 2928774,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=2928774&lc=pt_BR"
+        },
+        {
+          "nome": "LICENCIATURA EM BIOLOGIA",
+          "sede": "BREJO SANTO",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 5242178,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=5242178&lc=pt_BR"
+        },
+        {
+          "nome": "LICENCIATURA EM FÍSICA",
+          "sede": "BREJO SANTO",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 5242234,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=5242234&lc=pt_BR"
+        },
+        {
+          "nome": "LICENCIATURA EM MATEMÁTICA",
+          "sede": "BREJO SANTO",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 5242254,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=5242254&lc=pt_BR"
+        },
+        {
+          "nome": "LICENCIATURA EM QUÍMICA",
+          "sede": "BREJO SANTO",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 5242261,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=5242261&lc=pt_BR"
+        },
+        {
+          "nome": "MEDICINA - BARBALHA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657495,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657495&lc=pt_BR"
+        },
+        {
+          "nome": "MUSICA - LICENCIATURA",
+          "sede": "JUAZEIRO DO NORTE",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657512,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657512&lc=pt_BR"
+        }
+      ]
+    },
+    {
+      "rotulo": "CUFCSOBRAL - CAMPUS DA UFC EM SOBRAL",
+      "sigla": "CUFCSOBRAL",
+      "nome": "CAMPUS DA UFC EM SOBRAL",
+      "sedes": [
+        "SOBRAL"
+      ],
+      "total_cursos": 9,
+      "cursos": [
+        {
+          "nome": "CIÊNCIAS ECONÔMICAS",
+          "sede": "SOBRAL",
+          "modalidade": "Presencial",
+          "coordenador": "SILVANDO CARMO DE OLIVEIRA",
+          "id_sigaa": 657483,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657483&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA DE COMPUTAÇÃO",
+          "sede": "SOBRAL",
+          "modalidade": "Presencial",
+          "coordenador": "CARLOS ELMANO DE ALENCAR E SILVA",
+          "id_sigaa": 657484,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657484&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA ELÉTRICA",
+          "sede": "SOBRAL",
+          "modalidade": "Presencial",
+          "coordenador": "VANESSA SIQUEIRA DE CASTRO TEIXEIRA",
+          "id_sigaa": 657485,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657485&lc=pt_BR"
+        },
+        {
+          "nome": "FINANÇAS",
+          "sede": "SOBRAL",
+          "modalidade": "Presencial",
+          "coordenador": "DEBORA GASPAR FEITOSA",
+          "id_sigaa": 657514,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657514&lc=pt_BR"
+        },
+        {
+          "nome": "MAGISTÉRIO INDÍGENA TREMEMBÉ SUPERIOR",
+          "sede": "SOBRAL",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657500,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657500&lc=pt_BR"
+        },
+        {
+          "nome": "MEDICINA - SOBRAL",
+          "sede": "SOBRAL",
+          "modalidade": "Presencial",
+          "coordenador": "PAULO ROBERTO LACERDA LEAL",
+          "id_sigaa": 657494,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657494&lc=pt_BR"
+        },
+        {
+          "nome": "MÚSICA-LICENCIATURA",
+          "sede": "SOBRAL",
+          "modalidade": "Presencial",
+          "coordenador": "MARCELO MATEUS DE OLIVEIRA",
+          "id_sigaa": 657523,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657523&lc=pt_BR"
+        },
+        {
+          "nome": "ODONTOLOGIA",
+          "sede": "SOBRAL",
+          "modalidade": "Presencial",
+          "coordenador": "ADRIANA KELLY DE SOUSA SANTIAGO BARBOSA",
+          "id_sigaa": 657486,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657486&lc=pt_BR"
+        },
+        {
+          "nome": "PSICOLOGIA/CCGPSIC - SOBRAL",
+          "sede": "SOBRAL",
+          "modalidade": "Presencial",
+          "coordenador": "MARCIO ARTHONI SOUTO DA ROCHA",
+          "id_sigaa": 657487,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657487&lc=pt_BR"
+        }
+      ]
+    },
+    {
+      "rotulo": "DIRQUIXADA - CAMPUS DA UFC EM QUIXADÁ",
+      "sigla": "DIRQUIXADA",
+      "nome": "CAMPUS DA UFC EM QUIXADÁ",
+      "sedes": [
+        "QUIXADÁ"
+      ],
+      "total_cursos": 7,
+      "cursos": [
+        {
+          "nome": "CIÊNCIA DA COMPUTAÇÃO",
+          "sede": "QUIXADÁ",
+          "modalidade": "Presencial",
+          "coordenador": "PAULO HENRIQUE MACEDO DE ARAUJO",
+          "id_sigaa": 1371512,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=1371512&lc=pt_BR"
+        },
+        {
+          "nome": "DESIGN DIGITAL",
+          "sede": "QUIXADÁ",
+          "modalidade": "Presencial",
+          "coordenador": "PAULO VICTOR BARBOSA DE SOUSA",
+          "id_sigaa": 2112172,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=2112172&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA DE COMPUTAÇÃO",
+          "sede": "QUIXADÁ",
+          "modalidade": "Presencial",
+          "coordenador": "JEANDRO DE MESQUITA BEZERRA",
+          "id_sigaa": 2106185,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=2106185&lc=pt_BR"
+        },
+        {
+          "nome": "ENGENHARIA DE SOFTWARE",
+          "sede": "QUIXADÁ",
+          "modalidade": "Presencial",
+          "coordenador": "JEFERSON KENEDY MORAIS VIEIRA",
+          "id_sigaa": 657515,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657515&lc=pt_BR"
+        },
+        {
+          "nome": "INTELIGÊNCIA ARTIFICIAL",
+          "sede": "QUIXADÁ",
+          "modalidade": "Presencial",
+          "coordenador": "MARIA VIVIANE DE MENEZES",
+          "id_sigaa": 78419166,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=78419166&lc=pt_BR"
+        },
+        {
+          "nome": "REDES DE COMPUTADORES",
+          "sede": "QUIXADÁ",
+          "modalidade": "Presencial",
+          "coordenador": "CARLOS IGOR RAMOS BANDEIRA",
+          "id_sigaa": 657516,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657516&lc=pt_BR"
+        },
+        {
+          "nome": "SISTEMAS DE INFORMAÇÃO",
+          "sede": "QUIXADÁ",
+          "modalidade": "Presencial",
+          "coordenador": "ROBERTO CABRAL RABELO FILHO",
+          "id_sigaa": 657496,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657496&lc=pt_BR"
+        }
+      ]
+    },
+    {
+      "rotulo": "FACDIR - FACULDADE DE DIREITO",
+      "sigla": "FACDIR",
+      "nome": "FACULDADE DE DIREITO",
+      "sedes": [
+        "FORTALEZA"
+      ],
+      "total_cursos": 2,
+      "cursos": [
+        {
+          "nome": "DIREITO (DIURNO)",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "GEOVANA MARIA CARTAXO DE ARRUDA FREIRE",
+          "id_sigaa": 657444,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657444&lc=pt_BR"
+        },
+        {
+          "nome": "DIREITO (NOTURNO)",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "GEOVANA MARIA CARTAXO DE ARRUDA FREIRE",
+          "id_sigaa": 657443,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657443&lc=pt_BR"
+        }
+      ]
+    },
+    {
+      "rotulo": "FACED - FACULDADE DE EDUCAÇÃO",
+      "sigla": "FACED",
+      "nome": "FACULDADE DE EDUCAÇÃO",
+      "sedes": [
+        "FORTALEZA"
+      ],
+      "total_cursos": 4,
+      "cursos": [
+        {
+          "nome": "LICENCIATURA EM EDUCAÇÃO DO CAMPO - PARFOR",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "CLARICE ZIENTARSKI",
+          "id_sigaa": 76202299,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=76202299&lc=pt_BR"
+        },
+        {
+          "nome": "PEDAGOGIA (DIURNO)",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "ADRIANA EUFRASIO BRAGA",
+          "id_sigaa": 657468,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657468&lc=pt_BR"
+        },
+        {
+          "nome": "PEDAGOGIA (NOTURNO)",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "EUNICE ANDRADE DE OLIVEIRA MENEZES",
+          "id_sigaa": 657469,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657469&lc=pt_BR"
+        },
+        {
+          "nome": "PEDAGOGIA/PARFOR",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "ADRIANA EUFRASIO BRAGA",
+          "id_sigaa": 4650139,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=4650139&lc=pt_BR"
+        }
+      ]
+    },
+    {
+      "rotulo": "FACMED - FACULDADE DE MEDICINA",
+      "sigla": "FACMED",
+      "nome": "FACULDADE DE MEDICINA",
+      "sedes": [
+        "FORTALEZA"
+      ],
+      "total_cursos": 2,
+      "cursos": [
+        {
+          "nome": "FISIOTERAPIA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "RAMON TAVORA VIANA",
+          "id_sigaa": 657505,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657505&lc=pt_BR"
+        },
+        {
+          "nome": "MEDICINA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "MONICA CARDOSO FACANHA",
+          "id_sigaa": 657470,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657470&lc=pt_BR"
+        }
+      ]
+    },
+    {
+      "rotulo": "FEAAC - FACULDADE DE ECONOMIA ADMINISTRAÇÃO ATUARIA E CONTABILIDADE",
+      "sigla": "FEAAC",
+      "nome": "FACULDADE DE ECONOMIA ADMINISTRAÇÃO ATUARIA E CONTABILIDADE",
+      "sedes": [
+        "FORTALEZA"
+      ],
+      "total_cursos": 10,
+      "cursos": [
+        {
+          "nome": "ADMINISTRAÇÃO (DIURNO)",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "PAULO HENRIQUE NOBRE PARENTE",
+          "id_sigaa": 657446,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657446&lc=pt_BR"
+        },
+        {
+          "nome": "ADMINISTRAÇÃO (NOTURNO)",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "LUMA LOUISE SOUSA LOPES",
+          "id_sigaa": 657452,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657452&lc=pt_BR"
+        },
+        {
+          "nome": "CIÊNCIAS ATUARIAIS",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "ALANA KATIELLI NOGUEIRA AZEVEDO",
+          "id_sigaa": 657451,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657451&lc=pt_BR"
+        },
+        {
+          "nome": "CIÊNCIAS CONTÁBEIS (DIURNO)",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "DANIELLE AUGUSTO PERES",
+          "id_sigaa": 657450,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657450&lc=pt_BR"
+        },
+        {
+          "nome": "CIÊNCIAS CONTÁBEIS (NOTURNO)",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "DANIVAL SOUSA CAVALCANTE",
+          "id_sigaa": 657447,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657447&lc=pt_BR"
+        },
+        {
+          "nome": "CIÊNCIAS ECONÔMICAS (DIURNO)",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "DIEGO RAFAEL FONSECA CARNEIRO",
+          "id_sigaa": 657448,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657448&lc=pt_BR"
+        },
+        {
+          "nome": "CIÊNCIAS ECONÔMICAS (NOTURNO)",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "WESLEY LEITAO DE SOUSA",
+          "id_sigaa": 657449,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657449&lc=pt_BR"
+        },
+        {
+          "nome": "FINANÇAS",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "VITOR BORGES MONTEIRO",
+          "id_sigaa": 1064892,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=1064892&lc=pt_BR"
+        },
+        {
+          "nome": "SECRETARIADO EXECUTIVO",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "CONCEICAO DE MARIA PINHEIRO BARROS",
+          "id_sigaa": 657453,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657453&lc=pt_BR"
+        },
+        {
+          "nome": "TECNOLOGIA EM GESTÃO DA QUALIDADE",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 1244886,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=1244886&lc=pt_BR"
+        }
+      ]
+    },
+    {
+      "rotulo": "FFOE - FACULDADE DE FARMÁCIA ODONTOLOGIA E ENFERMAGEM",
+      "sigla": "FFOE",
+      "nome": "FACULDADE DE FARMÁCIA ODONTOLOGIA E ENFERMAGEM",
+      "sedes": [
+        "FORTALEZA"
+      ],
+      "total_cursos": 3,
+      "cursos": [
+        {
+          "nome": "ENFERMAGEM",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "MAIRA DI CIERO MIRANDA",
+          "id_sigaa": 657454,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657454&lc=pt_BR"
+        },
+        {
+          "nome": "FARMÁCIA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "PAULO SERGIO DOURADO ARRAIS",
+          "id_sigaa": 657455,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657455&lc=pt_BR"
+        },
+        {
+          "nome": "ODONTOLOGIA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "THYCIANA RODRIGUES RIBEIRO",
+          "id_sigaa": 657456,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657456&lc=pt_BR"
+        }
+      ]
+    },
+    {
+      "rotulo": "IAUD - INSTITUTO DE ARQUITETURA E URBANISMO E DESIGN",
+      "sigla": "IAUD",
+      "nome": "INSTITUTO DE ARQUITETURA E URBANISMO E DESIGN",
+      "sedes": [
+        "FORTALEZA"
+      ],
+      "total_cursos": 2,
+      "cursos": [
+        {
+          "nome": "ARQUITETURA E URBANISMO",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "ANA CECILIA SERPA BRAGA VASCONCELOS",
+          "id_sigaa": 657473,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657473&lc=pt_BR"
+        },
+        {
+          "nome": "DESIGN",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "ANA CAROLINA ALBUQUERQUE DE MORAES",
+          "id_sigaa": 1021532,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=1021532&lc=pt_BR"
+        }
+      ]
+    },
+    {
+      "rotulo": "ICA - INSTITUTO DE CULTURA E ARTE",
+      "sigla": "ICA",
+      "nome": "INSTITUTO DE CULTURA E ARTE",
+      "sedes": [
+        "FORTALEZA"
+      ],
+      "total_cursos": 13,
+      "cursos": [
+        {
+          "nome": "CINEMA E AUDIOVISUAL",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "SHIRLEY MONICA SILVA MARTINS",
+          "id_sigaa": 657504,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657504&lc=pt_BR"
+        },
+        {
+          "nome": "COMUNICAÇÃO SOCIAL",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657459,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657459&lc=pt_BR"
+        },
+        {
+          "nome": "COMUNICAÇÃO SOCIAL - JORNALISMO",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "MAYARA CAROLINNE BESERRA DE ARAUJO",
+          "id_sigaa": 657526,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657526&lc=pt_BR"
+        },
+        {
+          "nome": "COMUNICAÇÃO SOCIAL - JORNALISMO DA TERRA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657518,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657518&lc=pt_BR"
+        },
+        {
+          "nome": "COMUNICAÇÃO SOCIAL - PUBLICIDADE E PROPAGANDA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "ALAN EDUARDO DOS SANTOS GOES",
+          "id_sigaa": 657527,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657527&lc=pt_BR"
+        },
+        {
+          "nome": "DANÇA - BACHARELADO",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "PAULO SERGIO CALDAS DE ALMEIDA",
+          "id_sigaa": 657520,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657520&lc=pt_BR"
+        },
+        {
+          "nome": "DANÇA - LICENCIATURA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "FELLIPE SANTOS RESENDE",
+          "id_sigaa": 657521,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657521&lc=pt_BR"
+        },
+        {
+          "nome": "DESIGN - MODA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "EMANUELLE KELLY RIBEIRO DA SILVA",
+          "id_sigaa": 657525,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657525&lc=pt_BR"
+        },
+        {
+          "nome": "ESTILISMO E MODA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657422,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657422&lc=pt_BR"
+        },
+        {
+          "nome": "GASTRONOMIA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "ANA ERBENIA PEREIRA MENDES",
+          "id_sigaa": 657506,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657506&lc=pt_BR"
+        },
+        {
+          "nome": "JORNALISMO",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "MAYARA CAROLINNE BESERRA DE ARAUJO",
+          "id_sigaa": 71171931,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=71171931&lc=pt_BR"
+        },
+        {
+          "nome": "MÚSICA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "LEANDRO LIBARDI SERAFIM",
+          "id_sigaa": 657465,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657465&lc=pt_BR"
+        },
+        {
+          "nome": "TEATRO - LICENCIATURA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "RENATA KELY DA SILVA",
+          "id_sigaa": 657501,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657501&lc=pt_BR"
+        }
+      ]
+    },
+    {
+      "rotulo": "IEFES - INSTITUTO DE EDUCAÇÃO FÍSICA E ESPORTES",
+      "sigla": "IEFES",
+      "nome": "INSTITUTO DE EDUCAÇÃO FÍSICA E ESPORTES",
+      "sedes": [
+        "FORTALEZA"
+      ],
+      "total_cursos": 6,
+      "cursos": [
+        {
+          "nome": "ABI - EDUCAÇÃO FÍSICA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "VICTOR SILVEIRA COSWIG",
+          "id_sigaa": 76942757,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=76942757&lc=pt_BR"
+        },
+        {
+          "nome": "EDUCACAO FISICA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657464,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657464&lc=pt_BR"
+        },
+        {
+          "nome": "EDUCACAO FÍSICA - BACHARELADO (DIURNO)",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "VICTOR SILVEIRA COSWIG",
+          "id_sigaa": 657467,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657467&lc=pt_BR"
+        },
+        {
+          "nome": "EDUCAÇÃO FÍSICA - BACHARELADO (VESPERTINO-NOTURNO)",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "VICTOR SILVEIRA COSWIG",
+          "id_sigaa": 1371289,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=1371289&lc=pt_BR"
+        },
+        {
+          "nome": "EDUCACAO FÍSICA - LICENCIATURA (DIURNO)",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "OCTAVIO BARBOSA NETO",
+          "id_sigaa": 657466,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657466&lc=pt_BR"
+        },
+        {
+          "nome": "EDUCAÇÃO FÍSICA - LICENCIATURA (VESPERTINO-NOTURNO)",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "OCTAVIO BARBOSA NETO",
+          "id_sigaa": 1371359,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=1371359&lc=pt_BR"
+        }
+      ]
+    },
+    {
+      "rotulo": "IFEC - INSTITUTO DE FILOSOFIA E ESTUDOS CLÁSSICOS",
+      "sigla": "IFEC",
+      "nome": "INSTITUTO DE FILOSOFIA E ESTUDOS CLÁSSICOS",
+      "sedes": [
+        "FORTALEZA"
+      ],
+      "total_cursos": 1,
+      "cursos": [
+        {
+          "nome": "FILOSOFIA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "JUDIKAEL CASTELO BRANCO",
+          "id_sigaa": 657463,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657463&lc=pt_BR"
+        }
+      ]
+    },
+    {
+      "rotulo": "IUVI - INSTITUTO UNIVERSIDADE VIRTUAL",
+      "sigla": "IUVI",
+      "nome": "INSTITUTO UNIVERSIDADE VIRTUAL",
+      "sedes": [
+        "FORTALEZA"
+      ],
+      "total_cursos": 11,
+      "cursos": [
+        {
+          "nome": "ADMINISTRAÇÃO",
+          "sede": "FORTALEZA",
+          "modalidade": "A Distância",
+          "coordenador": null,
+          "id_sigaa": 6491862,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=6491862&lc=pt_BR"
+        },
+        {
+          "nome": "ADMINISTRAÇÃO PÚBLICA",
+          "sede": "FORTALEZA",
+          "modalidade": "A Distância",
+          "coordenador": null,
+          "id_sigaa": 6491865,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=6491865&lc=pt_BR"
+        },
+        {
+          "nome": "FÍSICA",
+          "sede": "FORTALEZA",
+          "modalidade": "A Distância",
+          "coordenador": "ASCANIO DIAS ARAUJO",
+          "id_sigaa": 6491866,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=6491866&lc=pt_BR"
+        },
+        {
+          "nome": "LETRAS - ESPANHOL",
+          "sede": "FORTALEZA",
+          "modalidade": "A Distância",
+          "coordenador": "SARA DE PAULA LIMA",
+          "id_sigaa": 6491870,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=6491870&lc=pt_BR"
+        },
+        {
+          "nome": "LETRAS - INGLÊS",
+          "sede": "FORTALEZA",
+          "modalidade": "A Distância",
+          "coordenador": "MARIA DA GLORIA GUARA TAVARES",
+          "id_sigaa": 6491867,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=6491867&lc=pt_BR"
+        },
+        {
+          "nome": "LICENCIATURA EM LETRAS - PORTUGUÊS",
+          "sede": "FORTALEZA",
+          "modalidade": "A Distância",
+          "coordenador": "MARIA SILVANA MILITAO DE ALENCAR",
+          "id_sigaa": 6491864,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=6491864&lc=pt_BR"
+        },
+        {
+          "nome": "MATEMÁTICA",
+          "sede": "FORTALEZA",
+          "modalidade": "A Distância",
+          "coordenador": "JONATAN FLORIANO DA SILVA",
+          "id_sigaa": 6491863,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=6491863&lc=pt_BR"
+        },
+        {
+          "nome": "PEDAGOGIA",
+          "sede": "FORTALEZA",
+          "modalidade": "A Distância",
+          "coordenador": null,
+          "id_sigaa": 6491869,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=6491869&lc=pt_BR"
+        },
+        {
+          "nome": "QUÍMICA",
+          "sede": "FORTALEZA",
+          "modalidade": "A Distância",
+          "coordenador": "ANTONIO CARLOS MAGALHAES",
+          "id_sigaa": 6491868,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=6491868&lc=pt_BR"
+        },
+        {
+          "nome": "SISTEMAS E MÍDIAS DIGITAIS (DIURNO)",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "HENRIQUE BARBOSA SILVA",
+          "id_sigaa": 657509,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657509&lc=pt_BR"
+        },
+        {
+          "nome": "SISTEMAS E MÍDIAS DIGITAIS (NOTURNO)",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "MATHEUS RODRIGO SERAFIM RODRIGUES",
+          "id_sigaa": 3251521,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=3251521&lc=pt_BR"
+        }
+      ]
+    },
+    {
+      "rotulo": "LABOMAR - INSTITUTO DE CIÊNCIAS DO MAR",
+      "sigla": "LABOMAR",
+      "nome": "INSTITUTO DE CIÊNCIAS DO MAR",
+      "sedes": [
+        "FORTALEZA"
+      ],
+      "total_cursos": 2,
+      "cursos": [
+        {
+          "nome": "CIÊNCIAS AMBIENTAIS",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "JULIANA BARROSO DE MELO",
+          "id_sigaa": 657503,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657503&lc=pt_BR"
+        },
+        {
+          "nome": "OCEANOGRAFIA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": "KAMILA VIEIRA DE MENDONCA",
+          "id_sigaa": 657497,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657497&lc=pt_BR"
+        }
+      ]
+    },
+    {
+      "rotulo": "PRG - PRÓ - REITORIA DE GRADUAÇÃO",
+      "sigla": "PRG",
+      "nome": "PRÓ - REITORIA DE GRADUAÇÃO",
+      "sedes": [
+        "FORTALEZA"
+      ],
+      "total_cursos": 6,
+      "cursos": [
+        {
+          "nome": "CIÊNCIAS DA NATUREZA E MATEMÁTICA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 76067675,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=76067675&lc=pt_BR"
+        },
+        {
+          "nome": "CIÊNCIAS HUMANAS",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 76067785,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=76067785&lc=pt_BR"
+        },
+        {
+          "nome": "LINGUAGENS E CÓDIGOS",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 76065237,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=76065237&lc=pt_BR"
+        },
+        {
+          "nome": "PEDAGOGIA DA TERRA / LICENCIATURA PLENA",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657493,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657493&lc=pt_BR"
+        },
+        {
+          "nome": "TECNOLOGIA EM GESTÃO DA EDUCAÇÃO SUPERIOR",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657481,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657481&lc=pt_BR"
+        },
+        {
+          "nome": "TECNOLOGIA EM GESTÃO DE HOSPITAIS UNIVERSITÁRIOS",
+          "sede": "FORTALEZA",
+          "modalidade": "Presencial",
+          "coordenador": null,
+          "id_sigaa": 657482,
+          "url_portal": "https://si3.ufc.br/sigaa/public/curso/portal.jsf?id=657482&lc=pt_BR"
+        }
+      ]
+    }
+  ]
+}

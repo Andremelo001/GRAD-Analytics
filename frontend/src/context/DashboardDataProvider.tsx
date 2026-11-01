@@ -1,15 +1,16 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 
-import { DashboardDataContext, ULTIMO_CAMPUS } from "@/context/dashboard-data-context";
-import type { CampusIndex, CampusInfo, DashboardData } from "@/types/dashboard";
+import { DashboardDataContext, ULTIMA_UNIDADE } from "@/context/dashboard-data-context";
+import type { UnidadeIndex, UnidadeInfo, DashboardData } from "@/types/dashboard";
 
 // import.meta.env.BASE_URL já reflete o `base` do vite.config.ts (inclui o
 // prefixo /GRAD-Analytics/ quando buildado pro GitHub Pages) — assim o
 // fetch funciona igual em dev e em produção sem configuração extra.
 const DATA_DIR = `${import.meta.env.BASE_URL}data/dashboard/`;
-const CAMPUS_STORAGE_KEY = "prograd-campus";
-const CAMPUS_INICIAL_STORAGE_KEY = "prograd-campus-inicial";
-const CAMPUS_PADRAO = "quixada";
+const UNIDADE_STORAGE_KEY = "prograd-unidade";
+const UNIDADE_INICIAL_STORAGE_KEY = "prograd-unidade-inicial";
+// a unidade de Quixadá (sigla DIRQUIXADA no SIGAA)
+const UNIDADE_PADRAO = "dirquixada";
 
 function ler(chave: string): string | null {
     try {
@@ -36,40 +37,42 @@ async function fetchJson<T>(arquivo: string): Promise<T> {
     return (await response.json()) as T;
 }
 
-/** Campus inicial: o fixado nas Configurações ("Campus ao abrir o painel"),
- * senão o último escolhido, senão Quixadá, senão o primeiro do índice. */
-function campusInicial(campi: CampusInfo[]): string | null {
-    const existe = (slug: string | null) => campi.some((c) => c.slug === slug);
-    const fixo = ler(CAMPUS_INICIAL_STORAGE_KEY);
+/** Unidade inicial: a fixada nas Configurações ("Unidade ao abrir o painel"),
+ * senão o último escolhido, senão Quixadá, senão o primeiro do índice. Um
+ * slug salvo que não existe mais (as cidades de antes, como "quixada") cai
+ * no padrão. */
+function unidadeInicial(unidades: UnidadeInfo[]): string | null {
+    const existe = (slug: string | null) => unidades.some((c) => c.slug === slug);
+    const fixo = ler(UNIDADE_INICIAL_STORAGE_KEY);
     if (existe(fixo)) return fixo;
-    const salvo = ler(CAMPUS_STORAGE_KEY);
+    const salvo = ler(UNIDADE_STORAGE_KEY);
     if (existe(salvo)) return salvo;
-    if (existe(CAMPUS_PADRAO)) return CAMPUS_PADRAO;
-    return campi[0]?.slug ?? null;
+    if (existe(UNIDADE_PADRAO)) return UNIDADE_PADRAO;
+    return unidades[0]?.slug ?? null;
 }
 
-/** Lê o índice de campi e o JSON do campus selecionado (um por campus, ver
+/** Lê o índice de unidades e o JSON da unidade selecionada (um por unidade, ver
  * scripts/sync-data.mjs). JSONs já baixados ficam em cache: voltar a um
- * campus é instantâneo. */
+ * unidade é instantâneo. */
 export function DashboardDataProvider({ children }: { children: ReactNode }) {
-    const [campi, setCampi] = useState<CampusInfo[]>([]);
-    const [campus, setCampusState] = useState<string | null>(null);
+    const [unidades, setUnidades] = useState<UnidadeInfo[]>([]);
+    const [unidade, setUnidadeState] = useState<string | null>(null);
     const [loaded, setLoaded] = useState<{ slug: string; data: DashboardData } | null>(
         null
     );
     const [error, setError] = useState<string | null>(null);
     const cache = useRef(new Map<string, DashboardData>());
-    const [campusAoAbrir, setCampusAoAbrirState] = useState(
-        () => ler(CAMPUS_INICIAL_STORAGE_KEY) ?? ULTIMO_CAMPUS
+    const [unidadeAoAbrir, setUnidadeAoAbrirState] = useState(
+        () => ler(UNIDADE_INICIAL_STORAGE_KEY) ?? ULTIMA_UNIDADE
     );
 
     useEffect(() => {
         let cancelled = false;
-        fetchJson<CampusIndex>("index.json")
+        fetchJson<UnidadeIndex>("index.json")
             .then((index) => {
                 if (cancelled) return;
-                setCampi(index.campi);
-                setCampusState(campusInicial(index.campi));
+                setUnidades(index.unidades);
+                setUnidadeState(unidadeInicial(index.unidades));
             })
             .catch((err: unknown) => {
                 if (!cancelled) {
@@ -82,7 +85,7 @@ export function DashboardDataProvider({ children }: { children: ReactNode }) {
     }, []);
 
     useEffect(() => {
-        const info = campi.find((c) => c.slug === campus);
+        const info = unidades.find((c) => c.slug === unidade);
         if (!info) return;
         let cancelled = false;
         const cached = cache.current.get(info.slug);
@@ -102,22 +105,25 @@ export function DashboardDataProvider({ children }: { children: ReactNode }) {
         return () => {
             cancelled = true;
         };
-    }, [campi, campus]);
+    }, [unidades, unidade]);
 
-    const setCampus = useCallback((slug: string) => {
-        setCampusState(slug);
-        gravar(CAMPUS_STORAGE_KEY, slug);
+    const setUnidade = useCallback((slug: string) => {
+        setUnidadeState(slug);
+        gravar(UNIDADE_STORAGE_KEY, slug);
     }, []);
 
-    // fixar um campus já troca pra ele (o painel mostra o que vai abrir);
-    // "Último usado" mantém o campus atual
-    const setCampusAoAbrir = useCallback(
+    // fixar uma unidade já troca pra ela (o painel mostra o que vai abrir);
+    // "Último usado" mantém a unidade atual
+    const setUnidadeAoAbrir = useCallback(
         (valor: string) => {
-            setCampusAoAbrirState(valor);
-            gravar(CAMPUS_INICIAL_STORAGE_KEY, valor === ULTIMO_CAMPUS ? null : valor);
-            if (valor !== ULTIMO_CAMPUS) setCampus(valor);
+            setUnidadeAoAbrirState(valor);
+            gravar(
+                UNIDADE_INICIAL_STORAGE_KEY,
+                valor === ULTIMA_UNIDADE ? null : valor
+            );
+            if (valor !== ULTIMA_UNIDADE) setUnidade(valor);
         },
-        [setCampus]
+        [setUnidade]
     );
 
     return (
@@ -126,12 +132,12 @@ export function DashboardDataProvider({ children }: { children: ReactNode }) {
                 data: loaded?.data ?? null,
                 loading: loaded === null && error === null,
                 error,
-                campi,
-                campus,
-                setCampus,
-                switching: loaded !== null && campus !== loaded.slug && error === null,
-                campusAoAbrir,
-                setCampusAoAbrir,
+                unidades,
+                unidade,
+                setUnidade,
+                switching: loaded !== null && unidade !== loaded.slug && error === null,
+                unidadeAoAbrir,
+                setUnidadeAoAbrir,
             }}
         >
             {children}

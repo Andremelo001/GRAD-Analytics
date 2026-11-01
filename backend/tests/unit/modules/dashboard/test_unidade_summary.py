@@ -1,4 +1,4 @@
-from app.modules.dashboard.domain.services import campus_summary
+from app.modules.dashboard.domain.services import unidade_summary
 from app.modules.dashboard.domain.shared import ScopedData
 
 
@@ -9,7 +9,7 @@ def test_trajetoria_madura_carries_cohort_size(scoped_data: ScopedData) -> None:
         trajetoria=scoped_data.trajetoria.assign(prazo_integralizacao=0),
         cursos=scoped_data.cursos,
     )
-    cursos = {c["codigo_curso"]: c for c in campus_summary.build_resumo_cursos(data)}
+    cursos = {c["codigo_curso"]: c for c in unidade_summary.build_resumo_cursos(data)}
     trajetoria = cursos[10]["trajetoria"]
     assert isinstance(trajetoria, dict)
     assert trajetoria["ano_ingresso"] == 2018
@@ -18,6 +18,6 @@ def test_trajetoria_madura_carries_cohort_size(scoped_data: ScopedData) -> None:
 
 def test_resumo_carries_grau_academico(scoped_data: ScopedData) -> None:
     cursos = {
-        c["codigo_curso"]: c for c in campus_summary.build_resumo_cursos(scoped_data)
+        c["codigo_curso"]: c for c in unidade_summary.build_resumo_cursos(scoped_data)
     }
     assert cursos[10]["grau_academico"] == "Bacharelado"

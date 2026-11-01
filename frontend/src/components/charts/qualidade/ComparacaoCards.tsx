@@ -374,7 +374,7 @@ export function EspelhoCard({
     );
 }
 
-/** As áreas que os dois campi oferecem: uma linha por área, A e B como
+/** As áreas que as duas unidades oferecem: uma linha por área, A e B como
  * pontos na mesma régua de CPC (faixas de fundo), ligados por um traço, com
  * os valores escritos. */
 export function CursosEmComumCard({
@@ -406,8 +406,8 @@ export function CursosEmComumCard({
         <Card
             expansivel
             title="Cursos em comum"
-            info="As áreas de avaliação que as duas cidades oferecem, com o melhor CPC de cada cidade em cada área."
-            subtitle="Áreas que as duas cidades oferecem: o melhor CPC de cada uma na área"
+            info="As áreas de avaliação que as duas unidades oferecem, com o melhor CPC de cada unidade em cada área."
+            subtitle="Áreas que as duas unidades oferecem: o melhor CPC de cada uma na área"
             className={className}
             // legenda à direita, na linha do subtítulo
             action={
@@ -420,7 +420,7 @@ export function CursosEmComumCard({
         >
             {areas.length === 0 ? (
                 <p className="text-text-secondary mt-4 text-[13px]">
-                    As duas cidades não têm nenhuma área de avaliação em comum.
+                    As duas unidades não têm nenhuma área de avaliação em comum.
                 </p>
             ) : (
                 <>

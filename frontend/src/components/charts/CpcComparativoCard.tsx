@@ -139,7 +139,7 @@ export function CpcComparativoCard({
             {opcoes.length === 0 || !avaliado ? (
                 <p className="text-text-secondary mt-6 text-[13px]">
                     {opcoes.length === 0
-                        ? `Nenhum curso da cidade com ${nome} avaliado.`
+                        ? `Nenhum curso da unidade com ${nome} avaliado.`
                         : `${toTitleCase(cursos.find((c) => c.codigo_curso === codigo)?.nome_curso ?? "Este curso")} ainda não tem ${nome} avaliado (sem ciclo do Enade). Escolha outro curso no seletor acima.`}
                 </p>
             ) : (
@@ -152,8 +152,8 @@ export function CpcComparativoCard({
 
                     {semCpc > 0 && (
                         <p className="text-text-muted mt-2 text-[11px]">
-                            {semCpc} {semCpc === 1 ? "curso" : "cursos"} da cidade ainda
-                            sem {nome} (sem ciclo do Enade) não{" "}
+                            {semCpc} {semCpc === 1 ? "curso" : "cursos"} da unidade
+                            ainda sem {nome} (sem ciclo do Enade) não{" "}
                             {semCpc === 1 ? "aparece" : "aparecem"} na lista.
                         </p>
                     )}

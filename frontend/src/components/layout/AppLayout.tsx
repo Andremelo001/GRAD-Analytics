@@ -1,4 +1,4 @@
-import { ArrowLeft, Settings, X } from "lucide-react";
+import { ArrowLeft, Info, Settings, X } from "lucide-react";
 import { useEffect, useRef, useState, type RefObject } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 
@@ -7,15 +7,17 @@ import { PresentationBar } from "@/components/layout/PresentationBar";
 import { PresentationToggle } from "@/components/layout/PresentationToggle";
 import { Sidebar } from "@/components/layout/Sidebar";
 import { ThemeToggle } from "@/components/layout/ThemeToggle";
+import { GuiaBoasVindas } from "@/components/onboarding/GuiaBoasVindas";
 import { CourseSearch } from "@/components/search/CourseSearch";
 import {
     PageHeaderSlotContext,
     PresentationTabsSlotContext,
 } from "@/context/page-header-slot";
 import { PresentationContext } from "@/context/presentation-context";
-import { useNavegacaoPendente } from "@/hooks/useAbrirNoCampus";
+import { useNavegacaoPendente } from "@/hooks/useAbrirNaUnidade";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { usePresentationMode } from "@/hooks/usePresentationMode";
+import { guiaJaVisto } from "@/lib/guia";
 import { cn } from "@/lib/utils";
 
 // Mesma altura da faixa escura nos dois lugares em que ela é desenhada (atrás
@@ -39,6 +41,9 @@ const BAND_HEIGHT = "h-[325px] md:h-[291px] lg:h-[261px]";
 // e o topo sobem até sumir e os cards sobem junto — o topo recolhe a própria
 // altura (margem negativa medida em tempo real) enquanto se desloca pra cima;
 // um X no canto superior esquerdo sai do modo.
+//
+// Guia de boas-vindas (o "i" à esquerda da busca): abre sozinho no primeiro
+// acesso deste navegador e, depois, quando se clica no "i".
 const TRANSICAO = "duration-500 ease-in-out motion-reduce:transition-none";
 
 export function AppLayout() {
@@ -56,8 +61,9 @@ export function AppLayout() {
     // pelo link, volta pro início
     const voltarPara = (state as { de?: string } | null)?.de ?? "/";
     const { presenting, toggle, exit } = usePresentationMode(apresentavel);
-    // cursos de outro campus (busca): navega quando o
-    // campus novo carrega
+    const [guiaAberto, setGuiaAberto] = useState(() => !guiaJaVisto());
+    // cursos de outra unidade (busca): navega quando o
+    // unidade nova carrega
     useNavegacaoPendente();
     const topoRef = useRef<HTMLDivElement>(null);
     const topoAltura = useAltura(topoRef);
@@ -182,7 +188,22 @@ export function AppLayout() {
                                 </span>
                             )}
                         </div>
-                        {!configuracoes && <CourseSearch />}
+                        {!configuracoes && (
+                            <div className="flex min-w-0 flex-1 items-center justify-end gap-1 sm:gap-2">
+                                {/* o "i" dos cards, no tamanho e no tom dos ícones
+                                    do topo (como a engrenagem) */}
+                                <button
+                                    type="button"
+                                    onClick={() => setGuiaAberto(true)}
+                                    aria-label="Guia do painel"
+                                    title="Guia do painel"
+                                    className="focus-visible:ring-lime/60 flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-white/75 transition-colors outline-none hover:text-white focus-visible:ring-2"
+                                >
+                                    <Info size={19} strokeWidth={2} aria-hidden />
+                                </button>
+                                <CourseSearch />
+                            </div>
+                        )}
                     </header>
 
                     <div className="relative text-white">
@@ -225,7 +246,7 @@ export function AppLayout() {
                 )}
             >
                 <main className="min-w-0">
-                    {/* modo apresentação: frase + seletor de campus + logo num
+                    {/* modo apresentação: frase + seletor de unidade + logo num
                         card baixo, já que a saudação sobe junto com o topo */}
                     <PresentationBar presenting={presenting} />
                     {/* sub-abas da página (se houver) no modo apresentação: a
@@ -312,6 +333,8 @@ export function AppLayout() {
             >
                 <X size={16} strokeWidth={2.25} aria-hidden />
             </button>
+
+            {guiaAberto && <GuiaBoasVindas onClose={() => setGuiaAberto(false)} />}
         </div>
     );
 }

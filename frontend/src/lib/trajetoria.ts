@@ -63,7 +63,7 @@ export function situacaoFinal(turma: Turma): PontoTurma | undefined {
     return turma.prazo === null ? undefined : pontoEm(turma, anosFinal(turma.prazo));
 }
 
-/** Os cursos do campus com as turmas acompanhadas (curva de sobrevivência +
+/** Os cursos da unidade com as turmas acompanhadas (curva de sobrevivência +
  * ingressantes e prazo de cada turma), na ordem dos nomes. */
 export function buildTrajetorias(data: DashboardData): CursoTrajetoria[] {
     const rotulos = rotulosCursos(data.cursos);
@@ -191,7 +191,7 @@ export const ANOS_EVASAO = 7;
 /** O ano do curso (1 = 1º ano) em que a evasão mais acontece, entre os
  * ``ANOS_EVASAO`` primeiros, e a parte de toda a evasão que ficou nele — o
  * destaque de "Em que ano do curso a evasão acontece" e do indicador do
- * topo da Visão do campus. ``null`` sem evasão. */
+ * topo da Visão da unidade. ``null`` sem evasão. */
 export function picoEvasao(fracoes: number[]): { ano: number; fracao: number } | null {
     const colunas = fracoes.slice(0, ANOS_EVASAO);
     if (colunas.length === 0) return null;
@@ -265,7 +265,7 @@ export function curvaNacional(
     return mapa;
 }
 
-/** A curva da turma madura do resumo dos campi, no formato das turmas. */
+/** A curva da turma madura do resumo das unidades, no formato das turmas. */
 export function pontosResumo(t: TrajetoriaResumo): PontoTurma[] {
     return t.curva.map(([anos, cursando, concluiu, desistiu]) => ({
         anos,
@@ -275,7 +275,7 @@ export function pontosResumo(t: TrajetoriaResumo): PontoTurma[] {
     }));
 }
 
-/** Conclusão e evasão das turmas maduras do campus (a mais recente de cada
+/** Conclusão e evasão das turmas maduras da unidade (a mais recente de cada
  * curso, no ponto final — prazo + 2 anos), pesadas pelos ingressantes, e a
  * média nacional dos mesmos cursos no mesmo ponto. É a comparação justa:
  * turmas recentes ainda não tiveram tempo de se formar. Usado no Início e no
@@ -471,8 +471,8 @@ export function indicadoresInepNacional(
     return new Map(indicadoresInep([...nacional.values()]).map((p) => [p.anos, p]));
 }
 
-/** A turma madura do resumo dos campi como uma ``Turma`` (pra reusar as
- * contas das turmas do campus aberto). */
+/** A turma madura do resumo das unidades como uma ``Turma`` (pra reusar as
+ * contas das turmas da unidade aberta). */
 export function turmaResumo(t: TrajetoriaResumo): Turma {
     return {
         ano: t.ano_ingresso,

@@ -34,7 +34,7 @@ export function MapaTrajetoriaPage() {
     return (
         <DataState
             esqueleto={<MapaEsqueleto />}
-            render={(data) => <Mapa key={data.escopo.codigo_municipio} data={data} />}
+            render={(data) => <Mapa key={data.escopo.slug} data={data} />}
         />
     );
 }
@@ -103,8 +103,8 @@ function Mapa({ data }: { data: DashboardData }) {
 
     const visao = useMemo(() => {
         if (!dados || !curso || dados.area !== curso.area) return null;
-        // os pares: mesmo grau e modalidade do curso do campus (a linha dele
-        // no arquivo da área, senão o cadastro do campus)
+        // os pares: mesmo grau e modalidade do curso da unidade (a linha dele
+        // no arquivo da área, senão o cadastro da unidade)
         const linha = dados.cursos.find((c) => c.codigo === curso.codigo);
         const ead = linha?.ead ?? /dist/i.test(curso.modalidade ?? "");
         const grau = linha?.grau ?? curso.grau;
@@ -126,10 +126,10 @@ function Mapa({ data }: { data: DashboardData }) {
             porUfCursos,
             porUf,
             brasil: resumirTrajetoria(filtrados),
-            // o curso do campus é a referência mesmo quando o filtro de rede o
+            // o curso da unidade é a referência mesmo quando o filtro de rede o
             // tira do recorte (a UFC é pública: "só rede privada"); aí ele
             // aparece onde ficaria entre os cursos filtrados
-            cursoCampus: linha,
+            cursoUnidade: linha,
             noFiltro: filtrados.some((c) => c.codigo === curso.codigo),
         };
     }, [dados, curso, rede]);
@@ -138,7 +138,7 @@ function Mapa({ data }: { data: DashboardData }) {
         return (
             <Card title="Mapa">
                 <p className="text-text-secondary mt-3 text-[14px]">
-                    Nenhum curso desta cidade tem turmas acompanhadas para comparar.
+                    Nenhum curso desta unidade tem turmas acompanhadas para comparar.
                 </p>
             </Card>
         );
@@ -161,12 +161,12 @@ function Mapa({ data }: { data: DashboardData }) {
           }))
         : [];
     const titulo = uf ? (UF_NOMES[uf] ?? uf) : "Brasil";
-    // por que o curso do campus aparece "na posição em que ficaria" no painel
-    const avisoFora = !visao?.cursoCampus
+    // por que o curso da unidade aparece "na posição em que ficaria" no painel
+    const avisoFora = !visao?.cursoUnidade
         ? null
         : !visao.noFiltro
-          ? `Seu curso é da rede ${visao.cursoCampus.publica ? "pública" : "privada"} e não entra no filtro: aparece na posição em que ficaria.`
-          : uf && visao.cursoCampus.uf !== uf
+          ? `Seu curso é da rede ${visao.cursoUnidade.publica ? "pública" : "privada"} e não entra no filtro: aparece na posição em que ficaria.`
+          : uf && visao.cursoUnidade.uf !== uf
             ? `Seu curso não é de ${UF_NOMES[uf] ?? uf}: aparece na posição em que ficaria.`
             : null;
     const valorDe = (r: ResumoTrajetoria) => r.medias[indicador];
@@ -233,8 +233,8 @@ function Mapa({ data }: { data: DashboardData }) {
             >
                 <h2 className="text-[17px] leading-tight font-semibold tracking-[-0.01em]">
                     {uf ? titulo : "Brasil por estado"}
-                    {/* a modalidade: o mapa só compara cursos da do curso do
-                        campus (e do mesmo grau) */}
+                    {/* a modalidade: o mapa só compara cursos da do curso da
+                        unidade (e do mesmo grau) */}
                     <span className="text-text-muted text-[13px] font-normal tracking-normal">
                         <span className="mx-1.5">|</span>
                         {curso.nome} · Turmas maduras
@@ -321,13 +321,13 @@ function Mapa({ data }: { data: DashboardData }) {
                     info={`Os números do Brasil, ou do estado escolhido no mapa, na ${ind.label}: cursos, a posição do seu curso e os cursos da área com as ${ind.melhores.toLowerCase()}.`}
                     subtitle={
                         visao
-                            ? `${visao.cursoCampus && ind.doCurso(visao.cursoCampus) !== null ? "" : "Seu curso não tem turma madura nesta área · "}${uf ? "Clique fora do estado para voltar ao Brasil" : "Clique num estado para ver os detalhes"}`
+                            ? `${visao.cursoUnidade && ind.doCurso(visao.cursoUnidade) !== null ? "" : "Seu curso não tem turma madura nesta área · "}${uf ? "Clique fora do estado para voltar ao Brasil" : "Clique num estado para ver os detalhes"}`
                             : undefined
                     }
                     className="lg:absolute lg:inset-0"
                 >
                     {/* folga de 4px em volta (compensada nas margens): o contorno do
-                        curso do campus na lista não é cortado pela rolagem. Embaixo,
+                        curso da unidade na lista não é cortado pela rolagem. Embaixo,
                         a rolagem vai até a borda do card (margem negativa sobre o
                         padding dele) e o respiro fica no fim da lista */}
                     <div className="-mx-1 mt-4 -mr-3 -mb-5 min-h-0 flex-1 [scrollbar-width:thin] overflow-y-auto pt-1 pr-3 pb-6 pl-1 lg:-mb-6 lg:pb-7">
@@ -339,7 +339,7 @@ function Mapa({ data }: { data: DashboardData }) {
                                 brasil={visao.brasil}
                                 ehEstado={uf !== null}
                                 indicador={indicador}
-                                cursoCampus={visao.cursoCampus}
+                                cursoUnidade={visao.cursoUnidade}
                                 avisoFora={avisoFora}
                             />
                         )}

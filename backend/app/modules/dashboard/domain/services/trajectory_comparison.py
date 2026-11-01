@@ -6,7 +6,7 @@ from app.modules.dashboard.domain.shared import ScopedData, records
 
 
 def build(data: ScopedData) -> dict[str, object]:
-    """Trajetória comparada entre os cursos do campus."""
+    """Trajetória comparada entre os cursos da unidade."""
     return {
         "evasao_por_curso": _evasao_por_curso(data),
         "heatmap_evasao_anual": _heatmap_evasao_anual(data),

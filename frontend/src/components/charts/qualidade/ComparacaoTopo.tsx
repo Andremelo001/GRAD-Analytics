@@ -3,8 +3,7 @@ import type { ReactNode } from "react";
 import { Card } from "@/components/cards/Card";
 import { CursoBusca } from "@/components/charts/qualidade/CursoBusca";
 import { useChartTheme } from "@/hooks/useChartTheme";
-import { nomeCampus } from "@/lib/comparacao";
-import type { ResumoCampi } from "@/types/dashboard";
+import type { ResumoUnidades } from "@/types/dashboard";
 
 // O topo das Comparações (Qualidade e Trajetória): tipo de comparação, os dois
 // seletores (A e B) e a ficha de cada lado.
@@ -65,35 +64,41 @@ export function Ficha({ itens }: { itens: [string, ReactNode][] }) {
     );
 }
 
-/** Seletor de campus no mesmo formato do de curso (caixa larga com o ponto
+/** Seletor de unidade no mesmo formato do de curso (caixa larga com o ponto
  * da cor do lado): os dois modos têm o topo idêntico. */
-export function SeletorCampus({
+export function SeletorUnidade({
     lado,
     value,
-    campi,
+    unidades,
     detalhe,
     onChange,
 }: {
     lado: "a" | "b";
     value: string;
-    campi: ResumoCampi["campi"];
+    unidades: ResumoUnidades["unidades"];
     /** Texto embaixo do nome (padrão: quantos cursos). */
-    detalhe?: (campus: ResumoCampi["campi"][number]) => string;
+    detalhe?: (unidade: ResumoUnidades["unidades"][number]) => string;
     onChange: (slug: string) => void;
 }) {
     const CHART = useChartTheme();
     return (
         <CursoBusca
-            label={lado === "a" ? "Cidade A" : "Cidade B"}
+            label={lado === "a" ? "Unidade A" : "Unidade B"}
             cor={CHART.comparacao[lado]}
             value={value}
-            options={campi.map((c) => ({
+            options={unidades.map((c) => ({
                 value: c.slug,
-                label: nomeCampus(c.nome),
-                detalhe: detalhe ? detalhe(c) : `${c.cursos.length} cursos`,
+                label: c.nome,
+                // a localidade, como no seletor de unidade do topo
+                detalhe: [
+                    c.localidade,
+                    detalhe ? detalhe(c) : `${c.cursos.length} cursos`,
+                ]
+                    .filter(Boolean)
+                    .join(" · "),
             }))}
             onChange={onChange}
-            placeholder="Buscar cidade…"
+            placeholder="Buscar unidade…"
         />
     );
 }

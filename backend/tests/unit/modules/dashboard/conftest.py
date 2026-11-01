@@ -2,7 +2,7 @@ import pandas as pd
 import pytest
 
 from app.modules.dashboard.domain.section import DashboardContext
-from app.modules.dashboard.domain.shared import Campus, ScopedData, build_scoped_data
+from app.modules.dashboard.domain.shared import ScopedData, Unidade, build_scoped_data
 
 _IES = 1
 _MUNICIPIO = 100
@@ -213,8 +213,8 @@ _TRAJETORIA_RAW = pd.DataFrame(
 
 
 @pytest.fixture
-def campus() -> Campus:
-    return Campus(
+def unidade() -> Unidade:
+    return Unidade(
         codigo_ies=_IES,
         codigo_municipio=_MUNICIPIO,
         nome="UFT em Teste",
@@ -234,9 +234,9 @@ def trajetoria_raw() -> pd.DataFrame:
 
 @pytest.fixture
 def scoped_data(
-    qualidade_raw: pd.DataFrame, trajetoria_raw: pd.DataFrame, campus: Campus
+    qualidade_raw: pd.DataFrame, trajetoria_raw: pd.DataFrame, unidade: Unidade
 ) -> ScopedData:
-    return build_scoped_data(qualidade_raw, trajetoria_raw, campus)
+    return build_scoped_data(qualidade_raw, trajetoria_raw, unidade)
 
 
 @pytest.fixture

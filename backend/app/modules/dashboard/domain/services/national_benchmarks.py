@@ -40,7 +40,7 @@ def build(
         "perfil_radar": _perfil_radar_nacional(pares_qualidade, data.qualidade),
         "curva_sobrevivencia": _curva_sobrevivencia_nacional(pares_trajetoria),
         "heatmap_evasao_anual": _heatmap_evasao_nacional(pares_trajetoria),
-        "campus": _campus_nacional(pares_qualidade, pares_trajetoria),
+        "unidade": _unidade_nacional(pares_qualidade, pares_trajetoria),
         "distribuicao_uf": _distribuicao_uf(
             qualidade_nacional, trajetoria_nacional, data
         ),
@@ -55,7 +55,7 @@ def _trajetoria_pares(
 ) -> list[dict[str, object]]:
     """Evasão e conclusão dos cursos-pares no Brasil, na turma madura.
 
-    Um item por curso do campus: a turma madura mais recente dele
+    Um item por curso da unidade: a turma madura mais recente dele
     (``course_profile.turma_madura``) e, para os pares do Brasil (mesma área
     CINE — o curso em si —, modalidade e grau) com turma no mesmo ano de
     ingresso, a evasão e a conclusão acumuladas no mesmo ponto — ``prazo + 1``
@@ -113,7 +113,7 @@ def _ingressantes_nacional(
 ) -> list[dict[str, object]]:
     """Ingressantes médios por curso-par, por ano de ingresso.
 
-    Um item por (curso do campus, ano): a média de ingressantes dos cursos do
+    Um item por (curso da unidade, ano): a média de ingressantes dos cursos do
     Brasil com a mesma área CINE (o curso em si, ex.: "Ciência da
     computação" — o rótulo do INEP é um grupo largo, que juntaria cursos de
     tamanhos muito diferentes), modalidade e grau acadêmico.
@@ -156,11 +156,11 @@ def _concluintes_nacional(
 ) -> list[dict[str, object]]:
     """Concluintes médios por curso-par, por ano de referência.
 
-    Um item por (curso do campus, ano): a média de concluintes no ano dos
+    Um item por (curso da unidade, ano): a média de concluintes no ano dos
     cursos do Brasil com a mesma área CINE, modalidade e grau (os mesmos
     pares de ``_ingressantes_nacional``), contando os pares com turma
-    acompanhada naquele ano — e só nos anos em que os dados do curso do
-    campus estão completos (``course_profile.janela_concluintes``).
+    acompanhada naquele ano — e só nos anos em que os dados do curso da
+    unidade estão completos (``course_profile.janela_concluintes``).
     """
     if (
         data.trajetoria.empty
@@ -218,7 +218,7 @@ def _concluintes_nacional(
 def _pares_nacionais(
     nacional: pd.DataFrame, escopo_local: pd.DataFrame, coluna_area: str
 ) -> pd.DataFrame:
-    """Restringe o dataset nacional às áreas que o campus realmente oferece."""
+    """Restringe o dataset nacional às áreas que a unidade realmente oferece."""
     if nacional.empty or escopo_local.empty or coluna_area not in escopo_local.columns:
         return nacional.iloc[0:0]
     areas = set(escopo_local[coluna_area].dropna().unique())
@@ -267,9 +267,9 @@ def _perfil_radar_nacional(
 ) -> list[dict[str, object]]:
     """Contraparte nacional: notas padronizadas médias por área e ano.
 
-    Mais o Conceito Enade contínuo médio (o tile da Visão do campus).
+    Mais o Conceito Enade contínuo médio (o tile da Visão da unidade).
 
-    Só os pares (área, ano) em que algum curso do campus foi avaliado: as
+    Só os pares (área, ano) em que algum curso da unidade foi avaliado: as
     notas são padronizadas dentro de cada edição do Enade, então o curso só
     se compara com a média da mesma área *no mesmo ano* — a edição mais
     recente da área pode ser outra.
@@ -332,13 +332,13 @@ def _heatmap_evasao_nacional(pares_trajetoria: pd.DataFrame) -> list[dict[str, o
     return records(grouped.round(2).reset_index().sort_values(group_cols))
 
 
-def _campus_nacional(
+def _unidade_nacional(
     pares_qualidade: pd.DataFrame, pares_trajetoria: pd.DataFrame
 ) -> dict[str, object]:
-    """Contraparte nacional: mesmas métricas de ``campus_overview``.
+    """Contraparte nacional: mesmas métricas de ``unidade_overview``.
 
-    Calculadas sobre os cursos-pares do Brasil inteiro em vez dos cursos do
-    campus.
+    Calculadas sobre os cursos-pares do Brasil inteiro em vez dos cursos da
+    unidade.
     """
     return {
         "kpis": _kpis_nacional(pares_trajetoria),
@@ -387,7 +387,7 @@ def _distribuicao_cpc_faixa_nacional(
     """Contraparte nacional da distribuição: % de cursos-pares por faixa.
 
     Ano mais recente de cada curso, em percentual — não contagem, senão
-    milhares de cursos nacionais sempre esmagariam os poucos do campus.
+    milhares de cursos nacionais sempre esmagariam os poucos da unidade.
     """
     if pares_qualidade.empty:
         return []
@@ -408,9 +408,9 @@ def _distribuicao_uf(
     trajetoria_nacional: pd.DataFrame,
     data: ScopedData,
 ) -> list[dict[str, object]]:
-    """Onde, no Brasil, existem cursos-pares de cada curso do campus.
+    """Onde, no Brasil, existem cursos-pares de cada curso da unidade.
 
-    Um item por curso do campus, com os estados que oferecem o mesmo curso:
+    Um item por curso da unidade, com os estados que oferecem o mesmo curso:
     na trajetória, mesma área CINE geral, modalidade e grau acadêmico; no
     CPC, mesma área de avaliação e modalidade. A modalidade entra porque um
     curso EaD é registrado no município-sede e inflaria o estado da sede; o
@@ -435,7 +435,7 @@ def _distribuicao_uf_curso(
     local_q = _rows_of(data.qualidade, codigo_curso)
 
     area_cine = _first(local_t, "nome_cine_area_geral")
-    uf_campus = _first(local_t, "codigo_uf")
+    uf_unidade = _first(local_t, "codigo_uf")
     trajetoria = _uf_trajetoria(trajetoria_nacional, local_t)
     qualidade = _uf_qualidade(qualidade_nacional, local_q)
 
@@ -448,7 +448,7 @@ def _distribuicao_uf_curso(
         "codigo_curso": codigo_curso,
         "nome_cine_area_geral": area_cine,
         "area_avaliacao": qualidade.area,
-        "sigla_uf_campus": _sigla_uf(uf_campus),
+        "sigla_uf_unidade": _sigla_uf(uf_unidade),
         "ano_ingresso": trajetoria.ano,
         "ano_cpc": qualidade.ano,
         "estados": [estados[sigla] for sigla in sorted(estados)],
@@ -485,7 +485,7 @@ def _uf_trajetoria(nacional: pd.DataFrame, local: pd.DataFrame) -> _ResumoUf:
     """Por UF: cursos-pares com turma no ano de ingresso mais recente.
 
     Junto, os ingressantes dessa turma e a evasão média dela no último ano
-    acompanhado (mesmo recorte dos KPIs do campus).
+    acompanhado (mesmo recorte dos KPIs da unidade).
     """
     needed = {"nome_cine_area_geral", "codigo_uf", "ano_ingresso", "codigo_curso"}
     if local.empty or nacional.empty or not needed <= set(nacional.columns):
@@ -523,7 +523,7 @@ def _uf_trajetoria(nacional: pd.DataFrame, local: pd.DataFrame) -> _ResumoUf:
 def _uf_qualidade(nacional: pd.DataFrame, local: pd.DataFrame) -> _ResumoUf:
     """Por UF: CPC contínuo médio dos cursos-pares na avaliação mais recente.
 
-    A área é a ``area_avaliacao`` do ano mais recente do curso do campus.
+    A área é a ``area_avaliacao`` do ano mais recente do curso da unidade.
     """
     if local.empty or nacional.empty or "sigla_uf" not in nacional.columns:
         return _ResumoUf()

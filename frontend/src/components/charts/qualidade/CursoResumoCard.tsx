@@ -20,7 +20,7 @@ export function CursoResumoCard({
 }) {
     return (
         <Card className={cn("relative", className)}>
-            {/* enfeite: os pontinhos dos 4 resumos da Visão do campus. Recortados
+            {/* enfeite: os pontinhos dos 4 resumos da Visão da unidade. Recortados
                 numa camada própria (não no card) */}
             <span
                 aria-hidden

@@ -13,10 +13,10 @@ import { useId, type ReactNode } from "react";
 import { ChartSelect } from "@/components/charts/ChartSelect";
 import { ModoToggle } from "@/components/charts/qualidade/ModoToggle";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { ULTIMO_CAMPUS } from "@/context/dashboard-data-context";
+import { ULTIMA_UNIDADE } from "@/context/dashboard-data-context";
 import type { ThemePreference } from "@/context/theme-context";
 import { useDashboardData } from "@/hooks/useDashboardData";
-import { nomeCampus } from "@/lib/comparacao";
+import { nomeUnidade } from "@/lib/comparacao";
 import { useTheme } from "@/hooks/useTheme";
 import { cn } from "@/lib/utils";
 
@@ -26,7 +26,7 @@ const TEMAS: { value: ThemePreference; label: string; icon: ReactNode }[] = [
     { value: "system", label: "Automático", icon: <Monitor size={14} aria-hidden /> },
 ];
 
-/** Configurações: aparência, campus ao abrir e acessibilidade, salvas neste navegador. Ocupa
+/** Configurações: aparência, unidade ao abrir e acessibilidade, salvas neste navegador. Ocupa
  * a largura toda da página (como as outras), com as opções agrupadas por seção; cada mudança vale
  * na hora (sem botão de salvar). */
 export function ConfiguracoesPage() {
@@ -38,10 +38,12 @@ export function ConfiguracoesPage() {
         setCoresAcessiveis,
         restaurarPadroes,
     } = useTheme();
-    const { campi, campusAoAbrir, setCampusAoAbrir } = useDashboardData();
+    const { unidades, unidadeAoAbrir, setUnidadeAoAbrir } = useDashboardData();
     const padrao =
-        preference === "system" && !coresAcessiveis && campusAoAbrir === ULTIMO_CAMPUS;
-    const fixo = campi.find((c) => c.slug === campusAoAbrir);
+        preference === "system" &&
+        !coresAcessiveis &&
+        unidadeAoAbrir === ULTIMA_UNIDADE;
+    const fixo = unidades.find((c) => c.slug === unidadeAoAbrir);
 
     return (
         <>
@@ -72,25 +74,30 @@ export function ConfiguracoesPage() {
                     />
                     <Linha
                         icone={<MapPin size={18} />}
-                        titulo="Cidade ao abrir o painel"
+                        titulo="Unidade ao abrir o painel"
                         descricao={
                             fixo
-                                ? `O painel sempre abre em ${nomeCampus(fixo.nome)}`
-                                : "O painel abre na última cidade escolhida"
+                                ? `O painel sempre abre em ${nomeUnidade(fixo)}`
+                                : "O painel abre na última unidade escolhida"
                         }
                         controle={
-                            campi.length > 0 && (
+                            unidades.length > 0 && (
                                 <ChartSelect
-                                    label="Cidade ao abrir o painel"
-                                    value={fixo ? fixo.slug : ULTIMO_CAMPUS}
+                                    label="Unidade ao abrir o painel"
+                                    value={fixo ? fixo.slug : ULTIMA_UNIDADE}
                                     options={[
-                                        { value: ULTIMO_CAMPUS, label: "Último usado" },
-                                        ...campi.map((c) => ({
+                                        {
+                                            value: ULTIMA_UNIDADE,
+                                            label: "Último usado",
+                                        },
+                                        ...unidades.map((c) => ({
                                             value: c.slug,
-                                            label: nomeCampus(c.nome),
+                                            label: c.nome,
+                                            descricao: c.localidade ?? undefined,
+                                            curto: nomeUnidade(c),
                                         })),
                                     ]}
-                                    onChange={setCampusAoAbrir}
+                                    onChange={setUnidadeAoAbrir}
                                 />
                             )
                         }
@@ -123,7 +130,7 @@ export function ConfiguracoesPage() {
                         type="button"
                         onClick={() => {
                             restaurarPadroes();
-                            setCampusAoAbrir(ULTIMO_CAMPUS);
+                            setUnidadeAoAbrir(ULTIMA_UNIDADE);
                         }}
                         disabled={padrao}
                         className="text-text-secondary hover:text-ink hover:bg-surface focus-visible:ring-lime/60 flex items-center gap-1.5 rounded-lg px-3 py-2 text-[13px] font-medium transition-colors outline-none focus-visible:ring-2 disabled:pointer-events-none disabled:opacity-40"

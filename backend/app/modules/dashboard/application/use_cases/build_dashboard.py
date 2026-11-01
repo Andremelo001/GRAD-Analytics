@@ -7,37 +7,37 @@ from loguru import logger
 from app.core.config.settings import settings
 from app.core.infrastructure.storage.json_exporter import JsonExporter
 from app.modules.dashboard.application.ports.dashboard_source import DashboardSource
-from app.modules.dashboard.domain import shared
+from app.modules.dashboard.domain import shared, unidade_mapping
 from app.modules.dashboard.domain.section import DashboardContext, DashboardSection
 from app.modules.dashboard.domain.services import (
     alerts,
-    campus_overview,
-    campus_summary,
     course_comparison,
     course_profile,
     national_benchmarks,
     quality_areas,
     trajectory_areas,
     trajectory_comparison,
+    unidade_overview,
+    unidade_summary,
 )
 from app.modules.dashboard.infrastructure.sources.processed_csv_source import (
     ProcessedCsvSource,
 )
 
-# Um JSON por campus em app/data/processed/dashboard/<slug>.json, mais o
-# index.json com a lista de campi (o front baixa só o campus escolhido).
+# Um JSON por unidade em app/data/processed/dashboard/<slug>.json, mais o
+# index.json com a lista de unidades (o front baixa só a unidade escolhida).
 _DIR_NAME = "dashboard"
 _INDEX_NAME = "index"
 # Um JSON por área de avaliação em dashboard/areas_qualidade/<slug>.json (todos
 # os cursos do Brasil na edição mais recente da área), compartilhado entre os
-# campi: o mapa da aba Qualidade baixa só a área do curso escolhido.
+# unidades: o mapa da aba Qualidade baixa só a área do curso escolhido.
 _AREAS_DIR_NAME = "areas_qualidade"
 # Um JSON por área CINE em dashboard/trajetoria_areas/<slug>.json (a turma
 # madura de cada curso do Brasil na área): as Comparações da Trajetória baixam
 # só a área do curso escolhido.
 _TRAJETORIA_AREAS_DIR_NAME = "trajetoria_areas"
-# Resumo de todos os cursos de todos os campi (comparação entre campi).
-_RESUMO_NAME = "resumo_campi"
+# Resumo de todos os cursos de todas as unidades (comparação entre unidades).
+_RESUMO_NAME = "resumo_unidades"
 
 # Ordem = ordem das seções no dashboard.json. Acrescentar uma seção nova
 # é registrar mais uma linha aqui — não editar build_dashboard().
@@ -45,7 +45,7 @@ _SECTIONS: tuple[DashboardSection, ...] = (
     course_profile.CourseProfileSection(),
     course_comparison.CourseComparisonSection(),
     trajectory_comparison.TrajectoryComparisonSection(),
-    campus_overview.CampusOverviewSection(),
+    unidade_overview.UnidadeOverviewSection(),
     national_benchmarks.NationalBenchmarksSection(),
     alerts.AlertsSection(),
 )
@@ -54,12 +54,14 @@ _SECTIONS: tuple[DashboardSection, ...] = (
 def build_dashboard(
     *, source: DashboardSource | None = None, out_dir: Path | None = None
 ) -> Path:
-    """Lê qualidade.csv + trajetoria.csv[.gz] e grava um JSON por campus.
+    """Lê qualidade.csv + trajetoria.csv[.gz] e grava um JSON por unidade.
 
-    Os campi são todos os municípios onde a IES configurada
-    (``DASHBOARD_CODIGO_IES``) tem curso na trajetória. Cada campus vira
+    As unidades são as da lista de cursos do SIGAA (``unidades_ufc.json``), com os
+    cursos da IES configurada (``DASHBOARD_CODIGO_IES``) nos municípios onde
+    ela tem curso na trajetória; curso sem unidade fica no recorte da cidade
+    (ver ``shared.discover_unidades``). Cada unidade vira
     ``<out_dir>/<slug>.json`` com a mesma estrutura, e ``index.json`` lista
-    os campi. JSONs de campus que deixou de existir são apagados. Retorna
+    as unidades. JSONs de unidade que deixou de existir são apagados. Retorna
     ``out_dir`` (default: ``app/data/processed/dashboard/``).
     """
     source = source if source is not None else ProcessedCsvSource()
@@ -69,12 +71,19 @@ def build_dashboard(
     fontes = _build_fontes(source.read_meta())
     gerado_em = datetime.now(UTC).isoformat(timespec="seconds")
 
-    campi = shared.discover_campi(
-        qualidade_nacional, trajetoria_nacional, settings.dashboard_codigo_ies
+    unidades_sigaa = unidade_mapping.parse_unidades(source.read_unidades())
+    ajustes = unidade_mapping.parse_ajustes(source.read_unidades_ajustes())
+    _check_unidades_sigaa(unidades_sigaa, ajustes)
+    unidades = shared.discover_unidades(
+        qualidade_nacional,
+        trajetoria_nacional,
+        settings.dashboard_codigo_ies,
+        unidades_sigaa,
+        ajustes,
     )
-    if not campi:
+    if not unidades:
         logger.warning(
-            "dashboard | nenhum campus encontrado para a IES {} "
+            "dashboard | nenhuma unidade encontrada para a IES {} "
             "(ver DASHBOARD_CODIGO_IES no .env)",
             settings.dashboard_codigo_ies,
         )
@@ -83,8 +92,10 @@ def build_dashboard(
     index: list[dict[str, object]] = []
     escopos: list[shared.ScopedData] = []
     resumo: list[dict[str, object]] = []
-    for campus in campi:
-        data = shared.build_scoped_data(qualidade_nacional, trajetoria_nacional, campus)
+    for unidade in unidades:
+        data = shared.build_scoped_data(
+            qualidade_nacional, trajetoria_nacional, unidade
+        )
         escopos.append(data)
         context = DashboardContext(
             data=data,
@@ -93,44 +104,50 @@ def build_dashboard(
         )
         payload: dict[str, object] = {
             "gerado_em": gerado_em,
-            "escopo": shared.build_escopo(data.qualidade, data.trajetoria, campus),
+            "escopo": shared.build_escopo(data.qualidade, data.trajetoria, unidade),
             "cursos": shared.records(data.cursos),
             "fontes": fontes,
         }
         for section in _SECTIONS:
             payload[section.key] = section.build(context)
 
-        exporter.export(payload, campus.slug)
+        exporter.export(payload, unidade.slug)
+        if unidades_sigaa and unidade.sigla is None and unidade.codigos_curso:
+            _warn_sem_unidade(unidade, data)
         index.append(
             {
-                "slug": campus.slug,
-                "nome": campus.nome,
-                "codigo_municipio": campus.codigo_municipio,
+                "slug": unidade.slug,
+                "nome": unidade.nome,
+                "sigla": unidade.sigla,
+                "localidade": unidade.localidade,
+                "codigo_municipio": unidade.codigo_municipio,
                 "total_cursos": len(data.cursos),
-                "arquivo": f"{campus.slug}.json",
+                "arquivo": f"{unidade.slug}.json",
             }
         )
         resumo.append(
             {
-                "slug": campus.slug,
-                "nome": campus.nome,
-                "cursos": campus_summary.build_resumo_cursos(data),
+                "slug": unidade.slug,
+                "nome": unidade.nome,
+                "sigla": unidade.sigla,
+                "localidade": unidade.localidade,
+                "cursos": unidade_summary.build_resumo_cursos(data),
             }
         )
-        logger.info("dashboard | {} | cursos={}", campus.nome, len(data.cursos))
+        logger.info("dashboard | {} | cursos={}", unidade.nome, len(data.cursos))
 
     exporter.export(
         {
             "gerado_em": gerado_em,
             "codigo_ies": settings.dashboard_codigo_ies,
-            "campi": index,
+            "unidades": index,
         },
         _INDEX_NAME,
     )
-    exporter.export({"gerado_em": gerado_em, "campi": resumo}, _RESUMO_NAME)
+    exporter.export({"gerado_em": gerado_em, "unidades": resumo}, _RESUMO_NAME)
     _remove_stale(
         out_dir,
-        {f"{c.slug}.json" for c in campi}
+        {f"{c.slug}.json" for c in unidades}
         | {f"{_INDEX_NAME}.json", f"{_RESUMO_NAME}.json"},
     )
     _build_areas(qualidade_nacional, escopos, out_dir / _AREAS_DIR_NAME, gerado_em)
@@ -144,16 +161,51 @@ def build_dashboard(
     return out_dir
 
 
+def _check_unidades_sigaa(
+    unidades_sigaa: list[unidade_mapping.UnidadeSigaa],
+    ajustes: unidade_mapping.AjustesUnidades,
+) -> None:
+    if not unidades_sigaa:
+        logger.warning(
+            "dashboard | {} sem unidade — recorte por cidade (rode "
+            "'python -m app.cmd unidades')",
+            settings.unidades_ufc_file.name,
+        )
+    for problema in unidade_mapping.problemas_ajustes(unidades_sigaa, ajustes):
+        logger.warning(
+            "REVISAR | {}: {}", settings.unidades_ufc_ajustes_file.name, problema
+        )
+
+
+def _warn_sem_unidade(unidade: shared.Unidade, data: shared.ScopedData) -> None:
+    """Cursos que não casaram com nenhuma unidade do SIGAA (ficam na cidade)."""
+    cursos = ", ".join(
+        f"{codigo} {nome}"
+        for codigo, nome in zip(
+            data.cursos["codigo_curso"], data.cursos["nome_curso"], strict=True
+        )
+    )
+    logger.warning(
+        "REVISAR | {} curso(s) sem unidade no SIGAA -> '{}' ({}). Fixe a unidade "
+        "em {}: {}",
+        len(data.cursos),
+        unidade.nome,
+        unidade.slug,
+        settings.unidades_ufc_ajustes_file.name,
+        cursos,
+    )
+
+
 def _build_areas(
     qualidade_nacional: pd.DataFrame,
     escopos: list[shared.ScopedData],
     areas_dir: Path,
     gerado_em: str,
 ) -> None:
-    """Grava ``areas_qualidade/<slug>.json`` de cada área dos campi + o index."""
+    """Grava ``areas_qualidade/<slug>.json`` de cada área das unidades + o index."""
     exporter = JsonExporter(out_dir=areas_dir, indent=None)
     index: list[dict[str, object]] = []
-    for area in quality_areas.areas_dos_campi(escopos):
+    for area in quality_areas.areas_das_unidades(escopos):
         payload = quality_areas.build_area(
             qualidade_nacional, area, settings.dashboard_codigo_ies
         )
@@ -192,7 +244,7 @@ def _build_areas_trajetoria(
     exporter = JsonExporter(out_dir=areas_dir, indent=None)
     nomes = trajectory_areas.nomes_da_qualidade(qualidade_nacional)
     index: list[dict[str, object]] = []
-    for area in trajectory_areas.areas_dos_campi(escopos):
+    for area in trajectory_areas.areas_das_unidades(escopos):
         payload = trajectory_areas.build_area(
             trajetoria_nacional, nomes, area, settings.dashboard_codigo_ies
         )
@@ -220,11 +272,11 @@ def _build_areas_trajetoria(
 
 
 def _remove_stale(out_dir: Path, keep: set[str]) -> None:
-    """Apaga JSONs de campus que não saíram neste run (ex.: campus extinto)."""
+    """Apaga JSONs de unidade que não saíram neste run (ex.: unidade extinta)."""
     for path in out_dir.glob("*.json"):
         if path.name not in keep:
             path.unlink()
-            logger.info("dashboard | removido {} (campus fora da lista)", path.name)
+            logger.info("dashboard | removido {} (unidade fora da lista)", path.name)
 
 
 def _build_fontes(meta: dict[str, object]) -> dict[str, object]:

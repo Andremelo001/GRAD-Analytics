@@ -1,9 +1,13 @@
 {
-  "gerado_em": "2026-10-31T14:51:52+00:00",
+  "gerado_em": "2026-11-01T12:51:36+00:00",
   "escopo": {
     "codigo_ies": 583,
     "nome_ies": "UNIVERSIDADE FEDERAL DO CEARÁ",
     "sigla_ies": "UFC",
+    "slug": "camprussas",
+    "unidade": "CAMPRUSSAS - CAMPUS DA UFC DE RUSSAS",
+    "sigla_unidade": "CAMPRUSSAS",
+    "localidade": "Russas",
     "codigo_municipio": 2311801,
     "municipio": "UFC em Russas"
   },
@@ -46,11 +50,11 @@
   ],
   "fontes": {
     "qualidade": {
-      "gerado_em": "2026-10-31T14:45:11+00:00",
+      "gerado_em": "2026-10-31T15:10:31+00:00",
       "linhas": 67883
     },
     "trajetoria": {
-      "gerado_em": "2026-10-31T14:51:30+00:00",
+      "gerado_em": "2026-10-31T15:16:41+00:00",
       "linhas": 2731155
     }
   },
@@ -6386,7 +6390,7 @@
       }
     ]
   },
-  "campus": {
+  "unidade": {
     "kpis": {
       "total_cursos": 5,
       "total_ingressantes_ultimo_ano": 324,
@@ -7504,7 +7508,7 @@
         "quantidade_cursos_considerados": 662
       }
     ],
-    "campus": {
+    "unidade": {
       "kpis": {
         "taxa_conclusao_media_nacional": 19.31,
         "taxa_desistencia_media_nacional": 65.29,
@@ -7542,7 +7546,7 @@
         "codigo_curso": 1272130,
         "nome_cine_area_geral": "Engenharia de software",
         "area_avaliacao": null,
-        "sigla_uf_campus": "CE",
+        "sigla_uf_unidade": "CE",
         "ano_ingresso": 2020,
         "ano_cpc": null,
         "estados": [
@@ -7696,7 +7700,7 @@
         "codigo_curso": 1299927,
         "nome_cine_area_geral": "Ciência da computação",
         "area_avaliacao": "CIÊNCIA DA COMPUTAÇÃO (BACHARELADO)",
-        "sigla_uf_campus": "CE",
+        "sigla_uf_unidade": "CE",
         "ano_ingresso": 2020,
         "ano_cpc": 2021,
         "estados": [
@@ -7914,7 +7918,7 @@
         "codigo_curso": 1299931,
         "nome_cine_area_geral": "Engenharia civil",
         "area_avaliacao": "ENGENHARIA CIVIL",
-        "sigla_uf_campus": "CE",
+        "sigla_uf_unidade": "CE",
         "ano_ingresso": 2020,
         "ano_cpc": 2023,
         "estados": [
@@ -8140,7 +8144,7 @@
         "codigo_curso": 1299935,
         "nome_cine_area_geral": "Engenharia de produção",
         "area_avaliacao": "ENGENHARIA DE PRODUÇÃO",
-        "sigla_uf_campus": "CE",
+        "sigla_uf_unidade": "CE",
         "ano_ingresso": 2020,
         "ano_cpc": 2023,
         "estados": [
@@ -8350,7 +8354,7 @@
         "codigo_curso": 1299936,
         "nome_cine_area_geral": "Engenharia mecânica",
         "area_avaliacao": "ENGENHARIA MECÂNICA",
-        "sigla_uf_campus": "CE",
+        "sigla_uf_unidade": "CE",
         "ano_ingresso": 2020,
         "ano_cpc": 2023,
         "estados": [
@@ -14086,7 +14090,7 @@
       {
         "tipo": "evasao_acima_da_media",
         "severidade": "atencao",
-        "mensagem": "3 curso(s) com evasão acima da média do campus (56,8%).",
+        "mensagem": "3 curso(s) com evasão acima da média da unidade (56,8%).",
         "cursos": [
           "ENGENHARIA CIVIL",
           "ENGENHARIA DE PRODUÇÃO",

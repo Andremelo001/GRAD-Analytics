@@ -4,7 +4,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import { useActiveIndicator } from "@/hooks/useActiveIndicator";
 import { cn } from "@/lib/utils";
 
-/** Sub-abas de uma aba (ex.: Qualidade → Visão do campus / Por curso / …),
+/** Sub-abas de uma aba (ex.: Qualidade → Visão da unidade / Por curso / …),
  * em pílulas sobre a faixa escura, logo abaixo da saudação (``PageHeader``,
  * prop ``tabs``): a ativa em limão, as outras em branco apagado. A pílula
  * limão desliza até a sub-aba escolhida. Cada uma é uma rota, então dá pra

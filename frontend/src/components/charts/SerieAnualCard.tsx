@@ -17,9 +17,9 @@ import { formatInteger, toTitleCase } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import type { Curso, DashboardData } from "@/types/dashboard";
 
-/** ``escolha`` da série do campus inteiro. */
-export const SERIE_CAMPUS = "campus";
-const CAMPUS = SERIE_CAMPUS;
+/** ``escolha`` da série da unidade inteira. */
+export const SERIE_UNIDADE = "unidade";
+const CAMPUS = SERIE_UNIDADE;
 
 interface Point {
     ano: number;
@@ -28,7 +28,7 @@ interface Point {
     nacional: number | null;
 }
 
-/** Um valor por ano: do campus inteiro ou de um curso. */
+/** Um valor por ano: da unidade inteira ou de um curso. */
 export interface ValorAno {
     ano: number;
     valor: number;
@@ -38,14 +38,14 @@ export interface ValorCursoAno extends ValorAno {
     codigo: number;
 }
 
-/** Série escolhida: o total do campus (``campus``) ou um curso
+/** Série escolhida: o total da unidade (``unidade``) ou um curso
  * (``porCurso``), cada ano com a média nacional (``nacional``, por curso e
- * ano). No curso, é a média dos cursos-pares; no campus, a soma dessas médias
- * pelos cursos que tiveram dado no ano — o total que o campus teria se cada
+ * ano). No curso, é a média dos cursos-pares; na unidade, a soma dessas médias
+ * pelos cursos que tiveram dado no ano — o total que a unidade teria se cada
  * curso ficasse na média do Brasil. */
 function buildSeries(
     escolha: string,
-    campus: ValorAno[],
+    unidade: ValorAno[],
     porCurso: ValorCursoAno[],
     nacional: ValorCursoAno[]
 ): Point[] {
@@ -65,7 +65,7 @@ function buildSeries(
         const m = media.get(`${p.codigo}-${p.ano}`);
         if (m !== undefined) esperado.set(p.ano, (esperado.get(p.ano) ?? 0) + m);
     }
-    return campus
+    return unidade
         .map((p) => ({
             ano: p.ano,
             valor: p.valor,
@@ -221,20 +221,20 @@ function trechos(pts: (Pt | null)[]): Pt[][] {
 const PAD = { top: 14, right: 12, bottom: 32, left: 44 };
 
 /** Uma contagem por ano (ingressantes, concluintes…), em duas linhas suaves:
- * o campus (ou o curso escolhido no seletor), em oliva com uma área
+ * a unidade (ou o curso escolhido no seletor), em oliva com uma área
  * esmaecida embaixo, e a média nacional dos mesmos cursos, em violeta. No
- * ano em foco, cada linha ganha uma pílula com o valor: a do campus/curso (limão) embaixo do ponto, a da média nacional
- * (violeta) em cima — trocadas no ano em que o campus passa da média, pra
+ * ano em foco, cada linha ganha uma pílula com o valor: a da unidade/curso (limão) embaixo do ponto, a da média nacional
+ * (violeta) em cima — trocadas no ano em que a unidade passa da média, pra
  * uma não cobrir o ponto da outra. Passar o mouse (ou o dedo) muda
  * o foco; ao sair, volta pro último ano. */
 export function SerieAnualCard({
     titulo,
     info,
-    subtituloCampus,
+    subtituloUnidade,
     rotuloAno,
     vazio,
     nota,
-    campus,
+    unidade,
     porCurso,
     nacional,
     cursos,
@@ -243,19 +243,19 @@ export function SerieAnualCard({
 }: {
     titulo: string;
     info: string;
-    /** Subtítulo da série do campus (o do curso diz o nome dele). */
-    subtituloCampus: string;
+    /** Subtítulo da série da unidade (o do curso diz o nome dele). */
+    subtituloUnidade: string;
     /** Cabeçalho da coluna de anos na tabela pra leitores de tela. */
     rotuloAno: string;
     /** Sem dado na série escolhida. */
     vazio: string;
     /** Nota de rodapé (ex.: de onde vêm os anos). */
     nota?: ReactNode;
-    campus: ValorAno[];
+    unidade: ValorAno[];
     porCurso: ValorCursoAno[];
     nacional: ValorCursoAno[];
     cursos: Curso[];
-    /** A série: ``"campus"`` (o total) ou o código de um curso — a do seletor
+    /** A série: ``"unidade"`` (o total) ou o código de um curso — a do seletor
      * de curso do Início (no cabeçalho). */
     escolha: string;
     className?: string;
@@ -267,8 +267,8 @@ export function SerieAnualCard({
     const { width: W, height: H } = useElementSize(boxRef);
 
     const serie = useMemo(
-        () => buildSeries(escolha, campus, porCurso, nacional),
-        [escolha, campus, porCurso, nacional]
+        () => buildSeries(escolha, unidade, porCurso, nacional),
+        [escolha, unidade, porCurso, nacional]
     );
     const sel = hover !== null && hover < serie.length ? hover : serie.length - 1;
     const foco = serie.at(sel);
@@ -281,7 +281,7 @@ export function SerieAnualCard({
     const nomeSerie = escolha === CAMPUS ? "Todos os cursos" : "Curso";
     const subtitulo =
         escolha === CAMPUS
-            ? subtituloCampus
+            ? subtituloUnidade
             : `${toTitleCase(curso?.nome_curso ?? "")} × média dos mesmos cursos no Brasil`;
 
     // escalas
@@ -316,9 +316,9 @@ export function SerieAnualCard({
     const fx = foco ? x(sel) : 0;
     const fy = foco ? y(foco.valor) : 0;
     const fyN = foco?.nacional != null ? y(foco.nacional) : null;
-    // campus/curso embaixo da linha e média nacional em cima (invertem se o
-    // campus está acima da média); as pílulas fogem das linhas e dos pontos
-    const campusEmCima = fyN !== null && fy < fyN;
+    // unidade/curso embaixo da linha e média nacional em cima (invertem se o
+    // unidade está acima da média); as pílulas fogem das linhas e dos pontos
+    const unidadeEmCima = fyN !== null && fy < fyN;
     const textoSerie = foco ? formatInteger(foco.valor) : "";
     const textoNacional = foco?.nacional != null ? formatInteger(foco.nacional) : "";
     const largura = (texto: string) => texto.length * 7 + 18;
@@ -343,7 +343,7 @@ export function SerieAnualCard({
                   fx,
                   fyN,
                   largura(textoNacional),
-                  !campusEmCima,
+                  !unidadeEmCima,
                   limitesPilula,
                   obstaculos,
                   []
@@ -354,7 +354,7 @@ export function SerieAnualCard({
               fx,
               fy,
               largura(textoSerie),
-              campusEmCima,
+              unidadeEmCima,
               limitesPilula,
               obstaculos,
               pilulaNacional ? [pilulaNacional] : []
@@ -436,7 +436,7 @@ export function SerieAnualCard({
                                     </g>
                                 ))}
 
-                                {/* campus/curso: área esmaecida + linha */}
+                                {/* unidade/curso: área esmaecida + linha */}
                                 <path d={area} fill={`url(#${gradId})`} />
                                 <path
                                     d={curva(linhaSerie)}
@@ -596,7 +596,7 @@ function Ponto({
     );
 }
 
-/** Ingressantes por ano de ingresso: o campus ou um curso, contra a média
+/** Ingressantes por ano de ingresso: a unidade ou um curso, contra a média
  * nacional dos mesmos cursos. */
 export function IngressantesCard({
     data,
@@ -609,7 +609,7 @@ export function IngressantesCard({
 }) {
     const valores = useMemo(
         () => ({
-            campus: data.campus.tendencia_ingressantes.map((p) => ({
+            unidade: data.unidade.tendencia_ingressantes.map((p) => ({
                 ano: p.ano_ingresso,
                 valor: p.qt_ingressante,
             })),
@@ -630,8 +630,8 @@ export function IngressantesCard({
         <SerieAnualCard
             className={className}
             titulo="Ingressantes"
-            info="Quantos alunos entraram em cada ano: o total de todos os cursos da cidade, ou do curso escolhido no seletor, contra a média nacional dos mesmos cursos no mesmo ano de ingresso."
-            subtituloCampus="Todos os cursos × média nacional, por ano de ingresso"
+            info="Quantos alunos entraram em cada ano: o total de todos os cursos da unidade, ou do curso escolhido no seletor, contra a média nacional dos mesmos cursos no mesmo ano de ingresso."
+            subtituloUnidade="Todos os cursos × média nacional, por ano de ingresso"
             rotuloAno="Ano de ingresso"
             vazio="Sem dado de ingressantes para esta série."
             cursos={data.cursos}
@@ -641,7 +641,7 @@ export function IngressantesCard({
     );
 }
 
-/** Concluintes por ano: o campus ou um curso, contra a média nacional dos
+/** Concluintes por ano: a unidade ou um curso, contra a média nacional dos
  * mesmos cursos — só nos anos em que o INEP acompanha todas as turmas que se
  * formam (o backend corta as pontas). */
 export function ConcluintesCard({
@@ -655,7 +655,7 @@ export function ConcluintesCard({
 }) {
     const valores = useMemo(
         () => ({
-            campus: (data.campus.tendencia_concluintes ?? []).map((p) => ({
+            unidade: (data.unidade.tendencia_concluintes ?? []).map((p) => ({
                 ano: p.ano_referencia,
                 valor: p.qt_concluinte,
             })),
@@ -678,8 +678,8 @@ export function ConcluintesCard({
         <SerieAnualCard
             className={className}
             titulo="Concluintes"
-            info="Quantos alunos se formaram em cada ano: o total de todos os cursos da cidade, ou do curso escolhido no seletor, contra a média nacional dos mesmos cursos no mesmo ano. Só aparecem os anos em que os dados do INEP cobrem todas as turmas que se formam (o INEP acompanha as turmas que entraram de 2010 a 2020)."
-            subtituloCampus="Todos os cursos × média nacional, por ano de conclusão"
+            info="Quantos alunos se formaram em cada ano: o total de todos os cursos da unidade, ou do curso escolhido no seletor, contra a média nacional dos mesmos cursos no mesmo ano. Só aparecem os anos em que os dados do INEP cobrem todas as turmas que se formam (o INEP acompanha as turmas que entraram de 2010 a 2020)."
+            subtituloUnidade="Todos os cursos × média nacional, por ano de conclusão"
             rotuloAno="Ano de conclusão"
             vazio="Sem dado de concluintes para esta série."
             cursos={data.cursos}

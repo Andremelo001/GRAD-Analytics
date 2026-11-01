@@ -8,7 +8,7 @@ const ultimas = new Map<string, string>();
 
 /** Primeira sub-aba de cada aba (pra quando ainda não há memória). */
 const PADRAO: Record<string, string> = {
-    qualidade: "/qualidade/campus",
+    qualidade: "/qualidade/unidade",
     trajetoria: "/trajetoria/panorama",
 };
 

@@ -106,7 +106,7 @@ def test_publica_handles_inep_spellings() -> None:
     assert quality_areas.rede_publica(None) is None
 
 
-def test_areas_dos_campi_uses_latest_evaluation_of_each_course(
+def test_areas_das_unidades_uses_latest_evaluation_of_each_course(
     scoped_data: ScopedData,
 ) -> None:
     antiga = scoped_data.qualidade.assign(
@@ -115,7 +115,7 @@ def test_areas_dos_campi_uses_latest_evaluation_of_each_course(
     data = ScopedData(
         qualidade=antiga, trajetoria=scoped_data.trajetoria, cursos=scoped_data.cursos
     )
-    assert quality_areas.areas_dos_campi([data]) == [
+    assert quality_areas.areas_das_unidades([data]) == [
         "Ciência da Computação",
         "Curso Só Qualidade",
     ]

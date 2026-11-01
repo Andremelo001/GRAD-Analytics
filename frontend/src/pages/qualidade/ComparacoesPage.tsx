@@ -10,7 +10,7 @@ import {
 } from "@/components/charts/qualidade/ComparacaoCards";
 import {
     Ficha,
-    SeletorCampus,
+    SeletorUnidade,
     Topo,
 } from "@/components/charts/qualidade/ComparacaoTopo";
 import { CursoBusca, type OpcaoCurso } from "@/components/charts/qualidade/CursoBusca";
@@ -21,23 +21,23 @@ import { CardEsqueleto, ComparacoesEsqueleto } from "@/components/layout/Esquele
 import { useChartTheme } from "@/hooks/useChartTheme";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { useQualidadeArea } from "@/hooks/useQualidadeArea";
-import { useResumoCampi } from "@/hooks/useResumoCampi";
+import { useResumoUnidades } from "@/hooks/useResumoUnidades";
 import { cursoDoPorCurso } from "@/lib/curso-por-curso";
 import { detalheCurso } from "@/lib/curso";
 import type { CursoArea } from "@/lib/area";
 import {
     areasEmComum,
-    nomeCampus,
-    resumirCampus,
-    type ResumoCampus,
+    nomeUnidade,
+    resumirUnidade,
+    type ResumoUnidade,
 } from "@/lib/comparacao";
 import { formatDecimal, formatPercent, toTitleCase } from "@/lib/format";
-import type { ResumoCampi, ResumoCurso } from "@/types/dashboard";
+import type { ResumoUnidades, ResumoCurso } from "@/types/dashboard";
 
-type Modo = "campi" | "cursos";
+type Modo = "unidades" | "cursos";
 
 const MODOS: { value: Modo; label: string }[] = [
-    { value: "campi", label: "Entre cidades" },
+    { value: "unidades", label: "Entre unidades" },
     { value: "cursos", label: "Entre cursos da mesma área" },
 ];
 
@@ -50,14 +50,14 @@ export function ComparacoesPage() {
     );
 }
 
-/** Qualidade → Comparações: dois modos, "entre campi" (um campus da UFC
+/** Qualidade → Comparações: dois modos, "entre unidades" (uma unidade da UFC
  * contra outro, nos indicadores agregados) e "entre cursos da mesma área" (um
  * curso da UFC contra qualquer curso da mesma área no Brasil). Modo e lados
  * ficam na URL (``?modo=…&a=…&b=…``). */
 function Comparacoes() {
     const [params, setParams] = useSearchParams();
-    const { resumo, erro } = useResumoCampi();
-    const modo: Modo = params.get("modo") === "cursos" ? "cursos" : "campi";
+    const { resumo, erro } = useResumoUnidades();
+    const modo: Modo = params.get("modo") === "cursos" ? "cursos" : "unidades";
 
     function atualizar(mudancas: Record<string, string | null>) {
         setParams(
@@ -90,8 +90,8 @@ function Comparacoes() {
         />
     );
 
-    return modo === "campi" ? (
-        <ComparacaoCampi
+    return modo === "unidades" ? (
+        <ComparacaoUnidades
             resumo={resumo}
             seletorModo={seletorModo}
             a={params.get("a")}
@@ -110,29 +110,29 @@ function Comparacoes() {
 }
 
 interface PropsModo {
-    resumo: ResumoCampi;
+    resumo: ResumoUnidades;
     seletorModo: ReactNode;
     a: string | null;
     b: string | null;
     atualizar: (m: Record<string, string | null>) => void;
 }
 
-// --- entre campi -----------------------------------------------------------
+// --- entre unidades -----------------------------------------------------------
 
-function ComparacaoCampi({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
-    const { campus } = useDashboardData();
-    const slugs = resumo.campi.map((c) => c.slug);
-    const slugA = a && slugs.includes(a) ? a : (campus ?? slugs[0]);
+function ComparacaoUnidades({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
+    const { unidade } = useDashboardData();
+    const slugs = resumo.unidades.map((c) => c.slug);
+    const slugA = a && slugs.includes(a) ? a : (unidade ?? slugs[0]);
     const slugB =
         b && slugs.includes(b) && b !== slugA
             ? b
             : (slugs.find((s) => s !== slugA) ?? slugA);
     const ra = useMemo(
-        () => resumirCampus(resumo.campi.find((c) => c.slug === slugA)!),
+        () => resumirUnidade(resumo.unidades.find((c) => c.slug === slugA)!),
         [resumo, slugA]
     );
     const rb = useMemo(
-        () => resumirCampus(resumo.campi.find((c) => c.slug === slugB)!),
+        () => resumirUnidade(resumo.unidades.find((c) => c.slug === slugB)!),
         [resumo, slugB]
     );
     const lados = { a: ra.nome, b: rb.nome };
@@ -152,25 +152,25 @@ function ComparacaoCampi({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
             <Topo
                 seletorModo={seletorModo}
                 seletorA={
-                    <SeletorCampus
+                    <SeletorUnidade
                         lado="a"
                         value={slugA}
-                        campi={resumo.campi}
+                        unidades={resumo.unidades}
                         onChange={(v) =>
                             atualizar({ a: v, b: v === slugB ? slugA : slugB })
                         }
                     />
                 }
                 seletorB={
-                    <SeletorCampus
+                    <SeletorUnidade
                         lado="b"
                         value={slugB}
-                        campi={resumo.campi.filter((c) => c.slug !== slugA)}
+                        unidades={resumo.unidades.filter((c) => c.slug !== slugA)}
                         onChange={(v) => atualizar({ a: slugA, b: v })}
                     />
                 }
-                fichaA={fichaCampus(ra)}
-                fichaB={fichaCampus(rb)}
+                fichaA={fichaUnidade(ra)}
+                fichaB={fichaUnidade(rb)}
             />
             {/* o conteúdo entra com a mesma animação das abas */}
             <div className="entrada grid grid-cols-1 items-start gap-5 lg:col-span-12 lg:grid-cols-12 lg:gap-6">
@@ -183,8 +183,8 @@ function ComparacaoCampi({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
                 <div className="grid grid-cols-1 gap-5 lg:col-span-12 lg:grid-cols-12 lg:gap-6">
                     <LadoALadoCard
                         className="lg:col-span-5"
-                        titulo="Indicadores da cidade"
-                        info="As médias dos indicadores de qualidade dos cursos de cada cidade, na avaliação mais recente de cada curso. O ✓ marca a cidade à frente em cada linha."
+                        titulo="Indicadores da unidade"
+                        info="As médias dos indicadores de qualidade dos cursos de cada unidade, na avaliação mais recente de cada curso. O ✓ marca a unidade à frente em cada linha."
                         subtitulo="Média dos cursos, na avaliação mais recente de cada um"
                         lados={lados}
                         linhas={[
@@ -220,13 +220,13 @@ function ComparacaoCampi({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
                                 neutro: true,
                             },
                         ]}
-                        rodape="As áreas de cada cidade são diferentes: as médias resumem a posição dos cursos de cada cidade entre os pares da própria área."
+                        rodape="As áreas de cada unidade são diferentes: as médias resumem a posição dos cursos de cada unidade entre os pares da própria área."
                     />
                     <ComponentesEspelhoCard
                         className="lg:col-span-7"
                         titulo="Componentes do CPC"
-                        subtitulo="Nota média dos cursos de cada cidade em cada componente"
-                        info="A nota média dos cursos de cada cidade em cada componente do CPC (0 a 5), lado a lado."
+                        subtitulo="Nota média dos cursos de cada unidade em cada componente"
+                        info="A nota média dos cursos de cada unidade em cada componente do CPC (0 a 5), lado a lado."
                         lados={lados}
                         a={ra.notas}
                         b={rb.notas}
@@ -242,8 +242,8 @@ function ComparacaoCampi({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
     );
 }
 
-/** Ficha do campus, no formato da do curso (CPC com a faixa, e dois dados). */
-function fichaCampus(r: ResumoCampus) {
+/** Ficha da unidade, no formato da do curso (CPC com a faixa, e dois dados). */
+function fichaUnidade(r: ResumoUnidade) {
     return (
         <Ficha
             itens={[
@@ -259,51 +259,51 @@ function fichaCampus(r: ResumoCampus) {
 
 interface CursoUfc {
     curso: ResumoCurso & { area_avaliacao: string; cpc_continuo: number };
-    campus: string;
+    unidade: string;
 }
 
 function ComparacaoCursos({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
-    const { campus } = useDashboardData();
+    const { unidade } = useDashboardData();
     const ufc = useMemo<CursoUfc[]>(
         () =>
-            resumo.campi.flatMap((c) =>
+            resumo.unidades.flatMap((c) =>
                 c.cursos
                     .filter(
                         (k): k is CursoUfc["curso"] =>
                             k.area_avaliacao !== null && k.cpc_continuo !== null
                     )
-                    .map((k) => ({ curso: k, campus: nomeCampus(c.nome) }))
+                    .map((k) => ({ curso: k, unidade: nomeUnidade(c) }))
             ),
         [resumo]
     );
-    // o curso A é sempre do campus escolhido no painel (sem ele no resumo,
+    // o curso A é sempre da unidade escolhida no painel (sem ele no resumo,
     // qualquer um da UFC); padrão: o de maior CPC
-    const doCampus = resumo.campi.find((c) => c.slug === campus);
-    const ufcCampus = useMemo(
+    const daUnidade = resumo.unidades.find((c) => c.slug === unidade);
+    const ufcUnidade = useMemo(
         () =>
-            doCampus
+            daUnidade
                 ? ufc.filter((u) =>
-                      doCampus.cursos.some(
+                      daUnidade.cursos.some(
                           (k) => k.codigo_curso === u.curso.codigo_curso
                       )
                   )
                 : ufc,
-        [ufc, doCampus]
+        [ufc, daUnidade]
     );
-    const padraoA = [...ufcCampus].sort(
+    const padraoA = [...ufcUnidade].sort(
         (x, y) => y.curso.cpc_continuo - x.curso.cpc_continuo
     )[0];
     // o da URL; sem ele, o aberto no Por curso; senão o padrão
     const cursoA =
-        ufcCampus.find((u) => String(u.curso.codigo_curso) === a) ??
-        ufcCampus.find((u) => u.curso.codigo_curso === cursoDoPorCurso("qualidade")) ??
+        ufcUnidade.find((u) => String(u.curso.codigo_curso) === a) ??
+        ufcUnidade.find((u) => u.curso.codigo_curso === cursoDoPorCurso("qualidade")) ??
         padraoA;
     const area = cursoA?.curso.area_avaliacao ?? null;
     const { dados, erro } = useQualidadeArea(area);
 
     const opcoesA: OpcaoCurso[] = useMemo(
         () =>
-            [...ufcCampus]
+            [...ufcUnidade]
                 .sort((x, y) =>
                     toTitleCase(x.curso.nome_curso).localeCompare(
                         toTitleCase(y.curso.nome_curso),
@@ -319,7 +319,7 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
                     }),
                     busca: u.curso.area_avaliacao,
                 })),
-        [ufcCampus]
+        [ufcUnidade]
     );
 
     // a área inteira, na mesma modalidade do curso A (EaD é outro universo)
@@ -370,7 +370,7 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
 
     const nomeB = (c: CursoArea) => `${c.siglaIes ?? c.nomeIes} · ${c.nomeMunicipio}`;
     const lados = {
-        a: `UFC · ${cursoA.campus}`,
+        a: `UFC · ${cursoA.unidade}`,
         b: cursoB ? nomeB(cursoB) : "—",
     };
     // "Indicadores do curso": só a instituição; com a mesma instituição dos

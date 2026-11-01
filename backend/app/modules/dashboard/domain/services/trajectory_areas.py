@@ -20,10 +20,10 @@ COLUNAS: tuple[str, ...] = (
 )
 
 
-def areas_dos_campi(campi: list[ScopedData]) -> list[str]:
-    """Áreas CINE (o curso em si) dos cursos dos campi com trajetória."""
+def areas_das_unidades(unidades: list[ScopedData]) -> list[str]:
+    """Áreas CINE (o curso em si) dos cursos das unidades com trajetória."""
     areas: set[str] = set()
-    for data in campi:
+    for data in unidades:
         if data.trajetoria.empty:
             continue
         areas.update(data.trajetoria["nome_cine_area_geral"].dropna().astype(str))

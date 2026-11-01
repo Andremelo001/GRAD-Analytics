@@ -9,12 +9,16 @@ from app.core.domain.pipelines.report import ModuleReport
 from app.core.domain.pipelines.schema import SchemaMappingError
 from app.core.infrastructure.readers.spreadsheet_reader import HeaderNotFoundError
 from app.modules.dashboard.application.use_cases.build_dashboard import build_dashboard
+from app.modules.dashboard.infrastructure.sources.processed_csv_source import (
+    ArquivoJsonInvalidoError,
+)
 from app.modules.qualidade.application.use_cases.build_qualidade_dataset import (
     build_qualidade_dataset,
 )
 from app.modules.trajetoria.application.use_cases.build_trajetoria_dataset import (
     build_trajetoria_dataset,
 )
+from app.modules.unidades.application.use_cases.build_unidades import build_unidades
 
 _Builder = Callable[..., ModuleReport]
 _BUILDERS: dict[str, _Builder] = {
@@ -22,6 +26,7 @@ _BUILDERS: dict[str, _Builder] = {
     "trajetoria": build_trajetoria_dataset,
 }
 _DASHBOARD = "dashboard"
+_UNIDADES = "unidades"
 
 
 def _parse_years(raw: str | None) -> list[int] | None:
@@ -35,7 +40,7 @@ def main(argv: Sequence[str] | None = None) -> int:
         prog="app.cmd",
         description="Pipelines de processamento de dados (PROGRAD Analytics).",
     )
-    parser.add_argument("module", choices=[*_BUILDERS, _DASHBOARD, "all"])
+    parser.add_argument("module", choices=[*_BUILDERS, _UNIDADES, _DASHBOARD, "all"])
     parser.add_argument(
         "--years",
         help="subconjunto de anos separados por vírgula, ex.: 2023,2022",
@@ -59,9 +64,16 @@ def main(argv: Sequence[str] | None = None) -> int:
     except HeaderNotFoundError as exc:
         logger.error("cabeçalho não encontrado — {}", exc)
         return 1
+    except ArquivoJsonInvalidoError as exc:
+        logger.error("arquivo de unidades inválido — {}", exc)
+        return 1
 
 
 def _run(args: argparse.Namespace) -> int:
+    if args.module == _UNIDADES:
+        path = build_unidades()
+        logger.info("unidades concluído -> {}", path)
+        return 0
     if args.module == _DASHBOARD:
         path = build_dashboard()
         logger.info("dashboard concluído -> {}", path)
@@ -88,6 +100,7 @@ def _run(args: argparse.Namespace) -> int:
             pending_review.append(name)
 
     if args.module == "all":
+        _refresh_unidades()
         path = build_dashboard()
         logger.info("dashboard concluído -> {}", path)
 
@@ -99,6 +112,22 @@ def _run(args: argparse.Namespace) -> int:
             ", ".join(pending_review),
         )
     return 0
+
+
+def _refresh_unidades() -> None:
+    """Atualiza o unidades_ufc.json antes do dashboard, sem travar o ``all``.
+
+    O SIGAA fora do ar (ou com layout novo) não deve impedir a atualização
+    dos dados do INEP: o dashboard segue com o unidades_ufc.json que já existe.
+    """
+    try:
+        path = build_unidades()
+    except Exception as exc:  # qualquer falha: mantém o arquivo
+        logger.warning(
+            "unidades | SIGAA indisponível ({}) — mantém o unidades_ufc.json atual", exc
+        )
+    else:
+        logger.info("unidades concluído -> {}", path)
 
 
 if __name__ == "__main__":

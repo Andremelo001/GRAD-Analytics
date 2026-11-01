@@ -4,7 +4,7 @@ import { IconeInfo } from "@/components/cards/IconeInfo";
 import { Card } from "@/components/cards/Card";
 import { cn } from "@/lib/utils";
 
-/** Tile de indicador dos topos das abas (Visão do campus, Panorama): rótulo
+/** Tile de indicador dos topos das abas (Visão da unidade, Panorama): rótulo
  * com ícone de informação, número grande (ou um conteúdo próprio), rodapé e,
  * opcionalmente, um visual pequeno no canto inferior direito; pontinhos de
  * enfeite à direita. */

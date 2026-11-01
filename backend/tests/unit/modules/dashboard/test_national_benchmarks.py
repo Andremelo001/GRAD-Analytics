@@ -1,7 +1,7 @@
 import pandas as pd
 
 from app.modules.dashboard.domain.services import national_benchmarks
-from app.modules.dashboard.domain.shared import Campus, ScopedData, build_scoped_data
+from app.modules.dashboard.domain.shared import ScopedData, Unidade, build_scoped_data
 
 
 def _peer_qualidade_row() -> pd.DataFrame:
@@ -71,7 +71,7 @@ def test_build_returns_all_sections(
         "perfil_radar",
         "curva_sobrevivencia",
         "heatmap_evasao_anual",
-        "campus",
+        "unidade",
         "distribuicao_uf",
         "ingressantes",
         "concluintes",
@@ -79,12 +79,12 @@ def test_build_returns_all_sections(
     }
 
 
-def test_excludes_areas_the_campus_does_not_offer(
+def test_excludes_areas_the_unidade_does_not_offer(
     qualidade_raw: pd.DataFrame, trajetoria_raw: pd.DataFrame, scoped_data: ScopedData
 ) -> None:
     result = national_benchmarks.build(qualidade_raw, trajetoria_raw, scoped_data)
     areas = {row["area_avaliacao"] for row in result["evolucao_cpc"]}
-    assert "Outra Instituição" not in areas  # área que o campus não oferece
+    assert "Outra Instituição" not in areas  # área que a unidade não oferece
 
 
 def test_evolucao_cpc_averages_across_peer_institutions(
@@ -123,7 +123,7 @@ def test_perfil_radar_nacional_is_per_area_and_year(
     assert rows[2017]["formacao_geral"] == 3.0
 
 
-def test_perfil_radar_nacional_skips_years_the_campus_was_not_evaluated(
+def test_perfil_radar_nacional_skips_years_the_unidade_was_not_evaluated(
     qualidade_raw: pd.DataFrame, trajetoria_raw: pd.DataFrame, scoped_data: ScopedData
 ) -> None:
     edicao_nova = _peer_qualidade_row().assign(ano=2023)
@@ -134,7 +134,7 @@ def test_perfil_radar_nacional_skips_years_the_campus_was_not_evaluated(
         for r in result["perfil_radar"]
         if r["area_avaliacao"] == "Ciência da Computação"
     }
-    # 2023 é a edição mais recente da área, mas o campus não foi avaliado nela
+    # 2023 é a edição mais recente da área, mas a unidade não foi avaliada nela
     assert anos == {2017, 2019}
 
 
@@ -169,15 +169,15 @@ def test_heatmap_evasao_nacional_groups_by_area_and_ano_referencia(
     assert row["taxa_desistencia_anual_media_nacional"] == 15.0
 
 
-def test_campus_nacional_kpis_and_distribuicao(
+def test_unidade_nacional_kpis_and_distribuicao(
     qualidade_raw: pd.DataFrame, trajetoria_raw: pd.DataFrame, scoped_data: ScopedData
 ) -> None:
     result = national_benchmarks.build(qualidade_raw, trajetoria_raw, scoped_data)
-    campus = result["campus"]
-    assert set(campus) == {"kpis", "distribuicao_cpc_faixa"}
-    assert campus["kpis"]["quantidade_cursos_considerados"] >= 1
-    faixas = {row["cpc_faixa"] for row in campus["distribuicao_cpc_faixa"]}
-    assert faixas <= {"4", "2"}  # só as faixas dos cursos-pares do campus
+    unidade = result["unidade"]
+    assert set(unidade) == {"kpis", "distribuicao_cpc_faixa"}
+    assert unidade["kpis"]["quantidade_cursos_considerados"] >= 1
+    faixas = {row["cpc_faixa"] for row in unidade["distribuicao_cpc_faixa"]}
+    assert faixas <= {"4", "2"}  # só as faixas dos cursos-pares da unidade
 
 
 def test_build_handles_empty_national_frames(scoped_data: ScopedData) -> None:
@@ -186,8 +186,8 @@ def test_build_handles_empty_national_frames(scoped_data: ScopedData) -> None:
     assert result["perfil_radar"] == []
     assert result["curva_sobrevivencia"] == []
     assert result["heatmap_evasao_anual"] == []
-    assert result["campus"]["kpis"]["quantidade_cursos_considerados"] == 0
-    assert result["campus"]["distribuicao_cpc_faixa"] == []
+    assert result["unidade"]["kpis"]["quantidade_cursos_considerados"] == 0
+    assert result["unidade"]["distribuicao_cpc_faixa"] == []
 
 
 def _with_uf(
@@ -204,7 +204,7 @@ def _with_uf(
     return frame
 
 
-def test_distribuicao_uf_has_one_item_per_campus_course(
+def test_distribuicao_uf_has_one_item_per_unidade_course(
     qualidade_raw: pd.DataFrame, trajetoria_raw: pd.DataFrame, scoped_data: ScopedData
 ) -> None:
     result = national_benchmarks.build(qualidade_raw, trajetoria_raw, scoped_data)
@@ -213,7 +213,7 @@ def test_distribuicao_uf_has_one_item_per_campus_course(
 
 
 def test_distribuicao_uf_counts_peers_per_state(
-    qualidade_raw: pd.DataFrame, trajetoria_raw: pd.DataFrame, campus: Campus
+    qualidade_raw: pd.DataFrame, trajetoria_raw: pd.DataFrame, unidade: Unidade
 ) -> None:
     # curso-par (700) em SP, com turma no mesmo ano mais recente do curso 10
     par = _peer_trajetoria_row().assign(ano_ingresso=2020, ano_referencia=2021)
@@ -224,18 +224,18 @@ def test_distribuicao_uf_counts_peers_per_state(
         pd.concat([qualidade_raw, _peer_qualidade_row()], ignore_index=True),
         {700: (35, "SP")},
     )
-    scoped = build_scoped_data(qualidade, trajetoria, campus)
+    scoped = build_scoped_data(qualidade, trajetoria, unidade)
     result = national_benchmarks.build(qualidade, trajetoria, scoped)
 
     item = next(i for i in result["distribuicao_uf"] if i["codigo_curso"] == 10)
-    assert item["sigla_uf_campus"] == "CE"
+    assert item["sigla_uf_unidade"] == "CE"
     assert item["nome_cine_area_geral"] == "Ciência da computação"
     assert item["area_avaliacao"] == "Ciência da Computação"
     assert item["ano_ingresso"] == 2020
     assert item["ano_cpc"] == 2019
     estados = {e["sigla_uf"]: e for e in item["estados"]}
     assert set(estados) == {"CE", "SP"}
-    assert estados["CE"]["quantidade_cursos"] == 1  # o próprio curso do campus
+    assert estados["CE"]["quantidade_cursos"] == 1  # o próprio curso da unidade
     assert estados["SP"]["quantidade_cursos"] == 1
     assert estados["SP"]["qt_ingressante"] == 40
     assert estados["SP"]["taxa_desistencia_media"] == 20.0
@@ -269,7 +269,7 @@ def test_ingressantes_nacional_averages_peer_cohorts(
     assert item["qt_ingressante_media_nacional"] == round(
         float(pares["qt_ingressante"].mean()), 1
     )
-    assert len(pares) == 2  # o curso do campus e o par de outra IES
+    assert len(pares) == 2  # o curso da unidade e o par de outra IES
 
 
 def test_trajetoria_pares_compares_mature_cohort_with_national_peers(

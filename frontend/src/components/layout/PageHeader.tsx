@@ -1,7 +1,7 @@
 import { useContext, type ReactNode, type Ref } from "react";
 import { createPortal } from "react-dom";
 
-import { CampusSelect } from "@/components/layout/CampusSelect";
+import { UnidadeSelect } from "@/components/layout/UnidadeSelect";
 import {
     PageHeaderSlotContext,
     PresentationTabsSlotContext,
@@ -13,7 +13,7 @@ import {
  * esse espaço. Fora do layout (sem slot), aparece no próprio lugar.
  *
  * ``tabs`` (ex.: as sub-abas da Qualidade) vem logo abaixo do subtítulo, com
- * o seletor de campus à esquerda (na mesma linha, numa pílula separada),
+ * o seletor de unidade à esquerda (na mesma linha, numa pílula separada),
  * ainda dentro da faixa, com menos espaço até os cards. É uma função do tom:
  * ``"band"`` na faixa escura e ``"surface"`` no lugar que o layout reserva
  * abaixo da barra do modo apresentação (a faixa some nesse modo). */
@@ -27,7 +27,7 @@ export function PageHeader({
     title: string;
     subtitle?: ReactNode;
     tabs?: (tom: "band" | "surface") => ReactNode;
-    /** Seletores da página ao lado do de campus (ex.: o curso, no Início). */
+    /** Seletores da página ao lado do de unidade (ex.: o curso, no Início). */
     filtros?: (tom: "band" | "surface") => ReactNode;
     /** No lugar de ``filtros``: um lugar vazio ali, pra cada sub-aba pôr o
      * seu seletor (ou nenhum: aí some). Ver ``FiltroTopo``. */
@@ -81,9 +81,9 @@ export function PageHeader({
     );
 }
 
-/** O seletor de campus e, à direita dele, as sub-abas; os filtros da página
+/** O seletor de unidade e, à direita dele, as sub-abas; os filtros da página
  * (ex.: o curso, no Início) na outra ponta, rentes à borda direita dos cards.
- * No celular: campus e filtros lado a lado e as sub-abas embaixo. */
+ * No celular: unidade e filtros lado a lado e as sub-abas embaixo. */
 function ComAbas({
     tabs,
     filtros,
@@ -97,9 +97,9 @@ function ComAbas({
 }) {
     return (
         <div className="flex flex-wrap items-center gap-2 sm:gap-3 lg:flex-nowrap">
-            <CampusSelect tom={tom} />
+            <UnidadeSelect tom={tom} />
             <div className="w-full max-sm:order-2 sm:w-auto">{tabs(tom)}</div>
-            {/* celular: ao lado do campus (estica); sm+: na ponta direita */}
+            {/* celular: ao lado da unidade (estica); sm+: na ponta direita */}
             {(filtros || filtrosSlot) && (
                 <div
                     ref={filtrosSlot?.(tom)}

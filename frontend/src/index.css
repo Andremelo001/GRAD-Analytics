@@ -292,3 +292,233 @@
         display: none;
     }
 }
+
+/* Guia de boas-vindas (components/onboarding): a entrada de cada card e as
+ * animações das ilustrações. Os keyframes só têm o ponto de partida (``from``
+ * ou os quadros do meio): o estado final é o estilo normal do elemento, então
+ * com "reduzir movimento" (animação desligada) cada ilustração aparece pronta,
+ * parada. */
+@keyframes guia-entra-direita {
+    from {
+        opacity: 0;
+        transform: translateX(28px);
+    }
+}
+@keyframes guia-entra-esquerda {
+    from {
+        opacity: 0;
+        transform: translateX(-28px);
+    }
+}
+.guia-entra-direita {
+    animation: guia-entra-direita 360ms cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+}
+.guia-entra-esquerda {
+    animation: guia-entra-esquerda 360ms cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+}
+
+/* fundo e card do guia ao abrir */
+@keyframes guia-fundo {
+    from {
+        opacity: 0;
+    }
+}
+@keyframes guia-abre {
+    from {
+        opacity: 0;
+        transform: translateY(14px) scale(0.97);
+    }
+}
+.guia-fundo {
+    animation: guia-fundo 280ms ease-out backwards;
+}
+.guia-abre {
+    animation: guia-abre 380ms cubic-bezier(0.22, 0.8, 0.24, 1) backwards;
+}
+
+/* linha de gráfico se desenhando (SVG com pathLength="1"), em loop: desenha,
+ * fica, recomeça */
+@keyframes guia-desenha {
+    0% {
+        stroke-dashoffset: 1;
+    }
+    55%,
+    100% {
+        stroke-dashoffset: 0;
+    }
+}
+.guia-desenha {
+    stroke-dasharray: 1;
+    animation: guia-desenha 4.2s ease-out infinite;
+}
+
+/* barra crescendo a partir da base (ou da esquerda, com origin-left) */
+@keyframes guia-cresce-y {
+    0% {
+        transform: scaleY(0);
+    }
+    35%,
+    100% {
+        transform: scaleY(1);
+    }
+}
+@keyframes guia-cresce-x {
+    0% {
+        transform: scaleX(0);
+    }
+    35%,
+    100% {
+        transform: scaleX(1);
+    }
+}
+.guia-cresce-y {
+    transform-origin: bottom;
+    animation: guia-cresce-y 4.2s cubic-bezier(0.2, 0.7, 0.2, 1) infinite backwards;
+}
+.guia-cresce-x {
+    transform-origin: left;
+    animation: guia-cresce-x 4.2s cubic-bezier(0.2, 0.7, 0.2, 1) infinite backwards;
+}
+
+/* aparece subindo (chips, resultados), com atraso por elemento */
+@keyframes guia-surge {
+    0% {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    12%,
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+.guia-surge {
+    animation: guia-surge 4.2s ease-out infinite backwards;
+}
+
+/* indicador das sub-abas passando pelas três */
+@keyframes guia-abas {
+    0%,
+    28% {
+        transform: translateX(0%);
+    }
+    33%,
+    61% {
+        transform: translateX(100%);
+    }
+    66%,
+    94% {
+        transform: translateX(200%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+.guia-abas {
+    animation: guia-abas 6s cubic-bezier(0.6, 0, 0.3, 1) infinite;
+}
+
+/* Início rolando (ilustração do passo "Início"): no mesmo ciclo de 6s e nos
+ * mesmos tempos do indicador das sub-abas (``guia-abas``), a página sobe uma
+ * seção por vez, a barra de rolagem desce junto e o texto da aba ativa fica
+ * escuro sobre o limão. Cada aba usa a mesma animação com um atraso negativo
+ * (0, -4s, -2s), pra ficar ativa no seu terço do ciclo. */
+@keyframes guia-rola {
+    0%,
+    28% {
+        transform: translateY(0);
+    }
+    33%,
+    61% {
+        transform: translateY(-33.3333%);
+    }
+    66%,
+    94% {
+        transform: translateY(-66.6667%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+@keyframes guia-rola-barra {
+    0%,
+    28% {
+        transform: translateY(0%);
+    }
+    33%,
+    61% {
+        transform: translateY(100%);
+    }
+    66%,
+    94% {
+        transform: translateY(200%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}
+@keyframes guia-aba-ativa {
+    0%,
+    28% {
+        color: var(--on-lime);
+    }
+    33%,
+    94% {
+        color: rgb(255 255 255 / 0.6);
+    }
+    100% {
+        color: var(--on-lime);
+    }
+}
+.guia-rola {
+    animation: guia-rola 6s cubic-bezier(0.6, 0, 0.3, 1) infinite;
+}
+.guia-rola-barra {
+    animation: guia-rola-barra 6s cubic-bezier(0.6, 0, 0.3, 1) infinite;
+}
+.guia-aba-ativa {
+    animation: guia-aba-ativa 6s cubic-bezier(0.6, 0, 0.3, 1) infinite;
+}
+
+/* anel pulsando em volta de um ícone */
+@keyframes guia-pulso {
+    0% {
+        box-shadow: 0 0 0 0 color-mix(in srgb, var(--lime) 70%, transparent);
+    }
+    70%,
+    100% {
+        box-shadow: 0 0 0 10px transparent;
+    }
+}
+.guia-pulso {
+    animation: guia-pulso 1.8s ease-out infinite;
+}
+
+/* cursor de digitação piscando */
+@keyframes guia-cursor {
+    50% {
+        opacity: 0;
+    }
+}
+.guia-cursor {
+    animation: guia-cursor 1s steps(1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .guia-entra-direita,
+    .guia-entra-esquerda,
+    .guia-fundo,
+    .guia-abre,
+    .guia-desenha,
+    .guia-cresce-y,
+    .guia-cresce-x,
+    .guia-surge,
+    .guia-abas,
+    .guia-rola,
+    .guia-rola-barra,
+    .guia-aba-ativa,
+    .guia-pulso,
+    .guia-cursor {
+        animation: none;
+    }
+}

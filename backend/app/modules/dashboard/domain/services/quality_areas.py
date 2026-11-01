@@ -36,15 +36,15 @@ _PRIVADA = ("privad", "comunit")
 _PUBLICA = ("públic", "federal", "estadual", "municipal", "especial")
 
 
-def areas_dos_campi(campi: list[ScopedData]) -> list[str]:
-    """Áreas de avaliação da avaliação mais recente de cada curso dos campi.
+def areas_das_unidades(unidades: list[ScopedData]) -> list[str]:
+    """Áreas de avaliação da avaliação mais recente de cada curso das unidades.
 
     São as áreas que o front precisa pro mapa (o curso escolhido entra pela
     área da sua avaliação mais recente) — um arquivo por área, compartilhado
-    por todos os campi.
+    por todas as unidades.
     """
     areas: set[str] = set()
-    for data in campi:
+    for data in unidades:
         if data.qualidade.empty:
             continue
         idx = data.qualidade.groupby("codigo_curso")["ano"].idxmax()
@@ -53,7 +53,7 @@ def areas_dos_campi(campi: list[ScopedData]) -> list[str]:
 
 
 def area_slug(area: str) -> str:
-    """Nome do arquivo da área, sem acentos e minúsculo (como o dos campi).
+    """Nome do arquivo da área, sem acentos e minúsculo (como a das unidades).
 
     "CIÊNCIA DA COMPUTAÇÃO (BACHARELADO)" -> "ciencia-da-computacao-bacharelado".
     """

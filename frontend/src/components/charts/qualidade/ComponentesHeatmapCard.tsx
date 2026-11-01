@@ -160,7 +160,7 @@ export function ComponentesHeatmapCard({
             >
                 <div
                     className={cn(
-                        // até 6 linhas + cabeçalho, depois rola: campus com
+                        // até 6 linhas + cabeçalho, depois rola: unidade com
                         // poucos cursos não fica com espaço vazio
                         "-m-1 overflow-x-auto p-1",
                         // ampliado: a grade ocupa a altura do card

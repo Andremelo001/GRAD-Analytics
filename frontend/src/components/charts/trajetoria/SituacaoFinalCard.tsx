@@ -39,7 +39,7 @@ export function SituacaoFinalCard({
     const CHART = useChartTheme();
     const [foco, setFoco] = useState<Situacao | null>(null);
     // filtro de busca (o mesmo seletor do cabeçalho de Por curso): todos os
-    // cursos ou só um, com a posição dele entre os do campus
+    // cursos ou só um, com a posição dele entre as da unidade
     const [escolha, setEscolha] = useState(TODOS);
 
     const linhas = cursos
@@ -152,7 +152,7 @@ export function SituacaoFinalCard({
                                 {curso.nome}
                                 <span className="text-text-muted ml-1.5 font-normal">
                                     turma {turma.ano}
-                                    {/* só um curso no filtro: a posição dele no campus */}
+                                    {/* só um curso no filtro: a posição dele na unidade */}
                                     {escolha !== TODOS &&
                                         ` · ${posicao(curso.codigo)}º de ${linhas.length} em conclusão`}
                                 </span>

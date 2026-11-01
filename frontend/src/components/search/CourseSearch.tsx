@@ -1,10 +1,10 @@
 import { Search } from "lucide-react";
 import { useId, useMemo, useState, type FormEvent, type KeyboardEvent } from "react";
 
-import { useAbrirNoCampus } from "@/hooks/useAbrirNoCampus";
+import { useAbrirNaUnidade } from "@/hooks/useAbrirNaUnidade";
 import { useDashboardData } from "@/hooks/useDashboardData";
-import { useResumoCampi } from "@/hooks/useResumoCampi";
-import { nomeCampus } from "@/lib/comparacao";
+import { useResumoUnidades } from "@/hooks/useResumoUnidades";
+import { nomeUnidade } from "@/lib/comparacao";
 import { detalheCurso } from "@/lib/curso";
 import {
     formatDecimal,
@@ -20,13 +20,13 @@ const MAX_RESULTS = 8;
 
 type Aba = "qualidade" | "trajetoria";
 
-/** Um curso de qualquer campus, pronto pra busca. */
+/** Um curso de qualquer unidade, pronto pra busca. */
 interface Resultado {
     codigo: number;
     nome: string;
     grau: string | null;
     slug: string;
-    campus: string;
+    unidade: string;
     /** CPC da avaliação mais recente (``null`` = sem CPC). */
     cpc: number | null;
     /** Tem dados de trajetória (turmas acompanhadas)? */
@@ -36,25 +36,25 @@ interface Resultado {
     tca: number | null;
 }
 
-/** Pílula de busca da faixa escura: procura cursos de todos os campi (pelo
- * nome, código, grau ou campus). Cada resultado mostra o campus e, no curso
+/** Pílula de busca da faixa escura: procura cursos de todas as unidades (pelo
+ * nome, código, grau ou unidade). Cada resultado mostra a unidade e, no curso
  * em destaque (mouse ou setas), duas opções: abrir em Qualidade (com o CPC)
  * ou em Trajetória (com a TCA). A escolhida abre na sub-aba Por curso — se o
- * curso é de outro campus, o painel troca pra ele antes (``useAbrirNoCampus``) — e a outra aba
+ * curso é de outra unidade, o painel troca pra ele antes (``useAbrirNaUnidade``) — e a outra aba
  * também já fica nesse curso, pra quando o usuário for até ela. */
 export function CourseSearch() {
     const listId = useId();
-    const { campus } = useDashboardData();
-    const { resumo } = useResumoCampi();
+    const { unidade } = useDashboardData();
+    const { resumo } = useResumoUnidades();
     const [query, setQuery] = useState("");
     const [open, setOpen] = useState(false);
     const [active, setActive] = useState(0);
     const [aba, setAba] = useState<Aba>("qualidade");
-    const abrirNoCampus = useAbrirNoCampus();
+    const abrirNaUnidade = useAbrirNaUnidade();
 
     const todos = useMemo<Resultado[]>(
         () =>
-            (resumo?.campi ?? []).flatMap((cp) =>
+            (resumo?.unidades ?? []).flatMap((cp) =>
                 cp.cursos.map((c) => {
                     const t = c.trajetoria;
                     const final = t
@@ -67,7 +67,7 @@ export function CourseSearch() {
                         nome: toTitleCase(c.nome_curso),
                         grau: c.grau_academico ?? t?.grau_academico ?? null,
                         slug: cp.slug,
-                        campus: nomeCampus(cp.nome),
+                        unidade: nomeUnidade(cp),
                         cpc: c.cpc_continuo,
                         temTrajetoria: !!t || c.ano_ingresso_referencia !== null,
                         tca: final?.concluiu ?? null,
@@ -85,16 +85,16 @@ export function CourseSearch() {
                 .filter((r) =>
                     normalizeForSearch(`${r.nome} ${detalhe(r)}`).includes(needle)
                 )
-                // os do campus aberto primeiro; depois por nome e campus
+                // as da unidade aberta primeiro; depois por nome e unidade
                 .sort(
                     (a, b) =>
-                        Number(b.slug === campus) - Number(a.slug === campus) ||
+                        Number(b.slug === unidade) - Number(a.slug === unidade) ||
                         a.nome.localeCompare(b.nome, "pt-BR") ||
-                        a.campus.localeCompare(b.campus, "pt-BR")
+                        a.unidade.localeCompare(b.unidade, "pt-BR")
                 )
                 .slice(0, MAX_RESULTS)
         );
-    }, [todos, query, campus]);
+    }, [todos, query, unidade]);
 
     const showList = open && query.trim().length > 0;
 
@@ -110,8 +110,8 @@ export function CourseSearch() {
         // a outra aba também abre nesse curso quando o usuário for até ela
         lembrarSubaba("qualidade", rotas.qualidade);
         if (r.temTrajetoria) lembrarSubaba("trajetoria", rotas.trajetoria);
-        // curso de outro campus: o painel troca pra ele antes de abrir
-        abrirNoCampus(r.slug, rotas[destino]);
+        // curso de outra unidade: o painel troca pra ele antes de abrir
+        abrirNaUnidade(r.slug, rotas[destino]);
     }
 
     function onSubmit(event: FormEvent) {
@@ -165,7 +165,7 @@ export function CourseSearch() {
                 onBlur={() => setOpen(false)}
                 onKeyDown={onKeyDown}
                 placeholder="Pesquisar curso..."
-                aria-label="Pesquisar curso em todas as cidades"
+                aria-label="Pesquisar curso em todas as unidades"
                 role="combobox"
                 aria-expanded={showList}
                 aria-controls={listId}
@@ -213,7 +213,7 @@ export function CourseSearch() {
                                     )}
                                 >
                                     {/* o mesmo formato dos seletores de curso:
-                                        nome em cima; código, grau e campus embaixo */}
+                                        nome em cima; código, grau e unidade embaixo */}
                                     <span className="block truncate text-[13px]">
                                         {r.nome}
                                     </span>
@@ -262,7 +262,7 @@ export function CourseSearch() {
 
 /** "cód: 12344 · Bacharelado · Fortaleza". */
 function detalhe(r: Resultado): string {
-    return `${detalheCurso({ codigo: r.codigo, grau: r.grau })} · ${r.campus}`;
+    return `${detalheCurso({ codigo: r.codigo, grau: r.grau })} · ${r.unidade}`;
 }
 
 /** Uma das duas opções do curso em destaque (Qualidade / Trajetória). */

@@ -21,7 +21,7 @@ const TOP = 20;
 /** Painel ao lado do mapa: o recorte escolhido (Brasil ou um estado) em
  * números, no indicador escolhido no mapa (CPC, IDD ou Conceito Enade) —
  * cursos, média, % nas faixas 4 e 5, as notas médias do estado contra as do
- * curso do campus e os melhores cursos (com o curso do campus na posição em
+ * curso da unidade e os melhores cursos (com o curso da unidade na posição em
  * que fica, ou ficaria). */
 export function EstadoPainel({
     titulo,
@@ -30,7 +30,7 @@ export function EstadoPainel({
     brasil,
     ehEstado,
     indicador,
-    cursoCampus,
+    cursoUnidade,
     avisoFora,
 }: {
     titulo: string;
@@ -39,8 +39,8 @@ export function EstadoPainel({
     brasil: ResumoArea;
     ehEstado: boolean;
     indicador: Indicador;
-    cursoCampus: CursoArea | undefined;
-    /** Por que o curso do campus está fora do recorte (outro estado, ou fora
+    cursoUnidade: CursoArea | undefined;
+    /** Por que o curso da unidade está fora do recorte (outro estado, ou fora
      * do filtro de rede): a nota embaixo da lista. */
     avisoFora: string | null;
 }) {
@@ -48,22 +48,22 @@ export function EstadoPainel({
     const media = resumo.medias[indicador];
     const mediaBrasil = brasil.medias[indicador];
     const pctAltas = resumo.pctAltas[indicador];
-    const valorCampus = cursoCampus ? ind.doCurso(cursoCampus) : null;
-    // o curso do campus fora do recorte (um estado onde ele não está): entra
+    const valorUnidade = cursoUnidade ? ind.doCurso(cursoUnidade) : null;
+    // o curso da unidade fora do recorte (um estado onde ele não está): entra
     // na lista na posição em que ficaria
     const foraDoRecorte =
-        cursoCampus !== undefined &&
-        valorCampus !== null &&
-        !cursos.some((c) => c.codigo === cursoCampus.codigo);
+        cursoUnidade !== undefined &&
+        valorUnidade !== null &&
+        !cursos.some((c) => c.codigo === cursoUnidade.codigo);
     const ordenados = ranking(
-        foraDoRecorte ? [...cursos, cursoCampus] : cursos,
+        foraDoRecorte ? [...cursos, cursoUnidade] : cursos,
         indicador
     );
     const top = ordenados.slice(0, TOP);
-    const posicaoCampus = cursoCampus
-        ? ordenados.findIndex((c) => c.codigo === cursoCampus.codigo)
+    const posicaoUnidade = cursoUnidade
+        ? ordenados.findIndex((c) => c.codigo === cursoUnidade.codigo)
         : -1;
-    const campusForaDoTop = posicaoCampus >= TOP;
+    const unidadeForaDoTop = posicaoUnidade >= TOP;
 
     return (
         <div className="flex flex-col gap-6">
@@ -102,7 +102,7 @@ export function EstadoPainel({
                     <ul className="flex flex-col gap-1.5">
                         {COMPONENTES.map((c) => {
                             const uf = resumo.notas[c.key];
-                            const seu = cursoCampus ? cursoCampus.notas[c.key] : null;
+                            const seu = cursoUnidade ? cursoUnidade.notas[c.key] : null;
                             return (
                                 <li
                                     key={c.key}
@@ -142,10 +142,10 @@ export function EstadoPainel({
                             curso={c}
                             indicador={indicador}
                             posicao={i + 1}
-                            campus={c.codigo === cursoCampus?.codigo}
+                            unidade={c.codigo === cursoUnidade?.codigo}
                         />
                     ))}
-                    {campusForaDoTop && cursoCampus && (
+                    {unidadeForaDoTop && cursoUnidade && (
                         <>
                             <li
                                 aria-hidden
@@ -154,10 +154,10 @@ export function EstadoPainel({
                                 ⋯
                             </li>
                             <LinhaCurso
-                                curso={cursoCampus}
+                                curso={cursoUnidade}
                                 indicador={indicador}
-                                posicao={posicaoCampus + 1}
-                                campus
+                                posicao={posicaoUnidade + 1}
+                                unidade
                             />
                         </>
                     )}
@@ -213,19 +213,19 @@ function LinhaCurso({
     curso,
     indicador,
     posicao,
-    campus,
+    unidade,
 }: {
     curso: CursoArea;
     indicador: Indicador;
     posicao: number;
-    campus: boolean;
+    unidade: boolean;
 }) {
     const valor = INDICADORES[indicador].doCurso(curso);
     return (
         <li
             className={cn(
                 "grid grid-cols-[28px_minmax(0,1fr)_auto_auto] items-center gap-2 rounded-lg px-2 py-1.5 text-[12px]",
-                campus && "bg-lime/25 ring-lime ring-1"
+                unidade && "bg-lime/25 ring-lime ring-1"
             )}
         >
             <span className="text-text-muted tabular-nums">{posicao}º</span>
@@ -235,7 +235,7 @@ function LinhaCurso({
             >
                 <span className="block truncate font-medium">
                     {curso.siglaIes ?? curso.nomeIes}
-                    {campus && (
+                    {unidade && (
                         <span className="bg-lime text-on-lime ml-1.5 rounded px-1 py-px text-[10px] font-bold">
                             seu curso
                         </span>

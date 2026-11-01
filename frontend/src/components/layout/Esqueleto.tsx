@@ -146,8 +146,8 @@ export function InicioEvasaoEsqueleto() {
     );
 }
 
-/** Qualidade → Visão do campus: 4 tiles, ranking + evolução, componentes. */
-export function VisaoCampusEsqueleto() {
+/** Qualidade → Visão da unidade: 4 tiles, ranking + evolução, componentes. */
+export function VisaoUnidadeEsqueleto() {
     return (
         <Pagina rotulo="Carregando a Visão geral">
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:col-span-12 lg:grid-cols-4 lg:gap-6">

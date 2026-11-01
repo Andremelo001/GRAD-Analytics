@@ -22,8 +22,8 @@ const ORDEM: IndicadorMapa[] = ["TCA", "TDA", "TAP"];
 /** Painel ao lado do mapa da Trajetória: o recorte escolhido (Brasil ou um
  * estado) em números, no indicador escolhido no mapa (permanência,
  * conclusão ou desistência) — cursos, média, ingressantes, os três
- * indicadores do estado contra o curso do campus e os melhores cursos (com
- * o curso do campus na posição em que fica, ou ficaria). No formato do
+ * indicadores do estado contra o curso da unidade e os melhores cursos (com
+ * o curso da unidade na posição em que fica, ou ficaria). No formato do
  * painel do Mapa da Qualidade. */
 export function EstadoPainelTrajetoria({
     titulo,
@@ -32,7 +32,7 @@ export function EstadoPainelTrajetoria({
     brasil,
     ehEstado,
     indicador,
-    cursoCampus,
+    cursoUnidade,
     avisoFora,
 }: {
     titulo: string;
@@ -41,37 +41,37 @@ export function EstadoPainelTrajetoria({
     brasil: ResumoTrajetoria;
     ehEstado: boolean;
     indicador: IndicadorMapa;
-    cursoCampus: CursoTrajetoriaArea | undefined;
-    /** Por que o curso do campus está fora do recorte (outro estado, ou fora
+    cursoUnidade: CursoTrajetoriaArea | undefined;
+    /** Por que o curso da unidade está fora do recorte (outro estado, ou fora
      * do filtro de rede): a nota embaixo da lista. */
     avisoFora: string | null;
 }) {
     const ind = INDICADORES_MAPA[indicador];
     const media = resumo.medias[indicador];
     const mediaBrasil = brasil.medias[indicador];
-    const valorCampus = cursoCampus ? ind.doCurso(cursoCampus) : null;
+    const valorUnidade = cursoUnidade ? ind.doCurso(cursoUnidade) : null;
     // a lista dos melhores só com turmas de tamanho razoável (e o curso do
-    // campus sempre, se tiver valor)
+    // unidade sempre, se tiver valor)
     const ordenados = rankingTrajetoria(cursos, indicador).filter(
         (c) => ind.doCurso(c) !== null
     );
-    // o curso do campus fora do recorte (um estado onde ele não está): entra
+    // o curso da unidade fora do recorte (um estado onde ele não está): entra
     // na lista na posição em que ficaria
     const foraDoRecorte =
-        cursoCampus !== undefined &&
-        valorCampus !== null &&
-        !cursos.some((c) => c.codigo === cursoCampus.codigo);
+        cursoUnidade !== undefined &&
+        valorUnidade !== null &&
+        !cursos.some((c) => c.codigo === cursoUnidade.codigo);
     const elegiveis = rankingTrajetoria(
-        foraDoRecorte ? [...ordenados, cursoCampus] : ordenados,
+        foraDoRecorte ? [...ordenados, cursoUnidade] : ordenados,
         indicador
     ).filter(
         (c) =>
             c.turma.ingressantes >= MIN_INGRESSANTES_RANKING ||
-            c.codigo === cursoCampus?.codigo
+            c.codigo === cursoUnidade?.codigo
     );
     const top = elegiveis.slice(0, TOP);
-    const posicaoLista = cursoCampus
-        ? elegiveis.findIndex((c) => c.codigo === cursoCampus.codigo)
+    const posicaoLista = cursoUnidade
+        ? elegiveis.findIndex((c) => c.codigo === cursoUnidade.codigo)
         : -1;
 
     return (
@@ -113,8 +113,8 @@ export function EstadoPainelTrajetoria({
                     <ul className="flex flex-col gap-1.5">
                         {ORDEM.map((i) => {
                             const uf = resumo.medias[i];
-                            const seu = cursoCampus
-                                ? INDICADORES_MAPA[i].doCurso(cursoCampus)
+                            const seu = cursoUnidade
+                                ? INDICADORES_MAPA[i].doCurso(cursoUnidade)
                                 : null;
                             return (
                                 <li
@@ -168,10 +168,10 @@ export function EstadoPainelTrajetoria({
                             curso={c}
                             indicador={indicador}
                             posicao={i + 1}
-                            campus={c.codigo === cursoCampus?.codigo}
+                            unidade={c.codigo === cursoUnidade?.codigo}
                         />
                     ))}
-                    {posicaoLista >= TOP && cursoCampus && (
+                    {posicaoLista >= TOP && cursoUnidade && (
                         <>
                             <li
                                 aria-hidden
@@ -180,10 +180,10 @@ export function EstadoPainelTrajetoria({
                                 ⋯
                             </li>
                             <LinhaCurso
-                                curso={cursoCampus}
+                                curso={cursoUnidade}
                                 indicador={indicador}
                                 posicao={posicaoLista + 1}
-                                campus
+                                unidade
                             />
                         </>
                     )}
@@ -240,12 +240,12 @@ function LinhaCurso({
     curso,
     indicador,
     posicao,
-    campus,
+    unidade,
 }: {
     curso: CursoTrajetoriaArea;
     indicador: IndicadorMapa;
     posicao: number;
-    campus: boolean;
+    unidade: boolean;
 }) {
     const valor = INDICADORES_MAPA[indicador].doCurso(curso);
     const local = `${curso.nomeMunicipio}${curso.uf ? `/${curso.uf}` : ""}`;
@@ -253,14 +253,14 @@ function LinhaCurso({
         <li
             className={cn(
                 "grid grid-cols-[28px_minmax(0,1fr)_auto] items-center gap-2 rounded-lg px-2 py-1.5 text-[12px]",
-                campus && "bg-lime/25 ring-lime ring-1"
+                unidade && "bg-lime/25 ring-lime ring-1"
             )}
         >
             <span className="text-text-muted tabular-nums">{posicao}º</span>
             <span className="min-w-0" title={`${curso.nomeIes} — ${local}`}>
                 <span className="block truncate font-medium">
                     {curso.siglaIes ?? curso.nomeIes}
-                    {campus && (
+                    {unidade && (
                         <span className="bg-lime text-on-lime ml-1.5 rounded px-1 py-px text-[10px] font-bold">
                             seu curso
                         </span>

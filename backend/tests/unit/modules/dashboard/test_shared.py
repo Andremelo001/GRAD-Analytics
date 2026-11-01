@@ -3,10 +3,10 @@ import math
 import pandas as pd
 
 from app.modules.dashboard.domain.shared import (
-    Campus,
     ScopedData,
+    Unidade,
     build_escopo,
-    discover_campi,
+    discover_unidades,
     records,
     scalar,
     slugify,
@@ -52,9 +52,9 @@ def test_with_course_name_returns_empty_frame_unchanged() -> None:
 
 
 def test_build_escopo_reads_metadata_from_qualidade(
-    scoped_data: ScopedData, campus: Campus
+    scoped_data: ScopedData, unidade: Unidade
 ) -> None:
-    escopo = build_escopo(scoped_data.qualidade, scoped_data.trajetoria, campus)
+    escopo = build_escopo(scoped_data.qualidade, scoped_data.trajetoria, unidade)
     assert escopo["nome_ies"] == "UF Teste"
     assert escopo["sigla_ies"] == "UFT"
     assert escopo["codigo_ies"] == 1
@@ -63,10 +63,10 @@ def test_build_escopo_reads_metadata_from_qualidade(
 
 
 def test_build_escopo_falls_back_to_trajetoria_when_qualidade_empty(
-    campus: Campus,
+    unidade: Unidade,
 ) -> None:
     trajetoria = pd.DataFrame({"nome_ies": ["Só Trajetória"]})
-    escopo = build_escopo(pd.DataFrame(), trajetoria, campus)
+    escopo = build_escopo(pd.DataFrame(), trajetoria, unidade)
     assert escopo["nome_ies"] == "Só Trajetória"
     assert escopo["sigla_ies"] is None
 
@@ -98,7 +98,7 @@ def test_scalar_extracts_native_type() -> None:
     assert isinstance(value, int)
 
 
-def _campi_frames() -> tuple[pd.DataFrame, pd.DataFrame]:
+def _unidades_frames() -> tuple[pd.DataFrame, pd.DataFrame]:
     trajetoria = pd.DataFrame(
         {
             "codigo_ies": [1, 1, 1, 2],
@@ -117,30 +117,30 @@ def _campi_frames() -> tuple[pd.DataFrame, pd.DataFrame]:
     return qualidade, trajetoria
 
 
-def test_discover_campi_one_per_municipality_with_trajetoria() -> None:
-    qualidade, trajetoria = _campi_frames()
-    campi = discover_campi(qualidade, trajetoria, codigo_ies=1)
+def test_discover_unidades_one_per_municipality_with_trajetoria() -> None:
+    qualidade, trajetoria = _unidades_frames()
+    unidades = discover_unidades(qualidade, trajetoria, codigo_ies=1)
     # 999 é de outra IES; 555 (polo) só aparece na qualidade -> fora
-    assert [c.codigo_municipio for c in campi] == [100, 300]
+    assert [c.codigo_municipio for c in unidades] == [100, 300]
 
 
-def test_discover_campi_names_from_qualidade_most_common_spelling() -> None:
-    qualidade, trajetoria = _campi_frames()
-    campus = discover_campi(qualidade, trajetoria, codigo_ies=1)[0]
-    assert campus.nome == "UFT em Crateús"
-    assert campus.slug == "crateus"
+def test_discover_unidades_names_from_qualidade_most_common_spelling() -> None:
+    qualidade, trajetoria = _unidades_frames()
+    unidade = discover_unidades(qualidade, trajetoria, codigo_ies=1)[0]
+    assert unidade.nome == "UFT em Crateús"
+    assert unidade.slug == "crateus"
 
 
-def test_discover_campi_falls_back_to_code_without_name() -> None:
-    qualidade, trajetoria = _campi_frames()
-    campus = discover_campi(qualidade, trajetoria, codigo_ies=1)[1]
-    assert campus.nome == "UFT em 300"
-    assert campus.slug == "300"
+def test_discover_unidades_falls_back_to_code_without_name() -> None:
+    qualidade, trajetoria = _unidades_frames()
+    unidade = discover_unidades(qualidade, trajetoria, codigo_ies=1)[1]
+    assert unidade.nome == "UFT em 300"
+    assert unidade.slug == "300"
 
 
-def test_discover_campi_empty_trajetoria() -> None:
-    qualidade, _ = _campi_frames()
-    assert discover_campi(qualidade, pd.DataFrame(), codigo_ies=1) == []
+def test_discover_unidades_empty_trajetoria() -> None:
+    qualidade, _ = _unidades_frames()
+    assert discover_unidades(qualidade, pd.DataFrame(), codigo_ies=1) == []
 
 
 def test_slugify_strips_accents_and_spaces() -> None:

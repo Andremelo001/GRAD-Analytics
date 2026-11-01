@@ -6,16 +6,16 @@ from app.modules.dashboard.domain.shared import ScopedData, records
 def build(
     data: ScopedData, kpis_por_curso: list[dict[str, object]]
 ) -> dict[str, object]:
-    """Visão agregada do campus (todos os cursos juntos)."""
+    """Visão agregada da unidade (todos os cursos juntos)."""
     return {
-        "kpis": _kpis_campus(data, kpis_por_curso),
+        "kpis": _kpis_unidade(data, kpis_por_curso),
         "distribuicao_cpc_faixa": _distribuicao_cpc_faixa(kpis_por_curso),
         "tendencia_ingressantes": _tendencia_ingressantes(data),
         "tendencia_concluintes": _tendencia_concluintes(data),
     }
 
 
-def _kpis_campus(
+def _kpis_unidade(
     data: ScopedData, kpis_por_curso: list[dict[str, object]]
 ) -> dict[str, object]:
     total_ingressantes = None
@@ -51,7 +51,7 @@ def _kpis_campus(
 
 
 def _tendencia_ingressantes(data: ScopedData) -> list[dict[str, object]]:
-    """Total de ingressantes do campus por ano de ingresso.
+    """Total de ingressantes da unidade por ano de ingresso.
 
     Soma de todos os cursos, pra ver a tendência ao longo do tempo. Mesma
     dedup de ``trajectory_comparison._demanda_ingressantes`` (só a 1ª linha
@@ -72,11 +72,11 @@ def _tendencia_ingressantes(data: ScopedData) -> list[dict[str, object]]:
 
 
 def _tendencia_concluintes(data: ScopedData) -> list[dict[str, object]]:
-    """Total de concluintes do campus por ano de referência.
+    """Total de concluintes da unidade por ano de referência.
 
     Soma de todos os cursos, só nos anos em que os dados estão completos
-    (``course_profile.janela_concluintes``, com os prazos dos cursos do
-    campus).
+    (``course_profile.janela_concluintes``, com os prazos dos cursos da
+    unidade).
     """
     if data.trajetoria.empty or "prazo_integralizacao" not in data.cursos:
         return []
@@ -109,15 +109,15 @@ def _distribuicao_cpc_faixa(
     ]
 
 
-class CampusOverviewSection:
-    """Visão agregada do campus — implementa ``DashboardSection``.
+class UnidadeOverviewSection:
+    """Visão agregada da unidade — implementa ``DashboardSection``.
 
     Recalcula ``kpis_por_curso`` (dataset já recortado, custo desprezível) e
     chama o ``build(data, kpis_por_curso)`` de nível de módulo (testado à
     parte).
     """
 
-    key = "campus"
+    key = "unidade"
 
     def build(self, context: DashboardContext) -> dict[str, object]:
         kpis_por_curso = course_profile.build_kpis_por_curso(context.data)

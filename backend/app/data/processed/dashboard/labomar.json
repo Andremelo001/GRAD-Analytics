@@ -1,0 +1,5585 @@
+{
+  "gerado_em": "2026-11-01T12:51:36+00:00",
+  "escopo": {
+    "codigo_ies": 583,
+    "nome_ies": "UNIVERSIDADE FEDERAL DO CEARÁ",
+    "sigla_ies": null,
+    "slug": "labomar",
+    "unidade": "LABOMAR - INSTITUTO DE CIÊNCIAS DO MAR",
+    "sigla_unidade": "LABOMAR",
+    "localidade": "Fortaleza",
+    "codigo_municipio": 2304400,
+    "municipio": "UFC em Fortaleza"
+  },
+  "cursos": [
+    {
+      "codigo_curso": 111294,
+      "nome_curso": "OCEANOGRAFIA",
+      "grau_academico": "Bacharelado",
+      "modalidade_ensino": "Presencial",
+      "prazo_integralizacao": 5
+    },
+    {
+      "codigo_curso": 150115,
+      "nome_curso": "CIÊNCIAS AMBIENTAIS",
+      "grau_academico": "Bacharelado",
+      "modalidade_ensino": "Presencial",
+      "prazo_integralizacao": 5
+    }
+  ],
+  "fontes": {
+    "qualidade": {
+      "gerado_em": "2026-10-31T15:10:31+00:00",
+      "linhas": 67883
+    },
+    "trajetoria": {
+      "gerado_em": "2026-10-31T15:16:41+00:00",
+      "linhas": 2731155
+    }
+  },
+  "curso_perfil": {
+    "kpis": [
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_qualidade": null,
+        "cpc_continuo": null,
+        "cpc_faixa": null,
+        "conceito_enade_continuo": null,
+        "ano_ingresso_referencia": 2020,
+        "ano_referencia": 2024,
+        "qt_ingressante": 40,
+        "taxa_permanencia": 27.5,
+        "taxa_conclusao_acumulada": 30.0,
+        "taxa_desistencia_acumulada": 42.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_qualidade": null,
+        "cpc_continuo": null,
+        "cpc_faixa": null,
+        "conceito_enade_continuo": null,
+        "ano_ingresso_referencia": 2020,
+        "ano_referencia": 2024,
+        "qt_ingressante": 43,
+        "taxa_permanencia": 18.60465116,
+        "taxa_conclusao_acumulada": 41.86046512,
+        "taxa_desistencia_acumulada": 39.53488372
+      }
+    ],
+    "evolucao_cpc": [],
+    "perfil_radar": [],
+    "funil_coortes": [
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2019,
+        "qt_ingressante": 43,
+        "qt_permanencia": 0,
+        "qt_concluinte": 0,
+        "qt_desistencia": 0,
+        "qt_falecido": 0,
+        "prazo_integralizacao": 5
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2020,
+        "qt_ingressante": 41,
+        "qt_permanencia": 0,
+        "qt_concluinte": 0,
+        "qt_desistencia": 0,
+        "qt_falecido": 0,
+        "prazo_integralizacao": 5
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2021,
+        "qt_ingressante": 36,
+        "qt_permanencia": 0,
+        "qt_concluinte": 1,
+        "qt_desistencia": 0,
+        "qt_falecido": 0,
+        "prazo_integralizacao": 5
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2022,
+        "qt_ingressante": 41,
+        "qt_permanencia": 1,
+        "qt_concluinte": 0,
+        "qt_desistencia": 0,
+        "qt_falecido": 0,
+        "prazo_integralizacao": 5
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2023,
+        "qt_ingressante": 47,
+        "qt_permanencia": 0,
+        "qt_concluinte": 0,
+        "qt_desistencia": 0,
+        "qt_falecido": 0,
+        "prazo_integralizacao": 5
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2024,
+        "qt_ingressante": 43,
+        "qt_permanencia": 0,
+        "qt_concluinte": 1,
+        "qt_desistencia": 2,
+        "qt_falecido": 0,
+        "prazo_integralizacao": 5
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2024,
+        "qt_ingressante": 44,
+        "qt_permanencia": 0,
+        "qt_concluinte": 0,
+        "qt_desistencia": 0,
+        "qt_falecido": 0,
+        "prazo_integralizacao": 5
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2024,
+        "qt_ingressante": 37,
+        "qt_permanencia": 1,
+        "qt_concluinte": 0,
+        "qt_desistencia": 0,
+        "qt_falecido": 0,
+        "prazo_integralizacao": 5
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2024,
+        "qt_ingressante": 41,
+        "qt_permanencia": 2,
+        "qt_concluinte": 1,
+        "qt_desistencia": 4,
+        "qt_falecido": 0,
+        "prazo_integralizacao": 5
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2024,
+        "qt_ingressante": 39,
+        "qt_permanencia": 8,
+        "qt_concluinte": 2,
+        "qt_desistencia": 4,
+        "qt_falecido": 0,
+        "prazo_integralizacao": 5
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_ingresso": 2020,
+        "ano_referencia": 2024,
+        "qt_ingressante": 40,
+        "qt_permanencia": 11,
+        "qt_concluinte": 8,
+        "qt_desistencia": 4,
+        "qt_falecido": 0,
+        "prazo_integralizacao": 5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2019,
+        "qt_ingressante": 40,
+        "qt_permanencia": 0,
+        "qt_concluinte": 0,
+        "qt_desistencia": 1,
+        "qt_falecido": 0,
+        "prazo_integralizacao": 5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2020,
+        "qt_ingressante": 39,
+        "qt_permanencia": 0,
+        "qt_concluinte": 0,
+        "qt_desistencia": 0,
+        "qt_falecido": 0,
+        "prazo_integralizacao": 5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2021,
+        "qt_ingressante": 40,
+        "qt_permanencia": 1,
+        "qt_concluinte": 0,
+        "qt_desistencia": 0,
+        "qt_falecido": 0,
+        "prazo_integralizacao": 5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2022,
+        "qt_ingressante": 42,
+        "qt_permanencia": 0,
+        "qt_concluinte": 0,
+        "qt_desistencia": 0,
+        "qt_falecido": 0,
+        "prazo_integralizacao": 5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2023,
+        "qt_ingressante": 43,
+        "qt_permanencia": 0,
+        "qt_concluinte": 0,
+        "qt_desistencia": 0,
+        "qt_falecido": 0,
+        "prazo_integralizacao": 5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2024,
+        "qt_ingressante": 40,
+        "qt_permanencia": 0,
+        "qt_concluinte": 0,
+        "qt_desistencia": 0,
+        "qt_falecido": 0,
+        "prazo_integralizacao": 5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2024,
+        "qt_ingressante": 37,
+        "qt_permanencia": 1,
+        "qt_concluinte": 0,
+        "qt_desistencia": 1,
+        "qt_falecido": 0,
+        "prazo_integralizacao": 5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2024,
+        "qt_ingressante": 45,
+        "qt_permanencia": 0,
+        "qt_concluinte": 1,
+        "qt_desistencia": 0,
+        "qt_falecido": 0,
+        "prazo_integralizacao": 5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2024,
+        "qt_ingressante": 42,
+        "qt_permanencia": 1,
+        "qt_concluinte": 0,
+        "qt_desistencia": 4,
+        "qt_falecido": 0,
+        "prazo_integralizacao": 5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2024,
+        "qt_ingressante": 39,
+        "qt_permanencia": 3,
+        "qt_concluinte": 6,
+        "qt_desistencia": 2,
+        "qt_falecido": 0,
+        "prazo_integralizacao": 5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_ingresso": 2020,
+        "ano_referencia": 2024,
+        "qt_ingressante": 43,
+        "qt_permanencia": 8,
+        "qt_concluinte": 16,
+        "qt_desistencia": 2,
+        "qt_falecido": 0,
+        "prazo_integralizacao": 5
+      }
+    ],
+    "curva_sobrevivencia": [
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2010,
+        "anos_desde_ingresso": 0,
+        "taxa_permanencia": 97.6744186047,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 2.3255813953
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2011,
+        "anos_desde_ingresso": 1,
+        "taxa_permanencia": 79.0697674419,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 20.9302325581
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2012,
+        "anos_desde_ingresso": 2,
+        "taxa_permanencia": 74.4186046512,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 25.5813953488
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2013,
+        "anos_desde_ingresso": 3,
+        "taxa_permanencia": 53.488372093,
+        "taxa_conclusao_acumulada": 18.6046511628,
+        "taxa_desistencia_acumulada": 27.9069767442
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2014,
+        "anos_desde_ingresso": 4,
+        "taxa_permanencia": 37.2093023256,
+        "taxa_conclusao_acumulada": 32.5581395349,
+        "taxa_desistencia_acumulada": 30.2325581395
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2015,
+        "anos_desde_ingresso": 5,
+        "taxa_permanencia": 13.9534883721,
+        "taxa_conclusao_acumulada": 51.1627906977,
+        "taxa_desistencia_acumulada": 34.8837209302
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 6,
+        "taxa_permanencia": 4.6511627907,
+        "taxa_conclusao_acumulada": 53.488372093,
+        "taxa_desistencia_acumulada": 41.8604651163
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 7,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 53.488372093,
+        "taxa_desistencia_acumulada": 46.511627907
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 8,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 53.488372093,
+        "taxa_desistencia_acumulada": 46.511627907
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 9,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 53.488372093,
+        "taxa_desistencia_acumulada": 46.511627907
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2011,
+        "anos_desde_ingresso": 0,
+        "taxa_permanencia": 85.36585366,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 14.63414634
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2012,
+        "anos_desde_ingresso": 1,
+        "taxa_permanencia": 68.29268293,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 31.70731707
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2013,
+        "anos_desde_ingresso": 2,
+        "taxa_permanencia": 53.65853659,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 46.34146341
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2014,
+        "anos_desde_ingresso": 3,
+        "taxa_permanencia": 48.7804878,
+        "taxa_conclusao_acumulada": 2.43902439,
+        "taxa_desistencia_acumulada": 48.7804878
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2015,
+        "anos_desde_ingresso": 4,
+        "taxa_permanencia": 36.58536585,
+        "taxa_conclusao_acumulada": 12.19512195,
+        "taxa_desistencia_acumulada": 51.2195122
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 5,
+        "taxa_permanencia": 19.51219512,
+        "taxa_conclusao_acumulada": 26.82926829,
+        "taxa_desistencia_acumulada": 53.65853659
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 6,
+        "taxa_permanencia": 7.317073171,
+        "taxa_conclusao_acumulada": 36.58536585,
+        "taxa_desistencia_acumulada": 56.09756098
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 7,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 41.46341463,
+        "taxa_desistencia_acumulada": 58.53658537
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 8,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 41.46341463,
+        "taxa_desistencia_acumulada": 58.53658537
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 9,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 41.46341463,
+        "taxa_desistencia_acumulada": 58.53658537
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2012,
+        "anos_desde_ingresso": 0,
+        "taxa_permanencia": 80.55555556,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 19.44444444
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2013,
+        "anos_desde_ingresso": 1,
+        "taxa_permanencia": 77.77777778,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 22.22222222
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2014,
+        "anos_desde_ingresso": 2,
+        "taxa_permanencia": 66.66666667,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 33.33333333
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2015,
+        "anos_desde_ingresso": 3,
+        "taxa_permanencia": 55.55555556,
+        "taxa_conclusao_acumulada": 5.555555556,
+        "taxa_desistencia_acumulada": 38.88888889
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 4,
+        "taxa_permanencia": 41.66666667,
+        "taxa_conclusao_acumulada": 16.66666667,
+        "taxa_desistencia_acumulada": 41.66666667
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 5,
+        "taxa_permanencia": 22.22222222,
+        "taxa_conclusao_acumulada": 33.33333333,
+        "taxa_desistencia_acumulada": 44.44444444
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 6,
+        "taxa_permanencia": 5.555555556,
+        "taxa_conclusao_acumulada": 47.22222222,
+        "taxa_desistencia_acumulada": 47.22222222
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 7,
+        "taxa_permanencia": 2.777777778,
+        "taxa_conclusao_acumulada": 47.22222222,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 8,
+        "taxa_permanencia": 2.777777778,
+        "taxa_conclusao_acumulada": 47.22222222,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 9,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 50.0,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2013,
+        "anos_desde_ingresso": 0,
+        "taxa_permanencia": 90.24390244,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 9.756097561
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2014,
+        "anos_desde_ingresso": 1,
+        "taxa_permanencia": 75.6097561,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 24.3902439
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2015,
+        "anos_desde_ingresso": 2,
+        "taxa_permanencia": 73.17073171,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 26.82926829
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 3,
+        "taxa_permanencia": 58.53658537,
+        "taxa_conclusao_acumulada": 9.756097561,
+        "taxa_desistencia_acumulada": 31.70731707
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 4,
+        "taxa_permanencia": 24.3902439,
+        "taxa_conclusao_acumulada": 41.46341463,
+        "taxa_desistencia_acumulada": 34.14634146
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 5,
+        "taxa_permanencia": 7.317073171,
+        "taxa_conclusao_acumulada": 51.2195122,
+        "taxa_desistencia_acumulada": 41.46341463
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 6,
+        "taxa_permanencia": 2.43902439,
+        "taxa_conclusao_acumulada": 56.09756098,
+        "taxa_desistencia_acumulada": 41.46341463
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 7,
+        "taxa_permanencia": 2.43902439,
+        "taxa_conclusao_acumulada": 56.09756098,
+        "taxa_desistencia_acumulada": 41.46341463
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 8,
+        "taxa_permanencia": 2.43902439,
+        "taxa_conclusao_acumulada": 56.09756098,
+        "taxa_desistencia_acumulada": 41.46341463
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 9,
+        "taxa_permanencia": 2.43902439,
+        "taxa_conclusao_acumulada": 56.09756098,
+        "taxa_desistencia_acumulada": 41.46341463
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2014,
+        "anos_desde_ingresso": 0,
+        "taxa_permanencia": 63.82978723,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 36.17021277
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2015,
+        "anos_desde_ingresso": 1,
+        "taxa_permanencia": 51.06382979,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 48.93617021
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 2,
+        "taxa_permanencia": 40.42553191,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 59.57446809
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 3,
+        "taxa_permanencia": 25.53191489,
+        "taxa_conclusao_acumulada": 6.382978723,
+        "taxa_desistencia_acumulada": 68.08510638
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 4,
+        "taxa_permanencia": 19.14893617,
+        "taxa_conclusao_acumulada": 10.63829787,
+        "taxa_desistencia_acumulada": 70.21276596
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 5,
+        "taxa_permanencia": 8.510638298,
+        "taxa_conclusao_acumulada": 19.14893617,
+        "taxa_desistencia_acumulada": 72.34042553
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 6,
+        "taxa_permanencia": 4.255319149,
+        "taxa_conclusao_acumulada": 19.14893617,
+        "taxa_desistencia_acumulada": 76.59574468
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 7,
+        "taxa_permanencia": 4.255319149,
+        "taxa_conclusao_acumulada": 19.14893617,
+        "taxa_desistencia_acumulada": 76.59574468
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 8,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 21.27659574,
+        "taxa_desistencia_acumulada": 78.72340426
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 9,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 21.27659574,
+        "taxa_desistencia_acumulada": 78.72340426
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2015,
+        "anos_desde_ingresso": 0,
+        "taxa_permanencia": 100.0,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 0.0
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 1,
+        "taxa_permanencia": 76.74418605,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 23.25581395
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 2,
+        "taxa_permanencia": 72.09302326,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 27.90697674
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 3,
+        "taxa_permanencia": 46.51162791,
+        "taxa_conclusao_acumulada": 20.93023256,
+        "taxa_desistencia_acumulada": 32.55813953
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 4,
+        "taxa_permanencia": 25.58139535,
+        "taxa_conclusao_acumulada": 39.53488372,
+        "taxa_desistencia_acumulada": 34.88372093
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 5,
+        "taxa_permanencia": 25.58139535,
+        "taxa_conclusao_acumulada": 39.53488372,
+        "taxa_desistencia_acumulada": 34.88372093
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 6,
+        "taxa_permanencia": 18.60465116,
+        "taxa_conclusao_acumulada": 44.18604651,
+        "taxa_desistencia_acumulada": 37.20930233
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 7,
+        "taxa_permanencia": 11.62790698,
+        "taxa_conclusao_acumulada": 46.51162791,
+        "taxa_desistencia_acumulada": 41.86046512
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 8,
+        "taxa_permanencia": 6.976744186,
+        "taxa_conclusao_acumulada": 48.8372093,
+        "taxa_desistencia_acumulada": 44.18604651
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2024,
+        "anos_desde_ingresso": 9,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 51.1627907,
+        "taxa_desistencia_acumulada": 48.8372093
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 0,
+        "taxa_permanencia": 84.09090909,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 15.90909091
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 1,
+        "taxa_permanencia": 65.90909091,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 34.09090909
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 2,
+        "taxa_permanencia": 55.81395349,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 44.18604651
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 3,
+        "taxa_permanencia": 34.88372093,
+        "taxa_conclusao_acumulada": 13.95348837,
+        "taxa_desistencia_acumulada": 51.1627907
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 4,
+        "taxa_permanencia": 20.93023256,
+        "taxa_conclusao_acumulada": 27.90697674,
+        "taxa_desistencia_acumulada": 51.1627907
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 5,
+        "taxa_permanencia": 11.62790698,
+        "taxa_conclusao_acumulada": 37.20930233,
+        "taxa_desistencia_acumulada": 51.1627907
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 6,
+        "taxa_permanencia": 2.325581395,
+        "taxa_conclusao_acumulada": 39.53488372,
+        "taxa_desistencia_acumulada": 58.13953488
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 7,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 41.86046512,
+        "taxa_desistencia_acumulada": 58.13953488
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2024,
+        "anos_desde_ingresso": 8,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 41.86046512,
+        "taxa_desistencia_acumulada": 58.13953488
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 0,
+        "taxa_permanencia": 91.89189189,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 8.108108108
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 1,
+        "taxa_permanencia": 67.56756757,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 32.43243243
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 2,
+        "taxa_permanencia": 62.16216216,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 37.83783784
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 3,
+        "taxa_permanencia": 59.45945946,
+        "taxa_conclusao_acumulada": 2.702702703,
+        "taxa_desistencia_acumulada": 37.83783784
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 4,
+        "taxa_permanencia": 29.72972973,
+        "taxa_conclusao_acumulada": 32.43243243,
+        "taxa_desistencia_acumulada": 37.83783784
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 5,
+        "taxa_permanencia": 2.702702703,
+        "taxa_conclusao_acumulada": 48.64864865,
+        "taxa_desistencia_acumulada": 48.64864865
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 6,
+        "taxa_permanencia": 2.702702703,
+        "taxa_conclusao_acumulada": 48.64864865,
+        "taxa_desistencia_acumulada": 48.64864865
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2024,
+        "anos_desde_ingresso": 7,
+        "taxa_permanencia": 2.702702703,
+        "taxa_conclusao_acumulada": 48.64864865,
+        "taxa_desistencia_acumulada": 48.64864865
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 0,
+        "taxa_permanencia": 95.12195122,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 4.87804878
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 1,
+        "taxa_permanencia": 85.36585366,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 14.63414634
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 2,
+        "taxa_permanencia": 68.29268293,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 31.70731707
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 3,
+        "taxa_permanencia": 56.09756098,
+        "taxa_conclusao_acumulada": 4.87804878,
+        "taxa_desistencia_acumulada": 39.02439024
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 4,
+        "taxa_permanencia": 39.02439024,
+        "taxa_conclusao_acumulada": 9.756097561,
+        "taxa_desistencia_acumulada": 51.2195122
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 5,
+        "taxa_permanencia": 17.07317073,
+        "taxa_conclusao_acumulada": 26.82926829,
+        "taxa_desistencia_acumulada": 56.09756098
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2024,
+        "anos_desde_ingresso": 6,
+        "taxa_permanencia": 4.87804878,
+        "taxa_conclusao_acumulada": 29.26829268,
+        "taxa_desistencia_acumulada": 65.85365854
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 0,
+        "taxa_permanencia": 94.87179487,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 5.128205128
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 1,
+        "taxa_permanencia": 76.92307692,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 23.07692308
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 2,
+        "taxa_permanencia": 64.1025641,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 35.8974359
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 3,
+        "taxa_permanencia": 48.71794872,
+        "taxa_conclusao_acumulada": 7.692307692,
+        "taxa_desistencia_acumulada": 43.58974359
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 4,
+        "taxa_permanencia": 35.8974359,
+        "taxa_conclusao_acumulada": 20.51282051,
+        "taxa_desistencia_acumulada": 43.58974359
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2024,
+        "anos_desde_ingresso": 5,
+        "taxa_permanencia": 20.51282051,
+        "taxa_conclusao_acumulada": 25.64102564,
+        "taxa_desistencia_acumulada": 53.84615385
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2020,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 0,
+        "taxa_permanencia": 90.0,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 10.0
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2020,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 1,
+        "taxa_permanencia": 77.5,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 22.5
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2020,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 2,
+        "taxa_permanencia": 70.0,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 30.0
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2020,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 3,
+        "taxa_permanencia": 57.5,
+        "taxa_conclusao_acumulada": 10.0,
+        "taxa_desistencia_acumulada": 32.5
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2020,
+        "ano_referencia": 2024,
+        "anos_desde_ingresso": 4,
+        "taxa_permanencia": 27.5,
+        "taxa_conclusao_acumulada": 30.0,
+        "taxa_desistencia_acumulada": 42.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2010,
+        "anos_desde_ingresso": 0,
+        "taxa_permanencia": 97.5,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 2.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2011,
+        "anos_desde_ingresso": 1,
+        "taxa_permanencia": 90.0,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 10.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2012,
+        "anos_desde_ingresso": 2,
+        "taxa_permanencia": 85.0,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 15.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2013,
+        "anos_desde_ingresso": 3,
+        "taxa_permanencia": 72.5,
+        "taxa_conclusao_acumulada": 7.5,
+        "taxa_desistencia_acumulada": 20.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2014,
+        "anos_desde_ingresso": 4,
+        "taxa_permanencia": 40.0,
+        "taxa_conclusao_acumulada": 35.0,
+        "taxa_desistencia_acumulada": 25.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2015,
+        "anos_desde_ingresso": 5,
+        "taxa_permanencia": 22.5,
+        "taxa_conclusao_acumulada": 50.0,
+        "taxa_desistencia_acumulada": 27.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 6,
+        "taxa_permanencia": 7.5,
+        "taxa_conclusao_acumulada": 57.5,
+        "taxa_desistencia_acumulada": 35.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 7,
+        "taxa_permanencia": 2.5,
+        "taxa_conclusao_acumulada": 62.5,
+        "taxa_desistencia_acumulada": 35.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 8,
+        "taxa_permanencia": 2.5,
+        "taxa_conclusao_acumulada": 62.5,
+        "taxa_desistencia_acumulada": 35.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 9,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 62.5,
+        "taxa_desistencia_acumulada": 37.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2011,
+        "anos_desde_ingresso": 0,
+        "taxa_permanencia": 76.92307692,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 23.07692308
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2012,
+        "anos_desde_ingresso": 1,
+        "taxa_permanencia": 64.1025641,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 35.8974359
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2013,
+        "anos_desde_ingresso": 2,
+        "taxa_permanencia": 61.53846154,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 38.46153846
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2014,
+        "anos_desde_ingresso": 3,
+        "taxa_permanencia": 43.58974359,
+        "taxa_conclusao_acumulada": 10.25641026,
+        "taxa_desistencia_acumulada": 46.15384615
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2015,
+        "anos_desde_ingresso": 4,
+        "taxa_permanencia": 12.82051282,
+        "taxa_conclusao_acumulada": 38.46153846,
+        "taxa_desistencia_acumulada": 48.71794872
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 5,
+        "taxa_permanencia": 2.564102564,
+        "taxa_conclusao_acumulada": 46.15384615,
+        "taxa_desistencia_acumulada": 51.28205128
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 6,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 46.15384615,
+        "taxa_desistencia_acumulada": 53.84615385
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 7,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 46.15384615,
+        "taxa_desistencia_acumulada": 53.84615385
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 8,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 46.15384615,
+        "taxa_desistencia_acumulada": 53.84615385
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 9,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 46.15384615,
+        "taxa_desistencia_acumulada": 53.84615385
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2012,
+        "anos_desde_ingresso": 0,
+        "taxa_permanencia": 82.5,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 17.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2013,
+        "anos_desde_ingresso": 1,
+        "taxa_permanencia": 75.0,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 25.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2014,
+        "anos_desde_ingresso": 2,
+        "taxa_permanencia": 75.0,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 25.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2015,
+        "anos_desde_ingresso": 3,
+        "taxa_permanencia": 35.0,
+        "taxa_conclusao_acumulada": 35.0,
+        "taxa_desistencia_acumulada": 30.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 4,
+        "taxa_permanencia": 27.5,
+        "taxa_conclusao_acumulada": 40.0,
+        "taxa_desistencia_acumulada": 32.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 5,
+        "taxa_permanencia": 10.0,
+        "taxa_conclusao_acumulada": 52.5,
+        "taxa_desistencia_acumulada": 37.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 6,
+        "taxa_permanencia": 2.5,
+        "taxa_conclusao_acumulada": 60.0,
+        "taxa_desistencia_acumulada": 37.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 7,
+        "taxa_permanencia": 2.5,
+        "taxa_conclusao_acumulada": 60.0,
+        "taxa_desistencia_acumulada": 37.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 8,
+        "taxa_permanencia": 2.5,
+        "taxa_conclusao_acumulada": 60.0,
+        "taxa_desistencia_acumulada": 37.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 9,
+        "taxa_permanencia": 2.5,
+        "taxa_conclusao_acumulada": 60.0,
+        "taxa_desistencia_acumulada": 37.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2013,
+        "anos_desde_ingresso": 0,
+        "taxa_permanencia": 88.0952381,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 11.9047619
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2014,
+        "anos_desde_ingresso": 1,
+        "taxa_permanencia": 71.42857143,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 28.57142857
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2015,
+        "anos_desde_ingresso": 2,
+        "taxa_permanencia": 57.14285714,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 42.85714286
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 3,
+        "taxa_permanencia": 33.33333333,
+        "taxa_conclusao_acumulada": 21.42857143,
+        "taxa_desistencia_acumulada": 45.23809524
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 4,
+        "taxa_permanencia": 16.66666667,
+        "taxa_conclusao_acumulada": 38.0952381,
+        "taxa_desistencia_acumulada": 45.23809524
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 5,
+        "taxa_permanencia": 7.142857143,
+        "taxa_conclusao_acumulada": 47.61904762,
+        "taxa_desistencia_acumulada": 45.23809524
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 6,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 50.0,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 7,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 50.0,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 8,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 50.0,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 9,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 50.0,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2014,
+        "anos_desde_ingresso": 0,
+        "taxa_permanencia": 53.48837209,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 46.51162791
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2015,
+        "anos_desde_ingresso": 1,
+        "taxa_permanencia": 44.18604651,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 55.81395349
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 2,
+        "taxa_permanencia": 27.90697674,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 72.09302326
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 3,
+        "taxa_permanencia": 13.95348837,
+        "taxa_conclusao_acumulada": 13.95348837,
+        "taxa_desistencia_acumulada": 72.09302326
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 4,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 27.90697674,
+        "taxa_desistencia_acumulada": 72.09302326
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 5,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 27.90697674,
+        "taxa_desistencia_acumulada": 72.09302326
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 6,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 27.90697674,
+        "taxa_desistencia_acumulada": 72.09302326
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 7,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 27.90697674,
+        "taxa_desistencia_acumulada": 72.09302326
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 8,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 27.90697674,
+        "taxa_desistencia_acumulada": 72.09302326
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 9,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 27.90697674,
+        "taxa_desistencia_acumulada": 72.09302326
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2015,
+        "anos_desde_ingresso": 0,
+        "taxa_permanencia": 85.0,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 15.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 1,
+        "taxa_permanencia": 65.0,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 35.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 2,
+        "taxa_permanencia": 57.5,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 42.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 3,
+        "taxa_permanencia": 32.5,
+        "taxa_conclusao_acumulada": 20.0,
+        "taxa_desistencia_acumulada": 47.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 4,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 50.0,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 5,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 50.0,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 6,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 50.0,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 7,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 50.0,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 8,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 50.0,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2024,
+        "anos_desde_ingresso": 9,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 50.0,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 0,
+        "taxa_permanencia": 97.2972973,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 2.702702703
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 1,
+        "taxa_permanencia": 86.48648649,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 13.51351351
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 2,
+        "taxa_permanencia": 78.37837838,
+        "taxa_conclusao_acumulada": 2.702702703,
+        "taxa_desistencia_acumulada": 18.91891892
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 3,
+        "taxa_permanencia": 54.05405405,
+        "taxa_conclusao_acumulada": 16.21621622,
+        "taxa_desistencia_acumulada": 29.72972973
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 4,
+        "taxa_permanencia": 27.02702703,
+        "taxa_conclusao_acumulada": 40.54054054,
+        "taxa_desistencia_acumulada": 32.43243243
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 5,
+        "taxa_permanencia": 21.62162162,
+        "taxa_conclusao_acumulada": 45.94594595,
+        "taxa_desistencia_acumulada": 32.43243243
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 6,
+        "taxa_permanencia": 8.108108108,
+        "taxa_conclusao_acumulada": 51.35135135,
+        "taxa_desistencia_acumulada": 40.54054054
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 7,
+        "taxa_permanencia": 5.405405405,
+        "taxa_conclusao_acumulada": 54.05405405,
+        "taxa_desistencia_acumulada": 40.54054054
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2024,
+        "anos_desde_ingresso": 8,
+        "taxa_permanencia": 2.702702703,
+        "taxa_conclusao_acumulada": 54.05405405,
+        "taxa_desistencia_acumulada": 43.24324324
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 0,
+        "taxa_permanencia": 86.66666667,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 13.33333333
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 1,
+        "taxa_permanencia": 75.55555556,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 24.44444444
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 2,
+        "taxa_permanencia": 66.66666667,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 33.33333333
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 3,
+        "taxa_permanencia": 37.77777778,
+        "taxa_conclusao_acumulada": 22.22222222,
+        "taxa_desistencia_acumulada": 40.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 4,
+        "taxa_permanencia": 20.0,
+        "taxa_conclusao_acumulada": 35.55555556,
+        "taxa_desistencia_acumulada": 44.44444444
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 5,
+        "taxa_permanencia": 11.11111111,
+        "taxa_conclusao_acumulada": 42.22222222,
+        "taxa_desistencia_acumulada": 46.66666667
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 6,
+        "taxa_permanencia": 2.222222222,
+        "taxa_conclusao_acumulada": 48.88888889,
+        "taxa_desistencia_acumulada": 48.88888889
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2024,
+        "anos_desde_ingresso": 7,
+        "taxa_permanencia": 0.0,
+        "taxa_conclusao_acumulada": 51.11111111,
+        "taxa_desistencia_acumulada": 48.88888889
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 0,
+        "taxa_permanencia": 88.0952381,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 11.9047619
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 1,
+        "taxa_permanencia": 80.95238095,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 19.04761905
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 2,
+        "taxa_permanencia": 64.28571429,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 35.71428571
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 3,
+        "taxa_permanencia": 47.61904762,
+        "taxa_conclusao_acumulada": 7.142857143,
+        "taxa_desistencia_acumulada": 45.23809524
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 4,
+        "taxa_permanencia": 23.80952381,
+        "taxa_conclusao_acumulada": 28.57142857,
+        "taxa_desistencia_acumulada": 47.61904762
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 5,
+        "taxa_permanencia": 11.9047619,
+        "taxa_conclusao_acumulada": 35.71428571,
+        "taxa_desistencia_acumulada": 52.38095238
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2024,
+        "anos_desde_ingresso": 6,
+        "taxa_permanencia": 2.380952381,
+        "taxa_conclusao_acumulada": 35.71428571,
+        "taxa_desistencia_acumulada": 61.9047619
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 0,
+        "taxa_permanencia": 87.17948718,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 12.82051282
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 1,
+        "taxa_permanencia": 64.1025641,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 35.8974359
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 2,
+        "taxa_permanencia": 61.53846154,
+        "taxa_conclusao_acumulada": 0.0,
+        "taxa_desistencia_acumulada": 38.46153846
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 3,
+        "taxa_permanencia": 41.02564103,
+        "taxa_conclusao_acumulada": 5.128205128,
+        "taxa_desistencia_acumulada": 53.84615385
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 4,
+        "taxa_permanencia": 28.20512821,
+        "taxa_conclusao_acumulada": 15.38461538,
+        "taxa_desistencia_acumulada": 56.41025641
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2024,
+        "anos_desde_ingresso": 5,
+        "taxa_permanencia": 7.692307692,
+        "taxa_conclusao_acumulada": 30.76923077,
+        "taxa_desistencia_acumulada": 61.53846154
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2020,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 0,
+        "taxa_permanencia": 88.37209302,
+        "taxa_conclusao_acumulada": 2.325581395,
+        "taxa_desistencia_acumulada": 9.302325581
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2020,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 1,
+        "taxa_permanencia": 76.74418605,
+        "taxa_conclusao_acumulada": 2.325581395,
+        "taxa_desistencia_acumulada": 20.93023256
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2020,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 2,
+        "taxa_permanencia": 65.11627907,
+        "taxa_conclusao_acumulada": 2.325581395,
+        "taxa_desistencia_acumulada": 32.55813953
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2020,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 3,
+        "taxa_permanencia": 60.46511628,
+        "taxa_conclusao_acumulada": 4.651162791,
+        "taxa_desistencia_acumulada": 34.88372093
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2020,
+        "ano_referencia": 2024,
+        "anos_desde_ingresso": 4,
+        "taxa_permanencia": 18.60465116,
+        "taxa_conclusao_acumulada": 41.86046512,
+        "taxa_desistencia_acumulada": 39.53488372
+      }
+    ]
+  },
+  "comparacao_cursos": {
+    "ranking_cpc": [],
+    "tabela_comparativa": [
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "cpc_faixa": null,
+        "conceito_enade_continuo": null,
+        "taxa_conclusao_acumulada": 30.0,
+        "taxa_desistencia_acumulada": 42.5,
+        "taxa_permanencia": 27.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "cpc_faixa": null,
+        "conceito_enade_continuo": null,
+        "taxa_conclusao_acumulada": 41.86046512,
+        "taxa_desistencia_acumulada": 39.53488372,
+        "taxa_permanencia": 18.60465116
+      }
+    ],
+    "notas_por_dimensao": [],
+    "evolucao_cpc_comparada": []
+  },
+  "trajetoria_comparada": {
+    "evasao_por_curso": [
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2010,
+        "anos_desde_ingresso": 0,
+        "taxa_desistencia_acumulada": 2.3255813953
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2011,
+        "anos_desde_ingresso": 1,
+        "taxa_desistencia_acumulada": 20.9302325581
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2012,
+        "anos_desde_ingresso": 2,
+        "taxa_desistencia_acumulada": 25.5813953488
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2013,
+        "anos_desde_ingresso": 3,
+        "taxa_desistencia_acumulada": 27.9069767442
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2014,
+        "anos_desde_ingresso": 4,
+        "taxa_desistencia_acumulada": 30.2325581395
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2015,
+        "anos_desde_ingresso": 5,
+        "taxa_desistencia_acumulada": 34.8837209302
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 6,
+        "taxa_desistencia_acumulada": 41.8604651163
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 7,
+        "taxa_desistencia_acumulada": 46.511627907
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 8,
+        "taxa_desistencia_acumulada": 46.511627907
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 9,
+        "taxa_desistencia_acumulada": 46.511627907
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2011,
+        "anos_desde_ingresso": 0,
+        "taxa_desistencia_acumulada": 14.63414634
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2012,
+        "anos_desde_ingresso": 1,
+        "taxa_desistencia_acumulada": 31.70731707
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2013,
+        "anos_desde_ingresso": 2,
+        "taxa_desistencia_acumulada": 46.34146341
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2014,
+        "anos_desde_ingresso": 3,
+        "taxa_desistencia_acumulada": 48.7804878
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2015,
+        "anos_desde_ingresso": 4,
+        "taxa_desistencia_acumulada": 51.2195122
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 5,
+        "taxa_desistencia_acumulada": 53.65853659
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 6,
+        "taxa_desistencia_acumulada": 56.09756098
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 7,
+        "taxa_desistencia_acumulada": 58.53658537
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 8,
+        "taxa_desistencia_acumulada": 58.53658537
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 9,
+        "taxa_desistencia_acumulada": 58.53658537
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2012,
+        "anos_desde_ingresso": 0,
+        "taxa_desistencia_acumulada": 19.44444444
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2013,
+        "anos_desde_ingresso": 1,
+        "taxa_desistencia_acumulada": 22.22222222
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2014,
+        "anos_desde_ingresso": 2,
+        "taxa_desistencia_acumulada": 33.33333333
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2015,
+        "anos_desde_ingresso": 3,
+        "taxa_desistencia_acumulada": 38.88888889
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 4,
+        "taxa_desistencia_acumulada": 41.66666667
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 5,
+        "taxa_desistencia_acumulada": 44.44444444
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 6,
+        "taxa_desistencia_acumulada": 47.22222222
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 7,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 8,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 9,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2013,
+        "anos_desde_ingresso": 0,
+        "taxa_desistencia_acumulada": 9.756097561
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2014,
+        "anos_desde_ingresso": 1,
+        "taxa_desistencia_acumulada": 24.3902439
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2015,
+        "anos_desde_ingresso": 2,
+        "taxa_desistencia_acumulada": 26.82926829
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 3,
+        "taxa_desistencia_acumulada": 31.70731707
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 4,
+        "taxa_desistencia_acumulada": 34.14634146
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 5,
+        "taxa_desistencia_acumulada": 41.46341463
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 6,
+        "taxa_desistencia_acumulada": 41.46341463
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 7,
+        "taxa_desistencia_acumulada": 41.46341463
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 8,
+        "taxa_desistencia_acumulada": 41.46341463
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 9,
+        "taxa_desistencia_acumulada": 41.46341463
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2014,
+        "anos_desde_ingresso": 0,
+        "taxa_desistencia_acumulada": 36.17021277
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2015,
+        "anos_desde_ingresso": 1,
+        "taxa_desistencia_acumulada": 48.93617021
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 2,
+        "taxa_desistencia_acumulada": 59.57446809
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 3,
+        "taxa_desistencia_acumulada": 68.08510638
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 4,
+        "taxa_desistencia_acumulada": 70.21276596
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 5,
+        "taxa_desistencia_acumulada": 72.34042553
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 6,
+        "taxa_desistencia_acumulada": 76.59574468
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 7,
+        "taxa_desistencia_acumulada": 76.59574468
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 8,
+        "taxa_desistencia_acumulada": 78.72340426
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 9,
+        "taxa_desistencia_acumulada": 78.72340426
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2015,
+        "anos_desde_ingresso": 0,
+        "taxa_desistencia_acumulada": 0.0
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 1,
+        "taxa_desistencia_acumulada": 23.25581395
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 2,
+        "taxa_desistencia_acumulada": 27.90697674
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 3,
+        "taxa_desistencia_acumulada": 32.55813953
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 4,
+        "taxa_desistencia_acumulada": 34.88372093
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 5,
+        "taxa_desistencia_acumulada": 34.88372093
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 6,
+        "taxa_desistencia_acumulada": 37.20930233
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 7,
+        "taxa_desistencia_acumulada": 41.86046512
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 8,
+        "taxa_desistencia_acumulada": 44.18604651
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2024,
+        "anos_desde_ingresso": 9,
+        "taxa_desistencia_acumulada": 48.8372093
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 0,
+        "taxa_desistencia_acumulada": 15.90909091
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 1,
+        "taxa_desistencia_acumulada": 34.09090909
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 2,
+        "taxa_desistencia_acumulada": 44.18604651
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 3,
+        "taxa_desistencia_acumulada": 51.1627907
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 4,
+        "taxa_desistencia_acumulada": 51.1627907
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 5,
+        "taxa_desistencia_acumulada": 51.1627907
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 6,
+        "taxa_desistencia_acumulada": 58.13953488
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 7,
+        "taxa_desistencia_acumulada": 58.13953488
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2024,
+        "anos_desde_ingresso": 8,
+        "taxa_desistencia_acumulada": 58.13953488
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 0,
+        "taxa_desistencia_acumulada": 8.108108108
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 1,
+        "taxa_desistencia_acumulada": 32.43243243
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 2,
+        "taxa_desistencia_acumulada": 37.83783784
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 3,
+        "taxa_desistencia_acumulada": 37.83783784
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 4,
+        "taxa_desistencia_acumulada": 37.83783784
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 5,
+        "taxa_desistencia_acumulada": 48.64864865
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 6,
+        "taxa_desistencia_acumulada": 48.64864865
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2024,
+        "anos_desde_ingresso": 7,
+        "taxa_desistencia_acumulada": 48.64864865
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 0,
+        "taxa_desistencia_acumulada": 4.87804878
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 1,
+        "taxa_desistencia_acumulada": 14.63414634
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 2,
+        "taxa_desistencia_acumulada": 31.70731707
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 3,
+        "taxa_desistencia_acumulada": 39.02439024
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 4,
+        "taxa_desistencia_acumulada": 51.2195122
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 5,
+        "taxa_desistencia_acumulada": 56.09756098
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2024,
+        "anos_desde_ingresso": 6,
+        "taxa_desistencia_acumulada": 65.85365854
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 0,
+        "taxa_desistencia_acumulada": 5.128205128
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 1,
+        "taxa_desistencia_acumulada": 23.07692308
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 2,
+        "taxa_desistencia_acumulada": 35.8974359
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 3,
+        "taxa_desistencia_acumulada": 43.58974359
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 4,
+        "taxa_desistencia_acumulada": 43.58974359
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2024,
+        "anos_desde_ingresso": 5,
+        "taxa_desistencia_acumulada": 53.84615385
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2020,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 0,
+        "taxa_desistencia_acumulada": 10.0
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2020,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 1,
+        "taxa_desistencia_acumulada": 22.5
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2020,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 2,
+        "taxa_desistencia_acumulada": 30.0
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2020,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 3,
+        "taxa_desistencia_acumulada": 32.5
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_ingresso": 2020,
+        "ano_referencia": 2024,
+        "anos_desde_ingresso": 4,
+        "taxa_desistencia_acumulada": 42.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2010,
+        "anos_desde_ingresso": 0,
+        "taxa_desistencia_acumulada": 2.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2011,
+        "anos_desde_ingresso": 1,
+        "taxa_desistencia_acumulada": 10.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2012,
+        "anos_desde_ingresso": 2,
+        "taxa_desistencia_acumulada": 15.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2013,
+        "anos_desde_ingresso": 3,
+        "taxa_desistencia_acumulada": 20.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2014,
+        "anos_desde_ingresso": 4,
+        "taxa_desistencia_acumulada": 25.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2015,
+        "anos_desde_ingresso": 5,
+        "taxa_desistencia_acumulada": 27.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 6,
+        "taxa_desistencia_acumulada": 35.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 7,
+        "taxa_desistencia_acumulada": 35.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 8,
+        "taxa_desistencia_acumulada": 35.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2010,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 9,
+        "taxa_desistencia_acumulada": 37.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2011,
+        "anos_desde_ingresso": 0,
+        "taxa_desistencia_acumulada": 23.07692308
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2012,
+        "anos_desde_ingresso": 1,
+        "taxa_desistencia_acumulada": 35.8974359
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2013,
+        "anos_desde_ingresso": 2,
+        "taxa_desistencia_acumulada": 38.46153846
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2014,
+        "anos_desde_ingresso": 3,
+        "taxa_desistencia_acumulada": 46.15384615
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2015,
+        "anos_desde_ingresso": 4,
+        "taxa_desistencia_acumulada": 48.71794872
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 5,
+        "taxa_desistencia_acumulada": 51.28205128
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 6,
+        "taxa_desistencia_acumulada": 53.84615385
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 7,
+        "taxa_desistencia_acumulada": 53.84615385
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 8,
+        "taxa_desistencia_acumulada": 53.84615385
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2011,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 9,
+        "taxa_desistencia_acumulada": 53.84615385
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2012,
+        "anos_desde_ingresso": 0,
+        "taxa_desistencia_acumulada": 17.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2013,
+        "anos_desde_ingresso": 1,
+        "taxa_desistencia_acumulada": 25.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2014,
+        "anos_desde_ingresso": 2,
+        "taxa_desistencia_acumulada": 25.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2015,
+        "anos_desde_ingresso": 3,
+        "taxa_desistencia_acumulada": 30.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 4,
+        "taxa_desistencia_acumulada": 32.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 5,
+        "taxa_desistencia_acumulada": 37.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 6,
+        "taxa_desistencia_acumulada": 37.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 7,
+        "taxa_desistencia_acumulada": 37.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 8,
+        "taxa_desistencia_acumulada": 37.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2012,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 9,
+        "taxa_desistencia_acumulada": 37.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2013,
+        "anos_desde_ingresso": 0,
+        "taxa_desistencia_acumulada": 11.9047619
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2014,
+        "anos_desde_ingresso": 1,
+        "taxa_desistencia_acumulada": 28.57142857
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2015,
+        "anos_desde_ingresso": 2,
+        "taxa_desistencia_acumulada": 42.85714286
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 3,
+        "taxa_desistencia_acumulada": 45.23809524
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 4,
+        "taxa_desistencia_acumulada": 45.23809524
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 5,
+        "taxa_desistencia_acumulada": 45.23809524
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 6,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 7,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 8,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2013,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 9,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2014,
+        "anos_desde_ingresso": 0,
+        "taxa_desistencia_acumulada": 46.51162791
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2015,
+        "anos_desde_ingresso": 1,
+        "taxa_desistencia_acumulada": 55.81395349
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 2,
+        "taxa_desistencia_acumulada": 72.09302326
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 3,
+        "taxa_desistencia_acumulada": 72.09302326
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 4,
+        "taxa_desistencia_acumulada": 72.09302326
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 5,
+        "taxa_desistencia_acumulada": 72.09302326
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 6,
+        "taxa_desistencia_acumulada": 72.09302326
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 7,
+        "taxa_desistencia_acumulada": 72.09302326
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 8,
+        "taxa_desistencia_acumulada": 72.09302326
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2014,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 9,
+        "taxa_desistencia_acumulada": 72.09302326
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2015,
+        "anos_desde_ingresso": 0,
+        "taxa_desistencia_acumulada": 15.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 1,
+        "taxa_desistencia_acumulada": 35.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 2,
+        "taxa_desistencia_acumulada": 42.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 3,
+        "taxa_desistencia_acumulada": 47.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 4,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 5,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 6,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 7,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 8,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2015,
+        "ano_referencia": 2024,
+        "anos_desde_ingresso": 9,
+        "taxa_desistencia_acumulada": 50.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2016,
+        "anos_desde_ingresso": 0,
+        "taxa_desistencia_acumulada": 2.702702703
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 1,
+        "taxa_desistencia_acumulada": 13.51351351
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 2,
+        "taxa_desistencia_acumulada": 18.91891892
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 3,
+        "taxa_desistencia_acumulada": 29.72972973
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 4,
+        "taxa_desistencia_acumulada": 32.43243243
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 5,
+        "taxa_desistencia_acumulada": 32.43243243
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 6,
+        "taxa_desistencia_acumulada": 40.54054054
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 7,
+        "taxa_desistencia_acumulada": 40.54054054
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2016,
+        "ano_referencia": 2024,
+        "anos_desde_ingresso": 8,
+        "taxa_desistencia_acumulada": 43.24324324
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2017,
+        "anos_desde_ingresso": 0,
+        "taxa_desistencia_acumulada": 13.33333333
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 1,
+        "taxa_desistencia_acumulada": 24.44444444
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 2,
+        "taxa_desistencia_acumulada": 33.33333333
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 3,
+        "taxa_desistencia_acumulada": 40.0
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 4,
+        "taxa_desistencia_acumulada": 44.44444444
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 5,
+        "taxa_desistencia_acumulada": 46.66666667
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 6,
+        "taxa_desistencia_acumulada": 48.88888889
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2017,
+        "ano_referencia": 2024,
+        "anos_desde_ingresso": 7,
+        "taxa_desistencia_acumulada": 48.88888889
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2018,
+        "anos_desde_ingresso": 0,
+        "taxa_desistencia_acumulada": 11.9047619
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 1,
+        "taxa_desistencia_acumulada": 19.04761905
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 2,
+        "taxa_desistencia_acumulada": 35.71428571
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 3,
+        "taxa_desistencia_acumulada": 45.23809524
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 4,
+        "taxa_desistencia_acumulada": 47.61904762
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 5,
+        "taxa_desistencia_acumulada": 52.38095238
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2018,
+        "ano_referencia": 2024,
+        "anos_desde_ingresso": 6,
+        "taxa_desistencia_acumulada": 61.9047619
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2019,
+        "anos_desde_ingresso": 0,
+        "taxa_desistencia_acumulada": 12.82051282
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 1,
+        "taxa_desistencia_acumulada": 35.8974359
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 2,
+        "taxa_desistencia_acumulada": 38.46153846
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 3,
+        "taxa_desistencia_acumulada": 53.84615385
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 4,
+        "taxa_desistencia_acumulada": 56.41025641
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2019,
+        "ano_referencia": 2024,
+        "anos_desde_ingresso": 5,
+        "taxa_desistencia_acumulada": 61.53846154
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2020,
+        "ano_referencia": 2020,
+        "anos_desde_ingresso": 0,
+        "taxa_desistencia_acumulada": 9.302325581
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2020,
+        "ano_referencia": 2021,
+        "anos_desde_ingresso": 1,
+        "taxa_desistencia_acumulada": 20.93023256
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2020,
+        "ano_referencia": 2022,
+        "anos_desde_ingresso": 2,
+        "taxa_desistencia_acumulada": 32.55813953
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2020,
+        "ano_referencia": 2023,
+        "anos_desde_ingresso": 3,
+        "taxa_desistencia_acumulada": 34.88372093
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_ingresso": 2020,
+        "ano_referencia": 2024,
+        "anos_desde_ingresso": 4,
+        "taxa_desistencia_acumulada": 39.53488372
+      }
+    ],
+    "heatmap_evasao_anual": [
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2010,
+        "taxa_desistencia_anual": 2.3255813953
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2011,
+        "taxa_desistencia_anual": 16.6193987514
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2012,
+        "taxa_desistencia_anual": 13.7229259869
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2013,
+        "taxa_desistencia_anual": 7.3734007686
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2014,
+        "taxa_desistencia_anual": 13.3360152011
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2015,
+        "taxa_desistencia_anual": 4.6417874294
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2016,
+        "taxa_desistencia_anual": 9.553542552
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2017,
+        "taxa_desistencia_anual": 6.4698395907
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2018,
+        "taxa_desistencia_anual": 6.4241551539
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2019,
+        "taxa_desistencia_anual": 3.4497471027
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2020,
+        "taxa_desistencia_anual": 4.9277207829
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2021,
+        "taxa_desistencia_anual": 3.8847963762
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2022,
+        "taxa_desistencia_anual": 6.4942258754
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2023,
+        "taxa_desistencia_anual": 1.3862328821
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2024,
+        "taxa_desistencia_anual": 5.7772784353
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2010,
+        "taxa_desistencia_anual": 2.5
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2011,
+        "taxa_desistencia_anual": 15.28846154
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2012,
+        "taxa_desistencia_anual": 11.7735042733
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2013,
+        "taxa_desistencia_anual": 6.742216116
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2014,
+        "taxa_desistencia_anual": 15.1741204544
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2015,
+        "taxa_desistencia_anual": 8.1086904058
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2016,
+        "taxa_desistencia_anual": 7.7038324883
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2017,
+        "taxa_desistencia_anual": 4.901030838
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2018,
+        "taxa_desistencia_anual": 3.7134753794
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2019,
+        "taxa_desistencia_anual": 4.9424974424
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2020,
+        "taxa_desistencia_anual": 5.8415284701
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2021,
+        "taxa_desistencia_anual": 3.128918168
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2022,
+        "taxa_desistencia_anual": 4.9654756339
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2023,
+        "taxa_desistencia_anual": 1.6962587061
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2024,
+        "taxa_desistencia_anual": 3.667646691
+      }
+    ],
+    "demanda_ingressantes": [
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_ingresso": 2010,
+        "qt_ingressante": 43
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_ingresso": 2011,
+        "qt_ingressante": 41
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_ingresso": 2012,
+        "qt_ingressante": 36
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_ingresso": 2013,
+        "qt_ingressante": 41
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_ingresso": 2014,
+        "qt_ingressante": 47
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_ingresso": 2015,
+        "qt_ingressante": 43
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_ingresso": 2016,
+        "qt_ingressante": 44
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_ingresso": 2017,
+        "qt_ingressante": 37
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_ingresso": 2018,
+        "qt_ingressante": 41
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_ingresso": 2019,
+        "qt_ingressante": 39
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_ingresso": 2020,
+        "qt_ingressante": 40
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_ingresso": 2010,
+        "qt_ingressante": 40
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_ingresso": 2011,
+        "qt_ingressante": 39
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_ingresso": 2012,
+        "qt_ingressante": 40
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_ingresso": 2013,
+        "qt_ingressante": 42
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_ingresso": 2014,
+        "qt_ingressante": 43
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_ingresso": 2015,
+        "qt_ingressante": 40
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_ingresso": 2016,
+        "qt_ingressante": 37
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_ingresso": 2017,
+        "qt_ingressante": 45
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_ingresso": 2018,
+        "qt_ingressante": 42
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_ingresso": 2019,
+        "qt_ingressante": 39
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_ingresso": 2020,
+        "qt_ingressante": 43
+      }
+    ],
+    "demanda_concluintes": [
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_referencia": 2016,
+        "qt_concluinte": 15
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_referencia": 2017,
+        "qt_concluinte": 26
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_referencia": 2018,
+        "qt_concluinte": 22
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_referencia": 2019,
+        "qt_concluinte": 20
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_referencia": 2020,
+        "qt_concluinte": 7
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_referencia": 2021,
+        "qt_concluinte": 20
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_referencia": 2022,
+        "qt_concluinte": 14
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_referencia": 2023,
+        "qt_concluinte": 18
+      },
+      {
+        "codigo_curso": 111294,
+        "nome_curso": "OCEANOGRAFIA",
+        "ano_referencia": 2024,
+        "qt_concluinte": 12
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_referencia": 2016,
+        "qt_concluinte": 17
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_referencia": 2017,
+        "qt_concluinte": 20
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_referencia": 2018,
+        "qt_concluinte": 22
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_referencia": 2019,
+        "qt_concluinte": 18
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_referencia": 2020,
+        "qt_concluinte": 20
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_referencia": 2021,
+        "qt_concluinte": 11
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_referencia": 2022,
+        "qt_concluinte": 16
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_referencia": 2023,
+        "qt_concluinte": 12
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_curso": "CIÊNCIAS AMBIENTAIS",
+        "ano_referencia": 2024,
+        "qt_concluinte": 23
+      }
+    ]
+  },
+  "unidade": {
+    "kpis": {
+      "total_cursos": 2,
+      "total_ingressantes_ultimo_ano": 83,
+      "taxa_conclusao_media": 35.93,
+      "taxa_desistencia_media": 41.02
+    },
+    "distribuicao_cpc_faixa": [],
+    "tendencia_ingressantes": [
+      {
+        "ano_ingresso": 2010,
+        "qt_ingressante": 83
+      },
+      {
+        "ano_ingresso": 2011,
+        "qt_ingressante": 80
+      },
+      {
+        "ano_ingresso": 2012,
+        "qt_ingressante": 76
+      },
+      {
+        "ano_ingresso": 2013,
+        "qt_ingressante": 83
+      },
+      {
+        "ano_ingresso": 2014,
+        "qt_ingressante": 90
+      },
+      {
+        "ano_ingresso": 2015,
+        "qt_ingressante": 83
+      },
+      {
+        "ano_ingresso": 2016,
+        "qt_ingressante": 81
+      },
+      {
+        "ano_ingresso": 2017,
+        "qt_ingressante": 82
+      },
+      {
+        "ano_ingresso": 2018,
+        "qt_ingressante": 83
+      },
+      {
+        "ano_ingresso": 2019,
+        "qt_ingressante": 78
+      },
+      {
+        "ano_ingresso": 2020,
+        "qt_ingressante": 83
+      }
+    ],
+    "tendencia_concluintes": [
+      {
+        "ano_referencia": 2016,
+        "qt_concluinte": 32
+      },
+      {
+        "ano_referencia": 2017,
+        "qt_concluinte": 46
+      },
+      {
+        "ano_referencia": 2018,
+        "qt_concluinte": 44
+      },
+      {
+        "ano_referencia": 2019,
+        "qt_concluinte": 38
+      },
+      {
+        "ano_referencia": 2020,
+        "qt_concluinte": 27
+      },
+      {
+        "ano_referencia": 2021,
+        "qt_concluinte": 31
+      },
+      {
+        "ano_referencia": 2022,
+        "qt_concluinte": 30
+      },
+      {
+        "ano_referencia": 2023,
+        "qt_concluinte": 30
+      },
+      {
+        "ano_referencia": 2024,
+        "qt_concluinte": 35
+      }
+    ]
+  },
+  "medias_nacionais": {
+    "evolucao_cpc": [],
+    "perfil_radar": [],
+    "curva_sobrevivencia": [
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "anos_desde_ingresso": 0,
+        "taxa_permanencia_media_nacional": 88.35,
+        "taxa_conclusao_acumulada_media_nacional": 0.06,
+        "taxa_desistencia_acumulada_media_nacional": 11.59,
+        "quantidade_cursos_considerados": 11
+      },
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "anos_desde_ingresso": 1,
+        "taxa_permanencia_media_nacional": 75.97,
+        "taxa_conclusao_acumulada_media_nacional": 0.09,
+        "taxa_desistencia_acumulada_media_nacional": 23.94,
+        "quantidade_cursos_considerados": 11
+      },
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "anos_desde_ingresso": 2,
+        "taxa_permanencia_media_nacional": 66.05,
+        "taxa_conclusao_acumulada_media_nacional": 1.44,
+        "taxa_desistencia_acumulada_media_nacional": 32.51,
+        "quantidade_cursos_considerados": 11
+      },
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "anos_desde_ingresso": 3,
+        "taxa_permanencia_media_nacional": 53.11,
+        "taxa_conclusao_acumulada_media_nacional": 7.28,
+        "taxa_desistencia_acumulada_media_nacional": 39.6,
+        "quantidade_cursos_considerados": 11
+      },
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "anos_desde_ingresso": 4,
+        "taxa_permanencia_media_nacional": 35.05,
+        "taxa_conclusao_acumulada_media_nacional": 20.98,
+        "taxa_desistencia_acumulada_media_nacional": 43.97,
+        "quantidade_cursos_considerados": 11
+      },
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "anos_desde_ingresso": 5,
+        "taxa_permanencia_media_nacional": 20.81,
+        "taxa_conclusao_acumulada_media_nacional": 31.04,
+        "taxa_desistencia_acumulada_media_nacional": 48.15,
+        "quantidade_cursos_considerados": 10
+      },
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "anos_desde_ingresso": 6,
+        "taxa_permanencia_media_nacional": 11.91,
+        "taxa_conclusao_acumulada_media_nacional": 37.01,
+        "taxa_desistencia_acumulada_media_nacional": 51.09,
+        "quantidade_cursos_considerados": 9
+      },
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "anos_desde_ingresso": 7,
+        "taxa_permanencia_media_nacional": 7.23,
+        "taxa_conclusao_acumulada_media_nacional": 40.57,
+        "taxa_desistencia_acumulada_media_nacional": 52.2,
+        "quantidade_cursos_considerados": 9
+      },
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "anos_desde_ingresso": 8,
+        "taxa_permanencia_media_nacional": 4.58,
+        "taxa_conclusao_acumulada_media_nacional": 42.34,
+        "taxa_desistencia_acumulada_media_nacional": 53.08,
+        "quantidade_cursos_considerados": 9
+      },
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "anos_desde_ingresso": 9,
+        "taxa_permanencia_media_nacional": 3.02,
+        "taxa_conclusao_acumulada_media_nacional": 43.8,
+        "taxa_desistencia_acumulada_media_nacional": 53.18,
+        "quantidade_cursos_considerados": 9
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "anos_desde_ingresso": 0,
+        "taxa_permanencia_media_nacional": 90.11,
+        "taxa_conclusao_acumulada_media_nacional": 0.53,
+        "taxa_desistencia_acumulada_media_nacional": 9.36,
+        "quantidade_cursos_considerados": 14
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "anos_desde_ingresso": 1,
+        "taxa_permanencia_media_nacional": 79.47,
+        "taxa_conclusao_acumulada_media_nacional": 0.95,
+        "taxa_desistencia_acumulada_media_nacional": 19.58,
+        "quantidade_cursos_considerados": 14
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "anos_desde_ingresso": 2,
+        "taxa_permanencia_media_nacional": 71.11,
+        "taxa_conclusao_acumulada_media_nacional": 1.64,
+        "taxa_desistencia_acumulada_media_nacional": 27.24,
+        "quantidade_cursos_considerados": 14
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "anos_desde_ingresso": 3,
+        "taxa_permanencia_media_nacional": 61.79,
+        "taxa_conclusao_acumulada_media_nacional": 4.22,
+        "taxa_desistencia_acumulada_media_nacional": 33.99,
+        "quantidade_cursos_considerados": 14
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "anos_desde_ingresso": 4,
+        "taxa_permanencia_media_nacional": 45.04,
+        "taxa_conclusao_acumulada_media_nacional": 15.02,
+        "taxa_desistencia_acumulada_media_nacional": 39.93,
+        "quantidade_cursos_considerados": 14
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "anos_desde_ingresso": 5,
+        "taxa_permanencia_media_nacional": 28.42,
+        "taxa_conclusao_acumulada_media_nacional": 27.36,
+        "taxa_desistencia_acumulada_media_nacional": 44.22,
+        "quantidade_cursos_considerados": 14
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "anos_desde_ingresso": 6,
+        "taxa_permanencia_media_nacional": 17.19,
+        "taxa_conclusao_acumulada_media_nacional": 36.32,
+        "taxa_desistencia_acumulada_media_nacional": 46.49,
+        "quantidade_cursos_considerados": 14
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "anos_desde_ingresso": 7,
+        "taxa_permanencia_media_nacional": 9.69,
+        "taxa_conclusao_acumulada_media_nacional": 41.98,
+        "taxa_desistencia_acumulada_media_nacional": 48.32,
+        "quantidade_cursos_considerados": 13
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "anos_desde_ingresso": 8,
+        "taxa_permanencia_media_nacional": 5.73,
+        "taxa_conclusao_acumulada_media_nacional": 43.91,
+        "taxa_desistencia_acumulada_media_nacional": 50.36,
+        "quantidade_cursos_considerados": 13
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "anos_desde_ingresso": 9,
+        "taxa_permanencia_media_nacional": 3.25,
+        "taxa_conclusao_acumulada_media_nacional": 46.32,
+        "taxa_desistencia_acumulada_media_nacional": 50.42,
+        "quantidade_cursos_considerados": 13
+      }
+    ],
+    "heatmap_evasao_anual": [
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2010,
+        "taxa_desistencia_anual_media_nacional": 5.36,
+        "quantidade_cursos_considerados": 7
+      },
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2011,
+        "taxa_desistencia_anual_media_nacional": 8.66,
+        "quantidade_cursos_considerados": 9
+      },
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2012,
+        "taxa_desistencia_anual_media_nacional": 8.6,
+        "quantidade_cursos_considerados": 9
+      },
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2013,
+        "taxa_desistencia_anual_media_nacional": 12.04,
+        "quantidade_cursos_considerados": 9
+      },
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2014,
+        "taxa_desistencia_anual_media_nacional": 10.16,
+        "quantidade_cursos_considerados": 9
+      },
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2015,
+        "taxa_desistencia_anual_media_nacional": 8.03,
+        "quantidade_cursos_considerados": 9
+      },
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2016,
+        "taxa_desistencia_anual_media_nacional": 7.39,
+        "quantidade_cursos_considerados": 9
+      },
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2017,
+        "taxa_desistencia_anual_media_nacional": 7.47,
+        "quantidade_cursos_considerados": 9
+      },
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2018,
+        "taxa_desistencia_anual_media_nacional": 5.53,
+        "quantidade_cursos_considerados": 9
+      },
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2019,
+        "taxa_desistencia_anual_media_nacional": 6.43,
+        "quantidade_cursos_considerados": 10
+      },
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2020,
+        "taxa_desistencia_anual_media_nacional": 4.14,
+        "quantidade_cursos_considerados": 11
+      },
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2021,
+        "taxa_desistencia_anual_media_nacional": 3.45,
+        "quantidade_cursos_considerados": 11
+      },
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2022,
+        "taxa_desistencia_anual_media_nacional": 4.61,
+        "quantidade_cursos_considerados": 11
+      },
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2023,
+        "taxa_desistencia_anual_media_nacional": 4.41,
+        "quantidade_cursos_considerados": 10
+      },
+      {
+        "nome_cine_area_geral": "Ciências ambientais",
+        "ano_referencia": 2024,
+        "taxa_desistencia_anual_media_nacional": 2.29,
+        "quantidade_cursos_considerados": 10
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2010,
+        "taxa_desistencia_anual_media_nacional": 4.81,
+        "quantidade_cursos_considerados": 13
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2011,
+        "taxa_desistencia_anual_media_nacional": 10.45,
+        "quantidade_cursos_considerados": 13
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2012,
+        "taxa_desistencia_anual_media_nacional": 7.75,
+        "quantidade_cursos_considerados": 13
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2013,
+        "taxa_desistencia_anual_media_nacional": 9.07,
+        "quantidade_cursos_considerados": 13
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2014,
+        "taxa_desistencia_anual_media_nacional": 7.62,
+        "quantidade_cursos_considerados": 13
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2015,
+        "taxa_desistencia_anual_media_nacional": 7.12,
+        "quantidade_cursos_considerados": 13
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2016,
+        "taxa_desistencia_anual_media_nacional": 6.92,
+        "quantidade_cursos_considerados": 13
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2017,
+        "taxa_desistencia_anual_media_nacional": 7.12,
+        "quantidade_cursos_considerados": 13
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2018,
+        "taxa_desistencia_anual_media_nacional": 5.9,
+        "quantidade_cursos_considerados": 14
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2019,
+        "taxa_desistencia_anual_media_nacional": 5.21,
+        "quantidade_cursos_considerados": 14
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2020,
+        "taxa_desistencia_anual_media_nacional": 3.37,
+        "quantidade_cursos_considerados": 14
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2021,
+        "taxa_desistencia_anual_media_nacional": 3.62,
+        "quantidade_cursos_considerados": 14
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2022,
+        "taxa_desistencia_anual_media_nacional": 6.1,
+        "quantidade_cursos_considerados": 14
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2023,
+        "taxa_desistencia_anual_media_nacional": 4.03,
+        "quantidade_cursos_considerados": 14
+      },
+      {
+        "nome_cine_area_geral": "Oceanografia",
+        "ano_referencia": 2024,
+        "taxa_desistencia_anual_media_nacional": 3.65,
+        "quantidade_cursos_considerados": 14
+      }
+    ],
+    "unidade": {
+      "kpis": {
+        "taxa_conclusao_media_nacional": 18.62,
+        "taxa_desistencia_media_nacional": 42.45,
+        "quantidade_cursos_considerados": 25
+      },
+      "distribuicao_cpc_faixa": []
+    },
+    "distribuicao_uf": [
+      {
+        "codigo_curso": 111294,
+        "nome_cine_area_geral": "Oceanografia",
+        "area_avaliacao": null,
+        "sigla_uf_unidade": "CE",
+        "ano_ingresso": 2020,
+        "ano_cpc": null,
+        "estados": [
+          {
+            "sigla_uf": "BA",
+            "quantidade_cursos": 2,
+            "qt_ingressante": 39,
+            "taxa_desistencia_media": 34.58,
+            "cpc_continuo_medio": null,
+            "quantidade_cursos_cpc": 0
+          },
+          {
+            "sigla_uf": "CE",
+            "quantidade_cursos": 1,
+            "qt_ingressante": 40,
+            "taxa_desistencia_media": 42.5,
+            "cpc_continuo_medio": null,
+            "quantidade_cursos_cpc": 0
+          },
+          {
+            "sigla_uf": "ES",
+            "quantidade_cursos": 1,
+            "qt_ingressante": 29,
+            "taxa_desistencia_media": 24.14,
+            "cpc_continuo_medio": null,
+            "quantidade_cursos_cpc": 0
+          },
+          {
+            "sigla_uf": "MA",
+            "quantidade_cursos": 1,
+            "qt_ingressante": 52,
+            "taxa_desistencia_media": 32.69,
+            "cpc_continuo_medio": null,
+            "quantidade_cursos_cpc": 0
+          },
+          {
+            "sigla_uf": "PA",
+            "quantidade_cursos": 1,
+            "qt_ingressante": 43,
+            "taxa_desistencia_media": 18.6,
+            "cpc_continuo_medio": null,
+            "quantidade_cursos_cpc": 0
+          },
+          {
+            "sigla_uf": "PE",
+            "quantidade_cursos": 1,
+            "qt_ingressante": 25,
+            "taxa_desistencia_media": 44.0,
+            "cpc_continuo_medio": null,
+            "quantidade_cursos_cpc": 0
+          },
+          {
+            "sigla_uf": "PR",
+            "quantidade_cursos": 1,
+            "qt_ingressante": 38,
+            "taxa_desistencia_media": 63.16,
+            "cpc_continuo_medio": null,
+            "quantidade_cursos_cpc": 0
+          },
+          {
+            "sigla_uf": "RJ",
+            "quantidade_cursos": 1,
+            "qt_ingressante": 42,
+            "taxa_desistencia_media": 33.33,
+            "cpc_continuo_medio": null,
+            "quantidade_cursos_cpc": 0
+          },
+          {
+            "sigla_uf": "RS",
+            "quantidade_cursos": 1,
+            "qt_ingressante": 39,
+            "taxa_desistencia_media": 30.77,
+            "cpc_continuo_medio": null,
+            "quantidade_cursos_cpc": 0
+          },
+          {
+            "sigla_uf": "SC",
+            "quantidade_cursos": 2,
+            "qt_ingressante": 58,
+            "taxa_desistencia_media": 63.7,
+            "cpc_continuo_medio": null,
+            "quantidade_cursos_cpc": 0
+          },
+          {
+            "sigla_uf": "SP",
+            "quantidade_cursos": 1,
+            "qt_ingressante": 44,
+            "taxa_desistencia_media": 20.45,
+            "cpc_continuo_medio": null,
+            "quantidade_cursos_cpc": 0
+          }
+        ]
+      },
+      {
+        "codigo_curso": 150115,
+        "nome_cine_area_geral": "Ciências ambientais",
+        "area_avaliacao": null,
+        "sigla_uf_unidade": "CE",
+        "ano_ingresso": 2020,
+        "ano_cpc": null,
+        "estados": [
+          {
+            "sigla_uf": "AP",
+            "quantidade_cursos": 1,
+            "qt_ingressante": 43,
+            "taxa_desistencia_media": 38.71,
+            "cpc_continuo_medio": null,
+            "quantidade_cursos_cpc": 0
+          },
+          {
+            "sigla_uf": "CE",
+            "quantidade_cursos": 1,
+            "qt_ingressante": 43,
+            "taxa_desistencia_media": 39.53,
+            "cpc_continuo_medio": null,
+            "quantidade_cursos_cpc": 0
+          },
+          {
+            "sigla_uf": "DF",
+            "quantidade_cursos": 1,
+            "qt_ingressante": 60,
+            "taxa_desistencia_media": 38.33,
+            "cpc_continuo_medio": null,
+            "quantidade_cursos_cpc": 0
+          },
+          {
+            "sigla_uf": "GO",
+            "quantidade_cursos": 1,
+            "qt_ingressante": 45,
+            "taxa_desistencia_media": 60.0,
+            "cpc_continuo_medio": null,
+            "quantidade_cursos_cpc": 0
+          },
+          {
+            "sigla_uf": "PE",
+            "quantidade_cursos": 1,
+            "qt_ingressante": 79,
+            "taxa_desistencia_media": 39.24,
+            "cpc_continuo_medio": null,
+            "quantidade_cursos_cpc": 0
+          },
+          {
+            "sigla_uf": "PR",
+            "quantidade_cursos": 1,
+            "qt_ingressante": 27,
+            "taxa_desistencia_media": 55.56,
+            "cpc_continuo_medio": null,
+            "quantidade_cursos_cpc": 0
+          },
+          {
+            "sigla_uf": "RJ",
+            "quantidade_cursos": 2,
+            "qt_ingressante": 140,
+            "taxa_desistencia_media": 28.66,
+            "cpc_continuo_medio": null,
+            "quantidade_cursos_cpc": 0
+          },
+          {
+            "sigla_uf": "RS",
+            "quantidade_cursos": 1,
+            "qt_ingressante": 11,
+            "taxa_desistencia_media": 45.45,
+            "cpc_continuo_medio": null,
+            "quantidade_cursos_cpc": 0
+          },
+          {
+            "sigla_uf": "SP",
+            "quantidade_cursos": 1,
+            "qt_ingressante": 48,
+            "taxa_desistencia_media": 43.75,
+            "cpc_continuo_medio": null,
+            "quantidade_cursos_cpc": 0
+          }
+        ]
+      }
+    ],
+    "ingressantes": [
+      {
+        "codigo_curso": 111294,
+        "ano_ingresso": 2010,
+        "qt_ingressante_media_nacional": 41.5,
+        "quantidade_cursos_considerados": 13
+      },
+      {
+        "codigo_curso": 111294,
+        "ano_ingresso": 2011,
+        "qt_ingressante_media_nacional": 48.2,
+        "quantidade_cursos_considerados": 13
+      },
+      {
+        "codigo_curso": 111294,
+        "ano_ingresso": 2012,
+        "qt_ingressante_media_nacional": 40.2,
+        "quantidade_cursos_considerados": 13
+      },
+      {
+        "codigo_curso": 111294,
+        "ano_ingresso": 2013,
+        "qt_ingressante_media_nacional": 39.6,
+        "quantidade_cursos_considerados": 13
+      },
+      {
+        "codigo_curso": 111294,
+        "ano_ingresso": 2014,
+        "qt_ingressante_media_nacional": 38.3,
+        "quantidade_cursos_considerados": 13
+      },
+      {
+        "codigo_curso": 111294,
+        "ano_ingresso": 2015,
+        "qt_ingressante_media_nacional": 38.3,
+        "quantidade_cursos_considerados": 13
+      },
+      {
+        "codigo_curso": 111294,
+        "ano_ingresso": 2016,
+        "qt_ingressante_media_nacional": 37.7,
+        "quantidade_cursos_considerados": 13
+      },
+      {
+        "codigo_curso": 111294,
+        "ano_ingresso": 2017,
+        "qt_ingressante_media_nacional": 36.1,
+        "quantidade_cursos_considerados": 12
+      },
+      {
+        "codigo_curso": 111294,
+        "ano_ingresso": 2018,
+        "qt_ingressante_media_nacional": 34.3,
+        "quantidade_cursos_considerados": 13
+      },
+      {
+        "codigo_curso": 111294,
+        "ano_ingresso": 2019,
+        "qt_ingressante_media_nacional": 34.7,
+        "quantidade_cursos_considerados": 13
+      },
+      {
+        "codigo_curso": 111294,
+        "ano_ingresso": 2020,
+        "qt_ingressante_media_nacional": 34.5,
+        "quantidade_cursos_considerados": 13
+      },
+      {
+        "codigo_curso": 150115,
+        "ano_ingresso": 2010,
+        "qt_ingressante_media_nacional": 62.4,
+        "quantidade_cursos_considerados": 7
+      },
+      {
+        "codigo_curso": 150115,
+        "ano_ingresso": 2011,
+        "qt_ingressante_media_nacional": 53.4,
+        "quantidade_cursos_considerados": 9
+      },
+      {
+        "codigo_curso": 150115,
+        "ano_ingresso": 2012,
+        "qt_ingressante_media_nacional": 56.0,
+        "quantidade_cursos_considerados": 9
+      },
+      {
+        "codigo_curso": 150115,
+        "ano_ingresso": 2013,
+        "qt_ingressante_media_nacional": 56.2,
+        "quantidade_cursos_considerados": 9
+      },
+      {
+        "codigo_curso": 150115,
+        "ano_ingresso": 2014,
+        "qt_ingressante_media_nacional": 61.8,
+        "quantidade_cursos_considerados": 8
+      },
+      {
+        "codigo_curso": 150115,
+        "ano_ingresso": 2015,
+        "qt_ingressante_media_nacional": 61.8,
+        "quantidade_cursos_considerados": 8
+      },
+      {
+        "codigo_curso": 150115,
+        "ano_ingresso": 2016,
+        "qt_ingressante_media_nacional": 62.8,
+        "quantidade_cursos_considerados": 8
+      },
+      {
+        "codigo_curso": 150115,
+        "ano_ingresso": 2017,
+        "qt_ingressante_media_nacional": 61.0,
+        "quantidade_cursos_considerados": 8
+      },
+      {
+        "codigo_curso": 150115,
+        "ano_ingresso": 2018,
+        "qt_ingressante_media_nacional": 64.0,
+        "quantidade_cursos_considerados": 8
+      },
+      {
+        "codigo_curso": 150115,
+        "ano_ingresso": 2019,
+        "qt_ingressante_media_nacional": 58.2,
+        "quantidade_cursos_considerados": 9
+      },
+      {
+        "codigo_curso": 150115,
+        "ano_ingresso": 2020,
+        "qt_ingressante_media_nacional": 49.6,
+        "quantidade_cursos_considerados": 10
+      }
+    ],
+    "concluintes": [
+      {
+        "codigo_curso": 111294,
+        "ano_referencia": 2016,
+        "qt_concluinte_media_nacional": 16.8,
+        "quantidade_cursos_considerados": 13
+      },
+      {
+        "codigo_curso": 111294,
+        "ano_referencia": 2017,
+        "qt_concluinte_media_nacional": 19.5,
+        "quantidade_cursos_considerados": 13
+      },
+      {
+        "codigo_curso": 111294,
+        "ano_referencia": 2018,
+        "qt_concluinte_media_nacional": 16.3,
+        "quantidade_cursos_considerados": 14
+      },
+      {
+        "codigo_curso": 111294,
+        "ano_referencia": 2019,
+        "qt_concluinte_media_nacional": 17.1,
+        "quantidade_cursos_considerados": 14
+      },
+      {
+        "codigo_curso": 111294,
+        "ano_referencia": 2020,
+        "qt_concluinte_media_nacional": 11.1,
+        "quantidade_cursos_considerados": 14
+      },
+      {
+        "codigo_curso": 111294,
+        "ano_referencia": 2021,
+        "qt_concluinte_media_nacional": 13.6,
+        "quantidade_cursos_considerados": 14
+      },
+      {
+        "codigo_curso": 111294,
+        "ano_referencia": 2022,
+        "qt_concluinte_media_nacional": 15.5,
+        "quantidade_cursos_considerados": 14
+      },
+      {
+        "codigo_curso": 111294,
+        "ano_referencia": 2023,
+        "qt_concluinte_media_nacional": 14.6,
+        "quantidade_cursos_considerados": 14
+      },
+      {
+        "codigo_curso": 111294,
+        "ano_referencia": 2024,
+        "qt_concluinte_media_nacional": 13.0,
+        "quantidade_cursos_considerados": 14
+      },
+      {
+        "codigo_curso": 150115,
+        "ano_referencia": 2016,
+        "qt_concluinte_media_nacional": 23.9,
+        "quantidade_cursos_considerados": 9
+      },
+      {
+        "codigo_curso": 150115,
+        "ano_referencia": 2017,
+        "qt_concluinte_media_nacional": 21.9,
+        "quantidade_cursos_considerados": 9
+      },
+      {
+        "codigo_curso": 150115,
+        "ano_referencia": 2018,
+        "qt_concluinte_media_nacional": 18.2,
+        "quantidade_cursos_considerados": 9
+      },
+      {
+        "codigo_curso": 150115,
+        "ano_referencia": 2019,
+        "qt_concluinte_media_nacional": 17.3,
+        "quantidade_cursos_considerados": 10
+      },
+      {
+        "codigo_curso": 150115,
+        "ano_referencia": 2020,
+        "qt_concluinte_media_nacional": 13.3,
+        "quantidade_cursos_considerados": 11
+      },
+      {
+        "codigo_curso": 150115,
+        "ano_referencia": 2021,
+        "qt_concluinte_media_nacional": 14.1,
+        "quantidade_cursos_considerados": 11
+      },
+      {
+        "codigo_curso": 150115,
+        "ano_referencia": 2022,
+        "qt_concluinte_media_nacional": 16.3,
+        "quantidade_cursos_considerados": 11
+      },
+      {
+        "codigo_curso": 150115,
+        "ano_referencia": 2023,
+        "qt_concluinte_media_nacional": 21.0,
+        "quantidade_cursos_considerados": 10
+      },
+      {
+        "codigo_curso": 150115,
+        "ano_referencia": 2024,
+        "qt_concluinte_media_nacional": 21.0,
+        "quantidade_cursos_considerados": 10
+      }
+    ],
+    "trajetoria_pares": [
+      {
+        "codigo_curso": 111294,
+        "ano_ingresso": 2018,
+        "anos_desde_ingresso": 6,
+        "evasao": [
+          41.5,
+          27.8,
+          71.9,
+          35.1,
+          51.7,
+          25.6,
+          71.4,
+          53.3,
+          56.5,
+          44.0,
+          65.9,
+          48.4,
+          62.5
+        ],
+        "conclusao": [
+          48.8,
+          50.0,
+          25.0,
+          43.2,
+          23.3,
+          48.7,
+          19.0,
+          20.0,
+          30.4,
+          36.0,
+          29.3,
+          35.5,
+          37.5
+        ]
+      },
+      {
+        "codigo_curso": 150115,
+        "ano_ingresso": 2018,
+        "anos_desde_ingresso": 6,
+        "evasao": [
+          66.3,
+          38.6,
+          55.0,
+          61.9,
+          53.8,
+          54.0,
+          46.6,
+          70.2
+        ],
+        "conclusao": [
+          19.8,
+          43.9,
+          33.8,
+          35.7,
+          36.5,
+          38.0,
+          21.6,
+          7.0
+        ]
+      }
+    ]
+  },
+  "alertas": {
+    "itens": [
+      {
+        "tipo": "sem_cpc",
+        "severidade": "atencao",
+        "mensagem": "2 curso(s) sem avaliação de CPC no ciclo atual.",
+        "cursos": [
+          "OCEANOGRAFIA",
+          "CIÊNCIAS AMBIENTAIS"
+        ]
+      },
+      {
+        "tipo": "evasao_acima_da_media",
+        "severidade": "atencao",
+        "mensagem": "1 curso(s) com evasão acima da média da unidade (41,0%).",
+        "cursos": [
+          "OCEANOGRAFIA"
+        ]
+      }
+    ]
+  }
+}

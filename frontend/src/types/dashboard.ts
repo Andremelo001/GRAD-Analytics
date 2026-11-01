@@ -7,7 +7,16 @@ export interface Escopo {
     codigo_ies: number;
     nome_ies: string | null;
     sigla_ies: string | null;
+    /** A unidade do arquivo (o mesmo ``slug`` do index.json). */
+    slug: string;
+    /** Rótulo do SIGAA ("CCA - CENTRO DE CIÊNCIAS AGRÁRIAS"); sem unidade no
+     * SIGAA, a cidade ("UFC em Fortaleza"). */
+    unidade: string;
+    sigla_unidade: string | null;
+    /** Município da unidade ("Fortaleza"). */
+    localidade: string | null;
     codigo_municipio: number;
+    /** A cidade, como no ponto do mapa: "UFC em Fortaleza". */
     municipio: string;
 }
 
@@ -198,9 +207,9 @@ export interface DemandaConcluintesPonto {
     qt_concluinte: number;
 }
 
-// --- D. campus ---------------------------------------------------------------
+// --- D. unidade ---------------------------------------------------------------
 
-export interface CampusKpis {
+export interface UnidadeKpis {
     total_cursos: number;
     total_ingressantes_ultimo_ano: number | null;
     taxa_conclusao_media: number | null;
@@ -217,15 +226,15 @@ export interface TendenciaIngressantesPonto {
     qt_ingressante: number;
 }
 
-/** Concluintes do campus num ano (só os anos com todas as turmas que se
+/** Concluintes da unidade num ano (só os anos com todas as turmas que se
  * formam acompanhadas pelo INEP). */
 export interface TendenciaConcluintesPonto {
     ano_referencia: number;
     qt_concluinte: number;
 }
 
-export interface Campus {
-    kpis: CampusKpis;
+export interface Unidade {
+    kpis: UnidadeKpis;
     distribuicao_cpc_faixa: DistribuicaoCpcFaixaItem[];
     tendencia_ingressantes: TendenciaIngressantesPonto[];
     tendencia_concluintes?: TendenciaConcluintesPonto[];
@@ -242,7 +251,7 @@ export interface EvolucaoCpcNacionalPonto {
     quantidade_cursos_enade: number;
 }
 
-/** Notas médias da área no ano (só os anos em que o campus foi avaliado);
+/** Notas médias da área no ano (só os anos em que a unidade foi avaliada);
  * edições antigas podem não ter alguma nota. */
 export interface PerfilRadarNacional {
     area_avaliacao: string;
@@ -277,7 +286,7 @@ export interface HeatmapEvasaoNacionalCelula {
     quantidade_cursos_considerados: number;
 }
 
-export interface CampusNacionalKpis {
+export interface UnidadeNacionalKpis {
     taxa_conclusao_media_nacional: number | null;
     taxa_desistencia_media_nacional: number | null;
     quantidade_cursos_considerados: number;
@@ -288,12 +297,12 @@ export interface DistribuicaoCpcFaixaNacionalItem {
     percentual_nacional: number;
 }
 
-export interface CampusNacional {
-    kpis: CampusNacionalKpis;
+export interface UnidadeNacional {
+    kpis: UnidadeNacionalKpis;
     distribuicao_cpc_faixa: DistribuicaoCpcFaixaNacionalItem[];
 }
 
-/** Cursos-pares de um curso do campus em uma UF. Contagem, ingressantes e
+/** Cursos-pares de um curso da unidade em uma UF. Contagem, ingressantes e
  * evasão vêm da trajetória (turma de ``ano_ingresso``); o CPC, da avaliação
  * de ``ano_cpc``. */
 export interface DistribuicaoUfEstado {
@@ -310,16 +319,16 @@ export interface DistribuicaoUfCurso {
     codigo_curso: number;
     nome_cine_area_geral: string | null;
     area_avaliacao: string | null;
-    sigla_uf_campus: string | null;
+    sigla_uf_unidade: string | null;
     ano_ingresso: number | null;
     ano_cpc: number | null;
     estados: DistribuicaoUfEstado[];
 }
 
 /** Ingressantes médios dos cursos-pares no Brasil (mesmo rótulo CINE,
- * modalidade e grau) de um curso do campus, por ano de ingresso. */
+ * modalidade e grau) de um curso da unidade, por ano de ingresso. */
 /** Evasão e conclusão acumuladas dos cursos-pares do Brasil na turma madura
- * de um curso do campus (mesmo ano de ingresso, ``anos_desde_ingresso`` anos
+ * de um curso da unidade (mesmo ano de ingresso, ``anos_desde_ingresso`` anos
  * depois), pra pôr o curso entre eles (percentil). */
 export interface TrajetoriaPares {
     codigo_curso: number;
@@ -344,13 +353,13 @@ export interface IngressantesNacionalPonto {
 }
 
 /** Médias só do grupo de pares (mesma área/classificação de curso do
- * campus) — nunca o Brasil inteiro misturado. Ver docs/dashboard_dados.md. */
+ * unidade) — nunca o Brasil inteiro misturado. Ver docs/dashboard_dados.md. */
 export interface MediasNacionais {
     evolucao_cpc: EvolucaoCpcNacionalPonto[];
     perfil_radar: PerfilRadarNacional[];
     curva_sobrevivencia: CurvaSobrevivenciaNacionalPonto[];
     heatmap_evasao_anual: HeatmapEvasaoNacionalCelula[];
-    campus: CampusNacional;
+    unidade: UnidadeNacional;
     distribuicao_uf: DistribuicaoUfCurso[];
     ingressantes: IngressantesNacionalPonto[];
     concluintes?: ConcluintesNacionalPonto[];
@@ -373,24 +382,29 @@ export interface Alertas {
     itens: AlertaItem[];
 }
 
-// --- índice de campi (processed/dashboard/index.json) ---------------------
+// --- índice de unidades (processed/dashboard/index.json) ---------------------
 
-/** Um campus da IES — cada um tem o seu ``<slug>.json`` (um DashboardData). */
-export interface CampusInfo {
+/** Uma unidade da IES — cada uma tem o seu ``<slug>.json`` (um DashboardData).
+ * ``nome``: rótulo do SIGAA ("CCA - CENTRO DE CIÊNCIAS AGRÁRIAS") ou, para os
+ * cursos sem unidade no SIGAA, a cidade ("UFC em Fortaleza", ``sigla`` null);
+ * ``localidade``: o município ("Fortaleza"). */
+export interface UnidadeInfo {
     slug: string;
     nome: string;
+    sigla: string | null;
+    localidade: string | null;
     codigo_municipio: number;
     total_cursos: number;
     arquivo: string;
 }
 
-export interface CampusIndex {
+export interface UnidadeIndex {
     gerado_em: string;
     codigo_ies: number;
-    campi: CampusInfo[];
+    unidades: UnidadeInfo[];
 }
 
-// --- resumo dos campi (processed/dashboard/resumo_campi.json) -------------
+// --- resumo das unidades (processed/dashboard/resumo_unidades.json) -------------
 
 export interface ResumoCurso {
     codigo_curso: number;
@@ -421,12 +435,12 @@ export interface ResumoCurso {
     ano_referencia: number | null;
     taxa_conclusao_acumulada: number | null;
     taxa_desistencia_acumulada: number | null;
-    /** Turma madura do curso (pra comparar o mesmo curso entre campi). */
+    /** Turma madura do curso (pra comparar o mesmo curso entre unidades). */
     trajetoria?: TrajetoriaResumo | null;
 }
 
-/** Turma madura no resumo dos campi: área CINE e grau (o mesmo curso noutro
- * campus), prazo, ingresso, ingressantes (o peso nas médias do campus) e a
+/** Turma madura no resumo das unidades: área CINE e grau (o mesmo curso noutro
+ * unidade), prazo, ingresso, ingressantes (o peso nas médias da unidade) e a
  * curva ``[anos, % cursando, % concluiu, % desistiu]``. */
 export interface TrajetoriaResumo {
     nome_cine_area_geral: string | null;
@@ -437,9 +451,15 @@ export interface TrajetoriaResumo {
     curva: [number, number, number, number][];
 }
 
-export interface ResumoCampi {
+export interface ResumoUnidades {
     gerado_em: string;
-    campi: { slug: string; nome: string; cursos: ResumoCurso[] }[];
+    unidades: {
+        slug: string;
+        nome: string;
+        sigla: string | null;
+        localidade: string | null;
+        cursos: ResumoCurso[];
+    }[];
 }
 
 // --- raiz ------------------------------------------------------------------
@@ -452,7 +472,7 @@ export interface DashboardData {
     curso_perfil: CursoPerfil;
     comparacao_cursos: ComparacaoCursos;
     trajetoria_comparada: TrajetoriaComparada;
-    campus: Campus;
+    unidade: Unidade;
     medias_nacionais: MediasNacionais;
     alertas: Alertas;
 }

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 
-import { CampusAtual } from "@/components/layout/CampusSelect";
+import { UnidadeAtual } from "@/components/layout/UnidadeSelect";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { SubTabs } from "@/components/layout/SubTabs";
 import { FiltroTopoContext } from "@/context/filtro-topo";
@@ -36,7 +36,7 @@ export function TrajetoriaPage() {
                 title="Trajetória dos estudantes"
                 subtitle={
                     <>
-                        Conclusão e evasão das turmas da UFC em <CampusAtual />
+                        Conclusão e evasão das turmas da UFC na unidade <UnidadeAtual />
                     </>
                 }
                 tabs={(tom) => (

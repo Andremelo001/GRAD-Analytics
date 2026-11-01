@@ -1,0 +1,12 @@
+{
+  "_sobre": "Ajustes manuais do casamento curso do INEP -> unidade do unidades_ufc.json (gerado do SIGAA). Editado à mão; o pipeline nunca reescreve este arquivo. Ver backend/README.md, seção 4.4.",
+  "unidades_ignoradas": {
+    "CUFCCARIRI": "Campus do Cariri: hoje é a UFCA, outra instituição no INEP, então nenhum curso da UFC no INEP é dele. O SIGAA ainda lista os cursos, alguns com sede errada (Medicina de Barbalha com sede FORTALEZA)."
+  },
+  "cursos": {
+    "150113": {
+      "unidade": "CT",
+      "motivo": "Engenharia de Petróleo: sem turma nova desde 2020, não está mais na lista do SIGAA. Era oferecido pelo Centro de Tecnologia."
+    }
+  }
+}

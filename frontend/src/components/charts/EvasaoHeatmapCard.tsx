@@ -248,7 +248,7 @@ export function EvasaoHeatmapCard({
                 <div
                     ref={rolagem}
                     className={cn(
-                        // até 6 linhas, depois rola: campus com poucos cursos
+                        // até 6 linhas, depois rola: unidade com poucos cursos
                         // não fica com espaço vazio, e Fortaleza não estica o card
                         "-m-1 overflow-x-auto p-1",
                         // ampliado: a grade ocupa a altura do card

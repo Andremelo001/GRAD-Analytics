@@ -1,7 +1,8 @@
 # GRAD Analytics — Backend
 
-Pipeline Python (Poetry) do GRAD Analytics: baixa os dados do INEP, limpa,
-gera os CSVs e os JSONs do painel (um por campus) que o
+Pipeline Python (Poetry) do GRAD Analytics: baixa os dados do INEP e a lista
+de cursos por unidade do SIGAA, limpa, gera os CSVs e os JSONs do painel (um
+por unidade) que o
 [frontend](../frontend/README.md) consome.
 
 **Todos os comandos `poetry ...` deste README rodam de dentro de `backend/`**
@@ -39,6 +40,7 @@ Outros comandos da CLI (detalhes na seção 4):
 ```bash
 poetry run python -m app.cmd qualidade                  # só qualidade
 poetry run python -m app.cmd trajetoria                 # só trajetória
+poetry run python -m app.cmd unidades                      # só a lista de cursos por unidade do SIGAA (unidades_ufc.json)
 poetry run python -m app.cmd dashboard                  # só os JSONs do painel (usa os CSVs já gerados)
 poetry run python -m app.cmd qualidade --years 2023,2022  # subconjunto de anos
 poetry run python -m app.cmd trajetoria --force         # ignora o cache, baixa tudo de novo
@@ -102,7 +104,7 @@ backend/
 ├── .venv/                   # virtualenv (gitignored)
 ├── app/
 │   ├── cmd/
-│   │   └── __main__.py      # CLI: python -m app.cmd <qualidade|trajetoria|dashboard|all>
+│   │   └── __main__.py      # CLI: python -m app.cmd <qualidade|trajetoria|unidades|dashboard|all>
 │   ├── core/
 │   │   ├── config/          # settings.py · log.py · column_mapping.py (lê o colunas_inep.json)
 │   │   ├── domain/
@@ -117,10 +119,11 @@ backend/
 │   │       └── storage/     # CsvExporter, JsonExporter, MetaWriter, dataset_locator
 │   ├── data/
 │   │   ├── raw/             # baixados brutos — cache local (gitignored)
-│   │   └── processed/       # qualidade.csv, trajetoria.csv[.gz], _meta.json, dashboard/<campus>.json
+│   │   └── processed/       # qualidade.csv, trajetoria.csv[.gz], _meta.json, dashboard/<unidade>.json
 │   └── modules/
 │       ├── qualidade/       # CPC — Indicadores de Qualidade da Educação Superior
 │       ├── trajetoria/      # Indicadores de Trajetória da Educação Superior
+│       ├── unidades/           # lista de cursos por unidade do SIGAA -> unidades_ufc.json (ver 4.4)
 │       └── dashboard/       # recorte dos dois datasets acima para o front (ver 4.4)
 └── tests/
 ```
@@ -132,6 +135,9 @@ Arquivos da **raiz do repo** que o backend usa:
 | `.env` · `.env.example` | configuração do backend (lida por `app/core/config/settings.py`, ver 4.5) |
 | `colunas_inep.json` | nomes das colunas do INEP + rótulos das categorias (ver 4.6) |
 | `COLUNAS_INEP.md` | guia de manutenção do `colunas_inep.json` |
+| `unidades_ufc.json` | lista de cursos de graduação por unidade do SIGAA, a página inteira (gerado pelo módulo `unidades`, ver 4.4) |
+| `unidades_ufc_ajustes.json` | ajustes manuais do casamento curso do INEP → unidade (editado à mão, ver 4.4) |
+| `UNIDADES_UFC.md` | guia de manutenção dos dois arquivos de unidades |
 | `.pre-commit-config.yaml` | hooks do backend (rodam via `poetry -C backend`, ver 3.3) |
 | `.editorconfig` · `.gitignore` | valem pro repo inteiro |
 
@@ -190,16 +196,25 @@ registrar mais uma linha, não editar o orquestrador.
 
 ### 3.3. `.pre-commit-config.yaml`
 
-Fica na raiz (o git só procura ali), mas os hooks rodam no backend:
-`poetry -C backend ...` muda o diretório de trabalho pra `backend/` antes de
-executar, e `files: ^backend/.*\.py$` faz os hooks só dispararem quando algo
-do backend muda. Hooks `local` / `language: system` (usam o venv do Poetry):
+Fica na raiz (o git só procura ali), mas os hooks rodam no backend: cada um
+entra em `backend/` e roda a ferramenta direto do `backend/.venv` (o venv do
+Poetry, `in-project`), e `files: ^backend/.*\.py$` faz os hooks só dispararem
+quando algo do backend muda. Hooks `local` / `language: system`:
 
-| Hook | Comando | Escopo |
+| Hook | Comando (em `backend/`) | Escopo |
 |---|---|---|
-| `black` | `poetry -C backend run black app tests` | quando muda `.py` em `backend/` |
-| `ruff` | `poetry -C backend run ruff check app tests --fix` | idem |
-| `mypy` | `poetry -C backend run mypy app` | idem |
+| `black` | `.venv/bin/black app tests` | quando muda `.py` em `backend/` |
+| `ruff` | `.venv/bin/ruff check app tests --fix` | idem |
+| `mypy` | `.venv/bin/mypy app` | idem |
+
+Os hooks não chamam o `poetry`: clientes Git gráficos (o do VS Code no WSL,
+por exemplo) não carregam o `~/.profile`, então o `~/.local/bin` (onde o
+`poetry` fica) não entra no PATH deles, e o commit falhava com
+`` Executable `poetry` not found ``. O VS Code ainda mostra
+`bash: warning: setlocale: LC_ALL: cannot change locale (en_US.UTF-8)` na
+saída do Git: ele força esse locale nos comandos git, e o WSL não o tem
+instalado. É só um aviso (não faz o commit falhar); pra sumir, gere o locale
+uma vez: `sudo sed -i 's/^# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && sudo locale-gen`.
 
 O git hook é instalado com `poetry run pre-commit install` (de dentro de
 `backend/`) — ele grava o caminho do Python do `backend/.venv`, então precisa
@@ -224,7 +239,7 @@ poetry install
 $ cd backend
 $ poetry run pre-commit run --all-files    # black · ruff · mypy
 $ poetry run lint-imports                  # Contracts: 3 kept, 0 broken.
-$ poetry run pytest                        # 142 passed
+$ poetry run pytest                        # 182 passed
 ```
 
 ---
@@ -274,7 +289,7 @@ Saída esperada num run com tudo novo:
 app/data/processed/
 ├── qualidade.csv        (~26 MB,  ~68 mil linhas, 8 anos: 2015-2019, 2021-2023)
 ├── trajetoria.csv.gz    (~68 MB, ~2,7 milhões de linhas, 11 faixas: 2010-2024)
-├── dashboard/           (um JSON por campus da UFC + index.json, resumo_campi.json e areas_qualidade/, ver 4.4)
+├── dashboard/           (um JSON por unidade da UFC + index.json, resumo_unidades.json e areas_qualidade/, ver 4.4)
 └── _meta.json           (fonte, data de geração, nº de linhas, colunas — por módulo)
 ```
 
@@ -310,19 +325,19 @@ a intermediária em `app/core/infrastructure/http/certs/inep_ca_chain.pem`
 
 `qualidade.csv`/`trajetoria.csv.gz` continuam com **todas** as instituições e
 cursos do Brasil — isso não muda. O módulo `dashboard` lê esses dois CSVs,
-recorta a instituição configurada (`DASHBOARD_CODIGO_IES`, ver 4.5) **campus por
-campus** e grava um JSON por campus, pronto pro front consumir — sem precisar
-reprocessar CSVs de ~68 mil/2,7 milhões de linhas no browser:
+recorta a instituição configurada (`DASHBOARD_CODIGO_IES`, ver 4.5) **unidade por
+unidade** e grava um JSON por unidade, pronto pro front consumir — sem precisar
+reprocessar CSVs de ~68 mil/2,7 milhões de linhas no browser. A unidade é a
+unidade acadêmica do SIGAA (centro, faculdade, instituto ou campus do
+interior), não a cidade —
+Fortaleza tem 16:
 
 ```
 app/data/processed/dashboard/
-├── index.json       # lista de campi: slug, nome, codigo_municipio, total_cursos, arquivo
-├── crateus.json     # ~340 KB
-├── fortaleza.json   # ~9 MB (103 cursos)
-├── quixada.json     # ~500 KB — o campus que o site abre por padrão
-├── russas.json      # ~380 KB
-├── sobral.json      # ~840 KB
-├── resumo_campi.json # ~270 KB: os cursos de todas as cidades, resumidos (busca, comparações entre cidades e cursos)
+├── index.json       # lista de unidades: slug, nome (rótulo do SIGAA), sigla, localidade, codigo_municipio, total_cursos, arquivo
+├── cca.json …       # um por unidade, slug = sigla do SIGAA: 180 KB-1,8 MB (o maior é o CH, 20 cursos)
+├── dirquixada.json  # ~500 KB — a unidade que o site abre por padrão
+├── resumo_unidades.json # ~270 KB: os cursos de todas as unidades, resumidos (busca, comparações entre unidades e cursos)
 ├── areas_qualidade/ # um JSON por área de avaliação dos cursos da UFC (~57): todos os cursos do Brasil na edição mais recente
 │   ├── index.json   # slug, area_avaliacao, ano, total_cursos, arquivo
 │   └── sistemas-de-informacao.json …   # 10-400 KB cada, gravados compactos
@@ -331,22 +346,55 @@ app/data/processed/dashboard/
     └── direito.json …   # até ~600 KB cada, gravados compactos
 ```
 
-Todos os arquivos de campus têm **exatamente a mesma estrutura** (as seções da
-tabela abaixo); muda só o recorte. Os campi **não são configurados**:
-`shared.discover_campi()` pega cada município onde a IES tem curso na
-trajetória — campus novo publicado pelo INEP entra sozinho no próximo run; um
-polo EaD que só aparece na qualidade (sem turma acompanhada) fica de fora. O
-nome ("UFC em Crateús") vem da sigla da IES + município da qualidade, e o
-nome do arquivo é o município sem acento. JSON de campus que deixou de existir
-é apagado.
+Todos os arquivos de unidade têm **exatamente a mesma estrutura** (as seções da
+tabela abaixo); muda só o recorte. JSON de unidade que deixou de existir é
+apagado.
+
+**De onde vêm as unidades.** O INEP só tem o município de cada curso; a unidade
+vem da página pública de cursos do SIGAA, que o módulo `unidades` grava em
+**`unidades_ufc.json`** (raiz) com **tudo o que a página mostra**, mesmo o que o
+painel não usa: título, descrição, filtros de modalidade, colunas e, para
+cada unidade (rótulo, sigla, nome, sedes), cada curso com nome, sede,
+modalidade, coordenador, id e link do portal do curso no SIGAA. Uma página
+sem curso nenhum (SIGAA fora do ar, layout novo) dá erro e **não** sobrescreve
+o arquivo; no `all`, essa falha só gera um aviso e o dashboard segue com o
+arquivo que já existe.
+
+`shared.discover_unidades()` pega cada município onde a IES tem curso na
+trajetória (um polo EaD que só aparece na qualidade fica de fora) e casa cada
+curso desses municípios com uma unidade do `unidades_ufc.json`
+(`domain/unidade_mapping.py`). O SIGAA não tem o código e-MEC, então o casamento
+é pelo **nome normalizado** (sem acento, turno, grau e prefixos como
+"LICENCIATURA EM"/"COMUNICAÇÃO SOCIAL -"), na **mesma sede e modalidade**,
+com o grau de desempate. Para agrupar basta a unidade: "ADMINISTRAÇÃO
+(DIURNO)" e "(NOTURNO)" na FEAAC não são ambiguidade. O nome da unidade é o
+rótulo do SIGAA ("CCA - CENTRO DE CIÊNCIAS AGRÁRIAS"), o arquivo é a sigla
+(`cca.json`) e a `localidade` é o município. O recorte é por código de curso
+**e** município, para os cursos EaD ficarem como antes (sem as linhas sem
+município da trajetória nem as do polo na qualidade).
+
+O que o nome não resolve vai em **`unidades_ufc_ajustes.json`** (raiz, editado
+à mão — o pipeline nunca reescreve): `cursos` fixa a unidade de um código de
+curso (ex.: Engenharia de Petróleo, extinto e fora do SIGAA → `CT`) e
+`unidades_ignoradas` tira uma unidade do casamento (o campus do Cariri, hoje UFCA). Curso que
+não casa com nenhuma unidade não some: fica num recorte da cidade ("UFC em
+Fortaleza", slug `fortaleza`) e o log marca **`REVISAR`** com o código e o
+nome, para fixar a unidade nos ajustes. Sigla de ajuste que não existe no
+`unidades_ufc.json` também gera `REVISAR`. Sem `unidades_ufc.json`, o recorte volta a
+ser por cidade.
+
+O passo a passo de manutenção (fixar a unidade de um curso, sigla que mudou no
+SIGAA, avisos normais e mensagens de erro) está no guia separado
+**[`UNIDADES_UFC.md`](../UNIDADES_UFC.md)**.
 
 ```bash
+poetry run python -m app.cmd unidades       # só o unidades_ufc.json (lista do SIGAA)
 poetry run python -m app.cmd dashboard   # só o dashboard (exige qualidade.csv e trajetoria.csv[.gz] já gerados)
-poetry run python -m app.cmd all         # roda os dois pipelines e o dashboard em seguida
+poetry run python -m app.cmd all         # roda os dois pipelines, o `unidades` e o dashboard em seguida
 ```
 
-Tempo aproximado (medido): **cerca de 3 min** no total — os 5 campi e os
-arquivos das áreas (`areas_qualidade/`, `trajetoria_areas/`); nos campi, mais
+Tempo aproximado (medido): **cerca de 3 min** no total — as 19 unidades e os
+arquivos das áreas (`areas_qualidade/`, `trajetoria_areas/`); nas unidades, mais
 da metade é Fortaleza — as médias nacionais e a distribuição por UF são calculadas curso a
 curso sobre os ~2,7 milhões de linhas de `trajetoria.csv.gz`.
 
@@ -357,28 +405,28 @@ estrutura, não uma seção):
 
 | Arquivo | Chave no JSON | Conteúdo |
 |---|---|---|
-| `domain/shared.py` | `escopo`, `cursos` | metadados da IES/campus e catálogo de cursos no escopo |
+| `domain/shared.py` | `escopo`, `cursos` | metadados da IES/unidade e catálogo de cursos no escopo |
 | `domain/services/course_profile.py` | `curso_perfil` | **(A)** perfil por curso: KPIs, evolução do CPC (com as 9 notas de cada ano), radar de notas padronizadas, funil por coorte, curva de sobrevivência |
 | `domain/services/course_comparison.py` | `comparacao_cursos` | **(B)** comparação entre cursos: ranking de CPC, tabela comparativa, notas por dimensão, evolução do CPC comparada |
 | `domain/services/trajectory_comparison.py` | `trajetoria_comparada` | **(C)** trajetória comparada: evasão por curso (alinhada por anos-desde-o-ingresso), heatmap de evasão anual, demanda de ingressantes e de concluintes |
-| `domain/services/campus_overview.py` | `campus` | **(D)** visão agregada do campus: KPIs totais, distribuição de cursos por faixa de CPC, tendência de ingressantes e de concluintes do campus por ano |
+| `domain/services/unidade_overview.py` | `unidade` | **(D)** visão agregada da unidade: KPIs totais, distribuição de cursos por faixa de CPC, tendência de ingressantes e de concluintes da unidade por ano |
 | `domain/services/national_benchmarks.py` | `medias_nacionais` | **(E)** médias nacionais do grupo de pares de cada curso, para comparar com A/C/D — ver abaixo |
-| `domain/services/alerts.py` | `alertas` | **(F)** alertas automáticos (heurísticas simples) sobre os cursos do campus — ver abaixo |
-| `domain/services/campus_summary.py` | — (`resumo_campi.json`) | resumo de cada curso de todos os campi num arquivo só — ver abaixo |
+| `domain/services/alerts.py` | `alertas` | **(F)** alertas automáticos (heurísticas simples) sobre os cursos da unidade — ver abaixo |
+| `domain/services/unidade_summary.py` | — (`resumo_unidades.json`) | resumo de cada curso de todas as unidades num arquivo só — ver abaixo |
 | `domain/services/quality_areas.py` | — (`areas_qualidade/`) | todos os cursos do Brasil de cada área de avaliação — ver abaixo |
 | `domain/services/trajectory_areas.py` | — (`trajetoria_areas/`) | a turma madura de cada curso do Brasil por área CINE — ver abaixo |
 
 `build_dashboard.py` (em `application/use_cases/`) só orquestra: lê os CSVs +
 o `_meta.json` (via `DashboardSource.read_meta()`, exposto em `fontes` no
-JSON final) uma vez só, descobre os campi (`shared.discover_campi`) e, para
-cada campus, monta o `ScopedData` (`shared.build_scoped_data`) e chama cada
+JSON final) uma vez só, descobre as unidades (`shared.discover_unidades`) e, para
+cada unidade, monta o `ScopedData` (`shared.build_scoped_data`) e chama cada
 arquivo acima, reaproveitando os KPIs por curso entre as seções.
 
 **Médias nacionais (E)**: como `qualidade.csv`/`trajetoria.csv.gz` continuam
 com o Brasil inteiro, `national_benchmarks.py` recebe os dois CSVs completos
 (antes do recorte) e calcula a média de cada métrica só entre os
 **cursos-pares** — mesma área de avaliação (CPC/notas) ou mesma classificação
-CINE (trajetória) que os cursos do campus oferecem — nunca a média de todas
+CINE (trajetória) que os cursos da unidade oferecem — nunca a média de todas
 as áreas do Brasil misturadas (isso compararia Direito com Engenharia). Por
 isso `medias_nacionais` é um bloco à parte, não um campo dentro de cada linha
 de A/C/D: o front cruza pela chave de área (`area_avaliacao` ou
@@ -388,11 +436,11 @@ comparar) e decide como exibir.
 | Chave em `medias_nacionais` | Contraparte nacional de | Chave de junção |
 |---|---|---|
 | `evolucao_cpc` | A2 | `area_avaliacao` + `ano` |
-| `perfil_radar` | A3 | `area_avaliacao` + `ano` (só os anos em que algum curso do campus foi avaliado: as notas são padronizadas dentro de cada edição) |
+| `perfil_radar` | A3 | `area_avaliacao` + `ano` (só os anos em que algum curso da unidade foi avaliado: as notas são padronizadas dentro de cada edição) |
 | `curva_sobrevivencia` | A5 / C1 | `nome_cine_area_geral` + `anos_desde_ingresso` (não ano calendário — alinha coortes de anos diferentes) |
 | `heatmap_evasao_anual` | C2 | `nome_cine_area_geral` + `ano_referencia` (ano calendário direto) |
-| `campus` | D | — (já agregado, calculado só com os cursos-pares das áreas do campus) |
-| `distribuicao_uf` | — (mapa "Presença no Brasil" do Início) | `codigo_curso` do campus → `estados[]` por `sigla_uf` |
+| `unidade` | D | — (já agregado, calculado só com os cursos-pares das áreas da unidade) |
+| `distribuicao_uf` | — (mapa "Presença no Brasil" do Início) | `codigo_curso` da unidade → `estados[]` por `sigla_uf` |
 | `ingressantes` | C3 | `codigo_curso` + `ano_ingresso` (média de ingressantes por curso-par: mesma área CINE, grau e modalidade) |
 | `concluintes` | `demanda_concluintes` | `codigo_curso` + `ano_referencia` (média de concluintes por curso-par no ano) |
 | `trajetoria_pares` | — (sem uso no painel hoje: era da comparação "Com o Brasil" da Trajetória, removida) | `codigo_curso` (evasão e conclusão dos cursos-pares na turma madura do curso) |
@@ -406,7 +454,7 @@ têm um ponto de coorte alinhado nacionalmente — o front usa
 comparar de forma justa. Ingressantes e concluintes entram como **média por
 curso-par** (`ingressantes`, `concluintes`), não como total.
 
-`distribuicao_uf` é a exceção de formato: um item por curso do campus, com
+`distribuicao_uf` é a exceção de formato: um item por curso da unidade, com
 os estados onde existe o **mesmo curso** — quantidade de cursos, ingressantes
 e evasão média da turma mais recente, e CPC médio da avaliação mais recente.
 O recorte é mais estreito que o das outras médias: além da área, exige a
@@ -431,7 +479,7 @@ Qualidade, que agrega por estado/município, filtra por rede (pública/privada,
 pela categoria administrativa do INEP) e calcula percentis no próprio front.
 Formato colunar (`colunas` + uma lista por curso, IES e municípios em
 dicionários à parte) e JSON compacto: a maior área (Administração, ~1.800
-cursos) fica com ~400 KB (~110 KB comprimido). Um arquivo por área, compartilhado pelos campi.
+cursos) fica com ~400 KB (~110 KB comprimido). Um arquivo por área, compartilhado pelas unidades.
 A sigla da IES vem do INEP, que registra `"0"` para várias instituições sem
 sigla: valor sem letras vira `null` (`quality_areas.sigla_ies`), e o front
 mostra o nome.
@@ -443,12 +491,12 @@ ingressantes e a curva (permanência, conclusão e desistência acumuladas, ano
 a ano). É o Mapa e o "entre cursos da mesma área" das Comparações da aba
 Trajetória. Mesmo formato colunar e compacto do `areas_qualidade/`.
 
-**Resumo dos campi (`resumo_campi.json`)**:
-`domain/services/campus_summary.py` resume cada curso de cada campus (área,
+**Resumo das unidades (`resumo_unidades.json`)**:
+`domain/services/unidade_summary.py` resume cada curso de cada unidade (área,
 ano, CPC, faixa, Enade, IDD e as 9 notas da avaliação mais recente, as
 edições do CPC em `historico`, e a turma madura em `trajetoria` — área CINE,
 grau, prazo, ingressantes e a curva) num arquivo só, pra busca e pra
-comparar campi e cursos sem baixar o JSON de cada campus.
+comparar unidades e cursos sem baixar o JSON de cada unidade.
 
 **Alertas automáticos (F)**: pensado para a tela inicial (o painel ainda não
 exibe alertas; o bloco segue no JSON pras próximas páginas) —
@@ -456,7 +504,7 @@ exibe alertas; o bloco segue no JSON pras próximas páginas) —
 cada uma com `tipo`, `severidade` (`atencao`/`critico`), `mensagem` (texto
 pronto, com decimal em pt-BR) e `cursos` (quais cursos motivaram o alerta):
 cursos sem CPC no ciclo atual, cursos em faixa de CPC baixa (1-2) e cursos
-com evasão acima da **média do próprio campus** (não a nacional — usar
+com evasão acima da **média da própria unidade** (não a nacional — usar
 `medias_nacionais` aqui duplicaria a varredura dos ~2,7 milhões de linhas de
 trajetória por pouco ganho).
 
@@ -482,7 +530,9 @@ e podem ser trocados **sem mexer em código** — copie `.env.example` para `.en
 | `HTTP_USER_AGENT` | `GRAD-Analytics/0.1 (data pipeline)` | header enviado ao INEP |
 | `CSV_GZIP_THRESHOLD_MB` | `40` | acima disso o CSV final vira `.csv.gz` |
 | `LOG_LEVEL` | `INFO` | nível de log (`DEBUG`, `INFO`, `WARNING`, ...) |
-| `DASHBOARD_CODIGO_IES` | `583` (UFC) | código INEP da IES; cada campus dela vira um JSON em `dashboard/` |
+| `DASHBOARD_CODIGO_IES` | `583` (UFC) | código INEP da IES; cada unidade dela vira um JSON em `dashboard/` |
+| `SIGAA_CURSOS_URL` | lista de cursos de graduação do SIGAA da UFC | se o SIGAA mudar a página |
+| `UNIDADES_UFC_FILE` / `UNIDADES_UFC_AJUSTES_FILE` | `unidades_ufc.json` / `unidades_ufc_ajustes.json` (raiz) | lista de cursos por unidade e ajustes manuais do casamento (ver 4.4) |
 | `COLUNAS_INEP_FILE` | `colunas_inep.json` (raiz) | caminho do arquivo de nomes de colunas/categorias (ver 4.6) |
 
 `QUALIDADE_MIN_YEAR=2015` não é um ajuste arbitrário: antes disso o CPC tem

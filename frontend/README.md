@@ -1,8 +1,9 @@
 # GRAD Analytics — Frontend
 
 SPA React do GRAD Analytics: lê os JSONs do painel gerados pelo
-[backend](../backend/README.md) — um por campus da UFC — e mostra os
-indicadores da cidade escolhida no seletor de cidade (padrão: Quixadá).
+[backend](../backend/README.md) — um por unidade da UFC — e mostra os
+indicadores da unidade escolhida no seletor de unidade (padrão: a unidade de
+Quixadá, `dirquixada`).
 Publicada no GitHub Pages como site estático, sem servidor.
 
 **Todos os comandos `npm ...` deste README rodam de dentro de `frontend/`.**
@@ -15,7 +16,7 @@ Pré-requisitos:
 
 - **Node 22+** (com npm).
 - A pasta **`backend/app/data/processed/dashboard/`** (`index.json` + um JSON
-  por campus). Ela já vem versionada no repo; se não existir ou se você quiser dados novos, gere com o
+  por unidade). Ela já vem versionada no repo; se não existir ou se você quiser dados novos, gere com o
   backend (`cd backend && poetry run python -m app.cmd all` — ver
   [`../backend/README.md`](../backend/README.md)).
 
@@ -41,7 +42,7 @@ npm run build      # sync-data + checagem de tipos (tsc -b) + build de produçã
 npm run preview    # serve o dist/ localmente (http://localhost:4173) pra conferir o build
 npm run lint       # ESLint
 npm run format     # Prettier (formata o projeto inteiro)
-npm run sync-data  # só copia os JSONs dos campi de novo (ex.: depois de rodar o backend com o dev ligado)
+npm run sync-data  # só copia os JSONs das unidades de novo (ex.: depois de rodar o backend com o dev ligado)
 ```
 
 ---
@@ -81,7 +82,7 @@ frontend/
 │   ├── build-brazil-dots.mjs # gera src/assets/brazil-dots.json (roda uma vez, ver 6)
 │   └── build-brazil-geo.mjs  # gera src/assets/brazil-geo.json (roda uma vez, ver 6)
 ├── public/
-│   └── data/dashboard/      # index.json, JSON de cada campus, resumo_campi.json, areas_qualidade/ e trajetoria_areas/ (gitignored, gerado pelo sync-data)
+│   └── data/dashboard/      # index.json, JSON de cada unidade, resumo_unidades.json, areas_qualidade/ e trajetoria_areas/ (gitignored, gerado pelo sync-data)
 ├── designs_pages/           # imagem do design de referência (gitignored)
 └── src/
     ├── main.tsx             # entrada: fonte + CSS + <App />
@@ -90,13 +91,13 @@ frontend/
     ├── index.css            # Tailwind + tokens de cor/fonte (claro, escuro e cores acessíveis)
     ├── assets/              # brasao.png (logo) · brazil-dots.json (mapa em pontos) · brazil-geo.json (contornos das UFs + centroides dos municípios)
     ├── types/
-    │   ├── dashboard.ts     # tipos que espelham o JSON de cada campus (e o resumo_campi.json)
+    │   ├── dashboard.ts     # tipos que espelham o JSON de cada unidade (e o resumo_unidades.json)
     │   ├── qualidade-area.ts # tipos dos JSONs de areas_qualidade/ (todos os cursos do Brasil numa área de avaliação)
     │   └── trajetoria-area.ts # tipos dos JSONs de trajetoria_areas/ (a turma madura de cada curso do Brasil numa área CINE)
-    ├── context/             # DashboardDataProvider (índice + campus escolhido + campus ao abrir) · ThemeProvider (tema + cores acessíveis) · slots do PageHeader · contexto do modo apresentação
+    ├── context/             # DashboardDataProvider (índice + unidade escolhida + unidade ao abrir) · ThemeProvider (tema + cores acessíveis) · slots do PageHeader · contexto do modo apresentação
     ├── hooks/               # useDashboardData · useTheme · useChartTheme (paleta do tema) · useMediaQuery · usePresentationMode
     │                        # useElementSize/useElementWidth · useActiveIndicator (sublinhado/pílula que desliza) · useAlturaDisponivel (Mapa sem rolar)
-    │                        # useQualidadeArea / useTrajetoriaArea (arquivos das áreas sob demanda) · useResumoCampi · useAbrirNoCampus (abrir curso de outro campus)
+    │                        # useQualidadeArea / useTrajetoriaArea (arquivos das áreas sob demanda) · useResumoUnidades · useAbrirNaUnidade (abrir curso de outra unidade)
     ├── lib/
     │   ├── utils.ts         # cn()
     │   ├── format.ts        # formatPercent, formatPoints, formatDecimal, formatInteger, toTitleCase, normalizeForSearch
@@ -105,21 +106,23 @@ frontend/
     │   ├── trajetoria.ts    # buildTrajetorias: turmas de cada curso (curva + funil), turmas maduras, indicadores do INEP (TAP, TCA, TDA…)
     │   ├── area.ts          # cursos de uma área de avaliação (Mapa da Qualidade): parse do formato colunar, resumo por estado/município, filtros
     │   ├── trajetoria-mapa.ts # indicadores e resumo por estado do Mapa da Trajetória
-    │   ├── comparacao.ts    # resumo de um campus pras Comparações (nomeCampus, médias)
+    │   ├── comparacao.ts    # resumo de uma unidade pras Comparações (nomeUnidade, médias)
     │   ├── curso.ts         # opções dos seletores de curso (código · grau) e siglaValida (sigla da IES)
     │   ├── curso-por-curso.ts # o curso aberto no Por curso, que o Mapa e as Comparações da aba seguem
     │   ├── ultima-subaba.ts # última sub-aba aberta em cada aba (o menu reabre nela)
+    │   ├── guia.ts          # se o guia de boas-vindas já foi visto neste navegador
     │   ├── fontes.ts        # as bases do INEP (nome + link) mostradas no "i" dos cards
     │   ├── rolar.ts         # rolar uma lista até a opção ativa
     │   └── uf.ts            # sigla -> nome do estado
     ├── components/
-    │   ├── layout/          # AppLayout (faixa escura + topo), Sidebar (abas), SubTabs (sub-abas em pílula), PageHeader, ThemeToggle, PresentationToggle, PresentationBar, CampusSelect, DataState, Esqueleto (esqueletos de carregamento)
+    │   ├── layout/          # AppLayout (faixa escura + topo), Sidebar (abas), SubTabs (sub-abas em pílula), PageHeader, ThemeToggle, PresentationToggle, PresentationBar, UnidadeSelect, DataState, Esqueleto (esqueletos de carregamento)
     │   ├── cards/           # Card (ampliável), Tile (indicador do topo das sub-abas), StatTile (taxa + mini gráfico: o MiniSerieAnual no desktop, sparkline no celular), IconeInfo (o "i" com texto e fonte), NotaRodape, ampliado.ts (classes pra card ampliado)
     │   ├── charts/          # SerieAnualCard (ingressantes/concluintes; e o MiniSerieAnual, a versão reduzida dos tiles de taxa), CpcComparativoCard, CursoNacionalLinha (curso × média ano a ano), BrasilMapaCard, EvasaoHeatmapCard,
     │   │                    # ChartMarks, ChartSelect, Segmentado, TextoAjustado, DataTable, chart-theme
     │   │   ├── qualidade/   # cards da aba Qualidade (ver 5) + CursoBusca (seletor com busca), DeltaPill, FaixaPill, ModoToggle
     │   │   └── trajetoria/  # cards da aba Trajetória (ver 5)
-    │   └── search/          # CourseSearch (busca de curso no topo)
+    │   ├── search/          # CourseSearch (busca de curso no topo)
+    │   └── onboarding/      # GuiaBoasVindas (o guia do "i" ao lado da busca) e ilustracoes (as miniaturas animadas de cada card)
     └── pages/               # uma por rota (ver 5); pages/qualidade/ e pages/trajetoria/ = sub-abas
 ```
 
@@ -127,19 +130,20 @@ Critério das pastas: `components/` agrupa por papel (layout, card, gráfico,
 busca), não por página; `pages/` só compõe componentes e escolhe que parte do
 JSON mostrar. `src/assets/` é pra arquivos importados pelo código (ganham hash
 no nome no build); `public/` é pra arquivos servidos como estão — por isso o
-JSONs dos campi ficam em `public/data/dashboard/`.
+JSONs das unidades ficam em `public/data/dashboard/`.
 
 ---
 
 ## 4. Fluxo de dados
 
-1. O backend gera `backend/app/data/processed/dashboard/<campus>.json`
-   (versionados), um por campus, todos com a mesma estrutura.
-   Junto vai um `index.json` com a lista de campi (`slug`, `nome`,
+1. O backend gera `backend/app/data/processed/dashboard/<unidade>.json`
+   (versionados), um por unidade, todos com a mesma estrutura.
+   Junto vai um `index.json` com a lista de unidades (`slug`, `nome` — o rótulo
+   do SIGAA, "CCA - CENTRO DE CIÊNCIAS AGRÁRIAS" —, `sigla`, `localidade`,
    `total_cursos`, `arquivo`).
-   Na mesma pasta: `resumo_campi.json` (resumo de todos os cursos de todos
-   os campi, com notas e edições do CPC e a turma madura de cada um, pra
-   comparar campi e cursos e pra busca), `areas_qualidade/` — um JSON por
+   Na mesma pasta: `resumo_unidades.json` (resumo de todos os cursos de todas
+   as unidades, com notas e edições do CPC e a turma madura de cada um, pra
+   comparar unidades e cursos e pra busca), `areas_qualidade/` — um JSON por
    área de avaliação dos cursos da UFC, com todos os cursos do Brasil na
    edição mais recente da área (Mapa e Comparações da Qualidade) — e
    `trajetoria_areas/` — um JSON por área CINE, com a turma madura de cada
@@ -148,20 +152,26 @@ JSONs dos campi ficam em `public/data/dashboard/`.
 2. `scripts/sync-data.mjs` copia a pasta inteira para
    `frontend/public/data/dashboard/` — roda sozinho antes de `dev` e `build`
    (`predev`/`prebuild`).
-3. `DashboardDataProvider` (em `App.tsx`) busca o `index.json` e o JSON do
-   campus escolhido, em `${import.meta.env.BASE_URL}data/dashboard/` — o
-   `BASE_URL` já inclui o prefixo do GitHub Pages no build de produção. O
-   campus inicial é o fixado em Configurações ("Cidade ao abrir o painel",
-   chave `prograd-campus-inicial` no `localStorage`), senão o último escolhido
-   (`prograd-campus`), senão Quixadá. JSONs já baixados ficam em cache.
-4. O seletor de cidade (`CampusSelect`, ao lado das sub-abas) troca o
-   campus; os dados antigos seguem na tela até os novos chegarem (a seta do
+3. `DashboardDataProvider` (em `App.tsx`) busca o `index.json` e o JSON da
+   unidade escolhida, em `${import.meta.env.BASE_URL}data/dashboard/` — o
+   `BASE_URL` já inclui o prefixo do GitHub Pages no build de produção. A
+   unidade inicial é a fixada em Configurações ("Unidade ao abrir o painel",
+   chave `prograd-unidade-inicial` no `localStorage`), senão o último escolhido
+   (`prograd-unidade`), senão Quixadá (`dirquixada`); um slug salvo que não
+   existe mais (as cidades de antes, como `quixada`) cai no padrão. JSONs já
+   baixados ficam em cache.
+4. O seletor de unidade (`UnidadeSelect`, ao lado das sub-abas) troca a
+   unidade — é o seletor com busca da aplicação (`CursoBusca`, como o de curso
+   do Início), que filtra pelo nome, sigla ou cidade e abre a lista alinhada à
+   esquerda da pílula (`alinhar="esquerda"`); na lista, o rótulo do SIGAA com
+   a localidade embaixo; no botão e nas frases, o nome curto
+   "CCA (Fortaleza)" (`nomeUnidade`, em `lib/comparacao.ts`); os dados antigos seguem na tela até os novos chegarem (a seta do
    seletor vira um indicador de carga) e os cards remontam — cursos e focos
-   escolhidos voltam ao padrão do novo campus. A busca e o "nos outros
-   campi" abrem cursos de outro campus com `useAbrirNoCampus`: o painel
-   troca de campus e navega quando o JSON novo chega.
+   escolhidos voltam ao padrão da nova unidade. A busca e o "nas outras
+   unidades" abrem cursos de outra unidade com `useAbrirNaUnidade`: o painel
+   troca de unidade e navega quando o JSON novo chega.
 5. As páginas leem os dados com `useDashboardData()` (`{ data, loading, error,
-campi, campus, setCampus, switching, campusAoAbrir, setCampusAoAbrir }`) e
+unidades, unidade, setUnidade, switching, unidadeAoAbrir, setUnidadeAoAbrir }`) e
    usam `DataState` pra mostrar o esqueleto da página enquanto carrega e o
    erro, se houver.
 
@@ -174,7 +184,7 @@ Fortaleza (~100 cursos) passa de 9 MB — é baixado só quando escolhido. Os de
 `areas_qualidade/` e `trajetoria_areas/` (centenas de KB cada, bem menos
 comprimidos) só quando o Mapa ou as Comparações entre cursos abrem, um por
 área, e ficam em cache na sessão (`useQualidadeArea`, `useTrajetoriaArea`); o
-`resumo_campi.json`, na busca e nas Comparações.
+`resumo_unidades.json`, na busca e nas Comparações.
 
 ---
 
@@ -195,8 +205,8 @@ sub-abas o lugar some.
 | `/`, `/inicio`               | `HomePage`, uma página com três seções (ver abaixo)                                                                      | Início                                                |
 | `/qualidade/…`               | `QualidadePage` + sub-abas (ver abaixo)                                                                                  | Qualidade                                             |
 | `/trajetoria/…`              | `TrajetoriaPage` + sub-abas (ver abaixo)                                                                                 | Trajetória                                            |
-| `/configuracoes`             | `ConfiguracoesPage` — tema (claro, escuro, automático), cidade ao abrir o painel e cores acessíveis, salvos no navegador | engrenagem no topo (tela à parte, com seta de voltar) |
-| `/campus`, `/cursos/:codigo` | `CampusPage`, `CursoDetalhePage` (placeholders)                                                                          | — (rotas existem, fora da navegação)                  |
+| `/configuracoes`             | `ConfiguracoesPage` — tema (claro, escuro, automático), unidade ao abrir o painel e cores acessíveis, salvos no navegador | engrenagem no topo (tela à parte, com seta de voltar) |
+| `/unidade`, `/cursos/:codigo` | `UnidadePage`, `CursoDetalhePage` (placeholders)                                                                          | — (rotas existem, fora da navegação)                  |
 
 ### Início
 
@@ -209,7 +219,7 @@ cabeçalho vale nas três seções.
 
 | Seção                | Cards                                                                                                             |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| Ingresso e conclusão | ingressantes e concluintes por ano (`SerieAnualCard`), de todos os cursos da cidade ou do curso, × média nacional |
+| Ingresso e conclusão | ingressantes e concluintes por ano (`SerieAnualCard`), de todos os cursos da unidade ou do curso, × média nacional |
 | Qualidade            | presença no Brasil (mapa em pontos) · CPC ou Conceito Enade do curso × média nacional (`CpcComparativoCard`)      |
 | Trajetória           | evasão anual por curso (mapa de calor cursos × anos) · taxas de conclusão e de evasão (`StatTile`)                |
 
@@ -220,10 +230,10 @@ compara ao país.
 
 | Rota                       | Página            | Cards                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 | -------------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `/qualidade/campus`        | `VisaoCampusPage` | 4 indicadores (CPC médio × Brasil, maior avanço no CPC desde o ciclo anterior, Conceito Enade médio × Brasil, cursos com CPC) · ranking dos cursos (ordenável; a linha abre o curso) · evolução entre ciclos (slope chart sobre as faixas; CPC ou Conceito Enade) · mapa de calor cursos × 9 componentes                                                                                                                                                                                                                                                                                                                            |
+| `/qualidade/unidade`        | `VisaoUnidadePage` | 4 indicadores (CPC médio × Brasil, maior avanço no CPC desde o ciclo anterior, Conceito Enade médio × Brasil, cursos com CPC) · ranking dos cursos (ordenável; a linha abre o curso) · evolução entre ciclos (slope chart sobre as faixas; CPC ou Conceito Enade) · mapa de calor cursos × 9 componentes                                                                                                                                                                                                                                                                                                                            |
 | `/qualidade/curso/:codigo` | `PorCursoPage`    | ficha da avaliação + seletor (CPC e Conceito Enade com a faixa) · "De onde vem a nota" (nota × peso de cada componente) · "CPC: próxima faixa" e "Conceito Enade: próxima faixa" (régua das faixas, empilhadas na altura do card ao lado) · componentes do CPC ao longo do tempo (nota do componente escolhido × média nacional, ano a ano) · curso × média nacional por componente · participação no Enade                                                                                                                                                                                                                         |
-| `/qualidade/mapa`          | `MapaPage` (lazy) | Brasil por estado (indicador: CPC médio, IDD médio ou Conceito Enade médio; filtro de rede); clicar num estado dá zoom e mostra os municípios; no desktop o mapa e o painel cabem na tela sem rolar (`useAlturaDisponivel`) · painel do recorte: cursos, média × Brasil, % nas faixas 4 e 5, notas médias do estado × as do curso do campus e os melhores cursos, com o curso do campus na posição em que fica (ou ficaria, num estado em que ele não está)                                                                                                                                                                         |
-| `/qualidade/comparacoes`   | `ComparacoesPage` | dois modos (modo e lados na URL `?modo=…&a=…&b=…`), com os dois seletores separados por um "×": **entre cidades** — duas cidades da UFC lado a lado (CPC médio, % nas faixas 4 e 5, Enade e IDD médios, notas médias dos 9 componentes em barras espelhadas e as áreas em comum numa régua de CPC) · **entre cursos da mesma área** — um curso da cidade escolhida (A) contra qualquer curso da mesma área no Brasil (B, com busca por instituição ou cidade), na edição mais recente da área: indicadores, componentes espelhados e a participação no Enade em cada edição. A em oliva, B em violeta (par validado nos dois temas) |
+| `/qualidade/mapa`          | `MapaPage` (lazy) | Brasil por estado (indicador: CPC médio, IDD médio ou Conceito Enade médio; filtro de rede); clicar num estado dá zoom e mostra os municípios; no desktop o mapa e o painel cabem na tela sem rolar (`useAlturaDisponivel`) · painel do recorte: cursos, média × Brasil, % nas faixas 4 e 5, notas médias do estado × as do curso da unidade e os melhores cursos, com o curso da unidade na posição em que fica (ou ficaria, num estado em que ele não está)                                                                                                                                                                         |
+| `/qualidade/comparacoes`   | `ComparacoesPage` | dois modos (modo e lados na URL `?modo=…&a=…&b=…`), com os dois seletores separados por um "×": **entre unidades** — duas unidades da UFC lado a lado (CPC médio, % nas faixas 4 e 5, Enade e IDD médios, notas médias dos 9 componentes em barras espelhadas e as áreas em comum numa régua de CPC) · **entre cursos da mesma área** — um curso da unidade escolhida (A) contra qualquer curso da mesma área no Brasil (B, com busca por instituição ou cidade), na edição mais recente da área: indicadores, componentes espelhados e a participação no Enade em cada edição. A em oliva, B em violeta (par validado nos dois temas) |
 
 ### Aba Trajetória
 
@@ -235,14 +245,14 @@ tiveram o prazo do curso e mais dois anos para se formar).
 | --------------------------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `/trajetoria/panorama`      | `PanoramaPage` ("Visão geral") | 4 indicadores (conclusão × Brasil, evasão no 1º ano, tempo até concluir, turmas em andamento) · situação final por curso · em que ano do curso a evasão acontece                                                                                                                                                                                                                                                                                                                                                              |
 | `/trajetoria/curso/:codigo` | `PorCursoTrajetoriaPage`       | ficha do curso + seletores de curso e turma · alunos do curso (entraram, concluíram, desistiram, cursando) · o caminho de uma turma (área empilhada ano a ano) · permanência × Brasil · indicadores do INEP (TAP, TCA, TDA) · triângulo das turmas (evasão acumulada de cada turma, ano a ano) · conclusão no prazo e com atraso. A turma escolhida vale em todos os cards                                                                                                                                                    |
-| `/trajetoria/mapa`          | `MapaTrajetoriaPage` (lazy)    | o mesmo curso (área CINE, grau e modalidade) pelo Brasil, por estado, na turma madura de cada curso: Taxa de Permanência, de Conclusão Acumulada ou de Desistência Acumulada (média pesada pelos ingressantes); filtro de rede · painel do recorte: cursos, taxa média × Brasil, ingressantes, situação final do estado × a do curso do campus e as maiores (ou, na desistência, menores) taxas, com o curso do campus posicionado. Usa o mesmo mapa da Qualidade (`BrasilQualidadeMapa`, que recebe o indicador como função) |
-| `/trajetoria/comparacoes`   | `ComparacoesTrajetoriaPage`    | dois modos, como na Qualidade: **entre cidades** (turmas maduras de todos os cursos) e **entre cursos da mesma área** (um curso da cidade contra qualquer curso da mesma área CINE, grau e modalidade no Brasil): indicadores, desistência a cada ano do curso (barras espelhadas), situação final e permanência ano a ano lado a lado                                                                                                                                                                                        |
+| `/trajetoria/mapa`          | `MapaTrajetoriaPage` (lazy)    | o mesmo curso (área CINE, grau e modalidade) pelo Brasil, por estado, na turma madura de cada curso: Taxa de Permanência, de Conclusão Acumulada ou de Desistência Acumulada (média pesada pelos ingressantes); filtro de rede · painel do recorte: cursos, taxa média × Brasil, ingressantes, situação final do estado × a do curso da unidade e as maiores (ou, na desistência, menores) taxas, com o curso da unidade posicionado. Usa o mesmo mapa da Qualidade (`BrasilQualidadeMapa`, que recebe o indicador como função) |
+| `/trajetoria/comparacoes`   | `ComparacoesTrajetoriaPage`    | dois modos, como na Qualidade: **entre unidades** (turmas maduras de todos os cursos) e **entre cursos da mesma área** (um curso da unidade contra qualquer curso da mesma área CINE, grau e modalidade no Brasil): indicadores, desistência a cada ano do curso (barras espelhadas), situação final e permanência ano a ano lado a lado                                                                                                                                                                                        |
 
 O curso aberto no Por curso de uma aba é o que o Mapa e as Comparações entre
 cursos da mesma aba mostram, quando a URL deles não traz outro
 (`lib/curso-por-curso.ts`); escolher um curso lá não muda o Por curso. A
 busca do topo abre o curso no Por curso de Qualidade ou de Trajetória (o
-usuário escolhe), trocando de campus se preciso, e deixa a outra aba no mesmo
+usuário escolhe), trocando de unidade se preciso, e deixa a outra aba no mesmo
 curso.
 
 Regras de comparação: as notas do CPC são padronizadas dentro de cada edição
@@ -253,7 +263,7 @@ mesmo ano** (`lib/cpc.ts`, `chaveAreaAno`). Os pesos do CPC estão em
 conferidos com os dados: a soma nota × peso bate com o CPC de todos os
 cursos. Participação no Enade abaixo de 60% é sinalizada (corte do painel,
 não do INEP). O Mapa usa a edição mais recente da área e só cursos da mesma
-modalidade (presencial ou a distância) do curso do campus. Curso, indicador,
+modalidade (presencial ou a distância) do curso da unidade. Curso, indicador,
 rede e estado ficam na URL do Mapa (`?curso=…&indicador=…&rede=…&uf=…`).
 
 O router é `createHashRouter` (URLs do tipo `/#/qualidade`) de propósito: o
@@ -289,7 +299,7 @@ servidor. Com hash, a rota nunca vai pro servidor.
   escolhido com `useMediaQuery`).
 - **Altura dos cards**: cada card tem a altura do próprio conteúdo. Listas e
   mapas de calor crescem até um limite (6 a 8 linhas) e depois rolam por
-  dentro — campus com poucos cursos não fica com espaço vazio, e Fortaleza
+  dentro — unidade com poucos cursos não fica com espaço vazio, e Fortaleza
   não estica a página. Cards lado a lado na mesma linha têm a mesma altura:
   o mais flexível ocupa o espaço do vizinho (o gráfico de evolução entre
   ciclos cresce até a altura do ranking; a participação no Enade, até a de
@@ -327,7 +337,7 @@ servidor. Com hash, a rota nunca vai pro servidor.
   navegador também sai do modo). Um X no
   canto superior esquerdo sai do modo. No lugar da saudação entra a
   `PresentationBar`: um card baixo, da largura da grade, com a frase + o
-  seletor de cidade (`CampusSelect tone="surface"`) à esquerda e o logo à
+  seletor de unidade (`UnidadeSelect tone="surface"`) à esquerda e o logo à
   direita — entra descendo até o lugar e sai subindo (mesmo movimento
   vertical do topo, 0,5s) enquanto abre o próprio espaço e empurra os
   cards; aberta, fica sem recorte e acima dos
@@ -346,6 +356,20 @@ servidor. Com hash, a rota nunca vai pro servidor.
   Nenhum card muda de altura ao trocar o curso/turma nos seletores: legenda
   em linhas fixas, subtítulo e frases de contexto em uma linha só (truncam),
   botão do seletor na largura da opção mais longa.
+- **Guia de boas-vindas** (`components/onboarding/`): o "i" à esquerda da
+  busca, no topo, abre um card no centro da tela, com o fundo desfocado do
+  card ampliado, que apresenta o painel em 8 passos numerados (o que é, a
+  unidade, Início, Qualidade, Trajetória, busca, comparações, dicas). Setas
+  fora do card (do `md` pra cima; no celular, embaixo, com os números numa
+  linha própria), os números levam a qualquer passo, ← → no teclado; Esc, o X,
+  "Pular" ou um clique fora fecham. O card tem altura mínima fixa, então não
+  muda de tamanho entre os passos. Abre sozinho no primeiro acesso do
+  navegador; fechar grava `prograd-guia-visto` no `localStorage`
+  (`lib/guia.ts`). As ilustrações (`ilustracoes.tsx`) são miniaturas das
+  partes do painel desenhadas com os tokens e o `useChartTheme`, não capturas
+  de tela: seguem o tema, as cores acessíveis e não ficam desatualizadas. As
+  animações são keyframes `guia-*` em `index.css`; com "reduzir movimento",
+  cada ilustração aparece pronta e parada.
 - **Tema claro/escuro**: botão sol/lua à direita do logo (`ThemeToggle`) ou
   Configurações (claro, escuro ou automático). O `ThemeProvider` põe a
   classe `dark` no `<html>` e guarda a escolha no `localStorage`
@@ -439,9 +463,9 @@ No repositório, **Settings → Pages → Source** precisa estar em
 - O bundle JS passa de 500 KB (o Vite avisa no build), quase todo pelo
   Recharts. Só os dois Mapas são `lazy` por enquanto; dá pra estender o
   code-splitting às outras rotas.
-- As rotas `/campus` e `/cursos/:codigo` existem, mas são placeholders fora
+- As rotas `/unidade` e `/cursos/:codigo` existem, mas são placeholders fora
   da navegação.
-- O INEP registra cursos diferentes com o mesmo nome no mesmo campus (turno,
+- O INEP registra cursos diferentes com o mesmo nome na mesma unidade (turno,
   grau): na Qualidade eles aparecem com o grau e, se preciso, o código
   (`rotulosCursos` em `lib/qualidade.ts`).
 - Nas edições de 2015 a 2017 os arquivos do INEP só trazem as notas brutas

@@ -1,10 +1,10 @@
-from app.modules.dashboard.domain.services import campus_overview, course_profile
+from app.modules.dashboard.domain.services import course_profile, unidade_overview
 from app.modules.dashboard.domain.shared import ScopedData
 
 
 def test_build_returns_kpis_and_distribuicao(scoped_data: ScopedData) -> None:
     kpis_por_curso = course_profile.build_kpis_por_curso(scoped_data)
-    result = campus_overview.build(scoped_data, kpis_por_curso)
+    result = unidade_overview.build(scoped_data, kpis_por_curso)
     assert set(result) == {
         "kpis",
         "distribuicao_cpc_faixa",
@@ -13,12 +13,12 @@ def test_build_returns_kpis_and_distribuicao(scoped_data: ScopedData) -> None:
     }
 
 
-def test_kpis_campus_totals(scoped_data: ScopedData) -> None:
+def test_kpis_unidade_totals(scoped_data: ScopedData) -> None:
     kpis_por_curso = course_profile.build_kpis_por_curso(scoped_data)
-    kpis = campus_overview.build(scoped_data, kpis_por_curso)["kpis"]
+    kpis = unidade_overview.build(scoped_data, kpis_por_curso)["kpis"]
 
     assert kpis["total_cursos"] == 3
-    # último ano de ingresso no campus é 2020 (curso 10, coorte de 60)
+    # último ano de ingresso na unidade é 2020 (curso 10, coorte de 60)
     assert kpis["total_ingressantes_ultimo_ano"] == 60
 
     # média das taxas de conclusão/desistência acumuladas das coortes mais
@@ -32,7 +32,7 @@ def test_distribuicao_cpc_faixa_counts_courses_per_faixa(
     scoped_data: ScopedData,
 ) -> None:
     kpis_por_curso = course_profile.build_kpis_por_curso(scoped_data)
-    distribuicao = campus_overview.build(scoped_data, kpis_por_curso)[
+    distribuicao = unidade_overview.build(scoped_data, kpis_por_curso)[
         "distribuicao_cpc_faixa"
     ]
     counts = {row["cpc_faixa"]: row["quantidade_cursos"] for row in distribuicao}
@@ -45,7 +45,7 @@ def test_tendencia_ingressantes_sums_across_courses_per_ano_ingresso(
     scoped_data: ScopedData,
 ) -> None:
     kpis_por_curso = course_profile.build_kpis_por_curso(scoped_data)
-    tendencia = campus_overview.build(scoped_data, kpis_por_curso)[
+    tendencia = unidade_overview.build(scoped_data, kpis_por_curso)[
         "tendencia_ingressantes"
     ]
     by_ano = {row["ano_ingresso"]: row["qt_ingressante"] for row in tendencia}

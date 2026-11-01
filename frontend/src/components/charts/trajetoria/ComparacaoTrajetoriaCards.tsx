@@ -45,7 +45,7 @@ export function IndicadoresTrajetoriaCards({
     a: Turma[];
     b: Turma[];
     titulo: string;
-    /** Mostra quantos cursos entram em cada lado (só entre campi: do lado
+    /** Mostra quantos cursos entram em cada lado (só entre unidades: do lado
      * Brasil, são os mesmos cursos). */
     contarCursos?: boolean;
     /** Cada lado junta vários cursos (médias pesadas); ``false``: um curso. */
@@ -153,7 +153,7 @@ export function IndicadoresTrajetoriaCards({
 }
 
 /** A segunda linha das comparações A × B: situação final e permanência ano a
- * ano de cada lado. ``agregado``: cada lado é um campus (média das turmas
+ * ano de cada lado. ``agregado``: cada lado é uma unidade (média das turmas
  * maduras dos cursos, pesada pelos ingressantes); senão, um curso. */
 export function SituacaoPermanenciaCards({
     lados,

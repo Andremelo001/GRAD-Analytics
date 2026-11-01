@@ -17,9 +17,9 @@ import { EvasaoHeatmapCard } from "@/components/charts/EvasaoHeatmapCard";
 import {
     ConcluintesCard,
     IngressantesCard,
-    SERIE_CAMPUS,
+    SERIE_UNIDADE,
 } from "@/components/charts/SerieAnualCard";
-import { CampusAtual } from "@/components/layout/CampusSelect";
+import { UnidadeAtual } from "@/components/layout/UnidadeSelect";
 import { DataState } from "@/components/layout/DataState";
 import { SeletorCursoTopo } from "@/components/layout/FiltroTopo";
 import {
@@ -58,7 +58,7 @@ const FOLGA_TOPO = 24;
  * abaixo do fim da tela. */
 const MARGEM_SECAO = 40;
 
-/** O curso escolhido no seletor do cabeçalho do Início (``null`` = o campus
+/** O curso escolhido no seletor do cabeçalho do Início (``null`` = a unidade
  * inteiro): o mesmo pros cards de Ingresso e conclusão e de CPC. */
 const CursoInicioContext = createContext<{
     curso: number | null;
@@ -66,7 +66,7 @@ const CursoInicioContext = createContext<{
 }>({ curso: null, setCurso: () => {} });
 
 /** O primeiro curso com CPC: o padrão da seção Qualidade, que precisa de um
- * curso (não tem a opção "Campus"). */
+ * curso (não tem a opção "Unidade"). */
 function cursoPadraoCpc(data: DashboardData): number | null {
     const comCpc = new Set(
         data.curso_perfil.evolucao_cpc
@@ -147,7 +147,7 @@ function useSecaoAtiva() {
     return { ativa, ir };
 }
 
-/** Aba Início: o panorama do campus numa página só, em três seções
+/** Aba Início: o panorama da unidade numa página só, em três seções
  * (Ingresso e conclusão, Qualidade e Trajetória), uma embaixo da outra. A
  * navbar interna rola até cada seção e acompanha a rolagem (destaca a seção
  * visível). A saudação e a navbar ficam fixas; cada seção carrega com o
@@ -155,20 +155,20 @@ function useSecaoAtiva() {
 export function HomePage() {
     const { data } = useDashboardData();
     const { ativa, ir } = useSecaoAtiva();
-    // o curso vale pro campus em que foi escolhido: trocou de campus, volta
-    // pro campus inteiro (os códigos de curso são outros)
+    // o curso vale pra unidade em que foi escolhido: trocou de unidade, volta
+    // pra unidade inteira (os códigos de curso são outros)
     const [escolha, setEscolha] = useState<{
-        municipio: number | null;
+        unidade: string | null;
         curso: number | null;
-    }>({ municipio: null, curso: null });
-    const municipio = data?.escopo.codigo_municipio ?? null;
-    const curso = escolha.municipio === municipio ? escolha.curso : null;
+    }>({ unidade: null, curso: null });
+    const unidade = data?.escopo.slug ?? null;
+    const curso = escolha.unidade === unidade ? escolha.curso : null;
     const contexto = useMemo(
         () => ({
             curso,
-            setCurso: (c: number | null) => setEscolha({ municipio, curso: c }),
+            setCurso: (c: number | null) => setEscolha({ unidade, curso: c }),
         }),
-        [curso, municipio]
+        [curso, unidade]
     );
 
     return (
@@ -177,7 +177,8 @@ export function HomePage() {
                 title="Olá, bem-vindo ao GRAD Analytics!"
                 subtitle={
                     <>
-                        Acompanhe os indicadores da graduação da UFC em <CampusAtual />
+                        Acompanhe os indicadores da graduação da UFC na unidade{" "}
+                        <UnidadeAtual />
                     </>
                 }
                 tabs={(tom) => (
@@ -245,7 +246,7 @@ function Secao({
 }
 
 /** O seletor de curso do cabeçalho (com busca): com a seção Ingresso e
- * conclusão ou a Trajetória à vista, "Campus" (o total) ou um curso; com a
+ * conclusão ou a Trajetória à vista, "Unidade" (o total) ou um curso; com a
  * Qualidade, só cursos (o padrão é o primeiro com CPC). */
 function SeletorCurso({
     data,
@@ -273,7 +274,7 @@ function SeletorCurso({
     const valor = cpc
         ? String(curso ?? cursoPadraoCpc(data) ?? "")
         : curso === null
-          ? SERIE_CAMPUS
+          ? SERIE_UNIDADE
           : String(curso);
     return (
         <SeletorCursoTopo
@@ -284,14 +285,14 @@ function SeletorCurso({
                     ? cursos
                     : [
                           {
-                              value: SERIE_CAMPUS,
+                              value: SERIE_UNIDADE,
                               label: "Todos os cursos",
-                              detalhe: "Todos os cursos da cidade somados",
+                              detalhe: "Todos os cursos da unidade somados",
                           },
                           ...cursos,
                       ]
             }
-            onChange={(v) => onChange(v === SERIE_CAMPUS ? null : Number(v))}
+            onChange={(v) => onChange(v === SERIE_UNIDADE ? null : Number(v))}
         />
     );
 }
@@ -341,16 +342,14 @@ function InicioIngresso() {
     return (
         <DataState
             esqueleto={<InicioIngressantesEsqueleto />}
-            render={(data) => (
-                <Ingresso key={data.escopo.codigo_municipio} data={data} />
-            )}
+            render={(data) => <Ingresso key={data.escopo.slug} data={data} />}
         />
     );
 }
 
 function Ingresso({ data }: { data: DashboardData }) {
     const { curso } = useContext(CursoInicioContext);
-    const escolha = curso === null ? SERIE_CAMPUS : String(curso);
+    const escolha = curso === null ? SERIE_UNIDADE : String(curso);
     return (
         <GradeNaTela primeira>
             <IngressantesCard className="lg:col-span-6" data={data} escolha={escolha} />
@@ -365,7 +364,7 @@ function InicioCpc() {
     return (
         <DataState
             esqueleto={<InicioCpcEsqueleto />}
-            render={(data) => <Cpc key={data.escopo.codigo_municipio} data={data} />}
+            render={(data) => <Cpc key={data.escopo.slug} data={data} />}
         />
     );
 }
@@ -398,7 +397,7 @@ function InicioEvasao() {
     return (
         <DataState
             esqueleto={<InicioEvasaoEsqueleto />}
-            render={(data) => <Evasao key={data.escopo.codigo_municipio} data={data} />}
+            render={(data) => <Evasao key={data.escopo.slug} data={data} />}
         />
     );
 }
@@ -407,7 +406,7 @@ function Evasao({ data }: { data: DashboardData }) {
     const { curso } = useContext(CursoInicioContext);
     // conclusão e evasão das turmas maduras (as que já tiveram o prazo e mais
     // dois anos): a comparação justa — a turma mais recente ainda não teve
-    // tempo de se formar. Campus: a mais recente de cada curso (mesma conta
+    // tempo de se formar. Unidade: a mais recente de cada curso (mesma conta
     // do Panorama da Trajetória); curso escolhido: a média das turmas
     // maduras dele
     const trajetorias = useMemo(() => buildTrajetorias(data), [data]);

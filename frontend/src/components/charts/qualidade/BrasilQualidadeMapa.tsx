@@ -83,7 +83,7 @@ function useViewBox(alvo: ViewBox): ViewBox {
 /** Brasil por estado num mapa coroplético (cor = indicador escolhido; mais
  * escuro = maior). Clicar num estado dá zoom nele e mostra os municípios com
  * cursos como pontos (tamanho = nº de cursos, cor = mesmo indicador);
- * clicar fora dele volta ao Brasil. O pino marca o município do campus.
+ * clicar fora dele volta ao Brasil. O pino marca o município da unidade.
  * Serve a qualquer indicador: ``valorDe`` tira o valor de um recorte,
  * ``rotulo`` o nomeia ("CPC médio") e ``formatar`` o escreve. */
 export function BrasilQualidadeMapa<R extends ResumoMapa>({
