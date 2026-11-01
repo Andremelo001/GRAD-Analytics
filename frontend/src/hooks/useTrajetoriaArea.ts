@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 
 import { siglaValida } from "@/lib/curso";
+import { urlDados } from "@/lib/dados";
 import { toTitleCase } from "@/lib/format";
 import { turmaResumo, type Turma } from "@/lib/trajetoria";
 import type {
     TrajetoriaAreaArquivo,
     TrajetoriaAreaIndex,
 } from "@/types/trajetoria-area";
-
-const DIR = `${import.meta.env.BASE_URL}data/dashboard/trajetoria_areas/`;
 
 /** Um curso do Brasil numa área CINE, com a turma madura dele. */
 export interface CursoTrajetoriaArea {
@@ -39,7 +38,7 @@ let indexPromise: Promise<TrajetoriaAreaIndex> | null = null;
 const areas = new Map<string, Promise<TrajetoriaAreaCarregada>>();
 
 async function fetchJson<T>(arquivo: string): Promise<T> {
-    const response = await fetch(`${DIR}${arquivo}`);
+    const response = await fetch(urlDados(`trajetoria_areas/${arquivo}`));
     if (!response.ok) {
         throw new Error(`Falha ao carregar ${arquivo} (HTTP ${response.status})`);
     }

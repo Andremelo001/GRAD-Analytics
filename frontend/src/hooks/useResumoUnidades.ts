@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 
+import { urlDados } from "@/lib/dados";
 import type { ResumoUnidades } from "@/types/dashboard";
 
-const ARQUIVO = `${import.meta.env.BASE_URL}data/dashboard/resumo_unidades.json`;
+const ARQUIVO = urlDados("resumo_unidades.json");
 
 // baixado uma vez por sessão (é o mesmo pra todas as unidades); depois de
 // chegar, fica também em ``carregado`` pra quem montar em seguida já desenhar

@@ -154,7 +154,15 @@ JSONs das unidades ficam em `public/data/dashboard/`.
    (`predev`/`prebuild`).
 3. `DashboardDataProvider` (em `App.tsx`) busca o `index.json` e o JSON da
    unidade escolhida, em `${import.meta.env.BASE_URL}data/dashboard/` — o
-   `BASE_URL` já inclui o prefixo do GitHub Pages no build de produção. A
+   `BASE_URL` já inclui o prefixo do GitHub Pages no build de produção. Toda
+   URL de dado passa por `urlDados` (`lib/dados.ts`), que acrescenta
+   `?v=<versão do build>` (o commit, `GITHUB_SHA`, definido no
+   `vite.config.ts`): o GitHub Pages manda os JSONs com cache de 10 min e eles
+   têm sempre o mesmo nome, então sem a versão um navegador que abriu o site
+   antes de um deploy juntava o código novo com os dados antigos (e quebrava se
+   o formato tivesse mudado, como o `campi` → `unidades` do `index.json`). Um
+   `index.json` num formato desconhecido vira mensagem de erro ("Recarregue a
+   página"), não tela quebrada. A
    unidade inicial é a fixada em Configurações ("Unidade ao abrir o painel",
    chave `prograd-unidade-inicial` no `localStorage`), senão o último escolhido
    (`prograd-unidade`), senão Quixadá (`dirquixada`); um slug salvo que não

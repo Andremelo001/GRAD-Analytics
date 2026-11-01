@@ -12,9 +12,19 @@ import { defineConfig } from "vite";
 // fica "/".
 const REPOSITORIO = process.env.GITHUB_REPOSITORY?.split("/")[1] ?? "GRAD-Analytics";
 const BASE = process.env.GITHUB_PAGES === "true" ? `/${REPOSITORIO}/` : "/";
+// Versão dos dados (JSONs de public/data/), que vai na URL de cada um
+// (``lib/dados.ts``): o GitHub Pages manda tudo com cache de 10 min, e os JSONs
+// têm sempre o mesmo nome — sem isso, um navegador que abriu o site antes de um
+// deploy juntava o código novo com os dados antigos em cache (e quebrava se o
+// formato tivesse mudado). É o commit do build (os dados são versionados junto
+// com o código); fora do Actions, o momento do build.
+const VERSAO_DADOS = process.env.GITHUB_SHA?.slice(0, 12) ?? Date.now().toString(36);
 
 export default defineConfig({
     base: BASE,
+    define: {
+        __VERSAO_DADOS__: JSON.stringify(VERSAO_DADOS),
+    },
     plugins: [react(), tailwindcss()],
     resolve: {
         alias: {

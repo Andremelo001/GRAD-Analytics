@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 
 import { DashboardDataContext, ULTIMA_UNIDADE } from "@/context/dashboard-data-context";
+import { urlDados } from "@/lib/dados";
 import type { UnidadeIndex, UnidadeInfo, DashboardData } from "@/types/dashboard";
 
 // import.meta.env.BASE_URL já reflete o `base` do vite.config.ts (inclui o
 // prefixo /GRAD-Analytics/ quando buildado pro GitHub Pages) — assim o
 // fetch funciona igual em dev e em produção sem configuração extra.
-const DATA_DIR = `${import.meta.env.BASE_URL}data/dashboard/`;
 const UNIDADE_STORAGE_KEY = "prograd-unidade";
 const UNIDADE_INICIAL_STORAGE_KEY = "prograd-unidade-inicial";
 // a unidade de Quixadá (sigla DIRQUIXADA no SIGAA)
@@ -30,7 +30,7 @@ function gravar(chave: string, valor: string | null) {
 }
 
 async function fetchJson<T>(arquivo: string): Promise<T> {
-    const response = await fetch(`${DATA_DIR}${arquivo}`);
+    const response = await fetch(urlDados(arquivo));
     if (!response.ok) {
         throw new Error(`Falha ao carregar ${arquivo} (HTTP ${response.status})`);
     }
@@ -71,6 +71,14 @@ export function DashboardDataProvider({ children }: { children: ReactNode }) {
         fetchJson<UnidadeIndex>("index.json")
             .then((index) => {
                 if (cancelled) return;
+                // índice num formato que este código não conhece (ex.: o
+                // ``campi`` de antes das unidades): mensagem de erro em vez de
+                // derrubar a página inteira
+                if (!Array.isArray(index.unidades)) {
+                    throw new Error(
+                        "Os dados do painel estão desatualizados neste navegador. Recarregue a página."
+                    );
+                }
                 setUnidades(index.unidades);
                 setUnidadeState(unidadeInicial(index.unidades));
             })

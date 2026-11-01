@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 
 import { parseArea, type CursoArea } from "@/lib/area";
+import { urlDados } from "@/lib/dados";
 import type { AreaArquivo, AreaIndex } from "@/types/qualidade-area";
-
-const AREAS_DIR = `${import.meta.env.BASE_URL}data/dashboard/areas_qualidade/`;
 
 export interface AreaCarregada {
     area: string;
@@ -17,7 +16,7 @@ let indexPromise: Promise<AreaIndex> | null = null;
 const areas = new Map<string, Promise<AreaCarregada>>();
 
 async function fetchJson<T>(arquivo: string): Promise<T> {
-    const response = await fetch(`${AREAS_DIR}${arquivo}`);
+    const response = await fetch(urlDados(`areas_qualidade/${arquivo}`));
     if (!response.ok) {
         throw new Error(`Falha ao carregar ${arquivo} (HTTP ${response.status})`);
     }
