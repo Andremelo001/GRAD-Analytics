@@ -16,17 +16,24 @@ export function Topo({
     seletorB,
     fichaA,
     fichaB,
+    acao,
 }: {
     seletorModo: ReactNode;
     seletorA: ReactNode;
     seletorB: ReactNode;
     fichaA?: ReactNode;
     fichaB?: ReactNode;
+    /** No canto superior direito, na linha do tipo de comparação (ex.: o
+     * seletor de turma da Trajetória); no celular, embaixo dele. */
+    acao?: ReactNode;
 }) {
     return (
         <Card className="lg:col-span-12">
-            <div className="-mx-1 [scrollbar-width:none] overflow-x-auto px-1">
-                {seletorModo}
+            <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="-mx-1 max-w-full min-w-0 [scrollbar-width:none] overflow-x-auto px-1">
+                    {seletorModo}
+                </div>
+                {acao}
             </div>
             <div className="mt-4 grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-start gap-3">
                 <div className="min-w-0">

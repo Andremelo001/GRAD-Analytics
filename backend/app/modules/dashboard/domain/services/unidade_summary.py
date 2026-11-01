@@ -69,28 +69,39 @@ def _ou_none(value: object) -> object:
 def _trajetoria_madura(
     data: ScopedData, codigo_curso: object
 ) -> dict[str, object] | None:
-    """A turma madura do curso, pra comparar o mesmo curso entre unidades.
+    """As turmas maduras do curso, pra comparar o mesmo curso entre unidades.
 
-    Área CINE (o curso em si) e grau — pra achar o mesmo curso noutro
-    unidade —, prazo, ano de ingresso, ingressantes (o peso do curso nas
-    médias da unidade) e a curva ano a ano: ``[anos desde o ingresso,
-    % cursando, % concluiu, % desistiu]``. ``None`` sem turma madura.
+    Área CINE (o curso em si) e grau — pra achar o mesmo curso noutra
+    unidade — e a turma madura mais recente (prazo, ano de ingresso,
+    ingressantes — o peso do curso nas médias da unidade — e a curva ano a
+    ano: ``[anos desde o ingresso, % cursando, % concluiu, % desistiu]``).
+    ``turmas``: todas as turmas maduras, da mais antiga à mais recente, no
+    mesmo formato (o seletor de turma das Comparações da Trajetória). ``None``
+    sem turma madura.
     """
     local = data.trajetoria[data.trajetoria["codigo_curso"] == codigo_curso]
-    madura = course_profile.turma_madura(local)
-    if madura is None:
+    maduras = course_profile.turmas_maduras(local)
+    if not maduras:
         return None
-    ano, prazo = madura
-    turma = local[local["ano_ingresso"] == ano].sort_values("ano_referencia")
+    turmas = [_turma(local, ano, prazo) for ano, prazo in maduras]
 
     def _texto(coluna: str) -> str | None:
-        if coluna not in turma.columns or turma[coluna].dropna().empty:
+        if coluna not in local.columns or local[coluna].dropna().empty:
             return None
-        return str(turma[coluna].dropna().iloc[0])
+        return str(local[coluna].dropna().iloc[0])
 
     return {
         "nome_cine_area_geral": _texto("nome_cine_area_geral"),
         "grau_academico": _texto("tp_grau_academico_desc"),
+        **turmas[-1],
+        "turmas": turmas,
+    }
+
+
+def _turma(local: pd.DataFrame, ano: int, prazo: int) -> dict[str, object]:
+    """Uma turma do curso: prazo, ano de ingresso, ingressantes e a curva."""
+    turma = local[local["ano_ingresso"] == ano].sort_values("ano_referencia")
+    return {
         "prazo_integralizacao": prazo,
         "ano_ingresso": ano,
         "ingressantes": (

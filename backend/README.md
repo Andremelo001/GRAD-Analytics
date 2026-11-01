@@ -341,7 +341,7 @@ app/data/processed/dashboard/
 ├── areas_qualidade/ # um JSON por área de avaliação dos cursos da UFC (~57): todos os cursos do Brasil na edição mais recente
 │   ├── index.json   # slug, area_avaliacao, ano, total_cursos, arquivo
 │   └── sistemas-de-informacao.json …   # 10-400 KB cada, gravados compactos
-└── trajetoria_areas/ # um JSON por área CINE dos cursos da UFC (~90): a turma madura de cada curso do Brasil
+└── trajetoria_areas/ # um JSON por área CINE dos cursos da UFC (~90): as turmas maduras de cada curso do Brasil
     ├── index.json   # slug, area, total_cursos, arquivo
     └── direito.json …   # até ~600 KB cada, gravados compactos
 ```
@@ -414,7 +414,7 @@ estrutura, não uma seção):
 | `domain/services/alerts.py` | `alertas` | **(F)** alertas automáticos (heurísticas simples) sobre os cursos da unidade — ver abaixo |
 | `domain/services/unidade_summary.py` | — (`resumo_unidades.json`) | resumo de cada curso de todas as unidades num arquivo só — ver abaixo |
 | `domain/services/quality_areas.py` | — (`areas_qualidade/`) | todos os cursos do Brasil de cada área de avaliação — ver abaixo |
-| `domain/services/trajectory_areas.py` | — (`trajetoria_areas/`) | a turma madura de cada curso do Brasil por área CINE — ver abaixo |
+| `domain/services/trajectory_areas.py` | — (`trajetoria_areas/`) | as turmas maduras de cada curso do Brasil por área CINE — ver abaixo |
 
 `build_dashboard.py` (em `application/use_cases/`) só orquestra: lê os CSVs +
 o `_meta.json` (via `DashboardSource.read_meta()`, exposto em `fontes` no
@@ -485,17 +485,21 @@ sigla: valor sem letras vira `null` (`quality_areas.sigla_ies`), e o front
 mostra o nome.
 
 **Áreas CINE (`trajetoria_areas/`)**: `domain/services/trajectory_areas.py`
-grava, para cada área CINE dos cursos da UFC, **a turma madura de cada curso
-do Brasil** — IES, município, grau, modalidade, prazo, ano de ingresso,
-ingressantes e a curva (permanência, conclusão e desistência acumuladas, ano
-a ano). É o Mapa e o "entre cursos da mesma área" das Comparações da aba
-Trajetória. Mesmo formato colunar e compacto do `areas_qualidade/`.
+grava, para cada área CINE dos cursos da UFC, **as turmas maduras de cada
+curso do Brasil**: uma linha por curso, com IES, município, grau, modalidade
+e a turma madura mais recente (prazo, ano de ingresso, ingressantes e a curva
+— permanência, conclusão e desistência acumuladas, ano a ano), e, na coluna
+`turmas_anteriores`, as outras turmas maduras (`[ano, prazo, ingressantes,
+curva]`). É o Mapa (que usa a mais recente) e o "entre cursos da mesma área"
+das Comparações da aba Trajetória (que usa a turma escolhida no seletor).
+Mesmo formato colunar e compacto do `areas_qualidade/`.
 
 **Resumo das unidades (`resumo_unidades.json`)**:
 `domain/services/unidade_summary.py` resume cada curso de cada unidade (área,
 ano, CPC, faixa, Enade, IDD e as 9 notas da avaliação mais recente, as
 edições do CPC em `historico`, e a turma madura em `trajetoria` — área CINE,
-grau, prazo, ingressantes e a curva) num arquivo só, pra busca e pra
+grau, prazo, ingressantes e a curva, com todas as turmas maduras em
+`trajetoria.turmas`) num arquivo só, gravado compacto, pra busca e pra
 comparar unidades e cursos sem baixar o JSON de cada unidade.
 
 **Alertas automáticos (F)**: pensado para a tela inicial (o painel ainda não

@@ -14,6 +14,13 @@ def test_trajetoria_madura_carries_cohort_size(scoped_data: ScopedData) -> None:
     assert isinstance(trajetoria, dict)
     assert trajetoria["ano_ingresso"] == 2018
     assert trajetoria["ingressantes"] == 50
+    # todas as turmas maduras (aqui só a de 2018: a de 2020 não foi
+    # acompanhada nenhum ano), no mesmo formato; a última é a de cima
+    turmas = trajetoria["turmas"]
+    assert isinstance(turmas, list)
+    assert [t["ano_ingresso"] for t in turmas] == [2018]
+    assert turmas[-1]["curva"] == trajetoria["curva"]
+    assert turmas[-1]["ingressantes"] == 50
 
 
 def test_resumo_carries_grau_academico(scoped_data: ScopedData) -> None:

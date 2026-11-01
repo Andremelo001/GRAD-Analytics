@@ -293,6 +293,9 @@ export function EspelhoCard({
             subtitle={subtitulo}
             info={info}
             className={className}
+            // a legenda (com o nome das unidades, que pode ser longo) desce
+            // em vez de quebrar o título
+            tituloInteiro
             // legenda à direita, na linha do subtítulo
             action={
                 <div className="self-end">

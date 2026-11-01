@@ -101,13 +101,21 @@ const PASSOS: Passo[] = [
         ilustracao: IlustracaoTrajetoria,
         texto: (
             <>
-                O caminho dos alunos desde a entrada: quantos continuam, quantos se
-                formam e quantos desistem, ano a ano, e quando a evasão acontece.
+                O caminho dos alunos desde a entrada: quantos continuam, se formam ou
+                desistem, ano a ano. Tem as mesmas quatro partes da Qualidade.
             </>
         ),
         itens: [
-            "As mesmas quatro partes da Qualidade: Visão geral, Por curso, Mapa e Comparações.",
-            "As taxas usam as turmas que já tiveram tempo de se formar.",
+            <>
+                <strong>Turma madura</strong>: acompanhada até 2 anos depois do prazo do
+                curso. Num curso de 4 anos, quem entrou em 2015 deveria se formar em
+                2018; a turma é madura a partir de 2020.
+            </>,
+            <>
+                <strong>Por que 2 anos</strong>: muita gente se forma com atraso. Antes
+                disso ainda há muitos alunos cursando e a conclusão pareceria menor; por
+                isso as taxas e as comparações usam só turmas maduras.
+            </>,
         ],
     },
     {

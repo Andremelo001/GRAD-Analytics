@@ -17,6 +17,10 @@ COLUNAS: tuple[str, ...] = (
     "ingressantes",
     # ``[anos desde o ingresso, % cursando, % concluiu, % desistiu]`` por ano
     "curva",
+    # as outras turmas maduras do curso, da mais antiga à mais recente, cada
+    # uma ``[ano_ingresso, prazo, ingressantes, curva]`` (o seletor de turma
+    # das Comparações da Trajetória); a mais recente é a das colunas acima
+    "turmas_anteriores",
 )
 
 
@@ -60,14 +64,15 @@ def build_area(
     area: str,
     codigo_ies_destaque: int,
 ) -> dict[str, object] | None:
-    """A turma madura de cada curso do Brasil numa área CINE.
+    """As turmas maduras de cada curso do Brasil numa área CINE.
 
-    A mais recente que já foi acompanhada até dois anos depois do prazo
-    (``course_profile.turma_madura``), com ingressantes e a curva ano a ano:
-    o front compara um curso da UFC com qualquer curso da mesma área
-    ("Entre cursos da mesma área", na Trajetória). A sigla da IES e o nome do
-    município vêm de ``nomes_da_qualidade``. ``None`` se nenhum curso da área
-    tem turma madura.
+    Uma linha por curso, com a turma madura mais recente — a que já foi
+    acompanhada até dois anos depois do prazo (``course_profile.turma_madura``)
+    —, ingressantes e a curva ano a ano; em ``turmas_anteriores``, as outras
+    turmas maduras, no mesmo formato. O front compara um curso da UFC com
+    qualquer curso da mesma área ("Entre cursos da mesma área", na Trajetória,
+    com o seletor de turma). A sigla da IES e o nome do município vêm de
+    ``nomes_da_qualidade``. ``None`` se nenhum curso da área tem turma madura.
     """
     area_df = trajetoria_nacional[trajetoria_nacional["nome_cine_area_geral"] == area]
     if area_df.empty:
@@ -81,13 +86,17 @@ def build_area(
     )
     turmas = _turmas_maduras(area_df)
     cursos: list[list[object]] = []
-    for (codigo, ano), grupo in turmas.groupby(["codigo_curso", "ano_ingresso"]):
-        turma = grupo.sort_values("ano_referencia")
-        primeira = turma.iloc[0]
-        ingressantes = primeira.get("qt_ingressante")
+    for codigo, do_curso in turmas.groupby("codigo_curso"):
+        # cada turma madura do curso, da mais antiga à mais recente
+        por_ano = [
+            grupo.sort_values("ano_referencia")
+            for _, grupo in sorted(do_curso.groupby("ano_ingresso"))
+        ]
+        recente = por_ano[-1]
+        primeira = recente.iloc[0]
         modalidade = str(primeira.get("tp_modalidade_ensino_desc") or "")
         grau = primeira.get("tp_grau_academico_desc")
-        anos = (turma["ano_referencia"] - turma["ano_ingresso"]).astype(int)
+        ano, prazo, ingressantes, curva = _turma(recente)
         cursos.append(
             [
                 _codigo(codigo),
@@ -95,24 +104,11 @@ def build_area(
                 _codigo(primeira["codigo_municipio"]),
                 None if pd.isna(grau) else str(grau),
                 "dist" in modalidade.lower(),
-                int(primeira["prazo_integralizacao"]),
-                _codigo(ano),
-                None if pd.isna(ingressantes) else int(ingressantes),
-                [
-                    [
-                        int(a),
-                        round(float(tp), 1),
-                        round(float(tc), 1),
-                        round(float(td), 1),
-                    ]
-                    for a, tp, tc, td in zip(
-                        anos,
-                        turma["taxa_permanencia"],
-                        turma["taxa_conclusao_acumulada"],
-                        turma["taxa_desistencia_acumulada"],
-                        strict=True,
-                    )
-                ],
+                prazo,
+                ano,
+                ingressantes,
+                curva,
+                [_turma(t) for t in por_ano[:-1]],
             ]
         )
     if not cursos:
@@ -154,15 +150,41 @@ def build_area(
     }
 
 
+def _turma(turma: pd.DataFrame) -> list[object]:
+    """Uma turma: ``[ano_ingresso, prazo, ingressantes, curva]``.
+
+    As linhas vêm em ordem de ano; a curva é ``[anos, % cursando, % concluiu,
+    % desistiu]`` por ano acompanhado.
+    """
+    primeira = turma.iloc[0]
+    ingressantes = primeira.get("qt_ingressante")
+    anos = (turma["ano_referencia"] - turma["ano_ingresso"]).astype(int)
+    return [
+        _codigo(primeira["ano_ingresso"]),
+        int(primeira["prazo_integralizacao"]),
+        None if pd.isna(ingressantes) else int(ingressantes),
+        [
+            [int(a), round(float(tp), 1), round(float(tc), 1), round(float(td), 1)]
+            for a, tp, tc, td in zip(
+                anos,
+                turma["taxa_permanencia"],
+                turma["taxa_conclusao_acumulada"],
+                turma["taxa_desistencia_acumulada"],
+                strict=True,
+            )
+        ],
+    ]
+
+
 def _codigo(value: object) -> int | None:
     """Código numérico (município de curso EaD pode vir vazio)."""
     return None if pd.isna(value) else int(str(value).split(".")[0])
 
 
 def _turmas_maduras(area_df: pd.DataFrame) -> pd.DataFrame:
-    """As linhas da turma madura mais recente de cada curso.
+    """As linhas de todas as turmas maduras de cada curso.
 
-    A mesma regra de ``course_profile.turma_madura``, de uma vez pra área.
+    A mesma regra de ``course_profile.turmas_maduras``, de uma vez pra área.
     """
     if "prazo_integralizacao" not in area_df.columns:
         return area_df.iloc[0:0]
@@ -175,10 +197,8 @@ def _turmas_maduras(area_df: pd.DataFrame) -> pd.DataFrame:
         .groupby(chave, as_index=False)
         .agg(anos=("anos", "max"), prazo=("prazo_integralizacao", "first"))
     )
-    maduras = por_turma[
-        por_turma["anos"] >= por_turma["prazo"] + course_profile.ANOS_ALEM_DO_PRAZO - 1
+    maduras = por_turma.loc[
+        por_turma["anos"] >= por_turma["prazo"] + course_profile.ANOS_ALEM_DO_PRAZO - 1,
+        chave,
     ]
-    ultimas = maduras.loc[
-        maduras.groupby("codigo_curso")["ano_ingresso"].idxmax(), chave
-    ]
-    return frame.merge(ultimas, on=chave)
+    return frame.merge(maduras, on=chave)

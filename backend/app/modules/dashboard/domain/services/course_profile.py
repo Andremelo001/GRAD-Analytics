@@ -170,30 +170,35 @@ ANOS_ALEM_DO_PRAZO = 2
 def turma_madura(curso_trajetoria: pd.DataFrame) -> tuple[int, int] | None:
     """A turma madura mais recente de um curso: ``(ano_ingresso, prazo)``.
 
+    ``None`` sem turma madura (ver ``turmas_maduras``).
+    """
+    maduras = turmas_maduras(curso_trajetoria)
+    return maduras[-1] if maduras else None
+
+
+def turmas_maduras(curso_trajetoria: pd.DataFrame) -> list[tuple[int, int]]:
+    """Turmas maduras de um curso: ``(ano_ingresso, prazo)``, em ordem de ano.
+
     Madura = acompanhada até ``prazo + ANOS_ALEM_DO_PRAZO`` anos depois do
-    ingresso (``anos_desde_ingresso`` chega a ``prazo + 1``). ``None`` sem
-    turma assim (curso novo) ou sem a coluna de prazo.
+    ingresso (``anos_desde_ingresso`` chega a ``prazo + 1``). Vazia sem turma
+    assim (curso novo) ou sem a coluna de prazo.
     """
     if curso_trajetoria.empty or "prazo_integralizacao" not in curso_trajetoria:
-        return None
+        return []
     frame = curso_trajetoria.dropna(subset=["prazo_integralizacao"])
     if frame.empty:
-        return None
+        return []
     anos = (
         (frame["ano_referencia"] - frame["ano_ingresso"])
         .groupby(frame["ano_ingresso"])
         .max()
     )
     prazos = frame.groupby("ano_ingresso")["prazo_integralizacao"].first()
-    maduras = [
-        int(ano)
-        for ano in anos.index
+    return [
+        (int(ano), int(prazos[ano]))
+        for ano in sorted(anos.index)
         if anos[ano] >= int(prazos[ano]) + ANOS_ALEM_DO_PRAZO - 1
     ]
-    if not maduras:
-        return None
-    ano = max(maduras)
-    return ano, int(prazos[ano])
 
 
 def janela_concluintes(

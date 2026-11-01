@@ -19,7 +19,9 @@ export interface TrajetoriaAreaArquivo {
     area: string;
     codigo_ies_destaque: number;
     colunas: string[];
-    cursos: (number | string | boolean | null | number[][])[][];
+    /** Uma linha por curso, nas ``colunas``; ``turmas_anteriores`` é uma
+     * lista de ``[ano, prazo, ingressantes, curva]``. */
+    cursos: (number | string | boolean | null | number[][] | unknown[])[][];
     /** código da IES -> [nome, sigla, pública?] */
     ies: Record<string, [string | null, string | null, boolean | null]>;
     /** código IBGE do município -> [nome, sigla da UF] */

@@ -9,7 +9,7 @@ import type {
     TrajetoriaAreaIndex,
 } from "@/types/trajetoria-area";
 
-/** Um curso do Brasil numa área CINE, com a turma madura dele. */
+/** Um curso do Brasil numa área CINE, com as turmas maduras dele. */
 export interface CursoTrajetoriaArea {
     codigo: number;
     ies: number;
@@ -24,8 +24,21 @@ export interface CursoTrajetoriaArea {
     ead: boolean;
     /** Da IES do painel (UFC). */
     destaque: boolean;
+    /** A turma madura mais recente. */
     turma: Turma;
+    /** Todas as turmas maduras, da mais antiga à mais recente (a última é
+     * ``turma``): o seletor de turma das Comparações. */
+    turmas: Turma[];
 }
+
+/** Uma das ``turmas_anteriores`` do arquivo: ``[ano, prazo, ingressantes,
+ * curva]``. */
+type TurmaAnterior = [
+    number,
+    number,
+    number | null,
+    [number, number, number, number][],
+];
 
 export interface TrajetoriaAreaCarregada {
     area: string;
@@ -60,6 +73,12 @@ function parse(arquivo: TrajetoriaAreaArquivo): CursoTrajetoriaArea[] {
             municipio === null
                 ? [null, null]
                 : (arquivo.municipios[String(municipio)] ?? [null, null]);
+        const turma = turmaResumo({
+            prazo_integralizacao: Number(get("prazo_integralizacao")),
+            ano_ingresso: Number(get("ano_ingresso")),
+            ingressantes: get("ingressantes") as number | null,
+            curva: get("curva") as [number, number, number, number][],
+        });
         return {
             codigo: Number(get("codigo_curso")),
             ies,
@@ -72,14 +91,20 @@ function parse(arquivo: TrajetoriaAreaArquivo): CursoTrajetoriaArea[] {
             grau: get("grau_academico") as string | null,
             ead: Boolean(get("ead")),
             destaque: ies === arquivo.codigo_ies_destaque,
-            turma: turmaResumo({
-                nome_cine_area_geral: arquivo.area,
-                grau_academico: get("grau_academico") as string | null,
-                prazo_integralizacao: Number(get("prazo_integralizacao")),
-                ano_ingresso: Number(get("ano_ingresso")),
-                ingressantes: get("ingressantes") as number | null,
-                curva: get("curva") as [number, number, number, number][],
-            }),
+            turma,
+            turmas: [
+                ...(
+                    (get("turmas_anteriores") as TurmaAnterior[] | undefined) ?? []
+                ).map(([ano, prazo, ingressantes, curva]) =>
+                    turmaResumo({
+                        ano_ingresso: ano,
+                        prazo_integralizacao: prazo,
+                        ingressantes,
+                        curva,
+                    })
+                ),
+                turma,
+            ],
         };
     });
 }

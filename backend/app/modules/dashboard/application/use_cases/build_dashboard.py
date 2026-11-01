@@ -144,7 +144,11 @@ def build_dashboard(
         },
         _INDEX_NAME,
     )
-    exporter.export({"gerado_em": gerado_em, "unidades": resumo}, _RESUMO_NAME)
+    # compacto, como os das áreas: com todas as turmas maduras de cada curso
+    # (o seletor de turma das Comparações), indentado ele passava de 1,5 MB
+    JsonExporter(out_dir=out_dir, indent=None).export(
+        {"gerado_em": gerado_em, "unidades": resumo}, _RESUMO_NAME
+    )
     _remove_stale(
         out_dir,
         {f"{c.slug}.json" for c in unidades}

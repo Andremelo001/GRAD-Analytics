@@ -1,6 +1,6 @@
 import { toTitleCase } from "@/lib/format";
 import { rotulosCursos } from "@/lib/qualidade";
-import type { DashboardData, TrajetoriaResumo } from "@/types/dashboard";
+import type { DashboardData, TrajetoriaResumo, TurmaResumo } from "@/types/dashboard";
 
 /** Anos de folga além do prazo pra uma turma contar como "madura" (já teve
  * tempo de se formar, inclusive com atraso) — o mesmo do backend
@@ -266,7 +266,7 @@ export function curvaNacional(
 }
 
 /** A curva da turma madura do resumo das unidades, no formato das turmas. */
-export function pontosResumo(t: TrajetoriaResumo): PontoTurma[] {
+export function pontosResumo(t: TurmaResumo): PontoTurma[] {
     return t.curva.map(([anos, cursando, concluiu, desistiu]) => ({
         anos,
         cursando,
@@ -473,7 +473,7 @@ export function indicadoresInepNacional(
 
 /** A turma madura do resumo das unidades como uma ``Turma`` (pra reusar as
  * contas das turmas da unidade aberta). */
-export function turmaResumo(t: TrajetoriaResumo): Turma {
+export function turmaResumo(t: TurmaResumo): Turma {
     return {
         ano: t.ano_ingresso,
         prazo: t.prazo_integralizacao,
@@ -484,6 +484,12 @@ export function turmaResumo(t: TrajetoriaResumo): Turma {
         ultimoAno: null,
         cursandoAgora: null,
     };
+}
+
+/** Todas as turmas maduras de um curso do resumo, da mais antiga à mais
+ * recente; sem a lista (dados de antes dela), só a mais recente. */
+export function turmasResumo(t: TrajetoriaResumo): Turma[] {
+    return (t.turmas?.length ? t.turmas : [t]).map(turmaResumo);
 }
 
 /** Os indicadores de um conjunto de turmas maduras (pesados pelos

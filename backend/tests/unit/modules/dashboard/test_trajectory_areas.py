@@ -51,10 +51,25 @@ def test_build_area_keeps_latest_mature_cohort_per_course() -> None:
     assert payload is not None
     cursos = payload["cursos"]
     assert isinstance(cursos, list) and len(cursos) == 1
-    codigo, ies, municipio, grau, ead, prazo, ano, ingressantes, curva = cursos[0]
+    (
+        codigo,
+        ies,
+        municipio,
+        grau,
+        ead,
+        prazo,
+        ano,
+        ingressantes,
+        curva,
+        anteriores,
+    ) = cursos[0]
     assert (codigo, ies, municipio, grau, ead) == (1, 7, 2304400, "Bacharelado", False)
     assert (prazo, ano, ingressantes) == (2, 2017, 40)
     assert curva[-1] == [3, 70.0, 15.0, 15.0]
+    # as outras turmas maduras (2015), no formato [ano, prazo, ingressantes,
+    # curva]; a de 2019 (não madura) fica de fora
+    assert [t[:3] for t in anteriores] == [[2015, 2, 40]]
+    assert anteriores[0][3][-1] == [5, 50.0, 25.0, 25.0]
     assert payload["ies"] == {"7": ["Universidade Teste", "UT", True]}
     assert payload["municipios"] == {"2304400": ["Fortaleza", "CE"]}
 

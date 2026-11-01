@@ -154,6 +154,13 @@ def test_turma_madura_is_latest_cohort_tracked_two_years_past_deadline() -> None
     assert course_profile.turma_madura(frame) == (2019, 4)
 
 
+def test_turmas_maduras_lists_every_mature_cohort_in_order() -> None:
+    # prazo 4: 2015, 2018 e 2019 chegaram a prazo + 1; 2020 ainda não
+    frame = _turmas(4, {2019: 5, 2015: 9, 2020: 4, 2018: 6})
+    assert course_profile.turmas_maduras(frame) == [(2015, 4), (2018, 4), (2019, 4)]
+    assert course_profile.turmas_maduras(_turmas(5, {2020: 4})) == []
+
+
 def test_turma_madura_none_without_mature_cohort_or_prazo() -> None:
     assert course_profile.turma_madura(_turmas(5, {2020: 4})) is None
     sem_prazo = _turmas(5, {2010: 9}).drop(columns=["prazo_integralizacao"])

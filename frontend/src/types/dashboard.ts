@@ -439,16 +439,24 @@ export interface ResumoCurso {
     trajetoria?: TrajetoriaResumo | null;
 }
 
-/** Turma madura no resumo das unidades: área CINE e grau (o mesmo curso noutro
- * unidade), prazo, ingresso, ingressantes (o peso nas médias da unidade) e a
- * curva ``[anos, % cursando, % concluiu, % desistiu]``. */
-export interface TrajetoriaResumo {
-    nome_cine_area_geral: string | null;
-    grau_academico: string | null;
+/** Uma turma madura no resumo das unidades: prazo, ingresso, ingressantes (o
+ * peso nas médias da unidade) e a curva ``[anos, % cursando, % concluiu, %
+ * desistiu]``. */
+export interface TurmaResumo {
     prazo_integralizacao: number;
     ano_ingresso: number;
     ingressantes?: number | null;
     curva: [number, number, number, number][];
+}
+
+/** A trajetória de um curso no resumo das unidades: área CINE e grau (o mesmo
+ * curso noutra unidade) e a turma madura mais recente; ``turmas``: todas as
+ * maduras, da mais antiga à mais recente (o seletor de turma das Comparações
+ * da Trajetória; ausente em dados gerados antes dele). */
+export interface TrajetoriaResumo extends TurmaResumo {
+    nome_cine_area_geral: string | null;
+    grau_academico: string | null;
+    turmas?: TurmaResumo[];
 }
 
 export interface ResumoUnidades {

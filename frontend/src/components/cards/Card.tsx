@@ -146,6 +146,7 @@ function mostrarInteiro(el: HTMLElement): Promise<void> {
 export function Card({
     title,
     tituloExtra,
+    tituloInteiro = false,
     subtitle,
     action,
     className,
@@ -159,6 +160,9 @@ export function Card({
     /** Na linha do título, logo depois dele (ex.: "| CPC ▾", um seletor
      * inline como os da frase de filtros do Mapa). */
     tituloExtra?: ReactNode;
+    /** O título nunca quebra a linha: se não couber ao lado da ação (ex.: a
+     * legenda dos lados nas Comparações), é a ação que desce. */
+    tituloInteiro?: boolean;
     /** Texto (inteiro no hover, se for cortado) ou um conteúdo próprio
      * numa linha só (ex.: texto + legenda). */
     subtitle?: ReactNode;
@@ -420,7 +424,11 @@ export function Card({
                                     // couberem com a ação, é a ação que desce
                                     // (no celular estreito, se nem sozinhos
                                     // couberem, o extra desce)
-                                    tituloExtra && "sm:min-w-max"
+                                    tituloExtra && "sm:min-w-max",
+                                    // título inteiro: o mínimo do bloco é o do
+                                    // título numa linha (o subtítulo trunca e
+                                    // não conta); a ação desce se não couber
+                                    tituloInteiro && "min-w-min"
                                 )}
                             >
                                 {tituloExtra ? (
@@ -431,7 +439,12 @@ export function Card({
                                         {tituloExtra}
                                     </div>
                                 ) : (
-                                    <h2 className="text-[17px] leading-tight font-semibold tracking-[-0.01em]">
+                                    <h2
+                                        className={cn(
+                                            "text-[17px] leading-tight font-semibold tracking-[-0.01em]",
+                                            tituloInteiro && "whitespace-nowrap"
+                                        )}
+                                    >
                                         {title}
                                     </h2>
                                 )}
