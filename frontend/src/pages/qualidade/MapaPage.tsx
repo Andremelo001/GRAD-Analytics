@@ -1,5 +1,5 @@
 import { ArrowLeft } from "lucide-react";
-import { useMemo, useRef, type CSSProperties } from "react";
+import { useEffect, useMemo, useRef, type CSSProperties } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { Card } from "@/components/cards/Card";
@@ -15,8 +15,8 @@ import { FiltroTopo, SeletorCursoTopo } from "@/components/layout/FiltroTopo";
 import { MapaEsqueleto } from "@/components/layout/Esqueleto";
 import { useAlturaDisponivel } from "@/hooks/useAlturaDisponivel";
 import { useQualidadeArea } from "@/hooks/useQualidadeArea";
+import { useCursoEscolhido } from "@/hooks/useCursoEscolhido";
 import { opcaoCurso } from "@/lib/curso";
-import { cursoDoPorCurso } from "@/lib/curso-por-curso";
 import {
     agrupar,
     filtrar,
@@ -62,11 +62,17 @@ function Mapa({ data }: { data: DashboardData }) {
         () => buildAvaliacoes(data).filter((a) => a.area !== null),
         [data]
     );
-    // o da URL; sem ele, o aberto no Por curso; senão o de maior CPC
+    // o da URL (o seletor, um link) vira o curso escolhido do painel; sem ele,
+    // o escolhido; senão o de maior CPC (sem virar escolha)
+    const { curso: escolha, ultimo, escolher } = useCursoEscolhido();
+    const daUrl = avaliacoes.find((a) => String(a.codigo) === params.get("curso"));
     const curso =
-        avaliacoes.find((a) => String(a.codigo) === params.get("curso")) ??
-        avaliacoes.find((a) => a.codigo === cursoDoPorCurso("qualidade")) ??
+        daUrl ??
+        avaliacoes.find((a) => a.codigo === (escolha ?? ultimo)) ??
         [...avaliacoes].sort((a, b) => (b.cpc ?? -1) - (a.cpc ?? -1))[0];
+    useEffect(() => {
+        if (daUrl) escolher(daUrl.codigo);
+    }, [daUrl, escolher]);
     const indicador: Indicador = ehIndicador(params.get("indicador"))
         ? (params.get("indicador") as Indicador)
         : "cpc";

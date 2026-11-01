@@ -108,7 +108,7 @@ frontend/
     │   ├── trajetoria-mapa.ts # indicadores e resumo por estado do Mapa da Trajetória
     │   ├── comparacao.ts    # resumo de uma unidade pras Comparações (nomeUnidade, médias)
     │   ├── curso.ts         # opções dos seletores de curso (código · grau) e siglaValida (sigla da IES)
-    │   ├── curso-por-curso.ts # o curso aberto no Por curso, que o Mapa e as Comparações da aba seguem
+    │   ├── curso-escolhido.ts # o curso escolhido em cada unidade, o mesmo em todos os seletores de curso (hook: useCursoEscolhido)
     │   ├── ultima-subaba.ts # última sub-aba aberta em cada aba (o menu reabre nela)
     │   ├── guia.ts          # se o guia de boas-vindas já foi visto neste navegador
     │   ├── fontes.ts        # as bases do INEP (nome + link) mostradas no "i" dos cards
@@ -256,12 +256,25 @@ tiveram o prazo do curso e mais dois anos para se formar).
 | `/trajetoria/mapa`          | `MapaTrajetoriaPage` (lazy)    | o mesmo curso (área CINE, grau e modalidade) pelo Brasil, por estado, na turma madura de cada curso: Taxa de Permanência, de Conclusão Acumulada ou de Desistência Acumulada (média pesada pelos ingressantes); filtro de rede · painel do recorte: cursos, taxa média × Brasil, ingressantes, situação final do estado × a do curso da unidade e as maiores (ou, na desistência, menores) taxas, com o curso da unidade posicionado. Usa o mesmo mapa da Qualidade (`BrasilQualidadeMapa`, que recebe o indicador como função) |
 | `/trajetoria/comparacoes`   | `ComparacoesTrajetoriaPage`    | dois modos, como na Qualidade: **entre unidades** (turmas maduras de todos os cursos) e **entre cursos da mesma área** (um curso da unidade contra qualquer curso da mesma área CINE, grau e modalidade no Brasil): indicadores, desistência a cada ano do curso (barras espelhadas), situação final e permanência ano a ano lado a lado                                                                                                                                                                                        |
 
-O curso aberto no Por curso de uma aba é o que o Mapa e as Comparações entre
-cursos da mesma aba mostram, quando a URL deles não traz outro
-(`lib/curso-por-curso.ts`); escolher um curso lá não muda o Por curso. A
-busca do topo abre o curso no Por curso de Qualidade ou de Trajetória (o
-usuário escolhe), trocando de unidade se preciso, e deixa a outra aba no mesmo
-curso.
+**Um curso só em todo o painel** (`lib/curso-escolhido.ts`, lido pelo hook
+`useCursoEscolhido`): o curso escolhido em qualquer seletor de curso vale em
+todos os outros, por unidade — o do Início, o do cabeçalho de Por curso e do
+Mapa (Qualidade e Trajetória), o curso A das Comparações entre cursos e os dos
+cards Evolução entre ciclos, Situação final e Evasão por ano. Guarda `curso`
+(o escolhido, ou `null` pra "Todos os cursos", que o Início e os cards têm) e
+`ultimo` (o último curso específico, que as páginas de um curso só abrem com
+"Todos"). Um seletor só mostra a escolha se o curso estiver entre as opções
+dele (ex.: sem turma madura, sem CPC); senão usa o próprio padrão, sem mudar a
+escolha. O "Todos os cursos somados" do card de evasão é só daquele card.
+Código na URL (`/curso/:codigo`, `?curso=`, `?a=` das Comparações) é escolha
+— o seletor, um link de card, a busca, um link copiado — e passa a valer em
+todo lugar; o padrão que a própria página põe na URL quando não há escolha
+(o de maior CPC, por exemplo) não vira escolha. Ao mudar a escolha, o menu
+esquece o curso das sub-abas lembradas (`esquecerCursoDasSubabas` em
+`lib/ultima-subaba.ts`): voltar pela aba abre o curso escolhido, não o da URL
+antiga. Só na memória da página. A busca do topo abre o curso no Por curso de
+Qualidade ou de Trajetória (o usuário escolhe), trocando de unidade se
+preciso.
 
 Regras de comparação: as notas do CPC são padronizadas dentro de cada edição
 do Enade, então o curso só é comparado com a média nacional da **mesma área no

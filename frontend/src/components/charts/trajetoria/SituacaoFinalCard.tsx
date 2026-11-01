@@ -14,6 +14,7 @@ import {
 } from "@/components/charts/trajetoria/situacao";
 import { SiglaInep } from "@/components/charts/trajetoria/SiglaInep";
 import { useChartTheme } from "@/hooks/useChartTheme";
+import { useCursoEscolhido } from "@/hooks/useCursoEscolhido";
 import { opcaoCurso } from "@/lib/curso";
 import { formatPercent } from "@/lib/format";
 import { situacaoFinal, turmaMadura, type CursoTrajetoria } from "@/lib/trajetoria";
@@ -39,8 +40,9 @@ export function SituacaoFinalCard({
     const CHART = useChartTheme();
     const [foco, setFoco] = useState<Situacao | null>(null);
     // filtro de busca (o mesmo seletor do cabeçalho de Por curso): todos os
-    // cursos ou só um, com a posição dele entre as da unidade
-    const [escolha, setEscolha] = useState(TODOS);
+    // cursos ou só um, com a posição dele entre as da unidade. É o curso
+    // escolhido do painel: muda junto com os outros seletores de curso
+    const { curso, escolher } = useCursoEscolhido();
 
     const linhas = cursos
         .flatMap((c) => {
@@ -58,6 +60,10 @@ export function SituacaoFinalCard({
         })
         .sort((a, b) => b.valores.concluiu - a.valores.concluiu);
     const semMadura = cursos.length - linhas.length;
+    // o escolhido, se tiver turma madura (está na lista); senão, todos
+    const escolha = linhas.some((l) => l.curso.codigo === curso)
+        ? String(curso)
+        : TODOS;
     const visiveis =
         escolha === TODOS
             ? linhas
@@ -100,7 +106,7 @@ export function SituacaoFinalCard({
                                     })
                                 ),
                         ]}
-                        onChange={setEscolha}
+                        onChange={(v) => escolher(v === TODOS ? null : Number(v))}
                         placeholder="Buscar curso…"
                     />
                 </div>

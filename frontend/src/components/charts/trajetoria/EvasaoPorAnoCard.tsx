@@ -6,6 +6,7 @@ import { NotaRodape } from "@/components/cards/NotaRodape";
 import { DataTable } from "@/components/charts/DataTable";
 import { CursoBusca } from "@/components/charts/qualidade/CursoBusca";
 import { useChartTheme } from "@/hooks/useChartTheme";
+import { useCursoEscolhido } from "@/hooks/useCursoEscolhido";
 import { opcaoCurso } from "@/lib/curso";
 import { useElementSize } from "@/hooks/useElementSize";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
@@ -27,6 +28,8 @@ const FILEIRAS_VISIVEIS = 3;
 
 /** Opção do seletor que mostra a grade com todos (o padrão). */
 const TODOS = "todos";
+/** Opção da soma de todos os cursos num gráfico só (a unidade inteira). */
+const SOMADOS = "unidade";
 
 interface Painel {
     chave: string;
@@ -49,11 +52,15 @@ export function EvasaoPorAnoCard({
 }) {
     const CHART = useChartTheme();
     // filtro de busca (o mesmo de "Situação final por curso"): todos em
-    // grade, ou só a soma de todos / um curso, num gráfico ampliado e centrado
-    const [escolha, setEscolha] = useState(TODOS);
+    // grade, ou só a soma de todos / um curso, num gráfico ampliado e centrado.
+    // Todos / um curso é o curso escolhido do painel (muda junto com os outros
+    // seletores); a soma é só deste card — vale enquanto a escolha do painel
+    // for a mesma de quando foi pedida
+    const { curso, escolher } = useCursoEscolhido();
+    const [somados, setSomados] = useState<{ com: number | null } | null>(null);
     const paineis: Painel[] = [
         {
-            chave: "unidade",
+            chave: SOMADOS,
             nome: "Todos os cursos somados",
             fracoes: evasaoPorAnoDoCurso(cursos.flatMap(maduras)),
         },
@@ -74,6 +81,12 @@ export function EvasaoPorAnoCard({
     const rola = fileiras > FILEIRAS_VISIVEIS && alturaPainel > 0;
     const alturaMax =
         FILEIRAS_VISIVEIS * alturaPainel + (FILEIRAS_VISIVEIS - 1) * GAP_Y + 8;
+    const escolha =
+        somados && somados.com === curso
+            ? SOMADOS
+            : paineis.some((p) => p.chave === String(curso))
+              ? String(curso)
+              : TODOS;
     const escolhido = paineis.find((p) => p.chave === escolha);
     const porCodigo = new Map(cursos.map((c) => [String(c.codigo), c]));
 
@@ -111,7 +124,14 @@ export function EvasaoPorAnoCard({
                                       };
                             }),
                         ]}
-                        onChange={setEscolha}
+                        onChange={(v) => {
+                            if (v === SOMADOS) {
+                                setSomados({ com: curso });
+                                return;
+                            }
+                            setSomados(null);
+                            escolher(v === TODOS ? null : Number(v));
+                        }}
                         placeholder="Buscar curso…"
                     />
                 </div>

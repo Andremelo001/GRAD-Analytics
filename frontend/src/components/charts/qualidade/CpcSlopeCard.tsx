@@ -5,6 +5,7 @@ import { ChartSelect } from "@/components/charts/ChartSelect";
 import { DataTable } from "@/components/charts/DataTable";
 import { CursoBusca } from "@/components/charts/qualidade/CursoBusca";
 import { useChartTheme } from "@/hooks/useChartTheme";
+import { useCursoEscolhido } from "@/hooks/useCursoEscolhido";
 import { opcaoCurso } from "@/lib/curso";
 import { useElementSize } from "@/hooks/useElementSize";
 import { FAIXA_LIMITES } from "@/lib/cpc";
@@ -91,7 +92,8 @@ export function CpcSlopeCard({
     // o gráfico ocupa a altura que o card tem (esticado à do ranking, ao lado)
     const { width, height: H } = useElementSize(boxRef);
     const [hover, setHover] = useState<number | null>(null);
-    const [escolhido, setSelecionado] = useState<number | null>(null);
+    // o curso escolhido do painel (o mesmo dos outros seletores de curso)
+    const { curso: escolhido, escolher } = useCursoEscolhido();
     const [metrica, setMetrica] = useState<Metrica>(() => metricaEscolhida);
     const nome = NOME[metrica];
 
@@ -198,7 +200,7 @@ export function CpcSlopeCard({
                     cor={CHART.brand}
                     value={selecionado === null ? "todos" : String(selecionado)}
                     options={opcoes}
-                    onChange={(v) => setSelecionado(v === "todos" ? null : Number(v))}
+                    onChange={(v) => escolher(v === "todos" ? null : Number(v))}
                     placeholder="Buscar curso…"
                 />
             }

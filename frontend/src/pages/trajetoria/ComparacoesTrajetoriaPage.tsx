@@ -1,4 +1,4 @@
-import { useMemo, type ReactNode } from "react";
+import { useEffect, useMemo, type ReactNode } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { Card } from "@/components/cards/Card";
@@ -16,10 +16,10 @@ import {
 import { DataState } from "@/components/layout/DataState";
 import { CardEsqueleto, ComparacoesEsqueleto } from "@/components/layout/Esqueleto";
 import { useChartTheme } from "@/hooks/useChartTheme";
+import { useCursoEscolhido } from "@/hooks/useCursoEscolhido";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { useResumoUnidades } from "@/hooks/useResumoUnidades";
 import { useTrajetoriaArea, type CursoTrajetoriaArea } from "@/hooks/useTrajetoriaArea";
-import { cursoDoPorCurso } from "@/lib/curso-por-curso";
 import { detalheCurso } from "@/lib/curso";
 import { nomeUnidade } from "@/lib/comparacao";
 import { formatPercent, toTitleCase } from "@/lib/format";
@@ -261,13 +261,17 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, atualizar }: PropsModo) {
         [ufc, daUnidade]
     );
     const padraoA = ufcUnidade[0];
-    // o da URL; sem ele, o aberto no Por curso; senão o padrão
+    // o da URL (o seletor A, um link) vira o curso escolhido do painel; sem
+    // ele, o escolhido; senão o padrão (sem virar escolha)
+    const { curso: escolha, ultimo, escolher } = useCursoEscolhido();
+    const daUrl = ufcUnidade.find((u) => String(u.curso.codigo_curso) === a);
     const cursoA =
-        ufcUnidade.find((u) => String(u.curso.codigo_curso) === a) ??
-        ufcUnidade.find(
-            (u) => u.curso.codigo_curso === cursoDoPorCurso("trajetoria")
-        ) ??
+        daUrl ??
+        ufcUnidade.find((u) => u.curso.codigo_curso === (escolha ?? ultimo)) ??
         padraoA;
+    useEffect(() => {
+        if (daUrl) escolher(daUrl.curso.codigo_curso);
+    }, [daUrl, escolher]);
     const area = cursoA?.curso.trajetoria.nome_cine_area_geral ?? null;
     const { dados, erro } = useTrajetoriaArea(area);
 

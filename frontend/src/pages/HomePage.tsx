@@ -30,6 +30,7 @@ import {
 import { PageHeader } from "@/components/layout/PageHeader";
 import { FontesSecaoContext } from "@/context/fontes-secao";
 import { topoVisivel, useAlturaDisponivel } from "@/hooks/useAlturaDisponivel";
+import { useCursoEscolhido } from "@/hooks/useCursoEscolhido";
 import { useDashboardData } from "@/hooks/useDashboardData";
 import { opcaoCurso } from "@/lib/curso";
 import { toTitleCase } from "@/lib/format";
@@ -59,14 +60,32 @@ const FOLGA_TOPO = 24;
 const MARGEM_SECAO = 40;
 
 /** O curso escolhido no seletor do cabeçalho do Início (``null`` = a unidade
- * inteiro): o mesmo pros cards de Ingresso e conclusão e de CPC. */
+ * inteira): o mesmo pros cards de Ingresso e conclusão e de CPC. É o curso
+ * escolhido do painel todo (``useCursoEscolhido``): escolher aqui muda os
+ * outros seletores, e o inverso. ``ultimo``: o último curso específico, que a
+ * seção Qualidade (que precisa de um curso) mostra com "Todos os cursos". */
 const CursoInicioContext = createContext<{
     curso: number | null;
+    ultimo: number | null;
     setCurso: (curso: number | null) => void;
-}>({ curso: null, setCurso: () => {} });
+}>({ curso: null, ultimo: null, setCurso: () => {} });
 
-/** O primeiro curso com CPC: o padrão da seção Qualidade, que precisa de um
- * curso (não tem a opção "Unidade"). */
+/** O curso da seção Qualidade, que precisa de um curso (não tem a opção
+ * "Todos os cursos"): o escolhido, senão o último escolhido, senão o primeiro
+ * com CPC. */
+function cursoDaQualidade(
+    data: DashboardData,
+    curso: number | null,
+    ultimo: number | null
+): number | null {
+    const existe = (c: number | null) =>
+        c !== null && data.cursos.some((k) => k.codigo_curso === c);
+    if (existe(curso)) return curso;
+    if (existe(ultimo)) return ultimo;
+    return cursoPadraoCpc(data);
+}
+
+/** O primeiro curso com CPC: o padrão da seção Qualidade. */
 function cursoPadraoCpc(data: DashboardData): number | null {
     const comCpc = new Set(
         data.curso_perfil.evolucao_cpc
@@ -155,20 +174,17 @@ function useSecaoAtiva() {
 export function HomePage() {
     const { data } = useDashboardData();
     const { ativa, ir } = useSecaoAtiva();
-    // o curso vale pra unidade em que foi escolhido: trocou de unidade, volta
-    // pra unidade inteira (os códigos de curso são outros)
-    const [escolha, setEscolha] = useState<{
-        unidade: string | null;
-        curso: number | null;
-    }>({ unidade: null, curso: null });
-    const unidade = data?.escopo.slug ?? null;
-    const curso = escolha.unidade === unidade ? escolha.curso : null;
+    // o curso escolhido do painel, por unidade (os códigos de curso de cada
+    // unidade são outros): o mesmo dos seletores de Qualidade e Trajetória
+    const { curso: escolhido, ultimo, escolher } = useCursoEscolhido();
+    // um curso que não é desta unidade (não deveria acontecer): a unidade inteira
+    const curso =
+        escolhido !== null && data?.cursos.some((c) => c.codigo_curso === escolhido)
+            ? escolhido
+            : null;
     const contexto = useMemo(
-        () => ({
-            curso,
-            setCurso: (c: number | null) => setEscolha({ unidade, curso: c }),
-        }),
-        [curso, unidade]
+        () => ({ curso, ultimo, setCurso: escolher }),
+        [curso, ultimo, escolher]
     );
 
     return (
@@ -197,6 +213,7 @@ export function HomePage() {
                             data={data}
                             secao={ativa}
                             curso={curso}
+                            ultimo={ultimo}
                             onChange={contexto.setCurso}
                             tom={tom}
                         />
@@ -252,12 +269,14 @@ function SeletorCurso({
     data,
     secao,
     curso,
+    ultimo,
     onChange,
     tom,
 }: {
     data: DashboardData;
     secao: string;
     curso: number | null;
+    ultimo: number | null;
     onChange: (curso: number | null) => void;
     tom: "band" | "surface";
 }) {
@@ -272,7 +291,7 @@ function SeletorCurso({
         )
         .sort((a, b) => a.label.localeCompare(b.label, "pt-BR"));
     const valor = cpc
-        ? String(curso ?? cursoPadraoCpc(data) ?? "")
+        ? String(cursoDaQualidade(data, curso, ultimo) ?? "")
         : curso === null
           ? SERIE_UNIDADE
           : String(curso);
@@ -370,8 +389,8 @@ function InicioCpc() {
 }
 
 function Cpc({ data }: { data: DashboardData }) {
-    const { curso } = useContext(CursoInicioContext);
-    const codigo = curso ?? cursoPadraoCpc(data);
+    const { curso, ultimo } = useContext(CursoInicioContext);
+    const codigo = cursoDaQualidade(data, curso, ultimo);
     return (
         <GradeNaTela>
             <BrasilMapaCard

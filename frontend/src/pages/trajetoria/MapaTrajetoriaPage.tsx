@@ -1,5 +1,5 @@
 import { ArrowLeft } from "lucide-react";
-import { useMemo, useRef, type CSSProperties } from "react";
+import { useEffect, useMemo, useRef, type CSSProperties } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import { Card } from "@/components/cards/Card";
@@ -15,8 +15,8 @@ import { FiltroTopo, SeletorCursoTopo } from "@/components/layout/FiltroTopo";
 import { MapaEsqueleto } from "@/components/layout/Esqueleto";
 import { useAlturaDisponivel } from "@/hooks/useAlturaDisponivel";
 import { useTrajetoriaArea } from "@/hooks/useTrajetoriaArea";
+import { useCursoEscolhido } from "@/hooks/useCursoEscolhido";
 import { opcaoCurso } from "@/lib/curso";
-import { cursoDoPorCurso } from "@/lib/curso-por-curso";
 import { type Rede } from "@/lib/area";
 import { buildTrajetorias } from "@/lib/trajetoria";
 import {
@@ -65,11 +65,17 @@ function Mapa({ data }: { data: DashboardData }) {
         () => buildTrajetorias(data).filter((c) => c.area !== null),
         [data]
     );
-    // o da URL; sem ele, o aberto no Por curso; senão o primeiro
+    // o da URL (o seletor, um link) vira o curso escolhido do painel; sem ele,
+    // o escolhido; senão o primeiro (sem virar escolha)
+    const { curso: escolha, ultimo, escolher } = useCursoEscolhido();
+    const daUrl = trajetorias.find((c) => String(c.codigo) === params.get("curso"));
     const curso =
-        trajetorias.find((c) => String(c.codigo) === params.get("curso")) ??
-        trajetorias.find((c) => c.codigo === cursoDoPorCurso("trajetoria")) ??
+        daUrl ??
+        trajetorias.find((c) => c.codigo === (escolha ?? ultimo)) ??
         trajetorias[0];
+    useEffect(() => {
+        if (daUrl) escolher(daUrl.codigo);
+    }, [daUrl, escolher]);
     const indicador: IndicadorMapa = ehIndicador(params.get("indicador"))
         ? (params.get("indicador") as IndicadorMapa)
         : "TCA";

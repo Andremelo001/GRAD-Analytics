@@ -1,5 +1,12 @@
 import { ArrowDown, ArrowUp, Minus } from "lucide-react";
-import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
+import {
+    Fragment,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
+    type CSSProperties,
+} from "react";
 
 import { AMPLIADO_FLEX, AMPLIADO_ROLA } from "@/components/cards/ampliado";
 import { Card } from "@/components/cards/Card";
@@ -13,6 +20,7 @@ import type {
     HeatmapEvasaoNacionalCelula,
 } from "@/types/dashboard";
 import { useChartTheme } from "@/hooks/useChartTheme";
+import { useElementSize } from "@/hooks/useElementSize";
 import { useTheme } from "@/hooks/useTheme";
 
 interface Celula {
@@ -62,6 +70,18 @@ function buildLinhas(
 
 /** Linhas (cursos) visíveis de uma vez; mais que isso, a grade rola. */
 const LINHAS_VISIVEIS = 6;
+
+/** Preenchendo a altura do card: com menos cursos que isso, cada linha fica do
+ * tamanho que teria com este número de cursos (não cresce mais), as linhas
+ * ganham um respiro maior entre si (até ``VAO_POUCOS``, menos se a altura não
+ * der) e o bloco (linhas + eixo dos anos) fica centralizado na altura. */
+const LINHAS_TAMANHO_MAXIMO = 5;
+const VAO_POUCOS = 56;
+/** Folga mínima em cima e embaixo do bloco: o resto vai pros vãos. */
+const MARGEM_POUCOS = 16;
+/** Vão normal entre as linhas (``gap-[3px]``) e altura mínima de uma linha. */
+const VAO = 3;
+const LINHA_MIN = 25;
 
 const mean = (values: number[]) =>
     values.length === 0 ? null : values.reduce((a, b) => a + b, 0) / values.length;
@@ -127,6 +147,43 @@ export function EvasaoHeatmapCard({
 
     const rolagem = useRef<HTMLDivElement>(null);
     const linhaSelecionada = linhas.find((l) => l.codigo === selecionado);
+    // poucos cursos com o card preenchendo a altura: cada linha com a altura
+    // que teria com 5 cursos (medida: a altura da grade menos o eixo dos anos e
+    // os vãos, dividida por 5), um vão maior entre elas (o que couber, até
+    // ``VAO_POUCOS``) e o bloco centralizado (``align-content: center``).
+    // Antes de medir, as linhas dividem a altura, como com muitos cursos
+    const { height: alturaGrade } = useElementSize(rolagem);
+    const eixoRef = useRef<HTMLSpanElement>(null);
+    const { height: alturaEixo } = useElementSize(eixoRef);
+    const n = linhas.length;
+    const poucos =
+        preencher && n < LINHAS_TAMANHO_MAXIMO && alturaGrade > 0 && alturaEixo > 0;
+    const alturaLinha = Math.max(
+        LINHA_MIN,
+        (alturaGrade - alturaEixo - LINHAS_TAMANHO_MAXIMO * VAO) / LINHAS_TAMANHO_MAXIMO
+    );
+    // a sobra vai pros vãos entre as linhas (n - 1), deixando ao menos
+    // ``MARGEM_POUCOS`` em cima e embaixo; o que passar de ``VAO_POUCOS`` fica
+    // de margem
+    const sobraPoucos =
+        alturaGrade - alturaEixo - n * alturaLinha - VAO - 2 * MARGEM_POUCOS;
+    const vaoPoucos =
+        n > 1 ? Math.max(VAO, Math.min(VAO_POUCOS, sobraPoucos / (n - 1))) : VAO;
+    // o vão entre duas linhas é uma faixa vazia de verdade na grade (somada aos
+    // dois ``gap`` de 3px em volta dela): o layout ocupa exatamente o que
+    // aparece e o eixo dos anos continua colado na última linha
+    const faixaVazia = vaoPoucos - 2 * VAO;
+    const comFaixas = poucos && faixaVazia > 0;
+    const fileiras = poucos
+        ? [
+              ...linhas.flatMap((_, i) =>
+                  i < n - 1 && comFaixas
+                      ? [`${alturaLinha}px`, `${faixaVazia}px`]
+                      : [`${alturaLinha}px`]
+              ),
+              "auto",
+          ].join(" ")
+        : `repeat(${n}, minmax(${LINHA_MIN}px, 1fr)) auto`;
     // curso escolhido: a grade rola até a linha dele (centrada)
     useEffect(() => {
         const box = rolagem.current;
@@ -270,54 +327,71 @@ export function EvasaoHeatmapCard({
                             "grid min-w-[660px] grid-cols-[112px_repeat(var(--anos),minmax(0,1fr))] items-center gap-[3px] sm:grid-cols-[minmax(112px,200px)_repeat(var(--anos),minmax(0,1fr))] lg:min-w-0",
                             // preenchendo: as linhas dividem a altura (mínimo
                             // de 25px; além disso, rola) e o eixo dos anos fica
-                            // embaixo
+                            // embaixo. Com menos de 5 cursos, duas faixas vazias
+                            // (uma antes das linhas, outra depois do eixo) ocupam
+                            // o lugar dos que faltam, metade cada: cada linha
+                            // fica do tamanho que teria com 5 e o bloco fica no
+                            // meio da altura
                             preencher && "min-h-full"
                         )}
                         style={
                             {
                                 "--anos": anos.length,
-                                ...(preencher && {
-                                    gridTemplateRows: `repeat(${linhas.length}, minmax(25px, 1fr)) auto`,
-                                }),
+                                ...(preencher && { gridTemplateRows: fileiras }),
+                                ...(poucos && { alignContent: "center" }),
                             } as CSSProperties
                         }
                         role="img"
                         aria-label={`Mapa de calor da evasão anual de ${linhas.length} cursos, de ${anos[0]} a ${ultimo}.`}
                     >
-                        {linhas.map((linha) => (
-                            <Row
-                                key={linha.codigo}
-                                linha={linha}
-                                anos={anos}
-                                ativo={hover?.codigo === linha.codigo}
-                                marcada={selecionado === linha.codigo}
-                                apagada={
-                                    !!linhaSelecionada &&
-                                    selecionado !== linha.codigo &&
-                                    hover?.codigo !== linha.codigo
-                                }
-                                alta={preencher}
-                                hoverAno={
-                                    hover?.codigo === linha.codigo ? hover.ano : null
-                                }
-                                colorOf={(c) => {
-                                    if (c?.taxa == null || c.nacional === null) {
-                                        return null;
+                        {linhas.map((linha, i) => (
+                            <Fragment key={linha.codigo}>
+                                {/* a faixa vazia antes de cada linha (menos a
+                                primeira), com poucos cursos */}
+                                {comFaixas && i > 0 && (
+                                    <span aria-hidden className="col-span-full" />
+                                )}
+                                <Row
+                                    linha={linha}
+                                    anos={anos}
+                                    ativo={hover?.codigo === linha.codigo}
+                                    marcada={selecionado === linha.codigo}
+                                    apagada={
+                                        !!linhaSelecionada &&
+                                        selecionado !== linha.codigo &&
+                                        hover?.codigo !== linha.codigo
                                     }
-                                    const diff = c.taxa - c.nacional;
-                                    return diff >= 0
-                                        ? rampColor(CHART.evasao.acima, diff / acimaMax)
-                                        : rampColor(
-                                              CHART.evasao.abaixo,
-                                              -diff / abaixoMax
-                                          );
-                                }}
-                                onHover={(ano) =>
-                                    setHover({ codigo: linha.codigo, ano })
-                                }
-                            />
+                                    alta={preencher}
+                                    hoverAno={
+                                        hover?.codigo === linha.codigo
+                                            ? hover.ano
+                                            : null
+                                    }
+                                    colorOf={(c) => {
+                                        if (c?.taxa == null || c.nacional === null) {
+                                            return null;
+                                        }
+                                        const diff = c.taxa - c.nacional;
+                                        return diff >= 0
+                                            ? rampColor(
+                                                  CHART.evasao.acima,
+                                                  diff / acimaMax
+                                              )
+                                            : rampColor(
+                                                  CHART.evasao.abaixo,
+                                                  -diff / abaixoMax
+                                              );
+                                    }}
+                                    onHover={(ano) =>
+                                        setHover({ codigo: linha.codigo, ano })
+                                    }
+                                />
+                            </Fragment>
                         ))}
-                        <span className="bg-surface sticky bottom-0 left-0 z-[3] self-stretch shadow-[0_4px_0_var(--surface),3px_0_0_var(--surface)]" />
+                        <span
+                            ref={eixoRef}
+                            className="bg-surface sticky bottom-0 left-0 z-[3] self-stretch shadow-[0_4px_0_var(--surface),3px_0_0_var(--surface)]"
+                        />
                         {anos.map((ano) => (
                             <span
                                 key={ano}

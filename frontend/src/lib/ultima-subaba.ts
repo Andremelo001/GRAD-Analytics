@@ -22,3 +22,25 @@ export function lembrarSubaba(aba: string, caminho: string) {
 export function ultimaSubaba(aba: string): string {
     return ultimas.get(aba) ?? PADRAO[aba] ?? `/${aba}`;
 }
+
+/** Tira o curso das sub-abas lembradas (``/qualidade/curso/123`` ->
+ * ``/qualidade/curso``; ``?curso=``; ``?a=``/``?b=`` das Comparações entre
+ * cursos), pra voltar pelo menu abrir o curso escolhido agora em vez do que
+ * estava na URL (``lib/curso-escolhido.ts`` chama ao trocar de curso).
+ * Comparação entre unidades fica como está: lá ``a``/``b`` são unidades. */
+export function esquecerCursoDasSubabas() {
+    for (const [aba, caminho] of ultimas) {
+        const [rota, busca = ""] = caminho.split("?");
+        const params = new URLSearchParams(busca);
+        params.delete("curso");
+        if (params.get("modo") === "cursos") {
+            params.delete("a");
+            params.delete("b");
+        }
+        const resto = params.toString();
+        ultimas.set(
+            aba,
+            rota.replace(/\/curso\/[^/]+$/, "/curso") + (resto ? `?${resto}` : "")
+        );
+    }
+}

@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { Card } from "@/components/cards/Card";
@@ -11,8 +11,8 @@ import { ProximaFaixaCard } from "@/components/charts/qualidade/ProximaFaixaCard
 import { DataState } from "@/components/layout/DataState";
 import { FiltroTopo, SeletorCursoTopo } from "@/components/layout/FiltroTopo";
 import { PorCursoEsqueleto } from "@/components/layout/Esqueleto";
+import { useCursoEscolhido } from "@/hooks/useCursoEscolhido";
 import { opcaoCurso } from "@/lib/curso";
-import { lembrarCursoPorCurso } from "@/lib/curso-por-curso";
 import { buildAvaliacoes, type AvaliacaoCurso } from "@/lib/qualidade";
 import type { DashboardData } from "@/types/dashboard";
 
@@ -46,11 +46,14 @@ function equivalente(avaliacoes: AvaliacaoCurso[]): AvaliacaoCurso | undefined {
 }
 
 /** Qualidade → Por curso (``/qualidade/curso/:codigo``): por que o CPC do
- * curso é o que é e onde dá pra melhorar. Sem código (ou com um código de
- * outra unidade, depois de trocar a unidade), abre o curso equivalente ao que
- * estava aberto (mesma área ou mesmo nome) — já desenhando a página (a URL é
- * corrigida em seguida), sem um quadro vazio no meio: assim a rolagem fica
- * onde estava. Sem equivalente, abre o de maior CPC e volta ao topo. */
+ * curso é o que é e onde dá pra melhorar. O curso da URL é uma escolha (o
+ * seletor, um link, a busca) e vira o curso escolhido do painel
+ * (``useCursoEscolhido``). Sem código (ou com um código de outra unidade,
+ * depois de trocar a unidade), abre o escolhido desta unidade; sem escolha
+ * aqui, o equivalente ao que estava aberto (mesma área ou mesmo nome) — já
+ * desenhando a página (a URL é corrigida em seguida), sem um quadro vazio no
+ * meio: assim a rolagem fica onde estava. Sem equivalente, abre o de maior CPC
+ * (sem virar escolha) e volta ao topo. */
 function PorCurso({ data }: { data: DashboardData }) {
     const { codigo } = useParams<{ codigo: string }>();
     const navigate = useNavigate();
@@ -71,22 +74,38 @@ function PorCurso({ data }: { data: DashboardData }) {
                 })),
         [avaliacoes]
     );
+    const escolha = useCursoEscolhido();
+    // o código que a própria página pôs na URL (sem escolha): não vira escolha
+    const automatico = useRef<string | null>(null);
     const pedido = avaliacoes.find((a) => String(a.codigo) === codigo);
-    const correspondente = pedido ? undefined : equivalente(avaliacoes);
-    const curso = pedido ?? correspondente ?? [...avaliacoes].sort(porCpc)[0];
+    const escolhido = pedido
+        ? undefined
+        : avaliacoes.find((a) => a.codigo === (escolha.curso ?? escolha.ultimo));
+    const correspondente = pedido || escolhido ? undefined : equivalente(avaliacoes);
+    const curso =
+        pedido ?? escolhido ?? correspondente ?? [...avaliacoes].sort(porCpc)[0];
     // trocou de unidade e o curso que estava aberto não existe aqui: abre outro
     // curso, então a página volta ao topo (com o equivalente, a rolagem fica)
-    const semEquivalente = !pedido && !correspondente && ultimoVisto !== null;
+    const semEquivalente =
+        !pedido && !escolhido && !correspondente && ultimoVisto !== null;
+    const { escolher } = escolha;
 
     useEffect(() => {
         if (!curso) return;
         ultimoVisto = { area: curso.area, nome: nomeBase(curso.nome) };
-        lembrarCursoPorCurso("qualidade", curso.codigo);
+        // o da URL (que não foi a página que pôs) e o equivalente da outra
+        // unidade são escolhas; o padrão (maior CPC), não
+        if ((pedido && codigo !== automatico.current) || correspondente)
+            escolher(curso.codigo);
+        // a URL chegou no código automático: daqui pra frente, o mesmo código
+        // vindo de um link volta a ser escolha
+        if (codigo === automatico.current) automatico.current = null;
         if (String(curso.codigo) !== codigo) {
             if (semEquivalente) window.scrollTo({ top: 0 });
+            automatico.current = String(curso.codigo);
             navigate(`/qualidade/curso/${curso.codigo}`, { replace: true });
         }
-    }, [curso, codigo, navigate, semEquivalente]);
+    }, [curso, codigo, pedido, correspondente, escolher, navigate, semEquivalente]);
 
     if (!curso) {
         return (

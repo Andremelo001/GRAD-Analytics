@@ -13,8 +13,8 @@ import { FiltroTopo, SeletorCursoTopo } from "@/components/layout/FiltroTopo";
 import { PorCursoEsqueleto } from "@/components/layout/Esqueleto";
 import { useElementSize } from "@/hooks/useElementSize";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
+import { useCursoEscolhido } from "@/hooks/useCursoEscolhido";
 import { opcaoCurso } from "@/lib/curso";
-import { lembrarCursoPorCurso } from "@/lib/curso-por-curso";
 import {
     buildTrajetorias,
     curvaNacional,
@@ -39,23 +39,36 @@ let ultimoNome: string | null = null;
 /** Trajetória → Por curso (``/trajetoria/curso/:codigo``): a história das
  * turmas de um curso. Os gráficos dividem a turma escolhida (a madura mais
  * recente, de início): a linha do tempo do "caminho" e um clique no triângulo
- * trocam a turma de todos. */
+ * trocam a turma de todos. O curso segue a mesma regra do Por curso da
+ * Qualidade: o da URL vira o curso escolhido do painel; sem ele, o escolhido
+ * desta unidade; sem escolha, o de mesmo nome do último visto (outra unidade);
+ * senão o primeiro (sem virar escolha). */
 function PorCurso({ data }: { data: DashboardData }) {
     const { codigo } = useParams<{ codigo: string }>();
     const navigate = useNavigate();
     const cursos = useMemo(() => buildTrajetorias(data), [data]);
-    const curso =
-        cursos.find((c) => String(c.codigo) === codigo) ??
-        cursos.find((c) => c.nome === ultimoNome) ??
-        cursos[0];
+    const { curso: escolha, ultimo, escolher } = useCursoEscolhido();
+    // o código que a própria página pôs na URL (sem escolha): não vira escolha
+    const automatico = useRef<string | null>(null);
+    const pedido = cursos.find((c) => String(c.codigo) === codigo);
+    const escolhido = pedido
+        ? undefined
+        : cursos.find((c) => c.codigo === (escolha ?? ultimo));
+    const mesmoNome =
+        pedido || escolhido ? undefined : cursos.find((c) => c.nome === ultimoNome);
+    const curso = pedido ?? escolhido ?? mesmoNome ?? cursos[0];
 
     useEffect(() => {
         if (!curso) return;
         ultimoNome = curso.nome;
-        lembrarCursoPorCurso("trajetoria", curso.codigo);
-        if (String(curso.codigo) !== codigo)
+        if ((pedido && codigo !== automatico.current) || mesmoNome)
+            escolher(curso.codigo);
+        if (codigo === automatico.current) automatico.current = null;
+        if (String(curso.codigo) !== codigo) {
+            automatico.current = String(curso.codigo);
             navigate(`/trajetoria/curso/${curso.codigo}`, { replace: true });
-    }, [curso, codigo, navigate]);
+        }
+    }, [curso, codigo, pedido, mesmoNome, escolher, navigate]);
 
     if (!curso) {
         return (
