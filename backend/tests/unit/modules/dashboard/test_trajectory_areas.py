@@ -62,6 +62,7 @@ def test_build_area_keeps_latest_mature_cohort_per_course() -> None:
         ingressantes,
         curva,
         anteriores,
+        andamento,
     ) = cursos[0]
     assert (codigo, ies, municipio, grau, ead) == (1, 7, 2304400, "Bacharelado", False)
     assert (prazo, ano, ingressantes) == (2, 2017, 40)
@@ -70,6 +71,9 @@ def test_build_area_keeps_latest_mature_cohort_per_course() -> None:
     # curva]; a de 2019 (não madura) fica de fora
     assert [t[:3] for t in anteriores] == [[2015, 2, 40]]
     assert anteriores[0][3][-1] == [5, 50.0, 25.0, 25.0]
+    # a de 2019 (acompanhada 1 ano, prazo 2) está em andamento
+    assert [t[:3] for t in andamento] == [[2019, 2, 40]]
+    assert andamento[0][3][-1] == [1, 90.0, 5.0, 5.0]
     assert payload["ies"] == {"7": ["Universidade Teste", "UT", True]}
     assert payload["municipios"] == {"2304400": ["Fortaleza", "CE"]}
 

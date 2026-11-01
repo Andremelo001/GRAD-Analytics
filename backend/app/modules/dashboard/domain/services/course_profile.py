@@ -201,6 +201,25 @@ def turmas_maduras(curso_trajetoria: pd.DataFrame) -> list[tuple[int, int]]:
     ]
 
 
+def turmas_em_andamento(curso_trajetoria: pd.DataFrame) -> list[tuple[int, int]]:
+    """Turmas ainda não maduras: ``(ano_ingresso, prazo)``, em ordem de ano.
+
+    As que ainda não foram acompanhadas até ``prazo + ANOS_ALEM_DO_PRAZO``
+    anos (ver ``turmas_maduras``): podem concluir ou desistir. Vazia sem a
+    coluna de prazo.
+    """
+    if curso_trajetoria.empty or "prazo_integralizacao" not in curso_trajetoria:
+        return []
+    frame = curso_trajetoria.dropna(subset=["prazo_integralizacao"])
+    maduras = {ano for ano, _ in turmas_maduras(frame)}
+    prazos = frame.groupby("ano_ingresso")["prazo_integralizacao"].first()
+    return [
+        (int(ano), int(prazos[ano]))
+        for ano in sorted(prazos.index)
+        if int(ano) not in maduras
+    ]
+
+
 def janela_concluintes(
     anos_ingresso: pd.Series, prazos: pd.Series
 ) -> tuple[int, int] | None:

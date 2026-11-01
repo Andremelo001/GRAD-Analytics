@@ -59,6 +59,7 @@ export function ChartSelect({
     variant = "pill",
     busy = false,
     tone = "band",
+    linhaUnica = false,
 }: {
     label: string;
     value: string;
@@ -70,6 +71,9 @@ export function ChartSelect({
     /** Cor do ``inline``: sobre a faixa escura (texto branco) ou sobre um card
      * (texto na cor de tinta do tema). */
     tone?: "band" | "surface";
+    /** Na lista, o rótulo e a ``descricao`` de cada opção numa linha cada,
+     * com o texto um pouco menor (ex.: o seletor de turma das Comparações). */
+    linhaUnica?: boolean;
 }) {
     const sm = size === "sm";
     const inline = variant === "inline";
@@ -311,17 +315,30 @@ export function ChartSelect({
                                     onPointerEnter={() => setActive(index)}
                                     onClick={() => choose(index)}
                                     className={cn(
-                                        "flex cursor-pointer items-center justify-between gap-4 rounded-lg px-3 py-2 text-[13px]",
+                                        "flex cursor-pointer items-center justify-between gap-4 rounded-lg px-3 py-2",
+                                        linhaUnica ? "text-[12px]" : "text-[13px]",
                                         index === active && "bg-page",
                                         isSelected && "font-semibold"
                                     )}
                                 >
                                     {option.descricao ? (
                                         <span className="min-w-0">
-                                            <span className="block leading-snug">
+                                            <span
+                                                className={cn(
+                                                    "block leading-snug",
+                                                    linhaUnica && "whitespace-nowrap"
+                                                )}
+                                            >
                                                 {option.label}
                                             </span>
-                                            <span className="text-text-muted block text-[11px] leading-snug font-normal">
+                                            <span
+                                                className={cn(
+                                                    "text-text-muted block leading-snug font-normal",
+                                                    linhaUnica
+                                                        ? "text-[10.5px] whitespace-nowrap"
+                                                        : "text-[11px]"
+                                                )}
+                                            >
                                                 {option.descricao}
                                             </span>
                                         </span>

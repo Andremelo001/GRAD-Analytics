@@ -29,6 +29,9 @@ export interface CursoTrajetoriaArea {
     /** Todas as turmas maduras, da mais antiga à mais recente (a última é
      * ``turma``): o seletor de turma das Comparações. */
     turmas: Turma[];
+    /** As turmas em andamento (ainda não maduras), da mais antiga à mais
+     * recente. */
+    andamento: Turma[];
 }
 
 /** Uma das ``turmas_anteriores`` do arquivo: ``[ano, prazo, ingressantes,
@@ -105,6 +108,19 @@ function parse(arquivo: TrajetoriaAreaArquivo): CursoTrajetoriaArea[] {
                 ),
                 turma,
             ],
+            andamento: (
+                (get("turmas_em_andamento") as TurmaAnterior[] | undefined) ?? []
+            ).map(([ano, prazo, ingressantes, curva]) =>
+                turmaResumo(
+                    {
+                        ano_ingresso: ano,
+                        prazo_integralizacao: prazo,
+                        ingressantes,
+                        curva,
+                    },
+                    false
+                )
+            ),
         };
     });
 }

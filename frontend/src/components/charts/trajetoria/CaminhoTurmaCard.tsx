@@ -15,7 +15,6 @@ import { useChartTheme } from "@/hooks/useChartTheme";
 import { useElementSize } from "@/hooks/useElementSize";
 import { formatPercent } from "@/lib/format";
 import type { CursoTrajetoria, PontoTurma, Turma } from "@/lib/trajetoria";
-import { cn } from "@/lib/utils";
 
 const PAD = { top: 10, right: 12, bottom: 28, left: 40 };
 /** Empilhamento de baixo pra cima: quem concluiu na base, quem desistiu no
@@ -220,7 +219,7 @@ export function CaminhoTurmaCard({
                 )}
             </div>
             <p className="text-text-muted mt-1 text-center text-[11px]">ano de curso</p>
-            <NotaRodape className={cn(!turma.madura && "text-ink")}>
+            <NotaRodape>
                 {turma.madura
                     ? "Desistência inclui transferência para outro curso, inclusive dentro da UFC."
                     : `Turma em andamento: ainda pode concluir ou desistir. Compare com as turmas maduras (as sem "em andamento" no seletor).`}

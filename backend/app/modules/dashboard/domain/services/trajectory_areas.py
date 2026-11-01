@@ -1,3 +1,5 @@
+from typing import Any
+
 import pandas as pd
 
 from app.modules.dashboard.domain.services import course_profile, quality_areas
@@ -21,6 +23,8 @@ COLUNAS: tuple[str, ...] = (
     # uma ``[ano_ingresso, prazo, ingressantes, curva]`` (o seletor de turma
     # das Comparações da Trajetória); a mais recente é a das colunas acima
     "turmas_anteriores",
+    # as turmas ainda não maduras (em andamento), no mesmo formato
+    "turmas_em_andamento",
 )
 
 
@@ -84,24 +88,28 @@ def build_area(
             "taxa_desistencia_acumulada",
         ]
     )
-    turmas = _turmas_maduras(area_df)
+    # as linhas de cada turma, agrupadas por curso numa passada só (agrupar e
+    # ordenar com o pandas turma a turma levava minutos nas áreas grandes)
+    linhas_maduras = _turmas_maduras(area_df)
+    maduras = _por_curso_e_turma(linhas_maduras)
+    andamento = _por_curso_e_turma(_turmas_em_andamento(area_df, linhas_maduras))
     cursos: list[list[object]] = []
-    for codigo, do_curso in turmas.groupby("codigo_curso"):
+    for codigo in sorted(maduras):
         # cada turma madura do curso, da mais antiga à mais recente
-        por_ano = [
-            grupo.sort_values("ano_referencia")
-            for _, grupo in sorted(do_curso.groupby("ano_ingresso"))
+        por_ano = [maduras[codigo][ano] for ano in sorted(maduras[codigo])]
+        em_andamento = [
+            andamento[codigo][ano] for ano in sorted(andamento.get(codigo, {}))
         ]
         recente = por_ano[-1]
-        primeira = recente.iloc[0]
-        modalidade = str(primeira.get("tp_modalidade_ensino_desc") or "")
-        grau = primeira.get("tp_grau_academico_desc")
+        primeira = recente[0]
+        modalidade = str(getattr(primeira, "tp_modalidade_ensino_desc", "") or "")
+        grau = getattr(primeira, "tp_grau_academico_desc", None)
         ano, prazo, ingressantes, curva = _turma(recente)
         cursos.append(
             [
                 _codigo(codigo),
-                int(primeira["codigo_ies"]),
-                _codigo(primeira["codigo_municipio"]),
+                int(primeira.codigo_ies),
+                _codigo(primeira.codigo_municipio),
                 None if pd.isna(grau) else str(grau),
                 "dist" in modalidade.lower(),
                 prazo,
@@ -109,6 +117,7 @@ def build_area(
                 ingressantes,
                 curva,
                 [_turma(t) for t in por_ano[:-1]],
+                [_turma(t) for t in em_andamento],
             ]
         )
     if not cursos:
@@ -150,30 +159,63 @@ def build_area(
     }
 
 
-def _turma(turma: pd.DataFrame) -> list[object]:
+def _por_curso_e_turma(frame: pd.DataFrame) -> dict[Any, dict[Any, list[Any]]]:
+    """As linhas de cada turma, agrupadas por curso e ano de ingresso.
+
+    Uma ordenação e uma passada só pelas linhas (em ordem de ano de
+    referência dentro de cada turma), em vez de agrupar e ordenar com o pandas
+    turma a turma.
+    """
+    if frame.empty:
+        return {}
+    ordenado = frame.sort_values(
+        ["codigo_curso", "ano_ingresso", "ano_referencia"], kind="stable"
+    )
+    grupos: dict[Any, dict[Any, list[Any]]] = {}
+    for linha in ordenado.itertuples(index=False):
+        grupos.setdefault(linha.codigo_curso, {}).setdefault(
+            linha.ano_ingresso, []
+        ).append(linha)
+    return grupos
+
+
+def _turma(linhas: list[Any]) -> list[object]:
     """Uma turma: ``[ano_ingresso, prazo, ingressantes, curva]``.
 
     As linhas vêm em ordem de ano; a curva é ``[anos, % cursando, % concluiu,
     % desistiu]`` por ano acompanhado.
     """
-    primeira = turma.iloc[0]
-    ingressantes = primeira.get("qt_ingressante")
-    anos = (turma["ano_referencia"] - turma["ano_ingresso"]).astype(int)
+    primeira = linhas[0]
+    ingressantes: Any = getattr(primeira, "qt_ingressante", None)
     return [
-        _codigo(primeira["ano_ingresso"]),
-        int(primeira["prazo_integralizacao"]),
-        None if pd.isna(ingressantes) else int(ingressantes),
+        _codigo(primeira.ano_ingresso),
+        int(primeira.prazo_integralizacao),
+        None if ingressantes is None or pd.isna(ingressantes) else int(ingressantes),
         [
-            [int(a), round(float(tp), 1), round(float(tc), 1), round(float(td), 1)]
-            for a, tp, tc, td in zip(
-                anos,
-                turma["taxa_permanencia"],
-                turma["taxa_conclusao_acumulada"],
-                turma["taxa_desistencia_acumulada"],
-                strict=True,
-            )
+            [
+                int(linha.ano_referencia - linha.ano_ingresso),
+                round(float(linha.taxa_permanencia), 1),
+                round(float(linha.taxa_conclusao_acumulada), 1),
+                round(float(linha.taxa_desistencia_acumulada), 1),
+            ]
+            for linha in linhas
         ],
     ]
+
+
+def _turmas_em_andamento(area_df: pd.DataFrame, maduras: pd.DataFrame) -> pd.DataFrame:
+    """As linhas das turmas ainda não maduras dos cursos que têm turma madura.
+
+    Curso sem turma madura nenhuma (novo) fica de fora do arquivo da área.
+    """
+    if maduras.empty or "prazo_integralizacao" not in area_df.columns:
+        return area_df.iloc[0:0]
+    frame = area_df.dropna(subset=["prazo_integralizacao"])
+    frame = frame[frame["codigo_curso"].isin(maduras["codigo_curso"].unique())]
+    chave = ["codigo_curso", "ano_ingresso"]
+    ja = maduras[chave].drop_duplicates().assign(_madura=True)
+    marcado = frame.merge(ja, on=chave, how="left")
+    return marcado[marcado["_madura"].isna()].drop(columns="_madura")
 
 
 def _codigo(value: object) -> int | None:

@@ -473,14 +473,14 @@ export function indicadoresInepNacional(
 
 /** A turma madura do resumo das unidades como uma ``Turma`` (pra reusar as
  * contas das turmas da unidade aberta). */
-export function turmaResumo(t: TurmaResumo): Turma {
+export function turmaResumo(t: TurmaResumo, madura = true): Turma {
     return {
         ano: t.ano_ingresso,
         prazo: t.prazo_integralizacao,
         // sem o dado, peso 1 (as médias pesadas ignoram turma de peso 0)
         ingressantes: t.ingressantes || 1,
         pontos: pontosResumo(t),
-        madura: true,
+        madura,
         ultimoAno: null,
         cursandoAgora: null,
     };
@@ -489,7 +489,47 @@ export function turmaResumo(t: TurmaResumo): Turma {
 /** Todas as turmas maduras de um curso do resumo, da mais antiga à mais
  * recente; sem a lista (dados de antes dela), só a mais recente. */
 export function turmasResumo(t: TrajetoriaResumo): Turma[] {
-    return (t.turmas?.length ? t.turmas : [t]).map(turmaResumo);
+    return (t.turmas?.length ? t.turmas : [t]).map((x) => turmaResumo(x));
+}
+
+/** As turmas em andamento (ainda não maduras) de um curso do resumo. */
+export function turmasEmAndamentoResumo(t: TrajetoriaResumo): Turma[] {
+    return (t.turmas_em_andamento ?? []).map((x) => turmaResumo(x, false));
+}
+
+/** Turmas em andamento comparadas no mesmo ponto: o ano de ingresso e quantos
+ * anos depois dele (``anos``, 0 = o próprio ano de ingresso) — o último que
+ * todas as turmas comparadas já viveram. */
+export interface PontoComparado {
+    ano: number;
+    anos: number;
+}
+
+/** "situação em 2024, no 5º ano do curso" */
+export const descreverPonto = ({ ano, anos }: PontoComparado) =>
+    `situação em ${ano + anos}, no ${anos + 1}º ano do curso`;
+
+/** O último ano (anos desde o ingresso) que todas as turmas já viveram: o
+ * ponto em que turmas em andamento são comparadas. ``null`` sem turmas. */
+export function pontoEmComum(turmas: Turma[]): number | null {
+    const ultimos = turmas.flatMap((t) =>
+        t.pontos.length ? [t.pontos.at(-1)!.anos] : []
+    );
+    return ultimos.length ? Math.min(...ultimos) : null;
+}
+
+/** A turma cortada no ponto ``anos`` (anos desde o ingresso), pra comparar
+ * turmas em andamento no mesmo momento do caminho: as contas de situação
+ * final, desistência a cada ano e permanência passam a valer nesse ponto (o
+ * prazo vira o que tem ``anos`` como ponto final — ver ``anosFinal``). As que
+ * dependem do prazo de verdade (no prazo, tempo até concluir) não valem. */
+export function turmaAte(t: Turma, anos: number): Turma {
+    return {
+        ...t,
+        prazo: anos - ANOS_ALEM_DO_PRAZO + 1,
+        pontos: t.pontos.filter((p) => p.anos <= anos),
+        madura: false,
+    };
 }
 
 /** Os indicadores de um conjunto de turmas maduras (pesados pelos

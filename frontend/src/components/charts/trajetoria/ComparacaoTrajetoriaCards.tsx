@@ -13,9 +13,11 @@ import {
 import { formatDecimal, formatPercent } from "@/lib/format";
 import {
     anuaisPorAno,
+    descreverPonto,
     indicadoresTurmas,
     permanenciaPorAno,
     situacaoFinalMedia,
+    type PontoComparado,
     type Turma,
 } from "@/lib/trajetoria";
 
@@ -37,6 +39,8 @@ export function IndicadoresTrajetoriaCards({
     a,
     b,
     titulo,
+    subtitulo = "Turma madura mais recente de cada curso",
+    ponto = null,
     contarCursos = false,
     agregado = true,
     rodape,
@@ -45,6 +49,10 @@ export function IndicadoresTrajetoriaCards({
     a: Turma[];
     b: Turma[];
     titulo: string;
+    subtitulo?: string;
+    /** Turmas em andamento, cortadas neste ponto: os indicadores que dependem
+     * do fim do prazo (no prazo, tempo até concluir) ficam vazios. */
+    ponto?: PontoComparado | null;
     /** Mostra quantos cursos entram em cada lado (só entre unidades: do lado
      * Brasil, são os mesmos cursos). */
     contarCursos?: boolean;
@@ -52,8 +60,10 @@ export function IndicadoresTrajetoriaCards({
     agregado?: boolean;
     rodape: ReactNode;
 }) {
-    const ia = indicadoresTurmas(a);
-    const ib = indicadoresTurmas(b);
+    const semPrazo = (i: ReturnType<typeof indicadoresTurmas>) =>
+        ponto ? { ...i, noPrazo: null, tempo: null } : i;
+    const ia = semPrazo(indicadoresTurmas(a));
+    const ib = semPrazo(indicadoresTurmas(b));
     const anuaisA = new Map(anuaisPorAno(a).map((p) => [p.anos, p.TADA]));
     const anuaisB = new Map(anuaisPorAno(b).map((p) => [p.anos, p.TADA]));
     const anos = [...new Set([...anuaisA.keys(), ...anuaisB.keys()])].sort(
@@ -68,8 +78,12 @@ export function IndicadoresTrajetoriaCards({
         <div className={GRADE}>
             <LadoALadoCard
                 titulo={titulo}
-                subtitulo="Turma madura mais recente de cada curso"
-                info="Situação final das turmas maduras (conclusão TCA, desistência TDA, permanência TAP), conclusão no prazo, desistência no 1º ano e tempo até concluir, lado a lado. O ✓ marca o lado à frente em cada linha."
+                subtitulo={subtitulo}
+                info={
+                    ponto
+                        ? `Turmas em andamento, comparadas no mesmo ponto (${descreverPonto(ponto)}): conclusão, desistência e permanência até ali, e a desistência no 1º ano. Conclusão no prazo e tempo até concluir só existem quando a turma termina. O ✓ marca o lado à frente em cada linha.`
+                        : "Situação final das turmas maduras (conclusão TCA, desistência TDA, permanência TAP), conclusão no prazo, desistência no 1º ano e tempo até concluir, lado a lado. O ✓ marca o lado à frente em cada linha."
+                }
                 lados={lados}
                 linhas={[
                     {
@@ -143,9 +157,11 @@ export function IndicadoresTrajetoriaCards({
                 formato={(v) => formatPercent(v, 1)}
                 maiorMelhor={false}
                 rodape={
-                    agregado
-                        ? "Médias pesadas pelos ingressantes, até dois anos depois do prazo de cada curso: nos últimos anos entram só os cursos mais longos. Desistência inclui transferência para outro curso."
-                        : "Até dois anos depois do prazo de cada curso. Desistência inclui transferência para outro curso."
+                    ponto
+                        ? `Até ${ponto.ano + ponto.anos}, o ${ponto.anos + 1}º ano do curso: as turmas ainda estão em andamento. Desistência inclui transferência para outro curso.`
+                        : agregado
+                          ? "Médias pesadas pelos ingressantes, até dois anos depois do prazo de cada curso: nos últimos anos entram só os cursos mais longos. Desistência inclui transferência para outro curso."
+                          : "Até dois anos depois do prazo de cada curso. Desistência inclui transferência para outro curso."
                 }
             />
         </div>
@@ -160,11 +176,14 @@ export function SituacaoPermanenciaCards({
     a,
     b,
     agregado,
+    ponto = null,
 }: {
     lados: Lados;
     a: Turma[];
     b: Turma[];
     agregado: boolean;
+    /** Turmas em andamento, cortadas neste ponto (ver ``PontoComparado``). */
+    ponto?: PontoComparado | null;
 }) {
     const lado = (l: "a" | "b", turmas: Turma[]): LadoTrajetoria => ({
         lado: l,
@@ -179,10 +198,18 @@ export function SituacaoPermanenciaCards({
         <div className={GRADE}>
             <SituacaoLadosCard
                 itens={itens}
+                titulo={ponto ? `Situação em ${ponto.ano + ponto.anos}` : undefined}
+                info={
+                    ponto
+                        ? `Onde estavam as turmas de ${ponto.ano} de cada lado em ${ponto.ano + ponto.anos} (${ponto.anos + 1}º ano do curso): quantos já concluíram, desistiram ou ainda estão cursando. As turmas estão em andamento: os números ainda mudam.`
+                        : undefined
+                }
                 subtitulo={
-                    agregado
-                        ? "Média das turmas maduras dos cursos, dois anos depois do prazo"
-                        : "Turma madura de cada curso, dois anos depois do prazo"
+                    ponto
+                        ? `Turmas de ${ponto.ano} em andamento, no ${ponto.anos + 1}º ano do curso`
+                        : agregado
+                          ? "Média das turmas maduras dos cursos, dois anos depois do prazo"
+                          : "Turma madura de cada curso, dois anos depois do prazo"
                 }
                 rodape="Desistência inclui transferência para outro curso, inclusive dentro da mesma instituição."
             />
@@ -190,9 +217,11 @@ export function SituacaoPermanenciaCards({
                 itens={itens}
                 subtitulo="Taxa de Permanência (TAP): % dos ingressantes ainda no curso"
                 rodape={
-                    agregado
-                        ? "Média pesada pelos ingressantes: nos últimos anos entram só os cursos mais longos."
-                        : "Cada curso tem a própria turma madura (os anos de ingresso podem ser diferentes)."
+                    ponto
+                        ? `Até ${ponto.ano + ponto.anos}: a curva continua enquanto as turmas estiverem em andamento.`
+                        : agregado
+                          ? "Média pesada pelos ingressantes: nos últimos anos entram só os cursos mais longos."
+                          : "Cada curso tem a própria turma madura (os anos de ingresso podem ser diferentes)."
                 }
             />
         </div>

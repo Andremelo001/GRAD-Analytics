@@ -76,8 +76,9 @@ def _trajetoria_madura(
     ingressantes — o peso do curso nas médias da unidade — e a curva ano a
     ano: ``[anos desde o ingresso, % cursando, % concluiu, % desistiu]``).
     ``turmas``: todas as turmas maduras, da mais antiga à mais recente, no
-    mesmo formato (o seletor de turma das Comparações da Trajetória). ``None``
-    sem turma madura.
+    mesmo formato (o seletor de turma das Comparações da Trajetória);
+    ``turmas_em_andamento``: as que ainda não são maduras (comparadas no
+    ponto que as duas viveram). ``None`` sem turma madura.
     """
     local = data.trajetoria[data.trajetoria["codigo_curso"] == codigo_curso]
     maduras = course_profile.turmas_maduras(local)
@@ -95,6 +96,10 @@ def _trajetoria_madura(
         "grau_academico": _texto("tp_grau_academico_desc"),
         **turmas[-1],
         "turmas": turmas,
+        "turmas_em_andamento": [
+            _turma(local, ano, prazo)
+            for ano, prazo in course_profile.turmas_em_andamento(local)
+        ],
     }
 
 

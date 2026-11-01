@@ -32,11 +32,16 @@ export interface LadoTrajetoria {
  * prazo + 2 anos). Passar o mouse numa parte destaca a situação nos dois. */
 export function SituacaoLadosCard({
     itens,
+    titulo = "Situação final",
+    info = "Como terminaram as turmas maduras de cada lado, dois anos depois do prazo: quantos concluíram, desistiram ou ainda estão cursando.",
     subtitulo,
     rodape,
     className,
 }: {
     itens: LadoTrajetoria[];
+    /** Turmas em andamento: "Situação em 2024", com o ``info`` delas. */
+    titulo?: string;
+    info?: string;
     subtitulo: string;
     rodape: string;
     className?: string;
@@ -54,8 +59,8 @@ export function SituacaoLadosCard({
     return (
         <Card
             expansivel
-            title="Situação final"
-            info="Como terminaram as turmas maduras de cada lado, dois anos depois do prazo: quantos concluíram, desistiram ou ainda estão cursando."
+            title={titulo}
+            info={info}
             subtitle={subtitulo}
             className={className}
         >

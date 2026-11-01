@@ -161,6 +161,13 @@ def test_turmas_maduras_lists_every_mature_cohort_in_order() -> None:
     assert course_profile.turmas_maduras(_turmas(5, {2020: 4})) == []
 
 
+def test_turmas_em_andamento_are_the_cohorts_not_yet_mature() -> None:
+    frame = _turmas(4, {2019: 5, 2015: 9, 2020: 4, 2018: 6})
+    assert course_profile.turmas_em_andamento(frame) == [(2020, 4)]
+    sem_prazo = _turmas(5, {2020: 4}).drop(columns=["prazo_integralizacao"])
+    assert course_profile.turmas_em_andamento(sem_prazo) == []
+
+
 def test_turma_madura_none_without_mature_cohort_or_prazo() -> None:
     assert course_profile.turma_madura(_turmas(5, {2020: 4})) is None
     sem_prazo = _turmas(5, {2010: 9}).drop(columns=["prazo_integralizacao"])

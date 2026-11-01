@@ -457,6 +457,9 @@ export interface TrajetoriaResumo extends TurmaResumo {
     nome_cine_area_geral: string | null;
     grau_academico: string | null;
     turmas?: TurmaResumo[];
+    /** As turmas ainda não maduras (em andamento), da mais antiga à mais
+     * recente. */
+    turmas_em_andamento?: TurmaResumo[];
 }
 
 export interface ResumoUnidades {

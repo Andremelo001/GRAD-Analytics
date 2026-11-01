@@ -27,8 +27,12 @@ import { formatPercent, toTitleCase } from "@/lib/format";
 import {
     situacaoFinal,
     situacaoFinalMedia,
+    pontoEmComum,
+    turmaAte,
     turmaResumo,
+    turmasEmAndamentoResumo,
     turmasResumo,
+    type PontoComparado,
     type Turma,
 } from "@/lib/trajetoria";
 import type { ResumoUnidades, ResumoCurso } from "@/types/dashboard";
@@ -129,12 +133,19 @@ interface PropsModo {
 
 type UnidadeResumo = ResumoUnidades["unidades"][number];
 
-/** A turma de um curso do resumo: a do ano pedido (``null`` se ele não tem
- * turma madura nesse ano) ou, sem ano, a madura mais recente. */
+/** Todas as turmas de um curso do resumo: as maduras e as em andamento. */
+const todasDoCurso = (c: ResumoCurso): Turma[] =>
+    c.trajetoria
+        ? [...turmasResumo(c.trajetoria), ...turmasEmAndamentoResumo(c.trajetoria)]
+        : [];
+
+/** A turma de um curso do resumo: a do ano pedido, madura ou em andamento
+ * (``null`` se ele não tem turma nesse ano), ou, sem ano, a madura mais
+ * recente. */
 function turmaDoCurso(c: ResumoCurso, ano: number | null): Turma | null {
     if (!c.trajetoria) return null;
     if (ano === null) return turmaResumo(c.trajetoria);
-    return turmasResumo(c.trajetoria).find((t) => t.ano === ano) ?? null;
+    return todasDoCurso(c).find((t) => t.ano === ano) ?? null;
 }
 
 /** As turmas dos cursos de uma unidade do resumo (ver ``turmaDoCurso``). */
@@ -144,15 +155,67 @@ const turmasDaUnidade = (cp: UnidadeResumo, ano: number | null = null): Turma[] 
         return t ? [t] : [];
     });
 
-/** Os anos com turma madura num conjunto de cursos e quantos cursos têm cada
- * um, do mais recente ao mais antigo (as opções do seletor de turma). */
-function anosDeTurma(cursos: ResumoCurso[]): [number, number][] {
-    const contagem = new Map<number, number>();
-    for (const c of cursos)
-        if (c.trajetoria)
-            for (const t of turmasResumo(c.trajetoria))
-                contagem.set(t.ano, (contagem.get(t.ano) ?? 0) + 1);
-    return [...contagem].sort(([x], [y]) => y - x);
+/** Um ano do seletor de turma: quantos cursos têm a turma e se alguma delas
+ * ainda está em andamento. */
+interface AnoDeTurma {
+    ano: number;
+    cursos: number;
+    andamento: boolean;
+}
+
+/** Os anos com turma (madura ou em andamento) num conjunto de turmas, do
+ * mais recente ao mais antigo: as opções do seletor de turma. */
+function anosDeTurma(turmas: Turma[]): AnoDeTurma[] {
+    const porAno = new Map<number, AnoDeTurma>();
+    for (const t of turmas) {
+        const atual = porAno.get(t.ano) ?? { ano: t.ano, cursos: 0, andamento: false };
+        atual.cursos += 1;
+        atual.andamento ||= !t.madura;
+        porAno.set(t.ano, atual);
+    }
+    return [...porAno.values()].sort((x, y) => y.ano - x.ano);
+}
+
+/** Com alguma turma em andamento, as dos dois lados cortadas no último ano
+ * que todas já viveram: comparadas no mesmo momento do caminho. Só turmas
+ * maduras (ou "mais recente"): como vieram. */
+function noMesmoPonto(
+    ano: number | null,
+    a: Turma[],
+    b: Turma[]
+): { a: Turma[]; b: Turma[]; ponto: PontoComparado | null } {
+    if (ano === null || [...a, ...b].every((t) => t.madura))
+        return { a, b, ponto: null };
+    const anos = pontoEmComum([...a, ...b]);
+    if (anos === null) return { a, b, ponto: null };
+    return {
+        a: a.map((t) => turmaAte(t, anos)),
+        b: b.map((t) => turmaAte(t, anos)),
+        ponto: { ano, anos },
+    };
+}
+
+/** O aviso das turmas em andamento, acima dos cards: em que ponto elas são
+ * comparadas e que os números ainda mudam. */
+function AvisoAndamento({
+    ponto,
+    agregado,
+}: {
+    ponto: PontoComparado;
+    agregado: boolean;
+}) {
+    return (
+        <p className="bg-surface ring-card-ring text-text-secondary rounded-2xl px-5 py-3 text-[13px] leading-relaxed ring-1 lg:col-span-12">
+            <strong className="text-ink">
+                As turmas de {ponto.ano} ainda não terminaram.
+            </strong>{" "}
+            Os números mostram como elas estavam em {ponto.ano + ponto.anos}, no{" "}
+            {ponto.anos + 1}º ano do curso, que é o dado mais recente. Como ainda há
+            alunos cursando, esses números vão mudar.
+            {agregado &&
+                ` Os cursos têm durações diferentes: em ${ponto.ano + ponto.anos}, os mais curtos já estavam perto do fim e os mais longos, ainda no meio.`}
+        </p>
+    );
 }
 
 /** O ano mais perto de ``ano`` numa lista (empate: o mais recente). */
@@ -167,8 +230,9 @@ function maisProximo(ano: number, anos: number[]): number | null {
 const MAIS_RECENTE = "recente";
 
 /** Seletor de turma do topo das Comparações (canto superior direito): a mais
- * recente de cada curso ou um dos anos com turma madura do lado A — a base é
- * sempre o lado A; o B pode não ter a turma (aí a página avisa). */
+ * recente de cada curso ou um dos anos com turma do lado A — a base é sempre o
+ * lado A; o B pode não ter a turma (aí a página avisa). Anos com turma em
+ * andamento vêm marcados. */
 function SeletorTurma({
     turma,
     anos,
@@ -176,14 +240,15 @@ function SeletorTurma({
     atualizar,
 }: {
     turma: number | null;
-    anos: number[];
+    anos: AnoDeTurma[];
     /** A segunda linha de cada ano (ex.: quantos cursos têm a turma). */
-    detalhe?: (ano: number) => string;
+    detalhe?: (ano: AnoDeTurma) => string;
     atualizar: Atualizar;
 }) {
     return (
         <ChartSelect
             label="Turma"
+            linhaUnica
             value={turma === null ? MAIS_RECENTE : String(turma)}
             options={[
                 {
@@ -191,10 +256,12 @@ function SeletorTurma({
                     label: "Turma mais recente",
                     descricao: "A madura mais recente de cada curso",
                 },
-                ...anos.map((ano) => ({
-                    value: String(ano),
-                    label: `Turma de ${ano}`,
-                    descricao: detalhe?.(ano),
+                ...anos.map((a) => ({
+                    value: String(a.ano),
+                    label: `Turma de ${a.ano}${a.andamento ? " · em andamento" : ""}`,
+                    // no botão fechado, mais curto: o rótulo inteiro não cabe
+                    curto: a.andamento ? `Turma ${a.ano} · em andamento` : undefined,
+                    descricao: detalhe?.(a),
                 })),
             ]}
             onChange={(v) => atualizar({ turma: v === MAIS_RECENTE ? null : v })}
@@ -277,13 +344,19 @@ function ComparacaoUnidades({
             </Card>
         );
     }
-    // a turma: os anos com turma madura nos cursos da unidade A (a base);
-    // um ano que A não tem (link antigo, outra unidade A) vale "mais recente"
-    const anosA = anosDeTurma(ca.cursos);
+    // a turma: os anos com turma (madura ou em andamento) nos cursos da unidade
+    // A (a base); um ano que A não tem (link antigo, outra unidade A) vale
+    // "mais recente"
+    const anosA = anosDeTurma(ca.cursos.flatMap(todasDoCurso));
     const comTurmaA = turmasDaUnidade(ca).length;
-    const ano = turma !== null && anosA.some(([x]) => x === turma) ? turma : null;
-    const ta = turmasDaUnidade(ca, ano);
-    const tb = turmasDaUnidade(cb, ano);
+    const ano = turma !== null && anosA.some((x) => x.ano === turma) ? turma : null;
+    // com turma em andamento, os dois lados no mesmo ponto
+    const comparadas = noMesmoPonto(
+        ano,
+        turmasDaUnidade(ca, ano),
+        turmasDaUnidade(cb, ano)
+    );
+    const { a: ta, b: tb, ponto } = comparadas;
     const lados = { a: nomeUnidade(ca), b: nomeUnidade(cb) };
     const ficha = (cp: UnidadeResumo, turmas: Turma[]) => {
         const final = situacaoFinalMedia(turmas);
@@ -295,7 +368,12 @@ function ComparacaoUnidades({
                         ano === null ? "com turma madura" : `com a turma de ${ano}`,
                         turmas.length,
                     ],
-                    ["Conclusão", final ? formatPercent(final.concluiu, 0) : "—"],
+                    [
+                        ponto
+                            ? `Concluíram até ${ponto.ano + ponto.anos}`
+                            : "Conclusão",
+                        final ? formatPercent(final.concluiu, 0) : "—",
+                    ],
                 ]}
             />
         );
@@ -307,13 +385,15 @@ function ComparacaoUnidades({
     const anos = [...ta, ...tb].map((t) => t.ano);
     const [de, ate] = [Math.min(...anos), Math.max(...anos)];
     // B sem nenhum curso com a turma: o ano mais perto que os dois têm
-    const anosB = new Set(anosDeTurma(cb.cursos).map(([x]) => x));
+    const anosB = new Set(
+        anosDeTurma(cb.cursos.flatMap(todasDoCurso)).map((x) => x.ano)
+    );
     const sugestao =
         ano === null
             ? null
             : maisProximo(
                   ano,
-                  anosA.map(([x]) => x).filter((x) => anosB.has(x))
+                  anosA.map((x) => x.ano).filter((x) => anosB.has(x))
               );
 
     return (
@@ -345,9 +425,9 @@ function ComparacaoUnidades({
                 acao={
                     <SeletorTurma
                         turma={ano}
-                        anos={anosA.map(([x]) => x)}
+                        anos={anosA}
                         detalhe={(x) =>
-                            `${anosA.find(([y]) => y === x)?.[1] ?? 0} de ${comTurmaA} cursos de ${lados.a}`
+                            `${x.cursos} de ${comTurmaA} cursos de ${lados.a}`
                         }
                         atualizar={atualizar}
                     />
@@ -358,20 +438,30 @@ function ComparacaoUnidades({
                 {ano !== null && tb.length === 0 ? (
                     <SemTurma
                         titulo={`Sem a turma de ${ano}`}
-                        texto={`Nenhum curso de ${lados.b} tem a turma de ${ano} madura (que já teve tempo de se formar).`}
+                        texto={`Nenhum curso de ${lados.b} tem a turma de ${ano}.`}
                         sugestao={sugestao}
                         atualizar={atualizar}
                     />
                 ) : (
                     <>
-                        <p className="text-text-muted -mt-1 text-[12px] lg:col-span-12">
-                            {lados.a} × {lados.b} ·{" "}
-                            {ano === null
-                                ? `turmas maduras de ${de === ate ? de : `${de} a ${ate}`}`
-                                : `turmas de ${ano}: ${ta.length} ${ta.length === 1 ? "curso" : "cursos"} × ${tb.length} ${tb.length === 1 ? "curso" : "cursos"}`}
-                        </p>
+                        {ponto ? (
+                            <AvisoAndamento ponto={ponto} agregado />
+                        ) : (
+                            <p className="text-text-muted -mt-1 text-[12px] lg:col-span-12">
+                                {lados.a} × {lados.b} ·{" "}
+                                {ano === null
+                                    ? `turmas maduras de ${de === ate ? de : `${de} a ${ate}`}`
+                                    : `turmas de ${ano}: ${ta.length} ${ta.length === 1 ? "curso" : "cursos"} × ${tb.length} ${tb.length === 1 ? "curso" : "cursos"}`}
+                            </p>
+                        )}
                         <IndicadoresTrajetoriaCards
                             titulo="Indicadores da unidade"
+                            subtitulo={
+                                ano === null
+                                    ? "Turma madura mais recente de cada curso"
+                                    : `Turmas de ${ano} dos cursos de cada unidade`
+                            }
+                            ponto={ponto}
                             lados={lados}
                             a={ta}
                             b={tb}
@@ -379,7 +469,7 @@ function ComparacaoUnidades({
                             rodape={
                                 ano === null
                                     ? "Cada unidade tem cursos diferentes: as médias resumem as turmas maduras dos cursos de cada uma, pesadas pelos ingressantes."
-                                    : `Cada unidade tem cursos diferentes: as médias resumem as turmas de ${ano} dos cursos de cada uma que já tiveram tempo de se formar, pesadas pelos ingressantes.`
+                                    : `Cada unidade tem cursos diferentes: as médias resumem as turmas de ${ano} dos cursos de cada uma, pesadas pelos ingressantes.`
                             }
                         />
                         <SituacaoPermanenciaCards
@@ -387,6 +477,7 @@ function ComparacaoUnidades({
                             a={ta}
                             b={tb}
                             agregado
+                            ponto={ponto}
                         />
                     </>
                 )}
@@ -512,19 +603,31 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, turma, atualizar }: Props
             .sort((x, y) => conclusao(y) - conclusao(x))[0] ??
         pares[0];
 
-    // a turma: os anos com turma madura do curso A (a base); um ano que A não
-    // tem vale "mais recente". As turmas maduras de A e de B (qualquer curso
-    // do Brasil) vêm do arquivo da área
-    // (enquanto a área baixa, as de A vêm do resumo, que já chegou: o
-    // seletor e a turma da URL valem desde o começo)
-    const turmasA =
-        linhaA?.turmas ?? (cursoA ? turmasResumo(cursoA.curso.trajetoria) : []);
+    // a turma: os anos com turma (madura ou em andamento) do curso A (a base);
+    // um ano que A não tem vale "mais recente". As turmas de A e de B
+    // (qualquer curso do Brasil) vêm do arquivo da área (enquanto a área
+    // baixa, as de A vêm do resumo, que já chegou: o seletor e a turma da URL
+    // valem desde o começo)
+    const turmasA = linhaA
+        ? [...linhaA.turmas, ...linhaA.andamento]
+        : cursoA
+          ? [
+                ...turmasResumo(cursoA.curso.trajetoria),
+                ...turmasEmAndamentoResumo(cursoA.curso.trajetoria),
+            ]
+          : [];
     const ano = turma !== null && turmasA.some((t) => t.ano === turma) ? turma : null;
-    const turmaA =
-        linhaA && (ano === null ? linhaA.turma : turmasA.find((t) => t.ano === ano));
-    const turmasB = cursoB?.turmas ?? [];
-    const turmaB =
-        cursoB && (ano === null ? cursoB.turma : turmasB.find((t) => t.ano === ano));
+    const turmasB = cursoB ? [...cursoB.turmas, ...cursoB.andamento] : [];
+    const doAno = (turmas: Turma[], recente: Turma | undefined) =>
+        ano === null ? recente : turmas.find((t) => t.ano === ano);
+    const turmaA0 = linhaA && doAno(turmasA, linhaA.turma);
+    const turmaB0 = cursoB && doAno(turmasB, cursoB.turma);
+    // com turma em andamento, as duas no mesmo ponto
+    const comparadas =
+        turmaA0 && turmaB0 ? noMesmoPonto(ano, [turmaA0], [turmaB0]) : null;
+    const ponto = comparadas?.ponto ?? null;
+    const turmaA = comparadas ? comparadas.a[0] : turmaA0;
+    const turmaB = comparadas ? comparadas.b[0] : turmaB0;
     const sugestao =
         ano === null
             ? null
@@ -559,8 +662,16 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, turma, atualizar }: Props
         return (
             <Ficha
                 itens={[
-                    ["Conclusão", t && final ? formatPercent(final.concluiu, 0) : "—"],
-                    ["Turma", t ? t.ano : `sem ${ano}`],
+                    [
+                        ponto
+                            ? `Concluíram até ${ponto.ano + ponto.anos}`
+                            : "Conclusão",
+                        t && final ? formatPercent(final.concluiu, 0) : "—",
+                    ],
+                    [
+                        "Turma",
+                        t ? `${t.ano}${ponto ? " · em andamento" : ""}` : `sem ${ano}`,
+                    ],
                     [
                         "Rede",
                         c.publica === true
@@ -605,9 +716,9 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, turma, atualizar }: Props
                 acao={
                     <SeletorTurma
                         turma={ano}
-                        anos={turmasA.map((t) => t.ano).reverse()}
+                        anos={anosDeTurma(turmasA)}
                         detalhe={(x) =>
-                            `${turmasA.find((t) => t.ano === x)?.ingressantes ?? "—"} ingressantes no curso A`
+                            `${turmasA.find((t) => t.ano === x.ano)?.ingressantes ?? "—"} ingressantes no curso A`
                         }
                         atualizar={atualizar}
                     />
@@ -633,7 +744,9 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, turma, atualizar }: Props
                 ) : linhaA && cursoB && ano !== null && !turmaB ? (
                     <SemTurma
                         titulo={`Sem a turma de ${ano}`}
-                        texto={`${lados.b} não tem a turma de ${ano} madura (que já teve tempo de se formar). As turmas maduras dele são de ${turmasB.map((t) => t.ano).join(", ")}.`}
+                        texto={`${lados.b} não tem a turma de ${ano}. As turmas dele são de ${turmasB
+                            .map((t) => `${t.ano}${t.madura ? "" : " (em andamento)"}`)
+                            .join(", ")}.`}
                         sugestao={sugestao}
                         atualizar={atualizar}
                     />
@@ -647,14 +760,24 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, turma, atualizar }: Props
                     </Card>
                 ) : (
                     <>
-                        <p className="text-text-muted -mt-1 text-[12px] lg:col-span-12">
-                            {daArea.area}
-                            {linhaA.grau && ` · ${linhaA.grau.toLowerCase()}`} · cursos{" "}
-                            {linhaA.ead ? "a distância" : "presenciais"} ·{" "}
-                            {pares.length + 1} com turma madura no Brasil
-                        </p>
+                        {ponto ? (
+                            <AvisoAndamento ponto={ponto} agregado={false} />
+                        ) : (
+                            <p className="text-text-muted -mt-1 text-[12px] lg:col-span-12">
+                                {daArea.area}
+                                {linhaA.grau && ` · ${linhaA.grau.toLowerCase()}`} ·
+                                cursos {linhaA.ead ? "a distância" : "presenciais"} ·{" "}
+                                {pares.length + 1} com turma madura no Brasil
+                            </p>
+                        )}
                         <IndicadoresTrajetoriaCards
                             titulo="Indicadores do curso"
+                            subtitulo={
+                                ano === null
+                                    ? "Turma madura mais recente de cada curso"
+                                    : `Turma de ${ano} de cada curso`
+                            }
+                            ponto={ponto}
                             lados={lados}
                             a={[turmaA]}
                             b={[turmaB]}
@@ -670,6 +793,7 @@ function ComparacaoCursos({ resumo, seletorModo, a, b, turma, atualizar }: Props
                             a={[turmaA]}
                             b={[turmaB]}
                             agregado={false}
+                            ponto={ponto}
                         />
                     </>
                 )}

@@ -490,7 +490,7 @@ curso do Brasil**: uma linha por curso, com IES, município, grau, modalidade
 e a turma madura mais recente (prazo, ano de ingresso, ingressantes e a curva
 — permanência, conclusão e desistência acumuladas, ano a ano), e, na coluna
 `turmas_anteriores`, as outras turmas maduras (`[ano, prazo, ingressantes,
-curva]`). É o Mapa (que usa a mais recente) e o "entre cursos da mesma área"
+curva]`), e em `turmas_em_andamento` as ainda não maduras, no mesmo formato. É o Mapa (que usa a mais recente) e o "entre cursos da mesma área"
 das Comparações da aba Trajetória (que usa a turma escolhida no seletor).
 Mesmo formato colunar e compacto do `areas_qualidade/`.
 
@@ -499,7 +499,8 @@ Mesmo formato colunar e compacto do `areas_qualidade/`.
 ano, CPC, faixa, Enade, IDD e as 9 notas da avaliação mais recente, as
 edições do CPC em `historico`, e a turma madura em `trajetoria` — área CINE,
 grau, prazo, ingressantes e a curva, com todas as turmas maduras em
-`trajetoria.turmas`) num arquivo só, gravado compacto, pra busca e pra
+`trajetoria.turmas` e as em andamento em `trajetoria.turmas_em_andamento`) num
+arquivo só, gravado compacto, pra busca e pra
 comparar unidades e cursos sem baixar o JSON de cada unidade.
 
 **Alertas automáticos (F)**: pensado para a tela inicial (o painel ainda não
