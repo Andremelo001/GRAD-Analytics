@@ -40,6 +40,16 @@ export const COMPONENTES: readonly Componente[] = [
     { key: "oportunidade_ampliacao", curto: "Oport.", nome: "Oportunidades de ampliação da formação", peso: 0.025, bloco: "Percepção" },
 ] as const; // prettier-ignore
 
+/** Composição do Conceito Enade contínuo: só a prova dos concluintes, 25% de
+ * formação geral e 75% de componente específico (notas padronizadas, 0-5).
+ * Conferido com os dados: bate com o ``conceito_enade_continuo`` de todos os
+ * cursos com as duas notas (erro ≤ 0,001). Até 2017 o INEP não divulgou as
+ * duas padronizadas. */
+export const COMPONENTES_ENADE: readonly Componente[] = [
+    { key: "formacao_geral", curto: "FG", nome: "Formação geral", peso: 0.25, bloco: "Desempenho" },
+    { key: "componente_especifico", curto: "CE", nome: "Componente específico", peso: 0.75, bloco: "Desempenho" },
+] as const; // prettier-ignore
+
 /** Limite inferior (CPC contínuo) de cada faixa: 2 ≥ 0,945 … 5 ≥ 3,945. */
 export const FAIXA_LIMITES = [0.945, 1.945, 2.945, 3.945] as const;
 

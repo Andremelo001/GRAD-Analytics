@@ -88,6 +88,7 @@ export function CursoTrajetoriaCard({
                         turmas={curso.turmas}
                         valor={turma.ano}
                         onChange={(a) => typeof a === "number" && onTurma(a)}
+                        alinhar="direita"
                     />
                 </div>
             </div>

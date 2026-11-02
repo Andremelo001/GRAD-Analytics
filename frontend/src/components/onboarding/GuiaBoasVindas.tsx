@@ -94,6 +94,11 @@ const PASSOS: Passo[] = [
                 <strong>Comparações</strong>: duas unidades, ou dois cursos da mesma
                 área.
             </>,
+            <>
+                <strong>Por que desde 2015</strong>: antes disso o INEP dava uma nota só
+                pra todos os cursos da mesma área numa cidade, então não dá pra saber a
+                de cada curso.
+            </>,
         ],
     },
     {

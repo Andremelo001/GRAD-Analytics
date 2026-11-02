@@ -1,12 +1,14 @@
 import { useRef, useState } from "react";
 
 import { Card } from "@/components/cards/Card";
+import { ChartSelect } from "@/components/charts/ChartSelect";
 import { DataTable } from "@/components/charts/DataTable";
 import { TextoAjustado } from "@/components/charts/TextoAjustado";
 import { useChartTheme } from "@/hooks/useChartTheme";
 import { useElementSize } from "@/hooks/useElementSize";
 import {
     COMPONENTES,
+    COMPONENTES_ENADE,
     contribuicao,
     notaDe,
     potencial,
@@ -14,6 +16,13 @@ import {
 } from "@/lib/cpc";
 import { formatDecimal } from "@/lib/format";
 import type { AvaliacaoCurso } from "@/lib/qualidade";
+import { cn } from "@/lib/utils";
+
+type Indicador = "cpc" | "enade";
+
+// o indicador escolhido fica entre cursos e anos (a página monta o card de
+// novo ao trocar de curso)
+let indicadorEscolhido: Indicador = "cpc";
 
 /** Nome do eixo no radar: mais curto que o ``nome`` (cabe nas pontas) e
  * mais claro que o ``curto`` da tabela. */
@@ -45,7 +54,10 @@ interface Linha {
  * desempenho, docentes, percepção), o anel externo é o máximo de cada um e o
  * polígono vai até a fração conquistada (nota / 5). Cada ponta mostra os
  * pontos e o máximo, que já carrega o peso. A soma das contribuições é o
- * CPC; passar o mouse num eixo detalha o componente no topo. */
+ * CPC; passar o mouse num eixo detalha o componente no topo. O seletor troca
+ * pro Conceito Enade (formação geral e componente específico): com dois
+ * componentes não há radar, então são duas barras, cada trilho do tamanho do
+ * máximo do componente. */
 export function ContribuicaoCard({
     curso,
     className,
@@ -54,12 +66,17 @@ export function ContribuicaoCard({
     className?: string;
 }) {
     const CHART = useChartTheme();
+    const [indicador, setIndicador] = useState<Indicador>(indicadorEscolhido);
+    const enade = indicador === "enade";
+    const componentes = enade ? COMPONENTES_ENADE : COMPONENTES;
+    const nomeIndicador = enade ? "Conceito Enade" : "CPC";
+    const valor = enade ? curso.enade : curso.cpc;
     const [hover, setHover] = useState<string | null>(null);
     const destaque = hover;
     const boxRef = useRef<HTMLDivElement>(null);
     const { width: W, height: H } = useElementSize(boxRef);
 
-    const linhas: Linha[] = COMPONENTES.flatMap((c) => {
+    const linhas: Linha[] = componentes.flatMap((c) => {
         const nota = notaDe(curso.perfil, c.key);
         return nota === null
             ? []
@@ -72,7 +89,7 @@ export function ContribuicaoCard({
                   },
               ];
     });
-    const semNota = COMPONENTES.length - linhas.length;
+    const semNota = componentes.length - linhas.length;
     const soma = linhas.reduce((t, l) => t + l.ganho, 0);
     const ativa = linhas.find((l) => l.componente.key === destaque);
 
@@ -80,13 +97,38 @@ export function ContribuicaoCard({
         <Card
             expansivel="tela"
             title="De onde vem a nota"
-            info="Quanto cada componente do CPC somou à nota do curso (nota padronizada × peso), comparado ao máximo que ele poderia somar."
-            subtitle="Pontos de CPC que cada componente trouxe (nota × peso), do máximo possível"
+            info={`Quanto cada componente do ${nomeIndicador} somou à nota do curso (nota padronizada × peso), comparado ao máximo que ele poderia somar.${enade ? " O Conceito Enade vem só da prova dos concluintes: 25% de formação geral e 75% de componente específico." : ""} Ao lado do título, troque entre o CPC e o Conceito Enade.`}
+            subtitle="Pontos de cada componente (nota × peso), do máximo possível"
             className={className}
+            // o indicador ao lado do título, como o do "Evolução entre ciclos"
+            tituloExtra={
+                <div className="text-text-secondary text-[13px] lg:max-xl:text-[11.5px]">
+                    <span className="text-text-muted mr-2 lg:max-xl:mr-1">|</span>
+                    <ChartSelect
+                        variant="inline"
+                        tone="surface"
+                        label="Indicador"
+                        value={indicador}
+                        options={[
+                            { value: "cpc", label: "CPC" },
+                            { value: "enade", label: "Conceito Enade" },
+                        ]}
+                        onChange={(v) => {
+                            indicadorEscolhido = v as Indicador;
+                            setIndicador(indicadorEscolhido);
+                            setHover(null);
+                        }}
+                    />
+                </div>
+            }
         >
             <div className="mt-3 flex min-h-[26px] items-center gap-3">
                 <p className="text-[26px] leading-none font-semibold tracking-[-0.02em] tabular-nums">
-                    {formatDecimal(ativa ? ativa.ganho : soma)}
+                    {ativa
+                        ? formatDecimal(ativa.ganho)
+                        : linhas.length > 0
+                          ? formatDecimal(soma)
+                          : "—"}
                 </p>
                 <TextoAjustado className="text-text-secondary min-w-0 flex-1">
                     {ativa ? (
@@ -101,8 +143,8 @@ export function ContribuicaoCard({
                             <span className="text-ink font-semibold">
                                 Soma das contribuições
                             </span>
-                            {curso.cpc !== null &&
-                                ` | CPC do curso ${formatDecimal(curso.cpc)}`}
+                            {valor !== null &&
+                                ` | ${nomeIndicador} do curso ${formatDecimal(valor)}`}
                         </>
                     )}
                 </TextoAjustado>
@@ -113,14 +155,32 @@ export function ContribuicaoCard({
                 className="relative mt-2 min-h-[300px] flex-1 sm:min-h-[380px]"
                 onMouseLeave={() => setHover(null)}
             >
-                {W > 0 && H > 0 && linhas.length >= 3 && (
-                    <Radar
-                        linhas={linhas}
-                        W={W}
-                        H={H}
-                        destaque={destaque}
-                        onHover={setHover}
-                    />
+                {enade ? (
+                    linhas.length > 0 ? (
+                        <Barras
+                            linhas={linhas}
+                            destaque={destaque}
+                            onHover={setHover}
+                        />
+                    ) : (
+                        <p className="text-text-muted absolute inset-0 flex items-center justify-center px-6 text-center text-[13px]">
+                            O INEP só divulga as notas padronizadas de formação geral e
+                            componente específico a partir de 2018: nas avaliações
+                            anteriores não dá pra decompor o Conceito Enade.
+                        </p>
+                    )
+                ) : (
+                    W > 0 &&
+                    H > 0 &&
+                    linhas.length >= 3 && (
+                        <Radar
+                            linhas={linhas}
+                            W={W}
+                            H={H}
+                            destaque={destaque}
+                            onHover={setHover}
+                        />
+                    )
                 )}
             </div>
 
@@ -161,6 +221,76 @@ export function ContribuicaoCard({
                 />
             </div>
         </Card>
+    );
+}
+
+/** O Conceito Enade em barras: uma por componente, o trilho do tamanho do
+ * máximo que ele pode trazer (o específico pesa 3× a formação geral) e o
+ * preenchimento até os pontos conquistados, nas cores do radar. */
+function Barras({
+    linhas,
+    destaque,
+    onHover,
+}: {
+    linhas: Linha[];
+    destaque: string | null;
+    onHover: (key: string | null) => void;
+}) {
+    const CHART = useChartTheme();
+    const maior = Math.max(...linhas.map((l) => l.maximo));
+    return (
+        <div className="absolute inset-0 flex flex-col justify-center gap-10 sm:px-4">
+            {linhas.map((l) => {
+                const ativo = destaque === l.componente.key;
+                const peso = `${(l.componente.peso * 100).toLocaleString("pt-BR")}%`;
+                return (
+                    <div
+                        key={l.componente.key}
+                        onMouseEnter={() => onHover(l.componente.key)}
+                        className={cn(
+                            "cursor-default transition-opacity duration-200",
+                            destaque && !ativo && "opacity-45"
+                        )}
+                    >
+                        <div className="flex items-baseline justify-between gap-3">
+                            <span
+                                className={cn(
+                                    "text-[12px]",
+                                    ativo ? "text-ink font-semibold" : "text-text-muted"
+                                )}
+                            >
+                                {l.componente.nome}
+                                <span className="text-text-muted text-[11px] font-normal">
+                                    {` ${peso}`}
+                                </span>
+                            </span>
+                            <span className="text-[15px] font-bold tabular-nums">
+                                {formatDecimal(l.ganho)}
+                                <span className="text-text-muted text-[12px] font-normal">
+                                    {` de ${formatDecimal(l.maximo)}`}
+                                </span>
+                            </span>
+                        </div>
+                        <div
+                            className="relative mt-2 h-7 rounded-md border"
+                            style={{
+                                width: `${(l.maximo / maior) * 100}%`,
+                                borderColor: CHART.reference,
+                            }}
+                        >
+                            <div
+                                className="absolute inset-y-[-1px] left-[-1px] rounded-md border-2"
+                                style={{
+                                    width: `calc(${Math.min(Math.max(l.ganho / l.maximo, 0), 1) * 100}% + 2px)`,
+                                    borderColor: CHART.brand,
+                                    background: `color-mix(in srgb, ${CHART.brand} ${ativo ? 38 : 26}%, transparent)`,
+                                }}
+                            />
+                        </div>
+                    </div>
+                );
+            })}
+        </div>
     );
 }
 

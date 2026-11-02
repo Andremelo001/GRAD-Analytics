@@ -1,5 +1,12 @@
 import { Check, ChevronDown } from "lucide-react";
-import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
+import {
+    useEffect,
+    useId,
+    useLayoutEffect,
+    useRef,
+    useState,
+    type KeyboardEvent,
+} from "react";
 import { createPortal } from "react-dom";
 
 import { rolarDentro } from "@/lib/rolar";
@@ -49,7 +56,9 @@ interface Option {
  * selecionada com ✓. Teclado: ↑/↓, Home/End, Enter/Espaço, Esc. ``size="sm"``
  * é a versão compacta, pra cards estreitos. ``variant="inline"`` é a versão
  * que entra no meio de uma frase (texto em negrito com a seta, sem pílula; lista
- * alinhada à esquerda); ``busy`` troca a seta por um indicador de carga. */
+ * alinhada à esquerda; ``alinhar="direita"``, pela seta, pra dentro do card —
+ * o do canto direito de um card); ``busy`` troca a seta por um indicador de
+ * carga. */
 export function ChartSelect({
     label,
     value,
@@ -60,6 +69,7 @@ export function ChartSelect({
     busy = false,
     tone = "band",
     linhaUnica = false,
+    alinhar,
 }: {
     label: string;
     value: string;
@@ -74,6 +84,9 @@ export function ChartSelect({
     /** Na lista, o rótulo e a ``descricao`` de cada opção numa linha cada,
      * com o texto um pouco menor (ex.: o seletor de turma das Comparações). */
     linhaUnica?: boolean;
+    /** Lado da lista: a partir da esquerda do botão ou da direita (da seta).
+     * Padrão: esquerda no ``inline``, direita na pílula. */
+    alinhar?: "esquerda" | "direita";
 }) {
     const sm = size === "sm";
     const inline = variant === "inline";
@@ -85,7 +98,14 @@ export function ChartSelect({
     // lado da lista: o padrão (inline: a partir da esquerda do botão; pílula:
     // da direita) troca quando não cabe na tela — no celular os seletores
     // descem pra esquerda do card e a lista sairia pela borda
-    const [lado, setLado] = useState<"left" | "right">(inline ? "left" : "right");
+    const ladoPadrao = alinhar
+        ? alinhar === "esquerda"
+            ? "left"
+            : "right"
+        : inline
+          ? "left"
+          : "right";
+    const [lado, setLado] = useState<"left" | "right">(ladoPadrao);
     // a lista abre num portal no <body>, com posição fixa medida do botão:
     // dentro da faixa do topo (altura fixa, overflow escondido) ou de um card
     // ela seria cortada ou ficaria por baixo dos cards seguintes
@@ -114,9 +134,8 @@ export function ChartSelect({
             const lista = Math.min(LISTA_MAX, window.innerWidth - 2 * MARGEM_TELA);
             const cabeDireita = window.innerWidth - botao.left - MARGEM_TELA >= lista;
             const cabeEsquerda = botao.right - MARGEM_TELA >= lista;
-            const padrao = inline ? "left" : "right";
             setLado(
-                padrao === "left"
+                ladoPadrao === "left"
                     ? cabeDireita || !cabeEsquerda
                         ? "left"
                         : "right"
@@ -175,6 +194,20 @@ export function ChartSelect({
             window.removeEventListener("resize", reposicionar);
         };
     }, [open]);
+
+    // o lado escolhido em ``openList`` supõe a lista na largura máxima; com a
+    // largura de verdade, se ela sai da tela e cabe do outro lado, troca
+    useLayoutEffect(() => {
+        const lista = listRef.current?.getBoundingClientRect();
+        const botao = rootRef.current?.getBoundingClientRect();
+        if (!open || !lista || !botao) return;
+        const limite = window.innerWidth - MARGEM_TELA;
+        if (lado === "right" && lista.left < MARGEM_TELA) {
+            if (botao.left + lista.width <= limite) setLado("left");
+        } else if (lado === "left" && lista.right > limite) {
+            if (botao.right - lista.width >= MARGEM_TELA) setLado("right");
+        }
+    }, [open, caixa, lado]);
 
     useEffect(() => {
         if (open)

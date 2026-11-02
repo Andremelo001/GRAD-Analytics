@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 
 import { Card } from "@/components/cards/Card";
+import { ChartSelect } from "@/components/charts/ChartSelect";
 import { DeltaPill } from "@/components/charts/qualidade/DeltaPill";
 import { FaixaPill } from "@/components/charts/qualidade/FaixaPill";
 import { faixaDe } from "@/lib/cpc";
@@ -8,14 +9,19 @@ import { formatDecimal, formatInteger, toTitleCase } from "@/lib/format";
 import type { AvaliacaoCurso } from "@/lib/qualidade";
 import { cn } from "@/lib/utils";
 
-/** Cabeçalho da sub-aba Por curso: a ficha da avaliação mais recente (ano,
- * área, CPC + faixa, Enade + faixa e a média nacional). O curso se escolhe no
- * seletor do cabeçalho da aba. */
+/** Cabeçalho da sub-aba Por curso: a ficha de uma avaliação do curso (ano,
+ * área, CPC + faixa, Enade + faixa e a média nacional) — a mais recente, ou a
+ * do ano escolhido no seletor do canto (``anos``, as edições do curso; com uma
+ * só, um aviso no lugar). O curso se escolhe no seletor do cabeçalho da aba. */
 export function CursoResumoCard({
     curso,
+    anos,
+    onAno,
     className,
 }: {
     curso: AvaliacaoCurso;
+    anos: number[];
+    onAno: (ano: number) => void;
     className?: string;
 }) {
     return (
@@ -48,6 +54,9 @@ export function CursoResumoCard({
                         {curso.nome}
                     </h2>
                 </div>
+                {curso.ano !== null && (
+                    <AnoAvaliacao anos={anos} valor={curso.ano} onChange={onAno} />
+                )}
             </div>
 
             {/* itens distribuídos de ponta a ponta (o primeiro encosta na
@@ -91,6 +100,48 @@ export function CursoResumoCard({
                 </Item>
             </dl>
         </Card>
+    );
+}
+
+/** O ano da avaliação no meio de uma frase, como o seletor de turma da
+ * Trajetória ("Avaliação de [2021 ▾]"); a mais recente primeiro. Com uma
+ * avaliação só, o aviso de que ela é a única. */
+function AnoAvaliacao({
+    anos,
+    valor,
+    onChange,
+}: {
+    anos: number[];
+    valor: number;
+    onChange: (ano: number) => void;
+}) {
+    if (anos.length <= 1) {
+        return (
+            <div className="text-ink flex h-10 items-center self-start text-[13px] whitespace-nowrap sm:ml-auto">
+                {valor} é a única avaliação disponível
+            </div>
+        );
+    }
+    const recente = Math.max(...anos);
+    return (
+        // o mesmo lugar e tamanho do "Turma de [2018 ▾]" da Trajetória
+        <div className="text-text-secondary flex h-10 items-center gap-1.5 self-start text-[13px] whitespace-nowrap sm:ml-auto">
+            Avaliação de
+            <ChartSelect
+                variant="inline"
+                tone="surface"
+                label="Ano da avaliação"
+                alinhar="direita"
+                value={String(valor)}
+                options={[...anos]
+                    .sort((a, b) => b - a)
+                    .map((a) => ({
+                        value: String(a),
+                        label: a === recente ? `${a} · mais recente` : String(a),
+                    }))}
+                onChange={(v) => onChange(Number(v))}
+            />
+        </div>
     );
 }
 

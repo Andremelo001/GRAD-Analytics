@@ -3,6 +3,7 @@ import { toTitleCase } from "@/lib/format";
 import type {
     Curso,
     DashboardData,
+    EvolucaoCpcNacionalPonto,
     EvolucaoCpcPonto,
     PerfilRadar,
     PerfilRadarNacional,
@@ -64,78 +65,127 @@ export function rotulosCursos(cursos: Curso[]): Map<number, string> {
     return rotulos;
 }
 
+type MapasNacionais = {
+    comp: Map<string, PerfilRadarNacional>;
+    cpc: Map<string, EvolucaoCpcNacionalPonto>;
+};
+
+/** As médias nacionais (componentes e CPC) por área e ano. */
+function mapasNacionais(data: DashboardData): MapasNacionais {
+    return {
+        comp: new Map(
+            data.medias_nacionais.perfil_radar.map((n) => [
+                chaveAreaAno(n.area_avaliacao, n.ano),
+                n,
+            ])
+        ),
+        cpc: new Map(
+            data.medias_nacionais.evolucao_cpc.map((n) => [
+                chaveAreaAno(n.area_avaliacao, n.ano),
+                n,
+            ])
+        ),
+    };
+}
+
+/** As 9 notas de uma edição do histórico, no formato do ``PerfilRadar``. */
+function perfilDaEdicao(e: EvolucaoCpcPonto): PerfilRadar {
+    return {
+        codigo_curso: e.codigo_curso,
+        nome_curso: e.nome_curso,
+        area_avaliacao: e.area_avaliacao,
+        ano: e.ano,
+        cpc_continuo: e.cpc_continuo,
+        cpc_faixa: e.cpc_faixa,
+        conceito_enade_continuo: e.conceito_enade_continuo,
+        formacao_geral: e.formacao_geral ?? null,
+        componente_especifico: e.componente_especifico ?? null,
+        idd: e.idd ?? null,
+        organizacao_didatico_pedagogica: e.organizacao_didatico_pedagogica ?? null,
+        infraestrutura: e.infraestrutura ?? null,
+        oportunidade_ampliacao: e.oportunidade_ampliacao ?? null,
+        mestres: e.mestres ?? null,
+        doutores: e.doutores ?? null,
+        regime_trabalho: e.regime_trabalho ?? null,
+    };
+}
+
+/** A ficha do curso numa edição (``perfil``): ano, CPC, Enade, notas, a média
+ * nacional da área naquele ano e o ciclo com CPC anterior a ele. */
+function fichaDaEdicao(
+    curso: AvaliacaoCurso,
+    perfil: PerfilRadar,
+    nacionais: MapasNacionais
+): AvaliacaoCurso {
+    const chave = chaveAreaAno(perfil.area_avaliacao, perfil.ano);
+    const anterior = curso.historico
+        .filter((e) => e.ano < perfil.ano && e.cpc_continuo !== null)
+        .at(-1);
+    return {
+        ...curso,
+        area: perfil.area_avaliacao,
+        ano: perfil.ano,
+        cpc: perfil.cpc_continuo,
+        faixa: faixaNumero(perfil.cpc_faixa),
+        enade: perfil.conceito_enade_continuo,
+        perfil,
+        nacional: nacionais.comp.get(chave),
+        cpcNacional: nacionais.cpc.get(chave)?.cpc_continuo_medio_nacional ?? null,
+        cursosNacional:
+            nacionais.cpc.get(chave)?.quantidade_cursos_considerados ?? null,
+        anterior: anterior
+            ? {
+                  ano: anterior.ano,
+                  cpc: anterior.cpc_continuo!,
+                  faixa: faixaNumero(anterior.cpc_faixa),
+              }
+            : null,
+    };
+}
+
 export function buildAvaliacoes(data: DashboardData): AvaliacaoCurso[] {
     const rotulos = rotulosCursos(data.cursos);
     const { perfil_radar: perfis, evolucao_cpc: evolucao } = data.curso_perfil;
-    const nacionalComp = new Map(
-        data.medias_nacionais.perfil_radar.map((n) => [
-            chaveAreaAno(n.area_avaliacao, n.ano),
-            n,
-        ])
-    );
-    const nacionalCpc = new Map(
-        data.medias_nacionais.evolucao_cpc.map((n) => [
-            chaveAreaAno(n.area_avaliacao, n.ano),
-            n,
-        ])
-    );
+    const nacionais = mapasNacionais(data);
 
     return data.cursos.map((curso) => {
         const perfil = perfis.find((p) => p.codigo_curso === curso.codigo_curso);
         const historico = evolucao
             .filter((e) => e.codigo_curso === curso.codigo_curso)
             .sort((a, b) => a.ano - b.ano);
-        const nome = rotulos.get(curso.codigo_curso) ?? toTitleCase(curso.nome_curso);
-        const nomeCurso = toTitleCase(curso.nome_curso);
-        const grau = curso.grau_academico;
-        if (!perfil) {
-            return {
-                codigo: curso.codigo_curso,
-                nome,
-                nomeCurso,
-                grau,
-                area: null,
-                ano: null,
-                cpc: null,
-                faixa: null,
-                enade: null,
-                perfil: undefined,
-                nacional: undefined,
-                cpcNacional: null,
-                cursosNacional: null,
-                anterior: null,
-                historico,
-            };
-        }
-        const chave = chaveAreaAno(perfil.area_avaliacao, perfil.ano);
-        const anterior = historico
-            .filter((e) => e.ano < perfil.ano && e.cpc_continuo !== null)
-            .at(-1);
-        return {
+        const semAvaliacao: AvaliacaoCurso = {
             codigo: curso.codigo_curso,
-            nome,
-            nomeCurso,
-            grau,
-            area: perfil.area_avaliacao,
-            ano: perfil.ano,
-            cpc: perfil.cpc_continuo,
-            faixa: faixaNumero(perfil.cpc_faixa),
-            enade: perfil.conceito_enade_continuo,
-            perfil,
-            nacional: nacionalComp.get(chave),
-            cpcNacional: nacionalCpc.get(chave)?.cpc_continuo_medio_nacional ?? null,
-            cursosNacional:
-                nacionalCpc.get(chave)?.quantidade_cursos_considerados ?? null,
-            anterior: anterior
-                ? {
-                      ano: anterior.ano,
-                      cpc: anterior.cpc_continuo!,
-                      faixa: faixaNumero(anterior.cpc_faixa),
-                  }
-                : null,
+            nome: rotulos.get(curso.codigo_curso) ?? toTitleCase(curso.nome_curso),
+            nomeCurso: toTitleCase(curso.nome_curso),
+            grau: curso.grau_academico,
+            area: null,
+            ano: null,
+            cpc: null,
+            faixa: null,
+            enade: null,
+            perfil: undefined,
+            nacional: undefined,
+            cpcNacional: null,
+            cursosNacional: null,
+            anterior: null,
             historico,
         };
+        return perfil ? fichaDaEdicao(semAvaliacao, perfil, nacionais) : semAvaliacao;
     });
+}
+
+/** O curso numa edição anterior do Enade (o seletor de ano do Por curso): a
+ * mesma ficha da mais recente, com as notas do histórico daquele ano. O ano
+ * da avaliação mais recente (ou um ano fora do histórico) devolve o próprio
+ * curso. */
+export function avaliacaoNoAno(
+    data: DashboardData,
+    curso: AvaliacaoCurso,
+    ano: number
+): AvaliacaoCurso {
+    const edicao = curso.historico.find((e) => e.ano === ano);
+    if (!edicao || ano === curso.ano) return curso;
+    return fichaDaEdicao(curso, perfilDaEdicao(edicao), mapasNacionais(data));
 }
 
 /** Cursos com CPC calculado na avaliação mais recente. */

@@ -8,23 +8,26 @@ export const TODAS_AS_TURMAS = "todas";
  * da sub-aba Por curso ("Turma de [2018 ▾]") e o dos subtítulos dos cards:
  * todos mudam a mesma turma da página. Mais recente primeiro; as em andamento
  * avisam. ``comTodas``: a primeira opção é "Todas as turmas" (valor
- * ``TODAS_AS_TURMAS``). */
+ * ``TODAS_AS_TURMAS``). ``alinhar``: o lado da lista (``ChartSelect``). */
 export function TurmaInline({
     turmas,
     valor,
     onChange,
     comTodas = false,
+    alinhar,
 }: {
     turmas: Turma[];
     valor: number | typeof TODAS_AS_TURMAS;
     onChange: (ano: number | typeof TODAS_AS_TURMAS) => void;
     comTodas?: boolean;
+    alinhar?: "esquerda" | "direita";
 }) {
     return (
         <ChartSelect
             variant="inline"
             tone="surface"
             label="Turma (ano de ingresso)"
+            alinhar={alinhar}
             value={String(valor)}
             options={[
                 ...(comTodas

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import { Card } from "@/components/cards/Card";
@@ -13,7 +13,7 @@ import { FiltroTopo, SeletorCursoTopo } from "@/components/layout/FiltroTopo";
 import { PorCursoEsqueleto } from "@/components/layout/Esqueleto";
 import { useCursoEscolhido } from "@/hooks/useCursoEscolhido";
 import { opcaoCurso } from "@/lib/curso";
-import { buildAvaliacoes, type AvaliacaoCurso } from "@/lib/qualidade";
+import { avaliacaoNoAno, buildAvaliacoes, type AvaliacaoCurso } from "@/lib/qualidade";
 import type { DashboardData } from "@/types/dashboard";
 
 export function PorCursoPage() {
@@ -89,6 +89,12 @@ function PorCurso({ data }: { data: DashboardData }) {
     const semEquivalente =
         !pedido && !escolhido && !correspondente && ultimoVisto !== null;
     const { escolher } = escolha;
+    // o ano da avaliação escolhido no CursoResumoCard, do curso em que foi
+    // escolhido: trocar de curso volta pra avaliação mais recente
+    const [anoEscolhido, setAnoEscolhido] = useState<{
+        codigo: number;
+        ano: number;
+    } | null>(null);
 
     useEffect(() => {
         if (!curso) return;
@@ -115,7 +121,14 @@ function PorCurso({ data }: { data: DashboardData }) {
         );
     }
 
-    const temNotas = curso.cpc !== null && curso.perfil !== undefined;
+    // a avaliação do ano escolhido: os cards dessa avaliação (a ficha, as
+    // réguas, "De onde vem a nota", "Curso × média nacional") a seguem; os da
+    // série (componentes no tempo, participação) mostram todas as edições
+    const avaliacao =
+        anoEscolhido?.codigo === curso.codigo
+            ? avaliacaoNoAno(data, curso, anoEscolhido.ano)
+            : curso;
+    const temNotas = avaliacao.cpc !== null && avaliacao.perfil !== undefined;
     return (
         <div className="grid grid-cols-1 items-start gap-5 lg:grid-cols-12 lg:gap-6">
             <FiltroTopo>
@@ -128,22 +141,27 @@ function PorCurso({ data }: { data: DashboardData }) {
                     />
                 )}
             </FiltroTopo>
-            <CursoResumoCard className="lg:col-span-12" curso={curso} />
+            <CursoResumoCard
+                className="lg:col-span-12"
+                curso={avaliacao}
+                anos={curso.historico.map((e) => e.ano)}
+                onAno={(ano) => setAnoEscolhido({ codigo: curso.codigo, ano })}
+            />
             {/* lado a lado com a mesma altura: as duas réguas (CPC e Conceito
                 Enade), empilhadas, dividem a altura do "De onde vem a nota" */}
             {temNotas && (
                 <div className="grid grid-cols-1 gap-5 lg:col-span-12 lg:grid-cols-12 lg:gap-6">
-                    <ContribuicaoCard className="lg:col-span-7" curso={curso} />
+                    <ContribuicaoCard className="lg:col-span-7" curso={avaliacao} />
                     <div className="flex flex-col gap-5 lg:col-span-5 lg:gap-6">
                         <ProximaFaixaCard
                             className="lg:flex-1"
                             indicador="cpc"
-                            valor={curso.cpc}
+                            valor={avaliacao.cpc}
                         />
                         <ProximaFaixaCard
                             className="lg:flex-1"
                             indicador="enade"
-                            valor={curso.enade}
+                            valor={avaliacao.enade}
                         />
                     </div>
                 </div>
@@ -160,9 +178,12 @@ function PorCurso({ data }: { data: DashboardData }) {
                 acompanha o "Curso × média nacional" (ou o aviso de sem CPC) */}
             <div className="grid grid-cols-1 gap-5 lg:col-span-12 lg:grid-cols-12 lg:gap-6">
                 {temNotas ? (
-                    <ComponentesDumbbellCard className="lg:col-span-7" curso={curso} />
+                    <ComponentesDumbbellCard
+                        className="lg:col-span-7"
+                        curso={avaliacao}
+                    />
                 ) : (
-                    <SemCpcCard className="lg:col-span-7" curso={curso} />
+                    <SemCpcCard className="lg:col-span-7" curso={avaliacao} />
                 )}
                 <ParticipacaoEnadeCard className="lg:col-span-5" curso={curso} />
             </div>
