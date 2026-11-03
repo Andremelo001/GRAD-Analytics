@@ -2,14 +2,15 @@ import { useLocation, useNavigate } from "react-router-dom";
 
 import { CursoBusca } from "@/components/charts/qualidade/CursoBusca";
 import { useDashboardData } from "@/hooks/useDashboardData";
-import { nomeUnidade } from "@/lib/comparacao";
+import { nomeUnidade, nomeUnidadeExtenso } from "@/lib/comparacao";
 
 /** Seletor de unidade em pílula, à esquerda das sub-abas (``PageHeader``) — o
  * mesmo desenho da barra delas, separado: "Unidade [CCA (Fortaleza) ▾]". É o
  * seletor com busca da aplicação (``CursoBusca``, como o de curso do Início):
  * aberto, filtra pelo nome, sigla ou cidade, e a lista abre alinhada à
- * esquerda da pílula. Na lista, cada unidade aparece como no SIGAA ("CCA -
- * CENTRO DE CIÊNCIAS AGRÁRIAS"), com a localidade embaixo, menor. Troca o JSON
+ * esquerda da pílula. Na lista, cada unidade aparece pelo nome inteiro com a
+ * sigla no fim ("CENTRO DE CIÊNCIAS AGRÁRIAS (CCA)"), com a localidade
+ * embaixo, menor. Troca o JSON
  * carregado (``DashboardDataProvider``); enquanto a nova unidade baixa, a seta
  * vira um indicador de carga. ``tom="surface"``: sobre o plano claro (modo
  * apresentação), em pílula branca como as sub-abas.
@@ -47,7 +48,7 @@ export function UnidadeSelect({ tom = "band" }: { tom?: "band" | "surface" }) {
                 value={unidade}
                 options={unidades.map((c) => ({
                     value: c.slug,
-                    label: c.nome,
+                    label: nomeUnidadeExtenso(c),
                     detalhe: c.localidade ?? undefined,
                     busca: c.sigla ?? undefined,
                     curto: nomeUnidade(c),
@@ -60,12 +61,18 @@ export function UnidadeSelect({ tom = "band" }: { tom?: "band" | "surface" }) {
 }
 
 /** A unidade selecionada no meio de uma frase ("…da graduação da UFC na
- * unidade CCA (Fortaleza)"), com a mesma cor e o mesmo peso da frase: só
- * mostra; quem troca é o ``UnidadeSelect``. O rótulo inteiro do SIGAA fica no
- * ``title``. */
+ * unidade CENTRO DE CIÊNCIAS AGRÁRIAS (CCA)"), pelo nome inteiro, como na
+ * lista do seletor, com a mesma cor e o mesmo peso da frase: só mostra; quem
+ * troca é o ``UnidadeSelect``. A frase fica numa linha (cortada com "…"
+ * se não couber): o nome inteiro e a cidade ficam no ``title``. */
 export function UnidadeAtual() {
     const { unidades, unidade } = useDashboardData();
     const info = unidades.find((c) => c.slug === unidade);
     if (!info) return null;
-    return <span title={info.nome}>{nomeUnidade(info)}</span>;
+    const nome = nomeUnidadeExtenso(info);
+    return (
+        <span title={info.localidade ? `${nome} · ${info.localidade}` : nome}>
+            {nome}
+        </span>
+    );
 }

@@ -43,7 +43,10 @@ export function PageHeader({
                     {title}
                 </h1>
                 {subtitle && (
-                    <div className="mt-1.5 text-[13px] leading-snug text-white/65">
+                    // uma linha só (nomes de unidade longos terminam em "…";
+                    // o nome inteiro fica no title da UnidadeAtual): a linha
+                    // das abas não desce
+                    <div className="mt-1.5 truncate text-[13px] leading-snug text-white/65">
                         {subtitle}
                     </div>
                 )}

@@ -44,8 +44,8 @@ interface Option {
      * Com ela, o rótulo quebra linha em vez de cortar. */
     descricao?: string;
     /** O que o botão mostra com a opção escolhida, se for diferente do rótulo
-     * da lista (ex.: "CCA (Fortaleza)" para "CCA - CENTRO DE CIÊNCIAS
-     * AGRÁRIAS"). */
+     * da lista (ex.: "CCA (Fortaleza)" para "CENTRO DE CIÊNCIAS AGRÁRIAS
+     * (CCA)"). */
     curto?: string;
 }
 

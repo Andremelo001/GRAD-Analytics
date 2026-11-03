@@ -387,7 +387,8 @@ export interface Alertas {
 /** Uma unidade da IES — cada uma tem o seu ``<slug>.json`` (um DashboardData).
  * ``nome``: rótulo do SIGAA ("CCA - CENTRO DE CIÊNCIAS AGRÁRIAS") ou, para os
  * cursos sem unidade no SIGAA, a cidade ("UFC em Fortaleza", ``sigla`` null);
- * ``localidade``: o município ("Fortaleza"). */
+ * nas telas, com a sigla no fim (``nomeUnidadeExtenso``: "CENTRO DE CIÊNCIAS
+ * AGRÁRIAS (CCA)"); ``localidade``: o município ("Fortaleza"). */
 export interface UnidadeInfo {
     slug: string;
     nome: string;

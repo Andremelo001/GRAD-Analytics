@@ -16,7 +16,7 @@ export interface OpcaoCurso {
      * da instituição quando o rótulo mostra só a sigla). */
     busca?: string;
     /** O que o seletor fechado mostra, se for diferente do rótulo da lista
-     * (ex.: "CCA (Fortaleza)" para "CCA - CENTRO DE CIÊNCIAS AGRÁRIAS"). */
+     * (ex.: "CCA (Fortaleza)" para "CENTRO DE CIÊNCIAS AGRÁRIAS (CCA)"). */
     curto?: string;
 }
 

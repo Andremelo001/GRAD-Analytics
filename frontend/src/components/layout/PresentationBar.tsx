@@ -52,7 +52,7 @@ export function PresentationBar({ presenting }: { presenting: boolean }) {
                                 : "translateY(-100%)",
                         }}
                     >
-                        <div className="text-text-secondary min-w-0 text-[13px] leading-snug sm:text-[14px]">
+                        <div className="text-text-secondary min-w-0 truncate text-[13px] leading-snug sm:text-[14px]">
                             <span className="hidden sm:inline">
                                 Acompanhe os indicadores da graduação da{" "}
                             </span>

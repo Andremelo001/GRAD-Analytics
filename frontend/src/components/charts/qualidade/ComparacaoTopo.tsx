@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import { Card } from "@/components/cards/Card";
 import { CursoBusca } from "@/components/charts/qualidade/CursoBusca";
 import { useChartTheme } from "@/hooks/useChartTheme";
+import { nomeUnidadeExtenso } from "@/lib/comparacao";
 import type { ResumoUnidades } from "@/types/dashboard";
 
 // O topo das Comparações (Qualidade e Trajetória): tipo de comparação, os dois
@@ -95,7 +96,7 @@ export function SeletorUnidade({
             value={value}
             options={unidades.map((c) => ({
                 value: c.slug,
-                label: c.nome,
+                label: nomeUnidadeExtenso(c),
                 // a localidade, como no seletor de unidade do topo
                 detalhe: [
                     c.localidade,

@@ -117,9 +117,9 @@ export function IlustracaoBoasVindas() {
 // --- 2. seletor de unidade ---------------------------------------------------
 
 const UNIDADES = [
-    ["CC - CENTRO DE CIÊNCIAS", "Fortaleza"],
-    ["CCA - CENTRO DE CIÊNCIAS AGRÁRIAS", "Fortaleza"],
-    ["DIRQUIXADA - CAMPUS DA UFC EM QUIXADÁ", "Quixadá"],
+    ["CENTRO DE CIÊNCIAS (CC)", "Fortaleza"],
+    ["CENTRO DE CIÊNCIAS AGRÁRIAS (CCA)", "Fortaleza"],
+    ["CAMPUS DA UFC EM QUIXADÁ (DIRQUIXADA)", "Quixadá"],
 ] as const;
 
 export function IlustracaoUnidade() {
@@ -142,7 +142,7 @@ export function IlustracaoUnidade() {
                             key={nome}
                             className={cn(
                                 "rounded-lg px-2.5 py-1.5",
-                                (busca ? i === 0 : nome.startsWith("CCA")) && "bg-page"
+                                (busca ? i === 0 : nome.endsWith("(CCA)")) && "bg-page"
                             )}
                         >
                             <p className="text-ink truncate text-[11px] leading-tight">

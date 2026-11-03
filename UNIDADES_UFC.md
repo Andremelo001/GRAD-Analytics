@@ -117,7 +117,7 @@ Guarda **tudo o que a página do SIGAA mostra**, mesmo o que o painel não usa:
 | `gerado_em` · `fonte` | quando e de onde a página foi lida |
 | `total_unidades` · `total_cursos` | contagens, pra conferir de relance se a página veio inteira |
 | `titulo` · `descricao` · `nivel` · `modalidades_filtro` · `colunas` | o cabeçalho da página, o filtro de modalidade do formulário e os títulos das colunas da tabela, como no SIGAA |
-| `unidades[].rotulo` | o nome da unidade exatamente como na página. **É o que o painel mostra no seletor de unidade.** |
+| `unidades[].rotulo` | o nome da unidade exatamente como na página (`CCA - CENTRO DE CIÊNCIAS AGRÁRIAS`). **Nos seletores, o painel o mostra com a sigla no fim, entre parênteses**: `CENTRO DE CIÊNCIAS AGRÁRIAS (CCA)`. |
 | `unidades[].sigla` | a parte antes do primeiro " - " do rótulo (`CCA`). **É a sigla usada no arquivo de ajustes** e o nome do arquivo da unidade no painel (`cca.json`). |
 | `unidades[].nome` | o resto do rótulo (`CENTRO DE CIÊNCIAS AGRÁRIAS`) |
 | `unidades[].sedes` | as cidades dos cursos da unidade |

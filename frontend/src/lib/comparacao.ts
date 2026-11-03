@@ -7,7 +7,7 @@ export type Notas = Record<ComponenteKey, number | null>;
 /** Nome curto de uma unidade, pra frases, botões e comparações: a sigla do
  * SIGAA com o município ("CCA (Fortaleza)"); sem unidade no SIGAA, só a
  * cidade ("Fortaleza", de "UFC em Fortaleza"). Nas listas de escolha vai o
- * rótulo inteiro (``nome``), com a localidade embaixo. */
+ * nome inteiro (``nomeUnidadeExtenso``), com a localidade embaixo. */
 export function nomeUnidade(unidade: {
     nome: string;
     sigla?: string | null;
@@ -18,6 +18,15 @@ export function nomeUnidade(unidade: {
             ? `${unidade.sigla} (${unidade.localidade})`
             : unidade.sigla;
     return unidade.nome.replace(/^UFC\s+(?:em|Unidade)\s+/i, "");
+}
+
+/** Nome inteiro de uma unidade, pras listas de escolha: o rótulo do SIGAA
+ * com a sigla no fim, entre parênteses ("CC - CENTRO DE CIÊNCIAS" -> "CENTRO
+ * DE CIÊNCIAS (CC)"), que se lê melhor. Rótulo sem sigla na frente fica como
+ * está. */
+export function nomeUnidadeExtenso(unidade: { nome: string }): string {
+    const partes = /^(\S+)\s+-\s+(.+)$/.exec(unidade.nome.trim());
+    return partes ? `${partes[2]} (${partes[1]})` : unidade.nome;
 }
 
 /** Uma unidade resumida pra comparação entre unidades: médias dos cursos com CPC

@@ -16,7 +16,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { ULTIMA_UNIDADE } from "@/context/dashboard-data-context";
 import type { ThemePreference } from "@/context/theme-context";
 import { useDashboardData } from "@/hooks/useDashboardData";
-import { nomeUnidade } from "@/lib/comparacao";
+import { nomeUnidade, nomeUnidadeExtenso } from "@/lib/comparacao";
 import { useTheme } from "@/hooks/useTheme";
 import { cn } from "@/lib/utils";
 
@@ -77,7 +77,7 @@ export function ConfiguracoesPage() {
                         titulo="Unidade ao abrir o painel"
                         descricao={
                             fixo
-                                ? `O painel sempre abre em ${nomeUnidade(fixo)}`
+                                ? `O painel sempre abre em ${nomeUnidadeExtenso(fixo)}`
                                 : "O painel abre na última unidade escolhida"
                         }
                         controle={
@@ -92,7 +92,7 @@ export function ConfiguracoesPage() {
                                         },
                                         ...unidades.map((c) => ({
                                             value: c.slug,
-                                            label: c.nome,
+                                            label: nomeUnidadeExtenso(c),
                                             descricao: c.localidade ?? undefined,
                                             curto: nomeUnidade(c),
                                         })),
